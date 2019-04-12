@@ -52,20 +52,9 @@ public class Application
 	
 	
 	public static void main(String[] args) 
-	{
-	     try 
-	     {
-	                  
-	            FileWriter file = new FileWriter("out.txt", true);
-	            searchDirectories(file, ftp, workingDirectory);
-	     } 
-	     catch (IOException ex) 
-	     {
-	            System.out.println("Oops! Something went wrong.");
-	            ex.printStackTrace();
-	     }
-	     
-		
+	{          
+	            //FileWriter file = new FileWriter("out.txt", true);
+
 	}
 
 }
