@@ -1,27 +1,19 @@
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.SocketException;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-import org.apache.commons.net.ftp.FTPReply;
+
+import FTPfz.FTPClient223fz;;
 
 
 public class Application
 {
 	static int f = 0;
 	static double size = 0;
-	private static void showServerReply(FTPClient ftp)
-	{
-        String[] replies = ftp.getReplyStrings(); 
-        if (replies != null && replies.length > 0)
-        {
-	        for (String aReply : replies)
-	        {
-	            System.out.println("SERVER: " + aReply);
-	        }
-        }
-    }
+	
 	private static void writeFiles(FileWriter file, FTPClient ftp, String workspace) throws IOException
 	{
 		FTPFile[] namesFiles = ftp.listFiles(workspace);
@@ -36,24 +28,25 @@ public class Application
 		}
 	}
 	
-	private static void searchDirectories(FileWriter file, FTPClient ftp, String workspace) throws IOException
-	{
-		System.out.println(f);
-		System.out.println(size);
-		System.out.println(workspace);
-		writeFiles(file, ftp, workspace);
-		FTPFile[] namesDirectories = ftp.listDirectories(workspace);
-		for(FTPFile n: namesDirectories)
-		{
-			searchDirectories(file, ftp, workspace + "/" + n.getName());
-		}
-	}
-	
-	
-	
 	public static void main(String[] args) 
 	{          
-	            //FileWriter file = new FileWriter("out.txt", true);
+		FTPClient223fz ftp = FTPClient223fz.INSTANCE;
+		
+		try
+		{
+			ftp.connect();
+			ftp.login();
+			ftp.parseFTPServer();
+		} 
+		catch (SocketException e) 
+		{
+			e.printStackTrace();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
 
 	}
 
