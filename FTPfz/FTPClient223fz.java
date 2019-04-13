@@ -114,13 +114,9 @@ public enum FTPClient223fz implements FTPClientFZ
 				File localfile = new File(path);
 				localfile.createNewFile();
 				OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(localfile));
-				if(ftp.retrieveFile(workspace + "/" + remote.getName(), outputStream))
+				if(!ftp.retrieveFile(workspace + "/" + remote.getName(), outputStream))
 				{
-					System.out.println("Success"); //DEBUG
-				}
-				else
-				{
-					System.out.println("Unsuccess"); //DEBUG
+					System.out.println("Не удалось загрузить " + workspace + "/" + remote.getName());
 				}
 				outputStream.close();
 			}
