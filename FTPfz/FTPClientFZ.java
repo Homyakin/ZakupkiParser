@@ -10,6 +10,6 @@ public interface FTPClientFZ
 	void connect() throws SocketException, IOException;
 	//login to server
 	void login() throws IOException;
-	//pase server
+	//parse server
 	public void parseFTPServer() throws IOException;
 }

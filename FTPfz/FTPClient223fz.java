@@ -32,6 +32,7 @@ public enum FTPClient223fz implements FTPClientFZ
 			"purchaseProtocolPAAE94", "purchaseProtocolOSZ", "purchaseProtocolRZOK", 
 			"purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE"};
 	private final static String downloadPath = "D:/Zakupki";
+	
 	@Override
 	public void connect() throws SocketException, IOException 
 	{
@@ -75,6 +76,7 @@ public enum FTPClient223fz implements FTPClientFZ
 		}
 	}
 	
+	//создать директории на локальном диске для загрузки файлов
 	private void makeDownloadDirectories(String workspace)
 	{
 		 for(String s: parsingFolders)
@@ -84,6 +86,7 @@ public enum FTPClient223fz implements FTPClientFZ
 		 }
 	}
 	
+	//найти необходимые директории на сервере
 	private void searchInRegions(String workspace) throws IOException
 	{
 		FTPFile[] namesDirectories = ftp.listDirectories(workspace);
@@ -97,6 +100,7 @@ public enum FTPClient223fz implements FTPClientFZ
 		}
 	}
 	
+	//загрузить zip-архивы
 	private void downloadFiles(String workspace) throws IOException
 	{
 		System.out.println(workspace); //DEBUG
@@ -112,11 +116,11 @@ public enum FTPClient223fz implements FTPClientFZ
 				OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(localfile));
 				if(ftp.retrieveFile(workspace + "/" + remote.getName(), outputStream))
 				{
-					System.out.println("Success");
+					System.out.println("Success"); //DEBUG
 				}
 				else
 				{
-					System.out.println("Unsuccess");
+					System.out.println("Unsuccess"); //DEBUG
 				}
 				outputStream.close();
 			}
