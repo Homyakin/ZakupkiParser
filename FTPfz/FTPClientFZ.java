@@ -4,13 +4,6 @@ import java.io.IOException;
 import java.net.SocketException;
 
 
-enum Singleton
-{
-	INSTANCE;
-	public static Singleton getInstance() { return INSTANCE; }
-} 
-
-
 public interface FTPClientFZ 
 {
 	//connect to sever
