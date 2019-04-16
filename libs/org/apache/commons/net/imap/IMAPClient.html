@@ -1,0 +1,934 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>IMAPClient (Apache Commons Net 3.6 API)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="IMAPClient (Apache Commons Net 3.6 API)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/IMAPClient.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/imap/IMAP.IMAPState.html" title="enum in org.apache.commons.net.imap"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/imap/IMAPClient.FETCH_ITEM_NAMES.html" title="enum in org.apache.commons.net.imap"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/imap/IMAPClient.html" target="_top">Frames</a></li>
+<li><a href="IMAPClient.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li><a href="#nested_class_summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_org.apache.commons.net.imap.IMAP">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.apache.commons.net.imap</div>
+<h2 title="Class IMAPClient" class="title">Class IMAPClient</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">org.apache.commons.net.SocketClient</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../org/apache/commons/net/imap/IMAP.html" title="class in org.apache.commons.net.imap">org.apache.commons.net.imap.IMAP</a></li>
+<li>
+<ul class="inheritance">
+<li>org.apache.commons.net.imap.IMAPClient</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>Direct Known Subclasses:</dt>
+<dd><a href="../../../../../org/apache/commons/net/imap/IMAPSClient.html" title="class in org.apache.commons.net.imap">IMAPSClient</a></dd>
+</dl>
+<hr>
+<br>
+<pre>public class <span class="strong">IMAPClient</span>
+extends <a href="../../../../../org/apache/commons/net/imap/IMAP.html" title="class in org.apache.commons.net.imap">IMAP</a></pre>
+<div class="block">The IMAPClient class provides the basic functionalities found in an
+ IMAP client.</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested_class_summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.FETCH_ITEM_NAMES.html" title="enum in org.apache.commons.net.imap">IMAPClient.FETCH_ITEM_NAMES</a></strong></code>
+<div class="block">The message data item names for the FETCH command defined in RFC 3501.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.SEARCH_CRITERIA.html" title="enum in org.apache.commons.net.imap">IMAPClient.SEARCH_CRITERIA</a></strong></code>
+<div class="block">The search criteria defined in RFC 3501.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.STATUS_DATA_ITEMS.html" title="enum in org.apache.commons.net.imap">IMAPClient.STATUS_DATA_ITEMS</a></strong></code>
+<div class="block">The status data items defined in RFC 3501.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="nested_classes_inherited_from_class_org.apache.commons.net.imap.IMAP">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;org.apache.commons.net.imap.<a href="../../../../../org/apache/commons/net/imap/IMAP.html" title="class in org.apache.commons.net.imap">IMAP</a></h3>
+<code><a href="../../../../../org/apache/commons/net/imap/IMAP.IMAPChunkListener.html" title="interface in org.apache.commons.net.imap">IMAP.IMAPChunkListener</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.IMAPState.html" title="enum in org.apache.commons.net.imap">IMAP.IMAPState</a></code></li>
+</ul>
+</li>
+</ul>
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.apache.commons.net.imap.IMAP">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.apache.commons.net.imap.<a href="../../../../../org/apache/commons/net/imap/IMAP.html" title="class in org.apache.commons.net.imap">IMAP</a></h3>
+<code><a href="../../../../../org/apache/commons/net/imap/IMAP.html#__DEFAULT_ENCODING">__DEFAULT_ENCODING</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#__writer">__writer</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#_reader">_reader</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#DEFAULT_PORT">DEFAULT_PORT</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#TRUE_CHUNK_LISTENER">TRUE_CHUNK_LISTENER</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.apache.commons.net.SocketClient">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.apache.commons.net.<a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">SocketClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/SocketClient.html#_defaultPort_">_defaultPort_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_hostname_">_hostname_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_input_">_input_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_output_">_output_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_serverSocketFactory_">_serverSocketFactory_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_socket_">_socket_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_socketFactory_">_socketFactory_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_timeout_">_timeout_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connectTimeout">connectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#NETASCII_EOL">NETASCII_EOL</a></code></li>
+</ul>
+</li>
+</ul>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#IMAPClient()">IMAPClient</a></strong>()</code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#append(java.lang.String)">append</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>(3.4) Does not work; the message body is not optional.
+ Use <a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#append(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)"><code>append(String, String, String, String)</code></a> instead.</i></div>
+</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#append(java.lang.String,%20java.lang.String,%20java.lang.String)">append</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName,
+      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;flags,
+      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;datetime)</code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>(3.4) Does not work; the message body is not optional.
+ Use <a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#append(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)"><code>append(String, String, String, String)</code></a> instead.</i></div>
+</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#append(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">append</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName,
+      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;flags,
+      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;datetime,
+      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)</code>
+<div class="block">Send an APPEND command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#capability()">capability</a></strong>()</code>
+<div class="block">Send a CAPABILITY command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#check()">check</a></strong>()</code>
+<div class="block">Send a CHECK command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#close()">close</a></strong>()</code>
+<div class="block">Send a CLOSE command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#copy(java.lang.String,%20java.lang.String)">copy</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;sequenceSet,
+    <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send a COPY command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#create(java.lang.String)">create</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send a CREATE command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#delete(java.lang.String)">delete</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send a DELETE command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#examine(java.lang.String)">examine</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send an EXAMINE command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#expunge()">expunge</a></strong>()</code>
+<div class="block">Send an EXPUNGE command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#fetch(java.lang.String,%20java.lang.String)">fetch</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;sequenceSet,
+     <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;itemNames)</code>
+<div class="block">Send a FETCH command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#list(java.lang.String,%20java.lang.String)">list</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;refName,
+    <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send a LIST command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#login(java.lang.String,%20java.lang.String)">login</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;username,
+     <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;password)</code>
+<div class="block">Login to the IMAP server with the given username and password.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#logout()">logout</a></strong>()</code>
+<div class="block">Send a LOGOUT command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#lsub(java.lang.String,%20java.lang.String)">lsub</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;refName,
+    <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send an LSUB command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#noop()">noop</a></strong>()</code>
+<div class="block">Send a NOOP command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#rename(java.lang.String,%20java.lang.String)">rename</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;oldMailboxName,
+      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;newMailboxName)</code>
+<div class="block">Send a RENAME command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#search(java.lang.String)">search</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;criteria)</code>
+<div class="block">Send a SEARCH command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#search(java.lang.String,%20java.lang.String)">search</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;charset,
+      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;criteria)</code>
+<div class="block">Send a SEARCH command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#select(java.lang.String)">select</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send a SELECT command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#status(java.lang.String,%20java.lang.String[])">status</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName,
+      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;itemNames)</code>
+<div class="block">Send a STATUS command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#store(java.lang.String,%20java.lang.String,%20java.lang.String)">store</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;sequenceSet,
+     <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;itemNames,
+     <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;itemValues)</code>
+<div class="block">Send a STORE command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#subscribe(java.lang.String)">subscribe</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send a SUBSCRIBE command to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#uid(java.lang.String,%20java.lang.String)">uid</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;command,
+   <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;commandArgs)</code>
+<div class="block">Send a UID command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#unsubscribe(java.lang.String)">unsubscribe</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)</code>
+<div class="block">Send a UNSUBSCRIBE command to the server.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.apache.commons.net.imap.IMAP">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.apache.commons.net.imap.<a href="../../../../../org/apache/commons/net/imap/IMAP.html" title="class in org.apache.commons.net.imap">IMAP</a></h3>
+<code><a href="../../../../../org/apache/commons/net/imap/IMAP.html#_connectAction_()">_connectAction_</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#disconnect()">disconnect</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#doCommand(org.apache.commons.net.imap.IMAPCommand)">doCommand</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#doCommand(org.apache.commons.net.imap.IMAPCommand,%20java.lang.String)">doCommand</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#fireReplyReceived(int,%20java.lang.String)">fireReplyReceived</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#generateCommandID()">generateCommandID</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#getReplyString()">getReplyString</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#getReplyStrings()">getReplyStrings</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#getState()">getState</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#sendCommand(org.apache.commons.net.imap.IMAPCommand)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#sendCommand(org.apache.commons.net.imap.IMAPCommand,%20java.lang.String)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#sendCommand(java.lang.String)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#sendCommand(java.lang.String,%20java.lang.String)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#sendData(java.lang.String)">sendData</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#setChunkListener(org.apache.commons.net.imap.IMAP.IMAPChunkListener)">setChunkListener</a>, <a href="../../../../../org/apache/commons/net/imap/IMAP.html#setState(org.apache.commons.net.imap.IMAP.IMAPState)">setState</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.apache.commons.net.SocketClient">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.apache.commons.net.<a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">SocketClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/SocketClient.html#addProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)">addProtocolCommandListener</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress,%20int,%20java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String,%20int,%20java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#createCommandSupport()">createCommandSupport</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#fireCommandSent(java.lang.String,%20java.lang.String)">fireCommandSent</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getCharset()">getCharset</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getCharsetName()">getCharsetName</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getCommandSupport()">getCommandSupport</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getConnectTimeout()">getConnectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getDefaultPort()">getDefaultPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getDefaultTimeout()">getDefaultTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getKeepAlive()">getKeepAlive</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getLocalAddress()">getLocalAddress</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getLocalPort()">getLocalPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getProxy()">getProxy</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getReceiveBufferSize()">getReceiveBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getRemoteAddress()">getRemoteAddress</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getRemotePort()">getRemotePort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSendBufferSize()">getSendBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getServerSocketFactory()">getServerSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSoLinger()">getSoLinger</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSoTimeout()">getSoTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getTcpNoDelay()">getTcpNoDelay</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#isAvailable()">isAvailable</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#isConnected()">isConnected</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#removeProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)">removeProtocolCommandListener</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setCharset(java.nio.charset.Charset)">setCharset</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setConnectTimeout(int)">setConnectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setDefaultPort(int)">setDefaultPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setDefaultTimeout(int)">setDefaultTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setKeepAlive(boolean)">setKeepAlive</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setProxy(java.net.Proxy)">setProxy</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setReceiveBufferSize(int)">setReceiveBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSendBufferSize(int)">setSendBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setServerSocketFactory(javax.net.ServerSocketFactory)">setServerSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSocketFactory(javax.net.SocketFactory)">setSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSoLinger(boolean,%20int)">setSoLinger</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSoTimeout(int)">setSoTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setTcpNoDelay(boolean)">setTcpNoDelay</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#verifyRemote(java.net.Socket)">verifyRemote</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long,%20int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="IMAPClient()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>IMAPClient</h4>
+<pre>public&nbsp;IMAPClient()</pre>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="capability()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>capability</h4>
+<pre>public&nbsp;boolean&nbsp;capability()
+                   throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a CAPABILITY command to the server.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs</dd></dl>
+</li>
+</ul>
+<a name="noop()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>noop</h4>
+<pre>public&nbsp;boolean&nbsp;noop()
+             throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a NOOP command to the server.  This is useful for keeping
+ a connection alive since most IMAP servers will timeout after 10
+ minutes of inactivity.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="logout()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>logout</h4>
+<pre>public&nbsp;boolean&nbsp;logout()
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a LOGOUT command to the server.  To fully disconnect from the server
+ you must call disconnect().
+ A logout attempt is valid in any state.  If
+ the client is in the not authenticated or authenticated state, it enters the
+ logout on a successful logout.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="login(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>login</h4>
+<pre>public&nbsp;boolean&nbsp;login(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;username,
+            <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;password)
+              throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Login to the IMAP server with the given username and password.  You
+ must first connect to the server with
+ <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress,%20int)"><code>connect </code></a>
+ before attempting to login.  A login attempt is only valid if
+ the client is in the NOT_AUTH_STATE.
+ After logging in, the client enters the AUTH_STATE.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>username</code> - The account name being logged in to.</dd><dd><code>password</code> - The plain text password of the account.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>True if the login attempt was successful, false if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs in the process of
+            logging in.</dd></dl>
+</li>
+</ul>
+<a name="select(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>select</h4>
+<pre>public&nbsp;boolean&nbsp;select(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a SELECT command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name to select.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="examine(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>examine</h4>
+<pre>public&nbsp;boolean&nbsp;examine(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+                throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send an EXAMINE command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name to examine.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="create(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>create</h4>
+<pre>public&nbsp;boolean&nbsp;create(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a CREATE command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name to create.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="delete(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>delete</h4>
+<pre>public&nbsp;boolean&nbsp;delete(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a DELETE command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name to delete.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="rename(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rename</h4>
+<pre>public&nbsp;boolean&nbsp;rename(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;oldMailboxName,
+             <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;newMailboxName)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a RENAME command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>oldMailboxName</code> - The existing mailbox name to rename.</dd><dd><code>newMailboxName</code> - The new mailbox name.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="subscribe(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>subscribe</h4>
+<pre>public&nbsp;boolean&nbsp;subscribe(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+                  throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a SUBSCRIBE command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name to subscribe to.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="unsubscribe(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>unsubscribe</h4>
+<pre>public&nbsp;boolean&nbsp;unsubscribe(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+                    throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a UNSUBSCRIBE command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name to unsubscribe from.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="list(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>list</h4>
+<pre>public&nbsp;boolean&nbsp;list(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;refName,
+           <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+             throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a LIST command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>refName</code> - The reference name.</dd><dd><code>mailboxName</code> - The mailbox name.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="lsub(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>lsub</h4>
+<pre>public&nbsp;boolean&nbsp;lsub(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;refName,
+           <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+             throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send an LSUB command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>refName</code> - The reference name.</dd><dd><code>mailboxName</code> - The mailbox name.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="status(java.lang.String, java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>status</h4>
+<pre>public&nbsp;boolean&nbsp;status(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName,
+             <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;itemNames)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a STATUS command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The reference name.</dd><dd><code>itemNames</code> - The status data item names.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="append(java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>append</h4>
+<pre>public&nbsp;boolean&nbsp;append(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName,
+             <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;flags,
+             <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;datetime,
+             <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send an APPEND command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name.</dd><dd><code>flags</code> - The flag parenthesized list (optional).</dd><dd><code>datetime</code> - The date/time string (optional).</dd><dd><code>message</code> - The message to append.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.4</dd></dl>
+</li>
+</ul>
+<a name="append(java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>append</h4>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;boolean&nbsp;append(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName,
+                        <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;flags,
+                        <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;datetime)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>(3.4) Does not work; the message body is not optional.
+ Use <a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#append(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)"><code>append(String, String, String, String)</code></a> instead.</i></div>
+<div class="block">Send an APPEND command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name.</dd><dd><code>flags</code> - The flag parenthesized list (optional).</dd><dd><code>datetime</code> - The date/time string (optional).</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="append(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>append</h4>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;boolean&nbsp;append(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>(3.4) Does not work; the message body is not optional.
+ Use <a href="../../../../../org/apache/commons/net/imap/IMAPClient.html#append(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)"><code>append(String, String, String, String)</code></a> instead.</i></div>
+<div class="block">Send an APPEND command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mailboxName</code> - The mailbox name.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="check()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>check</h4>
+<pre>public&nbsp;boolean&nbsp;check()
+              throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a CHECK command to the server.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="close()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>close</h4>
+<pre>public&nbsp;boolean&nbsp;close()
+              throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a CLOSE command to the server.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="expunge()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>expunge</h4>
+<pre>public&nbsp;boolean&nbsp;expunge()
+                throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send an EXPUNGE command to the server.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="search(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>search</h4>
+<pre>public&nbsp;boolean&nbsp;search(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;charset,
+             <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;criteria)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a SEARCH command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>charset</code> - The charset (optional).</dd><dd><code>criteria</code> - The search criteria.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="search(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>search</h4>
+<pre>public&nbsp;boolean&nbsp;search(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;criteria)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a SEARCH command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>criteria</code> - The search criteria.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="fetch(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fetch</h4>
+<pre>public&nbsp;boolean&nbsp;fetch(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;sequenceSet,
+            <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;itemNames)
+              throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a FETCH command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sequenceSet</code> - The sequence set to fetch (e.g. 1:4,6,11,100:*)</dd><dd><code>itemNames</code> - The item names for the FETCH command. (e.g. BODY.PEEK[HEADER.FIELDS (SUBJECT)])
+ If multiple item names are requested, these must be enclosed in parentheses, e.g. "(UID FLAGS BODY.PEEK[])"</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/imap/IMAP.html#getReplyString()"><code>IMAP.getReplyString()</code></a>, 
+<a href="../../../../../org/apache/commons/net/imap/IMAP.html#getReplyStrings()"><code>IMAP.getReplyStrings()</code></a></dd></dl>
+</li>
+</ul>
+<a name="store(java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>store</h4>
+<pre>public&nbsp;boolean&nbsp;store(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;sequenceSet,
+            <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;itemNames,
+            <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;itemValues)
+              throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a STORE command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sequenceSet</code> - The sequence set to update (e.g. 2:5)</dd><dd><code>itemNames</code> - The item name for the STORE command (i.e. [+|-]FLAGS[.SILENT])</dd><dd><code>itemValues</code> - The item values for the STORE command. (e.g. (\Deleted) )</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="copy(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>copy</h4>
+<pre>public&nbsp;boolean&nbsp;copy(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;sequenceSet,
+           <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mailboxName)
+             throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a COPY command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sequenceSet</code> - The sequence set to fetch.</dd><dd><code>mailboxName</code> - The mailbox name.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+<a name="uid(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>uid</h4>
+<pre>public&nbsp;boolean&nbsp;uid(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;command,
+          <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;commandArgs)
+            throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send a UID command to the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The command for UID.</dd><dd><code>commandArgs</code> - The arguments for the command.</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the command was successful,<code>false</code> if not.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If a network I/O error occurs.</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/IMAPClient.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/imap/IMAP.IMAPState.html" title="enum in org.apache.commons.net.imap"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/imap/IMAPClient.FETCH_ITEM_NAMES.html" title="enum in org.apache.commons.net.imap"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/imap/IMAPClient.html" target="_top">Frames</a></li>
+<li><a href="IMAPClient.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li><a href="#nested_class_summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_org.apache.commons.net.imap.IMAP">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &#169; 2001&#x2013;2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.</small></p>
+</body>
+</html>

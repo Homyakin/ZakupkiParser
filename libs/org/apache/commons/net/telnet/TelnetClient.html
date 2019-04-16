@@ -1,0 +1,811 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>TelnetClient (Apache Commons Net 3.6 API)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="TelnetClient (Apache Commons Net 3.6 API)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/TelnetClient.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/telnet/SuppressGAOptionHandler.html" title="class in org.apache.commons.net.telnet"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/telnet/TelnetCommand.html" title="class in org.apache.commons.net.telnet"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/telnet/TelnetClient.html" target="_top">Frames</a></li>
+<li><a href="TelnetClient.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.apache.commons.net.telnet</div>
+<h2 title="Class TelnetClient" class="title">Class TelnetClient</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">org.apache.commons.net.SocketClient</a></li>
+<li>
+<ul class="inheritance">
+<li>org.apache.commons.net.telnet.TelnetClient</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<hr>
+<br>
+<pre>public class <span class="strong">TelnetClient</span>
+extends <a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">SocketClient</a></pre>
+<div class="block">The TelnetClient class implements the simple network virtual
+ terminal (NVT) for the Telnet protocol according to RFC 854.  It
+ does not implement any of the extra Telnet options because it
+ is meant to be used within a Java program providing automated
+ access to Telnet accessible resources.
+ <p>
+ The class can be used by first connecting to a server using the
+ SocketClient
+ <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress,%20int)"><code>connect</code></a>
+ method.  Then an InputStream and OutputStream for sending and
+ receiving data over the Telnet connection can be obtained by
+ using the <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getInputStream()"><code>getInputStream() </code></a> and
+ <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getOutputStream()"><code>getOutputStream() </code></a> methods.
+ When you finish using the streams, you must call
+ <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#disconnect()"><code>disconnect </code></a> rather than simply
+ closing the streams.</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#readerThread">readerThread</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#TERMINAL_TYPE">TERMINAL_TYPE</a></strong></code>
+<div class="block">Terminal type option</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#TERMINAL_TYPE_IS">TERMINAL_TYPE_IS</a></strong></code>
+<div class="block">Is (for subnegotiation)</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#TERMINAL_TYPE_SEND">TERMINAL_TYPE_SEND</a></strong></code>
+<div class="block">Send (for subnegotiation)</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.apache.commons.net.SocketClient">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.apache.commons.net.<a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">SocketClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/SocketClient.html#_defaultPort_">_defaultPort_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_hostname_">_hostname_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_input_">_input_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_output_">_output_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_serverSocketFactory_">_serverSocketFactory_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_socket_">_socket_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_socketFactory_">_socketFactory_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_timeout_">_timeout_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connectTimeout">connectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#NETASCII_EOL">NETASCII_EOL</a></code></li>
+</ul>
+</li>
+</ul>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#TelnetClient()">TelnetClient</a></strong>()</code>
+<div class="block">Default TelnetClient constructor, sets terminal-type <code>VT100</code>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#TelnetClient(java.lang.String)">TelnetClient</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;termtype)</code>
+<div class="block">Construct an instance with the specified terminal type.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#_connectAction_()">_connectAction_</a></strong>()</code>
+<div class="block">Handles special connection requirements.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#addOptionHandler(org.apache.commons.net.telnet.TelnetOptionHandler)">addOptionHandler</a></strong>(<a href="../../../../../org/apache/commons/net/telnet/TelnetOptionHandler.html" title="class in org.apache.commons.net.telnet">TelnetOptionHandler</a>&nbsp;opthand)</code>
+<div class="block">Registers a new TelnetOptionHandler for this telnet client to use.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#deleteOptionHandler(int)">deleteOptionHandler</a></strong>(int&nbsp;optcode)</code>
+<div class="block">Unregisters a  TelnetOptionHandler.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#disconnect()">disconnect</a></strong>()</code>
+<div class="block">Disconnects the telnet session, closing the input and output streams
+ as well as the socket.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getInputStream()">getInputStream</a></strong>()</code>
+<div class="block">Returns the telnet connection input stream.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getLocalOptionState(int)">getLocalOptionState</a></strong>(int&nbsp;option)</code>
+<div class="block">Returns the state of the option on the local side.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getOutputStream()">getOutputStream</a></strong>()</code>
+<div class="block">Returns the telnet connection output stream.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getReaderThread()">getReaderThread</a></strong>()</code>
+<div class="block">Gets the status of the reader thread.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getRemoteOptionState(int)">getRemoteOptionState</a></strong>(int&nbsp;option)</code>
+<div class="block">Returns the state of the option on the remote side.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#registerInputListener(org.apache.commons.net.telnet.TelnetInputListener)">registerInputListener</a></strong>(<a href="../../../../../org/apache/commons/net/telnet/TelnetInputListener.html" title="interface in org.apache.commons.net.telnet">TelnetInputListener</a>&nbsp;listener)</code>
+<div class="block">Register a listener to be notified when new incoming data is
+ available to be read on the <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getInputStream()"><code>input stream</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#registerNotifHandler(org.apache.commons.net.telnet.TelnetNotificationHandler)">registerNotifHandler</a></strong>(<a href="../../../../../org/apache/commons/net/telnet/TelnetNotificationHandler.html" title="interface in org.apache.commons.net.telnet">TelnetNotificationHandler</a>&nbsp;notifhand)</code>
+<div class="block">Registers a notification handler to which will be sent
+ notifications of received telnet option negotiation commands.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#registerSpyStream(java.io.OutputStream)">registerSpyStream</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;spystream)</code>
+<div class="block">Registers an OutputStream for spying what's going on in
+ the TelnetClient session.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#sendAYT(long)">sendAYT</a></strong>(long&nbsp;timeout)</code>
+<div class="block">Sends an Are You There sequence and waits for the result.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#sendCommand(byte)">sendCommand</a></strong>(byte&nbsp;command)</code>
+<div class="block">Sends a command byte to the remote peer, adding the IAC prefix.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#sendSubnegotiation(int[])">sendSubnegotiation</a></strong>(int[]&nbsp;message)</code>
+<div class="block">Sends a protocol-specific subnegotiation message to the remote peer.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#setReaderThread(boolean)">setReaderThread</a></strong>(boolean&nbsp;flag)</code>
+<div class="block">Sets the status of the reader thread.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#stopSpyStream()">stopSpyStream</a></strong>()</code>
+<div class="block">Stops spying this TelnetClient.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#unregisterInputListener()">unregisterInputListener</a></strong>()</code>
+<div class="block">Unregisters the current <a href="../../../../../org/apache/commons/net/telnet/TelnetInputListener.html" title="interface in org.apache.commons.net.telnet"><code>TelnetInputListener</code></a>, if any.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#unregisterNotifHandler()">unregisterNotifHandler</a></strong>()</code>
+<div class="block">Unregisters the current notification handler.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.apache.commons.net.SocketClient">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.apache.commons.net.<a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">SocketClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/SocketClient.html#addProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)">addProtocolCommandListener</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress,%20int,%20java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String,%20int,%20java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#createCommandSupport()">createCommandSupport</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#fireCommandSent(java.lang.String,%20java.lang.String)">fireCommandSent</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#fireReplyReceived(int,%20java.lang.String)">fireReplyReceived</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getCharset()">getCharset</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getCharsetName()">getCharsetName</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getCommandSupport()">getCommandSupport</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getConnectTimeout()">getConnectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getDefaultPort()">getDefaultPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getDefaultTimeout()">getDefaultTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getKeepAlive()">getKeepAlive</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getLocalAddress()">getLocalAddress</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getLocalPort()">getLocalPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getProxy()">getProxy</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getReceiveBufferSize()">getReceiveBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getRemoteAddress()">getRemoteAddress</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getRemotePort()">getRemotePort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSendBufferSize()">getSendBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getServerSocketFactory()">getServerSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSoLinger()">getSoLinger</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSoTimeout()">getSoTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getTcpNoDelay()">getTcpNoDelay</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#isAvailable()">isAvailable</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#isConnected()">isConnected</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#removeProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)">removeProtocolCommandListener</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setCharset(java.nio.charset.Charset)">setCharset</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setConnectTimeout(int)">setConnectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setDefaultPort(int)">setDefaultPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setDefaultTimeout(int)">setDefaultTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setKeepAlive(boolean)">setKeepAlive</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setProxy(java.net.Proxy)">setProxy</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setReceiveBufferSize(int)">setReceiveBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSendBufferSize(int)">setSendBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setServerSocketFactory(javax.net.ServerSocketFactory)">setServerSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSocketFactory(javax.net.SocketFactory)">setSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSoLinger(boolean,%20int)">setSoLinger</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSoTimeout(int)">setSoTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setTcpNoDelay(boolean)">setTcpNoDelay</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#verifyRemote(java.net.Socket)">verifyRemote</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long,%20int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="readerThread">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readerThread</h4>
+<pre>protected&nbsp;boolean readerThread</pre>
+</li>
+</ul>
+<a name="TERMINAL_TYPE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>TERMINAL_TYPE</h4>
+<pre>protected static final&nbsp;int TERMINAL_TYPE</pre>
+<div class="block">Terminal type option</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.telnet.TelnetClient.TERMINAL_TYPE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="TERMINAL_TYPE_SEND">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>TERMINAL_TYPE_SEND</h4>
+<pre>protected static final&nbsp;int TERMINAL_TYPE_SEND</pre>
+<div class="block">Send (for subnegotiation)</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.telnet.TelnetClient.TERMINAL_TYPE_SEND">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="TERMINAL_TYPE_IS">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TERMINAL_TYPE_IS</h4>
+<pre>protected static final&nbsp;int TERMINAL_TYPE_IS</pre>
+<div class="block">Is (for subnegotiation)</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.telnet.TelnetClient.TERMINAL_TYPE_IS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="TelnetClient()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>TelnetClient</h4>
+<pre>public&nbsp;TelnetClient()</pre>
+<div class="block">Default TelnetClient constructor, sets terminal-type <code>VT100</code>.</div>
+</li>
+</ul>
+<a name="TelnetClient(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TelnetClient</h4>
+<pre>public&nbsp;TelnetClient(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;termtype)</pre>
+<div class="block">Construct an instance with the specified terminal type.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>termtype</code> - the terminal type to use, e.g. <code>VT100</code></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="_connectAction_()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_connectAction_</h4>
+<pre>protected&nbsp;void&nbsp;_connectAction_()
+                        throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Handles special connection requirements.</div>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an error occurs during connection setup.</dd></dl>
+</li>
+</ul>
+<a name="disconnect()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>disconnect</h4>
+<pre>public&nbsp;void&nbsp;disconnect()
+                throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Disconnects the telnet session, closing the input and output streams
+ as well as the socket.  If you have references to the
+ input and output streams of the telnet connection, you should not
+ close them yourself, but rather call disconnect to properly close
+ the connection.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../org/apache/commons/net/SocketClient.html#disconnect()">disconnect</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">SocketClient</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If there is an error closing the socket.</dd></dl>
+</li>
+</ul>
+<a name="getOutputStream()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOutputStream</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;getOutputStream()</pre>
+<div class="block">Returns the telnet connection output stream.  You should not close the
+ stream when you finish with it.  Rather, you should call
+ <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#disconnect()"><code>disconnect </code></a>.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>The telnet connection output stream.</dd></dl>
+</li>
+</ul>
+<a name="getInputStream()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getInputStream</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;getInputStream()</pre>
+<div class="block">Returns the telnet connection input stream.  You should not close the
+ stream when you finish with it.  Rather, you should call
+ <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#disconnect()"><code>disconnect </code></a>.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>The telnet connection input stream.</dd></dl>
+</li>
+</ul>
+<a name="getLocalOptionState(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getLocalOptionState</h4>
+<pre>public&nbsp;boolean&nbsp;getLocalOptionState(int&nbsp;option)</pre>
+<div class="block">Returns the state of the option on the local side.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>option</code> - - Option to be checked.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The state of the option on the local side.</dd></dl>
+</li>
+</ul>
+<a name="getRemoteOptionState(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRemoteOptionState</h4>
+<pre>public&nbsp;boolean&nbsp;getRemoteOptionState(int&nbsp;option)</pre>
+<div class="block">Returns the state of the option on the remote side.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>option</code> - - Option to be checked.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The state of the option on the remote side.</dd></dl>
+</li>
+</ul>
+<a name="sendAYT(long)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sendAYT</h4>
+<pre>public&nbsp;boolean&nbsp;sendAYT(long&nbsp;timeout)
+                throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a>,
+                       <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a>,
+                       <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></pre>
+<div class="block">Sends an Are You There sequence and waits for the result.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>timeout</code> - - Time to wait for a response (millis.)</dd>
+<dt><span class="strong">Returns:</span></dt><dd>true if AYT received a response, false otherwise</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></code> - on error</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - on error</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - on error</dd></dl>
+</li>
+</ul>
+<a name="sendSubnegotiation(int[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sendSubnegotiation</h4>
+<pre>public&nbsp;void&nbsp;sendSubnegotiation(int[]&nbsp;message)
+                        throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a>,
+                               <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></pre>
+<div class="block">Sends a protocol-specific subnegotiation message to the remote peer.
+ <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html" title="class in org.apache.commons.net.telnet"><code>TelnetClient</code></a> will add the IAC SB &amp; IAC SE framing bytes;
+ the first byte in <code>message</code> should be the appropriate telnet
+ option code.
+
+ <p>
+ This method does not wait for any response. Subnegotiation messages
+ sent by the remote end can be handled by registering an approrpriate
+ <a href="../../../../../org/apache/commons/net/telnet/TelnetOptionHandler.html" title="class in org.apache.commons.net.telnet"><code>TelnetOptionHandler</code></a>.
+ </p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>message</code> - option code followed by subnegotiation payload</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>message</code> has length zero</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - if an I/O error occurs while writing the message</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="sendCommand(byte)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sendCommand</h4>
+<pre>public&nbsp;void&nbsp;sendCommand(byte&nbsp;command)
+                 throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a>,
+                        <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></pre>
+<div class="block">Sends a command byte to the remote peer, adding the IAC prefix.
+
+ <p>
+ This method does not wait for any response. Messages
+ sent by the remote end can be handled by registering an approrpriate
+ <a href="../../../../../org/apache/commons/net/telnet/TelnetOptionHandler.html" title="class in org.apache.commons.net.telnet"><code>TelnetOptionHandler</code></a>.
+ </p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - the code for the command</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - if an I/O error occurs while writing the message</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - on error</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="addOptionHandler(org.apache.commons.net.telnet.TelnetOptionHandler)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addOptionHandler</h4>
+<pre>public&nbsp;void&nbsp;addOptionHandler(<a href="../../../../../org/apache/commons/net/telnet/TelnetOptionHandler.html" title="class in org.apache.commons.net.telnet">TelnetOptionHandler</a>&nbsp;opthand)
+                      throws <a href="../../../../../org/apache/commons/net/telnet/InvalidTelnetOptionException.html" title="class in org.apache.commons.net.telnet">InvalidTelnetOptionException</a>,
+                             <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Registers a new TelnetOptionHandler for this telnet client to use.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>opthand</code> - - option handler to be registered.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../../org/apache/commons/net/telnet/InvalidTelnetOptionException.html" title="class in org.apache.commons.net.telnet">InvalidTelnetOptionException</a></code> - on error</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - on error</dd></dl>
+</li>
+</ul>
+<a name="deleteOptionHandler(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteOptionHandler</h4>
+<pre>public&nbsp;void&nbsp;deleteOptionHandler(int&nbsp;optcode)
+                         throws <a href="../../../../../org/apache/commons/net/telnet/InvalidTelnetOptionException.html" title="class in org.apache.commons.net.telnet">InvalidTelnetOptionException</a>,
+                                <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Unregisters a  TelnetOptionHandler.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>optcode</code> - - Code of the option to be unregistered.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../../org/apache/commons/net/telnet/InvalidTelnetOptionException.html" title="class in org.apache.commons.net.telnet">InvalidTelnetOptionException</a></code> - on error</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - on error</dd></dl>
+</li>
+</ul>
+<a name="registerSpyStream(java.io.OutputStream)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>registerSpyStream</h4>
+<pre>public&nbsp;void&nbsp;registerSpyStream(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;spystream)</pre>
+<div class="block">Registers an OutputStream for spying what's going on in
+ the TelnetClient session.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>spystream</code> - - OutputStream on which session activity
+ will be echoed.</dd></dl>
+</li>
+</ul>
+<a name="stopSpyStream()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>stopSpyStream</h4>
+<pre>public&nbsp;void&nbsp;stopSpyStream()</pre>
+<div class="block">Stops spying this TelnetClient.</div>
+</li>
+</ul>
+<a name="registerNotifHandler(org.apache.commons.net.telnet.TelnetNotificationHandler)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>registerNotifHandler</h4>
+<pre>public&nbsp;void&nbsp;registerNotifHandler(<a href="../../../../../org/apache/commons/net/telnet/TelnetNotificationHandler.html" title="interface in org.apache.commons.net.telnet">TelnetNotificationHandler</a>&nbsp;notifhand)</pre>
+<div class="block">Registers a notification handler to which will be sent
+ notifications of received telnet option negotiation commands.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>notifhand</code> - - TelnetNotificationHandler to be registered</dd></dl>
+</li>
+</ul>
+<a name="unregisterNotifHandler()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>unregisterNotifHandler</h4>
+<pre>public&nbsp;void&nbsp;unregisterNotifHandler()</pre>
+<div class="block">Unregisters the current notification handler.</div>
+</li>
+</ul>
+<a name="setReaderThread(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setReaderThread</h4>
+<pre>public&nbsp;void&nbsp;setReaderThread(boolean&nbsp;flag)</pre>
+<div class="block">Sets the status of the reader thread.
+
+ <p>
+ When enabled, a seaparate internal reader thread is created for new
+ connections to read incoming data as it arrives. This results in
+ immediate handling of option negotiation, notifications, etc.
+ (at least until the fixed-size internal buffer fills up).
+ Otherwise, no thread is created an all negotiation and option
+ handling is deferred until a read() is performed on the
+ <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getInputStream()"><code>input stream</code></a>.
+ </p>
+
+ <p>
+ The reader thread must be enabled for <a href="../../../../../org/apache/commons/net/telnet/TelnetInputListener.html" title="interface in org.apache.commons.net.telnet"><code>TelnetInputListener</code></a>
+ support.
+ </p>
+
+ <p>
+ When this method is invoked, the reader thread status will apply to all
+ subsequent connections; the current connection (if any) is not affected.
+ </p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>flag</code> - true to enable the reader thread, false to disable</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#registerInputListener(org.apache.commons.net.telnet.TelnetInputListener)"><code>registerInputListener(org.apache.commons.net.telnet.TelnetInputListener)</code></a></dd></dl>
+</li>
+</ul>
+<a name="getReaderThread()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getReaderThread</h4>
+<pre>public&nbsp;boolean&nbsp;getReaderThread()</pre>
+<div class="block">Gets the status of the reader thread.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if the reader thread is enabled, false otherwise</dd></dl>
+</li>
+</ul>
+<a name="registerInputListener(org.apache.commons.net.telnet.TelnetInputListener)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>registerInputListener</h4>
+<pre>public&nbsp;void&nbsp;registerInputListener(<a href="../../../../../org/apache/commons/net/telnet/TelnetInputListener.html" title="interface in org.apache.commons.net.telnet">TelnetInputListener</a>&nbsp;listener)</pre>
+<div class="block">Register a listener to be notified when new incoming data is
+ available to be read on the <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#getInputStream()"><code>input stream</code></a>.
+ Only one listener is supported at a time.
+
+ <p>
+ More precisely, notifications are issued whenever the number of
+ bytes available for immediate reading (i.e., the value returned
+ by <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/InputStream.html?is-external=true#available()" title="class or interface in java.io"><code>InputStream.available()</code></a>) transitions from zero to non-zero.
+ Note that (in general) multiple reads may be required to empty the
+ buffer and reset this notification, because incoming bytes are being
+ added to the internal buffer asynchronously.
+ </p>
+
+ <p>
+ Notifications are only supported when a <a href="../../../../../org/apache/commons/net/telnet/TelnetClient.html#setReaderThread(boolean)"><code>reader thread</code></a> is enabled for the connection.
+ </p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>listener</code> - listener to be registered; replaces any previous</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="unregisterInputListener()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>unregisterInputListener</h4>
+<pre>public&nbsp;void&nbsp;unregisterInputListener()</pre>
+<div class="block">Unregisters the current <a href="../../../../../org/apache/commons/net/telnet/TelnetInputListener.html" title="interface in org.apache.commons.net.telnet"><code>TelnetInputListener</code></a>, if any.</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/TelnetClient.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/telnet/SuppressGAOptionHandler.html" title="class in org.apache.commons.net.telnet"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/telnet/TelnetCommand.html" title="class in org.apache.commons.net.telnet"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/telnet/TelnetClient.html" target="_top">Frames</a></li>
+<li><a href="TelnetClient.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &#169; 2001&#x2013;2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.</small></p>
+</body>
+</html>

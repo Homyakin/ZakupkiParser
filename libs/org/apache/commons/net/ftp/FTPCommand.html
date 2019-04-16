@@ -1,0 +1,1549 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>FTPCommand (Apache Commons Net 3.6 API)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="FTPCommand (Apache Commons Net 3.6 API)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/FTPCommand.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPCmd.html" title="enum in org.apache.commons.net.ftp"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPConnectionClosedException.html" title="class in org.apache.commons.net.ftp"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/ftp/FTPCommand.html" target="_top">Frames</a></li>
+<li><a href="FTPCommand.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.apache.commons.net.ftp</div>
+<h2 title="Class FTPCommand" class="title">Class FTPCommand</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li>org.apache.commons.net.ftp.FTPCommand</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<hr>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>use <a href="../../../../../org/apache/commons/net/ftp/FTPCmd.html" title="enum in org.apache.commons.net.ftp"><code>FTPCmd</code></a> instead</i></div>
+</div>
+<br>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public final class <span class="strong">FTPCommand</span>
+extends <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<div class="block">FTPCommand stores a set of constants for FTP command codes.  To interpret
+ the meaning of the codes, familiarity with RFC 959 is assumed.
+ The mnemonic constant names are transcriptions from the code descriptions
+ of RFC 959.  For those who think in terms of the actual FTP commands,
+ a set of constants such as <a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#USER"><code>USER </code></a> are provided
+ where the constant name is the same as the FTP command.</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#ABOR">ABOR</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#ABORT">ABORT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#ACCOUNT">ACCOUNT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#ACCT">ACCT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#ALLO">ALLO</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#ALLOCATE">ALLOCATE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#APPE">APPE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#APPEND">APPEND</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#CDUP">CDUP</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#CHANGE_TO_PARENT_DIRECTORY">CHANGE_TO_PARENT_DIRECTORY</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#CHANGE_WORKING_DIRECTORY">CHANGE_WORKING_DIRECTORY</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#CWD">CWD</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#DATA_PORT">DATA_PORT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#DELE">DELE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#DELETE">DELETE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#EPRT">EPRT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#EPSV">EPSV</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#FEAT">FEAT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#FEATURES">FEATURES</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#FILE_STRUCTURE">FILE_STRUCTURE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#GET_MOD_TIME">GET_MOD_TIME</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#HELP">HELP</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#LIST">LIST</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#LOGOUT">LOGOUT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#MAKE_DIRECTORY">MAKE_DIRECTORY</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#MDTM">MDTM</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#MFMT">MFMT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#MKD">MKD</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#MLSD">MLSD</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+<div class="block">Machine parseable list for a directory</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#MLST">MLST</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+<div class="block">Machine parseable list for a single file</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#MOD_TIME">MOD_TIME</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#MODE">MODE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#NAME_LIST">NAME_LIST</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#NLST">NLST</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#NOOP">NOOP</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#PASS">PASS</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#PASSIVE">PASSIVE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#PASSWORD">PASSWORD</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#PASV">PASV</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#PORT">PORT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#PRINT_WORKING_DIRECTORY">PRINT_WORKING_DIRECTORY</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#PWD">PWD</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#QUIT">QUIT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#REIN">REIN</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#REINITIALIZE">REINITIALIZE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#REMOVE_DIRECTORY">REMOVE_DIRECTORY</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#RENAME_FROM">RENAME_FROM</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#RENAME_TO">RENAME_TO</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#REPRESENTATION_TYPE">REPRESENTATION_TYPE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#REST">REST</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#RESTART">RESTART</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#RETR">RETR</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#RETRIEVE">RETRIEVE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#RMD">RMD</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#RNFR">RNFR</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#RNTO">RNTO</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#SET_MOD_TIME">SET_MOD_TIME</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#SITE">SITE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#SITE_PARAMETERS">SITE_PARAMETERS</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#SMNT">SMNT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#STAT">STAT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#STATUS">STATUS</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#STOR">STOR</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#STORE">STORE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#STORE_UNIQUE">STORE_UNIQUE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#STOU">STOU</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#STRU">STRU</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#STRUCTURE_MOUNT">STRUCTURE_MOUNT</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#SYST">SYST</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#SYSTEM">SYSTEM</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#TRANSFER_MODE">TRANSFER_MODE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#TYPE">TYPE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#USER">USER</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#USERNAME">USERNAME</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPCommand.html#getCommand(int)">getCommand</a></strong>(int&nbsp;command)</code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
+<div class="block">Retrieve the FTP protocol command string corresponding to a specified
+ command code.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long,%20int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="USER">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>USER</h4>
+<pre>public static final&nbsp;int USER</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.USER">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PASS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PASS</h4>
+<pre>public static final&nbsp;int PASS</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.PASS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ACCT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ACCT</h4>
+<pre>public static final&nbsp;int ACCT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.ACCT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="CWD">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CWD</h4>
+<pre>public static final&nbsp;int CWD</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.CWD">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="CDUP">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CDUP</h4>
+<pre>public static final&nbsp;int CDUP</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.CDUP">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="SMNT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SMNT</h4>
+<pre>public static final&nbsp;int SMNT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.SMNT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="REIN">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REIN</h4>
+<pre>public static final&nbsp;int REIN</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.REIN">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="QUIT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>QUIT</h4>
+<pre>public static final&nbsp;int QUIT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.QUIT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PORT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PORT</h4>
+<pre>public static final&nbsp;int PORT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.PORT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PASV">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PASV</h4>
+<pre>public static final&nbsp;int PASV</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.PASV">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="TYPE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>TYPE</h4>
+<pre>public static final&nbsp;int TYPE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.TYPE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="STRU">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STRU</h4>
+<pre>public static final&nbsp;int STRU</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.STRU">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="MODE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MODE</h4>
+<pre>public static final&nbsp;int MODE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.MODE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RETR">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RETR</h4>
+<pre>public static final&nbsp;int RETR</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.RETR">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="STOR">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STOR</h4>
+<pre>public static final&nbsp;int STOR</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.STOR">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="STOU">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STOU</h4>
+<pre>public static final&nbsp;int STOU</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.STOU">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="APPE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>APPE</h4>
+<pre>public static final&nbsp;int APPE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.APPE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ALLO">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ALLO</h4>
+<pre>public static final&nbsp;int ALLO</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.ALLO">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="REST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REST</h4>
+<pre>public static final&nbsp;int REST</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.REST">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RNFR">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RNFR</h4>
+<pre>public static final&nbsp;int RNFR</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.RNFR">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RNTO">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RNTO</h4>
+<pre>public static final&nbsp;int RNTO</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.RNTO">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ABOR">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ABOR</h4>
+<pre>public static final&nbsp;int ABOR</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.ABOR">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DELE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DELE</h4>
+<pre>public static final&nbsp;int DELE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.DELE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RMD">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RMD</h4>
+<pre>public static final&nbsp;int RMD</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.RMD">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="MKD">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MKD</h4>
+<pre>public static final&nbsp;int MKD</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.MKD">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PWD">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PWD</h4>
+<pre>public static final&nbsp;int PWD</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.PWD">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="LIST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>LIST</h4>
+<pre>public static final&nbsp;int LIST</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.LIST">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="NLST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>NLST</h4>
+<pre>public static final&nbsp;int NLST</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.NLST">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="SITE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SITE</h4>
+<pre>public static final&nbsp;int SITE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.SITE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="SYST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SYST</h4>
+<pre>public static final&nbsp;int SYST</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.SYST">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="STAT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STAT</h4>
+<pre>public static final&nbsp;int STAT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.STAT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="HELP">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>HELP</h4>
+<pre>public static final&nbsp;int HELP</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.HELP">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="NOOP">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>NOOP</h4>
+<pre>public static final&nbsp;int NOOP</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.NOOP">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="MDTM">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MDTM</h4>
+<pre>public static final&nbsp;int MDTM</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.0</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.MDTM">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="FEAT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FEAT</h4>
+<pre>public static final&nbsp;int FEAT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.FEAT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="MFMT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MFMT</h4>
+<pre>public static final&nbsp;int MFMT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.MFMT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="EPSV">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EPSV</h4>
+<pre>public static final&nbsp;int EPSV</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.EPSV">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="EPRT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EPRT</h4>
+<pre>public static final&nbsp;int EPRT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.EPRT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="MLSD">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MLSD</h4>
+<pre>public static final&nbsp;int MLSD</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<div class="block">Machine parseable list for a directory</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.MLSD">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="MLST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MLST</h4>
+<pre>public static final&nbsp;int MLST</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<div class="block">Machine parseable list for a single file</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.MLST">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="USERNAME">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>USERNAME</h4>
+<pre>public static final&nbsp;int USERNAME</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.USERNAME">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PASSWORD">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PASSWORD</h4>
+<pre>public static final&nbsp;int PASSWORD</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.PASSWORD">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ACCOUNT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ACCOUNT</h4>
+<pre>public static final&nbsp;int ACCOUNT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.ACCOUNT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="CHANGE_WORKING_DIRECTORY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CHANGE_WORKING_DIRECTORY</h4>
+<pre>public static final&nbsp;int CHANGE_WORKING_DIRECTORY</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.CHANGE_WORKING_DIRECTORY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="CHANGE_TO_PARENT_DIRECTORY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CHANGE_TO_PARENT_DIRECTORY</h4>
+<pre>public static final&nbsp;int CHANGE_TO_PARENT_DIRECTORY</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.CHANGE_TO_PARENT_DIRECTORY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="STRUCTURE_MOUNT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STRUCTURE_MOUNT</h4>
+<pre>public static final&nbsp;int STRUCTURE_MOUNT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.STRUCTURE_MOUNT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="REINITIALIZE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REINITIALIZE</h4>
+<pre>public static final&nbsp;int REINITIALIZE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.REINITIALIZE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="LOGOUT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>LOGOUT</h4>
+<pre>public static final&nbsp;int LOGOUT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.LOGOUT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DATA_PORT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DATA_PORT</h4>
+<pre>public static final&nbsp;int DATA_PORT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.DATA_PORT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PASSIVE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PASSIVE</h4>
+<pre>public static final&nbsp;int PASSIVE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.PASSIVE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="REPRESENTATION_TYPE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REPRESENTATION_TYPE</h4>
+<pre>public static final&nbsp;int REPRESENTATION_TYPE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.REPRESENTATION_TYPE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="FILE_STRUCTURE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FILE_STRUCTURE</h4>
+<pre>public static final&nbsp;int FILE_STRUCTURE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.FILE_STRUCTURE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="TRANSFER_MODE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>TRANSFER_MODE</h4>
+<pre>public static final&nbsp;int TRANSFER_MODE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.TRANSFER_MODE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RETRIEVE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RETRIEVE</h4>
+<pre>public static final&nbsp;int RETRIEVE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.RETRIEVE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="STORE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STORE</h4>
+<pre>public static final&nbsp;int STORE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.STORE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="STORE_UNIQUE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STORE_UNIQUE</h4>
+<pre>public static final&nbsp;int STORE_UNIQUE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.STORE_UNIQUE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="APPEND">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>APPEND</h4>
+<pre>public static final&nbsp;int APPEND</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.APPEND">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ALLOCATE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ALLOCATE</h4>
+<pre>public static final&nbsp;int ALLOCATE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.ALLOCATE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RESTART">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RESTART</h4>
+<pre>public static final&nbsp;int RESTART</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.RESTART">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RENAME_FROM">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RENAME_FROM</h4>
+<pre>public static final&nbsp;int RENAME_FROM</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.RENAME_FROM">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RENAME_TO">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RENAME_TO</h4>
+<pre>public static final&nbsp;int RENAME_TO</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.RENAME_TO">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ABORT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ABORT</h4>
+<pre>public static final&nbsp;int ABORT</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.ABORT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DELETE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DELETE</h4>
+<pre>public static final&nbsp;int DELETE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.DELETE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="REMOVE_DIRECTORY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REMOVE_DIRECTORY</h4>
+<pre>public static final&nbsp;int REMOVE_DIRECTORY</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.REMOVE_DIRECTORY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="MAKE_DIRECTORY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MAKE_DIRECTORY</h4>
+<pre>public static final&nbsp;int MAKE_DIRECTORY</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.MAKE_DIRECTORY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PRINT_WORKING_DIRECTORY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PRINT_WORKING_DIRECTORY</h4>
+<pre>public static final&nbsp;int PRINT_WORKING_DIRECTORY</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.PRINT_WORKING_DIRECTORY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="NAME_LIST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>NAME_LIST</h4>
+<pre>public static final&nbsp;int NAME_LIST</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.NAME_LIST">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="SITE_PARAMETERS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SITE_PARAMETERS</h4>
+<pre>public static final&nbsp;int SITE_PARAMETERS</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.SITE_PARAMETERS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="SYSTEM">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SYSTEM</h4>
+<pre>public static final&nbsp;int SYSTEM</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.SYSTEM">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="STATUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STATUS</h4>
+<pre>public static final&nbsp;int STATUS</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.STATUS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="MOD_TIME">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MOD_TIME</h4>
+<pre>public static final&nbsp;int MOD_TIME</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.0</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.MOD_TIME">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="FEATURES">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FEATURES</h4>
+<pre>public static final&nbsp;int FEATURES</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.FEATURES">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="GET_MOD_TIME">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>GET_MOD_TIME</h4>
+<pre>public static final&nbsp;int GET_MOD_TIME</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.GET_MOD_TIME">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="SET_MOD_TIME">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>SET_MOD_TIME</h4>
+<pre>public static final&nbsp;int SET_MOD_TIME</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPCommand.SET_MOD_TIME">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="getCommand(int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getCommand</h4>
+<pre>public static final&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getCommand(int&nbsp;command)</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<div class="block">Retrieve the FTP protocol command string corresponding to a specified
+ command code.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The command code.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The FTP protcol command string corresponding to a specified
+         command code.</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/FTPCommand.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPCmd.html" title="enum in org.apache.commons.net.ftp"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPConnectionClosedException.html" title="class in org.apache.commons.net.ftp"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/ftp/FTPCommand.html" target="_top">Frames</a></li>
+<li><a href="FTPCommand.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &#169; 2001&#x2013;2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.</small></p>
+</body>
+</html>

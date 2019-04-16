@@ -1,0 +1,462 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>DotTerminatedMessageReader (Apache Commons Net 3.6 API)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="DotTerminatedMessageReader (Apache Commons Net 3.6 API)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/DotTerminatedMessageReader.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/io/CRLFLineReader.html" title="class in org.apache.commons.net.io"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/io/DotTerminatedMessageWriter.html" title="class in org.apache.commons.net.io"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/io/DotTerminatedMessageReader.html" target="_top">Frames</a></li>
+<li><a href="DotTerminatedMessageReader.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_java.io.Reader">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.apache.commons.net.io</div>
+<h2 title="Class DotTerminatedMessageReader" class="title">Class DotTerminatedMessageReader</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true" title="class or interface in java.io">java.io.Reader</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true" title="class or interface in java.io">java.io.BufferedReader</a></li>
+<li>
+<ul class="inheritance">
+<li>org.apache.commons.net.io.DotTerminatedMessageReader</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Closeable.html?is-external=true" title="class or interface in java.io">Closeable</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Readable.html?is-external=true" title="class or interface in java.lang">Readable</a></dd>
+</dl>
+<hr>
+<br>
+<pre>public final class <span class="strong">DotTerminatedMessageReader</span>
+extends <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true" title="class or interface in java.io">BufferedReader</a></pre>
+<div class="block">DotTerminatedMessageReader is a class used to read messages from a
+ server that are terminated by a single dot followed by a
+ &lt;CR&gt;&lt;LF&gt;
+ sequence and with double dots appearing at the begining of lines which
+ do not signal end of message yet start with a dot.  Various Internet
+ protocols such as NNTP and POP3 produce messages of this type.
+ <p>
+ This class handles stripping of the duplicate period at the beginning
+ of lines starting with a period, and ensures you cannot read past the end of the message.
+ <p>
+ Note: versions since 3.0 extend BufferedReader rather than Reader,
+ and no longer change the CRLF into the local EOL. Also only DOT CR LF
+ acts as EOF.</div>
+<dl><dt><span class="strong">Version:</span></dt>
+  <dd>$Id: DotTerminatedMessageReader.java 1747119 2016-06-07 02:22:24Z ggregory $</dd></dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_java.io.Reader">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;java.io.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true" title="class or interface in java.io">Reader</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true#lock" title="class or interface in java.io">lock</a></code></li>
+</ul>
+</li>
+</ul>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/io/DotTerminatedMessageReader.html#DotTerminatedMessageReader(java.io.Reader)">DotTerminatedMessageReader</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true" title="class or interface in java.io">Reader</a>&nbsp;reader)</code>
+<div class="block">Creates a DotTerminatedMessageReader that wraps an existing Reader
+ input source.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/io/DotTerminatedMessageReader.html#close()">close</a></strong>()</code>
+<div class="block">Closes the message for reading.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/io/DotTerminatedMessageReader.html#read()">read</a></strong>()</code>
+<div class="block">Reads and returns the next character in the message.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/io/DotTerminatedMessageReader.html#read(char[])">read</a></strong>(char[]&nbsp;buffer)</code>
+<div class="block">Reads the next characters from the message into an array and
+ returns the number of characters read.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/io/DotTerminatedMessageReader.html#read(char[],%20int,%20int)">read</a></strong>(char[]&nbsp;buffer,
+    int&nbsp;offset,
+    int&nbsp;length)</code>
+<div class="block">Reads the next characters from the message into an array and
+ returns the number of characters read.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/io/DotTerminatedMessageReader.html#readLine()">readLine</a></strong>()</code>
+<div class="block">Read a line of text.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.io.BufferedReader">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.io.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true" title="class or interface in java.io">BufferedReader</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#mark(int)" title="class or interface in java.io">mark</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#markSupported()" title="class or interface in java.io">markSupported</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#ready()" title="class or interface in java.io">ready</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#reset()" title="class or interface in java.io">reset</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#skip(long)" title="class or interface in java.io">skip</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.io.Reader">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.io.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true" title="class or interface in java.io">Reader</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true#read(java.nio.CharBuffer)" title="class or interface in java.io">read</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long,%20int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="DotTerminatedMessageReader(java.io.Reader)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DotTerminatedMessageReader</h4>
+<pre>public&nbsp;DotTerminatedMessageReader(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true" title="class or interface in java.io">Reader</a>&nbsp;reader)</pre>
+<div class="block">Creates a DotTerminatedMessageReader that wraps an existing Reader
+ input source.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>reader</code> - The Reader input source containing the message.</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="read()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>read</h4>
+<pre>public&nbsp;int&nbsp;read()
+         throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Reads and returns the next character in the message.  If the end of the
+ message has been reached, returns -1.  Note that a call to this method
+ may result in multiple reads from the underlying input stream to decode
+ the message properly (removing doubled dots and so on).  All of
+ this is transparent to the programmer and is only mentioned for
+ completeness.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#read()" title="class or interface in java.io">read</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true" title="class or interface in java.io">BufferedReader</a></code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>The next character in the message. Returns -1 if the end of the
+          message has been reached.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an error occurs while reading the underlying
+            stream.</dd></dl>
+</li>
+</ul>
+<a name="read(char[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>read</h4>
+<pre>public&nbsp;int&nbsp;read(char[]&nbsp;buffer)
+         throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Reads the next characters from the message into an array and
+ returns the number of characters read.  Returns -1 if the end of the
+ message has been reached.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true#read(char[])" title="class or interface in java.io">read</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Reader.html?is-external=true" title="class or interface in java.io">Reader</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>buffer</code> - The character array in which to store the characters.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The number of characters read. Returns -1 if the
+          end of the message has been reached.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an error occurs in reading the underlying
+            stream.</dd></dl>
+</li>
+</ul>
+<a name="read(char[], int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>read</h4>
+<pre>public&nbsp;int&nbsp;read(char[]&nbsp;buffer,
+       int&nbsp;offset,
+       int&nbsp;length)
+         throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Reads the next characters from the message into an array and
+ returns the number of characters read.  Returns -1 if the end of the
+ message has been reached.  The characters are stored in the array
+ starting from the given offset and up to the length specified.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#read(char[],%20int,%20int)" title="class or interface in java.io">read</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true" title="class or interface in java.io">BufferedReader</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>buffer</code> - The character array in which to store the characters.</dd><dd><code>offset</code> - The offset into the array at which to start storing
+              characters.</dd><dd><code>length</code> - The number of characters to read.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The number of characters read. Returns -1 if the
+          end of the message has been reached.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an error occurs in reading the underlying
+            stream.</dd></dl>
+</li>
+</ul>
+<a name="close()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>close</h4>
+<pre>public&nbsp;void&nbsp;close()
+           throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Closes the message for reading.  This doesn't actually close the
+ underlying stream.  The underlying stream may still be used for
+ communicating with the server and therefore is not closed.
+ <p>
+ If the end of the message has not yet been reached, this method
+ will read the remainder of the message until it reaches the end,
+ so that the underlying stream may continue to be used properly
+ for communicating with the server.  If you do not fully read
+ a message, you MUST close it, otherwise your program will likely
+ hang or behave improperly.</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Closeable.html?is-external=true#close()" title="class or interface in java.io">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Closeable.html?is-external=true" title="class or interface in java.io">Closeable</a></code></dd>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/AutoCloseable.html?is-external=true#close()" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#close()" title="class or interface in java.io">close</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true" title="class or interface in java.io">BufferedReader</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an error occurs while reading the
+            underlying stream.</dd></dl>
+</li>
+</ul>
+<a name="readLine()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>readLine</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;readLine()
+                throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Read a line of text.
+ A line is considered to be terminated by carriage return followed immediately by a linefeed.
+ This contrasts with BufferedReader which also allows other combinations.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true#readLine()" title="class or interface in java.io">readLine</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/BufferedReader.html?is-external=true" title="class or interface in java.io">BufferedReader</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code></dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/DotTerminatedMessageReader.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/io/CRLFLineReader.html" title="class in org.apache.commons.net.io"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/io/DotTerminatedMessageWriter.html" title="class in org.apache.commons.net.io"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/io/DotTerminatedMessageReader.html" target="_top">Frames</a></li>
+<li><a href="DotTerminatedMessageReader.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_java.io.Reader">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &#169; 2001&#x2013;2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.</small></p>
+</body>
+</html>

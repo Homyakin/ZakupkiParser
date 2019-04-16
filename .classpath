@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="D:/Java/commons-net-3.6/commons-net-3.6.jar"/>
+	<classpathentry kind="lib" path="libs/commons-net-3.6.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

@@ -1,0 +1,1419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>FTPSClient (Apache Commons Net 3.6 API)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="FTPSClient (Apache Commons Net 3.6 API)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/FTPSClient.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPReply.html" title="class in org.apache.commons.net.ftp"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPSCommand.html" title="class in org.apache.commons.net.ftp"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/ftp/FTPSClient.html" target="_top">Frames</a></li>
+<li><a href="FTPSClient.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_org.apache.commons.net.ftp.FTPClient">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.apache.commons.net.ftp</div>
+<h2 title="Class FTPSClient" class="title">Class FTPSClient</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">org.apache.commons.net.SocketClient</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../org/apache/commons/net/ftp/FTP.html" title="class in org.apache.commons.net.ftp">org.apache.commons.net.ftp.FTP</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">org.apache.commons.net.ftp.FTPClient</a></li>
+<li>
+<ul class="inheritance">
+<li>org.apache.commons.net.ftp.FTPSClient</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../../../org/apache/commons/net/ftp/Configurable.html" title="interface in org.apache.commons.net.ftp">Configurable</a></dd>
+</dl>
+<hr>
+<br>
+<pre>public class <span class="strong">FTPSClient</span>
+extends <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">FTPClient</a></pre>
+<div class="block">FTP over SSL processing. If desired, the JVM property -Djavax.net.debug=all can be used to
+ see wire-level SSL details.
+
+ Warning: the hostname is not verified against the certificate by default, use
+ <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setHostnameVerifier(javax.net.ssl.HostnameVerifier)"><code>setHostnameVerifier(HostnameVerifier)</code></a> or <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setEndpointCheckingEnabled(boolean)"><code>setEndpointCheckingEnabled(boolean)</code></a>
+ (on Java 1.7+) to enable verification. Verification is only performed on client mode connections.</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>2.0</dd>
+<dt><span class="strong">Version:</span></dt>
+  <dd>$Id: FTPSClient.java 1747829 2016-06-11 00:57:57Z sebb $</dd></dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested_class_summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested_classes_inherited_from_class_org.apache.commons.net.ftp.FTPClient">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;org.apache.commons.net.ftp.<a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">FTPClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.HostnameResolver.html" title="interface in org.apache.commons.net.ftp">FTPClient.HostnameResolver</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.NatServerResolverImpl.html" title="class in org.apache.commons.net.ftp">FTPClient.NatServerResolverImpl</a></code></li>
+</ul>
+</li>
+</ul>
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_FTPS_DATA_PORT">DEFAULT_FTPS_DATA_PORT</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_FTPS_PORT">DEFAULT_FTPS_PORT</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#KEYSTORE_ALGORITHM">KEYSTORE_ALGORITHM</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>- not used - may be removed in a future release</i></div>
+</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#PROVIDER">PROVIDER</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>- not used - may be removed in a future release</i></div>
+</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#STORE_TYPE">STORE_TYPE</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>- not used - may be removed in a future release</i></div>
+</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#TRUSTSTORE_ALGORITHM">TRUSTSTORE_ALGORITHM</a></strong></code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>- not used - may be removed in a future release</i></div>
+</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.apache.commons.net.ftp.FTPClient">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.apache.commons.net.ftp.<a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">FTPClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#ACTIVE_LOCAL_DATA_CONNECTION_MODE">ACTIVE_LOCAL_DATA_CONNECTION_MODE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#ACTIVE_REMOTE_DATA_CONNECTION_MODE">ACTIVE_REMOTE_DATA_CONNECTION_MODE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#FTP_SYSTEM_TYPE">FTP_SYSTEM_TYPE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#FTP_SYSTEM_TYPE_DEFAULT">FTP_SYSTEM_TYPE_DEFAULT</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#PASSIVE_LOCAL_DATA_CONNECTION_MODE">PASSIVE_LOCAL_DATA_CONNECTION_MODE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#PASSIVE_REMOTE_DATA_CONNECTION_MODE">PASSIVE_REMOTE_DATA_CONNECTION_MODE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#SYSTEM_TYPE_PROPERTIES">SYSTEM_TYPE_PROPERTIES</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.apache.commons.net.ftp.FTP">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.apache.commons.net.ftp.<a href="../../../../../org/apache/commons/net/ftp/FTP.html" title="class in org.apache.commons.net.ftp">FTP</a></h3>
+<code><a href="../../../../../org/apache/commons/net/ftp/FTP.html#_commandSupport_">_commandSupport_</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#_controlEncoding">_controlEncoding</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#_controlInput_">_controlInput_</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#_controlOutput_">_controlOutput_</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#_newReplyString">_newReplyString</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#_replyCode">_replyCode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#_replyLines">_replyLines</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#_replyString">_replyString</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#ASCII_FILE_TYPE">ASCII_FILE_TYPE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#BINARY_FILE_TYPE">BINARY_FILE_TYPE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#BLOCK_TRANSFER_MODE">BLOCK_TRANSFER_MODE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#CARRIAGE_CONTROL_TEXT_FORMAT">CARRIAGE_CONTROL_TEXT_FORMAT</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#COMPRESSED_TRANSFER_MODE">COMPRESSED_TRANSFER_MODE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#DEFAULT_CONTROL_ENCODING">DEFAULT_CONTROL_ENCODING</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#DEFAULT_DATA_PORT">DEFAULT_DATA_PORT</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#DEFAULT_PORT">DEFAULT_PORT</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#EBCDIC_FILE_TYPE">EBCDIC_FILE_TYPE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#FILE_STRUCTURE">FILE_STRUCTURE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#LOCAL_FILE_TYPE">LOCAL_FILE_TYPE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#NON_PRINT_TEXT_FORMAT">NON_PRINT_TEXT_FORMAT</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#PAGE_STRUCTURE">PAGE_STRUCTURE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#RECORD_STRUCTURE">RECORD_STRUCTURE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#REPLY_CODE_LEN">REPLY_CODE_LEN</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#STREAM_TRANSFER_MODE">STREAM_TRANSFER_MODE</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#strictMultilineParsing">strictMultilineParsing</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#TELNET_TEXT_FORMAT">TELNET_TEXT_FORMAT</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.apache.commons.net.SocketClient">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.apache.commons.net.<a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">SocketClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/SocketClient.html#_defaultPort_">_defaultPort_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_hostname_">_hostname_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_input_">_input_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_output_">_output_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_serverSocketFactory_">_serverSocketFactory_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_socket_">_socket_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_socketFactory_">_socketFactory_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#_timeout_">_timeout_</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connectTimeout">connectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#NETASCII_EOL">NETASCII_EOL</a></code></li>
+</ul>
+</li>
+</ul>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient()">FTPSClient</a></strong>()</code>
+<div class="block">Constructor for FTPSClient, calls <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(java.lang.String,%20boolean)"><code>FTPSClient(String, boolean)</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(boolean)">FTPSClient</a></strong>(boolean&nbsp;isImplicit)</code>
+<div class="block">Constructor for FTPSClient, using <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_PROTOCOL"><code>DEFAULT_PROTOCOL</code></a> - i.e.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(boolean,%20javax.net.ssl.SSLContext)">FTPSClient</a></strong>(boolean&nbsp;isImplicit,
+          <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLContext.html?is-external=true" title="class or interface in javax.net.ssl">SSLContext</a>&nbsp;context)</code>
+<div class="block">Constructor for FTPSClient, using <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_PROTOCOL"><code>DEFAULT_PROTOCOL</code></a> - i.e.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(javax.net.ssl.SSLContext)">FTPSClient</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLContext.html?is-external=true" title="class or interface in javax.net.ssl">SSLContext</a>&nbsp;context)</code>
+<div class="block">Constructor for FTPSClient, using <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_PROTOCOL"><code>DEFAULT_PROTOCOL</code></a> - i.e.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(java.lang.String)">FTPSClient</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;protocol)</code>
+<div class="block">Constructor for FTPSClient, using explict mode, calls <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(java.lang.String,%20boolean)"><code>FTPSClient(String, boolean)</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(java.lang.String,%20boolean)">FTPSClient</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;protocol,
+          boolean&nbsp;isImplicit)</code>
+<div class="block">Constructor for FTPSClient allowing specification of protocol
+ and security mode.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#_connectAction_()">_connectAction_</a></strong>()</code>
+<div class="block">Because there are so many connect() methods,
+ the _connectAction_() method is provided as a means of performing
+ some action immediately after establishing a connection,
+ rather than reimplementing all of the connect() methods.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net">Socket</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#_openDataConnection_(int,%20java.lang.String)">_openDataConnection_</a></strong>(int&nbsp;command,
+                    <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;arg)</code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>(3.3) Use <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_openDataConnection_(org.apache.commons.net.ftp.FTPCmd,%20java.lang.String)"><code>FTPClient._openDataConnection_(FTPCmd, String)</code></a> instead</i></div>
+</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net">Socket</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#_openDataConnection_(java.lang.String,%20java.lang.String)">_openDataConnection_</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;command,
+                    <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;arg)</code>
+<div class="block">Returns a socket of the data connection.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#_prepareDataSocket_(java.net.Socket)">_prepareDataSocket_</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net">Socket</a>&nbsp;socket)</code>
+<div class="block">Performs any custom initialization for a newly created SSLSocket (before
+ the SSL handshake happens).</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#disconnect()">disconnect</a></strong>()</code>
+<div class="block">Closes the connection to the FTP server and restores
+ connection parameters to the default values.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execADAT(byte[])">execADAT</a></strong>(byte[]&nbsp;data)</code>
+<div class="block">Send the ADAT command with the specified authentication data.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execAUTH()">execAUTH</a></strong>()</code>
+<div class="block">AUTH command.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execAUTH(java.lang.String)">execAUTH</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mechanism)</code>
+<div class="block">Send the AUTH command with the specified mechanism.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execCCC()">execCCC</a></strong>()</code>
+<div class="block">Send the CCC command to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execCONF(byte[])">execCONF</a></strong>(byte[]&nbsp;data)</code>
+<div class="block">Send the CONF command with the specified data.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execENC(byte[])">execENC</a></strong>(byte[]&nbsp;data)</code>
+<div class="block">Send the ENC command with the specified data.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execMIC(byte[])">execMIC</a></strong>(byte[]&nbsp;data)</code>
+<div class="block">Send the MIC command with the specified data.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execPBSZ(long)">execPBSZ</a></strong>(long&nbsp;pbsz)</code>
+<div class="block">PBSZ command.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execPROT(java.lang.String)">execPROT</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;prot)</code>
+<div class="block">PROT command.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getAuthValue()">getAuthValue</a></strong>()</code>
+<div class="block">Return AUTH command use value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getEnabledCipherSuites()">getEnabledCipherSuites</a></strong>()</code>
+<div class="block">Returns the names of the cipher suites which could be enabled
+ for use on this connection.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getEnabledProtocols()">getEnabledProtocols</a></strong>()</code>
+<div class="block">Returns the names of the protocol versions which are currently
+ enabled for use on this connection.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getEnableSessionCreation()">getEnableSessionCreation</a></strong>()</code>
+<div class="block">Returns true if new SSL sessions may be established by this socket.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/HostnameVerifier.html?is-external=true" title="class or interface in javax.net.ssl">HostnameVerifier</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getHostnameVerifier()">getHostnameVerifier</a></strong>()</code>
+<div class="block">Get the currently configured <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/HostnameVerifier.html?is-external=true" title="class or interface in javax.net.ssl"><code>HostnameVerifier</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getNeedClientAuth()">getNeedClientAuth</a></strong>()</code>
+<div class="block">Returns true if the socket will require client authentication.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/TrustManager.html?is-external=true" title="class or interface in javax.net.ssl">TrustManager</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getTrustManager()">getTrustManager</a></strong>()</code>
+<div class="block">Get the currently configured <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/TrustManager.html?is-external=true" title="class or interface in javax.net.ssl"><code>TrustManager</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getUseClientMode()">getUseClientMode</a></strong>()</code>
+<div class="block">Returns true if the socket is set to use client mode
+ in its first handshake.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getWantClientAuth()">getWantClientAuth</a></strong>()</code>
+<div class="block">Returns true if the socket will request client authentication.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#isEndpointCheckingEnabled()">isEndpointCheckingEnabled</a></strong>()</code>
+<div class="block">Return whether or not endpoint identification using the HTTPS algorithm
+ on Java 1.7+ is enabled.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>byte[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#parseADATReply(java.lang.String)">parseADATReply</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;reply)</code>
+<div class="block">Parses the given ADAT response line and base64-decodes the data.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#parsePBSZ(long)">parsePBSZ</a></strong>(long&nbsp;pbsz)</code>
+<div class="block">PBSZ command.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#sendCommand(java.lang.String,%20java.lang.String)">sendCommand</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;command,
+           <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;args)</code>
+<div class="block">Send an FTP command.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setAuthValue(java.lang.String)">setAuthValue</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;auth)</code>
+<div class="block">Set AUTH command use value.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setEnabledCipherSuites(java.lang.String[])">setEnabledCipherSuites</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;cipherSuites)</code>
+<div class="block">Controls which particular cipher suites are enabled for use on this
+ connection.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setEnabledProtocols(java.lang.String[])">setEnabledProtocols</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;protocolVersions)</code>
+<div class="block">Controls which particular protocol versions are enabled for use on this
+ connection.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setEnabledSessionCreation(boolean)">setEnabledSessionCreation</a></strong>(boolean&nbsp;isCreation)</code>
+<div class="block">Controls whether a new SSL session may be established by this socket.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setEndpointCheckingEnabled(boolean)">setEndpointCheckingEnabled</a></strong>(boolean&nbsp;enable)</code>
+<div class="block">Automatic endpoint identification checking using the HTTPS algorithm
+ is supported on Java 1.7+.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setHostnameVerifier(javax.net.ssl.HostnameVerifier)">setHostnameVerifier</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/HostnameVerifier.html?is-external=true" title="class or interface in javax.net.ssl">HostnameVerifier</a>&nbsp;newHostnameVerifier)</code>
+<div class="block">Override the default <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/HostnameVerifier.html?is-external=true" title="class or interface in javax.net.ssl"><code>HostnameVerifier</code></a> to use.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setKeyManager(javax.net.ssl.KeyManager)">setKeyManager</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/KeyManager.html?is-external=true" title="class or interface in javax.net.ssl">KeyManager</a>&nbsp;keyManager)</code>
+<div class="block">Set a <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/KeyManager.html?is-external=true" title="class or interface in javax.net.ssl"><code>KeyManager</code></a> to use</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setNeedClientAuth(boolean)">setNeedClientAuth</a></strong>(boolean&nbsp;isNeedClientAuth)</code>
+<div class="block">Configures the socket to require client authentication.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setTrustManager(javax.net.ssl.TrustManager)">setTrustManager</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/TrustManager.html?is-external=true" title="class or interface in javax.net.ssl">TrustManager</a>&nbsp;trustManager)</code>
+<div class="block">Override the default <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/TrustManager.html?is-external=true" title="class or interface in javax.net.ssl"><code>TrustManager</code></a> to use; if set to <code>null</code>,
+ the default TrustManager from the JVM will be used.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setUseClientMode(boolean)">setUseClientMode</a></strong>(boolean&nbsp;isClientMode)</code>
+<div class="block">Configures the socket to use client (or server) mode in its first
+ handshake.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#setWantClientAuth(boolean)">setWantClientAuth</a></strong>(boolean&nbsp;isWantClientAuth)</code>
+<div class="block">Configures the socket to request client authentication,
+ but only if such a request is appropriate to the cipher
+ suite negotiated.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#sslNegotiation()">sslNegotiation</a></strong>()</code>
+<div class="block">SSL/TLS negotiation.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.apache.commons.net.ftp.FTPClient">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.apache.commons.net.ftp.<a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">FTPClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_connectAction_(java.io.Reader)">_connectAction_</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_openDataConnection_(org.apache.commons.net.ftp.FTPCmd,%20java.lang.String)">_openDataConnection_</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_parseExtendedPassiveModeReply(java.lang.String)">_parseExtendedPassiveModeReply</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_parsePassiveModeReply(java.lang.String)">_parsePassiveModeReply</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_retrieveFile(java.lang.String,%20java.lang.String,%20java.io.OutputStream)">_retrieveFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_retrieveFileStream(java.lang.String,%20java.lang.String)">_retrieveFileStream</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_storeFile(java.lang.String,%20java.lang.String,%20java.io.InputStream)">_storeFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_storeFileStream(java.lang.String,%20java.lang.String)">_storeFileStream</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#abort()">abort</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#allocate(int)">allocate</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#allocate(int,%20int)">allocate</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#appendFile(java.lang.String,%20java.io.InputStream)">appendFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#appendFileStream(java.lang.String)">appendFileStream</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#changeToParentDirectory()">changeToParentDirectory</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#changeWorkingDirectory(java.lang.String)">changeWorkingDirectory</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#completePendingCommand()">completePendingCommand</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#configure(org.apache.commons.net.ftp.FTPClientConfig)">configure</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#deleteFile(java.lang.String)">deleteFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#doCommand(java.lang.String,%20java.lang.String)">doCommand</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#doCommandAsStrings(java.lang.String,%20java.lang.String)">doCommandAsStrings</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#enterLocalActiveMode()">enterLocalActiveMode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#enterLocalPassiveMode()">enterLocalPassiveMode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#enterRemoteActiveMode(java.net.InetAddress,%20int)">enterRemoteActiveMode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#enterRemotePassiveMode()">enterRemotePassiveMode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#features()">features</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#featureValue(java.lang.String)">featureValue</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#featureValues(java.lang.String)">featureValues</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getAutodetectUTF8()">getAutodetectUTF8</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getBufferSize()">getBufferSize</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getControlKeepAliveReplyTimeout()">getControlKeepAliveReplyTimeout</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getControlKeepAliveTimeout()">getControlKeepAliveTimeout</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getCopyStreamListener()">getCopyStreamListener</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getDataConnectionMode()">getDataConnectionMode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getListArguments(java.lang.String)">getListArguments</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getListHiddenFiles()">getListHiddenFiles</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getModificationTime(java.lang.String)">getModificationTime</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getPassiveHost()">getPassiveHost</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getPassiveLocalIPAddress()">getPassiveLocalIPAddress</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getPassivePort()">getPassivePort</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getReceiveDataSocketBufferSize()">getReceiveDataSocketBufferSize</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getRestartOffset()">getRestartOffset</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getSendDataSocketBufferSize()">getSendDataSocketBufferSize</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getStatus()">getStatus</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getStatus(java.lang.String)">getStatus</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getSystemName()">getSystemName</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#getSystemType()">getSystemType</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#hasFeature(java.lang.String)">hasFeature</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#hasFeature(java.lang.String,%20java.lang.String)">hasFeature</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#initiateListParsing()">initiateListParsing</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#initiateListParsing(java.lang.String)">initiateListParsing</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#initiateListParsing(java.lang.String,%20java.lang.String)">initiateListParsing</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#isRemoteVerificationEnabled()">isRemoteVerificationEnabled</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#isUseEPSVwithIPv4()">isUseEPSVwithIPv4</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listDirectories()">listDirectories</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listDirectories(java.lang.String)">listDirectories</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listFiles()">listFiles</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listFiles(java.lang.String)">listFiles</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listFiles(java.lang.String,%20org.apache.commons.net.ftp.FTPFileFilter)">listFiles</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listHelp()">listHelp</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listHelp(java.lang.String)">listHelp</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listNames()">listNames</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#listNames(java.lang.String)">listNames</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#login(java.lang.String,%20java.lang.String)">login</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#login(java.lang.String,%20java.lang.String,%20java.lang.String)">login</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#logout()">logout</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#makeDirectory(java.lang.String)">makeDirectory</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#mdtmFile(java.lang.String)">mdtmFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#mlistDir()">mlistDir</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#mlistDir(java.lang.String)">mlistDir</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#mlistDir(java.lang.String,%20org.apache.commons.net.ftp.FTPFileFilter)">mlistDir</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#mlistFile(java.lang.String)">mlistFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#printWorkingDirectory()">printWorkingDirectory</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#reinitialize()">reinitialize</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#remoteAppend(java.lang.String)">remoteAppend</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#remoteRetrieve(java.lang.String)">remoteRetrieve</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#remoteStore(java.lang.String)">remoteStore</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#remoteStoreUnique()">remoteStoreUnique</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#remoteStoreUnique(java.lang.String)">remoteStoreUnique</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#removeDirectory(java.lang.String)">removeDirectory</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#rename(java.lang.String,%20java.lang.String)">rename</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#restart(long)">restart</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#retrieveFile(java.lang.String,%20java.io.OutputStream)">retrieveFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#retrieveFileStream(java.lang.String)">retrieveFileStream</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#sendNoOp()">sendNoOp</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#sendSiteCommand(java.lang.String)">sendSiteCommand</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setActiveExternalIPAddress(java.lang.String)">setActiveExternalIPAddress</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setActivePortRange(int,%20int)">setActivePortRange</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setAutodetectUTF8(boolean)">setAutodetectUTF8</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setBufferSize(int)">setBufferSize</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setControlKeepAliveReplyTimeout(int)">setControlKeepAliveReplyTimeout</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setControlKeepAliveTimeout(long)">setControlKeepAliveTimeout</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setCopyStreamListener(org.apache.commons.net.io.CopyStreamListener)">setCopyStreamListener</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setDataTimeout(int)">setDataTimeout</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setFileStructure(int)">setFileStructure</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setFileTransferMode(int)">setFileTransferMode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setFileType(int)">setFileType</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setFileType(int,%20int)">setFileType</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setListHiddenFiles(boolean)">setListHiddenFiles</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setModificationTime(java.lang.String,%20java.lang.String)">setModificationTime</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setParserFactory(org.apache.commons.net.ftp.parser.FTPFileEntryParserFactory)">setParserFactory</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setPassiveLocalIPAddress(java.net.InetAddress)">setPassiveLocalIPAddress</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setPassiveLocalIPAddress(java.lang.String)">setPassiveLocalIPAddress</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setPassiveNatWorkaround(boolean)">setPassiveNatWorkaround</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setPassiveNatWorkaroundStrategy(org.apache.commons.net.ftp.FTPClient.HostnameResolver)">setPassiveNatWorkaroundStrategy</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setReceieveDataSocketBufferSize(int)">setReceieveDataSocketBufferSize</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setRemoteVerificationEnabled(boolean)">setRemoteVerificationEnabled</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setReportActiveExternalIPAddress(java.lang.String)">setReportActiveExternalIPAddress</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setRestartOffset(long)">setRestartOffset</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setSendDataSocketBufferSize(int)">setSendDataSocketBufferSize</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#setUseEPSVwithIPv4(boolean)">setUseEPSVwithIPv4</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#storeFile(java.lang.String,%20java.io.InputStream)">storeFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#storeFileStream(java.lang.String)">storeFileStream</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#storeUniqueFile(java.io.InputStream)">storeUniqueFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#storeUniqueFile(java.lang.String,%20java.io.InputStream)">storeUniqueFile</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#storeUniqueFileStream()">storeUniqueFileStream</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#storeUniqueFileStream(java.lang.String)">storeUniqueFileStream</a>, <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#structureMount(java.lang.String)">structureMount</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.apache.commons.net.ftp.FTP">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.apache.commons.net.ftp.<a href="../../../../../org/apache/commons/net/ftp/FTP.html" title="class in org.apache.commons.net.ftp">FTP</a></h3>
+<code><a href="../../../../../org/apache/commons/net/ftp/FTP.html#__getReplyNoReport()">__getReplyNoReport</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#__noop()">__noop</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#abor()">abor</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#acct(java.lang.String)">acct</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#allo(int)">allo</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#allo(int,%20int)">allo</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#appe(java.lang.String)">appe</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#cdup()">cdup</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#cwd(java.lang.String)">cwd</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#dele(java.lang.String)">dele</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#eprt(java.net.InetAddress,%20int)">eprt</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#epsv()">epsv</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#feat()">feat</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#getCommandSupport()">getCommandSupport</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#getControlEncoding()">getControlEncoding</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#getReply()">getReply</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#getReplyCode()">getReplyCode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#getReplyString()">getReplyString</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#getReplyStrings()">getReplyStrings</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#help()">help</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#help(java.lang.String)">help</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#isStrictMultilineParsing()">isStrictMultilineParsing</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#isStrictReplyParsing()">isStrictReplyParsing</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#list()">list</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#list(java.lang.String)">list</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#mdtm(java.lang.String)">mdtm</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#mfmt(java.lang.String,%20java.lang.String)">mfmt</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#mkd(java.lang.String)">mkd</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#mlsd()">mlsd</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#mlsd(java.lang.String)">mlsd</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#mlst()">mlst</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#mlst(java.lang.String)">mlst</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#mode(int)">mode</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#nlst()">nlst</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#nlst(java.lang.String)">nlst</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#noop()">noop</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#pass(java.lang.String)">pass</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#pasv()">pasv</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#port(java.net.InetAddress,%20int)">port</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#pwd()">pwd</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#quit()">quit</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#rein()">rein</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#rest(java.lang.String)">rest</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#retr(java.lang.String)">retr</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#rmd(java.lang.String)">rmd</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#rnfr(java.lang.String)">rnfr</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#rnto(java.lang.String)">rnto</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#sendCommand(org.apache.commons.net.ftp.FTPCmd)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#sendCommand(org.apache.commons.net.ftp.FTPCmd,%20java.lang.String)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#sendCommand(int)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#sendCommand(int,%20java.lang.String)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#sendCommand(java.lang.String)">sendCommand</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#setControlEncoding(java.lang.String)">setControlEncoding</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#setStrictMultilineParsing(boolean)">setStrictMultilineParsing</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#setStrictReplyParsing(boolean)">setStrictReplyParsing</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#site(java.lang.String)">site</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#smnt(java.lang.String)">smnt</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#stat()">stat</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#stat(java.lang.String)">stat</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#stor(java.lang.String)">stor</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#stou()">stou</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#stou(java.lang.String)">stou</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#stru(int)">stru</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#syst()">syst</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#type(int)">type</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#type(int,%20int)">type</a>, <a href="../../../../../org/apache/commons/net/ftp/FTP.html#user(java.lang.String)">user</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.apache.commons.net.SocketClient">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.apache.commons.net.<a href="../../../../../org/apache/commons/net/SocketClient.html" title="class in org.apache.commons.net">SocketClient</a></h3>
+<code><a href="../../../../../org/apache/commons/net/SocketClient.html#addProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)">addProtocolCommandListener</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.net.InetAddress,%20int,%20java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#connect(java.lang.String,%20int,%20java.net.InetAddress,%20int)">connect</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#createCommandSupport()">createCommandSupport</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#fireCommandSent(java.lang.String,%20java.lang.String)">fireCommandSent</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#fireReplyReceived(int,%20java.lang.String)">fireReplyReceived</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getCharset()">getCharset</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getCharsetName()">getCharsetName</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getConnectTimeout()">getConnectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getDefaultPort()">getDefaultPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getDefaultTimeout()">getDefaultTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getKeepAlive()">getKeepAlive</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getLocalAddress()">getLocalAddress</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getLocalPort()">getLocalPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getProxy()">getProxy</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getReceiveBufferSize()">getReceiveBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getRemoteAddress()">getRemoteAddress</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getRemotePort()">getRemotePort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSendBufferSize()">getSendBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getServerSocketFactory()">getServerSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSoLinger()">getSoLinger</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getSoTimeout()">getSoTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#getTcpNoDelay()">getTcpNoDelay</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#isAvailable()">isAvailable</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#isConnected()">isConnected</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#removeProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)">removeProtocolCommandListener</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setCharset(java.nio.charset.Charset)">setCharset</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setConnectTimeout(int)">setConnectTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setDefaultPort(int)">setDefaultPort</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setDefaultTimeout(int)">setDefaultTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setKeepAlive(boolean)">setKeepAlive</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setProxy(java.net.Proxy)">setProxy</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setReceiveBufferSize(int)">setReceiveBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSendBufferSize(int)">setSendBufferSize</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setServerSocketFactory(javax.net.ServerSocketFactory)">setServerSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSocketFactory(javax.net.SocketFactory)">setSocketFactory</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSoLinger(boolean,%20int)">setSoLinger</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setSoTimeout(int)">setSoTimeout</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#setTcpNoDelay(boolean)">setTcpNoDelay</a>, <a href="../../../../../org/apache/commons/net/SocketClient.html#verifyRemote(java.net.Socket)">verifyRemote</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long,%20int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="DEFAULT_FTPS_DATA_PORT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT_FTPS_DATA_PORT</h4>
+<pre>public static final&nbsp;int DEFAULT_FTPS_DATA_PORT</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPSClient.DEFAULT_FTPS_DATA_PORT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DEFAULT_FTPS_PORT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT_FTPS_PORT</h4>
+<pre>public static final&nbsp;int DEFAULT_FTPS_PORT</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.apache.commons.net.ftp.FTPSClient.DEFAULT_FTPS_PORT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="KEYSTORE_ALGORITHM">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>KEYSTORE_ALGORITHM</h4>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public static&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> KEYSTORE_ALGORITHM</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>- not used - may be removed in a future release</i></div>
+</li>
+</ul>
+<a name="TRUSTSTORE_ALGORITHM">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>TRUSTSTORE_ALGORITHM</h4>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public static&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> TRUSTSTORE_ALGORITHM</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>- not used - may be removed in a future release</i></div>
+</li>
+</ul>
+<a name="PROVIDER">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PROVIDER</h4>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public static&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> PROVIDER</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>- not used - may be removed in a future release</i></div>
+</li>
+</ul>
+<a name="STORE_TYPE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>STORE_TYPE</h4>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public static&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> STORE_TYPE</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>- not used - may be removed in a future release</i></div>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="FTPSClient()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FTPSClient</h4>
+<pre>public&nbsp;FTPSClient()</pre>
+<div class="block">Constructor for FTPSClient, calls <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(java.lang.String,%20boolean)"><code>FTPSClient(String, boolean)</code></a>.
+
+ Sets protocol to <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_PROTOCOL"><code>DEFAULT_PROTOCOL</code></a> - i.e. TLS - and security mode to explicit (isImplicit = false)</div>
+</li>
+</ul>
+<a name="FTPSClient(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FTPSClient</h4>
+<pre>public&nbsp;FTPSClient(boolean&nbsp;isImplicit)</pre>
+<div class="block">Constructor for FTPSClient, using <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_PROTOCOL"><code>DEFAULT_PROTOCOL</code></a> - i.e. TLS
+ Calls <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(java.lang.String,%20boolean)"><code>FTPSClient(String, boolean)</code></a></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>isImplicit</code> - The security mode (Implicit/Explicit).</dd></dl>
+</li>
+</ul>
+<a name="FTPSClient(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FTPSClient</h4>
+<pre>public&nbsp;FTPSClient(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;protocol)</pre>
+<div class="block">Constructor for FTPSClient, using explict mode, calls <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(java.lang.String,%20boolean)"><code>FTPSClient(String, boolean)</code></a>.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>protocol</code> - the protocol to use</dd></dl>
+</li>
+</ul>
+<a name="FTPSClient(java.lang.String, boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FTPSClient</h4>
+<pre>public&nbsp;FTPSClient(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;protocol,
+          boolean&nbsp;isImplicit)</pre>
+<div class="block">Constructor for FTPSClient allowing specification of protocol
+ and security mode. If isImplicit is true, the port is set to
+ <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_FTPS_PORT"><code>DEFAULT_FTPS_PORT</code></a> i.e. 990.
+ The default TrustManager is set from <a href="../../../../../org/apache/commons/net/util/TrustManagerUtils.html#getValidateServerCertificateTrustManager()"><code>TrustManagerUtils.getValidateServerCertificateTrustManager()</code></a></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>protocol</code> - the protocol</dd><dd><code>isImplicit</code> - The security mode(Implicit/Explicit).</dd></dl>
+</li>
+</ul>
+<a name="FTPSClient(boolean, javax.net.ssl.SSLContext)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FTPSClient</h4>
+<pre>public&nbsp;FTPSClient(boolean&nbsp;isImplicit,
+          <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLContext.html?is-external=true" title="class or interface in javax.net.ssl">SSLContext</a>&nbsp;context)</pre>
+<div class="block">Constructor for FTPSClient, using <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_PROTOCOL"><code>DEFAULT_PROTOCOL</code></a> - i.e. TLS
+ The default TrustManager is set from <a href="../../../../../org/apache/commons/net/util/TrustManagerUtils.html#getValidateServerCertificateTrustManager()"><code>TrustManagerUtils.getValidateServerCertificateTrustManager()</code></a></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>isImplicit</code> - The security mode(Implicit/Explicit).</dd><dd><code>context</code> - A pre-configured SSL Context</dd></dl>
+</li>
+</ul>
+<a name="FTPSClient(javax.net.ssl.SSLContext)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>FTPSClient</h4>
+<pre>public&nbsp;FTPSClient(<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLContext.html?is-external=true" title="class or interface in javax.net.ssl">SSLContext</a>&nbsp;context)</pre>
+<div class="block">Constructor for FTPSClient, using <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_PROTOCOL"><code>DEFAULT_PROTOCOL</code></a> - i.e. TLS
+ and isImplicit <code>false</code>
+ Calls <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#FTPSClient(boolean,%20javax.net.ssl.SSLContext)"><code>FTPSClient(boolean, SSLContext)</code></a></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - A pre-configured SSL Context</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="setAuthValue(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setAuthValue</h4>
+<pre>public&nbsp;void&nbsp;setAuthValue(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;auth)</pre>
+<div class="block">Set AUTH command use value.
+ This processing is done before connected processing.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>auth</code> - AUTH command use value.</dd></dl>
+</li>
+</ul>
+<a name="getAuthValue()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAuthValue</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getAuthValue()</pre>
+<div class="block">Return AUTH command use value.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>AUTH command use value.</dd></dl>
+</li>
+</ul>
+<a name="_connectAction_()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_connectAction_</h4>
+<pre>protected&nbsp;void&nbsp;_connectAction_()
+                        throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Because there are so many connect() methods,
+ the _connectAction_() method is provided as a means of performing
+ some action immediately after establishing a connection,
+ rather than reimplementing all of the connect() methods.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_connectAction_()">_connectAction_</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">FTPClient</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If it throw by _connectAction_.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/SocketClient.html#_connectAction_()"><code>SocketClient._connectAction_()</code></a></dd></dl>
+</li>
+</ul>
+<a name="execAUTH()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execAUTH</h4>
+<pre>protected&nbsp;void&nbsp;execAUTH()
+                 throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a>,
+                        <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">AUTH command.</div>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a></code> - If it server reply code not equal "234" and "334".</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while either sending
+ the command.</dd></dl>
+</li>
+</ul>
+<a name="sslNegotiation()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sslNegotiation</h4>
+<pre>protected&nbsp;void&nbsp;sslNegotiation()
+                       throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">SSL/TLS negotiation. Acquires an SSL socket of a control
+ connection and carries out handshake processing.</div>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If server negotiation fails</dd></dl>
+</li>
+</ul>
+<a name="setKeyManager(javax.net.ssl.KeyManager)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setKeyManager</h4>
+<pre>public&nbsp;void&nbsp;setKeyManager(<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/KeyManager.html?is-external=true" title="class or interface in javax.net.ssl">KeyManager</a>&nbsp;keyManager)</pre>
+<div class="block">Set a <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/KeyManager.html?is-external=true" title="class or interface in javax.net.ssl"><code>KeyManager</code></a> to use</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>keyManager</code> - The KeyManager implementation to set.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/util/KeyManagerUtils.html" title="class in org.apache.commons.net.util"><code>KeyManagerUtils</code></a></dd></dl>
+</li>
+</ul>
+<a name="setEnabledSessionCreation(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setEnabledSessionCreation</h4>
+<pre>public&nbsp;void&nbsp;setEnabledSessionCreation(boolean&nbsp;isCreation)</pre>
+<div class="block">Controls whether a new SSL session may be established by this socket.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>isCreation</code> - The established socket flag.</dd></dl>
+</li>
+</ul>
+<a name="getEnableSessionCreation()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEnableSessionCreation</h4>
+<pre>public&nbsp;boolean&nbsp;getEnableSessionCreation()</pre>
+<div class="block">Returns true if new SSL sessions may be established by this socket.
+ When the underlying <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net"><code>Socket</code></a> instance is not SSL-enabled (i.e. an
+ instance of <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a> with <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#getEnableSessionCreation()"><code>getEnableSessionCreation()</code></a>) enabled,
+ this returns False.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true - Indicates that sessions may be created;
+ this is the default.
+ false - indicates that an existing session must be resumed.</dd></dl>
+</li>
+</ul>
+<a name="setNeedClientAuth(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setNeedClientAuth</h4>
+<pre>public&nbsp;void&nbsp;setNeedClientAuth(boolean&nbsp;isNeedClientAuth)</pre>
+<div class="block">Configures the socket to require client authentication.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>isNeedClientAuth</code> - The need client auth flag.</dd></dl>
+</li>
+</ul>
+<a name="getNeedClientAuth()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNeedClientAuth</h4>
+<pre>public&nbsp;boolean&nbsp;getNeedClientAuth()</pre>
+<div class="block">Returns true if the socket will require client authentication.
+ When the underlying <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net"><code>Socket</code></a> is not an <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a> instance, returns false.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true - If the server mode socket should request
+ that the client authenticate itself.</dd></dl>
+</li>
+</ul>
+<a name="setWantClientAuth(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setWantClientAuth</h4>
+<pre>public&nbsp;void&nbsp;setWantClientAuth(boolean&nbsp;isWantClientAuth)</pre>
+<div class="block">Configures the socket to request client authentication,
+ but only if such a request is appropriate to the cipher
+ suite negotiated.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>isWantClientAuth</code> - The want client auth flag.</dd></dl>
+</li>
+</ul>
+<a name="getWantClientAuth()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getWantClientAuth</h4>
+<pre>public&nbsp;boolean&nbsp;getWantClientAuth()</pre>
+<div class="block">Returns true if the socket will request client authentication.
+ When the underlying <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net"><code>Socket</code></a> is not an <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a> instance, returns false.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true - If the server mode socket should request
+ that the client authenticate itself.</dd></dl>
+</li>
+</ul>
+<a name="setUseClientMode(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setUseClientMode</h4>
+<pre>public&nbsp;void&nbsp;setUseClientMode(boolean&nbsp;isClientMode)</pre>
+<div class="block">Configures the socket to use client (or server) mode in its first
+ handshake.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>isClientMode</code> - The use client mode flag.</dd></dl>
+</li>
+</ul>
+<a name="getUseClientMode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getUseClientMode</h4>
+<pre>public&nbsp;boolean&nbsp;getUseClientMode()</pre>
+<div class="block">Returns true if the socket is set to use client mode
+ in its first handshake.
+ When the underlying <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net"><code>Socket</code></a> is not an <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a> instance, returns false.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true - If the socket should start its first handshake
+ in "client" mode.</dd></dl>
+</li>
+</ul>
+<a name="setEnabledCipherSuites(java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setEnabledCipherSuites</h4>
+<pre>public&nbsp;void&nbsp;setEnabledCipherSuites(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;cipherSuites)</pre>
+<div class="block">Controls which particular cipher suites are enabled for use on this
+ connection. Called before server negotiation.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>cipherSuites</code> - The cipher suites.</dd></dl>
+</li>
+</ul>
+<a name="getEnabledCipherSuites()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEnabledCipherSuites</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;getEnabledCipherSuites()</pre>
+<div class="block">Returns the names of the cipher suites which could be enabled
+ for use on this connection.
+ When the underlying <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net"><code>Socket</code></a> is not an <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a> instance, returns null.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>An array of cipher suite names, or <code>null</code></dd></dl>
+</li>
+</ul>
+<a name="setEnabledProtocols(java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setEnabledProtocols</h4>
+<pre>public&nbsp;void&nbsp;setEnabledProtocols(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;protocolVersions)</pre>
+<div class="block">Controls which particular protocol versions are enabled for use on this
+ connection. I perform setting before a server negotiation.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>protocolVersions</code> - The protocol versions.</dd></dl>
+</li>
+</ul>
+<a name="getEnabledProtocols()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEnabledProtocols</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;getEnabledProtocols()</pre>
+<div class="block">Returns the names of the protocol versions which are currently
+ enabled for use on this connection.
+ When the underlying <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net"><code>Socket</code></a> is not an <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a> instance, returns null.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>An array of protocols, or <code>null</code></dd></dl>
+</li>
+</ul>
+<a name="execPBSZ(long)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execPBSZ</h4>
+<pre>public&nbsp;void&nbsp;execPBSZ(long&nbsp;pbsz)
+              throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a>,
+                     <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">PBSZ command. pbsz value: 0 to (2^32)-1 decimal integer.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>pbsz</code> - Protection Buffer Size.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a></code> - If the server reply code does not equal "200".</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#parsePBSZ(long)"><code>parsePBSZ(long)</code></a></dd></dl>
+</li>
+</ul>
+<a name="parsePBSZ(long)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>parsePBSZ</h4>
+<pre>public&nbsp;long&nbsp;parsePBSZ(long&nbsp;pbsz)
+               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a>,
+                      <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">PBSZ command. pbsz value: 0 to (2^32)-1 decimal integer.
+ Issues the command and parses the response to return the negotiated value.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>pbsz</code> - Protection Buffer Size.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the negotiated value.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a></code> - If the server reply code does not equal "200".</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execPBSZ(long)"><code>execPBSZ(long)</code></a></dd></dl>
+</li>
+</ul>
+<a name="execPROT(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execPROT</h4>
+<pre>public&nbsp;void&nbsp;execPROT(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;prot)
+              throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a>,
+                     <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">PROT command.
+ <ul>
+ <li>C - Clear</li>
+ <li>S - Safe(SSL protocol only)</li>
+ <li>E - Confidential(SSL protocol only)</li>
+ <li>P - Private</li>
+ </ul>
+ <b>N.B.</b> the method calls
+  <a href="../../../../../org/apache/commons/net/SocketClient.html#setSocketFactory(javax.net.SocketFactory)"><code>SocketClient.setSocketFactory(javax.net.SocketFactory)</code></a> and
+  <a href="../../../../../org/apache/commons/net/SocketClient.html#setServerSocketFactory(javax.net.ServerSocketFactory)"><code>SocketClient.setServerSocketFactory(javax.net.ServerSocketFactory)</code></a></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>prot</code> - Data Channel Protection Level, if <code>null</code>, use <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#DEFAULT_PROT"><code>DEFAULT_PROT</code></a>.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a></code> - If the server reply code does not equal  <code>200</code>.</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd></dl>
+</li>
+</ul>
+<a name="sendCommand(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sendCommand</h4>
+<pre>public&nbsp;int&nbsp;sendCommand(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;command,
+              <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;args)
+                throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send an FTP command.
+ A successful CCC (Clear Command Channel) command causes the underlying <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a>
+ instance to be assigned to a plain <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net"><code>Socket</code></a></div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../org/apache/commons/net/ftp/FTP.html#sendCommand(java.lang.String,%20java.lang.String)">sendCommand</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/apache/commons/net/ftp/FTP.html" title="class in org.apache.commons.net.ftp">FTP</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The FTP command.</dd><dd><code>args</code> - The arguments to the FTP command.  If this parameter is
+             set to null, then the command is sent with no argument.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>server reply.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending the command.</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLException.html?is-external=true" title="class or interface in javax.net.ssl">SSLException</a></code> - if a CCC command fails</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/ftp/FTP.html#sendCommand(java.lang.String)"><code>FTP.sendCommand(java.lang.String)</code></a></dd></dl>
+</li>
+</ul>
+<a name="_openDataConnection_(int, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_openDataConnection_</h4>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+protected&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net">Socket</a>&nbsp;_openDataConnection_(int&nbsp;command,
+                                     <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;arg)
+                               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>(3.3) Use <a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_openDataConnection_(org.apache.commons.net.ftp.FTPCmd,%20java.lang.String)"><code>FTPClient._openDataConnection_(FTPCmd, String)</code></a> instead</i></div>
+<div class="block">Returns a socket of the data connection.
+ Wrapped as an <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a>, which carries out handshake processing.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_openDataConnection_(int,%20java.lang.String)">_openDataConnection_</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">FTPClient</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The int representation of the FTP command to send.</dd><dd><code>arg</code> - The arguments to the FTP command.
+ If this parameter is set to null, then the command is sent with
+ no arguments.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>corresponding to the established data connection.
+ Null is returned if an FTP protocol error is reported at any point
+ during the establishment and initialization of the connection.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If there is any problem with the connection.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_openDataConnection_(int,%20java.lang.String)"><code>FTPClient._openDataConnection_(int, String)</code></a></dd></dl>
+</li>
+</ul>
+<a name="_openDataConnection_(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_openDataConnection_</h4>
+<pre>protected&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net">Socket</a>&nbsp;_openDataConnection_(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;command,
+                          <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;arg)
+                               throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Returns a socket of the data connection.
+ Wrapped as an <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a>, which carries out handshake processing.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_openDataConnection_(java.lang.String,%20java.lang.String)">_openDataConnection_</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">FTPClient</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The textual representation of the FTP command to send.</dd><dd><code>arg</code> - The arguments to the FTP command.
+ If this parameter is set to null, then the command is sent with
+ no arguments.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>corresponding to the established data connection.
+ Null is returned if an FTP protocol error is reported at any point
+ during the establishment and initialization of the connection.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If there is any problem with the connection.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.2</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#_openDataConnection_(int,%20java.lang.String)"><code>FTPClient._openDataConnection_(int, String)</code></a></dd></dl>
+</li>
+</ul>
+<a name="_prepareDataSocket_(java.net.Socket)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_prepareDataSocket_</h4>
+<pre>protected&nbsp;void&nbsp;_prepareDataSocket_(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net">Socket</a>&nbsp;socket)
+                            throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Performs any custom initialization for a newly created SSLSocket (before
+ the SSL handshake happens).
+ Called by <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#_openDataConnection_(int,%20java.lang.String)"><code>_openDataConnection_(int, String)</code></a> immediately
+ after creating the socket.
+ The default implementation is a no-op</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>socket</code> - the socket to set up</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - on error</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.1</dd></dl>
+</li>
+</ul>
+<a name="getTrustManager()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTrustManager</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/TrustManager.html?is-external=true" title="class or interface in javax.net.ssl">TrustManager</a>&nbsp;getTrustManager()</pre>
+<div class="block">Get the currently configured <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/TrustManager.html?is-external=true" title="class or interface in javax.net.ssl"><code>TrustManager</code></a>.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>A TrustManager instance.</dd></dl>
+</li>
+</ul>
+<a name="setTrustManager(javax.net.ssl.TrustManager)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTrustManager</h4>
+<pre>public&nbsp;void&nbsp;setTrustManager(<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/TrustManager.html?is-external=true" title="class or interface in javax.net.ssl">TrustManager</a>&nbsp;trustManager)</pre>
+<div class="block">Override the default <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/TrustManager.html?is-external=true" title="class or interface in javax.net.ssl"><code>TrustManager</code></a> to use; if set to <code>null</code>,
+ the default TrustManager from the JVM will be used.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>trustManager</code> - The TrustManager implementation to set, may be <code>null</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../org/apache/commons/net/util/TrustManagerUtils.html" title="class in org.apache.commons.net.util"><code>TrustManagerUtils</code></a></dd></dl>
+</li>
+</ul>
+<a name="getHostnameVerifier()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getHostnameVerifier</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/HostnameVerifier.html?is-external=true" title="class or interface in javax.net.ssl">HostnameVerifier</a>&nbsp;getHostnameVerifier()</pre>
+<div class="block">Get the currently configured <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/HostnameVerifier.html?is-external=true" title="class or interface in javax.net.ssl"><code>HostnameVerifier</code></a>.
+ The verifier is only used on client mode connections.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>A HostnameVerifier instance.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.4</dd></dl>
+</li>
+</ul>
+<a name="setHostnameVerifier(javax.net.ssl.HostnameVerifier)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setHostnameVerifier</h4>
+<pre>public&nbsp;void&nbsp;setHostnameVerifier(<a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/HostnameVerifier.html?is-external=true" title="class or interface in javax.net.ssl">HostnameVerifier</a>&nbsp;newHostnameVerifier)</pre>
+<div class="block">Override the default <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/HostnameVerifier.html?is-external=true" title="class or interface in javax.net.ssl"><code>HostnameVerifier</code></a> to use.
+ The verifier is only used on client mode connections.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>newHostnameVerifier</code> - The HostnameVerifier implementation to set or <code>null</code> to disable.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.4</dd></dl>
+</li>
+</ul>
+<a name="isEndpointCheckingEnabled()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isEndpointCheckingEnabled</h4>
+<pre>public&nbsp;boolean&nbsp;isEndpointCheckingEnabled()</pre>
+<div class="block">Return whether or not endpoint identification using the HTTPS algorithm
+ on Java 1.7+ is enabled. The default behaviour is for this to be disabled.
+
+ This check is only performed on client mode connections.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>True if enabled, false if not.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.4</dd></dl>
+</li>
+</ul>
+<a name="setEndpointCheckingEnabled(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setEndpointCheckingEnabled</h4>
+<pre>public&nbsp;void&nbsp;setEndpointCheckingEnabled(boolean&nbsp;enable)</pre>
+<div class="block">Automatic endpoint identification checking using the HTTPS algorithm
+ is supported on Java 1.7+. The default behaviour is for this to be disabled.
+
+ This check is only performed on client mode connections.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>enable</code> - Enable automatic endpoint identification checking using the HTTPS algorithm on Java 1.7+.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.4</dd></dl>
+</li>
+</ul>
+<a name="disconnect()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>disconnect</h4>
+<pre>public&nbsp;void&nbsp;disconnect()
+                throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Closes the connection to the FTP server and restores
+ connection parameters to the default values.
+ <p>
+ Calls <code>setSocketFactory(null)</code> and <code>setServerSocketFactory(null)</code>
+ to reset the factories that may have been changed during the session,
+ e.g. by <a href="../../../../../org/apache/commons/net/ftp/FTPSClient.html#execPROT(java.lang.String)"><code>execPROT(String)</code></a></div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html#disconnect()">disconnect</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/apache/commons/net/ftp/FTPClient.html" title="class in org.apache.commons.net.ftp">FTPClient</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an error occurs while disconnecting.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="execAUTH(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execAUTH</h4>
+<pre>public&nbsp;int&nbsp;execAUTH(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mechanism)
+             throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send the AUTH command with the specified mechanism.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mechanism</code> - The mechanism name to send with the command.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>server reply.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="execADAT(byte[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execADAT</h4>
+<pre>public&nbsp;int&nbsp;execADAT(byte[]&nbsp;data)
+             throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send the ADAT command with the specified authentication data.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>data</code> - The data to send with the command.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>server reply.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="execCCC()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execCCC</h4>
+<pre>public&nbsp;int&nbsp;execCCC()
+            throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send the CCC command to the server.
+ The CCC (Clear Command Channel) command causes the underlying <a href="http://download.oracle.com/javase/1.6.0/docs/api/javax/net/ssl/SSLSocket.html?is-external=true" title="class or interface in javax.net.ssl"><code>SSLSocket</code></a> instance  to be assigned
+ to a plain <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/net/Socket.html?is-external=true" title="class or interface in java.net"><code>Socket</code></a> instances</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>server reply.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="execMIC(byte[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execMIC</h4>
+<pre>public&nbsp;int&nbsp;execMIC(byte[]&nbsp;data)
+            throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send the MIC command with the specified data.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>data</code> - The data to send with the command.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>server reply.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="execCONF(byte[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execCONF</h4>
+<pre>public&nbsp;int&nbsp;execCONF(byte[]&nbsp;data)
+             throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send the CONF command with the specified data.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>data</code> - The data to send with the command.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>server reply.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="execENC(byte[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>execENC</h4>
+<pre>public&nbsp;int&nbsp;execENC(byte[]&nbsp;data)
+            throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Send the ENC command with the specified data.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>data</code> - The data to send with the command.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>server reply.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - If an I/O error occurs while sending
+ the command.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+<a name="parseADATReply(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>parseADATReply</h4>
+<pre>public&nbsp;byte[]&nbsp;parseADATReply(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;reply)</pre>
+<div class="block">Parses the given ADAT response line and base64-decodes the data.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>reply</code> - The ADAT reply to parse.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the data in the reply, base64-decoded.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.0</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/FTPSClient.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPReply.html" title="class in org.apache.commons.net.ftp"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPSCommand.html" title="class in org.apache.commons.net.ftp"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/ftp/FTPSClient.html" target="_top">Frames</a></li>
+<li><a href="FTPSClient.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_org.apache.commons.net.ftp.FTPClient">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &#169; 2001&#x2013;2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.</small></p>
+</body>
+</html>

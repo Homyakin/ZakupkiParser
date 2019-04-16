@@ -1,0 +1,643 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>IMAPCommand (Apache Commons Net 3.6 API)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="IMAPCommand (Apache Commons Net 3.6 API)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/IMAPCommand.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/imap/IMAPClient.STATUS_DATA_ITEMS.html" title="enum in org.apache.commons.net.imap"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/imap/IMAPReply.html" title="class in org.apache.commons.net.imap"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/imap/IMAPCommand.html" target="_top">Frames</a></li>
+<li><a href="IMAPCommand.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#enum_constant_summary">Enum Constants</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#enum_constant_detail">Enum Constants</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.apache.commons.net.imap</div>
+<h2 title="Enum IMAPCommand" class="title">Enum IMAPCommand</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">java.lang.Enum</a>&lt;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a>&gt;</li>
+<li>
+<ul class="inheritance">
+<li>org.apache.commons.net.imap.IMAPCommand</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a>&gt;</dd>
+</dl>
+<hr>
+<br>
+<pre>public enum <span class="strong">IMAPCommand</span>
+extends <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a>&gt;</pre>
+<div class="block">IMAPCommand stores IMAP command codes.</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="enum_constant_summary">
+<!--   -->
+</a>
+<h3>Enum Constant Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Enum Constant Summary table, listing enum constants, and an explanation">
+<caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Enum Constant and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#APPEND">APPEND</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#AUTHENTICATE">AUTHENTICATE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#CAPABILITY">CAPABILITY</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#CHECK">CHECK</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#CLOSE">CLOSE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#COPY">COPY</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#CREATE">CREATE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#DELETE">DELETE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#EXAMINE">EXAMINE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#EXPUNGE">EXPUNGE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#FETCH">FETCH</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#LIST">LIST</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#LOGIN">LOGIN</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#LOGOUT">LOGOUT</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#LSUB">LSUB</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#NOOP">NOOP</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#RENAME">RENAME</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#SEARCH">SEARCH</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#SELECT">SELECT</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#STARTTLS">STARTTLS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#STATUS">STATUS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#STORE">STORE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#SUBSCRIBE">SUBSCRIBE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#UID">UID</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#UNSUBSCRIBE">UNSUBSCRIBE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#XOAUTH">XOAUTH</a></strong></code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#getCommand(org.apache.commons.net.imap.IMAPCommand)">getCommand</a></strong>(<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a>&nbsp;command)</code>
+<div class="block">Get the IMAP protocol string command corresponding to a command code.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#getIMAPCommand()">getIMAPCommand</a></strong>()</code>
+<div class="block">Get the IMAP protocol string command for this command</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#valueOf(java.lang.String)">valueOf</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a>[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html#values()">values</a></strong>()</code>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Enum">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#compareTo(E)" title="class or interface in java.lang">compareTo</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#getDeclaringClass()" title="class or interface in java.lang">getDeclaringClass</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#name()" title="class or interface in java.lang">name</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#ordinal()" title="class or interface in java.lang">ordinal</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Enum.html?is-external=true#valueOf(java.lang.Class,%20java.lang.String)" title="class or interface in java.lang">valueOf</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long,%20int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ============ ENUM CONSTANT DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="enum_constant_detail">
+<!--   -->
+</a>
+<h3>Enum Constant Detail</h3>
+<a name="CAPABILITY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CAPABILITY</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> CAPABILITY</pre>
+</li>
+</ul>
+<a name="NOOP">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>NOOP</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> NOOP</pre>
+</li>
+</ul>
+<a name="LOGOUT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>LOGOUT</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> LOGOUT</pre>
+</li>
+</ul>
+<a name="STARTTLS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STARTTLS</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> STARTTLS</pre>
+</li>
+</ul>
+<a name="AUTHENTICATE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>AUTHENTICATE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> AUTHENTICATE</pre>
+</li>
+</ul>
+<a name="LOGIN">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>LOGIN</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> LOGIN</pre>
+</li>
+</ul>
+<a name="XOAUTH">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>XOAUTH</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> XOAUTH</pre>
+</li>
+</ul>
+<a name="SELECT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SELECT</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> SELECT</pre>
+</li>
+</ul>
+<a name="EXAMINE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EXAMINE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> EXAMINE</pre>
+</li>
+</ul>
+<a name="CREATE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CREATE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> CREATE</pre>
+</li>
+</ul>
+<a name="DELETE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DELETE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> DELETE</pre>
+</li>
+</ul>
+<a name="RENAME">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RENAME</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> RENAME</pre>
+</li>
+</ul>
+<a name="SUBSCRIBE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SUBSCRIBE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> SUBSCRIBE</pre>
+</li>
+</ul>
+<a name="UNSUBSCRIBE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>UNSUBSCRIBE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> UNSUBSCRIBE</pre>
+</li>
+</ul>
+<a name="LIST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>LIST</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> LIST</pre>
+</li>
+</ul>
+<a name="LSUB">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>LSUB</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> LSUB</pre>
+</li>
+</ul>
+<a name="STATUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STATUS</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> STATUS</pre>
+</li>
+</ul>
+<a name="APPEND">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>APPEND</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> APPEND</pre>
+</li>
+</ul>
+<a name="CHECK">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CHECK</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> CHECK</pre>
+</li>
+</ul>
+<a name="CLOSE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CLOSE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> CLOSE</pre>
+</li>
+</ul>
+<a name="EXPUNGE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EXPUNGE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> EXPUNGE</pre>
+</li>
+</ul>
+<a name="SEARCH">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SEARCH</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> SEARCH</pre>
+</li>
+</ul>
+<a name="FETCH">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FETCH</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> FETCH</pre>
+</li>
+</ul>
+<a name="STORE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>STORE</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> STORE</pre>
+</li>
+</ul>
+<a name="COPY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>COPY</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> COPY</pre>
+</li>
+</ul>
+<a name="UID">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>UID</h4>
+<pre>public static final&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a> UID</pre>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="values()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>values</h4>
+<pre>public static&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a>[]&nbsp;values()</pre>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.  This method may be used to iterate
+over the constants as follows:
+<pre>
+for (IMAPCommand c : IMAPCommand.values())
+&nbsp;   System.out.println(c);
+</pre></div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>an array containing the constants of this enum type, in the order they are declared</dd></dl>
+</li>
+</ul>
+<a name="valueOf(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>valueOf</h4>
+<pre>public static&nbsp;<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a>&nbsp;valueOf(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Returns the enum constant of this type with the specified name.
+The string must match <i>exactly</i> an identifier used to declare an
+enum constant in this type.  (Extraneous whitespace characters are 
+not permitted.)</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>name</code> - the name of the enum constant to be returned.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the enum constant with the specified name</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if this enum type has no constant with the specified name</dd>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the argument is null</dd></dl>
+</li>
+</ul>
+<a name="getCommand(org.apache.commons.net.imap.IMAPCommand)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCommand</h4>
+<pre>public static final&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getCommand(<a href="../../../../../org/apache/commons/net/imap/IMAPCommand.html" title="enum in org.apache.commons.net.imap">IMAPCommand</a>&nbsp;command)</pre>
+<div class="block">Get the IMAP protocol string command corresponding to a command code.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - the IMAPCommand whose command string is required.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The IMAP protocol string command corresponding to a command code.</dd></dl>
+</li>
+</ul>
+<a name="getIMAPCommand()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getIMAPCommand</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getIMAPCommand()</pre>
+<div class="block">Get the IMAP protocol string command for this command</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>The IMAP protocol string command corresponding to this command</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/IMAPCommand.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/imap/IMAPClient.STATUS_DATA_ITEMS.html" title="enum in org.apache.commons.net.imap"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/imap/IMAPReply.html" title="class in org.apache.commons.net.imap"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/imap/IMAPCommand.html" target="_top">Frames</a></li>
+<li><a href="IMAPCommand.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#enum_constant_summary">Enum Constants</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#enum_constant_detail">Enum Constants</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &#169; 2001&#x2013;2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.</small></p>
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>FTPListParseEngine (Apache Commons Net 3.6 API)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="FTPListParseEngine (Apache Commons Net 3.6 API)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/FTPListParseEngine.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPHTTPClient.html" title="class in org.apache.commons.net.ftp"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPReply.html" title="class in org.apache.commons.net.ftp"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/ftp/FTPListParseEngine.html" target="_top">Frames</a></li>
+<li><a href="FTPListParseEngine.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.apache.commons.net.ftp</div>
+<h2 title="Class FTPListParseEngine" class="title">Class FTPListParseEngine</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li>org.apache.commons.net.ftp.FTPListParseEngine</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<hr>
+<br>
+<pre>public class <span class="strong">FTPListParseEngine</span>
+extends <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<div class="block">This class handles the entire process of parsing a listing of
+ file entries from the server.
+ <p>
+ This object defines a two-part parsing mechanism.
+ <p>
+ The first part is comprised of reading the raw input into an internal
+ list of strings.  Every item in this list corresponds to an actual
+ file.  All extraneous matter emitted by the server will have been
+ removed by the end of this phase.  This is accomplished in conjunction
+ with the FTPFileEntryParser associated with this engine, by calling
+ its methods <code>readNextEntry()</code> - which handles the issue of
+ what delimits one entry from another, usually but not always a line
+ feed and <code>preParse()</code> - which handles removal of
+ extraneous matter such as the preliminary lines of a listing, removal
+ of duplicates on versioning systems, etc.
+ <p>
+ The second part is composed of the actual parsing, again in conjunction
+ with the particular parser used by this engine.  This is controlled
+ by an iterator over the internal list of strings.  This may be done
+ either in block mode, by calling the <code>getNext()</code> and
+ <code>getPrevious()</code> methods to provide "paged" output of less
+ than the whole list at one time, or by calling the
+ <code>getFiles()</code> method to return the entire list.
+ <p>
+ Examples:
+ <p>
+ Paged access:
+ <pre>
+    FTPClient f=FTPClient();
+    f.connect(server);
+    f.login(username, password);
+    FTPListParseEngine engine = f.initiateListParsing(directory);
+
+    while (engine.hasNext()) {
+       FTPFile[] files = engine.getNext(25);  // "page size" you want
+       //do whatever you want with these files, display them, etc.
+       //expensive FTPFile objects not created until needed.
+    }
+ </pre>
+ <p>
+ For unpaged access, simply use FTPClient.listFiles().  That method
+ uses this class transparently.</div>
+<dl><dt><span class="strong">Version:</span></dt>
+  <dd>$Id: FTPListParseEngine.java 1747119 2016-06-07 02:22:24Z ggregory $</dd></dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#FTPListParseEngine(org.apache.commons.net.ftp.FTPFileEntryParser)">FTPListParseEngine</a></strong>(<a href="../../../../../org/apache/commons/net/ftp/FTPFileEntryParser.html" title="interface in org.apache.commons.net.ftp">FTPFileEntryParser</a>&nbsp;parser)</code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/commons/net/ftp/FTPFile.html" title="class in org.apache.commons.net.ftp">FTPFile</a>[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#getFiles()">getFiles</a></strong>()</code>
+<div class="block">Returns an array of FTPFile objects containing the whole list of
+ files returned by the server as read by this object's parser.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/commons/net/ftp/FTPFile.html" title="class in org.apache.commons.net.ftp">FTPFile</a>[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#getFiles(org.apache.commons.net.ftp.FTPFileFilter)">getFiles</a></strong>(<a href="../../../../../org/apache/commons/net/ftp/FTPFileFilter.html" title="interface in org.apache.commons.net.ftp">FTPFileFilter</a>&nbsp;filter)</code>
+<div class="block">Returns an array of FTPFile objects containing the whole list of
+ files returned by the server as read by this object's parser.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/commons/net/ftp/FTPFile.html" title="class in org.apache.commons.net.ftp">FTPFile</a>[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#getNext(int)">getNext</a></strong>(int&nbsp;quantityRequested)</code>
+<div class="block">Returns an array of at most <code>quantityRequested</code> FTPFile
+ objects starting at this object's internal iterator's current position.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/commons/net/ftp/FTPFile.html" title="class in org.apache.commons.net.ftp">FTPFile</a>[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#getPrevious(int)">getPrevious</a></strong>(int&nbsp;quantityRequested)</code>
+<div class="block">Returns an array of at most <code>quantityRequested</code> FTPFile
+ objects starting at this object's internal iterator's current position,
+ and working back toward the beginning.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#hasNext()">hasNext</a></strong>()</code>
+<div class="block">convenience method to allow clients to know whether this object's
+ internal iterator's current position is at the end of the list.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#hasPrevious()">hasPrevious</a></strong>()</code>
+<div class="block">convenience method to allow clients to know whether this object's
+ internal iterator's current position is at the beginning of the list.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#readServerList(java.io.InputStream)">readServerList</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream)</code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>use <a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#readServerList(java.io.InputStream,%20java.lang.String)"><code>readServerList(InputStream, String)</code></a> instead</i></div>
+</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#readServerList(java.io.InputStream,%20java.lang.String)">readServerList</a></strong>(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream,
+              <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;encoding)</code>
+<div class="block">handle the initial reading and preparsing of the list returned by
+ the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#resetIterator()">resetIterator</a></strong>()</code>
+<div class="block">resets this object's internal iterator to the beginning of the list.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Object.html?is-external=true#wait(long,%20int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="FTPListParseEngine(org.apache.commons.net.ftp.FTPFileEntryParser)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>FTPListParseEngine</h4>
+<pre>public&nbsp;FTPListParseEngine(<a href="../../../../../org/apache/commons/net/ftp/FTPFileEntryParser.html" title="interface in org.apache.commons.net.ftp">FTPFileEntryParser</a>&nbsp;parser)</pre>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="readServerList(java.io.InputStream, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readServerList</h4>
+<pre>public&nbsp;void&nbsp;readServerList(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream,
+                  <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;encoding)
+                    throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">handle the initial reading and preparsing of the list returned by
+ the server.  After this method has completed, this object will contain
+ a list of unparsed entries (Strings) each referring to a unique file
+ on the server.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>stream</code> - input stream provided by the server socket.</dd><dd><code>encoding</code> - the encoding to be used for reading the stream</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - thrown on any failure to read from the sever.</dd></dl>
+</li>
+</ul>
+<a name="getNext(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNext</h4>
+<pre>public&nbsp;<a href="../../../../../org/apache/commons/net/ftp/FTPFile.html" title="class in org.apache.commons.net.ftp">FTPFile</a>[]&nbsp;getNext(int&nbsp;quantityRequested)</pre>
+<div class="block">Returns an array of at most <code>quantityRequested</code> FTPFile
+ objects starting at this object's internal iterator's current position.
+ If fewer than <code>quantityRequested</code> such
+ elements are available, the returned array will have a length equal
+ to the number of entries at and after after the current position.
+ If no such entries are found, this array will have a length of 0.
+
+ After this method is called this object's internal iterator is advanced
+ by a number of positions equal to the size of the array returned.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>quantityRequested</code> - the maximum number of entries we want to get.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>an array of at most <code>quantityRequested</code> FTPFile
+ objects starting at the current position of this iterator within its
+ list and at least the number of elements which  exist in the list at
+ and after its current position.
+ <p><b>
+ NOTE:</b> This array may contain null members if any of the
+ individual file listings failed to parse.  The caller should
+ check each entry for null before referencing it.</dd></dl>
+</li>
+</ul>
+<a name="getPrevious(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPrevious</h4>
+<pre>public&nbsp;<a href="../../../../../org/apache/commons/net/ftp/FTPFile.html" title="class in org.apache.commons.net.ftp">FTPFile</a>[]&nbsp;getPrevious(int&nbsp;quantityRequested)</pre>
+<div class="block">Returns an array of at most <code>quantityRequested</code> FTPFile
+ objects starting at this object's internal iterator's current position,
+ and working back toward the beginning.
+
+ If fewer than <code>quantityRequested</code> such
+ elements are available, the returned array will have a length equal
+ to the number of entries at and after after the current position.
+ If no such entries are found, this array will have a length of 0.
+
+ After this method is called this object's internal iterator is moved
+ back by a number of positions equal to the size of the array returned.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>quantityRequested</code> - the maximum number of entries we want to get.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>an array of at most <code>quantityRequested</code> FTPFile
+ objects starting at the current position of this iterator within its
+ list and at least the number of elements which  exist in the list at
+ and after its current position.  This array will be in the same order
+ as the underlying list (not reversed).
+ <p><b>
+ NOTE:</b> This array may contain null members if any of the
+ individual file listings failed to parse.  The caller should
+ check each entry for null before referencing it.</dd></dl>
+</li>
+</ul>
+<a name="getFiles()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFiles</h4>
+<pre>public&nbsp;<a href="../../../../../org/apache/commons/net/ftp/FTPFile.html" title="class in org.apache.commons.net.ftp">FTPFile</a>[]&nbsp;getFiles()
+                   throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Returns an array of FTPFile objects containing the whole list of
+ files returned by the server as read by this object's parser.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>an array of FTPFile objects containing the whole list of
+         files returned by the server as read by this object's parser.
+ None of the entries will be null</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - - not ever thrown, may be removed in a later release</dd></dl>
+</li>
+</ul>
+<a name="getFiles(org.apache.commons.net.ftp.FTPFileFilter)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFiles</h4>
+<pre>public&nbsp;<a href="../../../../../org/apache/commons/net/ftp/FTPFile.html" title="class in org.apache.commons.net.ftp">FTPFile</a>[]&nbsp;getFiles(<a href="../../../../../org/apache/commons/net/ftp/FTPFileFilter.html" title="interface in org.apache.commons.net.ftp">FTPFileFilter</a>&nbsp;filter)
+                   throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block">Returns an array of FTPFile objects containing the whole list of
+ files returned by the server as read by this object's parser.
+ The files are filtered before being added to the array.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filter</code> - FTPFileFilter, must not be <code>null</code>.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>an array of FTPFile objects containing the whole list of
+         files returned by the server as read by this object's parser.
+ <p><b>
+ NOTE:</b> This array may contain null members if any of the
+ individual file listings failed to parse.  The caller should
+ check each entry for null before referencing it, or use the
+ a filter such as <a href="../../../../../org/apache/commons/net/ftp/FTPFileFilters.html#NON_NULL"><code>FTPFileFilters.NON_NULL</code></a> which does not
+ allow null entries.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - - not ever thrown, may be removed in a later release</dd><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd></dl>
+</li>
+</ul>
+<a name="hasNext()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hasNext</h4>
+<pre>public&nbsp;boolean&nbsp;hasNext()</pre>
+<div class="block">convenience method to allow clients to know whether this object's
+ internal iterator's current position is at the end of the list.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if internal iterator is not at end of list, false
+ otherwise.</dd></dl>
+</li>
+</ul>
+<a name="hasPrevious()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hasPrevious</h4>
+<pre>public&nbsp;boolean&nbsp;hasPrevious()</pre>
+<div class="block">convenience method to allow clients to know whether this object's
+ internal iterator's current position is at the beginning of the list.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if internal iterator is not at beginning of list, false
+ otherwise.</dd></dl>
+</li>
+</ul>
+<a name="resetIterator()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>resetIterator</h4>
+<pre>public&nbsp;void&nbsp;resetIterator()</pre>
+<div class="block">resets this object's internal iterator to the beginning of the list.</div>
+</li>
+</ul>
+<a name="readServerList(java.io.InputStream)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>readServerList</h4>
+<pre><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;void&nbsp;readServerList(<a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream)
+                    throws <a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>use <a href="../../../../../org/apache/commons/net/ftp/FTPListParseEngine.html#readServerList(java.io.InputStream,%20java.lang.String)"><code>readServerList(InputStream, String)</code></a> instead</i></div>
+<div class="block">Do not use.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>stream</code> - the stream from which to read</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/1.6.0/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - on error</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/FTPListParseEngine.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../index-all.html">Index</a></li>
+<li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPHTTPClient.html" title="class in org.apache.commons.net.ftp"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/net/ftp/FTPReply.html" title="class in org.apache.commons.net.ftp"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../index.html?org/apache/commons/net/ftp/FTPListParseEngine.html" target="_top">Frames</a></li>
+<li><a href="FTPListParseEngine.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &#169; 2001&#x2013;2017 <a href="https://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.</small></p>
+</body>
+</html>
