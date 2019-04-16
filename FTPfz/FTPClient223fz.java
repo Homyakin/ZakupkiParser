@@ -12,7 +12,6 @@ import java.util.zip.ZipFile;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
-
 //enum реализует паттерн Singleton
 public enum FTPClient223fz implements FTPClientFZ
 {
@@ -20,9 +19,9 @@ public enum FTPClient223fz implements FTPClientFZ
 	public static FTPClient223fz getInstance() { return INSTANCE; }
 	
 	private static FTPClient ftp = new FTPClient();
-	final static String SERVER = "ftp.zakupki.gov.ru";
-	final static String USER = "fz223free";
-	final static String PASSWD = "fz223free";
+	public final static String SERVER = "ftp.zakupki.gov.ru";
+	public final static String USER = "fz223free";
+	public final static String PASSWD = "fz223free";
 	private final static String basicWorkspace = "/out/published/";
 	private final static String[] parsingFolders = {"contract", "contractInfo", 
 			"contractCompleting", "purchaseNotice", "purchaseNoticeAE", "purchaseNoticeAE94", 
@@ -94,14 +93,14 @@ public enum FTPClient223fz implements FTPClientFZ
 		{
 			if(Arrays.asList(parsingFolders).contains(n.getName()))
 			{
-				downloadFiles(workspace + "/" + n.getName());
-				downloadFiles(workspace + "/" + n.getName() + "/daily");
+				searchFiles(workspace + "/" + n.getName());
+				searchFiles(workspace + "/" + n.getName() + "/daily");
 			}
 		}
 	}
 	
-	//загрузить zip-архивы
-	private void downloadFiles(String workspace) throws IOException
+	//найти файлы на сервере
+	private void searchFiles(String workspace) throws IOException
 	{
 		System.out.println(workspace); //DEBUG
 		FTPFile[] files = ftp.listFiles(workspace);
@@ -109,17 +108,31 @@ public enum FTPClient223fz implements FTPClientFZ
 		{
 			if(remote.isFile())
 			{
-				String path = downloadPath + workspace + "/" +remote.getName();
-				path.replace("/", "\\");
-				File localfile = new File(path);
-				localfile.createNewFile();
-				OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(localfile));
-				if(!ftp.retrieveFile(workspace + "/" + remote.getName(), outputStream))
-				{
-					System.out.println("Не удалось загрузить " + workspace + "/" + remote.getName());
-				}
-				outputStream.close();
+				downloadFile(downloadPath + workspace + "/" +remote.getName(),
+						workspace + "/" +remote.getName());
 			}
 		}
+	}
+	
+	//загрузить файлы
+	private void downloadFile(String localPath, String remotePath) throws IOException
+	{
+		File localfile = new File(localPath);
+		localfile.createNewFile();
+		OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(localfile));
+		if(!ftp.retrieveFile(remotePath, outputStream))
+		{
+			System.out.println("Не удалось загрузить " + remotePath);
+		}else
+		{
+			unzipFile(localPath);
+		}
+		outputStream.close();
+	}
+	
+	//разархивировать файлы
+	private void unzipFile(String localPath)
+	{
+		
 	}
 }
