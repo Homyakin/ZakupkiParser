@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.net.SocketException;
 
 
-import FTPfz.FTPClient223fz;;
+import FTPfz.FTPClient223fz;
 
 
 public class Application
