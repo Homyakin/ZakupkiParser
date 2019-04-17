@@ -25,7 +25,7 @@ public enum FTPClient223fz implements FTPClientFZ
 	public final static String SERVER = "ftp.zakupki.gov.ru";
 	public final static String USER = "fz223free";
 	public final static String PASSWD = "fz223free";
-	private final static String basicWorkspace = "/out/published/";
+	private final static String basicWorkspace = "/out/published";
 	private final static String[] parsingFolders = {"contract", "contractInfo", 
 			"contractCompleting", "purchaseNotice", "purchaseNoticeAE", "purchaseNoticeAE94", 
 			"purchaseNoticeAESMBO", "purchaseNoticeEP", "purchaseNoticeIS", "purchaseNoticeOA",
@@ -124,15 +124,6 @@ public enum FTPClient223fz implements FTPClientFZ
 					System.out.println("Не удалось загрузить " + workspace + "/" +remote.getName());
 				}
 			}
-			
-			try 
-			{
-				Thread.sleep(1000);
-			} 
-			catch (InterruptedException e)
-			{
-				e.printStackTrace();
-			}
 		}
 	}
 	
@@ -159,19 +150,20 @@ public enum FTPClient223fz implements FTPClientFZ
         {
             ZipEntry entry;
             String name;
-            while((entry=zin.getNextEntry())!=null)
+            while((entry = zin.getNextEntry()) != null)
             {
                   
-                name = entry.getName(); // получим название файла
+                name = entry.getName();
                 File localFile = new File(path + "/unzip/" + name);
                 localFile.createNewFile();
-                // распаковка
+
                 FileOutputStream fout = new FileOutputStream(localFile);
                 byte[] buffer = new byte[4096];
                 for (int len = zin.read(buffer); len != -1; len = zin.read(buffer)) 
                 {
                     fout.write(buffer, 0, len);
                 }
+                
                 fout.flush();
                 zin.closeEntry();
                 fout.close();
@@ -179,7 +171,6 @@ public enum FTPClient223fz implements FTPClientFZ
         }
         catch(Exception ex)
 		{
-              
             System.out.println(ex.getMessage());
         } 
 	}
