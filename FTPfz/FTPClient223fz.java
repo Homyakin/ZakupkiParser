@@ -2,12 +2,15 @@ package FTPfz;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.SocketException;
 import java.util.Arrays;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -80,8 +83,10 @@ public enum FTPClient223fz implements FTPClientFZ
 	{
 		 for(String s: parsingFolders)
 		 {
-			 File dir = new File(downloadPath + workspace + "/" + s + "/daily");
+			 File dir = new File(downloadPath + workspace + "/" + s + "/daily/unzip");
 			 dir.mkdirs();
+			 dir = new File(downloadPath + workspace + "/" + s + "/unzip");
+			 dir.mkdir();
 		 }
 	}
 	
@@ -108,31 +113,74 @@ public enum FTPClient223fz implements FTPClientFZ
 		{
 			if(remote.isFile())
 			{
-				downloadFile(downloadPath + workspace + "/" +remote.getName(),
-						workspace + "/" +remote.getName());
+				if(downloadFile(downloadPath + workspace + "/" +remote.getName(),
+						workspace + "/" +remote.getName()))
+				{
+					unzipFile(downloadPath + workspace + "/" +remote.getName(),
+							downloadPath + workspace);
+				}
+				else
+				{
+					System.out.println("Не удалось загрузить " + workspace + "/" +remote.getName());
+				}
+			}
+			
+			try 
+			{
+				Thread.sleep(1000);
+			} 
+			catch (InterruptedException e)
+			{
+				e.printStackTrace();
 			}
 		}
 	}
 	
 	//загрузить файлы
-	private void downloadFile(String localPath, String remotePath) throws IOException
+	private boolean downloadFile(String localPath, String remotePath) throws IOException
 	{
-		File localfile = new File(localPath);
-		localfile.createNewFile();
-		OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(localfile));
+		File localFile = new File(localPath);
+		localFile.createNewFile();
+		OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(localFile));
 		if(!ftp.retrieveFile(remotePath, outputStream))
 		{
-			System.out.println("Не удалось загрузить " + remotePath);
-		}else
-		{
-			unzipFile(localPath);
+			outputStream.close();
+			return false;
 		}
 		outputStream.close();
+		return true;
+		
 	}
 	
 	//разархивировать файл
-	private void unzipFile(String localPath)
+	private void unzipFile(String filePath, String path)
 	{
-		
+		try(ZipInputStream zin = new ZipInputStream(new FileInputStream(filePath)))
+        {
+            ZipEntry entry;
+            String name;
+            while((entry=zin.getNextEntry())!=null)
+            {
+                  
+                name = entry.getName(); // получим название файла
+                File localFile = new File(path + "/unzip/" + name);
+                localFile.createNewFile();
+                // распаковка
+                FileOutputStream fout = new FileOutputStream(localFile);
+                byte[] buffer = new byte[4096];
+                for (int len = zin.read(buffer); len != -1; len = zin.read(buffer)) 
+                {
+                    fout.write(buffer, 0, len);
+                }
+                fout.flush();
+                zin.closeEntry();
+                fout.close();
+            }
+        }
+        catch(Exception ex)
+		{
+              
+            System.out.println(ex.getMessage());
+        } 
 	}
 }
