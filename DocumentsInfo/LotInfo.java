@@ -5,51 +5,52 @@ import DocumentsInfo.CustomerInfo;
 import DocumentsInfo.SupplierInfo;
 import java.util.ArrayList;
 
-public class LotInfo {
+public class LotInfo 
+{
     private String GUID;
-    private String Name;
-    private int Number;
+    private String name;
     private String NMC;
     private String NMCInfo;
-    private boolean JointPurchase;
-    private ArrayList<LotItemInfo> LotItems;
-    private ArrayList<CustomerInfo> Customers;
-    private ArrayList<SupplierInfo> Suppliers;
+    private boolean jointPurchase;
+    private int number;
+    private ArrayList<LotItemInfo> lotItems;
+    private ArrayList<CustomerInfo> customers;
+    private ArrayList<SupplierInfo> suppliers;
 
-    public LotInfo(String GUID, String Name, int Number, String NMC, String NMCInfo, boolean JointPurchase, ArrayList<LotItemInfo> LotItems, ArrayList<CustomerInfo> Customers,
-                   ArrayList<SupplierInfo> Suppliers)
+    public LotInfo(String GUID, String name, int number, String NMC, String NMCInfo, boolean jointPurchase, ArrayList<LotItemInfo> lotItems, ArrayList<CustomerInfo> customers,
+                   ArrayList<SupplierInfo> suppliers)
     {
         this.GUID = GUID;
-        this.Name = Name;
-        this.Number = Number;
+        this.name = name;
+        this.number = number;
         this.NMC = NMC;
         this.NMCInfo = NMCInfo;
-        this.JointPurchase = JointPurchase;
-        this.LotItems = new ArrayList<LotItemInfo>(LotItems);
-        this.Customers = new ArrayList<CustomerInfo>(Customers);
-        this.Suppliers = new ArrayList<SupplierInfo>(Suppliers);
+        this.jointPurchase = jointPurchase;
+        this.lotItems = new ArrayList<LotItemInfo>(lotItems);
+        this.customers = new ArrayList<CustomerInfo>(customers);
+        this.suppliers = new ArrayList<SupplierInfo>(suppliers);
     }
 
     public LotInfo(LotInfo Lot)
     {
         this.GUID = Lot.GUID;
-        this.Name = Lot.Name;
-        this.Number = Lot.Number;
+        this.name = Lot.name;
+        this.number = Lot.number;
         this.NMC = Lot.NMC;
         this.NMCInfo = Lot.NMCInfo;
-        this.JointPurchase = Lot.JointPurchase;
-        this.LotItems = new ArrayList<LotItemInfo>(Lot.LotItems);
-        this.Customers = new ArrayList<CustomerInfo>(Lot.Customers);
-        this.Suppliers = new ArrayList<SupplierInfo>(Lot.Suppliers);
+        this.jointPurchase = Lot.jointPurchase;
+        this.lotItems = new ArrayList<LotItemInfo>(Lot.lotItems);
+        this.customers = new ArrayList<CustomerInfo>(Lot.customers);
+        this.suppliers = new ArrayList<SupplierInfo>(Lot.suppliers);
     }
     
-    public String getGUID()                        { return GUID;	       }
-    public String getName()                        { return Name;	       }
-    public String getNMC()                         { return NMC;           }
-    public String getNMCInfo()                     { return NMCInfo;       }
-    public int getNumber()	                       { return Number;        }
-    public boolean getJointPurchase() 			   { return JointPurchase; }
-    public ArrayList<LotItemInfo> getLotItems()    { return LotItems;      }
-    public ArrayList<CustomerInfo> getCustomers()  { return Customers;     }
-    public ArrayList<SupplierInfo> getSuppliers()  { return Suppliers;     }
+    public String getGUID() { return GUID; }
+    public String getName() { return name; }
+    public String getNMC() { return NMC; }
+    public String getNMCInfo() { return NMCInfo; }
+    public int getNumber() { return number; }
+    public boolean getJointPurchase() { return jointPurchase; }
+    public ArrayList<LotItemInfo> getLotItems() { return lotItems; }
+    public ArrayList<CustomerInfo> getCustomers() { return customers; }
+    public ArrayList<SupplierInfo> getSuppliers() { return suppliers; }
 }   

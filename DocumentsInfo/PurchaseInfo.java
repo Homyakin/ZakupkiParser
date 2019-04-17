@@ -5,78 +5,80 @@ import java.util.ArrayList;
 import DocumentsInfo.CustomerInfo;
 import DocumentsInfo.LotInfo;
 
-public class PurchaseInfo {
-    private String Number;
-    private String Name;
+public class PurchaseInfo 
+{
+    private String number;
+    private String name;
     private String GUID;
-    private String Type;
-    private String ChoiceWay;
-    private String ChoiceWayCode;
-    private String Region;
-    private String Stage;
-    private Date BirnDate;
-    private Date RefreshDate;
-    private Date StartApplicationDate;
-    private Date EndApplicationDate;
-    private int Version;
-    private boolean JointPurchase;
-    private CustomerInfo Customer;
-    private ArrayList<LotInfo> Lots;
+    private String type;
+    private String choiceWay;
+    private String choiceWayCode;
+    private String region;
+    private String stage;
+    private Date birnDate;
+    private Date refreshDate;
+    private Date startApplicationDate;
+    private Date endApplicationDate;
+    private int version;
+    private boolean jointPurchase;
+    private CustomerInfo customer;
+    private ArrayList<LotInfo> lots;
 
-    public PurchaseInfo(String Number, String Name, String GUID, Date BirnDate, Date RefreshDate, Date StartApplicationDate, Date EndApplicationDate, String Type, String ChoiceWay, String ChoiceWayCode,
-                        String Region, String Stage, int Version, boolean JointPurchase, CustomerInfo Customer, ArrayList<LotInfo> Lots)
+    public PurchaseInfo(String number, String name, String GUID, Date birnDate, Date refreshDate, Date startApplicationDate, Date endApplicationDate, String type, String choiceWay, String choiceWayCode,
+                        String region, String stage, int version, boolean jointPurchase, CustomerInfo customer, ArrayList<LotInfo> lots)
     {
-        this.Number = Number;
-        this.Name = Name;
+        this.number = number;
+        this.name = name;
         this.GUID = GUID;
-        this.BirnDate = BirnDate;
-        this.RefreshDate = RefreshDate;
-        this.StartApplicationDate = StartApplicationDate;
-        this.EndApplicationDate = EndApplicationDate;
-        this.Type = Type;
-        this.ChoiceWay = ChoiceWay;
-        this.ChoiceWayCode = ChoiceWayCode;
-        this.Region = Region;
-        this.Stage = Stage;
-        this.Version = Version;
-        this.JointPurchase = JointPurchase;
-        this.Customer = new CustomerInfo(Customer);
-        this.Lots = new ArrayList<LotInfo>(Lots);
+        this.birnDate = birnDate;
+        this.refreshDate = refreshDate;
+        this.startApplicationDate = startApplicationDate;
+        this.endApplicationDate = endApplicationDate;
+        this.type = type;
+        this.choiceWay = choiceWay;
+        this.choiceWayCode = choiceWayCode;
+        this.region = region;
+        this.stage = stage;
+        this.version = version;
+        this.jointPurchase = jointPurchase;
+        this.customer = new CustomerInfo(customer);
+        this.lots = new ArrayList<LotInfo>(lots);
     }
 
     public PurchaseInfo(PurchaseInfo Purchase)
     {
-        this.Number = Purchase.Number;
-        this.Name = Purchase.Name;
+        this.number = Purchase.number;
+        this.name = Purchase.name;
         this.GUID = Purchase.GUID;
-        this.BirnDate = Purchase.BirnDate;
-        this.RefreshDate = Purchase.RefreshDate;
-        this.StartApplicationDate = Purchase.StartApplicationDate;
-        this.EndApplicationDate = Purchase.EndApplicationDate;
-        this.Type = Purchase.Type;
-        this.ChoiceWay = Purchase.ChoiceWay;
-        this.ChoiceWayCode = Purchase.ChoiceWayCode;
-        this.Region = Purchase.Region;
-        this.Stage = Purchase.Stage;
-        this.Version = Purchase.Version;
-        this.JointPurchase = Purchase.JointPurchase;
-        this.Customer = new CustomerInfo(Purchase.Customer);
-        this.Lots = new ArrayList<LotInfo>(Purchase.Lots);
+        this.birnDate = Purchase.birnDate;
+        this.refreshDate = Purchase.refreshDate;
+        this.startApplicationDate = Purchase.startApplicationDate;
+        this.endApplicationDate = Purchase.endApplicationDate;
+        this.type = Purchase.type;
+        this.choiceWay = Purchase.choiceWay;
+        this.choiceWayCode = Purchase.choiceWayCode;
+        this.region = Purchase.region;
+        this.stage = Purchase.stage;
+        this.version = Purchase.version;
+        this.jointPurchase = Purchase.jointPurchase;
+        this.customer = new CustomerInfo(Purchase.customer);
+        this.lots = new ArrayList<LotInfo>(Purchase.lots);
     }
-    public String getNumber()             { return Number;              }
-    public String getName()               { return Name;                }
-    public String getGUID()               { return GUID;                }
-    public String getType()               { return Type;                }
-    public String getChoiceWay()          { return ChoiceWay;           }
-    public String getChoiceWayCode()      { return ChoiceWayCode;       }
-    public String getRegion()             { return Region;              }
-    public String getStage()              { return Stage;               }
-    public Date getBirnDate()             { return BirnDate;            }
-    public Date getRefreshDate()          { return RefreshDate;         }
-    public Date getStartApplicationDate() { return StartApplicationDate;}
-    public Date getEndApplicationDate()   { return EndApplicationDate;  }
-    public int getVersion()				  { return Version;			    }
-    public boolean getJointPurchase()     { return JointPurchase;       }
-    public CustomerInfo getCustomer()     { return Customer;            }
-    public ArrayList<LotInfo> getLots()   { return Lots;                }
+    
+    public String getNumber() { return number; }
+    public String getName() { return name; }
+    public String getGUID() { return GUID; }
+    public String getType() { return type; }
+    public String getChoiceWay() { return choiceWay; }
+    public String getChoiceWayCode() { return choiceWayCode; }
+    public String getRegion() { return region; }
+    public String getStage() { return stage; }
+    public Date getBirnDate() { return birnDate; }
+    public Date getRefreshDate() { return refreshDate; }
+    public Date getStartApplicationDate() { return startApplicationDate; }
+    public Date getEndApplicationDate() { return endApplicationDate; }
+    public int getVersion() { return version; }
+    public boolean getJointPurchase() { return jointPurchase; }
+    public CustomerInfo getCustomer() { return customer; }
+    public ArrayList<LotInfo> getLots() { return lots; }
 }

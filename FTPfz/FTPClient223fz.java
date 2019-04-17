@@ -130,7 +130,7 @@ public enum FTPClient223fz implements FTPClientFZ
 		outputStream.close();
 	}
 	
-	//разархивировать файлы
+	//разархивировать файл
 	private void unzipFile(String localPath)
 	{
 		

@@ -5,52 +5,53 @@ import DocumentsInfo.LotInfo;
 import java.util.ArrayList;
 
 public class ProtocolInfo {
-    private String GUID;
-    private Date Date;
-    private String RegNum;
-    private int Version;
-    private String Type;
-    private String PurchaseRegNum;
-    private String PurchaseGUID;
-    private ArrayList<LotInfo> Lots;
-    private String MissedContest;
-    private String MissedReason;
-
-    public ProtocolInfo(String GUID, Date Date, String RegNum, int Version, String Type, String PurchaseRegNum, String PurchaseGUID, ArrayList<LotInfo> Lots, String MissedContest, String MissedReason)
+    private String GUID; 
+    private String regNum;
+    private String type;
+    private String purchaseRegNum;
+    private String purchaseGUID;
+    private String missedContest;
+    private String missedReason;
+    private Date date;
+    private int version;
+    private ArrayList<LotInfo> lots;
+   
+    public ProtocolInfo(String GUID, Date date, String regNum, int version, String type, String purchaseRegNum, String purchaseGUID, ArrayList<LotInfo> lots, String missedContest, String missedReason)
     {
         this.GUID = GUID;
-        this.Date = Date;
-        this.RegNum = RegNum;
-        this.Version = Version;
-        this.Type = Type;
-        this.PurchaseRegNum = PurchaseRegNum;
-        this.PurchaseGUID = PurchaseGUID;
-        this.Lots = new ArrayList<LotInfo>(Lots);
-        this.MissedContest = MissedContest;
-        this.MissedReason = MissedReason;
+        this.date = date;
+        this.regNum = regNum;
+        this.version = version;
+        this.type = type;
+        this.purchaseRegNum = purchaseRegNum;
+        this.purchaseGUID = purchaseGUID;
+        this.lots = new ArrayList<LotInfo>(lots);
+        this.missedContest = missedContest;
+        this.missedReason = missedReason;
     }
 
     public ProtocolInfo(ProtocolInfo Protocol)
     {
         this.GUID = Protocol.GUID;
-        this.Date = Protocol.Date;
-        this.RegNum = Protocol.RegNum;
-        this.Version = Protocol.Version;
-        this.Type = Protocol.Type;
-        this.PurchaseRegNum = Protocol.PurchaseRegNum;
-        this.PurchaseGUID = Protocol.PurchaseGUID;
-        this.Lots = new ArrayList<LotInfo>(Protocol.Lots);
-        this.MissedContest = Protocol.MissedContest;
-        this.MissedReason = Protocol.MissedReason;
+        this.date = Protocol.date;
+        this.regNum = Protocol.regNum;
+        this.version = Protocol.version;
+        this.type = Protocol.type;
+        this.purchaseRegNum = Protocol.purchaseRegNum;
+        this.purchaseGUID = Protocol.purchaseGUID;
+        this.lots = new ArrayList<LotInfo>(Protocol.lots);
+        this.missedContest = Protocol.missedContest;
+        this.missedReason = Protocol.missedReason;
     }
-    public String getGUID()             { return GUID;		    }
-    public String getRegNum()           { return RegNum;		}
-    public String getType()             { return Type;          }
-    public String getPurchaseRegNum()   { return PurchaseRegNum;}
-    public String getPurchaseGUID()     { return PurchaseGUID;  }
-    public String getMissedContest()    { return MissedContest; }
-    public String getMissedReason()     { return MissedReason;  }
-    public int getVersion()			    { return Version;		}
-    public Date getDate()			    { return Date;		    }
-    public ArrayList<LotInfo> getLots() { return Lots;          }
+    
+    public String getGUID() { return GUID; }
+    public String getRegNum() { return regNum; }
+    public String getType() { return type; }
+    public String getPurchaseRegNum() { return purchaseRegNum; }
+    public String getPurchaseGUID() { return purchaseGUID; }
+    public String getMissedContest() { return missedContest; }
+    public String getMissedReason() { return missedReason; }
+    public int getVersion() { return version; }
+    public Date getDate() { return date; }
+    public ArrayList<LotInfo> getLots() { return lots; }
 }
