@@ -4,46 +4,44 @@ class CustomerInfo
 {
     private String name;
     private String shortName;
-    private String address;
     private String INN;
     private String KPP;
     private String OGRN;
-    private String OKATO;
-    private String OKPO;
-    private String EMail;
 
-    public CustomerInfo(String name, String shortName, String address, String INN, String KPP, String OGRN, String OKATO, String OKPO, String EMail)
+    public CustomerInfo(String INN, String KPP, String OGRN)
     {
-        this.name = name;
-        this.shortName = shortName;
-        this.address = address;
-        this.INN = INN;
-        this.KPP = KPP;
-        this.OGRN = OGRN;
-        this.OKATO = OKATO;
-        this.OKPO = OKPO;
-        this.EMail = EMail;
+        this.setINN(INN);
+        this.setKPP(KPP);
+        this.setOGRN(OGRN);
     }
     
-    public CustomerInfo(CustomerInfo Customer)
+    public CustomerInfo(CustomerInfo customer)
     {
-        this.name = Customer.name;
-        this.shortName = Customer.shortName;
-        this.address = Customer.address;
-        this.INN = Customer.INN;
-        this.KPP = Customer.KPP;
-        this.OGRN = Customer.OGRN;
-        this.OKATO = Customer.OKATO;
-        this.OKPO = Customer.OKPO;
-        this.EMail = Customer.EMail;
+    	this.name = customer.name;
+    	this.shortName = customer.shortName;
+    	this.INN = customer.INN;
+    	this.KPP = customer.KPP;
+    	this.OGRN = customer.OGRN;
     }
-    public String getName() { return name; }
-    public String getShortName() { return shortName; }
-    public String getAddress() { return address; }
-    public String getINN() { return INN; }
-    public String getKPP() { return KPP; }
-    public String getOGRN() { return OGRN; }
-    public String getOKATO() { return OKATO; }
-    public String getOKPO() { return OKPO; }
-    public String getEMail() { return EMail; }
+
+	public String getName() { return name; }
+
+	public void setName(String name) { this.name = name; }
+
+	public String getShortName() { return shortName; }
+
+	public void setShortName(String shortName) { this.shortName = shortName; }
+
+	public String getINN() { return INN; }
+
+	public void setINN(String iNN) { INN = iNN; }
+
+	public String getKPP() { return KPP; }
+
+	public void setKPP(String kPP) { KPP = kPP; }
+
+	public String getOGRN() { return OGRN; }
+
+	public void setOGRN(String oGRN) { OGRN = oGRN; }
+    
 }

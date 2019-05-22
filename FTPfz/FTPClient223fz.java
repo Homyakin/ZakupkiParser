@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.net.SocketException;
 import java.util.Arrays;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.net.ftp.FTPClient;
@@ -26,13 +25,14 @@ public enum FTPClient223fz implements FTPClientFZ
 	public final static String USER = "fz223free";
 	public final static String PASSWD = "fz223free";
 	private final static String basicWorkspace = "/out/published";
-	private final static String[] parsingFolders = {"contract", "contractInfo", 
+	/*private final static String[] parsingFolders = {"contract", "contractInfo", 
 			"contractCompleting", "purchaseNotice", "purchaseNoticeAE", "purchaseNoticeAE94", 
 			"purchaseNoticeAESMBO", "purchaseNoticeEP", "purchaseNoticeIS", "purchaseNoticeOA",
 			"purchaseNoticeOK", "purchaseNoticeZK", "purchaseNoticeZKESMBO", "purchaseProtocol",
 			"purchaseProtocolZK", "purchaseProtocolVK", "purchaseProtocolPAEP", "purchaseProtocolPAAE",
 			"purchaseProtocolPAAE94", "purchaseProtocolOSZ", "purchaseProtocolRZOK", 
-			"purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE"};
+			"purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE"};*/
+	private final static String[] parsingFolders = {"contract"};
 	private final static String downloadPath = "D:/Zakupki";
 	
 	@Override

@@ -41,7 +41,6 @@ public class PurchaseInfo
         this.stage = stage;
         this.version = version;
         this.jointPurchase = jointPurchase;
-        this.customer = new CustomerInfo(customer);
         this.lots = new ArrayList<LotInfo>(lots);
     }
 
@@ -61,7 +60,6 @@ public class PurchaseInfo
         this.stage = Purchase.stage;
         this.version = Purchase.version;
         this.jointPurchase = Purchase.jointPurchase;
-        this.customer = new CustomerInfo(Purchase.customer);
         this.lots = new ArrayList<LotInfo>(Purchase.lots);
     }
     
