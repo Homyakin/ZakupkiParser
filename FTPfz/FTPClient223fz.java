@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.SocketException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -25,14 +26,14 @@ public enum FTPClient223fz implements FTPClientFZ
 	public final static String USER = "fz223free";
 	public final static String PASSWD = "fz223free";
 	private final static String basicWorkspace = "/out/published";
-	/*private final static String[] parsingFolders = {"contract", "contractInfo", 
+	/*private final static List<String> parsingFolders = Arrays.asList("contract", "contractInfo", 
 			"contractCompleting", "purchaseNotice", "purchaseNoticeAE", "purchaseNoticeAE94", 
 			"purchaseNoticeAESMBO", "purchaseNoticeEP", "purchaseNoticeIS", "purchaseNoticeOA",
 			"purchaseNoticeOK", "purchaseNoticeZK", "purchaseNoticeZKESMBO", "purchaseProtocol",
 			"purchaseProtocolZK", "purchaseProtocolVK", "purchaseProtocolPAEP", "purchaseProtocolPAAE",
 			"purchaseProtocolPAAE94", "purchaseProtocolOSZ", "purchaseProtocolRZOK", 
-			"purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE"};*/
-	private final static String[] parsingFolders = {"contract"};
+			"purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE");*/
+	private final static List<String> parsingFolders = Arrays.asList("contract");
 	private final static String downloadPath = "D:/Zakupki";
 	
 	@Override
@@ -96,7 +97,7 @@ public enum FTPClient223fz implements FTPClientFZ
 		FTPFile[] namesDirectories = ftp.listDirectories(workspace);
 		for(FTPFile n: namesDirectories)
 		{
-			if(Arrays.asList(parsingFolders).contains(n.getName()))
+			if(parsingFolders.contains(n.getName()))
 			{
 				searchFiles(workspace + "/" + n.getName());
 				searchFiles(workspace + "/" + n.getName() + "/daily");
