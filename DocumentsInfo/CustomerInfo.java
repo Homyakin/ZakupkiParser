@@ -1,6 +1,6 @@
 package DocumentsInfo;
 
-class CustomerInfo 
+public class CustomerInfo 
 {
     private String name;
     private String shortName;

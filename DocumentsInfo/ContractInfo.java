@@ -13,19 +13,19 @@ public class ContractInfo
     private String price;
     private String rubPrice;
     private String currency;
-    private Date startDate;
-    private Date endDate;
-    private Date pubDate;
+    private Date createDateTime;
+    private Date contractDate;
     private CustomerInfo customer;
     private SupplierInfo supplier;
     private ArrayList<ContractPositionInfo> positions;
 
-    public ContractInfo(String GUID, String price, Date pubDate, CustomerInfo customer, 
+    public ContractInfo(String GUID, String price, Date createDateTime, Date contractDate, CustomerInfo customer, 
     		String purchaseType, String currency)
     {
         this.setGUID(GUID);
         this.setPrice(price);
-        this.setPubDate(pubDate);
+        this.setCreateDateTime(createDateTime);
+        this.setContractDate(contractDate);
         this.setPurchaseType(purchaseType);
         this.setCurrency(currency);
         this.setCustomer(new CustomerInfo(customer));
@@ -47,17 +47,13 @@ public class ContractInfo
 
 	public void setCurrency(String currency) { this.currency = currency; }
 
-	public Date getStartDate() { return startDate; }
+	public Date getCreateDateTime() { return createDateTime; }
 
-	public void setStartDate(Date startDate) { this.startDate = startDate; }
+	public void setCreateDateTime(Date createDateTime) { this.createDateTime = createDateTime; }
 
-	public Date getEndDate() { return endDate; }
+	public Date getContractDate() { return contractDate; }
 
-	public void setEndDate(Date endDate) { this.endDate = endDate; }
-
-	public Date getPubDate() { return pubDate; }
-
-	public void setPubDate(Date pubDate) { this.pubDate = pubDate; }
+	public void setContractDate(Date contractDate) { this.contractDate = contractDate; }
 
 	public CustomerInfo getCustomer() { return customer; }
 
