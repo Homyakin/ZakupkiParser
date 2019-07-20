@@ -1,26 +1,28 @@
 package DocumentsInfo;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import DocumentsInfo.CustomerInfo;
 import DocumentsInfo.ContractPositionInfo;
-
+import DocumentsInfo.PurchaseTypeInfo;
 
 public class ContractInfo 
 {
-    private String purchaseType;
+    private PurchaseTypeInfo purchaseType;
     private String GUID;
     private String price;
     private String rubPrice;
     private String currency;
-    private Date createDateTime;
-    private Date contractDate;
+    private LocalDateTime createDateTime;
+    private LocalDate contractDate;
     private CustomerInfo customer;
     private SupplierInfo supplier;
-    private ArrayList<ContractPositionInfo> positions;
+    private List<ContractPositionInfo> positions;
 
-    public ContractInfo(String GUID, String price, Date createDateTime, Date contractDate, CustomerInfo customer, 
-    		String purchaseType, String currency)
+    public ContractInfo(String GUID, String price, LocalDateTime createDateTime, LocalDate contractDate, CustomerInfo customer, 
+    		PurchaseTypeInfo purchaseType, String currency)
     {
         this.setGUID(GUID);
         this.setPrice(price);
@@ -47,13 +49,13 @@ public class ContractInfo
 
 	public void setCurrency(String currency) { this.currency = currency; }
 
-	public Date getCreateDateTime() { return createDateTime; }
+	public LocalDateTime getCreateDateTime() { return createDateTime; }
 
-	public void setCreateDateTime(Date createDateTime) { this.createDateTime = createDateTime; }
+	public void setCreateDateTime(LocalDateTime createDateTime) { this.createDateTime = createDateTime; }
 
-	public Date getContractDate() { return contractDate; }
+	public LocalDate getContractDate() { return contractDate; }
 
-	public void setContractDate(Date contractDate) { this.contractDate = contractDate; }
+	public void setContractDate(LocalDate contractDate) { this.contractDate = contractDate; }
 
 	public CustomerInfo getCustomer() { return customer; }
 
@@ -63,16 +65,13 @@ public class ContractInfo
 
 	public void setSupplier(SupplierInfo supplier) { this.supplier = supplier; }
 
-	public ArrayList<ContractPositionInfo> getPositions() {
-		return positions;
-	}
+	public List<ContractPositionInfo> getPositions() { return positions; }
 
-	public void setPositions(ArrayList<ContractPositionInfo> positions) {
-		this.positions = positions;
-	}
+	public void setPositions(List<ContractPositionInfo> positions) {this.positions = positions;}
 
-	public String getPurchaseType() { return purchaseType; }
+	public PurchaseTypeInfo getPurchaseType() { return purchaseType; }
 
-	public void setPurchaseType(String purchaseType) { this.purchaseType = purchaseType; }
+	public void setPurchaseType(PurchaseTypeInfo purchaseType) { this.purchaseType = purchaseType; }
+	
 
 }

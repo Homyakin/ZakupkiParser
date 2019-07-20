@@ -1,10 +1,6 @@
 package DocumentsInfo;
 
-import java.util.Date;
-import java.util.EmptyStackException;
-
-public class SupplierInfo 
-{
+public class SupplierInfo {
     private String name;
     private String shortName;
     private String INN;
@@ -13,7 +9,7 @@ public class SupplierInfo
     private boolean nonResident;
     
 
-    public SupplierInfo(String name, boolean nonResident, String type, boolean provider)
+    public SupplierInfo(String name, String type, boolean provider, boolean nonResident)
     {
         this.setName(name);
         this.setNonResident(nonResident);
@@ -52,7 +48,7 @@ public class SupplierInfo
 	public void setProvider(boolean provider) { this.provider = provider; }
 
 
-	public boolean getNonResident() { return nonResident; }
+	public boolean isNonResident() { return nonResident; }
 
 
 	public void setNonResident(boolean nonResident) { this.nonResident = nonResident; }
