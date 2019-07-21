@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 
 import DocumentsInfo.CustomerInfo;
 import DocumentsInfo.ContractPositionInfo;
-import DocumentsInfo.PurchaseTypeInfo;
+import DocumentsInfo.Currency;
+
 
 public class ContractInfo 
 {
@@ -14,15 +15,17 @@ public class ContractInfo
     private String GUID;
     private String price;
     private String rubPrice;
-    private String currency;
+    private Currency currency;
     private LocalDateTime createDateTime;
     private LocalDate contractDate;
+    private LocalDate startExecutionDate;
+    private LocalDate endExecutionDate;
     private CustomerInfo customer;
     private SupplierInfo supplier;
     private List<ContractPositionInfo> positions;
 
-    public ContractInfo(String GUID, String price, LocalDateTime createDateTime, LocalDate contractDate, CustomerInfo customer, 
-    		PurchaseTypeInfo purchaseType, String currency)
+    public ContractInfo(String GUID, LocalDateTime createDateTime, CustomerInfo customer, 
+    		LocalDate contractDate, PurchaseTypeInfo purchaseType, String price, Currency currency)
     {
         this.setGUID(GUID);
         this.setPrice(price);
@@ -45,9 +48,9 @@ public class ContractInfo
 
 	public void setRubPrice(String rubPrice) { this.rubPrice = rubPrice; }
 
-	public String getCurrency() { return currency; }
+	public Currency getCurrency() { return currency; }
 
-	public void setCurrency(String currency) { this.currency = currency; }
+	public void setCurrency(Currency currency) { this.currency = currency; }
 
 	public LocalDateTime getCreateDateTime() { return createDateTime; }
 
@@ -56,6 +59,14 @@ public class ContractInfo
 	public LocalDate getContractDate() { return contractDate; }
 
 	public void setContractDate(LocalDate contractDate) { this.contractDate = contractDate; }
+
+	public LocalDate getStartExecutionDate() { return startExecutionDate; }
+
+	public void setStartExecutionDate(LocalDate startExecutionDate) { this.startExecutionDate = startExecutionDate; }
+
+	public LocalDate getEndExecutionDate() { return endExecutionDate; }
+
+	public void setEndExecutionDate(LocalDate endExecutionDate) { this.endExecutionDate = endExecutionDate; }
 
 	public CustomerInfo getCustomer() { return customer; }
 

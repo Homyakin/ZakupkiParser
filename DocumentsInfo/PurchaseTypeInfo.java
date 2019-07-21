@@ -1,16 +1,16 @@
 package DocumentsInfo;
 
 public class PurchaseTypeInfo {
-	private String code;
+	private Integer code;
 	private String name;
 	
-	public PurchaseTypeInfo(String code) {
+	public PurchaseTypeInfo(Integer code) {
 		this.setCode(code);
 	}
 
-	public String getCode() { return code; }
+	public Integer getCode() { return code; }
 
-	public void setCode(String code) { this.code = code; }
+	public void setCode(Integer code) { this.code = code; }
 
 	public String getName() { return name; }
 
