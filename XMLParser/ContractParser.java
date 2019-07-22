@@ -6,14 +6,18 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.stream.XMLStreamException;
 
 import DocumentsInfo.ContractInfo;
-import DocumentsInfo.Currency;
-import DocumentsInfo.CustomerInfo;
-import DocumentsInfo.PurchaseTypeInfo;
-import DocumentsInfo.SupplierInfo;
+import SubDocumentsInfo.ContractPositionInfo;
+import SubDocumentsInfo.CurrencyInfo;
+import SubDocumentsInfo.CustomerInfo;
+import SubDocumentsInfo.OKInfo;
+import SubDocumentsInfo.PurchaseTypeInfo;
+import SubDocumentsInfo.SupplierInfo;
 
 public class ContractParser
 {
@@ -25,7 +29,7 @@ public class ContractParser
 		this.processor = new XMLParser(Files.newInputStream(Paths.get(filePath)));
 	}
 	
-	public CustomerInfo parseCustomer() throws XMLStreamException {
+	private CustomerInfo parseCustomer() throws XMLStreamException {
 		processor.findStartBlock("mainInfo");
 		String fullName = null, shortName = null, 
 				INN = null, KPP = null, OGRN = null;
@@ -50,7 +54,7 @@ public class ContractParser
 		return customer;
 	}
 	
-	public PurchaseTypeInfo parsePurchaseTypeInfo() throws XMLStreamException {
+	private PurchaseTypeInfo parsePurchaseTypeInfo() throws XMLStreamException {
 		Integer code = null; 
 		String name = null;
 		PurchaseTypeInfo purchaseType = null;
@@ -65,7 +69,7 @@ public class ContractParser
 		return purchaseType;
 	}
 	
-	public SupplierInfo parseSupplier() throws XMLStreamException
+	private SupplierInfo parseSupplier() throws XMLStreamException
 	{
 		String name = null, shortName = null, 
 				INN = null, type = null;
@@ -97,8 +101,8 @@ public class ContractParser
 		return supplier;
 	}
 	
-	public Currency parseCurrency() throws XMLStreamException {
-		Currency currency = null;
+	private CurrencyInfo parseCurrency() throws XMLStreamException {
+		CurrencyInfo currency = null;
 		String letterCode = null, code = null, digitalCode = null,
 				name = null;
 		while(processor.getNextInBlock("currency")) {
@@ -114,11 +118,76 @@ public class ContractParser
 				processor.skipBlock();
 			}
 		}
-		currency = new Currency(name);
+		currency = new CurrencyInfo(name);
 		currency.setCode(code);
 		currency.setDigitalCode(digitalCode);
 		currency.setLetterCode(letterCode);
 		return currency;
+	}
+	
+	private OKInfo parseOKInfo() throws XMLStreamException {
+		OKInfo OKDP = null;
+		String code = null, name = null;
+		while(processor.getNextInBlock("okdp")) {
+			if("code".equals(processor.getName())) {
+				code = processor.getText();
+			} else if("name".equals(processor.getName())) {
+				name = processor.getText();
+			} else {
+				processor.skipBlock();
+			}
+		}
+		OKDP = new OKInfo(code);
+		OKDP.setName(name);
+		return OKDP;
+	}
+	
+	private List<ContractPositionInfo> parseContractPositions() throws XMLStreamException {
+		List<ContractPositionInfo> list = new ArrayList<ContractPositionInfo>();
+		while(processor.getNextInBlock("contractPositions")) {
+			if("contractPosition".equals(processor.getName())) {
+				String GUID = null, name = null, ordinalNumber = null, qty = null,
+						country = null, producerCountry = null;
+				OKInfo OKDP = null, OKPD = null, OKPD2 = null, OKEI = null;
+				ContractPositionInfo contractPosition = null;
+				while(processor.getNextInBlock("contractPosition")) {
+					if("guid".equals(processor.getName())) {
+						GUID = processor.getText();
+					} else if("name".equals(processor.getName())) {
+						name = processor.getText();
+					} else if("okdp".equals(processor.getName())) {
+						OKDP = parseOKInfo();
+					} else if("okpd".equals(processor.getName())) {
+						OKPD = parseOKInfo();
+					} else if("okpd2".equals(processor.getName())) {
+						OKPD2 = parseOKInfo();
+					} else if("country".equals(processor.getName())) {
+						country = processor.getText();
+					} else if("producerCountry".equals(processor.getName())) {
+						producerCountry = processor.getText();
+					} else if("okei".equals(processor.getName())) {
+						OKEI = parseOKInfo();
+					} else if("qty".equals(processor.getName())) {
+						qty = processor.getText();
+					} else {
+						processor.skipBlock();
+					}
+				}
+				contractPosition = new ContractPositionInfo(ordinalNumber);
+				contractPosition.setGUID(GUID);
+				contractPosition.setName(name);
+				contractPosition.setOKDP(OKDP);
+				contractPosition.setOKPD(OKPD);
+				contractPosition.setOKPD2(OKPD2);
+				contractPosition.setOKEI(OKEI);
+				contractPosition.setQty(qty);
+				contractPosition.setCountry(country);
+				contractPosition.setProducerCountry(producerCountry);
+				
+				list.add(contractPosition);
+			}
+		}
+		return list;
 	}
 	
 	public ContractInfo parseContract() throws XMLStreamException, IOException {
@@ -130,14 +199,8 @@ public class ContractParser
 		SupplierInfo supplier = null;
 		LocalDate contractDate = null, startExecutionDate = null, endExecutionDate = null;
 		PurchaseTypeInfo purchaseType = null;
-		Currency currency = null;
-		processor.findStartBlock("price");
-		System.out.println(processor.getName());
-		System.out.println(processor.getText());
-		processor.findStartBlock("currency");
-		System.out.println(processor.getName());
-		processor.findStartBlock("name");
-		System.out.println(processor.getText());
+		CurrencyInfo currency = null;
+		List<ContractPositionInfo> contractPositions = null;
 		while(processor.getNextInBlock("contractData"))
 		{
 			if("guid".equals(processor.getName())) {
@@ -163,7 +226,7 @@ public class ContractParser
 			} else if("endExecutionDate".equals(processor.getName())) {
 				endExecutionDate = LocalDate.parse(processor.getText(), DateTimeFormatter.ISO_LOCAL_DATE);
 			} else if("contractPositions".equals(processor.getName())) {
-				//TODO
+				contractPositions = parseContractPositions();
 			} else {
 				processor.skipBlock();
 			}
