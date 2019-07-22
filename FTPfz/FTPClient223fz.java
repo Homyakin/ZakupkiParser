@@ -1,5 +1,7 @@
 package FTPfz;
 
+//TODO replace java.io.File to java.nio.Files
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +17,7 @@ import java.util.zip.ZipInputStream;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
-//enum реализует паттерн Singleton
+//enum implements the pattern Singleton
 public enum FTPClient223fz implements FTPClientFZ
 {
 	INSTANCE;
