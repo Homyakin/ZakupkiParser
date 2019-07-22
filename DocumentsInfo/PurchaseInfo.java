@@ -2,8 +2,9 @@ package DocumentsInfo;
 
 import java.util.Date;
 import java.util.ArrayList;
-import DocumentsInfo.CustomerInfo;
+
 import DocumentsInfo.LotInfo;
+import SubDocumentsInfo.CustomerInfo;
 
 public class PurchaseInfo 
 {

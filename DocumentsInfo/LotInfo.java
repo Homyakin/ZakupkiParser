@@ -1,8 +1,9 @@
 package DocumentsInfo;
 
 import DocumentsInfo.LotItemInfo;
-import DocumentsInfo.CustomerInfo;
-import DocumentsInfo.SupplierInfo;
+import SubDocumentsInfo.CustomerInfo;
+import SubDocumentsInfo.SupplierInfo;
+
 import java.util.ArrayList;
 
 public class LotInfo 

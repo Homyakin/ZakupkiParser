@@ -4,9 +4,11 @@ import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import DocumentsInfo.CustomerInfo;
-import DocumentsInfo.ContractPositionInfo;
-import DocumentsInfo.Currency;
+import SubDocumentsInfo.ContractPositionInfo;
+import SubDocumentsInfo.CurrencyInfo;
+import SubDocumentsInfo.CustomerInfo;
+import SubDocumentsInfo.PurchaseTypeInfo;
+import SubDocumentsInfo.SupplierInfo;
 
 
 public class ContractInfo 
@@ -15,7 +17,7 @@ public class ContractInfo
     private String GUID;
     private String price;
     private String rubPrice;
-    private Currency currency;
+    private CurrencyInfo currency;
     private LocalDateTime createDateTime;
     private LocalDate contractDate;
     private LocalDate startExecutionDate;
@@ -25,7 +27,7 @@ public class ContractInfo
     private List<ContractPositionInfo> positions;
 
     public ContractInfo(String GUID, LocalDateTime createDateTime, CustomerInfo customer, 
-    		LocalDate contractDate, PurchaseTypeInfo purchaseType, String price, Currency currency)
+    		LocalDate contractDate, PurchaseTypeInfo purchaseType, String price, CurrencyInfo currency)
     {
         this.setGUID(GUID);
         this.setPrice(price);
@@ -48,9 +50,9 @@ public class ContractInfo
 
 	public void setRubPrice(String rubPrice) { this.rubPrice = rubPrice; }
 
-	public Currency getCurrency() { return currency; }
+	public CurrencyInfo getCurrency() { return currency; }
 
-	public void setCurrency(Currency currency) { this.currency = currency; }
+	public void setCurrency(CurrencyInfo currency) { this.currency = currency; }
 
 	public LocalDateTime getCreateDateTime() { return createDateTime; }
 
