@@ -1,16 +1,16 @@
 package SubDocumentsInfo;
 
 public class PurchaseTypeInfo {
-	private Integer code;
+	private String code;
 	private String name;
 	
-	public PurchaseTypeInfo(Integer code) {
+	public PurchaseTypeInfo(String code) {
 		this.setCode(code);
 	}
 
-	public Integer getCode() { return code; }
+	public String getCode() { return code; }
 
-	public void setCode(Integer code) { this.code = code; }
+	public void setCode(String code) { this.code = code; }
 
 	public String getName() { return name; }
 

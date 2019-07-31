@@ -1,6 +1,7 @@
 package DocumentsInfo;
 
 import java.util.List;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,8 +16,8 @@ public class ContractInfo
 {
     private PurchaseTypeInfo purchaseType;
     private String GUID;
-    private String price;
-    private String rubPrice;
+    private BigDecimal price;
+    private BigDecimal rubPrice;
     private CurrencyInfo currency;
     private LocalDateTime createDateTime;
     private LocalDate contractDate;
@@ -27,7 +28,7 @@ public class ContractInfo
     private List<ContractPositionInfo> positions;
 
     public ContractInfo(String GUID, LocalDateTime createDateTime, CustomerInfo customer, 
-    		LocalDate contractDate, PurchaseTypeInfo purchaseType, String price, CurrencyInfo currency)
+    		LocalDate contractDate, PurchaseTypeInfo purchaseType, BigDecimal price, CurrencyInfo currency)
     {
         this.setGUID(GUID);
         this.setPrice(price);
@@ -42,13 +43,13 @@ public class ContractInfo
 
 	public void setGUID(String gUID) { GUID = gUID; }
 
-	public String getPrice() { return price; }
+	public BigDecimal getPrice() { return price; }
 
-	public void setPrice(String price) { this.price = price; }
+	public void setPrice(BigDecimal price) { this.price = price; }
 
-	public String getRubPrice() { return rubPrice; }
+	public BigDecimal getRubPrice() { return rubPrice; }
 
-	public void setRubPrice(String rubPrice) { this.rubPrice = rubPrice; }
+	public void setRubPrice(BigDecimal rubPrice) { this.rubPrice = rubPrice; }
 
 	public CurrencyInfo getCurrency() { return currency; }
 

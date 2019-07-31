@@ -1,19 +1,20 @@
 package SubDocumentsInfo;
 
+import java.math.BigDecimal;
 
 public class ContractPositionInfo {
     private String GUID;
     private String Name;
-    private String ordinalNumber;
+    private Integer ordinalNumber;
     private OKInfo OKDP;
     private OKInfo OKPD;
     private OKInfo OKPD2;
-    private String country;
-    private String producerCountry;
+    private String country; //TODO country - complicated structure
+    private String producerCountry; // TODO boolean - ?
     private OKInfo OKEI;
-    private String qty;
+    private BigDecimal qty;
 
-    public ContractPositionInfo(String ordinalNumber) {
+    public ContractPositionInfo(Integer ordinalNumber) {
         this.setOrdinalNumber(ordinalNumber);
     }
 
@@ -25,9 +26,9 @@ public class ContractPositionInfo {
 
 	public void setName(String name) { Name = name; }
 
-	public String getOrdinalNumber() { return ordinalNumber; }
+	public Integer getOrdinalNumber() { return ordinalNumber; }
 
-	public void setOrdinalNumber(String ordinalNumber) { this.ordinalNumber = ordinalNumber; }
+	public void setOrdinalNumber(Integer ordinalNumber) { this.ordinalNumber = ordinalNumber; }
 
 	public OKInfo getOKDP() { return OKDP; }
 
@@ -53,8 +54,8 @@ public class ContractPositionInfo {
 
 	public void setOKEI(OKInfo oKEI) { OKEI = oKEI; }
 
-	public String getQty() { return qty; }
+	public BigDecimal getQty() { return qty; }
 
-	public void setQty(String qty) { this.qty = qty; }
+	public void setQty(BigDecimal qty) { this.qty = qty; }
     
 }
