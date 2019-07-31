@@ -11,81 +11,125 @@ import SubDocumentsInfo.CustomerInfo;
 import SubDocumentsInfo.PurchaseTypeInfo;
 import SubDocumentsInfo.SupplierInfo;
 
+public class ContractInfo {
+	private PurchaseTypeInfo purchaseType;
+	private String GUID;
+	private BigDecimal price;
+	private BigDecimal rubPrice;
+	private CurrencyInfo currency;
+	private LocalDateTime createDateTime;
+	private LocalDate contractDate;
+	private LocalDate startExecutionDate;
+	private LocalDate endExecutionDate;
+	private CustomerInfo customer;
+	private SupplierInfo supplier;
+	private List<ContractPositionInfo> positions;
 
-public class ContractInfo 
-{
-    private PurchaseTypeInfo purchaseType;
-    private String GUID;
-    private BigDecimal price;
-    private BigDecimal rubPrice;
-    private CurrencyInfo currency;
-    private LocalDateTime createDateTime;
-    private LocalDate contractDate;
-    private LocalDate startExecutionDate;
-    private LocalDate endExecutionDate;
-    private CustomerInfo customer;
-    private SupplierInfo supplier;
-    private List<ContractPositionInfo> positions;
+	public ContractInfo(String GUID, LocalDateTime createDateTime, CustomerInfo customer, LocalDate contractDate,
+			PurchaseTypeInfo purchaseType, BigDecimal price, CurrencyInfo currency) {
+		this.setGUID(GUID);
+		this.setPrice(price);
+		this.setCreateDateTime(createDateTime);
+		this.setContractDate(contractDate);
+		this.setPurchaseType(purchaseType);
+		this.setCurrency(currency);
+		this.setCustomer(new CustomerInfo(customer));
+	}
 
-    public ContractInfo(String GUID, LocalDateTime createDateTime, CustomerInfo customer, 
-    		LocalDate contractDate, PurchaseTypeInfo purchaseType, BigDecimal price, CurrencyInfo currency)
-    {
-        this.setGUID(GUID);
-        this.setPrice(price);
-        this.setCreateDateTime(createDateTime);
-        this.setContractDate(contractDate);
-        this.setPurchaseType(purchaseType);
-        this.setCurrency(currency);
-        this.setCustomer(new CustomerInfo(customer));
-    }
+	public String getGUID() {
+		return GUID;
+	}
 
-	public String getGUID() { return GUID; }
+	public void setGUID(String gUID) {
+		GUID = gUID;
+	}
 
-	public void setGUID(String gUID) { GUID = gUID; }
+	public BigDecimal getPrice() {
+		return price;
+	}
 
-	public BigDecimal getPrice() { return price; }
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
 
-	public void setPrice(BigDecimal price) { this.price = price; }
+	public BigDecimal getRubPrice() {
+		return rubPrice;
+	}
 
-	public BigDecimal getRubPrice() { return rubPrice; }
+	public void setRubPrice(BigDecimal rubPrice) {
+		this.rubPrice = rubPrice;
+	}
 
-	public void setRubPrice(BigDecimal rubPrice) { this.rubPrice = rubPrice; }
+	public CurrencyInfo getCurrency() {
+		return currency;
+	}
 
-	public CurrencyInfo getCurrency() { return currency; }
+	public void setCurrency(CurrencyInfo currency) {
+		this.currency = currency;
+	}
 
-	public void setCurrency(CurrencyInfo currency) { this.currency = currency; }
+	public LocalDateTime getCreateDateTime() {
+		return createDateTime;
+	}
 
-	public LocalDateTime getCreateDateTime() { return createDateTime; }
+	public void setCreateDateTime(LocalDateTime createDateTime) {
+		this.createDateTime = createDateTime;
+	}
 
-	public void setCreateDateTime(LocalDateTime createDateTime) { this.createDateTime = createDateTime; }
+	public LocalDate getContractDate() {
+		return contractDate;
+	}
 
-	public LocalDate getContractDate() { return contractDate; }
+	public void setContractDate(LocalDate contractDate) {
+		this.contractDate = contractDate;
+	}
 
-	public void setContractDate(LocalDate contractDate) { this.contractDate = contractDate; }
+	public LocalDate getStartExecutionDate() {
+		return startExecutionDate;
+	}
 
-	public LocalDate getStartExecutionDate() { return startExecutionDate; }
+	public void setStartExecutionDate(LocalDate startExecutionDate) {
+		this.startExecutionDate = startExecutionDate;
+	}
 
-	public void setStartExecutionDate(LocalDate startExecutionDate) { this.startExecutionDate = startExecutionDate; }
+	public LocalDate getEndExecutionDate() {
+		return endExecutionDate;
+	}
 
-	public LocalDate getEndExecutionDate() { return endExecutionDate; }
+	public void setEndExecutionDate(LocalDate endExecutionDate) {
+		this.endExecutionDate = endExecutionDate;
+	}
 
-	public void setEndExecutionDate(LocalDate endExecutionDate) { this.endExecutionDate = endExecutionDate; }
+	public CustomerInfo getCustomer() {
+		return customer;
+	}
 
-	public CustomerInfo getCustomer() { return customer; }
+	public void setCustomer(CustomerInfo customer) {
+		this.customer = customer;
+	}
 
-	public void setCustomer(CustomerInfo customer) { this.customer = customer; }
+	public SupplierInfo getSupplier() {
+		return supplier;
+	}
 
-	public SupplierInfo getSupplier() { return supplier; }
+	public void setSupplier(SupplierInfo supplier) {
+		this.supplier = supplier;
+	}
 
-	public void setSupplier(SupplierInfo supplier) { this.supplier = supplier; }
+	public List<ContractPositionInfo> getPositions() {
+		return positions;
+	}
 
-	public List<ContractPositionInfo> getPositions() { return positions; }
+	public void setPositions(List<ContractPositionInfo> positions) {
+		this.positions = positions;
+	}
 
-	public void setPositions(List<ContractPositionInfo> positions) {this.positions = positions;}
+	public PurchaseTypeInfo getPurchaseType() {
+		return purchaseType;
+	}
 
-	public PurchaseTypeInfo getPurchaseType() { return purchaseType; }
-
-	public void setPurchaseType(PurchaseTypeInfo purchaseType) { this.purchaseType = purchaseType; }
-	
+	public void setPurchaseType(PurchaseTypeInfo purchaseType) {
+		this.purchaseType = purchaseType;
+	}
 
 }

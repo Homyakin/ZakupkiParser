@@ -3,13 +3,13 @@ package FTPfz;
 import java.io.IOException;
 import java.net.SocketException;
 
-
-public interface FTPClientFZ 
-{
-	//connect to sever
+public interface FTPClientFZ {
+	// connect to sever
 	void connect() throws SocketException, IOException;
-	//login to server
+
+	// login to server
 	void login() throws IOException;
-	//parse server
+
+	// parse server
 	public void parseFTPServer() throws IOException;
 }
