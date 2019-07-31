@@ -1,6 +1,7 @@
 package XMLParser;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -55,12 +56,12 @@ public class ContractParser
 	}
 	
 	private PurchaseTypeInfo parsePurchaseTypeInfo() throws XMLStreamException {
-		Integer code = null; 
+		String code = null; 
 		String name = null;
 		PurchaseTypeInfo purchaseType = null;
 		while(processor.getNextInBlock("purchaseTypeInfo")) {
 			if("code".equals(processor.getName()))
-				code = Integer.parseInt(processor.getText());
+				code = processor.getText();
 			else if("name".equals(processor.getName()))
 				name = processor.getText();
 		}
@@ -146,8 +147,9 @@ public class ContractParser
 		List<ContractPositionInfo> list = new ArrayList<ContractPositionInfo>();
 		while(processor.getNextInBlock("contractPositions")) {
 			if("contractPosition".equals(processor.getName())) {
-				String GUID = null, name = null, ordinalNumber = null, qty = null,
-						country = null, producerCountry = null;
+				String GUID = null, name = null, country = null, producerCountry = null;
+				BigDecimal qty = null;
+				Integer ordinalNumber = null;
 				OKInfo OKDP = null, OKPD = null, OKPD2 = null, OKEI = null;
 				ContractPositionInfo contractPosition = null;
 				while(processor.getNextInBlock("contractPosition")) {
@@ -155,6 +157,8 @@ public class ContractParser
 						GUID = processor.getText();
 					} else if("name".equals(processor.getName())) {
 						name = processor.getText();
+					} else if("ordinalNumber".equals(processor.getName())) {
+						ordinalNumber = Integer.parseInt(processor.getText());
 					} else if("okdp".equals(processor.getName())) {
 						OKDP = parseOKInfo();
 					} else if("okpd".equals(processor.getName())) {
@@ -168,7 +172,7 @@ public class ContractParser
 					} else if("okei".equals(processor.getName())) {
 						OKEI = parseOKInfo();
 					} else if("qty".equals(processor.getName())) {
-						qty = processor.getText();
+						qty = new BigDecimal(processor.getText());
 					} else {
 						processor.skipBlock();
 					}
@@ -193,7 +197,9 @@ public class ContractParser
 	public ContractInfo parseContract() throws XMLStreamException, IOException {
 		ContractInfo contract = null;
 		processor.findStartBlock("contractData");
-		String GUID = null, price = null, rubPrice = null;
+		String GUID = null;
+		BigDecimal price = null;
+		BigDecimal rubPrice = null;
 		LocalDateTime createDateTime = null;
 		CustomerInfo customer = null;
 		SupplierInfo supplier = null;
@@ -216,9 +222,9 @@ public class ContractParser
 			}else if("purchaseTypeInfo".equals(processor.getName())) {
 				purchaseType = parsePurchaseTypeInfo();
 			}else if("price".equals(processor.getName())) {
-				price = processor.getText();
+				price = new BigDecimal(processor.getText());
 			} else if("rubPrice".equals(processor.getName())) { 
-				rubPrice = processor.getText();
+				rubPrice = new BigDecimal(processor.getText());
 			} else if("currency".equals(processor.getName())) {
 				currency = parseCurrency();
 			} else if("startExecutionDate".equals(processor.getName())) {
@@ -233,6 +239,11 @@ public class ContractParser
 		}
 		
 		contract = new ContractInfo(GUID, createDateTime, customer, contractDate, purchaseType, price, currency);
+		contract.setRubPrice(rubPrice);
+		contract.setSupplier(supplier);
+		contract.setStartExecutionDate(startExecutionDate);
+		contract.setEndExecutionDate(endExecutionDate);
+		contract.setPositions(contractPositions);
 		return contract;
 	}
 }

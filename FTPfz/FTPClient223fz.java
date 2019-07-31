@@ -1,11 +1,5 @@
 package FTPfz;
 
-//TODO replace java.io.File to java.nio.Files
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.SocketException;
@@ -13,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -82,14 +79,12 @@ public enum FTPClient223fz implements FTPClientFZ
 	}
 	
 	//создать директории на локальном диске для загрузки файлов
-	private void makeDownloadDirectories(String workspace)
+	private void makeDownloadDirectories(String workspace) throws IOException
 	{
 		 for(String s: parsingFolders)
 		 {
-			 File dir = new File(downloadPath + workspace + "/" + s + "/daily/unzip");
-			 dir.mkdirs();
-			 dir = new File(downloadPath + workspace + "/" + s + "/unzip");
-			 dir.mkdir();
+			 Path dir = Paths.get(downloadPath + workspace + "/" + s + "/daily/unzip");
+			 Files.createDirectories(dir);
 		 }
 	}
 	
@@ -101,7 +96,6 @@ public enum FTPClient223fz implements FTPClientFZ
 		{
 			if(parsingFolders.contains(n.getName()))
 			{
-				searchFiles(workspace + "/" + n.getName());
 				searchFiles(workspace + "/" + n.getName() + "/daily");
 			}
 		}
@@ -131,36 +125,28 @@ public enum FTPClient223fz implements FTPClientFZ
 	}
 	
 	//загрузить файлы
-	private boolean downloadFile(String localPath, String remotePath) throws IOException
-	{
-		File localFile = new File(localPath);
-		localFile.createNewFile();
-		OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(localFile));
-		if(!ftp.retrieveFile(remotePath, outputStream))
-		{
-			outputStream.close();
+	private boolean downloadFile(String localPath, String remotePath) throws IOException {
+		Path localFile = Paths.get(localPath);
+		Files.createFile(localFile);
+		if(!ftp.retrieveFile(remotePath, Files.newOutputStream(localFile))) {
 			return false;
 		}
-		outputStream.close();
 		return true;
 		
 	}
 	
 	//разархивировать файл
-	private void unzipFile(String filePath, String path)
-	{
-		try(ZipInputStream zin = new ZipInputStream(new FileInputStream(filePath)))
-        {
+	private void unzipFile(String filePath, String path) {
+		try(ZipInputStream zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
             ZipEntry entry;
             String name;
-            while((entry = zin.getNextEntry()) != null)
-            {
+            while((entry = zin.getNextEntry()) != null) {
                   
                 name = entry.getName();
-                File localFile = new File(path + "/unzip/" + name);
-                localFile.createNewFile();
+                Path localFile = Paths.get(path + "/unzip/" + name);
+                Files.createFile(localFile);
 
-                FileOutputStream fout = new FileOutputStream(localFile);
+                OutputStream fout = Files.newOutputStream(localFile);
                 byte[] buffer = new byte[4096];
                 for (int len = zin.read(buffer); len != -1; len = zin.read(buffer)) 
                 {
@@ -172,8 +158,7 @@ public enum FTPClient223fz implements FTPClientFZ
                 fout.close();
             }
         }
-        catch(Exception ex)
-		{
+        catch(Exception ex) {
             System.out.println(ex.getMessage());
         } 
 	}
