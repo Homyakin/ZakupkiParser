@@ -21,9 +21,14 @@ public class ZakupkiDatabase {
 	private final String DB_NAME = "zakupki";
 	private Connection conn;
 	
-	public ZakupkiDatabase() throws SQLException {
+	public ZakupkiDatabase() {
 		String connectionURL = "jdbc:mysql://" + HOST_NAME + ":3306/" + DB_NAME + "?useUnicode=true&serverTimezone=UTC";
-		conn = DriverManager.getConnection(connectionURL, USER, PSSWD);
+		try {
+			conn = DriverManager.getConnection(connectionURL, USER, PSSWD);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void insertCustomer(CustomerInfo customer) {
@@ -45,7 +50,7 @@ public class ZakupkiDatabase {
 	}
 	
 	public void insertCurrency(CurrencyInfo currency) {
-		String sql = "INSERT INTO currency (currency_code, currency_digitalCode, currency_name) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO currencies (currency_code, currency_digitalCode, currency_name) VALUES (?, ?, ?)";
 		try(PreparedStatement statement = conn.prepareStatement(sql)) {
 
 			statement.setString(1, currency.getCode() != null ? currency.getCode() : 
@@ -61,7 +66,7 @@ public class ZakupkiDatabase {
 	}
 	
 	public void insertSupplier(SupplierInfo supplier) {
-		String sql = "INSERT INTO supplier (supplier_hashName, type, provider, nonResident, supplier_INN, "
+		String sql = "INSERT INTO suppliers (supplier_hashName, type, provider, nonResident, supplier_INN, "
 				+ "supplier_shortName, supplier_name) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try(PreparedStatement statement = conn.prepareStatement(sql)) {
 			statement.setInt(1, supplier.getName().hashCode());
@@ -158,8 +163,8 @@ public class ZakupkiDatabase {
 		insertCustomer(contract.getCustomer());
 		insertCurrency(contract.getCurrency());
 		
-		String sql = "INSERT INTO contracts (customer_GUID, createDateTime, contractDate, startExecutionDate,"
-				+ "endExecutinDate, customer_INN, purchaseTypeCode, purchaseTypeName, price, rubPrice, "
+		String sql = "INSERT INTO contracts (contract_GUID, createDateTime, contractDate, startExecutionDate,"
+				+ "endExecutionDate, customer_INN, purchaseType_code, purchaseType_name, price, rubPrice, "
 				+ "currency_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try(PreparedStatement statement = conn.prepareStatement(sql)) {
 			
@@ -180,7 +185,7 @@ public class ZakupkiDatabase {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		insertContractPositions(contract.getPositions(), contract.getGUID());
 		insertSupplier(contract.getSupplier());
 		insertSupplierToContract(contract);
 	}

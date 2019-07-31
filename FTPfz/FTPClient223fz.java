@@ -14,6 +14,10 @@ import java.nio.file.Paths;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
+import Database.ZakupkiDatabase;
+import DocumentsInfo.ContractInfo;
+import XMLParser.ContractParser;
+
 //enum implements the pattern Singleton
 public enum FTPClient223fz implements FTPClientFZ {
 	INSTANCE;
@@ -26,6 +30,7 @@ public enum FTPClient223fz implements FTPClientFZ {
 	public final static String USER = "fz223free";
 	public final static String PASSWD = "fz223free";
 	private final static String basicWorkspace = "/out/published";
+	private static ZakupkiDatabase db = new ZakupkiDatabase();
 	/*
 	 * private final static List<String> parsingFolders = Arrays.asList("contract",
 	 * "contractInfo", "contractCompleting", "purchaseNotice", "purchaseNoticeAE",
@@ -99,7 +104,7 @@ public enum FTPClient223fz implements FTPClientFZ {
 			if (remote.isFile()) {
 				if (downloadFile(downloadPath + workspace + "/" + remote.getName(),
 						workspace + "/" + remote.getName())) {
-					unzipFile(downloadPath + workspace + "/" + remote.getName(), downloadPath + workspace);
+					unzipFile(downloadPath + workspace + "/" + remote.getName(), downloadPath + workspace, folder);
 				} else {
 					System.out.println("Не удалось загрузить " + workspace + "/" + remote.getName());
 				}
@@ -110,7 +115,11 @@ public enum FTPClient223fz implements FTPClientFZ {
 	// загрузить файлы
 	private boolean downloadFile(String localPath, String remotePath) throws IOException {
 		Path localFile = Paths.get(localPath);
-		Files.createFile(localFile);
+		try {
+			Files.createFile(localFile);
+		} catch(IOException e) {
+			
+		}
 		if (!ftp.retrieveFile(remotePath, Files.newOutputStream(localFile))) {
 			return false;
 		}
@@ -119,7 +128,7 @@ public enum FTPClient223fz implements FTPClientFZ {
 	}
 
 	// разархивировать файл
-	private void unzipFile(String filePath, String path) {
+	private void unzipFile(String filePath, String path, String folder) {
 		try (ZipInputStream zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
 			ZipEntry entry;
 			String name;
@@ -127,20 +136,31 @@ public enum FTPClient223fz implements FTPClientFZ {
 
 				name = entry.getName();
 				Path localFile = Paths.get(path + "/unzip/" + name);
-				Files.createFile(localFile);
+				try {
+					Files.createFile(localFile);
+				} catch (IOException e) {
+					
+				}
 
 				OutputStream fout = Files.newOutputStream(localFile);
 				byte[] buffer = new byte[4096];
 				for (int len = zin.read(buffer); len != -1; len = zin.read(buffer)) {
 					fout.write(buffer, 0, len);
 				}
-
+				
+				
+				
 				fout.flush();
 				zin.closeEntry();
 				fout.close();
+				if("contract".equals(folder)) {
+					ContractParser contractParser = new ContractParser(path + "/unzip/" + name);
+					ContractInfo contract = contractParser.parseContract();
+					db.insertContract(contract);
+				}
 			}
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
 }

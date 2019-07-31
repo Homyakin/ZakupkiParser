@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,9 +161,9 @@ public class ContractParser {
 					} else if ("okpd2".equals(processor.getName())) {
 						OKPD2 = parseOKInfo();
 					} else if ("country".equals(processor.getName())) {
-						country = processor.getText();
+						//TODO country = processor.getText();
 					} else if ("producerCountry".equals(processor.getName())) {
-						producerCountry = processor.getText();
+						//TODO producerCountry = processor.getText();
 					} else if ("okei".equals(processor.getName())) {
 						OKEI = parseOKInfo();
 					} else if ("qty".equals(processor.getName())) {
@@ -209,7 +210,12 @@ public class ContractParser {
 			} else if ("customer".equals(processor.getName())) {
 				customer = parseCustomer();
 			} else if ("contractDate".equals(processor.getName())) {
-				contractDate = LocalDate.parse(processor.getText(), DateTimeFormatter.ISO_LOCAL_DATE);
+				String date = processor.getText();
+				try {
+					contractDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+				} catch (DateTimeParseException e) {
+					contractDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+				}
 			} else if ("supplierInfo".equals(processor.getName())) {
 				supplier = parseSupplier();
 			} else if ("purchaseTypeInfo".equals(processor.getName())) {
@@ -221,9 +227,19 @@ public class ContractParser {
 			} else if ("currency".equals(processor.getName())) {
 				currency = parseCurrency();
 			} else if ("startExecutionDate".equals(processor.getName())) {
-				startExecutionDate = LocalDate.parse(processor.getText(), DateTimeFormatter.ISO_LOCAL_DATE);
+				String date = processor.getText();
+				try {
+					startExecutionDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+				} catch (DateTimeParseException e) {
+					startExecutionDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+				}
 			} else if ("endExecutionDate".equals(processor.getName())) {
-				endExecutionDate = LocalDate.parse(processor.getText(), DateTimeFormatter.ISO_LOCAL_DATE);
+				String date = processor.getText();
+				try {
+					endExecutionDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+				} catch (DateTimeParseException e) {
+					endExecutionDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+				}
 			} else if ("contractPositions".equals(processor.getName())) {
 				contractPositions = parseContractPositions();
 			} else {
