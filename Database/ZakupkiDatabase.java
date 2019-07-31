@@ -27,7 +27,9 @@ public class ZakupkiDatabase {
 			conn = DriverManager.getConnection(connectionURL, USER, PSSWD);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(!e.getMessage().contains("Duplicate entry")) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -45,7 +47,9 @@ public class ZakupkiDatabase {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(!e.getMessage().contains("Duplicate entry")) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -61,7 +65,9 @@ public class ZakupkiDatabase {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(!e.getMessage().contains("Duplicate entry")) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -80,7 +86,9 @@ public class ZakupkiDatabase {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(!e.getMessage().contains("Duplicate entry")) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -95,44 +103,73 @@ public class ZakupkiDatabase {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(!e.getMessage().contains("Duplicate entry")) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public void insertOK(ContractPositionInfo position) {
 		String sql = "INSERT INTO ok_info (ok_code, ok_type, ok_name) VALUES(?, ?, ?)";
-		try(PreparedStatement statement = conn.prepareStatement(sql)) {
-			statement.setString(1, position.getOKDP().getCode());
-			statement.setString(2, "问南");
-			statement.setString(3, position.getOKDP().getName());
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-		try(PreparedStatement statement = conn.prepareStatement(sql)) {
-			statement.setString(1, position.getOKPD().getCode());
-			statement.setString(2, "问夏");
-			statement.setString(3, position.getOKPD().getName());
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-		try(PreparedStatement statement = conn.prepareStatement(sql)) {
-			statement.setString(1, position.getOKPD2().getCode());
-			statement.setString(2, "问南2");
-			statement.setString(3, position.getOKPD2().getName());
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-		try(PreparedStatement statement = conn.prepareStatement(sql)) {
-			statement.setString(1, position.getOKEI().getCode());
-			statement.setString(2, "问湃");
-			statement.setString(3, position.getOKEI().getName());
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
+		if(position.getOKDP().getCode() != null) {
+			try(PreparedStatement statement = conn.prepareStatement(sql)) {
+				statement.setString(1, position.getOKDP().getCode());
+				statement.setString(2, "问南");
+				statement.setString(3, position.getOKDP().getName());
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				if(!e.getMessage().contains("Duplicate entry")) {
+					e.printStackTrace();
+				}
+			} catch (NullPointerException e) {
+				
+			} 
+		}
+		
+		if(position.getOKPD().getCode() != null) {
+			try(PreparedStatement statement = conn.prepareStatement(sql)) {
+				statement.setString(1, position.getOKPD().getCode());
+				statement.setString(2, "问夏");
+				statement.setString(3, position.getOKPD().getName());
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				if(!e.getMessage().contains("Duplicate entry")) {
+					e.printStackTrace();
+				}
+			} catch (NullPointerException e) {
+				
+			} 
+		}
+		
+		if(position.getOKPD2().getCode() != null) {
+			try(PreparedStatement statement = conn.prepareStatement(sql)) {
+				statement.setString(1, position.getOKPD2().getCode());
+				statement.setString(2, "问南2");
+				statement.setString(3, position.getOKPD2().getName());
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				if(!e.getMessage().contains("Duplicate entry")) {
+					e.printStackTrace();
+				}
+			} catch (NullPointerException e) {
+				
+			} 
+		}
+		
+		if(position.getOKEI().getCode() != null) {
+			try(PreparedStatement statement = conn.prepareStatement(sql)) {
+				statement.setString(1, position.getOKEI().getCode());
+				statement.setString(2, "问湃");
+				statement.setString(3, position.getOKEI().getName());
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				if(!e.getMessage().contains("Duplicate entry")) {
+					e.printStackTrace();
+				}
+			} catch (NullPointerException e) {
+				
+			}
+		}
 	}
 	
 	public void insertContractPositions(List<ContractPositionInfo> contractPositions, String contractGUID) {
@@ -140,7 +177,7 @@ public class ZakupkiDatabase {
 				+ "OKPD_code, OKPD2_code, OKEI_code, qty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		for(ContractPositionInfo position : contractPositions) {
-			insertOK(position);
+			
 			try(PreparedStatement statement = conn.prepareStatement(sql)) {
 				statement.setString(1, contractGUID);
 				statement.setInt(2, position.getOrdinalNumber());
@@ -154,8 +191,11 @@ public class ZakupkiDatabase {
 				
 				statement.executeUpdate();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				if(!e.getMessage().contains("Duplicate entry")) {
+					e.printStackTrace();
+				}
 			}
+			insertOK(position);
 		}
 	}
 	
@@ -183,7 +223,9 @@ public class ZakupkiDatabase {
 			
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			if(!e.getMessage().contains("Duplicate entry")) {
+				e.printStackTrace();
+			}
 		}
 		insertContractPositions(contract.getPositions(), contract.getGUID());
 		insertSupplier(contract.getSupplier());

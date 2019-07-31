@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import javax.xml.stream.XMLStreamException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -158,6 +161,10 @@ public enum FTPClient223fz implements FTPClientFZ {
 					ContractInfo contract = contractParser.parseContract();
 					db.insertContract(contract);
 				}
+			}
+		}catch (XMLStreamException e) {
+			if(!e.getMessage().contains("ParseError at [row,col]:[1,1]")) {
+				e.printStackTrace();
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
