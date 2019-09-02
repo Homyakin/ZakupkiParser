@@ -1,10 +1,7 @@
-package DocumentsInfo;
-
-import java.util.Date;
-
-import DocumentsInfo.LotInfo;
+package ru.homyakin.documentsinfo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ProtocolInfo {
     private String GUID;

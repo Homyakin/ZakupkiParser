@@ -1,8 +1,7 @@
-package DocumentsInfo;
+package ru.homyakin.documentsinfo;
 
-import DocumentsInfo.LotItemInfo;
-import SubDocumentsInfo.CustomerInfo;
-import SubDocumentsInfo.SupplierInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,10 @@
-package SubDocumentsInfo;
+package ru.homyakin.documentsinfo.subdocumentsinfo;
 
-public class OKInfo {
+public class PurchaseTypeInfo {
     private String code;
     private String name;
 
-    public OKInfo(String code) {
+    public PurchaseTypeInfo(String code) {
         this.setCode(code);
     }
 

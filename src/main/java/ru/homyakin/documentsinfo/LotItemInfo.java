@@ -1,8 +1,8 @@
-package DocumentsInfo;
+package ru.homyakin.documentsinfo;
+
+import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
 
 import java.util.List;
-
-import SubDocumentsInfo.CustomerInfo;
 
 public class LotItemInfo {
     private String GUID;

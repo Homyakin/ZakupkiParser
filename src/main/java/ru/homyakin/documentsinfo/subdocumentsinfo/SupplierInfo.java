@@ -1,4 +1,4 @@
-package SubDocumentsInfo;
+package ru.homyakin.documentsinfo.subdocumentsinfo;
 
 public class SupplierInfo {
 	private String name;

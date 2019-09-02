@@ -1,5 +1,14 @@
-package XMLParser;
+package ru.homyakin.service;
 
+import ru.homyakin.documentsinfo.ContractInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.ContractPositionInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.CurrencyInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.OKInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.PurchaseTypeInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
+
+import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
@@ -10,16 +19,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.stream.XMLStreamException;
-
-import DocumentsInfo.ContractInfo;
-import SubDocumentsInfo.ContractPositionInfo;
-import SubDocumentsInfo.CurrencyInfo;
-import SubDocumentsInfo.CustomerInfo;
-import SubDocumentsInfo.OKInfo;
-import SubDocumentsInfo.PurchaseTypeInfo;
-import SubDocumentsInfo.SupplierInfo;
 
 public class ContractParser {
     private XMLParser processor;

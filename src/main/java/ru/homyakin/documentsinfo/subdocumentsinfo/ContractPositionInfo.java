@@ -1,4 +1,4 @@
-package SubDocumentsInfo;
+package ru.homyakin.documentsinfo.subdocumentsinfo;
 
 import java.math.BigDecimal;
 

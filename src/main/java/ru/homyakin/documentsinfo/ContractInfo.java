@@ -1,15 +1,15 @@
-package DocumentsInfo;
+package ru.homyakin.documentsinfo;
 
-import java.util.List;
+import ru.homyakin.documentsinfo.subdocumentsinfo.ContractPositionInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.CurrencyInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.PurchaseTypeInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import SubDocumentsInfo.ContractPositionInfo;
-import SubDocumentsInfo.CurrencyInfo;
-import SubDocumentsInfo.CustomerInfo;
-import SubDocumentsInfo.PurchaseTypeInfo;
-import SubDocumentsInfo.SupplierInfo;
+import java.util.List;
 
 public class ContractInfo {
     private PurchaseTypeInfo purchaseType;

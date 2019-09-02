@@ -1,4 +1,10 @@
-package Database;
+package ru.homyakin.database;
+
+import ru.homyakin.documentsinfo.ContractInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.ContractPositionInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.CurrencyInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
+import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,12 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
-
-import DocumentsInfo.ContractInfo;
-import SubDocumentsInfo.ContractPositionInfo;
-import SubDocumentsInfo.CurrencyInfo;
-import SubDocumentsInfo.CustomerInfo;
-import SubDocumentsInfo.SupplierInfo;
 
 public class ZakupkiDatabase {
     private final String USER = "root";
@@ -27,9 +27,7 @@ public class ZakupkiDatabase {
             conn = DriverManager.getConnection(connectionURL, USER, PSSWD);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            if (!e.getMessage().contains("Duplicate entry")) {
-                e.printStackTrace();
-            }
+            throw new RuntimeException();
         }
     }
 

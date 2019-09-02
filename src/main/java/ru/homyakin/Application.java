@@ -1,7 +1,9 @@
+package ru.homyakin;
+
+import ru.homyakin.web.FTPClient223fz;
+
 import java.io.IOException;
 import java.net.SocketException;
-
-import FTPfz.FTPClient223fz;
 
 public class Application {
 

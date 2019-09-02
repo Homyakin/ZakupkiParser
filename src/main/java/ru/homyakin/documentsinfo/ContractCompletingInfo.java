@@ -1,4 +1,4 @@
-package DocumentsInfo;
+package ru.homyakin.documentsinfo;
 
 import java.util.Date;
 

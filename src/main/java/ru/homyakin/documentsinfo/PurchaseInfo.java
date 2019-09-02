@@ -1,10 +1,9 @@
-package DocumentsInfo;
+package ru.homyakin.documentsinfo;
 
-import java.util.Date;
+import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
+
 import java.util.ArrayList;
-
-import DocumentsInfo.LotInfo;
-import SubDocumentsInfo.CustomerInfo;
+import java.util.Date;
 
 public class PurchaseInfo {
     private String number;
@@ -43,24 +42,6 @@ public class PurchaseInfo {
         this.version = version;
         this.jointPurchase = jointPurchase;
         this.lots = new ArrayList<LotInfo>(lots);
-    }
-
-    public PurchaseInfo(PurchaseInfo Purchase) {
-        this.number = Purchase.number;
-        this.name = Purchase.name;
-        this.GUID = Purchase.GUID;
-        this.birnDate = Purchase.birnDate;
-        this.refreshDate = Purchase.refreshDate;
-        this.startApplicationDate = Purchase.startApplicationDate;
-        this.endApplicationDate = Purchase.endApplicationDate;
-        this.type = Purchase.type;
-        this.choiceWay = Purchase.choiceWay;
-        this.choiceWayCode = Purchase.choiceWayCode;
-        this.region = Purchase.region;
-        this.stage = Purchase.stage;
-        this.version = Purchase.version;
-        this.jointPurchase = Purchase.jointPurchase;
-        this.lots = new ArrayList<LotInfo>(Purchase.lots);
     }
 
     public String getNumber() {

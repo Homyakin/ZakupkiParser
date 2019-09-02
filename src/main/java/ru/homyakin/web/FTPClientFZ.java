@@ -1,7 +1,6 @@
-package FTPfz;
+package ru.homyakin.web;
 
 import java.io.IOException;
-import java.net.SocketException;
 
 public interface FTPClientFZ {
     // connect to sever
