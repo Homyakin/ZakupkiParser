@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ZakupkiDatabase {
     private final String USER = "root";
-    private final String PSSWD = "root";
+    private final String PSSWD = "12345";
     private final String HOST_NAME = "localhost";
     private final String DB_NAME = "zakupki";
     private Connection conn;
@@ -31,7 +31,7 @@ public class ZakupkiDatabase {
         }
     }
 
-    public void insertCustomer(CustomerInfo customer) {
+    private void insertCustomer(CustomerInfo customer) {
         String sql = "INSERT INTO customers (customer_INN, customer_OGRN, customer_KPP, customer_fullName,"
                 + "customer_shortName) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -51,7 +51,7 @@ public class ZakupkiDatabase {
         }
     }
 
-    public void insertCurrency(CurrencyInfo currency) {
+    private void insertCurrency(CurrencyInfo currency) {
         String sql = "INSERT INTO currencies (currency_code, currency_digitalCode, currency_name) VALUES (?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
@@ -69,7 +69,8 @@ public class ZakupkiDatabase {
         }
     }
 
-    public void insertSupplier(SupplierInfo supplier) {
+    private void insertSupplier(SupplierInfo supplier) {
+        //TODO replace hashName to auto generated id
         String sql = "INSERT INTO suppliers (supplier_hashName, type, provider, nonResident, supplier_INN, "
                 + "supplier_shortName, supplier_name) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -83,7 +84,6 @@ public class ZakupkiDatabase {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             if (!e.getMessage().contains("Duplicate entry")) {
                 e.printStackTrace();
             }
@@ -91,6 +91,7 @@ public class ZakupkiDatabase {
     }
 
     private void insertSupplierToContract(ContractInfo contract) {
+        //TODO replace hashName to auto generated id
         String sql = "INSERT INTO suppliers_to_contracts (supplier_hashName, contract_GUID)"
                 + " VALUES (?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -100,26 +101,26 @@ public class ZakupkiDatabase {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             if (!e.getMessage().contains("Duplicate entry")) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void insertOK(ContractPositionInfo position) {
+    private void insertOK(ContractPositionInfo position) {
+        //TODO make different tables for each OK
         String sql = "INSERT INTO ok_info (ok_code, ok_type, ok_name) VALUES(?, ?, ?)";
         if (position.getOKDP().getCode() != null) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, position.getOKDP().getCode());
-                statement.setString(2, "����");
+                statement.setString(2, "ОКДП");
                 statement.setString(3, position.getOKDP().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
                     e.printStackTrace();
                 }
-            } catch (NullPointerException e) {
+            } catch (NullPointerException ignored) {
 
             }
         }
@@ -127,14 +128,14 @@ public class ZakupkiDatabase {
         if (position.getOKPD().getCode() != null) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, position.getOKPD().getCode());
-                statement.setString(2, "����");
+                statement.setString(2, "ОКПД");
                 statement.setString(3, position.getOKPD().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
                     e.printStackTrace();
                 }
-            } catch (NullPointerException e) {
+            } catch (NullPointerException ignored) {
 
             }
         }
@@ -142,14 +143,14 @@ public class ZakupkiDatabase {
         if (position.getOKPD2().getCode() != null) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, position.getOKPD2().getCode());
-                statement.setString(2, "����2");
+                statement.setString(2, "ОКПД2");
                 statement.setString(3, position.getOKPD2().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
                     e.printStackTrace();
                 }
-            } catch (NullPointerException e) {
+            } catch (NullPointerException ignored) {
 
             }
         }
@@ -164,13 +165,13 @@ public class ZakupkiDatabase {
                 if (!e.getMessage().contains("Duplicate entry")) {
                     e.printStackTrace();
                 }
-            } catch (NullPointerException e) {
+            } catch (NullPointerException ignored) {
 
             }
         }
     }
 
-    public void insertContractPositions(List<ContractPositionInfo> contractPositions, String contractGUID) {
+    private void insertContractPositions(List<ContractPositionInfo> contractPositions, String contractGUID) {
         String sql = "INSERT INTO contract_positions (contract_GUID, ordinalNumber, position_GUID, position_name, OKDP_code,"
                 + "OKPD_code, OKPD2_code, OKEI_code, qty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
