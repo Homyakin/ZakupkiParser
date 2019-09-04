@@ -1,6 +1,7 @@
 package ru.homyakin.documentsinfo.subdocumentsinfo;
 
 public class CustomerInfo {
+    //TODO Optional
     private String name;
     private String shortName;
     private String INN;

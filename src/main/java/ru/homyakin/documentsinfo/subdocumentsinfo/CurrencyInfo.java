@@ -1,6 +1,8 @@
 package ru.homyakin.documentsinfo.subdocumentsinfo;
 
 public class CurrencyInfo {
+    //TODO add Optional
+    //TODO make get code only 1 (return code or letter code)
     private String letterCode;
     private String code;
     private String digitalCode;

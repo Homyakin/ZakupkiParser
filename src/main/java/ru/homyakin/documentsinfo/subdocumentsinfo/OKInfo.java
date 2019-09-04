@@ -1,6 +1,7 @@
 package ru.homyakin.documentsinfo.subdocumentsinfo;
 
 public class OKInfo {
+    //TODO create interface and different impl
     private String code;
     private String name;
 

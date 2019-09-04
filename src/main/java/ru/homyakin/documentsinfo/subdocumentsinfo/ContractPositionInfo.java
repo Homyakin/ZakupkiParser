@@ -3,6 +3,7 @@ package ru.homyakin.documentsinfo.subdocumentsinfo;
 import java.math.BigDecimal;
 
 public class ContractPositionInfo {
+    //TODO Optional
     private String GUID;
     private String Name;
     private Integer ordinalNumber;

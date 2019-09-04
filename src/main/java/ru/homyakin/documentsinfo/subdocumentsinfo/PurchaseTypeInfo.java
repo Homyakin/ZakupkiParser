@@ -1,6 +1,7 @@
 package ru.homyakin.documentsinfo.subdocumentsinfo;
 
 public class PurchaseTypeInfo {
+    //TODO Optional
     private String code;
     private String name;
 
