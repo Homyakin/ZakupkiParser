@@ -263,12 +263,8 @@ public class ContractParser {
             }
         }
 
-        contract = new ContractInfo(GUID, createDateTime, customer, contractDate, purchaseType, price, currency);
-        contract.setRubPrice(rubPrice);
-        contract.setSupplier(supplier);
-        contract.setStartExecutionDate(startExecutionDate);
-        contract.setEndExecutionDate(endExecutionDate);
-        contract.setPositions(contractPositions);
+        contract = new ContractInfo(GUID, createDateTime, customer, contractDate, purchaseType, price, currency,
+                rubPrice, startExecutionDate, endExecutionDate, supplier, contractPositions);
         return contract;
     }
 }

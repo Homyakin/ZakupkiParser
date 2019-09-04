@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ZakupkiDatabase {
@@ -95,8 +97,9 @@ public class ZakupkiDatabase {
         String sql = "INSERT INTO suppliers_to_contracts (supplier_hashName, contract_GUID)"
                 + " VALUES (?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
-
-            statement.setInt(1, contract.getSupplier().getName().hashCode());
+            if(contract.getSupplier().isPresent()) {
+                statement.setInt(1, contract.getSupplier().get().getName().hashCode());
+            }
             statement.setString(2, contract.getGUID());
 
             statement.executeUpdate();
@@ -210,13 +213,26 @@ public class ZakupkiDatabase {
             statement.setString(1, contract.getGUID());
             statement.setTimestamp(2, Timestamp.valueOf(contract.getCreateDateTime()));
             statement.setDate(3, Date.valueOf(contract.getContractDate()));
-            statement.setDate(4, Date.valueOf(contract.getStartExecutionDate()));
-            statement.setDate(5, Date.valueOf(contract.getEndExecutionDate()));
+            if(contract.getStartExecutionDate().isPresent()) {
+                statement.setDate(4, Date.valueOf(contract.getStartExecutionDate().get()));
+            } else {
+                statement.setNull(4, Types.DATE);
+            }
+            if(contract.getEndExecutionDate().isPresent()) {
+                statement.setDate(5, Date.valueOf(contract.getEndExecutionDate().get()));
+            } else {
+                statement.setNull(5, Types.DATE);
+            }
             statement.setString(6, contract.getCustomer().getINN());
             statement.setString(7, contract.getPurchaseType().getCode());
             statement.setString(8, contract.getPurchaseType().getName());
             statement.setBigDecimal(9, contract.getPrice());
-            statement.setBigDecimal(10, contract.getRubPrice());
+            if(contract.getRubPrice().isPresent()) {
+                statement.setBigDecimal(10, contract.getRubPrice().get());
+            } else {
+                statement.setNull(10, Types.DECIMAL);
+            }
+
             statement.setString(11, contract.getCurrency().getCode() != null ? contract.getCurrency().getCode() :
                     contract.getCurrency().getLetterCode());
 
@@ -227,8 +243,10 @@ public class ZakupkiDatabase {
             }
         }
         insertContractPositions(contract.getPositions(), contract.getGUID());
-        insertSupplier(contract.getSupplier());
-        insertSupplierToContract(contract);
+        if(contract.getSupplier().isPresent()) {
+            insertSupplier(contract.getSupplier().get());
+            insertSupplierToContract(contract);
+        }
     }
 
 }

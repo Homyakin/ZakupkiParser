@@ -10,126 +10,89 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public class ContractInfo {
+    //TODO add Optional
     private PurchaseTypeInfo purchaseType;
     private String GUID;
     private BigDecimal price;
-    private BigDecimal rubPrice;
+    private Optional<BigDecimal> rubPrice;
     private CurrencyInfo currency;
     private LocalDateTime createDateTime;
     private LocalDate contractDate;
-    private LocalDate startExecutionDate;
-    private LocalDate endExecutionDate;
+    private Optional<LocalDate> startExecutionDate;
+    private Optional<LocalDate> endExecutionDate;
     private CustomerInfo customer;
-    private SupplierInfo supplier;
+    private Optional<SupplierInfo> supplier;
     private List<ContractPositionInfo> positions;
 
     public ContractInfo(String GUID, LocalDateTime createDateTime, CustomerInfo customer, LocalDate contractDate,
-                        PurchaseTypeInfo purchaseType, BigDecimal price, CurrencyInfo currency) {
-        this.setGUID(GUID);
-        this.setPrice(price);
-        this.setCreateDateTime(createDateTime);
-        this.setContractDate(contractDate);
-        this.setPurchaseType(purchaseType);
-        this.setCurrency(currency);
-        this.setCustomer(new CustomerInfo(customer));
+                        PurchaseTypeInfo purchaseType, BigDecimal price, CurrencyInfo currency, BigDecimal rubPrice,
+                        LocalDate startExecutionDate, LocalDate endExecutionDate, SupplierInfo supplier,
+                        List<ContractPositionInfo> positions) {
+        this.GUID = GUID;
+        this.price = price;
+        this.createDateTime = createDateTime;
+        this.contractDate = contractDate;
+        this.purchaseType = purchaseType;
+        this.currency = currency;
+        this.customer = customer;
+        this.rubPrice = Optional.of(rubPrice);
+        this.startExecutionDate = Optional.ofNullable(startExecutionDate);
+        this.endExecutionDate = Optional.ofNullable(endExecutionDate);
+        this.supplier = Optional.ofNullable(supplier);
+        this.positions = positions;
     }
 
     public String getGUID() {
         return GUID;
     }
 
-    public void setGUID(String gUID) {
-        GUID = gUID;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public BigDecimal getRubPrice() {
+    public Optional<BigDecimal> getRubPrice() {
         return rubPrice;
     }
 
-    public void setRubPrice(BigDecimal rubPrice) {
-        this.rubPrice = rubPrice;
-    }
 
     public CurrencyInfo getCurrency() {
         return currency;
-    }
-
-    public void setCurrency(CurrencyInfo currency) {
-        this.currency = currency;
     }
 
     public LocalDateTime getCreateDateTime() {
         return createDateTime;
     }
 
-    public void setCreateDateTime(LocalDateTime createDateTime) {
-        this.createDateTime = createDateTime;
-    }
-
     public LocalDate getContractDate() {
         return contractDate;
     }
 
-    public void setContractDate(LocalDate contractDate) {
-        this.contractDate = contractDate;
-    }
-
-    public LocalDate getStartExecutionDate() {
+    public Optional<LocalDate> getStartExecutionDate() {
         return startExecutionDate;
     }
 
-    public void setStartExecutionDate(LocalDate startExecutionDate) {
-        this.startExecutionDate = startExecutionDate;
-    }
-
-    public LocalDate getEndExecutionDate() {
+    public Optional<LocalDate> getEndExecutionDate() {
         return endExecutionDate;
-    }
-
-    public void setEndExecutionDate(LocalDate endExecutionDate) {
-        this.endExecutionDate = endExecutionDate;
     }
 
     public CustomerInfo getCustomer() {
         return customer;
     }
 
-    public void setCustomer(CustomerInfo customer) {
-        this.customer = customer;
-    }
-
-    public SupplierInfo getSupplier() {
+    public Optional<SupplierInfo> getSupplier() {
         return supplier;
-    }
-
-    public void setSupplier(SupplierInfo supplier) {
-        this.supplier = supplier;
     }
 
     public List<ContractPositionInfo> getPositions() {
         return positions;
     }
 
-    public void setPositions(List<ContractPositionInfo> positions) {
-        this.positions = positions;
-    }
-
     public PurchaseTypeInfo getPurchaseType() {
         return purchaseType;
     }
 
-    public void setPurchaseType(PurchaseTypeInfo purchaseType) {
-        this.purchaseType = purchaseType;
-    }
 
 }
