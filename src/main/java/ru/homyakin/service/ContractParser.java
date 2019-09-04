@@ -32,7 +32,7 @@ public class ContractParser {
     private CustomerInfo parseCustomer() throws XMLStreamException {
         processor.findStartBlock("mainInfo");
         String fullName = null, shortName = null, INN = null, KPP = null, OGRN = null;
-        CustomerInfo customer = null;
+        CustomerInfo customer;
         while (processor.getNextInBlock("mainInfo")) {
             if ("fullName".equals(processor.getName()))
                 fullName = processor.getText();
@@ -56,7 +56,7 @@ public class ContractParser {
     private PurchaseTypeInfo parsePurchaseTypeInfo() throws XMLStreamException {
         String code = null;
         String name = null;
-        PurchaseTypeInfo purchaseType = null;
+        PurchaseTypeInfo purchaseType;
         while (processor.getNextInBlock("purchaseTypeInfo")) {
             if ("code".equals(processor.getName()))
                 code = processor.getText();
@@ -71,7 +71,7 @@ public class ContractParser {
     private SupplierInfo parseSupplier() throws XMLStreamException {
         String name = null, shortName = null, INN = null, type = null;
         boolean provider = false, nonResident = false;
-        SupplierInfo supplier = null;
+        SupplierInfo supplier;
         while (processor.getNextInBlock("supplierInfo")) {
             if ("name".equals(processor.getName())) {
                 name = processor.getText();
@@ -98,7 +98,7 @@ public class ContractParser {
     }
 
     private CurrencyInfo parseCurrency() throws XMLStreamException {
-        CurrencyInfo currency = null;
+        CurrencyInfo currency;
         String letterCode = null, code = null, digitalCode = null, name = null;
         while (processor.getNextInBlock("currency")) {
             if ("letterCode".equals(processor.getName())) {
@@ -121,7 +121,7 @@ public class ContractParser {
     }
 
     private OKInfo parseOKInfo() throws XMLStreamException {
-        OKInfo OKDP = null;
+        OKInfo OKDP;
         String code = null, name = null;
         while (processor.getNextInBlock("okdp")) {
             if ("code".equals(processor.getName())) {
@@ -138,14 +138,14 @@ public class ContractParser {
     }
 
     private List<ContractPositionInfo> parseContractPositions() throws XMLStreamException {
-        List<ContractPositionInfo> list = new ArrayList<ContractPositionInfo>();
+        List<ContractPositionInfo> list = new ArrayList<>();
         while (processor.getNextInBlock("contractPositions")) {
             if ("contractPosition".equals(processor.getName())) {
                 String GUID = null, name = null, country = null, producerCountry = null;
                 BigDecimal qty = null;
                 Integer ordinalNumber = null;
                 OKInfo OKDP = null, OKPD = null, OKPD2 = null, OKEI = null;
-                ContractPositionInfo contractPosition = null;
+                ContractPositionInfo contractPosition;
                 while (processor.getNextInBlock("contractPosition")) {
                     if ("guid".equals(processor.getName())) {
                         GUID = processor.getText();
@@ -205,8 +205,8 @@ public class ContractParser {
         return list;
     }
 
-    public ContractInfo parseContract() throws XMLStreamException, IOException {
-        ContractInfo contract = null;
+    public ContractInfo parseContract() throws XMLStreamException {
+        ContractInfo contract;
         processor.findStartBlock("contractData");
         String GUID = null;
         BigDecimal price = null;

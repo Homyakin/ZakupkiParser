@@ -68,7 +68,7 @@ class XMLParser implements AutoCloseable {
         if (reader != null) {
             try {
                 reader.close();
-            } catch (XMLStreamException e) {
+            } catch (XMLStreamException ignored) {
             }
         }
     }

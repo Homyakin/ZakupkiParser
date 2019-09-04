@@ -26,7 +26,7 @@ public class ZakupkiDatabase {
         try {
             conn = DriverManager.getConnection(connectionURL, USER, PSSWD);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+            //TODO custom exception
             throw new RuntimeException();
         }
     }
@@ -44,7 +44,7 @@ public class ZakupkiDatabase {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+            // TODO add custom exception and log
             if (!e.getMessage().contains("Duplicate entry")) {
                 e.printStackTrace();
             }
@@ -62,7 +62,7 @@ public class ZakupkiDatabase {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+            // TODO add custom exception and log
             if (!e.getMessage().contains("Duplicate entry")) {
                 e.printStackTrace();
             }

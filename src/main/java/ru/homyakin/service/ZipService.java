@@ -27,8 +27,7 @@ public class ZipService {
                 Path localFile = Paths.get(path + "/unzip/" + name);
                 try {
                     Files.createFile(localFile);
-                } catch (IOException e) {
-
+                } catch (IOException ignored) {
                 }
 
                 OutputStream fout = Files.newOutputStream(localFile);

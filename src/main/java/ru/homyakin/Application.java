@@ -15,6 +15,7 @@ public class Application {
             ftp.login();
             ftp.parseFTPServer();
         } catch (SocketException e) {
+            //TODO add logs
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
