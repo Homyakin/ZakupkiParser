@@ -21,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ContractParser {
     private XMLParser processor;
@@ -97,9 +98,7 @@ public class ContractParser {
                 processor.skipBlock();
             }
         }
-        supplier = new SupplierInfo(name, type, provider, nonResident);
-        supplier.setShortName(shortName);
-        supplier.setINN(INN);
+        supplier = new SupplierInfo(name, shortName, INN, type, provider, nonResident);
         return supplier;
     }
 

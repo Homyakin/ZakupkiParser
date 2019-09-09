@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class ContractInfo {
-    //TODO add Optional
     private PurchaseTypeInfo purchaseType;
     private String GUID;
     private BigDecimal price;

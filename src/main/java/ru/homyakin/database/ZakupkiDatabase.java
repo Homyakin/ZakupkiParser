@@ -80,8 +80,17 @@ public class ZakupkiDatabase {
             statement.setString(2, supplier.getType());
             statement.setInt(3, supplier.isProvider() ? 1 : 0);
             statement.setInt(4, supplier.isNonResident() ? 1 : 0);
-            statement.setString(5, supplier.getINN());
-            statement.setString(6, supplier.getShortName());
+            if(supplier.getINN().isPresent()){
+                statement.setString(5, supplier.getINN().get());
+            } else {
+                statement.setNull(5, Types.VARCHAR);
+            }
+            if(supplier.getShortName().isPresent()){
+                statement.setString(6, supplier.getShortName().get());
+            } else {
+                statement.setNull(6, Types.VARCHAR);
+            }
+
             statement.setString(7, supplier.getName());
 
             statement.executeUpdate();
