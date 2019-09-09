@@ -7,11 +7,13 @@ import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.OKInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.PurchaseTypeInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
+import ru.homyakin.exceptions.FileIsEmptyException;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +28,11 @@ public class ContractParser {
 
     public ContractParser(String filePath) throws XMLStreamException, IOException {
         this.filePath = filePath;
-        this.processor = new XMLParser(Files.newInputStream(Paths.get(filePath)));
+        Path file = Paths.get(filePath);
+        if(file.toFile().length() == 0) {
+            throw new FileIsEmptyException("File " + filePath + " is empty");
+        }
+        this.processor = new XMLParser(Files.newInputStream(file));
     }
 
     private CustomerInfo parseCustomer() throws XMLStreamException {

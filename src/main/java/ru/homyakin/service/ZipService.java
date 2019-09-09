@@ -2,6 +2,7 @@ package ru.homyakin.service;
 
 import ru.homyakin.database.ZakupkiDatabase;
 import ru.homyakin.documentsinfo.ContractInfo;
+import ru.homyakin.exceptions.FileIsEmptyException;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
@@ -46,11 +47,8 @@ public class ZipService {
                     db.insertContract(contract);
                 }
             }
-        } catch (XMLStreamException e) {
-            //TODO check empty file
-            if (!e.getMessage().contains("ParseError at [row,col]:[1,1]")) {
-                e.printStackTrace();
-            }
+        } catch (FileIsEmptyException e) {
+            //TODO add log
         } catch (Exception ex) {
             ex.printStackTrace();
         }
