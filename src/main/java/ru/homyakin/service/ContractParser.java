@@ -126,6 +126,7 @@ public class ContractParser {
     }
 
     private OKInfo parseOKInfo() throws XMLStreamException {
+        //TODO add type parameter
         OKInfo OKDP;
         String code = null, name = null;
         while (processor.getNextInBlock("okdp")) {
@@ -176,34 +177,7 @@ public class ContractParser {
                         processor.skipBlock();
                     }
                 }
-                contractPosition = new ContractPositionInfo(ordinalNumber);
-                contractPosition.setGUID(GUID);
-                contractPosition.setName(name);
-                if (OKDP == null) {
-                    OKDP = new OKInfo(null);
-                    OKDP.setName(null);
-                }
-                contractPosition.setOKDP(OKDP);
-                if (OKPD == null) {
-                    OKPD = new OKInfo(null);
-                    OKPD.setName(null);
-                }
-                contractPosition.setOKPD(OKPD);
-                if (OKPD2 == null) {
-                    OKPD2 = new OKInfo(null);
-                    OKPD2.setName(null);
-                }
-                contractPosition.setOKPD2(OKPD2);
-                if (OKEI == null) {
-                    OKEI = new OKInfo(null);
-                    OKEI.setName(null);
-                }
-                contractPosition.setOKEI(OKEI);
-
-                contractPosition.setQty(qty);
-                contractPosition.setCountry(country);
-                contractPosition.setProducerCountry(producerCountry);
-
+                contractPosition = new ContractPositionInfo(GUID, name, ordinalNumber, OKDP, OKPD, OKPD2, OKEI, qty);
                 list.add(contractPosition);
             }
         }

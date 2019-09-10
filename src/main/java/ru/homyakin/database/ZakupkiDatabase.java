@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
-import java.time.LocalDate;
 import java.util.List;
 
 public class ZakupkiDatabase {
@@ -80,12 +79,12 @@ public class ZakupkiDatabase {
             statement.setString(2, supplier.getType());
             statement.setInt(3, supplier.isProvider() ? 1 : 0);
             statement.setInt(4, supplier.isNonResident() ? 1 : 0);
-            if(supplier.getINN().isPresent()){
+            if (supplier.getINN().isPresent()) {
                 statement.setString(5, supplier.getINN().get());
             } else {
                 statement.setNull(5, Types.VARCHAR);
             }
-            if(supplier.getShortName().isPresent()){
+            if (supplier.getShortName().isPresent()) {
                 statement.setString(6, supplier.getShortName().get());
             } else {
                 statement.setNull(6, Types.VARCHAR);
@@ -106,7 +105,7 @@ public class ZakupkiDatabase {
         String sql = "INSERT INTO suppliers_to_contracts (supplier_hashName, contract_GUID)"
                 + " VALUES (?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            if(contract.getSupplier().isPresent()) {
+            if (contract.getSupplier().isPresent()) {
                 statement.setInt(1, contract.getSupplier().get().getName().hashCode());
             }
             statement.setString(2, contract.getGUID());
@@ -122,11 +121,11 @@ public class ZakupkiDatabase {
     private void insertOK(ContractPositionInfo position) {
         //TODO make different tables for each OK
         String sql = "INSERT INTO ok_info (ok_code, ok_type, ok_name) VALUES(?, ?, ?)";
-        if (position.getOKDP().getCode() != null) {
+        if (position.getOKDP().isPresent()) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, position.getOKDP().getCode());
-                statement.setString(2, "ОКДП");
-                statement.setString(3, position.getOKDP().getName());
+                statement.setString(1, position.getOKDP().get().getCode());
+                statement.setString(2, "OKDP");
+                statement.setString(3, position.getOKDP().get().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -137,11 +136,11 @@ public class ZakupkiDatabase {
             }
         }
 
-        if (position.getOKPD().getCode() != null) {
+        if (position.getOKPD().isPresent()) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, position.getOKPD().getCode());
-                statement.setString(2, "ОКПД");
-                statement.setString(3, position.getOKPD().getName());
+                statement.setString(1, position.getOKPD().get().getCode());
+                statement.setString(2, "OKPD");
+                statement.setString(3, position.getOKPD().get().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -152,11 +151,11 @@ public class ZakupkiDatabase {
             }
         }
 
-        if (position.getOKPD2().getCode() != null) {
+        if (position.getOKPD2().isPresent()) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, position.getOKPD2().getCode());
-                statement.setString(2, "ОКПД2");
-                statement.setString(3, position.getOKPD2().getName());
+                statement.setString(1, position.getOKPD2().get().getCode());
+                statement.setString(2, "OKPD2");
+                statement.setString(3, position.getOKPD2().get().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -167,11 +166,11 @@ public class ZakupkiDatabase {
             }
         }
 
-        if (position.getOKEI().getCode() != null) {
+        if (position.getOKEI().isPresent()) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, position.getOKEI().getCode());
-                statement.setString(2, "����");
-                statement.setString(3, position.getOKEI().getName());
+                statement.setString(1, position.getOKEI().get().getCode());
+                statement.setString(2, "OKEI");
+                statement.setString(3, position.getOKEI().get().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -192,13 +191,47 @@ public class ZakupkiDatabase {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, contractGUID);
                 statement.setInt(2, position.getOrdinalNumber());
-                statement.setString(3, position.getGUID());
-                statement.setString(4, position.getName());
-                statement.setString(5, position.getOKDP().getCode());
-                statement.setString(6, position.getOKPD().getCode());
-                statement.setString(7, position.getOKPD2().getCode());
-                statement.setString(8, position.getOKEI().getCode());
-                statement.setBigDecimal(9, position.getQty());
+                if (position.getGUID().isPresent()) {
+                    statement.setString(3, position.getGUID().get());
+                } else {
+                    statement.setNull(3, Types.VARCHAR);
+                }
+                if (position.getName().isPresent()) {
+                    statement.setString(4, position.getName().get());
+                } else {
+                    statement.setNull(4, Types.VARCHAR);
+                }
+                if (position.getOKDP().isPresent()) {
+                    statement.setString(5, position.getOKDP().get().getCode());
+                } else {
+                    statement.setNull(5, Types.VARCHAR);
+                }
+                if (position.getOKPD().isPresent()) {
+                    statement.setString(6, position.getOKPD().get().getCode());
+                } else {
+                    statement.setNull(6, Types.VARCHAR);
+                }
+                if (position.getOKPD2().isPresent()) {
+                    statement.setString(7, position.getOKPD2().get().getCode());
+                } else {
+                    statement.setNull(7, Types.VARCHAR);
+                }
+                if (position.getOKEI().isPresent()) {
+                    statement.setString(8, position.getOKEI().get().getCode());
+                } else {
+                    statement.setNull(8, Types.VARCHAR);
+                }
+                if (position.getQty().isPresent()) {
+                    statement.setBigDecimal(9, position.getQty().get());
+                } else {
+                    statement.setNull(9, Types.DECIMAL);
+                }
+
+
+
+
+
+
 
                 statement.executeUpdate();
             } catch (SQLException e) {
@@ -222,12 +255,12 @@ public class ZakupkiDatabase {
             statement.setString(1, contract.getGUID());
             statement.setTimestamp(2, Timestamp.valueOf(contract.getCreateDateTime()));
             statement.setDate(3, Date.valueOf(contract.getContractDate()));
-            if(contract.getStartExecutionDate().isPresent()) {
+            if (contract.getStartExecutionDate().isPresent()) {
                 statement.setDate(4, Date.valueOf(contract.getStartExecutionDate().get()));
             } else {
                 statement.setNull(4, Types.DATE);
             }
-            if(contract.getEndExecutionDate().isPresent()) {
+            if (contract.getEndExecutionDate().isPresent()) {
                 statement.setDate(5, Date.valueOf(contract.getEndExecutionDate().get()));
             } else {
                 statement.setNull(5, Types.DATE);
@@ -236,7 +269,7 @@ public class ZakupkiDatabase {
             statement.setString(7, contract.getPurchaseType().getCode());
             statement.setString(8, contract.getPurchaseType().getName());
             statement.setBigDecimal(9, contract.getPrice());
-            if(contract.getRubPrice().isPresent()) {
+            if (contract.getRubPrice().isPresent()) {
                 statement.setBigDecimal(10, contract.getRubPrice().get());
             } else {
                 statement.setNull(10, Types.DECIMAL);
@@ -252,7 +285,7 @@ public class ZakupkiDatabase {
             }
         }
         insertContractPositions(contract.getPositions(), contract.getGUID());
-        if(contract.getSupplier().isPresent()) {
+        if (contract.getSupplier().isPresent()) {
             insertSupplier(contract.getSupplier().get());
             insertSupplierToContract(contract);
         }

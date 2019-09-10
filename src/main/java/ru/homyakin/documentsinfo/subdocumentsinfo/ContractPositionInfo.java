@@ -1,102 +1,71 @@
 package ru.homyakin.documentsinfo.subdocumentsinfo;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class ContractPositionInfo {
-    //TODO Optional
-    private String GUID;
-    private String Name;
+    private Optional<String> GUID;
+    private Optional<String> name;
     private Integer ordinalNumber;
-    private OKInfo OKDP;
-    private OKInfo OKPD;
-    private OKInfo OKPD2;
-    private String country; // TODO country - complicated structure
-    private String producerCountry; // TODO boolean - ?
-    private OKInfo OKEI;
-    private BigDecimal qty;
+    private Optional<OKInfo> OKDP;
+    private Optional<OKInfo> OKPD;
+    private Optional<OKInfo> OKPD2;
+    private Optional<String> country; // TODO country - complicated structure
+    private Optional<String> producerCountry; // TODO boolean - ?
+    private Optional<OKInfo> OKEI;
+    private Optional<BigDecimal> qty;
 
-    public ContractPositionInfo(Integer ordinalNumber) {
-        this.setOrdinalNumber(ordinalNumber);
+    public ContractPositionInfo(String GUID, String name, Integer ordinalNumber, OKInfo OKDP, OKInfo OKPD, OKInfo OKPD2,
+                                OKInfo OKEI, BigDecimal qty) {
+        this.ordinalNumber = ordinalNumber;
+        this.GUID = Optional.ofNullable(GUID);
+        this.name = Optional.ofNullable(name);
+        this.OKDP = Optional.ofNullable(OKDP);
+        this.OKPD = Optional.ofNullable(OKPD);
+        this.OKPD2 = Optional.ofNullable(OKPD2);
+        this.OKEI = Optional.ofNullable(OKEI);
+        this.qty = Optional.ofNullable(qty);
+
     }
 
-    public String getGUID() {
+    public Optional<String> getGUID() {
         return GUID;
     }
 
-    public void setGUID(String gUID) {
-        GUID = gUID;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
+    public Optional<String> getName() {
+        return name;
     }
 
     public Integer getOrdinalNumber() {
         return ordinalNumber;
     }
 
-    public void setOrdinalNumber(Integer ordinalNumber) {
-        this.ordinalNumber = ordinalNumber;
-    }
-
-    public OKInfo getOKDP() {
+    public Optional<OKInfo> getOKDP() {
         return OKDP;
     }
 
-    public void setOKDP(OKInfo oKDP) {
-        OKDP = oKDP;
-    }
-
-    public OKInfo getOKPD() {
+    public Optional<OKInfo> getOKPD() {
         return OKPD;
     }
 
-    public void setOKPD(OKInfo oKPD) {
-        OKPD = oKPD;
-    }
-
-    public OKInfo getOKPD2() {
+    public Optional<OKInfo> getOKPD2() {
         return OKPD2;
     }
 
-    public void setOKPD2(OKInfo oKPD2) {
-        OKPD2 = oKPD2;
-    }
-
-    public String getCountry() {
+    public Optional<String> getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getProducerCountry() {
+    public Optional<String> getProducerCountry() {
         return producerCountry;
     }
 
-    public void setProducerCountry(String producerCountry) {
-        this.producerCountry = producerCountry;
-    }
-
-    public OKInfo getOKEI() {
+    public Optional<OKInfo> getOKEI() {
         return OKEI;
     }
 
-    public void setOKEI(OKInfo oKEI) {
-        OKEI = oKEI;
-    }
-
-    public BigDecimal getQty() {
+    public Optional<BigDecimal> getQty() {
         return qty;
-    }
-
-    public void setQty(BigDecimal qty) {
-        this.qty = qty;
     }
 
 }
