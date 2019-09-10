@@ -267,7 +267,13 @@ public class ZakupkiDatabase {
             }
             statement.setString(6, contract.getCustomer().getINN());
             statement.setString(7, contract.getPurchaseType().getCode());
-            statement.setString(8, contract.getPurchaseType().getName());
+            if(contract.getPurchaseType().getName().isPresent()) {
+                //TODO add table to PurchaseType
+                statement.setString(8, contract.getPurchaseType().getName().get());
+            } else {
+                statement.setNull(8, Types.VARCHAR);
+            }
+
             statement.setBigDecimal(9, contract.getPrice());
             if (contract.getRubPrice().isPresent()) {
                 statement.setBigDecimal(10, contract.getRubPrice().get());

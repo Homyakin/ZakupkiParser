@@ -70,8 +70,7 @@ public class ContractParser {
             else if ("name".equals(processor.getName()))
                 name = processor.getText();
         }
-        purchaseType = new PurchaseTypeInfo(code);
-        purchaseType.setName(name);
+        purchaseType = new PurchaseTypeInfo(code, name);
         return purchaseType;
     }
 

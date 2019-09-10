@@ -1,27 +1,22 @@
 package ru.homyakin.documentsinfo.subdocumentsinfo;
 
-public class PurchaseTypeInfo {
-    //TODO Optional
-    private String code;
-    private String name;
+import java.util.Optional;
 
-    public PurchaseTypeInfo(String code) {
-        this.setCode(code);
+public class PurchaseTypeInfo {
+    private String code;
+    private Optional<String> name;
+
+    public PurchaseTypeInfo(String code, String name) {
+        this.code = code;
+        this.name = Optional.ofNullable(name);
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
+    public Optional<String> getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }
