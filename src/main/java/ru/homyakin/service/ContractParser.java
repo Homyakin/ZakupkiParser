@@ -31,7 +31,7 @@ public class ContractParser {
         this.filePath = filePath;
         Path file = Paths.get(filePath);
         if(file.toFile().length() == 0) {
-            throw new FileIsEmptyException("File " + filePath + " is empty");
+            throw new FileIsEmptyException(filePath);
         }
         this.processor = new XMLParser(Files.newInputStream(file));
     }
