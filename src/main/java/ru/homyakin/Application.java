@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.SocketException;
 
 public class Application {
-
+    //TODO add Spring
     public static void main(String[] args) {
         FTPClient223fz ftp = FTPClient223fz.INSTANCE;
 

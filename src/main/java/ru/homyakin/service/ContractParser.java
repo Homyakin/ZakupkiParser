@@ -21,7 +21,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class ContractParser {
     private XMLParser processor;
@@ -30,7 +29,7 @@ public class ContractParser {
     public ContractParser(String filePath) throws XMLStreamException, IOException {
         this.filePath = filePath;
         Path file = Paths.get(filePath);
-        if(file.toFile().length() == 0) {
+        if (file.toFile().length() == 0) {
             throw new FileIsEmptyException(filePath);
         }
         this.processor = new XMLParser(Files.newInputStream(file));
@@ -54,9 +53,7 @@ public class ContractParser {
             else
                 processor.skipBlock();
         }
-        customer = new CustomerInfo(INN, KPP, OGRN);
-        customer.setName(fullName);
-        customer.setShortName(shortName);
+        customer = new CustomerInfo(fullName, shortName, INN, KPP, OGRN);
         return customer;
     }
 

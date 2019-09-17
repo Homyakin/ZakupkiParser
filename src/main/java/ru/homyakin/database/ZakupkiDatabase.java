@@ -40,8 +40,16 @@ public class ZakupkiDatabase {
             statement.setString(1, customer.getINN());
             statement.setString(2, customer.getOGRN());
             statement.setString(3, customer.getKPP());
-            statement.setString(4, customer.getName());
-            statement.setString(5, customer.getShortName());
+            if (customer.getName().isPresent()) {
+                statement.setString(4, customer.getName().get());
+            } else {
+                statement.setNull(4, Types.VARCHAR);
+            }
+            if (customer.getShortName().isPresent()) {
+                statement.setString(4, customer.getShortName().get());
+            } else {
+                statement.setNull(4, Types.VARCHAR);
+            }
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -228,11 +236,6 @@ public class ZakupkiDatabase {
                 }
 
 
-
-
-
-
-
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -267,7 +270,7 @@ public class ZakupkiDatabase {
             }
             statement.setString(6, contract.getCustomer().getINN());
             statement.setString(7, contract.getPurchaseType().getCode());
-            if(contract.getPurchaseType().getName().isPresent()) {
+            if (contract.getPurchaseType().getName().isPresent()) {
                 //TODO add table to PurchaseType
                 statement.setString(8, contract.getPurchaseType().getName().get());
             } else {
