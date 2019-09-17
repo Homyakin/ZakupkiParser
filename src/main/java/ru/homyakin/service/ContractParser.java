@@ -118,11 +118,11 @@ public class ContractParser {
         return currency;
     }
 
-    private OKInfo parseOKInfo() throws XMLStreamException {
-        //TODO add type parameter
+    private OKInfo parseOKInfo(String OKType) throws XMLStreamException {
+        //TODO create enum
         OKInfo OKDP;
         String code = null, name = null;
-        while (processor.getNextInBlock("okdp")) {
+        while (processor.getNextInBlock(OKType)) {
             if ("code".equals(processor.getName())) {
                 code = processor.getText();
             } else if ("name".equals(processor.getName())) {
@@ -153,17 +153,17 @@ public class ContractParser {
                     } else if ("ordinalNumber".equals(processor.getName())) {
                         ordinalNumber = Integer.parseInt(processor.getText());
                     } else if ("okdp".equals(processor.getName())) {
-                        OKDP = parseOKInfo();
+                        OKDP = parseOKInfo("okdp");
                     } else if ("okpd".equals(processor.getName())) {
-                        OKPD = parseOKInfo();
+                        OKPD = parseOKInfo("okpd");
                     } else if ("okpd2".equals(processor.getName())) {
-                        OKPD2 = parseOKInfo();
+                        OKPD2 = parseOKInfo("okpd2");
                     } else if ("country".equals(processor.getName())) {
                         //TODO country = processor.getText();
                     } else if ("producerCountry".equals(processor.getName())) {
                         //TODO producerCountry = processor.getText();
                     } else if ("okei".equals(processor.getName())) {
-                        OKEI = parseOKInfo();
+                        OKEI = parseOKInfo("okei");
                     } else if ("qty".equals(processor.getName())) {
                         qty = new BigDecimal(processor.getText());
                     } else {
