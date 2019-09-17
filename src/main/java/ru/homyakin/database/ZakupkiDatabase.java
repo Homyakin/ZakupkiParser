@@ -64,9 +64,13 @@ public class ZakupkiDatabase {
         String sql = "INSERT INTO currencies (currency_code, currency_digitalCode, currency_name) VALUES (?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
-            statement.setString(1, currency.getCode() != null ? currency.getCode() :
-                    currency.getLetterCode());
-            statement.setString(2, currency.getDigitalCode());
+            statement.setString(1, currency.getLetterCode());
+            if (currency.getDigitalCode().isPresent()) {
+                statement.setString(2, currency.getDigitalCode().get());
+            } else {
+                statement.setNull(2, Types.VARCHAR);
+            }
+
             statement.setString(3, currency.getName());
 
             statement.executeUpdate();
@@ -284,8 +288,7 @@ public class ZakupkiDatabase {
                 statement.setNull(10, Types.DECIMAL);
             }
 
-            statement.setString(11, contract.getCurrency().getCode() != null ? contract.getCurrency().getCode() :
-                    contract.getCurrency().getLetterCode());
+            statement.setString(11, contract.getCurrency().getLetterCode());
 
             statement.executeUpdate();
         } catch (SQLException e) {

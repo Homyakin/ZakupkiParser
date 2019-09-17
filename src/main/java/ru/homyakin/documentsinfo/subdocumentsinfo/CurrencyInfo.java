@@ -1,47 +1,32 @@
 package ru.homyakin.documentsinfo.subdocumentsinfo;
 
+import ru.homyakin.exceptions.IllegalXMLDataException;
+
+import java.util.Optional;
+
 public class CurrencyInfo {
-    //TODO add Optional
-    //TODO make get code only 1 (return code or letter code)
-    private String letterCode;
-    private String code;
-    private String digitalCode;
+    private Optional<String> letterCode;
+    private Optional<String> code; //letterCode or code always exists
+    private Optional<String> digitalCode;
     private String name;
 
-    public CurrencyInfo(String name) {
-        this.setName(name);
+    public CurrencyInfo(String letterCode, String code, String digitalCode, String name) {
+        this.letterCode = Optional.ofNullable(letterCode);
+        this.code = Optional.ofNullable(code);
+        this.digitalCode = Optional.ofNullable(digitalCode);
+        this.name = name;
     }
 
     public String getLetterCode() {
-        return letterCode;
+        return letterCode.orElseGet(() -> code.orElseThrow(() -> new IllegalXMLDataException("currency")));
     }
 
-    public void setLetterCode(String letterCode) {
-        this.letterCode = letterCode;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDigitalCode() {
+    public Optional<String> getDigitalCode() {
         return digitalCode;
-    }
-
-    public void setDigitalCode(String digitalCode) {
-        this.digitalCode = digitalCode;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

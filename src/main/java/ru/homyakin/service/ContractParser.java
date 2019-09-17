@@ -114,10 +114,7 @@ public class ContractParser {
                 processor.skipBlock();
             }
         }
-        currency = new CurrencyInfo(name);
-        currency.setCode(code);
-        currency.setDigitalCode(digitalCode);
-        currency.setLetterCode(letterCode);
+        currency = new CurrencyInfo(letterCode, code, digitalCode, name);
         return currency;
     }
 
