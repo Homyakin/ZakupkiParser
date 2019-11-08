@@ -2,21 +2,14 @@ package ru.homyakin.web;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-import ru.homyakin.database.ZakupkiDatabase;
-import ru.homyakin.documentsinfo.ContractInfo;
-import ru.homyakin.service.ContractParser;
 import ru.homyakin.service.ZipService;
 
-import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 //enum implements the pattern Singleton
 public enum FTPClient223fz implements FTPClientFZ {

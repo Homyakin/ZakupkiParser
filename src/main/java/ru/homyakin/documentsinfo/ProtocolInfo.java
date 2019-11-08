@@ -3,7 +3,7 @@ package ru.homyakin.documentsinfo;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ProtocolInfo {
+public class ProtocolInfo implements DocumentInfo{
     private String GUID;
     private String regNum;
     private String type;

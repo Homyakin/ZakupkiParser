@@ -2,7 +2,7 @@ package ru.homyakin.documentsinfo;
 
 import java.util.Date;
 
-public class ContractCompletingInfo {
+public class ContractCompletingInfo implements DocumentInfo{
     private String GUID;
     private String regNum;
     private String modification;

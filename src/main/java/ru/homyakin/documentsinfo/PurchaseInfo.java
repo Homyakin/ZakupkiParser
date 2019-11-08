@@ -5,7 +5,7 @@ import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PurchaseInfo {
+public class PurchaseInfo implements DocumentInfo{
     private String number;
     private String name;
     private String GUID;

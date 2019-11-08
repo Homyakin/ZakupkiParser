@@ -27,7 +27,7 @@ public class ZakupkiDatabase {
         try {
             conn = DriverManager.getConnection(connectionURL, USER, PSSWD);
         } catch (SQLException e) {
-            //TODO custom exception
+            //TODO add log and custom RTE
             throw new RuntimeException();
         }
     }

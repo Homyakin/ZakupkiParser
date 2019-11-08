@@ -4,7 +4,7 @@ import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
 
 import java.util.List;
 
-public class LotItemInfo {
+public class LotItemInfo implements DocumentInfo{
     private String GUID;
     private String OKDP;
     private String OKPD;

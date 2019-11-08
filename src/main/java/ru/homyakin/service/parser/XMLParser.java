@@ -1,4 +1,4 @@
-package ru.homyakin.service;
+package ru.homyakin.service.parser;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -6,7 +6,7 @@ import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.events.XMLEvent;
 import java.io.InputStream;
 
-class XMLParser implements AutoCloseable {
+public class XMLParser implements AutoCloseable {
     private static final XMLInputFactory FACTORY = XMLInputFactory.newInstance();
     private XMLStreamReader reader;
 

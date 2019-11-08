@@ -1,6 +1,7 @@
-package ru.homyakin.service;
+package ru.homyakin.service.parser;
 
 import ru.homyakin.documentsinfo.ContractInfo;
+import ru.homyakin.documentsinfo.DocumentInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.ContractPositionInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.CurrencyInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
@@ -8,6 +9,8 @@ import ru.homyakin.documentsinfo.subdocumentsinfo.OKInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.PurchaseTypeInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
 import ru.homyakin.exceptions.FileIsEmptyException;
+import ru.homyakin.service.parser.XMLParser;
+import ru.homyakin.service.parser.interfaces.DocumentParser;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
@@ -22,7 +25,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContractParser {
+public class ContractParser implements DocumentParser {
     private XMLParser processor;
     private String filePath;
 
@@ -177,7 +180,9 @@ public class ContractParser {
         return list;
     }
 
-    public ContractInfo parseContract() throws XMLStreamException {
+
+
+    public DocumentInfo parse() throws XMLStreamException {
         ContractInfo contract;
         processor.findStartBlock("contractData");
         String GUID = null;

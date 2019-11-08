@@ -3,8 +3,8 @@ package ru.homyakin.service;
 import ru.homyakin.database.ZakupkiDatabase;
 import ru.homyakin.documentsinfo.ContractInfo;
 import ru.homyakin.exceptions.FileIsEmptyException;
+import ru.homyakin.service.parser.ContractParser;
 
-import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -43,7 +43,7 @@ public class ZipService {
                 fout.close();
                 if ("contract".equals(folder)) {
                     ContractParser contractParser = new ContractParser(path + "/unzip/" + name);
-                    ContractInfo contract = contractParser.parseContract();
+                    ContractInfo contract = (ContractInfo) contractParser.parse();
                     db.insertContract(contract);
                 }
             }

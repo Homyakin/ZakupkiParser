@@ -5,7 +5,7 @@ import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
 
 import java.util.ArrayList;
 
-public class LotInfo {
+public class LotInfo implements DocumentInfo{
     private String GUID;
     private String name;
     private String NMC;

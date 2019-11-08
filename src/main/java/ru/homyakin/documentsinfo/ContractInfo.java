@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class ContractInfo {
+public class ContractInfo implements DocumentInfo{
     private PurchaseTypeInfo purchaseType;
     private String GUID;
     private BigDecimal price;
