@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by A (A) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/purchasePlanAdditionalPosition/1" xmlns:p="http://zakupki.gov.ru/223fz/purchasePlan/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/purchasePlanAdditionalPosition/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/223fz/purchasePlan/1" schemaLocation="purchasePlan.xsd"/>
+	<xs:element name="purchasePlanAdditionalPosition">
+		<xs:annotation>
+			<xs:documentation>План закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="purchasePlanAdditionalPositionItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="purchasePlanAdditionalPositionDataType">
+		<xs:annotation>
+			<xs:documentation>План закупки</xs:documentation>
+		</xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="p:basePurchasePlanDataType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+	    <xs:complexType name="purchasePlanAdditionalPositionItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="purchasePlanAdditionalPositionData" type="purchasePlanAdditionalPositionDataType">
+                        <xs:annotation>
+                            <xs:documentation>План закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/conclusion/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1" xmlns:xsl="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://zakupki.gov.ru/223fz/conclusion/1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:element name="planMonitoringConclusion">
+        <xs:annotation>
+            <xs:documentation>Сведения о заключении/уведомлении по оценке/мониторингу плана</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="controlAgency" type="t:customerInfo2Type">
+                    <xs:annotation>
+                        <xs:documentation>Данные организации, проводящей оценку/мониторинг</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="conclusion">
+                    <xs:annotation>
+                        <xs:documentation>Данные о заключении/уведомлении</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="issueDate" type="xs:date">
+                                <xs:annotation>
+                                    <xs:documentation>Дата выдачи</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="issueDay" type="xs:int">
+                                <xs:annotation>
+                                    <xs:documentation>День выдачи</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="issueMonth" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Месяц выдачи</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="issueYear" type="xs:int">
+                                <xs:annotation>
+                                    <xs:documentation>Год выдачи</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="evaluationDate" type="xs:date">
+                                <xs:annotation>
+                                    <xs:documentation>Дата проведения</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="evaluationDay" type="xs:int">
+                                <xs:annotation>
+                                    <xs:documentation>День проведения</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="evaluationMonth" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Месяц проведения</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="evaluationYear" type="xs:int">
+                                <xs:annotation>
+                                    <xs:documentation>Год проведения</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="regNumber" type="conclusionRegNumberType">
+                                <xs:annotation>
+                                    <xs:documentation>Реестровый номер положительного заключения/уведомления</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="planInformationType" type="t:planInformationType">
+                                <xs:annotation>
+                                    <xs:documentation>Тип сведений плана</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+                            <xs:element name="discrepancyIndicators" type="discrepancyIndicatorValue" minOccurs="0" maxOccurs="3">
+                                <xs:annotation>
+                                   <xs:documentation>Индикаторы несоответствия</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="discrepancyPositions" type="discrepancyPositionType" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>Строки несоответствия отрицательного заключения, уведомления о несоответствии</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+                            <xs:element name="discrepancyNotificationInfo" type="discrepancyNotificationInfoType" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Сведения об уведомлении о несоответствии</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notObservingAnnualVolume" type="xs:boolean" maxOccurs="1" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Признак "Не соблюден годовой объем закупки у субъектов малого и среднего предпринимательства"
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notObservingAnnualVolumeSMB" type="xs:boolean" maxOccurs="1" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Признак "Не соблюден годовой объем закупки, который планируется осуществить по результатам закупки,
+                                        участниками которой являются только субъекты малого и среднего предпринимательства"
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="noApprovedCustomerListGws" type="xs:boolean" maxOccurs="1" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Признак "Отсутствует утвержденный заказчиком перечень товаров, работ, услуг, закупка которых осуществляется у
+                                        субъектов малого и среднего предпринимательства"
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="planNotCorrespondListGws" type="xs:boolean" maxOccurs="1" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Признак "Раздел проекта плана закупки, предусматривающий осуществление закупки у субъектов малого и среднего предпринимательства,
+                                        не соответствует перечню товаров, работ, услуг, закупка которых осуществляется у субъектов малого и среднего предпринимательства"
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notObservingPlannedHiTechAnnualVolume" type="xs:boolean" maxOccurs="1" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Признак "Не соблюден годовой объем закупки инновационной продукции, высокотехнологичной продукции (в части закупки у субъектов малого и среднего предпринимательства) 
+                                        который планируется осуществить по результатам закупки"
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notObservingHiTechAnnualVolume" type="xs:boolean" maxOccurs="1" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Признак «Не соблюден годовой объем закупки инновационной продукции, высокотехнологичной продукции
+                                        (в части закупки у субъектов малого и среднего предпринимательства)»
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notRequirements" type="xs:boolean" maxOccurs="1" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Признак «Не соблюдены требования, установленные Правительством Российской Федерации, к содержанию годового отчета о
+                                        закупке у субъектов малого и среднего предпринимательства»
+                                        +
+                                        Признак «Не соблюдены требования, установленные Правительством Российской Федерации, к содержанию годового отчета о
+                                        закупке инновационной продукции (в части закупки у субъектов малого и среднего предпринимательства)»
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="plan">
+                    <xs:annotation>
+                        <xs:documentation>Данные о плане</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="planVersion" type="xs:long">
+                                <xs:annotation>
+                                    <xs:documentation>Версия сведений</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="regNumber" type="t:registrationNumberType" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Реестровый номер плана</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="customerAgency" type="t:customerInfo2Type">
+                                <xs:annotation>
+                                    <xs:documentation>Заказчик плана закупок</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="planType" type="planType" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>Вид плана закупки (ТРУ или инновационный)</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="year" type="xs:long" >
+                                <xs:annotation>
+                                    <xs:documentation>Отчетный период</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="discrepancyPositionType">
+        <xs:annotation>
+            <xs:documentation>Строки несоответствия отрицательного заключения, уведомления о несоответствии</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="positionNumber" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Номер позиции плана</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractSubject" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Предмет договора</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="discrepancyInfo" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Сведения о несоответствии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="discrepancyIndicatorValue">
+        <xs:restriction base="xs:int">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Признак «Не соблюдение годового объема закупки»</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Признак «Отсутствие утвержденного заказчиком перечня»</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Признак «Не соответствие закупок утвержденному перечню товаров, работ, услуг»</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="discrepancyNotificationInfoType">
+        <xs:annotation>
+            <xs:documentation>Сведения об уведомлении о несоответствии</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="issueDay" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>День выдачи</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="issueMonth" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Месяц выдачи</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="issueYear" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Год выдачи</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="regNumber">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер уведомления</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:pattern value="\w(\d{10}|\d{16})"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="conclusionRegNumberType">
+        <xs:annotation>
+            <xs:documentation>Реестровый номер положительного заключения/уведомления</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="t:nonEmptyString">
+            <xs:pattern value="\w(\d{10}|\d{16})"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="planType">
+        <xs:annotation>
+            <xs:documentation>Вид плана закупки</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="COMMODITY">
+                <xs:annotation>
+                    <xs:documentation>ТРУ</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="INNOVATION">
+                <xs:annotation>
+                    <xs:documentation>Инновационный</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://zakupki.gov.ru/223fz/exclusion/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1"
+           targetNamespace="http://zakupki.gov.ru/223fz/exclusion/1"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+
+    <xs:element name="exclusion">
+        <xs:annotation>
+            <xs:documentation>Уведомление об исключении сведений</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="exclusionItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="exclusionItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="exclusionData" type="exclusionDataType">
+                        <xs:annotation>
+                            <xs:documentation>Уведомление об исключении сведений</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="exclusionDataType">
+        <xs:annotation>
+            <xs:documentation>Положение о закупке товаров, работ, услуг</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер версии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publishDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения версии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="firstPublishDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата исключения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="excAgencyName">
+                <xs:annotation>
+                    <xs:documentation>Наименование организации, осуществляющей исключение</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="200"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="excAgencyInn">
+                <xs:annotation>
+                    <xs:documentation>ИНН организации, осуществляющей исключение</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="excAgencyKpp">
+                <xs:annotation>
+                    <xs:documentation>КПП организации, осуществляющей исключение</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="9"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="exclusionEntityTypeName">
+                <xs:annotation>
+                    <xs:documentation>Наименование типа исключаемых сведений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="regNum">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер (идентификатор сведений)</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="relatedDataPublishedDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="placerAgencyName">
+                <xs:annotation>
+                    <xs:documentation>Наименование организации, разместившей последнюю версию сведений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="placerAgencyInn">
+                <xs:annotation>
+                    <xs:documentation>ИНН организации, разместившей последнюю версию сведений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="placerAgencyKpp">
+                <xs:annotation>
+                    <xs:documentation>КПП организации, разместившей последнюю версию сведений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="9"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="baseForExclusionType">
+                <xs:annotation>
+                    <xs:documentation>Основание исключения сведений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="baseForExclusionName">
+                <xs:annotation>
+                    <xs:documentation>Наименование основания из справочника</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="orderAgencyName">
+                <xs:annotation>
+                    <xs:documentation>Наименование организации, выдавшей предписание</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="orderAgencyInn">
+                <xs:annotation>
+                    <xs:documentation>ИНН организации, выдавшей предписание</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="orderAgencyKpp">
+                <xs:annotation>
+                    <xs:documentation>КПП организации, выдавшей предписание</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="docNameBaseForExclusion">
+                <xs:annotation>
+                    <xs:documentation>Наименование документа - основания исключения сведений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="baseForExclusionDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата документа - основания исключения сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="docNumBaseForExclusion">
+                <xs:annotation>
+                    <xs:documentation>Номер документа - основания исключения сведений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="startConfirmDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата вступления в силу</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="additionalInfo" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Дополнительная информация</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by A (A) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/dishonestSupplier/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1"
+           targetNamespace="http://zakupki.gov.ru/223fz/dishonestSupplier/1"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+
+    <xs:complexType name="dishonestApplicationRejectItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="dishonestApplicationRejectData" type="dishonestApplicationRejectDataType">
+                        <xs:annotation>
+                            <xs:documentation>Отклоненная заявка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="dishonestApplicationRejectDataType">
+        <xs:annotation>
+            <xs:documentation>Отклоненная заявка</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rejectReason">
+                <xs:annotation>
+                    <xs:documentation>Основание для отклонения заявки</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="createDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата отклонения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="supplierName" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование юридического лица или ФИО физического лица</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="controlAgencyName" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Уполномоченный орган, включающий сведения в реестр</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="includingReason" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Причина внесения в реестр</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="applicationNumber" type="applicationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="dishonestSupplierIncludeType">
+        <xs:annotation>
+            <xs:documentation>Включение сведений в Реестр</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="dishonestSupplierIncludeItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="dishonestSupplierIncludeItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="dishonestSupplierIncludeData" type="dishonestSupplierIncludeDataType">
+                        <xs:annotation>
+                            <xs:documentation>Включение сведений в Реестре</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="commonApplicationInfoType">
+        <xs:annotation>
+            <xs:documentation>Информация о заявке</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="includeReason" type="includeReasonType">
+                <xs:annotation>
+                    <xs:documentation>Причина внесения в реестр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="includeReasonText" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Причина внесения в реестр</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="controlAgency" type="t:customerMainInfoType">
+                <xs:annotation>
+                    <xs:documentation>Уполномоченный орган, осуществляющий включение сведений в реестр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="topSecret" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Признак - является гос. тайной</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="supplier" type="supplierInfoType">
+                <xs:annotation>
+                    <xs:documentation>Информация о поставщике</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="purchaseInfo" type="purchaseInfoDataType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Информация о закупке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractInfo" type="t:contractInfoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Информация о договоре</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractItems" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Информация о товарах (работах, услугах)</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="contractItem" type="contractItemType" minOccurs="1" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Информация о товаре, работе, услуге</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detachedDepart" type="detachedDepartType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Информация об обособленном подразделении</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="detachedDepartType">
+        <xs:annotation>
+            <xs:documentation>Информация об обособленном поставщике</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name">
+                <xs:annotation>
+                    <xs:documentation>Наименование</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="inn" type="t:innType">
+                <xs:annotation>
+                    <xs:documentation>ИНН</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="kpp" type="t:kppType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>КПП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="address">
+                <xs:annotation>
+                    <xs:documentation>Полный адрес поставщика</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="2036"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="email" type="t:emailType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Email</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="dishonestSupplierIncludeDataType">
+        <xs:annotation>
+            <xs:documentation>Включение сведений в Реестре</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="registrationNumber" type="dishonestNumberType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Регистрационный номер сведений о НП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="includeReasonInfo">
+                <xs:annotation>
+                    <xs:documentation>Основание для включения в реестр</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="applicationNumber" type="applicationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Номер заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="commonApplicationInfo" type="commonApplicationInfoType">
+                <xs:annotation>
+                    <xs:documentation>Информация о заявке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="createDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата формирования сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!--Exclude-->
+    <xs:element name="dishonestSupplierExcludeType">
+        <xs:annotation>
+            <xs:documentation>Исключение сведений из Реестра</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="dishonestSupplierExcludeItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="dishonestSupplierExcludeItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="dishonestSupplierExcludeData" type="dishonestSupplierExcludeDataType">
+                        <xs:annotation>
+                            <xs:documentation>Исключение сведений из Реестре НП</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="dishonestSupplierExcludeDataType">
+        <xs:annotation>
+            <xs:documentation>Исключение сведений из Реестре НП</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор Исключения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="registrationNumber" type="dishonestNumberType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Регистрационный номер сведений о НП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="includeDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата включения в реестр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="includeReasonInfo">
+                <xs:annotation>
+                    <xs:documentation>Основание для включения в реестр</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="commonApplicationInfo" type="commonApplicationInfoType">
+                <xs:annotation>
+                    <xs:documentation>Информация о заявке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="createDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата формирования Исключения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения Исключения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="decisionExcludeDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата принятия решения о исключении</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="excludeReason" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Основание для исключения из реестра</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--Exclede -end-->
+
+    <xs:element name="dishonestSupplierReject">
+        <xs:annotation>
+            <xs:documentation>Отказ в размещении сведений в Реестре</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="dishonestSupplierRejectItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="dishonestSupplierRejectItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="dishonestSupplierRejectData" type="dishonestSupplierRejectDataType">
+                        <xs:annotation>
+                            <xs:documentation>Отказ в размещении сведений в Реестре</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="dishonestSupplierRejectDataType">
+        <xs:annotation>
+            <xs:documentation>Отказ в размещении сведений в Реестре</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор Отказа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="registrationNumber" type="dishonestNumberType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Регистрационный номер сведений о НП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="includeReasonInfo">
+                <xs:annotation>
+                    <xs:documentation>Основание для включения в реестр</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="applicationNumber" type="applicationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Номер заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="commonApplicationInfo" type="commonApplicationInfoType">
+                <xs:annotation>
+                    <xs:documentation>Информация о заявке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rejectReason" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Причина отказа в размещении</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="createDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата формирования отказа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения отказа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="dishonestApplication">
+        <xs:annotation>
+            <xs:documentation>Сведения заявки</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="dishonestApplicationItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="dishonestApplicationItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="dishonestApplicationData" type="dishonestApplicationDataType">
+                        <xs:annotation>
+                            <xs:documentation>Cведения заявки на включение в Реестр</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="dishonestApplicationStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус заявки:
+                F - Редактирование
+                P - Размещено
+                I - Недействительно
+                M - Проект изменений
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Редактирование</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Размещено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Недействительно</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Проект изменений</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dishonestSupplierStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус сведений о НП:
+                F - Редактирование
+                P - Размещено
+                I - Недействительно
+                M - Проект изменений
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Редактирование</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Размещено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Недействительно</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Проект изменений</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dishonestApplicationApproveStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус заявки:
+                OR - На рассмотрении
+                RJ - Отклонена
+                AC - Принята
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OR">
+                <xs:annotation>
+                    <xs:documentation>На рассмотрении</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RJ">
+                <xs:annotation>
+                    <xs:documentation>Отклонена</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AC">
+                <xs:annotation>
+                    <xs:documentation>Принята</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dishonestSupplierApproveStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус включения сведений:
+                RG - В реестре
+                AR - В архиве
+                PR - Отказ
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RG">
+                <xs:annotation>
+                    <xs:documentation>В реестре</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AR">
+                <xs:annotation>
+                    <xs:documentation>В архиве</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PR">
+                <xs:annotation>
+                    <xs:documentation>Отказ</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="dishonestApplicationDataType">
+        <xs:annotation>
+            <xs:documentation>Cведения заявки на включение в Реестр</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="placer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, создавшей заявку</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customer" type="agencyInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации заказчика</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="registrationNumber" type="applicationNumberType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер редакции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обоснование внесения изменений </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlKisRmis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="status" type="dishonestApplicationStatusType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Статус заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="createDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата создания заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="commonApplicationInfo" type="commonApplicationInfoType">
+                <xs:annotation>
+                    <xs:documentation>Информация о заявке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="approveStatus" type="dishonestApplicationApproveStatusType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Статус принятия</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="reviewDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата подачи заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="approveDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата принятия заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rejectionDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата отклонения заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rejectionReason" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Причина отказа</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="agencyInfoType">
+        <xs:annotation>
+            <xs:documentation>Информация об организации</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:customerMainInfoType">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:element name="address" type="t:extendedAddressType">
+                            <xs:annotation>
+                                <xs:documentation>Полный адрес организации</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="shortAddress">
+                            <xs:annotation>
+                                <xs:documentation>Адрес (место нахождения)</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="t:nonEmptyString">
+                                    <xs:maxLength value="2000"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:element name="isCustomerDetached" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="supplierInfoType">
+        <xs:annotation>
+            <xs:documentation>Информация о поставщике</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name">
+                <xs:annotation>
+                    <xs:documentation>Наименование</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="inn" type="t:innType">
+                <xs:annotation>
+                    <xs:documentation>ИНН</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="kpp" type="t:kppType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>КПП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="address" type="t:extendedAddressType">
+                <xs:annotation>
+                    <xs:documentation>Полный адрес поставщика</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="email" type="t:emailType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Email</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="contractItemType">
+        <xs:annotation>
+            <xs:documentation>Информация о товаре, работе, услуге</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        	
+        		<xs:element name="okpd2" type="t:okpd2ProductType">
+            		<xs:annotation>
+            			<xs:documentation>ОКПД2</xs:documentation>
+            		</xs:annotation>
+            	</xs:element>
+            	
+            <xs:element name="okved2" type="t:okved2ProductType" minOccurs="0">
+                	<xs:annotation>
+                    	<xs:documentation>ОКВЭД2</xs:documentation>
+                	</xs:annotation>
+            	</xs:element>
+
+            <xs:element name="name" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование товаров, работ, услуг</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="purchaseInfoDataType">
+        <xs:annotation>
+            <xs:documentation>Информация о закупке</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:purchaseInfoType">
+                <xs:sequence>
+                    <xs:element name="lotInfo" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о лоте</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="purchaseDate" type="xs:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата проведения закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="summingupDate" type="xs:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата подведения итогов закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="cancellationDate" type="xs:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата признания закупки несостоявшейся</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="documentRequisites" type="documentRequisitesType">
+                        <xs:annotation>
+                            <xs:documentation>Реквизиты подтверждающего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="dishonestApplicationRejectType">
+        <xs:annotation>
+            <xs:documentation>Отклоненная заявка</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="dishonestApplicationRejectItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="dishonestSupplier">
+        <xs:annotation>
+            <xs:documentation>Сведения о недобросовестном поставщике</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="dishonestSupplierItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="dishonestSupplierItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="dishonestSupplierData" type="dishonestSupplierDataType">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о недобросовестном поставщике</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="includeReasonType">
+        <xs:annotation>
+            <xs:documentation>Причина внесения в реестр</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="WD">
+                <xs:annotation>
+                    <xs:documentation>Уклонение победителя от заключения договора</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AWD">
+                <xs:annotation>
+                    <xs:documentation>Уклонение участника после победителя от заключения договора</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OPD">
+                <xs:annotation>
+                    <xs:documentation>Уклонение единственного участника от заключения договора</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CD">
+                <xs:annotation>
+                    <xs:documentation>Расторжение договора</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="dishonestSupplierDataType">
+        <xs:annotation>
+            <xs:documentation>Сведения о недобросовестном поставщике</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="placer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, создавшей сведения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="registrationNumber" type="dishonestNumberType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Регистрационный номер сведений о НП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер редакции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="dishonestSupplierStatusType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Статус сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обоснование внесения изменений </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlKisRmis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="createDateTime" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>Дата создания сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="applicationNumber" type="applicationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Номер заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="applicationGuid" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор заявки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="includeReasonInfo">
+                <xs:annotation>
+                    <xs:documentation>Основание для включения в реестр</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="commonApplicationInfo" type="commonApplicationInfoType">
+                <xs:annotation>
+                    <xs:documentation>Информация о заявке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="approveStatus" type="dishonestSupplierApproveStatusType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Статус включения сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="includeDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата включения в реестр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="excludeDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата исключения из реестра</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="documentRequisitesType">
+        <xs:annotation>
+            <xs:documentation>Реквизиты подтверждающего документа</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="documentNumber">
+                <xs:annotation>
+                    <xs:documentation>Номер</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="200"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="documentName">
+                <xs:annotation>
+                    <xs:documentation>Название</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="500"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="documentDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="applicationNumberType">
+        <xs:annotation>
+            <xs:documentation>Регистрационный номер заявки</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="t:nonEmptyString">
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="dishonestNumberType">
+        <xs:annotation>
+            <xs:documentation>Регистрационный номер сведений о НП</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="Р\d{7}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:performanceContract xsi:schemaLocation="http://zakupki.gov.ru/223/integration/schema/TFF-7.5 http://zakupki.gov.ru/223/integration/schema/TFF-7.5/Types.xsd" xmlns="http://zakupki.gov.ru/223fz/types/1" xmlns:ns20="http://zakupki.gov.ru/223fz/webRequest/1" xmlns:ns10="http://zakupki.gov.ru/223fz/purchasePlanAdditionalPosition/1" xmlns:ns11="http://zakupki.gov.ru/223fz/purchasePlanProjectAdditionalPosition/1" xmlns:ns12="http://zakupki.gov.ru/223fz/disagreementProtocol/1" xmlns:ns13="http://zakupki.gov.ru/223fz/reference/1" xmlns:ns14="http://zakupki.gov.ru/223fz/stopCommodity/1" xmlns:ns15="http://zakupki.gov.ru/223fz/exclusion/1" xmlns:ns16="http://zakupki.gov.ru/223fz/purchase/1" xmlns:ns17="http://zakupki.gov.ru/223fz/machineryListInfo/1" xmlns:ns18="http://zakupki.gov.ru/223fz/revenue/1" xmlns:ns19="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns:ns2="http://zakupki.gov.ru/223fz/contract/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://zakupki.gov.ru/223fz/dishonestSupplier/1" xmlns:ns4="http://zakupki.gov.ru/223fz/purchasePlan/1" xmlns:ns5="http://zakupki.gov.ru/223fz/missedNotice/1" xmlns:ns6="http://zakupki.gov.ru/223fz/complaint/1" xmlns:ns7="http://zakupki.gov.ru/223fz/notificationIssue/1" xmlns:ns8="http://zakupki.gov.ru/223fz/decisionSuspension/1" xmlns:ns9="http://zakupki.gov.ru/223fz/purchasePlanProject/1">
+    <header>
+        <guid>d3561864-17c4-4497-9c0f-f9725937c866</guid>
+        <createDateTime>2018-01-18T15:29:30</createDateTime>
+    </header>
+    <ns2:body>
+        <ns2:item>
+            <guid>e8c84ac9-7ac8-4ac4-94fe-b75f3d58515a</guid>
+            <ns2:performanceContractData>
+                <ns2:guid>58186ba3-ee3f-424e-a604-57061e26ab86</ns2:guid>
+                <ns2:registrationNumber>80105015580170000110003</ns2:registrationNumber>
+                <ns2:urlOOS>https://zakupki.gov.ru/223/contract/private/completing/info/view.html?id=4512421</ns2:urlOOS>
+                <ns2:createDateTime>2017-06-30T13:16:26</ns2:createDateTime>
+                <ns2:customer>
+                    <mainInfo>
+                        <fullName>ФЕДЕРАЛЬНОЕ БЮДЖЕТНОЕ  УЧРЕЖДЕНИЕ "ГОСУДАРСТВЕННЫЙ РЕГИОНАЛЬНЫЙ ЦЕНТР  СТАНДАРТИЗАЦИИ, МЕТРОЛОГИИ И  ИСПЫТАНИЙ В РЕСПУБЛИКЕ АДЫГЕЯ"</fullName>
+                        <shortName>ФБУ "АДЫГЕЙСКИЙ ЦСМ"</shortName>
+                        <iko>80105015580010501001</iko>
+                        <inn>0105015580</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100694701</ogrn>
+                        <legalAddress>385020, Респ Адыгея, г Майкоп, ул 8 Марта, дом 1</legalAddress>
+                        <postalAddress>385020, Респ Адыгея, г Майкоп, ул 8 Марта, дом 1, офис (квартира) 1</postalAddress>
+                        <phone>7-8772-534857</phone>
+                        <fax>7-8772-534857</fax>
+                        <email>csm01@bk.ru</email>
+                        <okato>79401000000</okato>
+                        <okpo>02568986</okpo>
+                    </mainInfo>
+                </ns2:customer>
+                <ns2:placer>
+                    <mainInfo>
+                        <fullName>ФЕДЕРАЛЬНОЕ БЮДЖЕТНОЕ  УЧРЕЖДЕНИЕ "ГОСУДАРСТВЕННЫЙ РЕГИОНАЛЬНЫЙ ЦЕНТР  СТАНДАРТИЗАЦИИ, МЕТРОЛОГИИ И  ИСПЫТАНИЙ В РЕСПУБЛИКЕ АДЫГЕЯ"</fullName>
+                        <shortName>ФБУ "АДЫГЕЙСКИЙ ЦСМ"</shortName>
+                        <iko>80105015580010501001</iko>
+                        <inn>0105015580</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100694701</ogrn>
+                        <legalAddress>385020, Респ Адыгея, г Майкоп, ул 8 Марта, дом 1</legalAddress>
+                        <postalAddress>385020, Респ Адыгея, г Майкоп, ул 8 Марта, дом 1, офис (квартира) 1</postalAddress>
+                        <phone>7-8772-534857</phone>
+                        <fax>7-8772-534857</fax>
+                        <email>csm01@bk.ru</email>
+                        <okato>79401000000</okato>
+                        <okpo>02568986</okpo>
+                    </mainInfo>
+                </ns2:placer>
+                <ns2:publicationDate>2018-01-18T15:29:30</ns2:publicationDate>
+                <ns2:status>P</ns2:status>
+                <ns2:version>1</ns2:version>
+                <ns2:completed>true</ns2:completed>
+                <ns2:attachments>
+                    <totalDocumentsCount>1</totalDocumentsCount>
+                    <document>
+                        <guid>c19d850c-f7a7-4410-8088-0b50fec3a952</guid>
+                        <createDateTime>2018-01-18T15:29:04</createDateTime>
+                        <fileName>3 кв.rar</fileName>
+                        <description>3 кв</description>
+                        <url>https://zakupki.gov.ru/223/contract/private/download/download.html?id=21802757</url>
+                        <registrationNumber>80105015580170000110004</registrationNumber>
+                    </document>
+                </ns2:attachments>
+                <ns2:hasPenalty>false</ns2:hasPenalty>
+                <ns2:contractRegNumber>80105015580170000110000</ns2:contractRegNumber>
+                <ns2:contractInfo>
+                    <ns2:guid>cbadc360-1ad0-4beb-a87e-9c8502010fc9</ns2:guid>
+                    <ns2:name>155-Т</ns2:name>
+                    <ns2:agencyName>ФБУ "АДЫГЕЙСКИЙ ЦСМ"</ns2:agencyName>
+                    <ns2:supplierName>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "КУБАНЬ-СЕРВИС"</ns2:supplierName>
+                    <ns2:lotInfo>Поставка ГСМ на 3 кв.2017 г.</ns2:lotInfo>
+                    <ns2:contractDate>2017-06-29</ns2:contractDate>
+                </ns2:contractInfo>
+                <ns2:positions>
+                    <ns2:position>
+                        <ns2:ordinal>1</ns2:ordinal>
+                        <ns2:paymentDate>2017-09-30</ns2:paymentDate>
+                        <ns2:price>264204.07</ns2:price>
+                        <ns2:currency>
+                            <code>RUB</code>
+                            <digitalCode>643</digitalCode>
+                            <name>Российский рубль</name>
+                        </ns2:currency>
+                        <ns2:rubPrice>264204.07</ns2:rubPrice>
+                        <ns2:prepaid>false</ns2:prepaid>
+                        <ns2:docs>
+                            <ns2:doc>
+                                <ns2:ordinal>1</ns2:ordinal>
+                                <ns2:date>2017-09-30</ns2:date>
+                                <ns2:code>01</ns2:code>
+                                <ns2:name>товарная накладная</ns2:name>
+                                <ns2:number>71169</ns2:number>
+                                <ns2:contractPosition>
+                                    <ns2:guid>bb417fd7-93b1-4f03-a788-a67bb329b089</ns2:guid>
+                                    <ns2:name>Услуги по оптовой торговле твердым, жидким и газообразным топливом и связанными продуктами</ns2:name>
+                                    <ns2:okpd2>
+                                        <code>46.71</code>
+                                        <name>Услуги по оптовой торговле твердым, жидким и газообразным топливом и связанными продуктами</name>
+                                    </ns2:okpd2>
+                                </ns2:contractPosition>
+                                <ns2:okei>
+                                    <code>112</code>
+                                    <name>Литр;^кубический дециметр</name>
+                                </ns2:okei>
+                                <ns2:qty>7100</ns2:qty>
+                            </ns2:doc>
+                        </ns2:docs>
+                    </ns2:position>
+                    <ns2:total>264204.07</ns2:total>
+                </ns2:positions>
+            </ns2:performanceContractData>
+        </ns2:item>
+    </ns2:body>
+</ns2:performanceContract>

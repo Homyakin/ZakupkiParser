@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/missedNotice/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1" xmlns:xsl="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://zakupki.gov.ru/223fz/missedNotice/1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:element name="missedNotice">
+		<xs:annotation>
+			<xs:documentation>Извещения об отсутствии необходимости проведения </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="missedNoticeItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="missedNoticeItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="missedNoticeData" type="missedNoticeData">
+                        <xs:annotation>
+                            <xs:documentation>Извещения об отсутствии необходимости проведения </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="missedNoticeData">
+    	<xs:annotation>
+        	<xs:documentation>Извещения об отсутствии необходимости проведения</xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+    		<xs:element name="placementDate" type="xs:date" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дата направления извещения</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="type" type="missedNoticeType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Тип проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regNumber" type="t:registrationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер плана</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="planInformationType" type="t:planInformationType">
+                <xs:annotation>
+                    <xs:documentation>Тип сведений плана</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="authorityAgency" type="t:customerInfo2Type">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, проводящей оценку/мониторинг</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customerAgency" type="t:customerInfo2Type">
+                <xs:annotation>
+                    <xs:documentation>Заказчик</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+    		<xs:element name="additionalInfo" type="xs:string" minOccurs="0" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дополнительная информация</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="missedNoticeType">
+		<xs:annotation>
+			<xs:documentation>Тип проверки</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A">
+				<xs:annotation>
+					<xs:documentation>Оценка</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="M">
+				<xs:annotation>
+					<xs:documentation>Мониторинг</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

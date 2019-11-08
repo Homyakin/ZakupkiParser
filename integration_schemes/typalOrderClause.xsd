@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 (http://www.altova.com) by Alexander (Lanit) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/typalOrderClauseList/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/typalOrderClauseList/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+	<xs:element name="typalOrderClause">
+		<xs:annotation>
+			<xs:documentation>Типовое положение о закупке товаров, работ, услуг</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="typalOrderClauseItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="typalOrderClauseItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="typalOrderClauseData" type="typalOrderClauseDataType">
+						<xs:annotation>
+							<xs:documentation>Типовое положение о закупке товаров, работ, услуг</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="typalOrderClauseDataType">
+		<xs:annotation>
+			<xs:documentation>Типовое положение о закупке товаров, работ, услуг</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="placeDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата размещения сведений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="creator" type="t:customerInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организация, создавшая типовое положение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование типового положения</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="approveDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата утверждения типового положения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useForBaseDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Срок изменения или утверждения положения о закупке на основании типового положения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractSignPeriod" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Срок заключения договора</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="purchaseOrder" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Порядок подготовки и (или) осуществления закупки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="additionalInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="version" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер версии сведений</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long">
+						<xs:minInclusive value="1"/>
+						<xs:totalDigits value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="modificationReason" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Причина внесения изменений</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="smbParticipationSpecifics" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Особенности участия субъектов малого и среднего предпринимательства</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="purchaseMethod" type="purchaseMethodType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о способах закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customerInfo" type="t:customerInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о заказчиках, применение типового положения о закупке для которых является обязательным</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="purchaseMethodType">
+		<xs:annotation>
+			<xs:documentation>Сведения о способах закупки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="purchaseMethodName">
+				<xs:annotation>
+					<xs:documentation>Название способа закупки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="digitalPurchase" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак закупки в электронном виде</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phasesNumber" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество этапов закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="conditionsOfUse" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Условия применения способа закупки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

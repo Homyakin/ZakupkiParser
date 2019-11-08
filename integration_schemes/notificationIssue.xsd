@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/notificationIssue/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1" xmlns:xsl="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://zakupki.gov.ru/223fz/notificationIssue/1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+
+
+    <xs:element name="notificationIssue">
+        <xs:annotation>
+            <xs:documentation>Уведомление о выдаче отрицательного заключения</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="notificationIssueItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="notificationIssueItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="notificationIssueData" type="notificationIssueData">
+                        <xs:annotation>
+                            <xs:documentation>Уведомление о выдаче отрицательного заключения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="notificationIssueData">
+        <xs:annotation>
+            <xs:documentation>Уведомление о выдаче отрицательного заключения</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор уведомления о выдаче</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="controlAgency" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Контролирующий органа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="supervisorAgency" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Антимонопольный орган</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные заказчика</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="placer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, размещающей сведения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="notificationReceiptDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата получения уведомления</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="additionalInfo" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дополнительная информация</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="conclusionComplianceInfo">
+                <xs:annotation>
+                    <xs:documentation>Сведения о выдаче отрицательного заключения</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="conclusionRegNumber" type="conclusionRegNumberType">
+                            <xs:annotation>
+                                <xs:documentation>Реестровый номер отрицательного заключения</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="planRegNumber" type="t:registrationNumberType">
+                            <xs:annotation>
+                                <xs:documentation>Реестровый номер плана закупки</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="issueDate" type="xs:date" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Дата выдачи отрицательного заключения</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="planInformationType" type="t:planInformationType">
+                            <xs:annotation>
+                                <xs:documentation>Тип сведений плана</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="stopCommodityItems" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Сведения о выдаче отрицательного заключения</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ordinalNumber" type="xs:int"/>
+                        <xs:element name="contractSubject" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Предмет договора позиции</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="t:nonEmptyString">
+                                    <xs:maxLength value="2000"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:simpleType name="conclusionRegNumberType">
+        <xs:annotation>
+            <xs:documentation>Реестровый номер положительного заключения/уведомления</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="t:nonEmptyString">
+            <xs:pattern value="\w(\d{10}|\d{16})"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

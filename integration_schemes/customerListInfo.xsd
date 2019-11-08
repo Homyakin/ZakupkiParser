@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/customerListInfo/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/customerListInfo/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:element name="customerListInfo">
+        <xs:annotation>
+            <xs:documentation>Перечень Заказчиков, в отношении которых проводится оценка и мониторинг</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="status" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Допустимые значения (P - Опубликовано, C - Отменено)</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="type" type="type" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Допустимые значения (O - Оценка, M - Мониторинг)</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="authority" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Орган</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="customers" type="customerForList" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Организации</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <!--<xs:element name="agencyWithEntityTree" type="agencyWithEntityTree" minOccurs="0" maxOccurs="unbounded">-->
+                    <!--<xs:annotation>-->
+                        <!--<xs:documentation>Заказчики</xs:documentation>-->
+                    <!--</xs:annotation>-->
+                <!--</xs:element>-->
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="status">
+        <xs:annotation>
+            <xs:documentation>Статус</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="C">
+                <xs:annotation>
+                    <xs:documentation>Отмененная версия</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Актуальная версия</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="type">
+        <xs:annotation>
+            <xs:documentation>Тип</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="O">
+                <xs:annotation>
+                    <xs:documentation>Оценка</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Мониторинг</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="customerForList">
+        <xs:annotation>
+            <xs:documentation>Список организаций</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="listSelectPzGo" type="linkSelectCustomerPzGo" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Дерево выбора реестровых записей</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="listSelectDocumentType" type="linkSelectDocumentType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Дерево выбора типов документов</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customerAgency" type="agency">
+                <xs:annotation>
+                    <xs:documentation>Организация</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="innovVolumeChecked" type="t:innovVolumeChecked">
+                <xs:annotation>
+                    <xs:documentation>Признак «Проверка закупки инновационной продукции»</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="linkSelectCustomerPzGo">
+        <xs:annotation>
+            <xs:documentation>Дерево выбора реестровых записей</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="planRegistryTree" type="planRegistryTree">
+                <xs:annotation>
+                    <xs:documentation>DTO для плана закупок</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="purchaseAccountTree" type="purchaseAccountTree">
+                <xs:annotation>
+                    <xs:documentation>DTO для закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="purchaseAccountInnovationTree" type="purchaseAccountTree">
+                <xs:annotation>
+                    <xs:documentation>DTO для закупки инновационной и высокотехнологичесской продукции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="planRegistryTree">
+        <xs:annotation>
+            <xs:documentation>План закупки</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reestrNumber" type="t:registrationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="periodFrom" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Начало периода</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="periodTo" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Окончание периода</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="purchaseAccountTree">
+        <xs:annotation>
+            <xs:documentation>Закупка</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reestrNumber" type="t:registrationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="year" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Отчетный год</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="linkSelectDocumentType">
+        <xs:annotation>
+            <xs:documentation>Типы документов</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="linkSelectedPeriodType" type="linkSelectedPeriodType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Отчетные периоды</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customerDocumentType" type="customerDocumentType">
+                <xs:annotation>
+                    <xs:documentation>Типы докуметов</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="linkSelectedPeriodType">
+        <xs:annotation>
+            <xs:documentation>Отчетные периоды</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reportingPeriodType" type="reportingPeriodType">
+                <xs:annotation>
+                    <xs:documentation>Отчетный период</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="reportingPeriodType">
+        <xs:annotation>
+            <xs:documentation>Отчетный период</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Наименование периода</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="customerDocumentType">
+        <xs:annotation>
+            <xs:documentation>Тип документа</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Наименование тапи документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="agency">
+        <xs:annotation>
+            <xs:documentation>Заказчик</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Наименование организации</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="inn" type="t:innType">
+                <xs:annotation>
+                    <xs:documentation>ИНН</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="kpp" type="t:kppType">
+                <xs:annotation>
+                    <xs:documentation>КПП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ogrn" type="t:ogrnType">
+                <xs:annotation>
+                    <xs:documentation>ОГРН</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <!--<xs:element name="ipvpCheck" type="t:innovVolumeChecked">-->
+                <!--<xs:annotation>-->
+                    <!--<xs:documentation>Признак «Проверка закупки инновационной продукции»</xs:documentation>-->
+                <!--</xs:annotation>-->
+            <!--</xs:element>-->
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

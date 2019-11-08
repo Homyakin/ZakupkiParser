@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/machineryListInfo/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1" xmlns:xsl="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://zakupki.gov.ru/223fz/machineryListInfo/1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:element name="machineryListInfo">
+		<xs:annotation>
+			<xs:documentation>Перечень перспективных потребностей в продукции машиностроения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="machineryListInfoItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="machineryListInfoItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="machineryListInfoData" type="machineryListInfoData">
+                        <xs:annotation>
+                            <xs:documentation>Перечень перспективных потребностей в продукции машиностроения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="machineryListInfoData">
+    	<xs:annotation>
+        	<xs:documentation>Перечень перспективных потребностей в продукции машиностроения</xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+    		<xs:element name="publicationDate" type="xs:date" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дата размещения сведений</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="customer" type="t:customerInfo2Type">
+                <xs:annotation>
+                    <xs:documentation>Заказчик</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="changeReason" type="xs:string" minOccurs="0" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Причина изменения сведений</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="machineryListInfoItems" type="machineryListInfoItems" minOccurs="1" maxOccurs="unbounded">
+    			<xs:annotation>
+    				<xs:documentation>Перечень перспективных потребностей в продукции машиностроения</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>        		
+    	</xs:sequence>
+    </xs:complexType>
+
+	<xs:complexType name="machineryListInfoItems">
+    	<xs:annotation>
+    		<xs:documentation>Строка перечня</xs:documentation>
+    	</xs:annotation>
+        <xs:sequence>
+        	<xs:element name="orderNumber" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Номер позиции</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Наименование продукции машиностроения</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="performance" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Эксплуатационные характеристики</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="quantity" type="machineryQtyType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Ориентировочное количество продукции</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="price" type="t:money2" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Ориентировочная цена продукции</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="currency" type="t:currencyType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Валюта</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="conclusionDate" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Планируемый срок заключения договора</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="deliveryDate" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Планируемый срок поставки продукции</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="suppliers" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Предполагаемые поставщики продукции</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="recommendedForeignGoods" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Продукция происходит из иностранных государств и рекомендуется к производству на территории РФ</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="recommendedProductTypesInRf" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Виды продукции, которые рекомендуется производить на территории РФ</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="planToUseSingleSupplier" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Планируется произвести закупку у единственного поставщика</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="needAdditionalRequirements" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>При закупке будут установлены дополнительные требования</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+	    	<xs:element name="additionalRequirements" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+	    			<xs:documentation>Дополнительные требования</xs:documentation>
+	    		</xs:annotation>
+	    	</xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="machineryQtyType">
+        <xs:annotation>
+            <xs:documentation>Количество продукции 25 цифр для целой части 5 для дробной</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="25"/>
+            <xs:fractionDigits value="5"/>
+        </xs:restriction>
+    </xs:simpleType> 
+</xs:schema>

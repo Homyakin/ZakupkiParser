@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/agencyBlockInfo/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/agencyBlockInfo/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+	<xs:element name="agencyBlockInfo">
+		<xs:annotation>
+			<xs:documentation>Сведения о блокировке организации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="agency" type="t:customerInfo2Type">
+					<xs:annotation>
+						<xs:documentation>Данные организации</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="reason" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Основания для блокировки</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="t:nonEmptyString">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+                <xs:element name="unblockReason" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Причина для разблокировки</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="t:nonEmptyString">
+                            <xs:maxLength value="2000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

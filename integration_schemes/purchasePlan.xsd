@@ -1,0 +1,1086 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by A (A) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/purchasePlan/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/purchasePlan/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+	<xs:element name="purchasePlan">
+		<xs:annotation>
+			<xs:documentation>План закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="purchasePlanItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="basePurchasePlanDataType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>План закупки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор плана закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customer" type="t:customerInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные заказчика</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="placer" type="t:customerInfoType">
+				<xs:annotation>
+					<xs:documentation>Данные организации, создавшей сведения плана закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="planType" type="planType">
+                <xs:annotation>
+                    <xs:documentation>Вид плана закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice>
+                <xs:element name="purchasePlanItems" type="purchasePlanItemsListType" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Позиции плана</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="innovationPlanItems" type="innovationPlanItemsListType" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Позиции плана инновационной закупки</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:choice>
+				<xs:element name="purchasePlanItemsSMB" type="purchasePlanItemsListType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Позиции плана субъектов малого и среднего бизнеса</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+                <xs:element name="innovationPlanItemsSMB" type="innovationPlanItemsListType" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Позиции проекта плана инновационной закупки субъектов малого и среднего бизнеса</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="isUploadComplete" type="xs:boolean" default="false" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Признак «Загрузка завершена»</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="purchasePlanDataType">
+		<xs:annotation>
+			<xs:documentation>План закупки</xs:documentation>
+		</xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="basePurchasePlanDataType">
+		<xs:sequence>
+			<xs:element name="createDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания плана</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+			<xs:element name="urlVSRZ" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Url документа в ВСРЗ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="3000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="urlKisRmis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+			<xs:element name="registrationNumber" type="t:registrationNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер плана</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование плана закупки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="additionalInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные сведения</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="startDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата начала действия плана</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата окончания действия плана</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="approveDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата утверждения плана</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата размещения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isDigitForm" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Способ внесения информации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="summSizeCh15" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак, что закупки осуществляются на сумму, не превышающую размер, установленный в части 15 статьи 4 Закона № 223-ФЗ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isImportedFromVSRZ" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак импорта из ВСРЗ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="t:purchasePlanStatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Статус плана</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="t:versionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер редакции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modificationDescription" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Обоснование внесения изменений</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="useNewClassifiers" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Используются новые классификаторы ОКПД2 и ОКВЭД2</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="attachments" type="t:documentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="excludeVolume" type="t:money2" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>
+            			Совокупный годовой объем планируемых закупок товаров, работ, услуг, 
+            			которые исключаются при расчете годового объема закупок товаров, работ, услуг, 
+            			которые планируется осуществить по результатам закупки товаров, работ, услуг, 
+            			участниками которой являются только субъекты малого и среднего предпринимательства
+            		</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="volumeSMB" type="t:money2" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>
+            			Годовой объем закупок, которые планируется осуществить по результатам закупки, 
+            			участниками которой являются только субъекты малого и среднего предпринимательства.
+					</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="annualVolume" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Совокупный годовой объем планируемых закупок товаров (работ,услуг)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="percentSMB" type="xs:decimal" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Процент</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="smbPartitionChanged" type="xs:boolean" default="false" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Изменён раздел МСП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="annualVolumeSMBLess15Percent" type="xs:boolean" default="false" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Годовой объём закупок МСП менее 15%</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="reportingYear" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Отчетный год</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="previousYearAnnualVolume" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ за предыдущий год
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="previousYearAnnualVolumeHiTech" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ ИПВП за предыдущий год
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="previousYearAnnualVolumeHiTechSMB" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ ИПВП МСП за предыдущий год
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="annualVolumeHiTechSumm" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ ИПВП (сумма)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="annualVolumeHiTechIncrease" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ ИПВП (увеличение)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="annualVolumeHiTechPercent" type="xs:decimal" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ ИПВП (доля)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="annualVolumeHiTechSMBSumm" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ ИПВП МСП (сумма)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="annualVolumeHiTechSMBIncrease" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ ИПВП МСП (увеличение)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="annualVolumeHiTechSMBPercent" type="xs:decimal" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        СГОЗ ИПВП МСП (доля)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+		</xs:sequence>
+            </xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+    <xs:complexType name="longTermVolumeType">
+        <xs:annotation>
+            <xs:documentation>Объём оплаты долгосрочного договора</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="details" type="longTermVolumeDetailListType" minOccurs="0" maxOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation>Детализация объёмов оплаты долгосрочного договора по годам</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="volume" type="t:money2" minOccurs="0" maxOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation>Объём оплаты долгосрочного договора за все года исполнения долгосрочного договора</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="volumeRub" type="t:money2" minOccurs="0" maxOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation>Объём оплаты долгосрочного договора в рублевом эквиваленте за все года исполнения долгосрочного договора</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="currency" type="t:currencyType" minOccurs="0" maxOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation>Валюта объёма привлечения субъектов малого и среднего предпринимательства</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="exchangeRate" type="t:money6" minOccurs="0" maxOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation>Курс валюты объёма привлечения субъектов малого и среднего предпринимательства</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="exchangeRateDate" type="xs:date" minOccurs="0" maxOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation>Дата, на которую установлен курс валюты объёма привлечения субъектов малого и среднего предпринимательства</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="longTermVolumeDetailListType">
+        <xs:annotation>
+            <xs:documentation>Объёмы оплаты долгосрочного договора по годам</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="longTermVolumeDetail" type="longTermVolumeDetailType" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Объём оплаты долгосрочного договора за год</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="longTermVolumeDetailType">
+        <xs:annotation>
+            <xs:documentation>Объём оплаты долгосрочного договора за год</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="year" type="xs:int">
+            	<xs:annotation>
+            		<xs:documentation>Год планируемого платежа</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="summ" type="t:money2" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Сумма планируемого платежа</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="summRub" type="t:money2" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Сумма планируемого платежа в рублевом эквиваленте</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="basePlanDataItemType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>Позиция плана</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор позиции плана</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ordinalNumber" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Номер позиции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractSubject">
+                <xs:annotation>
+                    <xs:documentation>Наименование предмета договора</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="planItemCustomer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные заказчика для позиции закупки</xs:documentation>
+                </xs:annotation>
+    		</xs:element>
+            <xs:element name="minimumRequirements" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Минимальные требования</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+                        <xs:maxLength value="2000"/>
+					</xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="contractEndDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Срок исполнения договора</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="additionalInfo" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дополнительные сведения</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обоснование внесения изменений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="status" type="t:purchasePlanItemStatusType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Статус позиции</xs:documentation>
+                </xs:annotation>
+    		</xs:element>
+            <xs:element name="isPurchasePlaced" type="xs:boolean" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Признак Закупка размещена</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="changedGWSAndDates" type="xs:boolean" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Изменение ТРУ и сроков</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="changedNMSKMoreTenPercent" type="xs:boolean" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Изменение более чем на 10 процентов НМЦД</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="otherChanges" type="xs:boolean" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Изменение в иных случаях</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="checkResult" type="purchasePlanItemCheckResultType" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Результат проверки</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+			<xs:element name="errorMessages" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сообщения об ошибках</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="4000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="cancellationReason" type="cancellationReasonType" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Причина аннулирования</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="longTerm" type="xs:boolean" default="false" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Признак "Позиция является долгосрочной"</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="shared" type="xs:boolean" minOccurs="0" maxOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation>Признак "Позиция учитывается в нескольких планах закупки"</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="initialPositionData" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор позиции исходного плана закупки и глобальный идентификатор версии исходного плана (для позиций с признаком "Позиция учитывается в нескольких планах закупки")</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="initialPositionGuid" type="t:guidType" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>Глобальный идентификатор позиции исходного плана закупки</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="initialPlanGuid" type="t:guidType" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>Глобальный идентификатор версии плана исходного плана закупки</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="longTermVolumes" type="longTermVolumeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Информация об объёмах оплаты долгосрочного договора</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="longTermSMBVolumes" type="longTermVolumeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Информация об объёмах привлечения субъектов малого и среднего предпринимательства</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="parentId" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор позиции размещенной версии плана</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:simpleType name="purchasePlanItemCheckResultType">
+		<xs:annotation>
+			<xs:documentation>Статус позиции плана закупок</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ERROR">
+				<xs:annotation>
+					<xs:documentation>Ошибка</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PASSED">
+				<xs:annotation>
+					<xs:documentation>Пройдена</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="CANCELED">
+                <xs:annotation>
+                    <xs:documentation>Отменена</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:complexType name="purchasePlanDataItemType">
+        <xs:annotation>
+            <xs:documentation>Позиция плана</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="basePlanDataItemType">
+                <xs:sequence>
+                    <xs:element name="purchaseNoticeInfo" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Информация о закупке и лоте</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="noticeInfoGuid" type="t:guidType" minOccurs="1" maxOccurs="1">
+                                    <xs:annotation>
+                                        <xs:documentation>Глобальный идентификатор извещения</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="lotGuid" type="t:guidType" minOccurs="1" maxOccurs="1">
+                                    <xs:annotation>
+                                        <xs:documentation>Глобальный идентификатор лота</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="okato" type="t:codeOkatoType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>ОКАТО</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="region" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Название региона</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="1000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="isGeneralAddress" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Признак указания адреса поставки для всей позиции плана в целом</xs:documentation>
+                            <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="maximumContractPrice" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Начальная (максимальная) цена договора</xs:documentation>
+                            <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="currency" type="t:currencyType" minOccurs="0">
+                        <xs:annotation>
+                        	<xs:documentation>Валюта</xs:documentation>
+                        	<xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="exchangeRate" type="t:money6" minOccurs="0">
+                    	<xs:annotation>
+                    		<xs:documentation>Курс валюты</xs:documentation>
+                    	</xs:annotation>
+                    </xs:element>
+                    <xs:element name="exchangeRateDate" type="xs:date" minOccurs="0">
+                    	<xs:annotation>
+                    		<xs:documentation>Дата, на которую установлен курс валюты</xs:documentation>
+                    	</xs:annotation>
+                    </xs:element>
+                    <xs:element name="maximumContractPriceRub" type="t:money2" minOccurs="0">
+                    	<xs:annotation>
+                    		<xs:documentation>Начальная (максимальная цена) договора в рублевом эквиваленте</xs:documentation>
+                    	</xs:annotation>
+                    </xs:element>
+					<xs:element name="orderPricing" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Порядок формирования цены договора</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+                    <xs:choice>
+                        <xs:element name="purchasePlannedDate" type="xs:date" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Планируемая дата</xs:documentation>
+                                <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:sequence>
+                            <xs:element name="purchasePeriodYear" type="xs:int" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Год планируемого периода</xs:documentation>
+                                    <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="purchasePeriodQuarter" type="xs:int" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Квартал планируемого периода</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="purchasePeriodMonth" type="xs:int" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Месяц планируемого периода</xs:documentation>
+                                    <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:choice>
+                    <xs:element name="purchaseMethodCode" type="xs:long" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Cпособ закупки, из Справочника способов закупок подсистемы прикладного
+                                администрирования.
+                            </xs:documentation>
+                            <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="purchaseMethodName" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Название способа закупки</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="isElectronic" type="xs:boolean" default="false" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Признак закупки в электронном виде</xs:documentation>
+                            <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="purchasePlanDataItemRows" type="purchasePlanDataItemsRowListType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Строки позиции плана</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="isPurchaseIgnored" type="xs:boolean" default="false" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Признак «Закупка не учитывается в соответствии с пунктом 7 постановления Правительства РФ от 11.12.2014 № 1352»</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="purchaseCategory" type="xs:long" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Категория закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="innovationEquivalent" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation> признак "Закупка товаров (работ, услуг), удовлетворяющих критериям отнесения к инновационной продукции, высокотехнологичной продукции"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+	<xs:simpleType name="cancellationReasonType">
+		<xs:annotation>
+			<xs:documentation>Причина аннулирования</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REJECT">
+				<xs:annotation>
+					<xs:documentation>Отказ от проведения закупки</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="INVALID">
+				<xs:annotation>
+					<xs:documentation>Признание торгов недействительными</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NOT_PERFORMED">
+				<xs:annotation>
+					<xs:documentation>Торги не состоялись</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:complexType name="innovationPlanDataItemType">
+        <xs:annotation>
+            <xs:documentation>Позиция плана инновационной закупки</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="basePlanDataItemType">
+                <xs:sequence>
+                    <xs:element name="ignoredPurchase" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>признак "Закупка не учитывается при расчете совокупного годового стоимостного объема договоров"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="purchaseCategory" type="xs:long" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                            	Категории закупок, которые не учитываются при расчете объемов закупки у МСП
+     							Справочник содержит значения категорий закупок, которые не учитываются при расчете совокупного годового
+        						стоимостного объема договоров, заключенных заказчиками в том числе с субъектами малого и среднего
+        						предпринимательства по результатам закупок в соответствии с пунктом 7 ПП РФ № 1352.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="maximumContractPrice" type="t:money2" minOccurs="0">
+                    	<xs:annotation>
+                    		<xs:documentation>Начальная (максимальная) цена договора</xs:documentation>
+                    	</xs:annotation>
+                    </xs:element>
+                    <xs:element name="currency" type="t:currencyType" minOccurs="0">
+                    	<xs:annotation>
+                    		<xs:documentation>Валюта</xs:documentation>
+                    	</xs:annotation>
+                    </xs:element>
+                    <xs:element name="exchangeRate" type="t:money6" minOccurs="0">
+                    	<xs:annotation>
+                    		<xs:documentation>Курс валюты</xs:documentation>
+                    	</xs:annotation>
+                    </xs:element>
+                    <xs:element name="exchangeRateDate" type="xs:date" minOccurs="0">
+                    	<xs:annotation>
+                    		<xs:documentation>Дата, на которую установлен курс валюты</xs:documentation>
+                    	</xs:annotation>
+                    </xs:element>
+                    <xs:element name="maximumContractPriceRub" type="t:money2" minOccurs="0">
+                    	<xs:annotation>
+                    		<xs:documentation>Начальная (максимальная цена) договора в рублевом эквиваленте</xs:documentation>
+                    	</xs:annotation>
+                    </xs:element>
+					<xs:element name="orderPricing" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Порядок формирования цены договора</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+                    <xs:element name="purchasePeriodYear" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>Год планируемого периода</xs:documentation>
+                            <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="innovationPlanDataItemRows" type="innovationPlanDataItemsRowListType"
+                                minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Строки позиции плана инновационной закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="innovationEquivalent" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation> признак "Закупка товаров (работ, услуг), удовлетворяющих критериям отнесения к инновационной продукции, высокотехнологичной продукции"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="purchasePlanItemsListType">
+        <xs:annotation>
+            <xs:documentation>Позиции плана</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="purchasePlanItem" type="purchasePlanDataItemType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Позиция плана</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="innovationPlanItemsListType">
+        <xs:annotation>
+            <xs:documentation>Позиции плана инновационной закупки</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="innovationPlanItem" type="innovationPlanDataItemType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Позиция плана инновационной закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="purchasePlanItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="purchasePlanData" type="purchasePlanDataType">
+                        <xs:annotation>
+                            <xs:documentation>План закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="purchasePlanDataItemsRowListType">
+        <xs:annotation>
+            <xs:documentation>Строки позиции плана</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="purchasePlanRowItem" type="purchasePlanDataItemRowType" minOccurs="0"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Строка позиции плана</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="innovationPlanDataItemsRowListType">
+        <xs:annotation>
+            <xs:documentation>Строки позиции плана инновационной закупки</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="innovationPlanRowItem" type="innovationPlanDataItemRowType" minOccurs="0"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Строка позиции плана инновационной закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="basePlanDataItemRowType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>Cтрока позиции плана</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор строки позиции плана</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ordinalNumber" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Номер строки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="additionalInfo" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дополнительные сведения</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="purchasePlanDataItemRowType">
+        <xs:annotation>
+            <xs:documentation>Cтрока позиции плана</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="basePlanDataItemRowType">
+                <xs:sequence>
+                	<xs:choice>
+                    	<xs:element name="okdp" type="t:okdpProductType">
+                        	<xs:annotation>
+                            	<xs:documentation>ОКДП</xs:documentation>
+                        	</xs:annotation>
+                    	</xs:element>
+                    	<xs:element name="okpd2" type="t:okpd2ProductType">
+                        	<xs:annotation>
+	                            <xs:documentation>ОКПД2</xs:documentation>
+                        	</xs:annotation>
+                    	</xs:element>
+                    </xs:choice>
+                    <xs:choice>
+                    	<xs:element name="okved" type="t:okvedProductType">
+                        	<xs:annotation>
+	                            <xs:documentation>ОКВЭД</xs:documentation>
+                        	</xs:annotation>
+                    	</xs:element>
+                    	<xs:element name="okved2" type="t:okved2ProductType">
+                        	<xs:annotation>
+	                            <xs:documentation>ОКВЭД2</xs:documentation>
+                        	</xs:annotation>
+                    	</xs:element>
+                    </xs:choice>
+                    <xs:element name="okato" type="t:codeOkatoType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>ОКАТО</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="region" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Название региона</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="1000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="impossibleToDetermineAttr" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Невозможно определить количество (объем)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:sequence minOccurs="0">
+                        <xs:element name="okei" type="t:okeiProductType">
+                            <xs:annotation>
+                                <xs:documentation>ОКЕИ</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="qty" type="t:lotItemQtyType">
+                            <xs:annotation>
+                                <xs:documentation>Количество</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="innovationPlanDataItemRowType">
+        <xs:annotation>
+            <xs:documentation>Строка позиции плана инновационной закупки</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="basePlanDataItemRowType">
+                <xs:sequence>
+                	<xs:choice>
+                    	<xs:element name="okdp" type="t:okdpProductType" minOccurs="0">
+                        	<xs:annotation>
+	                            <xs:documentation>ОКДП</xs:documentation>
+                        	</xs:annotation>
+                    	</xs:element>
+                    	<xs:element name="okpd2" type="t:okpd2ProductType" minOccurs="0">
+	                        <xs:annotation>
+                            	<xs:documentation>ОКПД2</xs:documentation>
+                        	</xs:annotation>
+                    	</xs:element>
+                    </xs:choice>
+                    <xs:choice>
+                    	<xs:element name="okved" type="t:okvedProductType" minOccurs="0">
+                        	<xs:annotation>
+	                            <xs:documentation>ОКВЭД</xs:documentation>
+                        	</xs:annotation>
+                    	</xs:element>
+                    	<xs:element name="okved2" type="t:okved2ProductType" minOccurs="0">
+	                        <xs:annotation>
+                            	<xs:documentation>ОКВЭД2</xs:documentation>
+                        	</xs:annotation>
+                    	</xs:element>
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="planType">
+        <xs:annotation>
+            <xs:documentation>Вид плана закупки</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="COMMODITY">
+                <xs:annotation>
+                    <xs:documentation>Позиции плана</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="INNOVATION">
+                <xs:annotation>
+                    <xs:documentation>Инновационные позиции плана</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="regionType">
+        <xs:annotation>
+            <xs:documentation>Вид плана закупки</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="POS_REGION">
+                <xs:annotation>
+                    <xs:documentation>Регион для позиции плана в целом</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="COM_REGION">
+                <xs:annotation>
+                    <xs:documentation>Регион для отдельного товара, услуги, работы в позиции плана</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

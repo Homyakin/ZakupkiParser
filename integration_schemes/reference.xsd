@@ -1,0 +1,2236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by A (A) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/reference/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/reference/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+	<xs:complexType name="nsiOkatoDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор объектов административно-территориального деления</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="businessStatus" type="businessStatusType">
+				<xs:annotation>
+					<xs:documentation>Статус</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="t:codeOkatoType">
+				<xs:annotation>
+					<xs:documentation>Код ОКАТО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКАТО</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOkatoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkatoItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkatoData" type="nsiOkatoDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkdpDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор видов экономической деятельности, продукции и услуг</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="t:codeOkdpType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ОКДП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКДП</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOkdpType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="section" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Раздел</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkdpItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkdpData" type="nsiOkdpDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkpd2DataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор продукции по видам экономической деятельности 2</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="businessStatus" type="businessStatusType">
+				<xs:annotation>
+					<xs:documentation>Статус</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="t:codeOkpd2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ОКПД2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКПД2</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOkpd2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkpd2ItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkpd2Data" type="nsiOkpd2DataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkeiDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор единиц измерения</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="t:codeOkeiType">
+				<xs:annotation>
+					<xs:documentation>Код ОКЕИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКЕИ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="1000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="symbol" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Буквенный код</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="section">
+				<xs:annotation>
+					<xs:documentation>Раздел</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="code">
+							<xs:annotation>
+								<xs:documentation>Код раздела</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="name">
+							<xs:annotation>
+								<xs:documentation>Наименование раздела</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="1000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="group">
+				<xs:annotation>
+					<xs:documentation>Группа</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="code" type="xs:int">
+							<xs:annotation>
+								<xs:documentation>Код группы</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="name">
+							<xs:annotation>
+								<xs:documentation>Наименование группы</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="1000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkeiItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkeiData" type="nsiOkeiDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkfsDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор форм собственности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="t:codeOkfsType">
+				<xs:annotation>
+					<xs:documentation>Код ОКФС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКФС</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOkfsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkfsItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkfsData" type="nsiOkfsDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOktmoDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор территорий муниципальных образований</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="t:codeOktmoType">
+				<xs:annotation>
+					<xs:documentation>Код ОКТМО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКТМО</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOktmoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="okato" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименования и коды ОКАТО населенных пунктов</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="4000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOktmoItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOktmoData" type="nsiOktmoDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkoguDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор органов государственной власти и управления</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="t:codeOkoguType">
+				<xs:annotation>
+					<xs:documentation>Код ОКОГУ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКОГУ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOkoguType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkoguItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkoguData" type="nsiOkoguDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkopfDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор организационно-правовых форм</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="t:codeOkopfType">
+				<xs:annotation>
+					<xs:documentation>Код ОКОПФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКОПФ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOkopfType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkopfItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkopfData" type="nsiOkopfDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkvDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор валют</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code">
+				<xs:annotation>
+					<xs:documentation>Код валюты</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="digitalCode">
+				<xs:annotation>
+					<xs:documentation>Цифровой код валюты</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:pattern value="\d{3}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование валюты</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="shortName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Краткое наименование</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkvItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkvData" type="nsiOkvDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkvedDataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор видов экономической деятельности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="t:codeOkvedType">
+				<xs:annotation>
+					<xs:documentation>Код ОКВЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКВЭД</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOkvedType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="section">
+				<xs:annotation>
+					<xs:documentation>Раздел</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+                        <xs:pattern value="[A-Q]{1}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="subsection" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подраздел</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+                        <xs:pattern value="[A-Q]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkvedItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkvedData" type="nsiOkvedDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOkved2DataType">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор видов экономической деятельности 2</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента классификатора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="businessStatus" type="businessStatusType">
+				<xs:annotation>
+					<xs:documentation>Статус</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="t:codeOkved2Type">
+				<xs:annotation>
+					<xs:documentation>Код ОКВЭД2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование по ОКВЭД2</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parentCode" type="t:codeOkved2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ссылка на родителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="section">
+				<xs:annotation>
+					<xs:documentation>Раздел</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:pattern value="[A-Q]{1}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<!--<xs:element name="subsection" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подраздел</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:pattern value="[A-Q]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>-->
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiOkved2ItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOkved2Data" type="nsiOkved2DataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiOrganizationDataType">
+		<xs:annotation>
+			<xs:documentation>Справочник организаций</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента справочника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="t:organizationCodeType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Индивидуальный код организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeAssignDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время присвоения индивидуального кода организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeInvalidateDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время признания ИКО заказчика недействительным</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время создания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="blockDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время блокировки организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeESIADateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения данных об организации в ЕСИА</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mainInfo" type="t:customerMainInfoType">
+				<xs:annotation>
+					<xs:documentation>Основная информация по организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="status" type="t:agencyStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус организации</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="classification">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="okfs" type="t:codeOkfsType">
+							<xs:annotation>
+								<xs:documentation>Код ОКФС</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="okopf" type="t:codeOkopfType">
+							<xs:annotation>
+								<xs:documentation>Код ОКОПФ</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="okato" type="t:codeOkatoType">
+							<xs:annotation>
+								<xs:documentation>Код ОКАТО</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="oktmo" type="t:codeOktmoType">
+							<xs:annotation>
+								<xs:documentation>Код ОКТМО</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="okpo" type="t:codeOkpoType">
+							<xs:annotation>
+								<xs:documentation>Код ОКПО</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="spzCode" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Реквизиты федерального закона</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="pgmuCode" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Код по ПГМУ</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="rfSubjectCode" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Код субъекта РФ</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ppo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Принадлежность организации к публично-правовому образованию</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="isPpo" type="xs:boolean" default="false">
+										<xs:annotation>
+											<xs:documentation>Принадлежность к ППО</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+                                    <xs:sequence minOccurs="0">
+                                        <xs:element name="code">
+                                            <xs:annotation>
+                                                <xs:documentation>Код ППО</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="t:nonEmptyString">
+                                                    <xs:maxLength value="11"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="name">
+                                            <xs:annotation>
+                                                <xs:documentation>Наименование ППО</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="t:nonEmptyString">
+                                                    <xs:maxLength value="2000"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="activities" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Список видов деятельности по ОКВЭД/ОКВЭД2</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="okved" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Вид деятельности по ОКВЭД</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="code" type="t:codeOkvedType">
+													<xs:annotation>
+														<xs:documentation>Код ОКВЭД</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="isMain" type="xs:boolean" default="false">
+													<xs:annotation>
+														<xs:documentation>Основная/не основная деятельность</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="name">
+													<xs:annotation>
+														<xs:documentation>Наименование по ОКВЭД</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="t:nonEmptyString">
+															<xs:maxLength value="500"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="okved2" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Вид деятельности по ОКВЭД2</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="code" type="t:codeOkved2Type">
+													<xs:annotation>
+														<xs:documentation>Код ОКВЭД2</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="isMain" type="xs:boolean" default="false">
+													<xs:annotation>
+														<xs:documentation>Основная/не основная деятельность</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="name">
+													<xs:annotation>
+														<xs:documentation>Наименование по ОКВЭД2</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="t:nonEmptyString">
+															<xs:maxLength value="500"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="fz223types" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Виды организации по 223-ФЗ</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="fz223type" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Тип организации</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="name">
+													<xs:annotation>
+														<xs:documentation>Наименование вида организации</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="t:nonEmptyString">
+															<xs:maxLength value="2000"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="additionalInfo">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="timeZone">
+							<xs:annotation>
+								<xs:documentation>Временная зона</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="offset" type="xs:int">
+										<xs:annotation>
+											<xs:documentation>Смещение относительно MSK</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="name">
+										<xs:annotation>
+											<xs:documentation>Название временной зоны</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="t:nonEmptyString">
+												<xs:maxLength value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isDetachedDepartment" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Является обособленным подразделением</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="authority">
+				<xs:annotation>
+					<xs:documentation>Полномочия организации</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="isCustomer" type="xs:boolean" default="false" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Полномочия Заказчика</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="isCustomerAgent" type="xs:boolean" default="false" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Полномочия Организации, являющейся представителем заказчика</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="isSupervisor" type="xs:boolean" default="false" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Полномочия Контрольного органа в сфере закупок</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="isOperator" type="xs:boolean" default="false" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Полномочия Оператора Официального сайта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+                        <xs:element name="isOVK" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия Органа внутреннего контроля</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isPurchaseAudit" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия Органа аудита в сфере закупок</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isMonitoring" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия организации, осуществляющей мониторинг соответствия в соответствии с Федеральным законом № 223-ФЗ</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isAssessment" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия организации, осуществляющей оценку соответствия в соответствии с Федеральным законом № 223-ФЗ</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isTypalOrderClause" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Орган (организация), уполномоченный (-ая) на утверждение, изменение и размещение типовых положений о закупках, в соответствии с Федеральным законом № 223-ФЗ</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isOperatorEM" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия оператора электронной площадки</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contactInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Контактная информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="contactFirstName" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Имя</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="300"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="contactMiddleName" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Отчество</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="300"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="contactLastName" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Фамилия</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="300"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="contactEmail" type="t:emailType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Email контактного лица</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="phone" type="t:phoneType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Телефон</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="fax" type="t:phoneType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Факс</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="email" type="t:emailType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Email</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="website" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>URL  веб-сайта</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="300"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="additional" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная контактная информация</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="t:nonEmptyString">
+									<xs:maxLength value="500"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="comment" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Комментарий</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="successionInfo" type="SuccessionInfo"
+                        minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+    <xs:complexType name="SuccessionInfo">
+        <xs:annotation>
+            <xs:documentation>Сведения о правопреемстве</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="successor" type="SuccessorType" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SuccessorType">
+        <xs:annotation>
+            <xs:documentation>Сведения о юридическом лице - правопреемнике при
+                              прекращении деятельности в результате
+                              реорганизации или при реорганизации в форме
+                              выделения</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+			<xs:element name="inn" type="t:innType" maxOccurs="1"
+                        minOccurs="0"/>
+            <xs:element name="ogrn" type="t:ogrnType" maxOccurs="1"
+                        minOccurs="0"/>
+			<xs:element name="kpp" type="t:kppType" maxOccurs="1"
+                        minOccurs="0"/>
+            <xs:element name="fullName" maxOccurs="1" type="xs:string"/>
+			<xs:element name="shortName" maxOccurs="1" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+	<xs:complexType name="nsiOrganizationItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiOrganizationData" type="nsiOrganizationDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+    <xs:complexType name="nsiOrderClauseTypeItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="nsiOrderClauseTypeData" type="nsiOrderClauseTypeDataType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="nsiOrderClauseTypeDataType">
+        <xs:annotation>
+            <xs:documentation>Справочник "Шаблоны положений о закупках"</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор элемента справочника</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата и время изменения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="name">
+                <xs:annotation>
+                    <xs:documentation>Наименование шаблона положения о закупках</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="orderNumber" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Порядковый номер</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="creator" type="t:customerMainInfoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Организация – создатель шаблона положения о закупках</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="templates" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Шаблоны извещений</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="template" type="t:orderClauseTemplateType" minOccurs="1" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Шаблон</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:complexType name="nsiProtocolTypeDataType">
+		<xs:annotation>
+			<xs:documentation>Справочник типов протоколов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента справочника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время создания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Код типа протокола</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование типа протокола</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="orderNumber" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер типа протокола</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence>
+				<xs:element name="purchaseMethod" type="xs:long" maxOccurs="unbounded" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Код cпособа закупки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+            <xs:element name="extended" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Признак наличия шаблонов, созданных на основе данного типа протокола</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="templates" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Шаблоны протоколов</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="template" type="t:protocolTemplateType" minOccurs="1" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Шаблон</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="protocolKind" minOccurs="0" type="protocolKindType">
+				<xs:annotation>
+					<xs:documentation>Вид протокола</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nsiProtocolTypeItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiProtocolTypeData" type="nsiProtocolTypeDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiPurchaseMethodDataType">
+		<xs:annotation>
+			<xs:documentation>Справочник способов закупки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор элемента справочника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время создания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата включения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDateActive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="businessStatus" type="businessStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="code" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Код cпособа закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование способа закупки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="3000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="parentCode" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Код родительского cпособа закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="orderNumber" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер способа закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isElectronic" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>Признак закупки в электронном виде</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="creator" type="t:customerMainInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организация – создатель способа закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="extended" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Признак наличия шаблонов, созданных на основе данного способа закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="competitive" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Признак конкурентного способа закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="templates" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Шаблоны извещений</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="template" type="t:noticeTemplateType" minOccurs="1" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Шаблон</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:choice>
+                <xs:element name="protocols" type="protocolListType">
+                    <xs:annotation>
+                        <xs:documentation>Перечень протоколов, связанных со способом закупки</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="phases" type="purchasePhaseListType">
+                    <xs:annotation>
+                        <xs:documentation>Перечень подэтапов для этапа Работа комиссии</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+			<xs:element name="hasPhases" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Признак "Многоэтапный"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typal" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Признак "Типовой"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typalKind" minOccurs="0" type="typalKindType">
+				<xs:annotation>
+					<xs:documentation>Вид типового способа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:complexType name="phaseTransitionsListType">
+        <xs:annotation>
+            <xs:documentation>Автоматизированные переходы на другие подэтапы</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="transition" type="phaseTransition" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Переход</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="phaseTransition">
+        <xs:annotation>
+            <xs:documentation>Переход</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="protocolCode" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Код типа протокола</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="phaseCode" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Идентификатор подэтапа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="purchasePhaseListType">
+        <xs:annotation>
+            <xs:documentation>Перечень подэтапов</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="phase" type="purchasePhase" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Подэтап</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="purchasePhase">
+        <xs:annotation>
+            <xs:documentation>Подэтап</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="orderNumber" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Порядковый номер подэтапа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="code" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Идентификатор подэтапа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="name">
+                <xs:annotation>
+                    <xs:documentation>Наименование подэтапа</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="200"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="editEnabled" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Редактирование извещения разрешено</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="protocols" type="protocolListType">
+                <xs:annotation>
+                    <xs:documentation>Перечень протоколов подэтапа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="phaseTransitions" type="phaseTransitionsListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Автоматизированные переходы на другие подэтапы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="protocolListType">
+        <xs:annotation>
+            <xs:documentation>Перечень протоколов</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="controlledOrder" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Контроль последовательности протоколов</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="protocol" type="purchaseProtocol" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Данные о протоколе</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="purchaseProtocol">
+        <xs:annotation>
+            <xs:documentation>Данные о протоколе</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="code" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Код типа протокола</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="name">
+                <xs:annotation>
+                    <xs:documentation>Наименование типа протокола</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:complexType name="nsiPurchaseMethodItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="nsiPurchaseMethodData" type="nsiPurchaseMethodDataType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="nsiOkato">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор объектов административно-территориального деления</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkatoItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkdp">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор видов экономической деятельности, продукции и услуг</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkdpItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkpd2">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор видов экономической деятельности, продукции и услуг</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkpd2ItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkei">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор единиц измерения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkeiItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkfs">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор форм собственности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkfsItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkogu">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор органов государственной власти и управления</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkoguItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkopf">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор организационно-правовых форм</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkopfItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOktmo">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор территорий муниципальных образований</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOktmoItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkv">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор валют</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkvItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkved">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор видов экономической деятельности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkvedItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOkved2">
+		<xs:annotation>
+			<xs:documentation>Общероссийский классификатор видов экономической деятельности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOkved2ItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiOrganization">
+		<xs:annotation>
+			<xs:documentation>Справочник организаций</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiOrganizationItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nsiProtocolType">
+		<xs:annotation>
+			<xs:documentation>Справочник типов протоколов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiProtocolTypeItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="nsiOrderClauseType">
+        <xs:annotation>
+            <xs:documentation>Справочник шаблонов положений о закупках</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="nsiOrderClauseTypeItemType" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="nsiPurchaseMethod">
+		<xs:annotation>
+			<xs:documentation>Справочник способов закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="nsiPurchaseMethodItemType" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+    <xs:simpleType name="businessStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="801">
+                <xs:annotation>
+                    <xs:documentation>Включена</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="866">
+                <xs:annotation>
+                    <xs:documentation>Исключена</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+	<xs:simpleType name="typalKindType">
+		<xs:annotation>
+			<xs:documentation>Вид типового способа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TSK">
+				<xs:annotation>
+					<xs:documentation>Типовой способ с видом «Конкурс»</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TSA">
+				<xs:annotation>
+					<xs:documentation>Типовой способ с видом «Аукцион»</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TSZK">
+				<xs:annotation>
+					<xs:documentation>Типовой способ с видом «Запрос котировок»</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TSZP">
+				<xs:annotation>
+					<xs:documentation>Типовой способ с видом «Запрос предложений»</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TSEP">
+				<xs:annotation>
+					<xs:documentation>Типовой способ с видом «Закупка у единственного поставщика (подрядчика, исполнителя)»</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="protocolKindType">
+		<xs:annotation>
+			<xs:documentation>Вид протокола</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PROTOCOL_OF_STAGE">
+				<xs:annotation>
+					<xs:documentation>Протокол этапа</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FINAL_PROTOCOL">
+				<xs:annotation>
+					<xs:documentation>Итоговый протокол</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NONE">
+				<xs:annotation>
+					<xs:documentation>Не выбрано</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

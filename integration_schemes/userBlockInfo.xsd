@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/userBlockInfo/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/userBlockInfo/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+	<xs:element name="userBlockInfo">
+		<xs:annotation>
+			<xs:documentation>Сведения о блокировке пользователя</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="user" type="t:userType">
+					<xs:annotation>
+						<xs:documentation>Данные пользователя</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="blockReason" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Причина для блокировки</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="t:nonEmptyString">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+                <xs:element name="unblockReason" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Причина для разблокировки</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="t:nonEmptyString">
+                            <xs:maxLength value="2000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="blockPeriod" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Данные о сроках блокировки</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="blockDate" type="xs:date">
+                                <xs:annotation>
+                                    <xs:documentation>Дата блокировки</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="unblockDate" type="xs:date" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Дата разблокировки</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

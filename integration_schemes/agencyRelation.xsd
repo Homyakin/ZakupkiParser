@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by A (A) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/agencyRelation/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/agencyRelation/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+	<xs:element name="agencyRelation">
+		<xs:annotation>
+			<xs:documentation>Связь организации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="customer" type="t:customerInfo2Type">
+					<xs:annotation>
+						<xs:documentation>Данные заказчика</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="comment" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Комментарий</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="t:nonEmptyString">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <xs:element name="nsiAgencyRelations">
+        <xs:annotation>
+            <xs:documentation>Связь между организациями</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="nsiAgencyRelationsItemType" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="nsiAgencyRelationsItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="nsiAgencyRelationsData" type="nsiAgencyRelationsDataType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="nsiAgencyRelationsDataType">
+        <xs:annotation>
+            <xs:documentation>Связь между организациями</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="customer" type="t:customerMainInfoType">
+                <xs:annotation>
+                    <xs:documentation>Организации с полномочием «Заказчик»</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="relations">
+                <xs:annotation>
+                    <xs:documentation>Список связей с организацией</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="relation" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Связь с организацией</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="agency" type="t:customerMainInfoType">
+                                        <xs:annotation>
+                                            <xs:documentation>Связанная организация</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="relationType" type="agencyRelationType">
+                                        <xs:annotation>
+                                            <xs:documentation>Тип связи</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="status" type="agencyRelationStatus">
+                                        <xs:annotation>
+                                            <xs:documentation>Статус связи</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="createDateTime" type="xs:dateTime">
+                                        <xs:annotation>
+                                            <xs:documentation>Дата создания</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="updateDateTime" type="xs:dateTime">
+                                        <xs:annotation>
+                                            <xs:documentation>Дата изменения</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="comment" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Комментарий в случае отклонения заявки</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="t:nonEmptyString">
+                                                <xs:maxLength value="2000"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="agencyRelationType">
+        <xs:annotation>
+            <xs:documentation>Тип связи</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="R">
+                <xs:annotation>
+                    <xs:documentation>Организация, являющаяся представителем заказчика</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="B">
+                <xs:annotation>
+                    <xs:documentation>Обособленное подразделение заказчика</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="S">
+                <xs:annotation>
+                    <xs:documentation>Организация-правопреемник</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="agencyRelationStatus">
+        <xs:annotation>
+            <xs:documentation>Статус связи</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="APPROVAL_REQUESTED">
+                <xs:annotation>
+                    <xs:documentation>На подтверждении</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="APPROVED">
+                <xs:annotation>
+                    <xs:documentation>Подтверждена</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BLOCKED">
+                <xs:annotation>
+                    <xs:documentation>Заблокирована</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REVOKED">
+                <xs:annotation>
+                    <xs:documentation>Аннулирована</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REFUSED">
+                <xs:annotation>
+                    <xs:documentation>Отклонена</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

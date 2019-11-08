@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://zakupki.gov.ru/223fz/revenue/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/revenue/1"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+
+    <xs:element name="revenue">
+        <xs:annotation>
+            <xs:documentation>Сведения о выручке</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="revenueItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="revenueCancel">
+        <xs:annotation>
+            <xs:documentation>Сведения о переводе сведений о выручке в статус Неактуально</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="revenueCancelItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="revenueItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="revenueData" type="revenueDataType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="revenueCancelItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="revenueCancelData" type="revenueCancelDataType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="revenueCancelDataType">
+        <xs:annotation>
+            <xs:documentation>Сведения о переводе сведений о выручке в статус Неактуально</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Сведения о заказчике</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="revenueGuid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений о выручке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="revenueRegistrationNumber" type="t:registrationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Регистрационный номер сведений о выручке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="revenueType">
+                <xs:annotation>
+                    <xs:documentation>Вид сведений о выручке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="periodYear" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Год отчетного периода</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="periodQuarter" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Квартал отчетного периода</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="4"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="cancelDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата принятия решения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cancelReason">
+                <xs:annotation>
+                    <xs:documentation>Причина принятия решения</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="createDateTime" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>Дата создания сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Фактическая дата размещения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="revenueDataType">
+        <xs:annotation>
+            <xs:documentation>Сведения о выручке</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="registrationNumber" type="t:registrationNumberType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Регистрационный номер сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="customer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Сведения о заказчике</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="status" type="revenueStatusType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Статус сведений о выручке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер редакции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="createDateTime" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>Дата создания сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обоснование внесения изменений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="modificationDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата последнего сохранения сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Фактическая дата размещения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="type" type="revenueType">
+                <xs:annotation>
+                    <xs:documentation>Вид сведений о выручке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="periodYear" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Год отчетного периода</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:choice>
+                <xs:sequence>
+                    <!--сведения 1-->
+                    <xs:element name="participating">
+                        <xs:annotation>
+                            <xs:documentation>Доля участия</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:totalDigits value="18"/>
+                                <xs:fractionDigits value="15"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="activitiesInfo">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о выручке по видам деятельности</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="revenueAmount" type="t:money2" minOccurs="0">
+                                    <xs:annotation>
+                                        <xs:documentation>Объем выручки</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="totalByActivity" type="t:money2">
+                                    <xs:annotation>
+                                        <xs:documentation>Суммарный объем по видам деятельности</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+
+                                <xs:element name="activityTypeAmounts">
+                                    <xs:annotation>
+                                        <xs:documentation>Сведения по видам деятельности</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="activityTypeAmount" type="activityTypeAmountType" minOccurs="1" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                    <xs:documentation>Сведения о выручке</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+
+                <xs:sequence>
+                    <!--сведения 2,3-->
+                    <xs:element name="periodQuarter">
+                        <xs:annotation>
+                            <xs:documentation>Квартал отчетного периода</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:int">
+                                <xs:minInclusive value="1"/>
+                                <xs:maxInclusive value="4"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="mainOrganization" type="t:customerInfoType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Сведения об Основной организации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="organizations">
+                        <xs:annotation>
+                            <xs:documentation>Основные хозяйственные общества, иные дочерние хозяйственные общества (организации учредители)</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="organization" type="organizationType" minOccurs="1" maxOccurs="unbounded">
+                                    <xs:annotation>
+                                        <xs:documentation>Сведения об организации</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="childRevenue" type="t:money2">
+                        <xs:annotation>
+                            <xs:documentation>Объем выручки заказчика за отчетный период от всех видов деятельности</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="commonRevenue" type="t:money2">
+                        <xs:annotation>
+                            <xs:documentation>Объем выручки дочернего общества от закупок товаров, работ, услуг основным обществом и иными дочерними обществами основного общества за отчетный период</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:choice>
+
+            <xs:element name="documentsInfo">
+                <xs:annotation>
+                    <xs:documentation>Сведения о документах</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="documentsInfo" type="documentsInfoType" minOccurs="1" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Сведения о документах</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="contribution" type="t:money2">
+                <xs:annotation>
+                    <xs:documentation>Доля для типа сведений 1; Доля за квартал для типов 2,3</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:simpleType name="revenueStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус сведений о выручке</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Редактирование</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Размещено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Недействительно</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Изменение</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="documentsInfoType">
+        <xs:sequence>
+            <xs:element name="number">
+                <xs:annotation>
+                    <xs:documentation>Номер документа</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="date" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>Дата документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="name">
+                <xs:annotation>
+                    <xs:documentation>Наименование документа</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="organizationType">
+        <xs:sequence>
+            <xs:element name="fullName" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование организации</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="shortName" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Сокращенное наименование юридического лица</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="inn" type="t:innType">
+                <xs:annotation>
+                    <xs:documentation>ИНН организации</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="activityTypeAmountType">
+        <xs:annotation>
+            <xs:documentation>Сведения о выручке по видам деятельности</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        	<xs:choice>
+	            <xs:element name="okved" type="t:codeOkvedType">
+                	<xs:annotation>
+	                    <xs:documentation>Код ОКВЭД</xs:documentation>
+                	</xs:annotation>
+            	</xs:element>
+	            <xs:element name="okved2" type="t:codeOkvedType">
+                	<xs:annotation>
+	                    <xs:documentation>Код ОКВЭД2</xs:documentation>
+                	</xs:annotation>
+            	</xs:element>
+            </xs:choice>
+            <xs:element name="name">
+                <xs:annotation>
+                    <xs:documentation>Наименование вида деятельности</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="revenueType">
+        <xs:annotation>
+            <xs:documentation>Вид сведений о выручке</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TYPE_1">
+                <xs:annotation>
+                    <xs:documentation>Сведения о выручке субъектов естественных монополий, организаций, осуществляющих
+                        регулируемые виды деятельности (п.1 ч. 2.1 статьи 1 Закона 223-ФЗ)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TYPE_2">
+                <xs:annotation>
+                    <xs:documentation>Сведения о выручке дочерних хозяйственных обществ (п.2 ч. 2.1 статьи 1 Закона
+                        223-ФЗ)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TYPE_3">
+                <xs:annotation>
+                    <xs:documentation>Cведения о выручке дочерних хозяйственных обществ (п.3 ч. 2.1 статьи 1 Закона
+                        223-ФЗ)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

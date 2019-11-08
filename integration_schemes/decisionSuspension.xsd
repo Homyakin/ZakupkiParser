@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/decisionSuspension/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1" xmlns:xsl="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://zakupki.gov.ru/223fz/decisionSuspension/1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:element name="decisionSuspension">
+		<xs:annotation>
+			<xs:documentation>Решение о приостановке реализации утвержденного плана закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="decisionSuspensionItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="decisionSuspensionItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="decisionSuspensionData" type="decisionSuspensionData">
+                        <xs:annotation>
+                            <xs:documentation>Решение о приостановке реализации утвержденного плана закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="decisionSuspensionData">
+    	<xs:annotation>
+        	<xs:documentation>Решение о приостановке реализации утвержденного плана закупки</xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+    		<xs:element name="publicationDate" type="xs:date" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дата размещения</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="cancellationDecisionDate" type="xs:date" minOccurs="0" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дата отмены</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="reasonsCancellationDecision" type="xs:string" minOccurs="0" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Обоснование отмены</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="status" type="t:planInformationType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Статус сведений плана закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="planRegNumber" type="t:registrationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер плана закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="conclusionRegNumber">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер отрицательного заключения</xs:documentation>
+                </xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:pattern value="\w(\d{10}|\d{16})"/>
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="plannedAnnualVolume" type="t:money2" minOccurs="0" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Планируемый годовой объем закупки</xs:documentation>
+    			</xs:annotation>
+            </xs:element>
+            <xs:element name="termSuspensionPlan" type="xs:string" minOccurs="0" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Срок приостановки</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="decisionDate" type="xs:date" minOccurs="0" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дата принятия решения</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+            <xs:element name="checkType" type="checkType" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Тип проверки</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="documentType" type="documentType" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Тип документа</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+            <xs:element name="customerAgency" type="t:customerInfo2Type">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, проводящей оценку/мониторинг</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="supervisorAgency" type="t:customerInfo2Type">
+				<xs:annotation>
+					<xs:documentation>Антимонопольный орган</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="stopCommodityItems" type="stopCommodityItems" minOccurs="1" maxOccurs="unbounded">
+    			<xs:annotation>
+    				<xs:documentation>Строки перечня позиций</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="checkType">
+    	<xs:annotation>
+    		<xs:documentation>Тип проверки</xs:documentation>
+    	</xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="O">
+                <xs:annotation>
+                    <xs:documentation>Оценка</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Мониторинг</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="documentType">
+    	<xs:annotation>
+    		<xs:documentation>Тип документа</xs:documentation>
+    	</xs:annotation>
+        <xs:restriction base="xs:int">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>решение о приостановке</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>отмена решения о приостановке</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="stopCommodityItems">
+    	<xs:annotation>
+    		<xs:documentation>Строка перечня</xs:documentation>
+    	</xs:annotation>
+        <xs:sequence>
+        	<xs:element name="ordinalNumber" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="contractSubject" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

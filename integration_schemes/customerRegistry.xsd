@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/customerRegistry/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1"
+           targetNamespace="http://zakupki.gov.ru/223fz/customerRegistry/1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+
+    <xs:element name="nsiCustomer">
+        <xs:annotation>
+            <xs:documentation>Организация в реестре заказчиков</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="customerRegistryItemType" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="customerRegistryItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="customerRegistryData" type="customerRegistryDataType">
+                        <xs:annotation>
+                            <xs:documentation>Сведения об организации из реестра заказчиков</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="customerRegistryDataType">
+        <xs:annotation>
+            <xs:documentation>Сведения об организации из реестра заказчиков</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="registrationNumber" type="t:registrationNumber28Type">
+                <xs:annotation>
+                    <xs:documentation>
+                        Реестровый номер сведений об организации из реестра заказчиков
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Версия сведений
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versionCreationDate" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата создания версии сведений
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="registryStatus" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Статус организации в реестре заказчиков
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="addedToRegistryDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата включения в реестр
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="removedFromRegistryDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата исключения из реестра
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customerRegistryMainInfo" type="t:customerRegistryInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ikuls" minOccurs="0" maxOccurs="unbounded" type="t:ikulType">
+                <xs:annotation>
+                    <xs:documentation>ИКЮЛ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="classification">
+                <xs:annotation>
+                    <xs:documentation>Квалификационные признаки</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="okved" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Вид деятельности по ОКВЭД</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="code" type="t:codeOkvedType">
+                                        <xs:annotation>
+                                            <xs:documentation>Код ОКВЭД</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="isMain" type="xs:boolean" default="false">
+                                        <xs:annotation>
+                                            <xs:documentation>Основная/не основная деятельность</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="name">
+                                        <xs:annotation>
+                                            <xs:documentation>Наименование по ОКВЭД</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="t:nonEmptyString">
+                                                <xs:maxLength value="500"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="okved2" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Вид деятельности по ОКВЭД2</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="code" type="t:codeOkved2Type">
+                                        <xs:annotation>
+                                            <xs:documentation>Код ОКВЭД2</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="isMain" type="xs:boolean" default="false">
+                                        <xs:annotation>
+                                            <xs:documentation>Основная/не основная деятельность</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="name">
+                                        <xs:annotation>
+                                            <xs:documentation>Наименование по ОКВЭД2</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="t:nonEmptyString">
+                                                <xs:maxLength value="500"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="fz223types" minOccurs="0" maxOccurs="unbounded" type="t:fz223type">
+                            <xs:annotation>
+                                <xs:documentation>Принадлежность к виду юридического лица Виды организации по 223-ФЗ</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="okpo" type="t:codeOkpoType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Код по ОКПО</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="okpoName" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Наименование кода по ОКПО</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="t:nonEmptyString">
+                                    <xs:maxLength value="200"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="okato" type="t:codeOkatoType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Код по ОКАТО</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="okatoName" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Наименование кода по ОКАТО</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="t:nonEmptyString">
+                                    <xs:maxLength value="200"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="oktmo" type="t:codeOktmoType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Код по ОКТМО</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="oktmoName" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Наименование кода по ОКТМО</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="t:nonEmptyString">
+                                    <xs:maxLength value="200"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="okfs" type="t:codeOkfsType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Код по ОКФС</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="okfsName" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Наименование кода по ОКТМО</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="t:nonEmptyString">
+                                    <xs:maxLength value="200"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="okopf" type="t:codeOkopfType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>ОКОПФ</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="okopfName" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Наименование кода по ОКОПФ</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="t:nonEmptyString">
+                                    <xs:maxLength value="200"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="authority">
+                <xs:annotation>
+                    <xs:documentation>Полномочия организации</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="isCustomer" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия Заказчика</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isCustomerRepresentative" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия Организации, являющейся представителем заказчика
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isSupervisor" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия Контрольного органа в сфере закупок</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isOperator" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия Оператора Официального сайта</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isOVK" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия Органа внутреннего контроля</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isPurchaseAudit" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия Органа аудита в сфере закупок</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isMonitoring" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия организации, осуществляющей мониторинг соответствия в
+                                    соответствии с Федеральным законом № 223-ФЗ
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isAssessment" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия организации, осуществляющей оценку соответствия в
+                                    соответствии с Федеральным законом № 223-ФЗ
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isTypalOrderClause" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Орган (организация), уполномоченный (-ая) на утверждение,
+                                    изменение и размещение типовых положений о закупках, в соответствии с
+                                    Федеральным законом № 223-ФЗ
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="isOperatorEM" type="xs:boolean" default="false" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Полномочия оператора электронной площадки</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="contactInfo" type="t:contactInfoType">
+                <xs:annotation>
+                    <xs:documentation>Контактное лицо</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="grantedUserWoAttorney" type="t:grantedUserWoAttorneyType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Информация о лице, имеющем право действовать без доверенности
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ppo" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Публично-правовое образование</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="isPpo" type="xs:boolean" default="false">
+                            <xs:annotation>
+                                <xs:documentation>Принадлежность к ППО</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:sequence minOccurs="0">
+                            <xs:element name="code">
+                                <xs:annotation>
+                                    <xs:documentation>Код ППО</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="t:nonEmptyString">
+                                        <xs:maxLength value="11"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="name">
+                                <xs:annotation>
+                                    <xs:documentation>Наименование ППО</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="t:nonEmptyString">
+                                        <xs:maxLength value="2000"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="capitalStockAgencies" minOccurs="0" maxOccurs="unbounded" type="t:capitalStockAgencyType">
+                <xs:annotation>
+                    <xs:documentation>Информация о юридических лицах, перечисленных в пунктах 1, 2 части 2 статьи 1
+                        Федерального
+                        закона № 223-ФЗ
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

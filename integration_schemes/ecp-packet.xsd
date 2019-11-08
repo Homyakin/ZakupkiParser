@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://zakupki.gov.ru/223fz/ecp-packet/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1"
+           xmlns:p="http://zakupki.gov.ru/223fz/purchase/1"
+           xmlns:c="http://zakupki.gov.ru/223fz/contract/1"
+           targetNamespace="http://zakupki.gov.ru/223fz/ecp-packet/1"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://zakupki.gov.ru/223fz/purchase/1" schemaLocation="purchase.xsd"/>
+    <xs:import namespace="http://zakupki.gov.ru/223fz/contract/1" schemaLocation="contract.xsd"/>
+
+    <xs:element name="ecp-packet">
+        <xs:annotation>
+            <xs:documentation>Загрузка в ЕИС сведений, подписанных на электронных площадках</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                	<xs:choice>
+										<xs:element name="purchaseNoticeKESMBO" type="p:purchaseNoticeKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Извещение о закупке "Конкурс в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства"</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseNoticeAESMBO" type="p:purchaseNoticeAESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Извещение о закупке "Аукцион в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства"</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="explanation" type="p:explanationItemType">
+											<xs:annotation>
+												<xs:documentation>Разъяснение</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="protocolCancellation" type="p:protocolCancellationType">
+											<xs:annotation>
+												<xs:documentation>Сведения об отмене протокола</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+
+										<!-- Protocols -->
+										<xs:element name="purchaseProtocolFCODKESMBO" type="p:purchaseProtocolFCODKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол обсуждения предложений о функциональных характеристиках</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolFCDKESMBO" type="p:purchaseProtocolFCDKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол обсуждения функциональных характеристик</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolFKVOKESMBO" type="p:purchaseProtocolFKVOKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол рассмотрения и оценки окончательных предложений о функциональных характеристиках</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+                                        <xs:element name="purchaseProtocolZRPZKESMBO" type="p:purchaseProtocolZRPZKESMBOItemType">
+                                            <xs:annotation>
+                                                <xs:documentation>Протокол запроса разъяснений положений заявки для конкурса в электронной форме, участниками которого могут быть только субъекты малого и среднего предпринимательства</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+										<xs:element name="purchaseProtocolRZ1KESMBO" type="p:purchaseProtocolRZ1KESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол рассмотрения первых частей заявок</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+                                        <xs:element name="purchaseProtocolRZ2KESMBO" type="p:purchaseProtocolRZ2KESMBOItemType">
+                                            <xs:annotation>
+                                                <xs:documentation>Протокол рассмотрения вторых частей заявок</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+										<xs:element name="purchaseProtocolSummingupKESMBO" type="p:purchaseProtocolSummingupKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Итоговый протокол</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolZRPZAESMBO" type="p:purchaseProtocolZRPZAESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол запроса разъяснений положений заявки для аукциона в электронной форме, участниками которого могут быть только субъекты малого и среднего предпринимательства</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+
+										<xs:element name="purchaseProtocolRZ1AESMBO" type="p:purchaseProtocolRZ1AESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол рассмотрения первых частей заявок</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolCollationAESMBO" type="p:purchaseProtocolCollationAESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол сопоставления ценовых предложений</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolRZ2AESMBO" type="p:purchaseProtocolRZ2AESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол рассмотрения вторых частей заявок для аукциона в электронной форме, участниками которого могут быть только субъекты малого и среднего предпринимательства</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolSummingupAESMBO" type="p:purchaseProtocolSummingupAESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Итоговый протокол</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+
+										<xs:element name="purchaseProtocolZRPZZKESMBO" type="p:purchaseProtocolZRPZZKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол запроса разъяснений положений заявки для запроса котировок в электронной форме, участниками которого могут быть только субъекты малого и среднего предпринимательства</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+                                        <xs:element name="purchaseProtocolRZZKESMBO" type="p:purchaseProtocolRZZKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол рассмотрения заявок</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolSummingupZKESMBO" type="p:purchaseProtocolSummingupZKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Итоговый протокол</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+
+                                        <xs:element name="purchaseProtocolZRPZZPESMBO" type="p:purchaseProtocolZRPZZPESMBOItemType">
+                                            <xs:annotation>
+                                                <xs:documentation>Протокол запроса разъяснений положений заявки для запроса предложений в электронной форме, участниками которого могут быть только субъекты малого и среднего предпринимательства</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+										<xs:element name="purchaseProtocolRZ1ZPESMBO" type="p:purchaseProtocolRZ1ZPESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол рассмотрения первых частей заявок</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolRZ2ZPESMBO" type="p:purchaseProtocolRZ2ZPESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол рассмотрения вторых частей заявок</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolSummingupZPESMBO" type="p:purchaseProtocolSummingupZPESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Итоговый протокол</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+                                        <xs:element name="electronicContract" type="c:electronicContractItemType">
+                                            <xs:annotation>
+                                                <xs:documentation>Договор в электронной форме</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+									</xs:choice>
+									<xs:element name="printForm" type="t:documentType">
+										<xs:annotation>
+											<xs:documentation>Документ печатной формы</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="cryptoSign" type="xs:base64Binary">
+										<xs:annotation>
+											<xs:documentation>Данные электронно-цифровой подписи, которой подписана печатная форма в base64</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -2,3 +2,4 @@
 target/
 zakupki_download/
 ZakupkiParser.iml
+.DS_Store

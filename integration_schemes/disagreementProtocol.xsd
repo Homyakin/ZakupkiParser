@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/disagreementProtocol/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1" xmlns:xsl="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://zakupki.gov.ru/223fz/disagreementProtocol/1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:element name="disagreementProtocol">
+		<xs:annotation>
+			<xs:documentation>Протокол разногласий, отказ в учете разногласий</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="disagreementProtocolItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="disagreementProtocolItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="disagreementProtocolData" type="disagreementProtocolData">
+                        <xs:annotation>
+                            <xs:documentation>Протокол разногласий, отказ в учете разногласий</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="disagreementProtocolData">
+    	<xs:annotation>
+        	<xs:documentation>Протокол разногласий, отказ в учете разногласий</xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+    		<xs:element name="publicationDate" type="xs:date" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дата размещения сведений</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="disagreementType" type="disagreementType" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Тип документа</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="rejectionDate" type="xs:date" minOccurs="0">
+    			<xs:annotation>
+    				<xs:documentation>Дата отказа</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="reasonRejection" type="xs:string" minOccurs="0">
+    			<xs:annotation>
+    				<xs:documentation>Причина отказа</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+			<xs:element name="status" type="t:disagreementsProtocolStatus" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Статус протокола разногласий</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+    		<xs:element name="conclusion" type="conclusion" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Уведомление о несоответствии</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="disagreements" type="disagreements" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Сведения о разногласиях</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>        		
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="disagreementType">
+    	<xs:annotation>
+    		<xs:documentation>Тип документа</xs:documentation>
+    	</xs:annotation>
+        <xs:restriction base="xs:int">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Протокол разногласий</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Отказ в учете разногласий</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="conclusion">
+    	<xs:annotation>
+    		<xs:documentation>Уведомление о несоответствии</xs:documentation>
+    	</xs:annotation>
+        <xs:sequence>
+        
+        	<xs:element name="conclusionRegNumber">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер уведомления о несоответствии</xs:documentation>
+                </xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:pattern value="\w(\d{10}|\d{16})"/>
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="planRegNumber" type="t:registrationNumberType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер плана закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="purchasePlanStatusType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Статус плана</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="placementType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Тип уведомления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="authorityAgencyFullName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Полное наименование контролирующего органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>            
+            <xs:element name="evaluationDate" type="xs:date" minOccurs="1" maxOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation>Дата проведения</xs:documentation>
+            	</xs:annotation>
+            </xs:element>
+			<xs:element name="msbCustomerAgencyName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полное наименование заказчика годового отчета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="msbPeriod" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчетный период годового отчета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="innovMsbCustomerAgencyName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полное наименование заказчика инновационного годового отчета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="innovMsbPeriod" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчетный период инновационного годового отчета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="purchasePlanStatusType">
+		<xs:annotation>
+			<xs:documentation>Статус плана закупки</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="P">
+				<xs:annotation>
+					<xs:documentation>Проект плана закупки</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MP">
+				<xs:annotation>
+					<xs:documentation>Изменение проекта плана закупки</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="M">
+				<xs:annotation>
+					<xs:documentation>Проект изменений плана закупки</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CM">
+				<xs:annotation>
+					<xs:documentation>Изменение проекта изменений плана закупки</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A">
+				<xs:annotation>
+					<xs:documentation>Утвержден</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AM">
+				<xs:annotation>
+					<xs:documentation>Утвержденные изменения плана закупки</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="placementType">
+		<xs:annotation>
+			<xs:documentation>Тип уведомления</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="O">
+				<xs:annotation>
+					<xs:documentation>Оценка</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="M">
+				<xs:annotation>
+					<xs:documentation>Мониторинг</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="disagreements">
+    	<xs:annotation>
+    		<xs:documentation>Сведения о разногласиях</xs:documentation>
+    	</xs:annotation>
+        <xs:sequence>
+        	<xs:element name="notObservedAnnualAmount" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="notObservedAnnualAmountInfo" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Информация о разногласии по признаку «Не соблюден годовой объем закупки, 
+						который планируется осуществить по результатам закупки, участниками которой 
+						являются только субъекты малого и среднего предпринимательства»
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="noApprovedListGWS" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="noApprovedListGWSInfo" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Информация о разногласии по признаку «Отсутствует утвержденный заказчиком 
+						перечень товаров, работ, услуг, закупка которых осуществляется у субъектов 
+						малого и среднего предпринимательства»
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+			<xs:element name="notCorrespondListGWS" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="notCorrespondListGWSInfo" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Информация о разногласии по признаку «Раздел проекта плана закупки, 
+						предусматривающий осуществление закупки у субъектов малого и среднего предпринимательства, 
+						не соответствует перечню товаров, работ, услуг, закупка которых осуществляется 
+						у субъектов малого и среднего предпринимательства»
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="notObservedAnnualAmountSmb" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="notObservedAnnualAmountSmbInfo" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Информация о разногласии по признаку «Не соблюден годовой объем закупки, который планировалось
+						осуществить у субъектов малого и среднего предпринимательства по результатам закупок»
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="notObservingRequirements" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="notObservingRequirementsInfo" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Информация о разногласии по признаку «Не соблюдены установленные Правительством Российской
+						Федерации требования к содержанию годового отчета»
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="innovationVolumeForSmbNotMet" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="innovationVolumeForSmbViolation" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Не соблюден годовой объем закупки, инновационной продукции, высокотехнологичной продукции (в частности закупки у субъектов малого и среднего предпринимательства)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="notObservingInnovativeRequirements" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="notObservingInnovativeRequirementsInfo" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Не соблюдены установленные Правительством Российской Федерации требования к содержанию годового отчета о закупке инновационной продукции, высокотехнологичной продукции (в частности закупки у субъектов малого и среднего предпринимательства)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

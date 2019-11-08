@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/stopCommodity/1"
+           xmlns:t="http://zakupki.gov.ru/223fz/types/1" xmlns:xsl="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://zakupki.gov.ru/223fz/stopCommodity/1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:element name="stopCommodity">
+		<xs:annotation>
+			<xs:documentation>Перечень товаров, работ, услуг для приостановки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="stopCommodityItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="stopCommodityItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="stopCommodityData" type="stopCommodityData">
+                        <xs:annotation>
+                            <xs:documentation>Перечень товаров, работ, услуг для приостановки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="stopCommodityData">
+    	<xs:annotation>
+        	<xs:documentation>Перечень товаров, работ, услуг для приостановки</xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+    		<xs:element name="publicationDate" type="xs:date" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дата размещения</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="annualVolumeSMB" type="t:money2" minOccurs="1" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Планируемый годовой объем закупки, участниками которой являются только субъекты малого и среднего предпринимательства, в пределах которого осуществляется приостановка реализации</xs:documentation>
+    			</xs:annotation>
+            </xs:element>
+			<xs:element name="status" type="t:stopCommodityStatus" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Статус перечня ТРУ для приостановки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annualVolumePercent" type="xs:decimal">
+				<xs:annotation>
+					<xs:documentation>Планируемый годовой объем закупки, в пределах которого осуществляется приостановка реализации (процент)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="conclusionRegNumber">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер отрицательного заключения</xs:documentation>
+                </xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:pattern value="\w(\d{10}|\d{16})"/>
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="planRegNumber" type="t:registrationNumberType">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер плана закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customerAgency" type="t:customerInfo2Type">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, проводящей оценку/мониторинг</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+    		<xs:element name="additionalInfo" type="xs:string" minOccurs="0" maxOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Дополнительная информация</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="stopCommodityItems" type="stopCommodityItems" minOccurs="1" maxOccurs="unbounded">
+    			<xs:annotation>
+    				<xs:documentation>Строки перечня позиций</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>        		
+    	</xs:sequence>
+    </xs:complexType>
+
+	<xs:complexType name="stopCommodityItems">
+    	<xs:annotation>
+    		<xs:documentation>Строка перечня</xs:documentation>
+    	</xs:annotation>
+        <xs:sequence>
+        	<xs:element name="ordinalNumber" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="contractSubject" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="maximumContractPrice" type="t:money2" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="currency" type="t:currencyType"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,10 +1,10 @@
 package ru.homyakin.database;
 
 import ru.homyakin.documentsinfo.ContractInfo;
-import ru.homyakin.documentsinfo.subdocumentsinfo.ContractPositionInfo;
-import ru.homyakin.documentsinfo.subdocumentsinfo.CurrencyInfo;
-import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
-import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
+import ru.homyakin.documentsinfo._223fz.contract._1.PositionType;
+import ru.homyakin.documentsinfo._223fz.contract._1.SupplierMainType;
+import ru.homyakin.documentsinfo._223fz.types._1.CurrencyType;
+import ru.homyakin.documentsinfo._223fz.types._1.CustomerMainInfoType;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public class ZakupkiDatabase {
@@ -32,21 +34,21 @@ public class ZakupkiDatabase {
         }
     }
 
-    private void insertCustomer(CustomerInfo customer) {
+    private void insertCustomer(CustomerMainInfoType customer) {
         String sql = "INSERT INTO customers (customer_INN, customer_OGRN, customer_KPP, customer_fullName,"
                 + "customer_shortName) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
-            statement.setString(1, customer.getINN());
-            statement.setString(2, customer.getOGRN());
-            statement.setString(3, customer.getKPP());
-            if (customer.getName().isPresent()) {
-                statement.setString(4, customer.getName().get());
+            statement.setString(1, customer.getInn());
+            statement.setString(2, customer.getOgrn());
+            statement.setString(3, customer.getKpp());
+            if (customer.getFullName() != null) {
+                statement.setString(4, customer.getFullName());
             } else {
                 statement.setNull(4, Types.VARCHAR);
             }
-            if (customer.getShortName().isPresent()) {
-                statement.setString(4, customer.getShortName().get());
+            if (customer.getShortName() != null) {
+                statement.setString(4, customer.getShortName());
             } else {
                 statement.setNull(4, Types.VARCHAR);
             }
@@ -60,14 +62,17 @@ public class ZakupkiDatabase {
         }
     }
 
-    private void insertCurrency(CurrencyInfo currency) {
+    private void insertCurrency(CurrencyType currency) {
         String sql = "INSERT INTO currencies (currency_code, currency_digitalCode, currency_name) VALUES (?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
             statement.setString(1, currency.getLetterCode());
-            if (currency.getDigitalCode().isPresent()) {
-                statement.setString(2, currency.getDigitalCode().get());
+            if (currency.getDigitalCode() != null) {
+                statement.setString(2, currency.getDigitalCode());
             } else {
+                if (currency.getCode() != null) {
+                    statement.setString(2, currency.getCode());
+                }
                 statement.setNull(2, Types.VARCHAR);
             }
 
@@ -82,22 +87,22 @@ public class ZakupkiDatabase {
         }
     }
 
-    private void insertSupplier(SupplierInfo supplier) {
+    private void insertSupplier(SupplierMainType supplier) {
         //TODO replace hashName to auto generated id
         String sql = "INSERT INTO suppliers (supplier_hashName, type, provider, nonResident, supplier_INN, "
                 + "supplier_shortName, supplier_name) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, supplier.getName().hashCode());
-            statement.setString(2, supplier.getType());
+            statement.setString(2, supplier.getType().value()); //TODO fix enum
             statement.setInt(3, supplier.isProvider() ? 1 : 0);
             statement.setInt(4, supplier.isNonResident() ? 1 : 0);
-            if (supplier.getINN().isPresent()) {
-                statement.setString(5, supplier.getINN().get());
+            if (supplier.getInn() != null) {
+                statement.setString(5, supplier.getInn());
             } else {
                 statement.setNull(5, Types.VARCHAR);
             }
-            if (supplier.getShortName().isPresent()) {
-                statement.setString(6, supplier.getShortName().get());
+            if (supplier.getShortName() != null) {
+                statement.setString(6, supplier.getShortName());
             } else {
                 statement.setNull(6, Types.VARCHAR);
             }
@@ -117,10 +122,10 @@ public class ZakupkiDatabase {
         String sql = "INSERT INTO suppliers_to_contracts (supplier_hashName, contract_GUID)"
                 + " VALUES (?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            if (contract.getSupplier().isPresent()) {
-                statement.setInt(1, contract.getSupplier().get().getName().hashCode());
+            for (SupplierMainType supplier : contract.getSupplier()) {
+                statement.setInt(1, supplier.getName().hashCode());
+                statement.setString(2, contract.getGUID());
             }
-            statement.setString(2, contract.getGUID());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -130,14 +135,14 @@ public class ZakupkiDatabase {
         }
     }
 
-    private void insertOK(ContractPositionInfo position) {
+    private void insertOK(PositionType position) {
         //TODO make different tables for each OK
         String sql = "INSERT INTO ok_info (ok_code, ok_type, ok_name) VALUES(?, ?, ?)";
-        if (position.getOKDP().isPresent()) {
+        if (position.getOkdp() != null) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, position.getOKDP().get().getCode());
+                statement.setString(1, position.getOkdp().getCode());
                 statement.setString(2, "OKDP");
-                statement.setString(3, position.getOKDP().get().getName());
+                statement.setString(3, position.getOkdp().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -148,11 +153,11 @@ public class ZakupkiDatabase {
             }
         }
 
-        if (position.getOKPD().isPresent()) {
+        if (position.getOkpd() != null) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, position.getOKPD().get().getCode());
-                statement.setString(2, "OKPD");
-                statement.setString(3, position.getOKPD().get().getName());
+                statement.setString(1, position.getOkpd().getCode());
+                statement.setString(2, "OKDP");
+                statement.setString(3, position.getOkpd().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -163,11 +168,11 @@ public class ZakupkiDatabase {
             }
         }
 
-        if (position.getOKPD2().isPresent()) {
+        if (position.getOkpd2() != null) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, position.getOKPD2().get().getCode());
-                statement.setString(2, "OKPD2");
-                statement.setString(3, position.getOKPD2().get().getName());
+                statement.setString(1, position.getOkpd2().getCode());
+                statement.setString(2, "OKDP");
+                statement.setString(3, position.getOkpd2().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -178,11 +183,11 @@ public class ZakupkiDatabase {
             }
         }
 
-        if (position.getOKEI().isPresent()) {
+        if (position.getOkei() != null) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, position.getOKEI().get().getCode());
-                statement.setString(2, "OKEI");
-                statement.setString(3, position.getOKEI().get().getName());
+                statement.setString(1, position.getOkei().getCode());
+                statement.setString(2, "OKDP");
+                statement.setString(3, position.getOkei().getName());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 if (!e.getMessage().contains("Duplicate entry")) {
@@ -192,49 +197,50 @@ public class ZakupkiDatabase {
 
             }
         }
+
     }
 
-    private void insertContractPositions(List<ContractPositionInfo> contractPositions, String contractGUID) {
+    private void insertContractPositions(List<PositionType> contractPositions, String contractGUID) {
         String sql = "INSERT INTO contract_positions (contract_GUID, ordinalNumber, position_GUID, position_name, OKDP_code,"
                 + "OKPD_code, OKPD2_code, OKEI_code, qty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        for (ContractPositionInfo position : contractPositions) {
+        for (PositionType position : contractPositions) {
 
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, contractGUID);
                 statement.setInt(2, position.getOrdinalNumber());
-                if (position.getGUID().isPresent()) {
-                    statement.setString(3, position.getGUID().get());
+                if (position.getGuid() != null) {
+                    statement.setString(3, position.getGuid());
                 } else {
                     statement.setNull(3, Types.VARCHAR);
                 }
-                if (position.getName().isPresent()) {
-                    statement.setString(4, position.getName().get());
+                if (position.getName() != null) {
+                    statement.setString(4, position.getName());
                 } else {
                     statement.setNull(4, Types.VARCHAR);
                 }
-                if (position.getOKDP().isPresent()) {
-                    statement.setString(5, position.getOKDP().get().getCode());
+                if (position.getOkdp() != null) {
+                    statement.setString(5, position.getOkdp().getCode());
                 } else {
                     statement.setNull(5, Types.VARCHAR);
                 }
-                if (position.getOKPD().isPresent()) {
-                    statement.setString(6, position.getOKPD().get().getCode());
+                if (position.getOkpd() != null) {
+                    statement.setString(6, position.getOkdp().getCode());
                 } else {
                     statement.setNull(6, Types.VARCHAR);
                 }
-                if (position.getOKPD2().isPresent()) {
-                    statement.setString(7, position.getOKPD2().get().getCode());
+                if (position.getOkpd2() != null) {
+                    statement.setString(7, position.getOkpd2().getCode());
                 } else {
                     statement.setNull(7, Types.VARCHAR);
                 }
-                if (position.getOKEI().isPresent()) {
-                    statement.setString(8, position.getOKEI().get().getCode());
+                if (position.getOkei() != null) {
+                    statement.setString(8, position.getOkei().getCode());
                 } else {
                     statement.setNull(8, Types.VARCHAR);
                 }
-                if (position.getQty().isPresent()) {
-                    statement.setBigDecimal(9, position.getQty().get());
+                if (position.getQty() != null) {
+                    statement.setBigDecimal(9, position.getQty());
                 } else {
                     statement.setNull(9, Types.DECIMAL);
                 }
@@ -260,23 +266,24 @@ public class ZakupkiDatabase {
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
             statement.setString(1, contract.getGUID());
-            statement.setTimestamp(2, Timestamp.valueOf(contract.getCreateDateTime()));
+            statement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.of(contract.getCreateDateTime(),
+                    LocalTime.MIDNIGHT))); //TODO fix Timestamp in database
             statement.setDate(3, Date.valueOf(contract.getContractDate()));
-            if (contract.getStartExecutionDate().isPresent()) {
-                statement.setDate(4, Date.valueOf(contract.getStartExecutionDate().get()));
+            if (contract.getStartExecutionDate() != null) {
+                statement.setDate(4, Date.valueOf(contract.getStartExecutionDate()));
             } else {
                 statement.setNull(4, Types.DATE);
             }
-            if (contract.getEndExecutionDate().isPresent()) {
-                statement.setDate(5, Date.valueOf(contract.getEndExecutionDate().get()));
+            if (contract.getEndExecutionDate() != null) {
+                statement.setDate(5, Date.valueOf(contract.getEndExecutionDate()));
             } else {
                 statement.setNull(5, Types.DATE);
             }
-            statement.setString(6, contract.getCustomer().getINN());
+            statement.setString(6, contract.getCustomer().getInn());
             statement.setString(7, contract.getPurchaseType().getCode());
-            if (contract.getPurchaseType().getName().isPresent()) {
+            if (contract.getPurchaseType().getName() != null) {
                 //TODO add table to PurchaseType
-                statement.setString(8, contract.getPurchaseType().getName().get());
+                statement.setString(8, contract.getPurchaseType().getName());
             } else {
                 statement.setNull(8, Types.VARCHAR);
             }
@@ -297,10 +304,10 @@ public class ZakupkiDatabase {
             }
         }
         insertContractPositions(contract.getPositions(), contract.getGUID());
-        if (contract.getSupplier().isPresent()) {
-            insertSupplier(contract.getSupplier().get());
-            insertSupplierToContract(contract);
+        for (SupplierMainType supplier : contract.getSupplier()) {
+            insertSupplier(supplier);
         }
+        insertSupplierToContract(contract);
     }
 
 }

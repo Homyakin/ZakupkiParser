@@ -1,0 +1,1242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/complaint/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/complaint/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+
+    <xs:element name="complaint">
+        <xs:annotation>
+			<xs:documentation>Сведения о поданной жалобе</xs:documentation>
+		</xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="complaintItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+
+    <xs:element name="complaintDecision">
+        <xs:annotation>
+			<xs:documentation>Решение по жалобе</xs:documentation>
+		</xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="complaintDecisionItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+
+    <xs:element name="complaintWithdraw">
+        <xs:annotation>
+			<xs:documentation>Отзыв жалобы</xs:documentation>
+		</xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="complaintWithdrawItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+
+    <xs:element name="complaintVerificationPlan">
+        <xs:annotation>
+			<xs:documentation>Сведения плана проверок</xs:documentation>
+		</xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="complaintVerificationPlanItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+
+    <xs:element name="complaintVerificationResult">
+        <xs:annotation>
+			<xs:documentation>Сведения о результатах контроля</xs:documentation>
+		</xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="complaintVerificationResultItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="complaintVerificationResultItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="complaintVerificationResultData" type="complaintVerificationResultDataType">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о результатах контроля</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+    <xs:complexType name="complaintVerificationPlanItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="complaintVerificationPlanData" type="complaintVerificationPlanDataType">
+                        <xs:annotation>
+                            <xs:documentation>Сведения плана проверок</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+    <xs:complexType name="complaintItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="complaintData" type="complaintDataType">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о поданной жалобе</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+    <xs:complexType name="complaintDecisionItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="complaintDecisionData" type="complaintDecisionDataType">
+                        <xs:annotation>
+                            <xs:documentation>Решение по жалобе</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+    <xs:complexType name="complaintWithdrawItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="complaintWithdrawData" type="complaintWithdrawDataType">
+                        <xs:annotation>
+                            <xs:documentation>Отзыв жалобы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+    <xs:complexType name="complaintVerificationResultDataType">
+        <xs:annotation>
+			<xs:documentation>Сведения о результатах контроля</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор Сведений о результатах контроля</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlKisRmis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="placer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, создавшей сведения о результатах контроля</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="controlAgency" type="t:customerMainInfoType">
+                <xs:annotation>
+                    <xs:documentation>Текущий орган, осуществляющий рассмотрение жалобы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="planNumber" type="complaintVerificationPlanNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер плана проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="planName">
+				<xs:annotation>
+					<xs:documentation>Наименование плана</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Описание результатов контроля</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Обоснование внесения изменений </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="publishDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер редакции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="complaintVerificationResultStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="complaintVerificationPlanDataType">
+        <xs:annotation>
+			<xs:documentation>Сведения плана проверок</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор Сведений плана проверок</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="registrationNumber" type="complaintVerificationPlanNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Реестровый номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlKisRmis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="placer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, создавшей сведения о плане проверок</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Наименование плана</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="startDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата начала действия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="endDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата окончания действия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Описание плана проверки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="controlAgency" type="t:customerMainInfoType">
+				<xs:annotation>
+					<xs:documentation>Контролирующий орган</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Обоснование внесения изменений </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="publishDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер редакции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="complaintVerificationPlanStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customers" type="complaintVerificationCustomerListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о заказчиках</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="complaintWithdrawDataType">
+        <xs:annotation>
+			<xs:documentation>Отзыв жалобы</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор сведений Отзыв жалобы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="registrationNumber" type="complaintNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер жалобы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="placer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, создавшей сведения об отзыве жалобы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="complaintDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата поступления жалобы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="publishDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер редакции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="complaintWithdrawStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rejectReason">
+				<xs:annotation>
+					<xs:documentation>Основание для отзыва жалобы</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlKisRmis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обоснование внесения изменений </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="complaintDecisionDataType">
+        <xs:annotation>
+			<xs:documentation>Решение по жалобе</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор сведений Решение по жалобе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="registrationNumber" type="complaintNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер жалобы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="publishDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер редакции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="complaintDecisionStatusType">
+                <xs:annotation>
+                    <xs:documentation>Статус</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="complaintDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата поступления жалобы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Обоснование внесения изменений </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="placer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, создавшей сведения о решении по жалобе</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="complaintDecisionSolution" type="complaintDecisionSolutionType">
+				<xs:annotation>
+					<xs:documentation>Решение по жалобе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="complaintDecisionViolation" type="complaintDecisionViolationType">
+				<xs:annotation>
+					<xs:documentation>Нарушения в действиях заказчика</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="prescription" type="prescriptionType">
+				<xs:annotation>
+					<xs:documentation>Предписание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlKisRmis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="prescriptionType">
+        <xs:annotation>
+            <xs:documentation>Предписание</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="type" type="complaintDecisionPrescriptionType">
+                <xs:annotation>
+                    <xs:documentation>Тип предписания</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="number" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер предписания</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="text" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Текст предписания</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="complaintDataType">
+        <xs:annotation>
+			<xs:documentation>Сведения о поданной жалобе</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор Сведений о поданной жалобе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="urlEIS" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ЕИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlVSRZ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="urlKisRmis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="3000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="registrationNumber" type="complaintNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер жалобы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="complaintPlacer" type="complaintPlacerType">
+				<xs:annotation>
+					<xs:documentation>Сведения о лице, подавшем жалобу</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="complaintContent">
+				<xs:annotation>
+					<xs:documentation>Содержание жалобы (обжалуемые действия)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="complaintDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата поступления жалобы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <!--<xs:element name="transferData" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Данные о переадресации жалобы</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="transferDate" type="xs:dateTime">
+                            <xs:annotation>
+                                <xs:documentation>Дата перевода сведений</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="transferReason">
+                            <xs:annotation>
+                                <xs:documentation>Причина перевода сведений</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="t:nonEmptyString">
+                                    <xs:maxLength value="2000"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>-->
+
+            <xs:element name="complaintStatus" type="complaintStatusType">
+				<xs:annotation>
+					<xs:documentation>Статус</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="publishDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата размещения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="modificationDescription" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обоснование внесения изменений </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер редакции</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Сведения о заказчике</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="placer" type="t:customerInfoType">
+                <xs:annotation>
+                    <xs:documentation>Данные организации, создавшей сведения о жалобе</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="createDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания сведений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="complaintPurchaseInfo" type="t:purchaseInfo2Type">
+				<xs:annotation>
+					<xs:documentation>Сведения о закупке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="controlAgency" type="t:customerMainInfoType">
+				<xs:annotation>
+					<xs:documentation>Текущий орган, осуществляющий рассмотрение жалобы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="complaintVerificationCustomerListType">
+        <xs:annotation>
+            <xs:documentation>Сведения о заказчиках, указанных в планах проверок</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="customer" type="t:customerMainInfoType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Сведения о заказчике</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="personType" abstract="true">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="nonResidentId">
+                    <xs:annotation>
+                        <xs:documentation>Идентификационный номер нерезидента РФ подавшего жалобу</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="t:nonEmptyString">
+                            <xs:maxLength value="200"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="inn" type="t:innType">
+                    <xs:annotation>
+                        <xs:documentation>ИНН</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="address">
+                <xs:annotation>
+                    <xs:documentation>Местонахождение</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="postalAddress">
+                <xs:annotation>
+                    <xs:documentation>Почтовый адрес</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="email" type="t:emailType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Адрес электронной почты</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="phone" type="t:phoneType">
+                <xs:annotation>
+                    <xs:documentation>Телефон</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="fax" type="t:phoneType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Факс</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="complaintPlacerType">
+        <xs:annotation>
+			<xs:documentation>Сведения о лице, подавшем жалобу</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="legalPerson">
+                    <xs:annotation>
+                        <xs:documentation>Юридическое лицо</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="personType">
+                                <xs:sequence>
+                                    <xs:element name="organizationName">
+                                        <xs:annotation>
+                                            <xs:documentation>Наименование организации</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="t:nonEmptyString">
+                                                <xs:maxLength value="1000"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="individualPerson">
+                    <xs:annotation>
+                        <xs:documentation>Физическое лицо</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="personType">
+                                <xs:choice>
+                                    <xs:sequence minOccurs="1">
+                                        <xs:element name="firstName">
+                                            <xs:annotation>
+                                                <xs:documentation>Имя</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="t:nonEmptyString">
+                                                    <xs:maxLength value="300"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="middleName">
+                                            <xs:annotation>
+                                                <xs:documentation>Отчество</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="t:nonEmptyString">
+                                                    <xs:maxLength value="300"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="lastName">
+                                            <xs:annotation>
+                                                <xs:documentation>Фамилия</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="t:nonEmptyString">
+                                                    <xs:maxLength value="300"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:element name="name" minOccurs="1">
+                                        <xs:annotation>
+                                            <xs:documentation>Наименование нерезидента</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="t:nonEmptyString">
+                                                <xs:maxLength value="1000"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:choice>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="complaintNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="t:nonEmptyString">
+			<xs:pattern value="\d{2}\.\d{2}\.\d{4}\.\d{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="complaintVerificationPlanNumberType">
+        <xs:annotation>
+            <xs:documentation>Номер плана проверки</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="t:nonEmptyString">
+            <xs:pattern value="ПП\d{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="complaintDecisionPrescriptionType">
+        <xs:annotation>
+			<xs:documentation>Тип предписания</xs:documentation>
+		</xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="I">
+				<xs:annotation>
+					<xs:documentation>Выдать</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="S">
+				<xs:annotation>
+					<xs:documentation>Не выдавать</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="complaintDecisionViolationType">
+        <xs:annotation>
+			<xs:documentation>Нарушения в действиях заказчика</xs:documentation>
+		</xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Y">
+				<xs:annotation>
+					<xs:documentation>Выявлены нарушения</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="N">
+				<xs:annotation>
+					<xs:documentation>Не выявлены нарушения</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="complaintDecisionSolutionType">
+        <xs:annotation>
+			<xs:documentation>Решение по жалобе</xs:documentation>
+		</xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CONFIRMED">
+				<xs:annotation>
+					<xs:documentation>Признана обоснованной</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="PARTLY">
+				<xs:annotation>
+					<xs:documentation>Признана обоснованной  (частично)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="UNREASONABLY">
+				<xs:annotation>
+					<xs:documentation>Признана необоснованной</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="NOT_APPLICABLE">
+				<xs:annotation>
+					<xs:documentation>Не относится к компетенции контролирующего органа</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="complaintStatusType">
+		<xs:annotation>
+			<xs:documentation>Статус</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OE">
+				<xs:annotation>
+					<xs:documentation>На редактировании</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OR">
+				<xs:annotation>
+					<xs:documentation>На рассмотрении</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RC">
+				<xs:annotation>
+					<xs:documentation>Отозвана</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="RF">
+				<xs:annotation>
+					<xs:documentation>Рассмотрение завершено</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="PC">
+				<xs:annotation>
+					<xs:documentation>Проект изменений</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+            <xs:enumeration value="IV">
+				<xs:annotation>
+					<xs:documentation>Недействительна</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="complaintDecisionStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус Решения по жалобе:
+                F - Редактирование
+                P - Размещено
+                I - Недействительно
+                M - Изменение
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Редактирование</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Размещено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Недействительно</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Изменение</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="complaintWithdrawStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус Сведений для отзыва жалобы:
+                F - Редактирование
+                P - Размещено
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Редактирование</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Размещено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="complaintVerificationPlanStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус Плана проверок:
+                F - Редактирование
+                P - Размещено
+                I - Недействительно
+                M - Проект изменений
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Редактирование</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Размещено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Недействительно</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Проект изменений</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="complaintVerificationResultStatusType">
+        <xs:annotation>
+            <xs:documentation>Статус Плана проверок:
+                F - Редактирование
+                P - Размещено
+                I - Недействительно
+                M - Проект изменений
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Редактирование</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Размещено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Недействительно</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Проект изменений</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

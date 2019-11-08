@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by A (A) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/purchasePlanUpdatePositionDataType/1" xmlns:p="http://zakupki.gov.ru/223fz/purchasePlan/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/purchasePlanUpdatePositionDataType/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/223fz/purchasePlan/1" schemaLocation="purchasePlan.xsd"/>
+	<xs:element name="purchasePlanProjectUpdatePosition">
+		<xs:annotation>
+			<xs:documentation>Позиций проекта плана закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="purchasePlanProjectUpdatePositionItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="purchasePlanProjectUpdatePositionItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="purchasePlanProjectUpdatePositionData" type="purchasePlanProjectUpdatePositionDataType">
+						<xs:annotation>
+							<xs:documentation>Позиций проекта плана закупки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="purchasePlanUpdatePosition">
+		<xs:annotation>
+			<xs:documentation>Позиций плана закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="purchasePlanUpdatePositionItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="purchasePlanUpdatePositionItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="purchasePlanUpdatePositionData" type="purchasePlanUpdatePositionDataType">
+						<xs:annotation>
+							<xs:documentation>Позиций плана закупки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="purchasePlanUpdatePositionDataType">
+		<xs:complexContent>
+			<xs:extension base="purchasePlanUpdatePositionBaseDataType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="purchasePlanUpdatePositionBaseDataType">
+		<xs:annotation>
+			<xs:documentation>Позиций проекта плана закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="p:basePurchasePlanDataType">
+				<xs:sequence>
+					<xs:element name="purchasePlanItemsDelete" type="purchasePlanItemsDeleteType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Позиции плана для удаления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="approveDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата утверждения плана</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="registrationNumber" type="t:registrationNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер плана</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="urlVSRZ" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Url документа в ВСРЗ</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="t:nonEmptyString">
+								<xs:maxLength value="3000"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="urlKisRmis" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="t:nonEmptyString">
+								<xs:maxLength value="3000"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="modificationDescription" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Обоснование внесения изменений</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="t:nonEmptyString">
+								<xs:maxLength value="2000"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="attachments" type="t:documentListType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="purchasePlanProjectUpdatePositionDataType">
+		<xs:complexContent>
+			<xs:extension base="purchasePlanUpdatePositionBaseDataType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="purchasePlanItemsDeleteType">
+		<xs:annotation>
+			<xs:documentation>Позиции плана для удаления</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="purchasePlanItemDelete" type="purchasePlanItemDeleteType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Позиция плана для удаления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="purchasePlanItemDeleteType">
+		<xs:annotation>
+			<xs:documentation>Позиция плана для удаления</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Идентификатор позиции плана</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

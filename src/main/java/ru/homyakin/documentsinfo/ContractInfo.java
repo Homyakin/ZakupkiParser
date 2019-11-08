@@ -1,116 +1,78 @@
 package ru.homyakin.documentsinfo;
 
-import ru.homyakin.documentsinfo.subdocumentsinfo.ContractPositionInfo;
-import ru.homyakin.documentsinfo.subdocumentsinfo.CurrencyInfo;
-import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
-import ru.homyakin.documentsinfo.subdocumentsinfo.PurchaseTypeInfo;
-import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
-import ru.homyakin.service.parser.adapters.DateAdapter;
-import ru.homyakin.service.parser.adapters.DateTimeAdapter;
+import ru.homyakin.documentsinfo._223fz.contract._1.Contract;
+import ru.homyakin.documentsinfo._223fz.contract._1.ContractDataType;
+import ru.homyakin.documentsinfo._223fz.contract._1.PositionType;
+import ru.homyakin.documentsinfo._223fz.contract._1.SupplierMainType;
+import ru.homyakin.documentsinfo._223fz.types._1.CurrencyType;
+import ru.homyakin.documentsinfo._223fz.types._1.CustomerMainInfoType;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@XmlRootElement(name = "contractData", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-public class ContractInfo implements DocumentInfo{
-    @XmlElement(name = "guid", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    private String GUID;
-    @XmlElement(name = "price", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    private BigDecimal price;
-    @XmlElement(name = "rubPrice", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    private BigDecimal rubPrice;
-    @XmlElement(name = "createDateTime", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    @XmlJavaTypeAdapter(DateTimeAdapter.class)
-    private LocalDateTime createDateTime;
-    @XmlElement(name = "contractDate", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    private LocalDate contractDate;
-    @XmlElement(name = "startExecutionDate", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    private LocalDate startExecutionDate;
-    @XmlElement(name = "endExecutionDate", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    private LocalDate endExecutionDate;
-    @XmlElement(name = "customer", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    private CustomerInfo customer;
-    @XmlElement(name = "purchaseTypeInfo", namespace = "http://zakupki.gov.ru/223fz/contract/1")
-    private PurchaseTypeInfo purchaseType;
-    private SupplierInfo supplier;
-    private CurrencyInfo currency;
-    private List<ContractPositionInfo> positions;
+public class ContractInfo implements DocumentInfo {
 
-    public ContractInfo(String GUID, LocalDateTime createDateTime, CustomerInfo customer, LocalDate contractDate,
-                        PurchaseTypeInfo purchaseType, BigDecimal price, CurrencyInfo currency, BigDecimal rubPrice,
-                        LocalDate startExecutionDate, LocalDate endExecutionDate, SupplierInfo supplier,
-                        List<ContractPositionInfo> positions) {
-        this.GUID = GUID;
-        this.price = price;
-        this.createDateTime = createDateTime;
-        this.contractDate = contractDate;
-        this.purchaseType = purchaseType;
-        this.currency = currency;
-        this.customer = customer;
-        this.rubPrice = rubPrice;
-        this.startExecutionDate = startExecutionDate;
-        this.endExecutionDate = endExecutionDate;
-        this.supplier = supplier;
-        this.positions = positions;
+    private ContractDataType contractData;
+
+    public ContractInfo(Contract contract) {
+        this.contractData = contract.getBody().getItem().getContractData();
     }
 
     public String getGUID() {
-        return GUID;
+        return contractData.getGuid();
     }
 
     public BigDecimal getPrice() {
-        return price;
+        return contractData.getPrice();
     }
 
     public Optional<BigDecimal> getRubPrice() {
-        return Optional.ofNullable(rubPrice);
+        return Optional.ofNullable(contractData.getRubPrice());
     }
 
 
-    public CurrencyInfo getCurrency() {
-        return currency;
+    public CurrencyType getCurrency() {
+        return contractData.getCurrency();
     }
 
-    public LocalDateTime getCreateDateTime() {
-        return createDateTime;
+    public LocalDate getCreateDateTime() {
+        return convertFromXMLGregorianCalendartoLocalDate(contractData.getCreateDateTime());
     }
 
     public LocalDate getContractDate() {
-        return contractDate;
+        return convertFromXMLGregorianCalendartoLocalDate(contractData.getContractDate());
     }
 
-    public Optional<LocalDate> getStartExecutionDate() {
-        return Optional.ofNullable(startExecutionDate);
+    public LocalDate getStartExecutionDate() {
+
+        return convertFromXMLGregorianCalendartoLocalDate(contractData.getStartExecutionDate());
     }
 
-    public Optional<LocalDate> getEndExecutionDate() {
-        return Optional.ofNullable(endExecutionDate);
+    public LocalDate getEndExecutionDate() {
+        return convertFromXMLGregorianCalendartoLocalDate(contractData.getEndExecutionDate());
     }
 
-    public CustomerInfo getCustomer() {
-        return customer;
+    public CustomerMainInfoType getCustomer() {
+        return contractData.getCustomer().getMainInfo();
     }
 
-    public Optional<SupplierInfo> getSupplier() {
-        return Optional.ofNullable(supplier);
+    public List<SupplierMainType> getSupplier() {
+        return contractData.getSupplierInfo();
     }
 
-    public List<ContractPositionInfo> getPositions() {
-        return positions;
+    public List<PositionType> getPositions() {
+        return contractData.getContractPositions().getContractPosition();
     }
 
-    public PurchaseTypeInfo getPurchaseType() {
-        return purchaseType;
+    public ContractDataType.PurchaseTypeInfo getPurchaseType() {
+        return contractData.getPurchaseTypeInfo();
     }
 
+    private LocalDate convertFromXMLGregorianCalendartoLocalDate(XMLGregorianCalendar xmlTime) {
+        return LocalDate.of(xmlTime.getYear(), xmlTime.getMonth(), xmlTime.getDay());
+    }
 
 }

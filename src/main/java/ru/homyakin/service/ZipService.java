@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -18,9 +19,9 @@ import java.util.zip.ZipInputStream;
 public class ZipService {
     private static ZakupkiDatabase db = new ZakupkiDatabase();
 
-    private Map<String, DocumentParser> parsers;
+    private Map<String, DocumentParser> parsers = new HashMap<>();
 
-    ZipService() {
+    public ZipService() {
         parsers.put("contract", new ContractParser());
     }
 
