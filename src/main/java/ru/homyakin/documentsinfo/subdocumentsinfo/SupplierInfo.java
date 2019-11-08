@@ -4,8 +4,8 @@ import java.util.Optional;
 
 public class SupplierInfo {
 	private String name;
-	private Optional<String> shortName;
-	private Optional<String> INN;
+	private String shortName;
+	private String INN;
 	private String type;
 	private boolean provider;
 	private boolean nonResident;

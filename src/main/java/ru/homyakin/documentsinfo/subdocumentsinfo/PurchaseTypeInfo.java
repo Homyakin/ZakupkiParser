@@ -1,14 +1,19 @@
 package ru.homyakin.documentsinfo.subdocumentsinfo;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Optional;
 
+@XmlRootElement(name = "purchaseTypeInfo", namespace = "http://zakupki.gov.ru/223fz/contract/1")
 public class PurchaseTypeInfo {
+    @XmlElement(name = "code", namespace = "http://zakupki.gov.ru/223fz/contract/1")
     private String code;
-    private Optional<String> name;
+    @XmlElement(name = "name", namespace = "http://zakupki.gov.ru/223fz/contract/1")
+    private String name;
 
     public PurchaseTypeInfo(String code, String name) {
         this.code = code;
-        this.name = Optional.ofNullable(name);
+        this.name = name;
     }
 
     public String getCode() {
@@ -16,7 +21,7 @@ public class PurchaseTypeInfo {
     }
 
     public Optional<String> getName() {
-        return name;
+        return Optional.ofNullable(name);
     }
 
 }

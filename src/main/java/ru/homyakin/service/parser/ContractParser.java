@@ -27,16 +27,6 @@ import java.util.List;
 
 public class ContractParser implements DocumentParser {
     private XMLParser processor;
-    private String filePath;
-
-    public ContractParser(String filePath) throws XMLStreamException, IOException {
-        this.filePath = filePath;
-        Path file = Paths.get(filePath);
-        if (file.toFile().length() == 0) {
-            throw new FileIsEmptyException(filePath);
-        }
-        this.processor = new XMLParser(Files.newInputStream(file));
-    }
 
     private CustomerInfo parseCustomer() throws XMLStreamException {
         processor.findStartBlock("mainInfo");
@@ -180,9 +170,17 @@ public class ContractParser implements DocumentParser {
         return list;
     }
 
+    private void initXMLParser(String filePath) throws IOException, XMLStreamException {
+        Path file = Paths.get(filePath);
+        if (file.toFile().length() == 0) {
+            throw new FileIsEmptyException(filePath);
+        }
+        this.processor = new XMLParser(Files.newInputStream(file));
+    }
 
-
-    public DocumentInfo parse() throws XMLStreamException {
+    @Override
+    public DocumentInfo parse(String filePath) throws XMLStreamException, IOException {
+        initXMLParser(filePath);
         ContractInfo contract;
         processor.findStartBlock("contractData");
         String GUID = null;

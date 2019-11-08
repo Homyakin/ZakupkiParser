@@ -3,6 +3,7 @@ package ru.homyakin.web;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import ru.homyakin.service.ZipService;
+import ru.homyakin.service.parser.interfaces.DocumentParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 //enum implements the pattern Singleton
 public enum FTPClient223fz implements FTPClientFZ {

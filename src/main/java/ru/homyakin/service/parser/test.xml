@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:contract xsi:schemaLocation="http://zakupki.gov.ru/223/integration/schema/TFF-3.5 http://zakupki.gov.ru/223/integration/schema/TFF-3.5/Types.xsd" xmlns:ns5="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns="http://zakupki.gov.ru/223fz/types/1" xmlns:ns6="http://zakupki.gov.ru/223fz/revenue/1" xmlns:ns7="http://zakupki.gov.ru/223fz/purchase/1" xmlns:ns8="http://zakupki.gov.ru/223fz/complaint/1" xmlns:ns10="http://zakupki.gov.ru/223fz/webRequest/1" xmlns:ns9="http://zakupki.gov.ru/223fz/purchasePlan/1" xmlns:ns2="http://zakupki.gov.ru/223fz/contract/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://zakupki.gov.ru/223fz/dishonestSupplier/1" xmlns:ns4="http://zakupki.gov.ru/223fz/reference/1">
+    <header>
+        <guid>5bba1410-1c75-42cc-9eea-e88ffd8e271e</guid>
+        <createDateTime>2015-01-20T16:13:02</createDateTime>
+    </header>
+    <ns2:body>
+        <ns2:item>
+            <guid>4a63ceec-f98e-446a-b4ab-26fc96220bda</guid>
+            <ns2:contractData>
+                <ns2:guid>b5d4d0e4-ae7f-4c87-93db-a224c503e2e4</ns2:guid>
+                <ns2:urlOOS>https://zakupki.gov.ru/223/contract/private/contract/view/general-information.html?id=2533&amp;viewMode=VSRI</ns2:urlOOS>
+                <ns2:createDateTime>2015-01-16T10:25:12</ns2:createDateTime>
+                <ns2:customer>
+                    <mainInfo>
+                        <fullName>ОТКРЫТОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</fullName>
+                        <shortName>ОАО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</shortName>
+                        <inn>0105018196</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100707318</ogrn>
+                        <legalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</legalAddress>
+                        <postalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</postalAddress>
+                        <phone>7-8772-523180</phone>
+                        <fax>7-8772-560255</fax>
+                        <email>kolesnichenko@adyggaz.ru</email>
+                        <okato>79401000000</okato>
+                        <okopf>47</okopf>
+                        <okopfName>Открытые акционерные общества</okopfName>
+                    </mainInfo>
+                </ns2:customer>
+                <ns2:placer>
+                    <mainInfo>
+                        <fullName>ОТКРЫТОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</fullName>
+                        <shortName>ОАО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</shortName>
+                        <inn>0105018196</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100707318</ogrn>
+                        <legalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</legalAddress>
+                        <postalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</postalAddress>
+                        <phone>7-8772-523180</phone>
+                        <fax>7-8772-560255</fax>
+                        <email>kolesnichenko@adyggaz.ru</email>
+                        <okato>79401000000</okato>
+                    </mainInfo>
+                </ns2:placer>
+                <ns2:publicationDate>2015-01-20T16:13:02</ns2:publicationDate>
+                <ns2:status>P</ns2:status>
+                <ns2:version>1</ns2:version>
+                <ns2:digitalPurchase>false</ns2:digitalPurchase>
+                <ns2:digitalPurchaseCode>300002</ns2:digitalPurchaseCode>
+                <ns2:provider>false</ns2:provider>
+                <ns2:changeContract>false</ns2:changeContract>
+                <ns2:attachments>
+                    <totalDocumentsCount>1</totalDocumentsCount>
+                    <document>
+                        <guid>7abe7ad8-1ade-45f9-9f92-e19110ff5852</guid>
+                        <createDateTime>2015-01-20T16:11:02</createDateTime>
+                        <fileName>договор комплит 20 января 2015.pdf</fileName>
+                        <description>договор комплит 20 января 2015</description>
+                        <url>https://zakupki.gov.ru/223/contract/private/download/download.html?id=6616</url>
+                        <registrationNumber>50105018196150000010002</registrationNumber>
+                    </document>
+                </ns2:attachments>
+                <ns2:contractRegNumber>50105018196150000010000</ns2:contractRegNumber>
+                <ns2:contractDate>2015-01-20T00:00:00</ns2:contractDate>
+                <ns2:subjectContract>Поставка компьютерной техники</ns2:subjectContract>
+                <ns2:purchaseTypeInfo>
+                    <ns2:code>30000</ns2:code>
+                    <ns2:name>Закупка у единственного поставщика (подрядчика, исполнителя)</ns2:name>
+                </ns2:purchaseTypeInfo>
+                <ns2:resumeDate>2014-12-25T00:00:00</ns2:resumeDate>
+                <ns2:supplierInfo>
+                    <ns2:name>ООО "Комплит"</ns2:name>
+                    <ns2:shortName>ООО "Комплит"</ns2:shortName>
+                    <ns2:brandName>ООО "Комплит"</ns2:brandName>
+                    <ns2:inn>0105055790</ns2:inn>
+                    <ns2:kpp>010501001</ns2:kpp>
+                    <ns2:okpo>95818430</ns2:okpo>
+                    <ns2:type>L</ns2:type>
+                    <ns2:provider>true</ns2:provider>
+                    <ns2:providerCode>30</ns2:providerCode>
+                    <ns2:subcontractor>false</ns2:subcontractor>
+                    <ns2:individual>false</ns2:individual>
+                    <ns2:nonResident>false</ns2:nonResident>
+                    <ns2:registrationDate>2008-07-02T00:00:00</ns2:registrationDate>
+                    <ns2:tax>true</ns2:tax>
+                    <ns2:okopf>19000</ns2:okopf>
+                    <ns2:okopfName>Прочие юридические лица, являющиеся коммерческими организациями</ns2:okopfName>
+                    <ns2:address>
+                        <ns2:country>
+                            <name>РОССИЯ</name>
+                            <digitalCode>643</digitalCode>
+                        </ns2:country>
+                        <ns2:postCode>385000</ns2:postCode>
+                        <ns2:oktmo>79701000</ns2:oktmo>
+                        <ns2:region>
+                            <ns2:fullName>Республика Адыгея</ns2:fullName>
+                        </ns2:region>
+                        <ns2:city>
+                            <ns2:fullName>Майкоп</ns2:fullName>
+                        </ns2:city>
+                        <ns2:street>
+                            <ns2:fullName>Советская</ns2:fullName>
+                        </ns2:street>
+                        <ns2:phone>89184230101</ns2:phone>
+                        <ns2:house>201</ns2:house>
+                    </ns2:address>
+                </ns2:supplierInfo>
+                <ns2:hasSubcontractor>false</ns2:hasSubcontractor>
+                <ns2:additionalInfo>В полном соответствии с договором</ns2:additionalInfo>
+                <ns2:price>2014000</ns2:price>
+                <ns2:currency>
+                    <code>RUB</code>
+                    <digitalCode>643</digitalCode>
+                    <name>Российский рубль</name>
+                </ns2:currency>
+                <ns2:startExecutionDate>2015-01-20T00:00:00</ns2:startExecutionDate>
+                <ns2:endExecutionDate>2015-12-31T00:00:00</ns2:endExecutionDate>
+                <ns2:contractPositions>
+                    <ns2:contractPosition>
+                        <ns2:guid>9d85cf07-61d4-44fd-9e37-e30f010f0c86</ns2:guid>
+                        <ns2:name>поставка компьютерной техники</ns2:name>
+                        <ns2:ordinalNumber>1</ns2:ordinalNumber>
+                        <ns2:okdp>
+                            <code>3020220</code>
+                            <name>Запасные части ЭВМ</name>
+                        </ns2:okdp>
+                        <ns2:country>
+                            <name>Российская Федерация</name>
+                            <digitalCode>643</digitalCode>
+                        </ns2:country>
+                    </ns2:contractPosition>
+                </ns2:contractPositions>
+                <ns2:contractConfirmingDocs>
+                    <ns2:contractDoc>
+                        <ns2:confirmingDocCode>1</ns2:confirmingDocCode>
+                        <ns2:confirmingDocCodeTitle>Протокол, составленный по результатам закупки</ns2:confirmingDocCodeTitle>
+                        <ns2:docDate>2014-12-25T00:00:00</ns2:docDate>
+                        <ns2:docNum>44105</ns2:docNum>
+                    </ns2:contractDoc>
+                </ns2:contractConfirmingDocs>
+            </ns2:contractData>
+        </ns2:item>
+    </ns2:body>
+</ns2:contract>

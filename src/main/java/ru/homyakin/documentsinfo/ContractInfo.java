@@ -5,25 +5,44 @@ import ru.homyakin.documentsinfo.subdocumentsinfo.CurrencyInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.CustomerInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.PurchaseTypeInfo;
 import ru.homyakin.documentsinfo.subdocumentsinfo.SupplierInfo;
+import ru.homyakin.service.parser.adapters.DateAdapter;
+import ru.homyakin.service.parser.adapters.DateTimeAdapter;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@XmlRootElement(name = "contractData", namespace = "http://zakupki.gov.ru/223fz/contract/1")
 public class ContractInfo implements DocumentInfo{
-    private PurchaseTypeInfo purchaseType;
+    @XmlElement(name = "guid", namespace = "http://zakupki.gov.ru/223fz/contract/1")
     private String GUID;
+    @XmlElement(name = "price", namespace = "http://zakupki.gov.ru/223fz/contract/1")
     private BigDecimal price;
-    private Optional<BigDecimal> rubPrice;
-    private CurrencyInfo currency;
+    @XmlElement(name = "rubPrice", namespace = "http://zakupki.gov.ru/223fz/contract/1")
+    private BigDecimal rubPrice;
+    @XmlElement(name = "createDateTime", namespace = "http://zakupki.gov.ru/223fz/contract/1")
+    @XmlJavaTypeAdapter(DateTimeAdapter.class)
     private LocalDateTime createDateTime;
+    @XmlElement(name = "contractDate", namespace = "http://zakupki.gov.ru/223fz/contract/1")
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private LocalDate contractDate;
-    private Optional<LocalDate> startExecutionDate;
-    private Optional<LocalDate> endExecutionDate;
+    @XmlElement(name = "startExecutionDate", namespace = "http://zakupki.gov.ru/223fz/contract/1")
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    private LocalDate startExecutionDate;
+    @XmlElement(name = "endExecutionDate", namespace = "http://zakupki.gov.ru/223fz/contract/1")
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    private LocalDate endExecutionDate;
+    @XmlElement(name = "customer", namespace = "http://zakupki.gov.ru/223fz/contract/1")
     private CustomerInfo customer;
-    private Optional<SupplierInfo> supplier;
+    @XmlElement(name = "purchaseTypeInfo", namespace = "http://zakupki.gov.ru/223fz/contract/1")
+    private PurchaseTypeInfo purchaseType;
+    private SupplierInfo supplier;
+    private CurrencyInfo currency;
     private List<ContractPositionInfo> positions;
 
     public ContractInfo(String GUID, LocalDateTime createDateTime, CustomerInfo customer, LocalDate contractDate,
@@ -37,10 +56,10 @@ public class ContractInfo implements DocumentInfo{
         this.purchaseType = purchaseType;
         this.currency = currency;
         this.customer = customer;
-        this.rubPrice = Optional.of(rubPrice);
-        this.startExecutionDate = Optional.ofNullable(startExecutionDate);
-        this.endExecutionDate = Optional.ofNullable(endExecutionDate);
-        this.supplier = Optional.ofNullable(supplier);
+        this.rubPrice = rubPrice;
+        this.startExecutionDate = startExecutionDate;
+        this.endExecutionDate = endExecutionDate;
+        this.supplier = supplier;
         this.positions = positions;
     }
 
@@ -53,7 +72,7 @@ public class ContractInfo implements DocumentInfo{
     }
 
     public Optional<BigDecimal> getRubPrice() {
-        return rubPrice;
+        return Optional.ofNullable(rubPrice);
     }
 
 
@@ -70,11 +89,11 @@ public class ContractInfo implements DocumentInfo{
     }
 
     public Optional<LocalDate> getStartExecutionDate() {
-        return startExecutionDate;
+        return Optional.ofNullable(startExecutionDate);
     }
 
     public Optional<LocalDate> getEndExecutionDate() {
-        return endExecutionDate;
+        return Optional.ofNullable(endExecutionDate);
     }
 
     public CustomerInfo getCustomer() {
@@ -82,7 +101,7 @@ public class ContractInfo implements DocumentInfo{
     }
 
     public Optional<SupplierInfo> getSupplier() {
-        return supplier;
+        return Optional.ofNullable(supplier);
     }
 
     public List<ContractPositionInfo> getPositions() {
