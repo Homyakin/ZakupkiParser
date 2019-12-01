@@ -295,7 +295,7 @@ public class ZakupkiDatabase {
                 statement.setNull(10, Types.DECIMAL);
             }
 
-            statement.setString(11, contract.getCurrency().getLetterCode());
+            statement.setString(11, getLetterCurrencyCode(contract.getCurrency()));
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -310,4 +310,8 @@ public class ZakupkiDatabase {
         insertSupplierToContract(contract);
     }
 
+    private String getLetterCurrencyCode(CurrencyType currency) {
+        String currencyCode = currency.getLetterCode();
+        return currencyCode == null ? currency.getCode() : currencyCode;
+    }
 }
