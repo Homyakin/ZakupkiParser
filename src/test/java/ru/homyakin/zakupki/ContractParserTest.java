@@ -4,9 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import ru.homyakin.documentsinfo.ContractInfo;
-import ru.homyakin.documentsinfo._223fz.contract._1.Contract;
-import ru.homyakin.service.parser.ContractParser;
+import ru.homyakin.zakupki.documentsinfo.ContractInfo;
+import ru.homyakin.zakupki.service.parser.ContractParser;
 
 import java.math.BigDecimal;
 
