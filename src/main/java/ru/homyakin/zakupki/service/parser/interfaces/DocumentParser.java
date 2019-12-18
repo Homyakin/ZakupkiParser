@@ -6,5 +6,5 @@ import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 
 public interface DocumentParser {
-    DocumentInfo parse(String filePath) throws XMLStreamException, IOException;
+    DocumentInfo parse(String filePath);
 }

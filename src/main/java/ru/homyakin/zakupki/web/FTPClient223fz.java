@@ -142,16 +142,16 @@ public enum FTPClient223fz implements FTPClientFZ {
     }
 
     private boolean downloadFile(String localPath, String remotePath) {
+        logger.info("Start downloading {}", localPath);
         Path localFile = Paths.get(localPath);
         try {
             Files.createFile(localFile);
         } catch (IOException ignored) {
-            //TODO check if error is existing file
+            //TODO check if error is existing file (make validator class)
         }
         boolean isDownload = false;
         try {
             isDownload = ftp.retrieveFile(remotePath, Files.newOutputStream(localFile));
-            ;
         } catch (IOException e) {
             logger.error("Something went wrong wile downloading {}", remotePath);
         }

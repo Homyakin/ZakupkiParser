@@ -1,5 +1,7 @@
 package ru.homyakin.zakupki.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.homyakin.zakupki.database.ZakupkiDatabase;
 import ru.homyakin.zakupki.documentsinfo.ContractInfo;
 import ru.homyakin.zakupki.exceptions.FileIsEmptyException;
@@ -17,8 +19,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class ZipService {
-    private static ZakupkiDatabase db = new ZakupkiDatabase();
+    private final static Logger logger = LoggerFactory.getLogger(ZipService.class);
 
+    private static ZakupkiDatabase db = new ZakupkiDatabase();
     private Map<String, DocumentParser> parsers = new HashMap<>();
 
     public ZipService() {
@@ -26,7 +29,7 @@ public class ZipService {
     }
 
     public void unzipFile(String filePath, String path, String folder) {
-
+        logger.info("Start unzipping {}", filePath);
         try (ZipInputStream zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
             ZipEntry entry;
             String name;
@@ -35,8 +38,9 @@ public class ZipService {
                 name = entry.getName();
                 Path localFile = Paths.get(path + "/unzip/" + name);
                 try {
-                    Files.createFile(localFile);
+                    Files.createFile(localFile); //TODO add class for creation files
                 } catch (IOException ignored) {
+                    //TODO check if error is existing file (make validator class)
                 }
 
                 OutputStream fout = Files.newOutputStream(localFile);
@@ -55,10 +59,8 @@ public class ZipService {
                     //db.insertContract(contract);
                 }
             }
-        } catch (FileIsEmptyException e) {
-            //TODO add log
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            logger.error("Error in unzipping process of file {}", filePath, e);
         }
     }
 }

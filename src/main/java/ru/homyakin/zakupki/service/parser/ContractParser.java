@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ContractParser implements DocumentParser {
 
     @Override
-    public DocumentInfo parse(String filePath) throws XMLStreamException, IOException {
+    public DocumentInfo parse(String filePath) {
         try {
             JAXBContext jc = JAXBContext.newInstance(Contract.class);
             Unmarshaller unmarshaller = jc.createUnmarshaller();
