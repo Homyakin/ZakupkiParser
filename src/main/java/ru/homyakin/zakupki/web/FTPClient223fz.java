@@ -4,14 +4,14 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.homyakin.zakupki.web.exceptions.ConnectException;
+import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.service.ZipService;
+import ru.homyakin.zakupki.web.exceptions.ConnectException;
 import ru.homyakin.zakupki.web.exceptions.LoginException;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,8 +36,9 @@ public enum FTPClient223fz implements FTPClientFZ {
      */
     private final static List<String> parsingFolders = Arrays.asList("contract");
     private final static String downloadPath = "./zakupki_download";
-    private static FTPClient ftp = new FTPClient();
+    private final static FTPClient ftp = new FTPClient();
     private final ZipService zipService = new ZipService();
+    private final FileSystemService fileSystemService = new FileSystemService();
 
     public static FTPClient223fz getInstance() {
         return INSTANCE;
@@ -58,9 +59,7 @@ public enum FTPClient223fz implements FTPClientFZ {
     @Override
     public void login() {
         try {
-
             if (ftp.login(USER, PASSWD)) {
-                System.out.println("LOGGED IN SERVER");
                 ftp.enterLocalPassiveMode();
                 logger.info("Successful login to the ftp server");
             } else {
@@ -68,7 +67,6 @@ public enum FTPClient223fz implements FTPClientFZ {
                 throw new LoginException("Unable to log in " + SERVER +
                         " with login: " + USER + " and password: " + PASSWD);
             }
-
         } catch (IOException e) {
             logger.error("Server error", e);
             throw new ConnectException("Unable to connect to server: " + SERVER);
@@ -91,19 +89,13 @@ public enum FTPClient223fz implements FTPClientFZ {
                 }
             }
         } catch (IOException e) {
-            logger.error("Something went wrong wile listing {}", workspace);
+            logger.error("Something went wrong wile listing {}", workspace, e);
         }
     }
 
     private void makeDownloadDirectories(String workspace) {
         for (String s : parsingFolders) { //TODO make it from searchInRegions
-            Path dir = Paths.get(downloadPath + workspace + "/" + s + "/daily/unzip");
-            try {
-                Files.createDirectories(dir);
-            } catch (IOException e) {
-                logger.error("Unable to create directories");
-                //TODO add RTE
-            }
+            fileSystemService.makeDirectory(downloadPath + workspace + "/" + s + "/daily/unzip");
         }
     }
 
@@ -116,7 +108,7 @@ public enum FTPClient223fz implements FTPClientFZ {
                 }
             }
         } catch (IOException e) {
-            logger.error("Something went wrong wile listing {}", workspace);
+            logger.error("Something went wrong wile listing {}", workspace, e);
         }
     }
 
@@ -131,29 +123,24 @@ public enum FTPClient223fz implements FTPClientFZ {
                         zipService.unzipFile(downloadPath + workspace + "/" + remote.getName(),
                                 downloadPath + workspace, folder);
                     } else {
-                        logger.error("Unable to download " + workspace + "/" + remote.getName());
+                        logger.error("Unable to download {}", workspace + "/" + remote.getName());
                     }
                 }
             }
         } catch (IOException e) {
-            logger.error("Something went wrong wile listing {}", workspace);
+            logger.error("Something went wrong wile listing {}", workspace, e);
         }
 
     }
 
-    private boolean downloadFile(String localPath, String remotePath) {
-        logger.info("Start downloading {}", localPath);
-        Path localFile = Paths.get(localPath);
-        try {
-            Files.createFile(localFile);
-        } catch (IOException ignored) {
-            //TODO check if error is existing file (make validator class)
-        }
+    private boolean downloadFile(String localFilePath, String remoteFilePath) {
+        logger.info("Start downloading {}", localFilePath);
+        Path localFile = fileSystemService.makeFile(localFilePath);
         boolean isDownload = false;
         try {
-            isDownload = ftp.retrieveFile(remotePath, Files.newOutputStream(localFile));
+            isDownload = ftp.retrieveFile(remoteFilePath, Files.newOutputStream(localFile));
         } catch (IOException e) {
-            logger.error("Something went wrong wile downloading {}", remotePath);
+            logger.error("Something went wrong wile downloading {}", remoteFilePath, e);
         }
         return isDownload;
     }

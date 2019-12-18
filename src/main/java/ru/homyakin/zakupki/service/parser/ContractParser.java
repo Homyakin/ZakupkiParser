@@ -10,9 +10,7 @@ import ru.homyakin.zakupki.service.parser.interfaces.DocumentParser;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.io.IOException;
 
 public class ContractParser implements DocumentParser {
     private final static Logger logger = LoggerFactory.getLogger(ContractParser.class);

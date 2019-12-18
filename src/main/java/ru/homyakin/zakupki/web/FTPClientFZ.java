@@ -3,7 +3,7 @@ package ru.homyakin.zakupki.web;
 import java.io.IOException;
 
 public interface FTPClientFZ {
-    // connect to sever
+    // connect to server
     void connect() throws IOException;
 
     // login to server
