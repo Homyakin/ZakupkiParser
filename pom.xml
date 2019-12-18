@@ -52,7 +52,7 @@
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <artifactId>slf4j-simple</artifactId>
             <version>1.7.29</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->

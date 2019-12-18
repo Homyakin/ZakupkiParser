@@ -52,7 +52,7 @@ public class ZipService {
                 if ("contract".equals(folder)) {
                     ContractParser contractParser = new ContractParser();
                     ContractInfo contract = (ContractInfo) parsers.get("contract").parse(path + "/unzip/" + name);
-                    db.insertContract(contract);
+                    //db.insertContract(contract);
                 }
             }
         } catch (FileIsEmptyException e) {

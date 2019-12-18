@@ -2,7 +2,11 @@ package ru.homyakin.zakupki.web;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.homyakin.zakupki.web.exceptions.ConnectException;
 import ru.homyakin.zakupki.service.ZipService;
+import ru.homyakin.zakupki.web.exceptions.LoginException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,16 +19,11 @@ import java.util.List;
 public enum FTPClient223fz implements FTPClientFZ {
     INSTANCE;
 
-    public static FTPClient223fz getInstance() {
-        return INSTANCE;
-    }
-
-    private static FTPClient ftp = new FTPClient();
     public final static String SERVER = "ftp.zakupki.gov.ru";
     public final static String USER = "fz223free";
     public final static String PASSWD = "fz223free";
+    private final static Logger logger = LoggerFactory.getLogger(FTPClient223fz.class);
     private final static String basicWorkspace = "/out/published";
-    private static ZipService zipService = new ZipService();
     /*
      * private final static List<String> parsingFolders = Arrays.asList("contract",
      * "contractInfo", "contractCompleting", "purchaseNotice", "purchaseNoticeAE",
@@ -37,80 +36,125 @@ public enum FTPClient223fz implements FTPClientFZ {
      */
     private final static List<String> parsingFolders = Arrays.asList("contract");
     private final static String downloadPath = "./zakupki_download";
+    private static FTPClient ftp = new FTPClient();
+    private final ZipService zipService = new ZipService();
 
-    @Override
-    public void connect() throws IOException {
-        ftp.connect(SERVER);
-        System.out.println("SERVER: " + Arrays.toString(ftp.getReplyStrings()));
+    public static FTPClient223fz getInstance() {
+        return INSTANCE;
     }
 
     @Override
-    public void login() throws IOException {
-        if (ftp.login(USER, PASSWD)) {
-            System.out.println("LOGGED IN SERVER");
-            ftp.enterLocalPassiveMode();
-        } else {
-            System.out.println("Failed to log into the server");
+    public void connect() {
+        try {
+            ftp.connect(SERVER);
+        } catch (IOException e) {
+            logger.error("Can't connect to the server", e);
+            logger.info("Server reply:{}", Arrays.toString(ftp.getReplyStrings()));
+            throw new ConnectException("Unable to connect to server: " + SERVER);
+        }
+        logger.info("Server reply:{}", Arrays.toString(ftp.getReplyStrings()));
+    }
+
+    @Override
+    public void login() {
+        try {
+
+            if (ftp.login(USER, PASSWD)) {
+                System.out.println("LOGGED IN SERVER");
+                ftp.enterLocalPassiveMode();
+                logger.info("Successful login to the ftp server");
+            } else {
+                logger.error("Unable to login to the ftp server");
+                throw new LoginException("Unable to log in " + SERVER +
+                        " with login: " + USER + " and password: " + PASSWD);
+            }
+
+        } catch (IOException e) {
+            logger.error("Server error", e);
+            throw new ConnectException("Unable to connect to server: " + SERVER);
         }
     }
 
     @Override
-    public void parseFTPServer() throws IOException {
+    public void parseFTPServer() {
+        logger.info("Start parsing in: {}", SERVER);
         searchRegionsDirectories(basicWorkspace);
     }
 
-    private void searchRegionsDirectories(String workspace) throws IOException {
-
-        System.out.println(workspace); // DEBUG
-        FTPFile[] namesDirectories = ftp.listDirectories(workspace);
-        for (FTPFile n : namesDirectories) {
-            if (!n.getName().equals("archive")) {
-                makeDownloadDirectories(workspace + "/" + n.getName());
-                searchInRegions(workspace + "/" + n.getName());
-            }
-        }
-    }
-
-    private void makeDownloadDirectories(String workspace) throws IOException {
-        for (String s : parsingFolders) {
-            Path dir = Paths.get(downloadPath + workspace + "/" + s + "/daily/unzip");
-            Files.createDirectories(dir);
-        }
-    }
-
-    private void searchInRegions(String workspace) throws IOException {
-        FTPFile[] namesDirectories = ftp.listDirectories(workspace);
-        for (FTPFile n : namesDirectories) {
-            if (parsingFolders.contains(n.getName())) {
-                searchFiles(workspace + "/" + n.getName() + "/daily", n.getName());
-            }
-        }
-    }
-
-    private void searchFiles(String workspace, String folder) throws IOException {
-        System.out.println(workspace); // DEBUG
-        FTPFile[] files = ftp.listFiles(workspace);
-        for (FTPFile remote : files) {
-            if (remote.isFile()) {
-                if (downloadFile(downloadPath + workspace + "/" + remote.getName(),
-                        workspace + "/" + remote.getName())) {
-                    zipService.unzipFile(downloadPath + workspace + "/" + remote.getName(),
-                            downloadPath + workspace, folder);
-                } else {
-                    //TODO exception
-                    System.out.println("Unable to download " + workspace + "/" + remote.getName());
+    private void searchRegionsDirectories(String workspace) {
+        try {
+            FTPFile[] namesDirectories = ftp.listDirectories(workspace);
+            for (FTPFile n : namesDirectories) {
+                if (!n.getName().equals("archive")) {
+                    makeDownloadDirectories(workspace + "/" + n.getName());
+                    searchInRegions(workspace + "/" + n.getName());
                 }
             }
+        } catch (IOException e) {
+            logger.error("Something went wrong wile listing {}", workspace);
         }
     }
 
-    private boolean downloadFile(String localPath, String remotePath) throws IOException {
+    private void makeDownloadDirectories(String workspace) {
+        for (String s : parsingFolders) { //TODO make it from searchInRegions
+            Path dir = Paths.get(downloadPath + workspace + "/" + s + "/daily/unzip");
+            try {
+                Files.createDirectories(dir);
+            } catch (IOException e) {
+                logger.error("Unable to create directories");
+                //TODO add RTE
+            }
+        }
+    }
+
+    private void searchInRegions(String workspace) {
+        try {
+            FTPFile[] namesDirectories = ftp.listDirectories(workspace);
+            for (FTPFile n : namesDirectories) {
+                if (parsingFolders.contains(n.getName())) {
+                    searchFiles(workspace + "/" + n.getName() + "/daily", n.getName());
+                }
+            }
+        } catch (IOException e) {
+            logger.error("Something went wrong wile listing {}", workspace);
+        }
+    }
+
+    private void searchFiles(String workspace, String folder) {
+        logger.info("Start parsing {}", workspace);
+        try {
+            FTPFile[] files = ftp.listFiles(workspace);
+            for (FTPFile remote : files) {
+                if (remote.isFile()) {
+                    if (downloadFile(downloadPath + workspace + "/" + remote.getName(),
+                            workspace + "/" + remote.getName())) {
+                        zipService.unzipFile(downloadPath + workspace + "/" + remote.getName(),
+                                downloadPath + workspace, folder);
+                    } else {
+                        logger.error("Unable to download " + workspace + "/" + remote.getName());
+                    }
+                }
+            }
+        } catch (IOException e) {
+            logger.error("Something went wrong wile listing {}", workspace);
+        }
+
+    }
+
+    private boolean downloadFile(String localPath, String remotePath) {
         Path localFile = Paths.get(localPath);
         try {
             Files.createFile(localFile);
         } catch (IOException ignored) {
-
+            //TODO check if error is existing file
         }
-        return ftp.retrieveFile(remotePath, Files.newOutputStream(localFile));
+        boolean isDownload = false;
+        try {
+            isDownload = ftp.retrieveFile(remotePath, Files.newOutputStream(localFile));
+            ;
+        } catch (IOException e) {
+            logger.error("Something went wrong wile downloading {}", remotePath);
+        }
+        return isDownload;
     }
 }
