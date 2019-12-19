@@ -49,11 +49,11 @@
             <artifactId>jaxb-runtime</artifactId>
             <version>2.3.0-b170127.1453</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.29</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>2.2.2.RELEASE</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
@@ -62,10 +62,5 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
-
-
-
     </dependencies>
-    
 </project>

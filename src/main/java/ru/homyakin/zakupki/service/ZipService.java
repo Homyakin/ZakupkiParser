@@ -2,7 +2,7 @@ package ru.homyakin.zakupki.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.homyakin.zakupki.database.ZakupkiDatabase;
+import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.documentsinfo.ContractInfo;
 import ru.homyakin.zakupki.service.parser.ContractParser;
 import ru.homyakin.zakupki.service.parser.interfaces.DocumentParser;
@@ -17,15 +17,16 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+@Component
 public class ZipService {
     private final static Logger logger = LoggerFactory.getLogger(ZipService.class);
 
-    private static ZakupkiDatabase db = new ZakupkiDatabase();
-    private final FileSystemService fileSystemService = new FileSystemService();
+    private final FileSystemService fileSystemService;
     private Map<String, DocumentParser> parsers = new HashMap<>();
 
-    public ZipService() {
-        parsers.put("contract", new ContractParser());
+    public ZipService(FileSystemService fileSystemService, ContractParser contractParser) {
+        this.fileSystemService = fileSystemService;
+        parsers.put("contract", contractParser);
     }
 
     public void unzipFile(String filePath, String path, String folder) {
@@ -36,19 +37,17 @@ public class ZipService {
             while ((entry = zin.getNextEntry()) != null) {
                 name = entry.getName();
                 Path localFile = fileSystemService.makeFile(path + "/unzip/" + name);
-                OutputStream fout = Files.newOutputStream(localFile);
+                OutputStream outputFile = Files.newOutputStream(localFile);
                 byte[] buffer = new byte[4096];
                 for (int len = zin.read(buffer); len != -1; len = zin.read(buffer)) {
-                    fout.write(buffer, 0, len);
+                    outputFile.write(buffer, 0, len);
                 }
 
-                fout.flush();
+                outputFile.flush();
                 zin.closeEntry();
-                fout.close();
+                outputFile.close();
                 if ("contract".equals(folder)) {
-                    ContractParser contractParser = new ContractParser();
                     ContractInfo contract = (ContractInfo) parsers.get("contract").parse(path + "/unzip/" + name);
-                    //db.insertContract(contract);
                 }
             }
         } catch (IOException e) {

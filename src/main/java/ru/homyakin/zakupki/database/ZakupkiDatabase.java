@@ -25,13 +25,13 @@ public class ZakupkiDatabase {
     private Connection conn;
 
     public ZakupkiDatabase() {
-       /* String connectionURL = "jdbc:mysql://" + HOST_NAME + ":3306/" + DB_NAME + "?useUnicode=true&serverTimezone=UTC";
+        String connectionURL = "jdbc:mysql://" + HOST_NAME + ":3306/" + DB_NAME + "?useUnicode=true&serverTimezone=UTC";
         try {
             conn = DriverManager.getConnection(connectionURL, USER, PSSWD);
         } catch (SQLException e) {
             //TODO add log and custom RTE
             throw new RuntimeException();
-        }*/
+        }
     }
 
     private void insertCustomer(CustomerMainInfoType customer) {

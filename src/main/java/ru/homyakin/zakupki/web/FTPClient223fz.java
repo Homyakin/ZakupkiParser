@@ -4,6 +4,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.service.ZipService;
 import ru.homyakin.zakupki.web.exceptions.ConnectException;
@@ -15,13 +16,11 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
-//enum implements the pattern Singleton
-public enum FTPClient223fz implements FTPClientFZ {
-    INSTANCE;
-
-    public final static String SERVER = "ftp.zakupki.gov.ru";
-    public final static String USER = "fz223free";
-    public final static String PASSWD = "fz223free";
+@Component
+public class FTPClient223fz implements FTPClientFZ {
+    private final static String SERVER = "ftp.zakupki.gov.ru";
+    private final static String USER = "fz223free";
+    private final static String PASSWD = "fz223free";
     private final static Logger logger = LoggerFactory.getLogger(FTPClient223fz.class);
     private final static String basicWorkspace = "/out/published";
     /*
@@ -37,11 +36,13 @@ public enum FTPClient223fz implements FTPClientFZ {
     private final static List<String> parsingFolders = Arrays.asList("contract");
     private final static String downloadPath = "./zakupki_download";
     private final static FTPClient ftp = new FTPClient();
-    private final ZipService zipService = new ZipService();
-    private final FileSystemService fileSystemService = new FileSystemService();
 
-    public static FTPClient223fz getInstance() {
-        return INSTANCE;
+    private final ZipService zipService;
+    private final FileSystemService fileSystemService;
+
+    public FTPClient223fz(ZipService zipService, FileSystemService fileSystemService) {
+        this.zipService = zipService;
+        this.fileSystemService = fileSystemService;
     }
 
     @Override
