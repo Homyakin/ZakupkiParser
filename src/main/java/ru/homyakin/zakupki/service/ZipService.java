@@ -5,15 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.documentsinfo.ContractInfo;
 import ru.homyakin.zakupki.service.parser.ContractParser;
-import ru.homyakin.zakupki.service.parser.interfaces.DocumentParser;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -22,11 +19,9 @@ public class ZipService {
     private final static Logger logger = LoggerFactory.getLogger(ZipService.class);
 
     private final FileSystemService fileSystemService;
-    private Map<String, DocumentParser> parsers = new HashMap<>();
 
-    public ZipService(FileSystemService fileSystemService, ContractParser contractParser) {
+    public ZipService(FileSystemService fileSystemService) {
         this.fileSystemService = fileSystemService;
-        parsers.put("contract", contractParser);
     }
 
     public void unzipFile(String filePath, String path, String folder) {
@@ -46,10 +41,15 @@ public class ZipService {
                 outputFile.flush();
                 zin.closeEntry();
                 outputFile.close();
-                if ("contract".equals(folder)) {
-                    ContractInfo contract = (ContractInfo) parsers.get("contract").parse(path + "/unzip/" + name);
+                switch (folder) {
+                    case "contract":
+                        ContractInfo contract = new ContractInfo(ContractParser.parse(path + "/unzip/" + name)
+                                .orElseThrow(() -> new IllegalArgumentException("Contract " + path + " wasn't parsed")));
+                        break;
                 }
             }
+        } catch (IllegalArgumentException e) {
+            logger.error("Argument error ", e);
         } catch (IOException e) {
             logger.error("Error in unzipping process of file {}", filePath, e);
         }

@@ -20,10 +20,11 @@ public class ParserTest {
     }
 
     @Test
-    public void contractParserTest(){
+    public void contractParserTest() {
         try {
-            ContractParser parser = new ContractParser();
-            ContractInfo contractInfo = (ContractInfo) parser.parse(getFilePath("test_files/contract_test.xml"));
+            ContractInfo contractInfo = new ContractInfo(ContractParser.parse(
+                    getFilePath("test_files/contract_test.xml")
+            ).orElseThrow(() -> new IllegalArgumentException()));
             Assert.assertNotNull(contractInfo);
             Assert.assertEquals(GUID, contractInfo.getGUID());
             Assert.assertEquals(price, contractInfo.getPrice());
