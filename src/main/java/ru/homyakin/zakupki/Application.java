@@ -2,7 +2,6 @@ package ru.homyakin.zakupki;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,21 +9,16 @@ import ru.homyakin.zakupki.web.exceptions.NetworkException;
 import ru.homyakin.zakupki.web.FTPClient223fz;
 
 @SpringBootApplication
-public class Application implements CommandLineRunner {
-
-    @Autowired
+class StartApp implements CommandLineRunner {
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
     private FTPClient223fz ftp;
 
-    private static final Logger logger = LoggerFactory.getLogger(Application.class);
-
-    //TODO add Spring
-    //TODO add reconnecting to server if something went wrong
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    public StartApp(FTPClient223fz ftp) {
+        this.ftp = ftp;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         try {
             ftp.connect();
             ftp.login();
@@ -34,5 +28,13 @@ public class Application implements CommandLineRunner {
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }
+    }
+}
+
+public class Application {
+    //TODO add Spring
+    //TODO add reconnecting to server if something went wrong
+    public static void main(String[] args) {
+        SpringApplication.run(StartApp.class, args);
     }
 }
