@@ -5,6 +5,7 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.config.FtpConfiguration;
 import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.service.ZipService;
 import ru.homyakin.zakupki.web.exceptions.ConnectException;
@@ -18,9 +19,6 @@ import java.util.List;
 
 @Component
 public class FTPClient223fz implements FTPClientFZ {
-    private final static String SERVER = "ftp.zakupki.gov.ru";
-    private final static String USER = "fz223free";
-    private final static String PASSWD = "fz223free";
     private final static Logger logger = LoggerFactory.getLogger(FTPClient223fz.class);
     private final static String basicWorkspace = "/out/published";
     /*
@@ -39,20 +37,22 @@ public class FTPClient223fz implements FTPClientFZ {
 
     private final ZipService zipService;
     private final FileSystemService fileSystemService;
+    private final FtpConfiguration ftpConfiguration;
 
-    public FTPClient223fz(ZipService zipService, FileSystemService fileSystemService) {
+    public FTPClient223fz(ZipService zipService, FileSystemService fileSystemService, FtpConfiguration ftpConfiguration) {
         this.zipService = zipService;
         this.fileSystemService = fileSystemService;
+        this.ftpConfiguration = ftpConfiguration;
     }
 
     @Override
     public void connect() {
         try {
-            ftp.connect(SERVER);
+            ftp.connect(ftpConfiguration.getUrl());
         } catch (IOException e) {
             logger.error("Can't connect to the server", e);
             logger.info("Server reply:{}", Arrays.toString(ftp.getReplyStrings()));
-            throw new ConnectException("Unable to connect to server: " + SERVER);
+            throw new ConnectException("Unable to connect to server: " + ftpConfiguration.getUrl());
         }
         logger.info("Server reply:{}", Arrays.toString(ftp.getReplyStrings()));
     }
@@ -60,23 +60,23 @@ public class FTPClient223fz implements FTPClientFZ {
     @Override
     public void login() {
         try {
-            if (ftp.login(USER, PASSWD)) {
+            if (ftp.login(ftpConfiguration.getLogin(), ftpConfiguration.getPassword())) {
                 ftp.enterLocalPassiveMode();
                 logger.info("Successful login to the ftp server");
             } else {
                 logger.error("Unable to login to the ftp server");
-                throw new LoginException("Unable to log in " + SERVER +
-                        " with login: " + USER + " and password: " + PASSWD);
+                throw new LoginException("Unable to log in " + ftpConfiguration.getUrl() +
+                    " with login: " + ftpConfiguration.getLogin() + " and password: " + ftpConfiguration.getPassword());
             }
         } catch (IOException e) {
             logger.error("Server error", e);
-            throw new ConnectException("Unable to connect to server: " + SERVER);
+            throw new ConnectException("Unable to connect to server: " + ftpConfiguration.getUrl());
         }
     }
 
     @Override
     public void parseFTPServer() {
-        logger.info("Start parsing in: {}", SERVER);
+        logger.info("Start parsing in: {}", ftpConfiguration.getUrl());
         searchRegionsDirectories(basicWorkspace);
     }
 
@@ -120,9 +120,9 @@ public class FTPClient223fz implements FTPClientFZ {
             for (FTPFile remote : files) {
                 if (remote.isFile()) {
                     if (downloadFile(downloadPath + workspace + "/" + remote.getName(),
-                            workspace + "/" + remote.getName())) {
+                        workspace + "/" + remote.getName())) {
                         zipService.unzipFile(downloadPath + workspace + "/" + remote.getName(),
-                                downloadPath + workspace, folder);
+                            downloadPath + workspace, folder);
                     } else {
                         logger.error("Unable to download {}", workspace + "/" + remote.getName());
                     }

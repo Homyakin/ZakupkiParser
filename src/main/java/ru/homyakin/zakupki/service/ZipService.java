@@ -44,7 +44,7 @@ public class ZipService {
                 switch (folder) {
                     case "contract":
                         ContractInfo contract = new ContractInfo(ContractParser.parse(path + "/unzip/" + name)
-                                .orElseThrow(() -> new IllegalArgumentException("Contract " + path + " wasn't parsed")));
+                            .orElseThrow(() -> new IllegalArgumentException("Contract " + path + " wasn't parsed")));
                         break;
                 }
             }

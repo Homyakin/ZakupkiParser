@@ -1,0 +1,4 @@
+spring:
+  application.name: zakupki-parser
+  profiles.active: dev
+

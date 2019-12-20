@@ -1,0 +1,6 @@
+homyakin:
+  zakupki:
+    ftp:
+      url: "ftp.zakupki.gov.ru"
+      login: "fz223free"
+      password: "fz223free"
