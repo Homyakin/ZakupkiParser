@@ -14,6 +14,7 @@ public class MainXmlParser {
 
     protected static <T> Optional<T> parse(String filePath, Class<T> clazz) {
         try {
+            logger.info("Start parsing {}", filePath);
             JAXBContext jc = JAXBContext.newInstance(clazz);
             Unmarshaller unmarshaller = jc.createUnmarshaller();
             return Optional.of(clazz.cast(unmarshaller.unmarshal(new File(filePath))));
