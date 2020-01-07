@@ -40,7 +40,7 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	    <xs:complexType name="purchasePlanAdditionalPositionItemType">
+	<xs:complexType name="purchasePlanAdditionalPositionItemType">
         <xs:annotation>
             <xs:documentation>Данные позиции в пакете</xs:documentation>
         </xs:annotation>

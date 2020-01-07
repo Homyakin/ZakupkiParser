@@ -64,16 +64,26 @@
                                                 </xs:complexContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="noticeDocumentUpload">
-                                            <xs:annotation>
-                                                <xs:documentation>Документы извещения о закупке</xs:documentation>
-                                            </xs:annotation>
-                                            <xs:complexType>
-                                                <xs:complexContent>
-                                                    <xs:extension base="documentUploadBaseData"/>
-                                                </xs:complexContent>
-                                            </xs:complexType>
-                                        </xs:element>
+										<xs:element name="noticeDocumentUpload">
+											<xs:annotation>
+												<xs:documentation>Документы извещения о закупке</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="documentUploadBaseData">
+														<xs:sequence>
+															<xs:element name="isUploadComplete" type="xs:boolean"
+																		default="false" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>Признак «Загрузка завершена»
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
                                         <xs:element name="protocolDocumentUpload">
                                             <xs:annotation>
                                                 <xs:documentation>Документы протокола</xs:documentation>
@@ -258,7 +268,7 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
-	
+
 	<xs:element name="processingInfoRequest">
 		<xs:annotation>
 			<xs:documentation>Запрос статуса загрузки</xs:documentation>
@@ -912,7 +922,7 @@ CAdES-A</xs:documentation>
 					</xs:restriction>
 				</xs:simpleType>
             </xs:element>
-            <xs:element name="okpo" type="codeOkpoType" minOccurs="0">
+            <xs:element name="okpo" type="customerCodeOkpoType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>ОКПО</xs:documentation>
                 </xs:annotation>
@@ -937,6 +947,16 @@ CAdES-A</xs:documentation>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+			<xs:element name="customerAssessedCompliance" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак проведения оценки соответствия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customerMonitoredCompliance" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак проведения мониторинга соответствия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
     <xs:complexType name="customerRegistryInfoType">
@@ -1541,6 +1561,7 @@ CAdES-A</xs:documentation>
 			</xs:element>-->
 		</xs:sequence>
 	</xs:complexType>
+
 	<xs:complexType name="electronicPlaceInfoType">
 		<xs:annotation>
 			<xs:documentation>Информация о ЭТП</xs:documentation>
@@ -3231,6 +3252,14 @@ CAdES-A</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="nonEmptyString">
 			<xs:pattern value="\d{10}|\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="customerCodeOkpoType">
+		<xs:annotation>
+			<xs:documentation>Код ОКПО заказчика</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="nonEmptyString">
+			<xs:pattern value="\d{8}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="codeOkvedType">
@@ -5629,5 +5658,5 @@ CAdES-A</xs:documentation>
 			<xs:enumeration value="processing"/>
 		</xs:restriction>
 	</xs:simpleType>
-	
+
 </xs:schema>

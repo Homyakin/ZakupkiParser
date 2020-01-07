@@ -393,7 +393,7 @@
             </xs:element>
             <xs:element name="status" type="contractStatusType" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Допустимые значения (F - Редактирование, P  - Опубликовано, I - Недействительно, M  Изменение)</xs:documentation>
+                    <xs:documentation>Допустимые значения (F - Редактирование, P  - Размещено, I - Недействительно, M  Изменение)</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="version" type="t:versionType" minOccurs="0">
@@ -653,7 +653,11 @@
                     <xs:documentation>Дата размещения договора в электронной форме на электронной площадке</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
+            <xs:element name="electorincPlaceGuid" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений о договоре в электронной форме</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="electronicContractDataType">
@@ -995,7 +999,7 @@
             </xs:element>
             <xs:element name="status" type="contractCompletingStatusType" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Допустимые значения (F - Редактирование, P  - Опубликовано, I - Недействительно, M  Изменение)</xs:documentation>
+                    <xs:documentation>Допустимые значения (F - Редактирование, P  - Размещено, I - Недействительно, M  Изменение)</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="version" type="t:versionType" minOccurs="0">
@@ -1203,7 +1207,7 @@
             </xs:element>
             <xs:element name="status" type="contractStatusType" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Допустимые значения (F - Редактирование, P  - Опубликовано, I - Недействительно, M  Изменение)</xs:documentation>
+                    <xs:documentation>Допустимые значения (F - Редактирование, P  - Размещено, I - Недействительно, M  Изменение)</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="version" type="t:versionType" minOccurs="0">
@@ -1542,6 +1546,20 @@
                     <xs:documentation>Адрес пребывания на территории РФ</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="providerIncludeMSPDate" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата включения в реестр субъектов малого и среднего предпринимательства
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="isInOrder173n" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Признак "Первая версия договора опубликована до даты вступления в силу редакции Приказа 173н от 10.06.2019г."
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="positionListType">
@@ -1760,6 +1778,52 @@
                     <xs:documentation>Номер</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="paymentInfos" type="completingPaymentInfosType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Информация об оплате</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="docs" type="completingDocsType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Документы позиции об исполнении</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="completingDocsType">
+        <xs:annotation>
+            <xs:documentation>Документы об исполнении</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="doc" type="docType" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Документы об исполнении</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="completingPaymentInfosType">
+        <xs:annotation>
+            <xs:documentation>Информация об оплате</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="paymentInfo" type="paymentInfoType" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Информация об оплате</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="paymentInfoType">
+        <xs:annotation>
+            <xs:documentation>Информация об оплате</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ordinal" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Номер</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="paymentDate" type="xs:date">
                 <xs:annotation>
                     <xs:documentation>Дата оплаты</xs:documentation>
@@ -1780,12 +1844,6 @@
                     <xs:documentation>Курс</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="exchangeRateDate" type="xs:date" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Дата, на которую установлен курс валюты</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-
             <xs:element name="rubPrice" type="t:money2" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Сумма оплаты в рублевом эквиваленте</xs:documentation>
@@ -1796,27 +1854,8 @@
                     <xs:documentation>Авансовый платеж</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="docs" type="completingDocsType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Документы позиции об исполнении</xs:documentation>
-                </xs:annotation>
-            </xs:element>
         </xs:sequence>
     </xs:complexType>
-
-    <xs:complexType name="completingDocsType">
-        <xs:annotation>
-            <xs:documentation>Документы об исполнении</xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-            <xs:element name="doc" type="docType" minOccurs="1" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>Документы об исполнении</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-
     <xs:complexType name="docType">
         <xs:annotation>
             <xs:documentation>Документ об исполнении</xs:documentation>
@@ -1838,7 +1877,126 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="t:nonEmptyString">
-                        <xs:maxLength value="2"/>
+                        <xs:enumeration value="01">
+                            <xs:annotation>
+                                <xs:documentation>товарная накладная</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="02">
+                            <xs:annotation>
+                                <xs:documentation>товарно-транспортная накладная</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="03">
+                            <xs:annotation>
+                                <xs:documentation>железнодорожная накладная</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="04">
+                            <xs:annotation>
+                                <xs:documentation>авианакладная</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="05">
+                            <xs:annotation>
+                                <xs:documentation>коносамент</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="06">
+                            <xs:annotation>
+                                <xs:documentation>акт о приемке товаров</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="07">
+                            <xs:annotation>
+                                <xs:documentation>акт о приемке товаров, поступившего без счета поставщика</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="08">
+                            <xs:annotation>
+                                <xs:documentation>акт о приемке-передаче объекта основных средств (кроме зданий, сооружений)</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="09">
+                            <xs:annotation>
+                                <xs:documentation>акт о приемке-передаче здания (сооружения)</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="10">
+                            <xs:annotation>
+                                <xs:documentation>акт о приемке-передаче групп объектов основных средств (кроме зданий, сооружений)</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="11">
+                            <xs:annotation>
+                                <xs:documentation>акт о приеме-сдаче отремонтированных, реконструированных модернизированных объектов основных средств</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="12">
+                            <xs:annotation>
+                                <xs:documentation>акт о приемке выполненных работ</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="13">
+                            <xs:annotation>
+                                <xs:documentation>акт приемке законченного строительством объекта</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="18">
+                            <xs:annotation>
+                                <xs:documentation>счет на оплату</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="19">
+                            <xs:annotation>
+                                <xs:documentation>счет-фактура</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="20">
+                            <xs:annotation>
+                                <xs:documentation>акт выполненных работ</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="21">
+                            <xs:annotation>
+                                <xs:documentation>акт о приемке материалов</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="22">
+                            <xs:annotation>
+                                <xs:documentation>акт о завесе тары</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="23">
+                            <xs:annotation>
+                                <xs:documentation>акт об оприходовании тары, не указанной в счете поставщика</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="24">
+                            <xs:annotation>
+                                <xs:documentation>акт о выявлении недостатков выполненных работ (оказанных услуг)</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="25">
+                            <xs:annotation>
+                                <xs:documentation>акт о невыполнении работ (оказании услуг)</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="26">
+                            <xs:annotation>
+                                <xs:documentation>акт - рекламация</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="31">
+                            <xs:annotation>
+                                <xs:documentation>акт о приеме (поступлении) оборудования</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="37">
+                            <xs:annotation>
+                                <xs:documentation>прочие документы о приемке</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -1875,6 +2033,11 @@
             <xs:element name="qty" type="contractPositionQtyType">
                 <xs:annotation>
                     <xs:documentation>Количество</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="prepayment" type="xs:boolean" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Оплата авансом</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -2004,15 +2167,11 @@
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="code" minOccurs="0">
+                        <xs:element name="code" type="xs:positiveInteger">
                             <xs:annotation>
-                                <xs:documentation>Код региона</xs:documentation>
+                                <xs:documentation>Код региона. </xs:documentation>
+                                <xs:documentation>Для поставщика - резидента элемент обязательный. </xs:documentation>
                             </xs:annotation>
-                            <xs:simpleType>
-                                <xs:restriction base="t:nonEmptyString">
-                                    <xs:maxLength value="2"/>
-                                </xs:restriction>
-                            </xs:simpleType>
                         </xs:element>
                         <xs:element name="name">
                             <xs:annotation>
@@ -2317,7 +2476,7 @@
             </xs:element>
             <xs:element name="status" type="contractCompletingStatusType" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Статус сведений (F - Редактирование, P  - Опубликовано, I - Недействительно, M  Изменение)</xs:documentation>
+                    <xs:documentation>Статус сведений (F - Редактирование, P  - Размещено, I - Недействительно, M  Изменение)</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="publicationDate" type="xs:dateTime" minOccurs="0">

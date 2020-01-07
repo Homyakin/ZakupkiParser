@@ -233,6 +233,134 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="orderClauseVersionsDataResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос от ВСРЗ сведений о положении о закупках по реестровому номеру</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="refguid" type="t:guidType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Идентификатор обработанного запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="result" type="t:resultType">
+                                        <xs:annotation>
+                                            <xs:documentation>Результат обработки запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="body" type="orderClauseVersionsDataType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Данные ответа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="violations" type="t:violationListType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Выявленные в процессе обработки запроса нарушения и ошибки</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="noticeVersionsDataResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос от ВСРЗ сведений об извещениях о закупках по реестровому номеру</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="refguid" type="t:guidType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Идентификатор обработанного запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="result" type="t:resultType">
+                                        <xs:annotation>
+                                            <xs:documentation>Результат обработки запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="body" type="noticeVersionsDataType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Данные ответа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="violations" type="t:violationListType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Выявленные в процессе обработки запроса нарушения и ошибки</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="contractVersionsDataResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос от ВСРЗ сведений о договорах по реестровому номеру</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="refguid" type="t:guidType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Идентификатор обработанного запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="result" type="t:resultType">
+                                        <xs:annotation>
+                                            <xs:documentation>Результат обработки запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="body" type="contractVersionsDataType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Данные ответа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="violations" type="t:violationListType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Выявленные в процессе обработки запроса нарушения и ошибки</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="publishedDataType">
         <xs:sequence>
             <xs:element name="etpResult" minOccurs="0">
@@ -326,6 +454,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="zipEncodedData" type="xs:base64Binary" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -420,7 +549,7 @@
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:minLength value="10"/>
-                        <xs:maxLength value="14"/>
+                        <xs:maxLength value="23"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -634,7 +763,7 @@
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:minLength value="10"/>
-                        <xs:maxLength value="14"/>
+                        <xs:maxLength value="23"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -758,6 +887,11 @@
                     <xs:documentation>GUID сведений</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="regNumber" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер плана закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="version" type="t:versionType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Номер редакции сведений</xs:documentation>
@@ -786,5 +920,408 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="orderClauseVersionsDataType">
+        <xs:sequence>
+            <xs:element name="result" type="resultType">
+                <xs:annotation>
+                    <xs:documentation>Результат поиска сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versions" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Перечень сведений в ответе</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="version" type="orderClauseType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Описание элемента ответа версий положения о закупке</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="zipEncodedData" type="xs:base64Binary" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="orderClauseType">
+        <xs:complexContent>
+            <xs:extension base="commonInfoVersionByRegNum"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:simpleType name="resultType">
+        <xs:annotation>
+            <xs:documentation>Результат поиска сведений</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK">
+                <xs:annotation>
+                    <xs:documentation>Сведения найдены и присутствуют в выгрузке</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ERR_EMPTY">
+                <xs:annotation>
+                    <xs:documentation>Сведения для электронной площадки не были найдены в системе</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="commonInfoVersionByRegNum">
+        <xs:sequence>
+            <xs:element name="guid" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>guid версии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="regNumber" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер версии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения версии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="t:versionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер версии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Статус версии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="noticeVersionsDataType">
+        <xs:sequence>
+            <xs:element name="result" type="resultType">
+                <xs:annotation>
+                    <xs:documentation>Результат поиска сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versions" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Перечень сведений в ответе</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="version" type="noticeType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Описание элемента ответа версий извещений о закупках</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="zipEncodedData" type="xs:base64Binary" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="noticeType">
+        <xs:annotation>
+            <xs:documentation>Извещение о закупке</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="commonInfoVersionByRegNum">
+                <xs:sequence>
+                    <xs:element name="stage" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Этап закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="contractVersionsDataType">
+        <xs:sequence>
+            <xs:element name="result" type="resultType">
+                <xs:annotation>
+                    <xs:documentation>Результат поиска сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versions" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Перечень сведений в ответе</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="version" type="contractType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Описание элемента ответа версий договора</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="zipEncodedData" type="xs:base64Binary" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="contractType">
+        <xs:annotation>
+            <xs:documentation>Договор</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="commonInfoVersionByRegNum">
+                <xs:sequence>
+                    <xs:element name="stage" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Этап договора</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="integrationInfoResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос выгрузки списка принятых ЕИС сведений</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="refguid" type="t:guidType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Идентификатор обработанного запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="result" type="t:resultType">
+                                        <xs:annotation>
+                                            <xs:documentation>Результат обработки запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="startDate" type="xs:date" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Дата начала периода приема сведений</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="endDate" type="xs:date" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Дата начала периода приема сведений</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="entityType" type="entityTypeType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Вид сведений</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="violations" type="t:violationListType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Выявленные в процессе обработки запроса нарушения и ошибки</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="integrationInfoData" type="integrationInfoDataType" minOccurs="0" maxOccurs="1000">
+                                        <xs:annotation>
+                                            <xs:documentation>Данные ответа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:simpleType name="entityTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="orderClause">
+                <xs:annotation>
+                    <xs:documentation>Положение о закупке</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="purchasePlan">
+                <xs:annotation>
+                    <xs:documentation>План закупки</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="purchaseNotice">
+                <xs:annotation>
+                    <xs:documentation>Извещение о закупке</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="purchaseRejection">
+                <xs:annotation>
+                    <xs:documentation>Отмена закупки</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="explanation">
+                <xs:annotation>
+                    <xs:documentation>Разъяснение положений документации о закупке</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="explanationRequest">
+                <xs:annotation>
+                    <xs:documentation>Запрос заказчика о разъяснении положений заявки</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="purchaseProtocol">
+                <xs:annotation>
+                    <xs:documentation>Протокол</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="purchaseProtocolCancellation">
+                <xs:annotation>
+                    <xs:documentation>Сведения об отмене протокола</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="contract">
+                <xs:annotation>
+                    <xs:documentation>Договор</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="contractCompleting">
+                <xs:annotation>
+                    <xs:documentation>Сведения об исполнении договора</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="contractTerminate">
+                <xs:annotation>
+                    <xs:documentation>Сведения о расторжении договора</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="subcontractor">
+                <xs:annotation>
+                    <xs:documentation>Сведения о договоре с субподрядчиком</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="purchaseContractAccount">
+                <xs:annotation>
+                    <xs:documentation>Отчетность по договорам</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="complaint">
+                <xs:annotation>
+                    <xs:documentation>Сведения о жалобе</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="complaintWithdraw">
+                <xs:annotation>
+                    <xs:documentation>Сведения об отзыве жалобы</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="complaintDecision">
+                <xs:annotation>
+                    <xs:documentation>Сведения о решении по жалобе</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="auditPlan">
+                <xs:annotation>
+                    <xs:documentation>План проверки</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="auditResult">
+                <xs:annotation>
+                    <xs:documentation>Результат проверки</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="dishonestSupplier">
+                <xs:annotation>
+                    <xs:documentation>Сведения о недобросовестном поставщике</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="listGWS">
+                <xs:annotation>
+                    <xs:documentation>Перечень ТРУ/ИПВП</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="volumePurchase">
+                <xs:annotation>
+                    <xs:documentation>Годовой отчет о закупке у субъектов малого и среднего предпринимательства/о закупке инновационной продукции, высокотехнологичной продукции</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="purchaseLotCancellation">
+                <xs:annotation>
+                    <xs:documentation>Сведения об отмене лота</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="integrationInfoDataType">
+        <xs:sequence>
+            <xs:element name="packetGUID" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>GUID пакета, с которым сведения были заружены</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="receiveDateTime" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>Дата и время приема пакета, с которым сведения были заружены</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entityGUID" type="t:guidType">
+                <xs:annotation>
+                    <xs:documentation>GUID сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entityType" type="entityTypeType">
+                <xs:annotation>
+                    <xs:documentation>Вид сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="statusType">
+                <xs:annotation>
+                    <xs:documentation>Статус размещения сведений в ЕИС</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата размещения сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="regNumber" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер версии</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="statusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Редактирование</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="P">
+                <xs:annotation>
+                    <xs:documentation>Размещено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Проект изменений</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Недействительно</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="C">
+                <xs:annotation>
+                    <xs:documentation>Отменено</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
 

@@ -93,241 +93,241 @@
 		</xs:annotation>
         <xs:complexContent>
             <xs:extension base="basePurchasePlanDataType">
-		<xs:sequence>
-			<xs:element name="createDateTime" type="xs:dateTime">
-				<xs:annotation>
-					<xs:documentation>Дата создания плана</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-            <xs:element name="urlEIS" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Url документа в ЕИС</xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="t:nonEmptyString">
-                        <xs:maxLength value="3000"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-			<xs:element name="urlVSRZ" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Url документа в ВСРЗ</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="t:nonEmptyString">
-						<xs:maxLength value="3000"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-            <xs:element name="urlKisRmis" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="t:nonEmptyString">
-                        <xs:maxLength value="3000"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-			<xs:element name="registrationNumber" type="t:registrationNumberType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Регистрационный номер плана</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="name" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Наименование плана закупки</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="t:nonEmptyString">
-						<xs:maxLength value="2000"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="additionalInfo" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Дополнительные сведения</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="t:nonEmptyString">
-						<xs:maxLength value="2000"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="startDate" type="xs:date">
-				<xs:annotation>
-					<xs:documentation>Дата начала действия плана</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="endDate" type="xs:date">
-				<xs:annotation>
-					<xs:documentation>Дата окончания действия плана</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="approveDate" type="xs:date">
-				<xs:annotation>
-					<xs:documentation>Дата утверждения плана</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Дата размещения</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="isDigitForm" type="xs:boolean" default="false" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Способ внесения информации</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="summSizeCh15" type="xs:boolean" default="false" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Признак, что закупки осуществляются на сумму, не превышающую размер, установленный в части 15 статьи 4 Закона № 223-ФЗ</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="isImportedFromVSRZ" type="xs:boolean" default="false" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Признак импорта из ВСРЗ</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="status" type="t:purchasePlanStatusType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Статус плана</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="version" type="t:versionType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Номер редакции</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="modificationDescription" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Обоснование внесения изменений</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="t:nonEmptyString">
-						<xs:maxLength value="2000"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-            <xs:element name="useNewClassifiers" type="xs:boolean" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Используются новые классификаторы ОКПД2 и ОКВЭД2</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-			<xs:element name="attachments" type="t:documentListType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-            <xs:element name="excludeVolume" type="t:money2" minOccurs="0">
-            	<xs:annotation>
-            		<xs:documentation>
-            			Совокупный годовой объем планируемых закупок товаров, работ, услуг, 
-            			которые исключаются при расчете годового объема закупок товаров, работ, услуг, 
-            			которые планируется осуществить по результатам закупки товаров, работ, услуг, 
-            			участниками которой являются только субъекты малого и среднего предпринимательства
-            		</xs:documentation>
-            	</xs:annotation>
-            </xs:element>
-            <xs:element name="volumeSMB" type="t:money2" minOccurs="0">
-            	<xs:annotation>
-            		<xs:documentation>
-            			Годовой объем закупок, которые планируется осуществить по результатам закупки, 
-            			участниками которой являются только субъекты малого и среднего предпринимательства.
-					</xs:documentation>
-            	</xs:annotation>
-            </xs:element>
-            <xs:element name="annualVolume" type="t:money2" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Совокупный годовой объем планируемых закупок товаров (работ,услуг)
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="percentSMB" type="xs:decimal" minOccurs="0">
-            	<xs:annotation>
-            		<xs:documentation>Процент</xs:documentation>
-            	</xs:annotation>
-            </xs:element>
-            <xs:element name="smbPartitionChanged" type="xs:boolean" default="false" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Изменён раздел МСП</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="annualVolumeSMBLess15Percent" type="xs:boolean" default="false" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Годовой объём закупок МСП менее 15%</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="reportingYear" type="xs:int">
-                <xs:annotation>
-                    <xs:documentation>Отчетный год</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="previousYearAnnualVolume" type="t:money2" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ за предыдущий год
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="previousYearAnnualVolumeHiTech" type="t:money2" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ ИПВП за предыдущий год
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="previousYearAnnualVolumeHiTechSMB" type="t:money2" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ ИПВП МСП за предыдущий год
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="annualVolumeHiTechSumm" type="t:money2" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ ИПВП (сумма)
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="annualVolumeHiTechIncrease" type="t:money2" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ ИПВП (увеличение)
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="annualVolumeHiTechPercent" type="xs:decimal" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ ИПВП (доля)
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="annualVolumeHiTechSMBSumm" type="t:money2" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ ИПВП МСП (сумма)
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="annualVolumeHiTechSMBIncrease" type="t:money2" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ ИПВП МСП (увеличение)
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="annualVolumeHiTechSMBPercent" type="xs:decimal" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        СГОЗ ИПВП МСП (доля)
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-		</xs:sequence>
+                <xs:sequence>
+                    <xs:element name="createDateTime" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>Дата создания плана</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="urlEIS" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Url документа в ЕИС</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="3000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="urlVSRZ" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Url документа в ВСРЗ</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="3000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="urlKisRmis" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="3000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="registrationNumber" type="t:registrationNumberType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Регистрационный номер плана</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="name" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Наименование плана закупки</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="additionalInfo" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дополнительные сведения</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="startDate" type="xs:date">
+                        <xs:annotation>
+                            <xs:documentation>Дата начала действия плана</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="endDate" type="xs:date">
+                        <xs:annotation>
+                            <xs:documentation>Дата окончания действия плана</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="approveDate" type="xs:date">
+                        <xs:annotation>
+                            <xs:documentation>Дата утверждения плана</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="publicationDateTime" type="xs:dateTime" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата размещения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="isDigitForm" type="xs:boolean" default="false" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Способ внесения информации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="summSizeCh15" type="xs:boolean" default="false" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Признак, что закупки осуществляются на сумму, не превышающую размер, установленный в части 15 статьи 4 Закона № 223-ФЗ</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="isImportedFromVSRZ" type="xs:boolean" default="false" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Признак импорта из ВСРЗ</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="status" type="t:purchasePlanStatusType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Статус плана</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="version" type="t:versionType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Номер редакции</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="modificationDescription" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Обоснование внесения изменений</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="useNewClassifiers" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Используются новые классификаторы ОКПД2 и ОКВЭД2</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="attachments" type="t:documentListType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="excludeVolume" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Совокупный годовой объем планируемых закупок товаров, работ, услуг,
+                                которые исключаются при расчете годового объема закупок товаров, работ, услуг,
+                                которые планируется осуществить по результатам закупки товаров, работ, услуг,
+                                участниками которой являются только субъекты малого и среднего предпринимательства
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="volumeSMB" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Годовой объем закупок, которые планируется осуществить по результатам закупки,
+                                участниками которой являются только субъекты малого и среднего предпринимательства.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="annualVolume" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Совокупный годовой объем планируемых закупок товаров (работ,услуг)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="percentSMB" type="xs:decimal" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Процент</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="smbPartitionChanged" type="xs:boolean" default="false" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Изменён раздел МСП</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="annualVolumeSMBLess18Percent" type="xs:boolean" default="false" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Годовой объём закупок МСП менее 18%</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="reportingYear" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>Отчетный год</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="previousYearAnnualVolume" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ за предыдущий год
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="previousYearAnnualVolumeHiTech" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ ИПВП за предыдущий год
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="previousYearAnnualVolumeHiTechSMB" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ ИПВП МСП за предыдущий год
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="annualVolumeHiTechSumm" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ ИПВП (сумма)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="annualVolumeHiTechIncrease" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ ИПВП (увеличение)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="annualVolumeHiTechPercent" type="xs:decimal" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ ИПВП (доля)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="annualVolumeHiTechSMBSumm" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ ИПВП МСП (сумма)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="annualVolumeHiTechSMBIncrease" type="t:money2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ ИПВП МСП (увеличение)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="annualVolumeHiTechSMBPercent" type="xs:decimal" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                СГОЗ ИПВП МСП (доля)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
             </xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -674,26 +674,47 @@
                     <xs:choice>
                         <xs:element name="purchasePlannedDate" type="xs:date" minOccurs="0">
                             <xs:annotation>
-                                <xs:documentation>Планируемая дата</xs:documentation>
-                                <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                                <xs:documentation>Планируемая дата. </xs:documentation>
+                                <xs:documentation>Указание необязательно только в случае аннулирования позиции. </xs:documentation>
+                                <xs:documentation>В случае загрузки в последующем плане закупки копии долгосрочной позиции исходного плана закупки значение данного элемента из пакета игнорируются и берется значение из исходной позиции. </xs:documentation>
+                                <xs:documentation>При планировании закупки на второй год реализации плана закупки для позиции следующие атрибуты будут игнорироваться:
+
+                                    «Способ закупки» (purchaseMethodCode);
+                                    «Закупка в электронном виде» (isElectronic);
+                                    «Закупка исключается при расчете годового объема закупок, участниками которых являются субъекты малого и среднего предпринимательства»;
+                                    «Категория закупки в соответствии с пунктом 7 постановления Правительства РФ от 11.12.2014 № 1352» (isPurchaseIgnored);
+                                    «Начальная (максимальная) цена договора» (maximumContractPrice);
+                                    «Валюта» (currency);
+                                    «Курс валюты» (exchangeRate);
+                                    «Дата, на которую установлен курс валюты» (exchangeRateDate);
+                                    «Начальная (максимальная) цена договора в рублевом эквиваленте» (maximumContractPriceRub);
+                                    «Порядок формирования начальной (максимальной) цены договора» (orderPricing);
+                                    раздел «Информация об объемах оплаты долгосрочного договора» (longTermVolumes);
+                                    раздел «Информация об объемах привлечения субъектов малого и среднего предпринимательства» (longTermSMBVolumes);
+                                    «Количество (объем)» (qty);
+                                    «Единица измерения» (okei);
+                                    «Невозможно определить количество (объем)» (impossibleToDetermineAttr)</xs:documentation>
                             </xs:annotation>
                         </xs:element>
                         <xs:sequence>
                             <xs:element name="purchasePeriodYear" type="xs:int" minOccurs="0">
                                 <xs:annotation>
-                                    <xs:documentation>Год планируемого периода</xs:documentation>
-                                    <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                                    <xs:documentation>Год планируемого периода.</xs:documentation>
+                                    <xs:documentation>Указание необязательно только в случае аннулирования позиции. </xs:documentation>
+                                    <xs:documentation>В случае загрузки в последующем плане закупки копии долгосрочной позиции исходного плана закупки значение данного элемента из пакета игнорируются и берется значение из исходной позиции. </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="purchasePeriodQuarter" type="xs:int" minOccurs="0">
                                 <xs:annotation>
-                                    <xs:documentation>Квартал планируемого периода</xs:documentation>
+                                    <xs:documentation>Квартал планируемого периода. </xs:documentation>
+                                    <xs:documentation>В случае загрузки в последующем плане закупки копии долгосрочной позиции исходного плана закупки значение данного элемента из пакета игнорируются и берется значение из исходной позиции. </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="purchasePeriodMonth" type="xs:int" minOccurs="0">
                                 <xs:annotation>
-                                    <xs:documentation>Месяц планируемого периода</xs:documentation>
-                                    <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                                    <xs:documentation>Месяц планируемого периода. </xs:documentation>
+                                    <xs:documentation>Указание необязательно только в случае аннулирования позиции. </xs:documentation>
+                                    <xs:documentation>В случае загрузки в последующем плане закупки копии долгосрочной позиции исходного плана закупки значение данного элемента из пакета игнорируются и берется значение из исходной позиции. </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                         </xs:sequence>
@@ -732,7 +753,7 @@
                             <xs:documentation>Признак «Закупка не учитывается в соответствии с пунктом 7 постановления Правительства РФ от 11.12.2014 № 1352»</xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element name="purchaseCategory" type="xs:long" minOccurs="0">
+                    <xs:element name="purchaseCategory" type="purchaseCategoryType" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>Категория закупки</xs:documentation>
                         </xs:annotation>
@@ -740,6 +761,30 @@
                     <xs:element name="innovationEquivalent" type="xs:boolean" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation> признак "Закупка товаров (работ, услуг), удовлетворяющих критериям отнесения к инновационной продукции, высокотехнологичной продукции"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="plannedAfterSecondYear" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>признак "Закупка запланирована на третий или последующие годы реализации плана закупки"
+                                При указании признака, для позиции будут игнорироваться следующие атрибуты:
+
+                                «Дата (период) размещения извещения» (purchasePlannedDate или (purchasePeriodYear, purchasePeriodQuarter, purchasePeriodMonth);
+                                "Срок исполнения договора» (contractEndDate);
+                                «Способ закупки» (purchaseMethodCode);
+                                «Закупка в электронном виде» (isElectronic);
+                                «Закупка исключается при расчете годового объема закупок, участниками которых являются субъекты малого и среднего предпринимательства»;
+                                «Категория закупки в соответствии с пунктом 7 постановления Правительства РФ от 11.12.2014 № 1352» (isPurchaseIgnored);
+                                «Начальная (максимальная) цена договора» (maximumContractPrice);
+                                «Валюта» (currency);
+                                «Курс валюты» (exchangeRate);
+                                «Дата, на которую установлен курс валюты» (exchangeRateDate);
+                                «Начальная (максимальная) цена договора в рублевом эквиваленте» (maximumContractPriceRub);
+                                «Порядок формирования начальной (максимальной) цены договора» (orderPricing);
+                                раздел «Информация об объемах оплаты долгосрочного договора» (longTermVolumes);
+                                раздел «Информация об объемах привлечения субъектов малого и среднего предпринимательства» (longTermSMBVolumes);
+                                «Количество (объем)» (qty);
+                                «Единица измерения» (okei);
+                                «Невозможно определить количество (объем)» (impossibleToDetermineAttr)</xs:documentation>
                         </xs:annotation>
                     </xs:element>
                 </xs:sequence>
@@ -782,7 +827,7 @@
                             <xs:documentation>признак "Закупка не учитывается при расчете совокупного годового стоимостного объема договоров"</xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element name="purchaseCategory" type="xs:long" minOccurs="0">
+                    <xs:element name="purchaseCategory" minOccurs="0" type="purchaseCategoryType">
                         <xs:annotation>
                             <xs:documentation>
                             	Категории закупок, которые не учитываются при расчете объемов закупки у МСП
@@ -829,8 +874,9 @@
 					</xs:element>
                     <xs:element name="purchasePeriodYear" type="xs:int">
                         <xs:annotation>
-                            <xs:documentation>Год планируемого периода</xs:documentation>
-                            <xs:documentation>Указание необязательно только в случае аннулирования позиции</xs:documentation>
+                            <xs:documentation>Год планируемого периода. </xs:documentation>
+                            <xs:documentation>Указание необязательно только в случае аннулирования позиции. </xs:documentation>
+                            <xs:documentation>В случае загрузки в последующем плане закупки копии долгосрочной позиции исходного плана закупки значение данного элемента из пакета игнорируются и берется значение из исходной позиции. </xs:documentation>
                         </xs:annotation>
                     </xs:element>
                     <xs:element name="innovationPlanDataItemRows" type="innovationPlanDataItemsRowListType"
@@ -861,6 +907,7 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+
     <xs:complexType name="innovationPlanItemsListType">
         <xs:annotation>
             <xs:documentation>Позиции плана инновационной закупки</xs:documentation>
@@ -890,6 +937,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
+
     <xs:complexType name="purchasePlanDataItemsRowListType">
         <xs:annotation>
             <xs:documentation>Строки позиции плана</xs:documentation>
@@ -903,6 +951,7 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+
     <xs:complexType name="innovationPlanDataItemsRowListType">
         <xs:annotation>
             <xs:documentation>Строки позиции плана инновационной закупки</xs:documentation>
@@ -919,7 +968,7 @@
 
     <xs:complexType name="basePlanDataItemRowType" abstract="true">
         <xs:annotation>
-            <xs:documentation>Cтрока позиции плана</xs:documentation>
+            <xs:documentation>Строка позиции плана</xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="guid" type="t:guidType" minOccurs="0">
@@ -1066,6 +1115,7 @@
             </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
+
     <xs:simpleType name="regionType">
         <xs:annotation>
             <xs:documentation>Вид плана закупки</xs:documentation>
@@ -1079,6 +1129,159 @@
             <xs:enumeration value="COM_REGION">
                 <xs:annotation>
                     <xs:documentation>Регион для отдельного товара, услуги, работы в позиции плана</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="purchaseCategoryType">
+        <xs:annotation>
+            <xs:documentation>Категории закупок</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>закупки для обеспечения обороны страны и безопасности государства</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>закупки в области использования атомной энергии</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>закупки, которые относятся к сфере деятельности субъектов естественных монополий в соответствии с Федеральным законом «О естественных монополиях»</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="4">
+                <xs:annotation>
+                    <xs:documentation>закупки, которые осуществляются за пределами территории Российской Федерации и предметом которых является поставка товаров, выполнение (оказание) работ (услуг) за пределами территории Российской Федерации</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="5">
+                <xs:annotation>
+                    <xs:documentation>закупки финансовых услуг, включая банковские услуги, страховые услуги, услуги на рынке ценных бумаг, услуги по договору лизинга, а также, оказываемые финансовой организацией и связанные с привлечением и (или) размещением денежных средств юридических и физических лиц</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="6">
+                <xs:annotation>
+                    <xs:documentation>закупки, сведения о которых составляют государственную тайну, при условии, что такие сведения содержатся в документации о закупке или в проекте договора</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="7">
+                <xs:annotation>
+                    <xs:documentation>закупки, в отношении которых принято решение Правительства Российской Федерации в соответствии с частью 16 статьи 4 Федерального закона</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="8">
+                <xs:annotation>
+                    <xs:documentation>закупки услуг по водоснабжению, водоотведению, теплоснабжению и газоснабжению (за исключением услуг по реализации сжиженного газа), а также по подключению (присоединению) к сетям инженерно-технического обеспечения по регулируемым в соответствии с законодательством Российской Федерации ценам (тарифам)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="9">
+                <xs:annotation>
+                    <xs:documentation>закупки работ (услуг), выполнение (оказание) которых может осуществляться только органом исполнительной власти в соответствии с его полномочиями либо подведомственными ему государственным учреждением и государственным унитарным предприятием, соответствующие полномочия которых устанавливаются федеральными законами, нормативными правовыми актами Президента Российской Федерации или нормативными правовыми актами Правительства Российской Федерации, а также законодательными актами соответствующего субъекта Российской Федерации</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="10">
+                <xs:annotation>
+                    <xs:documentation>закупки услуг по осуществлению авторского контроля за разработкой проектной документации на объект капитального строительства, проведению авторского надзора за строительством, реконструкцией и капитальным ремонтом объекта капитального строительства авторами, а также по проведению технического и авторского надзора за выполнением работ по сохранению объекта культурного наследия (памятников истории и культуры) народов Российской Федерации авторами проектов</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="11">
+                <xs:annotation>
+                    <xs:documentation>закупки, предметом которых является аренда и (или) приобретение в собственность объектов недвижимого имущества</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="12">
+                <xs:annotation>
+                    <xs:documentation>закупки энергоносителей</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="13">
+                <xs:annotation>
+                    <xs:documentation>закупки услуг добычи, хранения, отгрузки (перевалки) и переработки энергоносителей</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="14">
+                <xs:annotation>
+                    <xs:documentation>закупки подвижного состава и материалов верхнего строения железнодорожного пути</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="15">
+                <xs:annotation>
+                    <xs:documentation>закупки результатов интеллектуальной деятельности у поставщика (исполнителя, подрядчика), обладающего исключительным правом на результат интеллектуальной деятельности или на средство индивидуализации, удостоверенным правоустанавливающим документом</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="16">
+                <xs:annotation>
+                    <xs:documentation>закупки услуг в области воздушных перевозок и авиационных работ</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="17">
+                <xs:annotation>
+                    <xs:documentation>закупки труб большого диаметра, используемых при строительстве магистральных нефтепроводов и нефтепродуктопроводов</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="18">
+                <xs:annotation>
+                    <xs:documentation>закупки товаров, являющихся источником радиоактивной и химической опасности и применяемых для разведки, добычи, транспортировки и переработки сырой нефти и природного газа</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="19">
+                <xs:annotation>
+                    <xs:documentation>закупки товаров, работ (услуг), выполняемых (оказываемых) при проведении плановых ремонтов, технического обслуживания и модернизации, осуществляемых в рамках существующих гарантийных или лицензионных обязательств по закупленным товару, работе (услуге)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="20">
+                <xs:annotation>
+                    <xs:documentation>закупки товаров, в том числе происходящих из иностранного государства, и (или) работ (услуг), выполняемых (оказываемых) иностранными лицами, в целях реализации шельфовых проектов</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="21">
+                <xs:annotation>
+                    <xs:documentation>закупки услуг подвижной радиотелефонной связи</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="22">
+                <xs:annotation>
+                    <xs:documentation>закупки услуг образовательных организаций (за исключением услуг образовательных организаций, созданных в организационно-правовой форме потребительских кооперативов)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="23">
+                <xs:annotation>
+                    <xs:documentation>закупки товаров, работ (услуг), выполняемых (оказываемых) основным хозяйственным обществом и дочерним хозяйственным обществом и (или) хозяйственным обществом, созданным дочерним хозяйственным обществом, в случае закупки: товаров, работ (услуг) собственного производства - при необходимости соблюдения единого технологического процесса производства продукции, выполнения работ, оказания услуг; товаров, работ (услуг), связанных с оказанием бухгалтерских услуг, информационных услуг, охранной деятельностью или с сохранением коммерческой и информационной безопасности основного хозяйственного общества, его дочерних хозяйственных обществ, хозяйственных обществ, созданных дочерними хозяйственными обществами</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="24">
+                <xs:annotation>
+                    <xs:documentation>закупки услуг по обеспечению защиты персональных данных в информационных системах - в случае если начальная (максимальная) цена таких закупок превышает 200 млн. рублей</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="25">
+                <xs:annotation>
+                    <xs:documentation>закупки услуг по проведению аудита и обзорной проверки консолидированной финансовой отчетности заказчиками, суммарный объем выручки которых от продажи товаров, продукции, выполнения (оказания) работ (услуг), а также от прочих доходов по данным бухгалтерской (финансовой) отчетности за предшествующий календарный год превышает 10 млрд. рублей</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="26">
+                <xs:annotation>
+                    <xs:documentation>закупки необработанных природных алмазов</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="27">
+                <xs:annotation>
+                    <xs:documentation>закупки государственными компаниями, созданными на основании федерального закона, товаров, работ, услуг, по результатам которых заключаются на срок более 5 лет договоры (соглашения), которые предусматривают софинансирование, проектирование и (или) разработку рабочей документации и строительство (реконструкцию и (или) комплексное обустройство), эксплуатацию, включая содержание, ремонт (при необходимости капитальный ремонт) автомобильных дорог (участков автомобильных дорог) общего пользования федерального значения и (или) отдельных дорожных сооружений, являющихся их технологической частью, а также могут предусматривать выполнение функций оператора по сбору платы за проезд по платным автомобильным дорогам (платным участкам автомобильных дорог) общего пользования федерального значения, при условии установления указанными заказчиками в отношении участников закупки требований о привлечении к исполнению таких договоров (соглашений) субподрядчиков (соисполнителей) из числа субъектов малого и среднего предпринимательства</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="28">
+                <xs:annotation>
+                    <xs:documentation>закупки работ, услуг по строительству, реконструкции, капитальному ремонту и обслуживанию особо опасных, технически сложных и уникальных объектов капитального строительства, определяемых в соответствии с законодательством Российской Федерации о градостроительной деятельности, а также закупка работ, услуг по подготовке проектной документации таких объектов в случае, если начальная (максимальная) цена договора на выполнение работ, оказание услуг по результатам указанных закупок превышает 400 млн. рублей</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="29">
+                <xs:annotation>
+                    <xs:documentation>закупки работ, услуг по проектированию, строительству, эксплуатации, реконструкции, капитальному ремонту, техническому перевооружению, консервации и ликвидации объектов, которые в соответствии с законодательством Российской Федерации относятся к категории опасных производственных объектов, либо критически важных объектов топливно-энергетического комплекса, критических элементов объектов топливно-энергетического комплекса, определяемых в соответствии с законодательством Российской Федерации о безопасности объектов топливно-энергетического комплекса (за исключением закупки работ, услуг, включенных в утвержденный заказчиком перечень товаров, работ, услуг (в том числе инновационной продукции, высокотехнологичной продукции), закупки которых осуществляются у субъектов малого и среднего предпринимательства, в случае если начальная (максимальная) цена договора на выполнение работ, оказание услуг по результатам указанных закупок превышает 400 млн. рублей</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>

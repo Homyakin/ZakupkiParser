@@ -577,9 +577,9 @@
 		</xs:complexType>
 	</xs:element>
 
-    <xs:element name="purchaseProtocolRZ1AE">
+    <xs:element name="purchaseProtocolRZ1AE94FZ">
         <xs:annotation>
-            <xs:documentation>Протокол рассмотрения первых частей заявок для аукциона в электронной форме</xs:documentation>
+            <xs:documentation>Протокол рассмотрения первых частей заявок для аукциона в электронной форме (по 94-ФЗ)</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:complexContent>
@@ -591,7 +591,7 @@
                             </xs:annotation>
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="item" type="purchaseProtocolRZ1AEItemType">
+                                    <xs:element name="item" type="purchaseProtocolRZ1AE94FZItemType">
                                         <xs:annotation>
                                             <xs:documentation>Позиция в информационном пакете</xs:documentation>
                                         </xs:annotation>
@@ -605,9 +605,9 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="purchaseProtocolRZ2AE">
+    <xs:element name="purchaseProtocolRZ2AE94FZ">
         <xs:annotation>
-            <xs:documentation>Протокол рассмотрения вторых частей заявок для аукциона в электронной форме</xs:documentation>
+            <xs:documentation>Протокол рассмотрения вторых частей заявок для аукциона в электронной форме (по 94-ФЗ)</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:complexContent>
@@ -619,7 +619,7 @@
                             </xs:annotation>
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="item" type="purchaseProtocolRZ2AEItemType">
+                                    <xs:element name="item" type="purchaseProtocolRZ2AE94FZItemType">
                                         <xs:annotation>
                                             <xs:documentation>Позиция в информационном пакете</xs:documentation>
                                         </xs:annotation>
@@ -1048,7 +1048,7 @@
 	<xs:element name="purchaseProtocolSummingupKESMBO">
 	<xs:annotation>
 		<xs:documentation>Итоговый протокол конкурса в электронной форме,
-			участниками которого могут являться только субъекты малого и среднегоп предпринимательства
+			участниками которого могут являться только субъекты малого и среднего предпринимательства
 		</xs:documentation>
 	</xs:annotation>
 	<xs:complexType>
@@ -1077,7 +1077,7 @@
     <xs:element name="purchaseProtocolSummingupAESMBO">
         <xs:annotation>
             <xs:documentation>Итоговый протокол аукциона в электронной форме,
-                участниками которого могут являться только субъекты малого и среднегоп предпринимательства
+                участниками которого могут являться только субъекты малого и среднего предпринимательства
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -1106,7 +1106,7 @@
     <xs:element name="purchaseProtocolSummingupZKESMBO">
         <xs:annotation>
             <xs:documentation>Итоговый протокол запроса котировок в электронной форме,
-                участниками которого могут являться только субъекты малого и среднегоп предпринимательства
+                участниками которого могут являться только субъекты малого и среднего предпринимательства
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -1647,6 +1647,11 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			<xs:element name="isUploadComplete" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак «Загрузка завершена»</xs:documentation>
+				</xs:annotation>
+			</xs:element>
         </xs:sequence>
 	</xs:complexType>
 
@@ -2078,7 +2083,7 @@
                     </xs:element>
                     <xs:element name="applExamPeriodTime" type="xs:dateTime" minOccurs="0">
                         <xs:annotation>
-                            <xs:documentation>Дата окончания срока рассмотрения заявок</xs:documentation>
+                            <xs:documentation>Дата рассмотрения заявок</xs:documentation>
                         </xs:annotation>
                     </xs:element>
                     <xs:element name="submissionCloseDateTime" type="xs:dateTime" minOccurs="0">
@@ -3741,12 +3746,12 @@
                     </xs:element>
 					<xs:element name="procedureDate" type="xs:dateTime" minOccurs="0">
 						<xs:annotation>
-							<xs:documentation>Дата и время проведения процедуры</xs:documentation>
+							<xs:documentation>Дата и время проведения процедуры/Дата и время составления протокола</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="procedurePlace" minOccurs="0">
 						<xs:annotation>
-							<xs:documentation>Место проведения процедуры</xs:documentation>
+							<xs:documentation>Место проведения процедуры/Место составления протокола</xs:documentation>
 						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="t:nonEmptyString">
@@ -4959,6 +4964,11 @@
 							<xs:documentation>Протокол рассмотрения заявок</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="protocolZRPZRegistryNumber" type="t:registrationNumber11-2Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Протокол запроса разъяснений положений заявки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -5101,9 +5111,9 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-    <xs:complexType name="purchaseProtocolRZ1AEDataType">
+    <xs:complexType name="purchaseProtocolRZ1AE94FZDataType">
         <xs:annotation>
-            <xs:documentation>Протокол рассмотрения первых частей заявок для открытого аукциона в электронной форме</xs:documentation>
+            <xs:documentation>Протокол рассмотрения первых частей заявок для аукциона в электронной форме (по 94-ФЗ)</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="purchaseProtocolBaseDataType">
@@ -5273,9 +5283,9 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="purchaseProtocolRZ2AEDataType">
+    <xs:complexType name="purchaseProtocolRZ2AE94FZDataType">
         <xs:annotation>
-            <xs:documentation>Протокол рассмотрения вторых частей заявок для открытого аукциона в электронной форме</xs:documentation>
+            <xs:documentation>Протокол рассмотрения вторых частей заявок для аукциона в электронной форме (по 94-ФЗ)</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="purchaseProtocolBaseDataType">
@@ -6059,30 +6069,60 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-            <xs:choice>
-                <xs:sequence>
-                    <xs:element name="currency" type="t:currencyType">
-                        <xs:annotation>
-                            <xs:documentation>Валюта платежа</xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="initialSum" type="t:money2">
-                        <xs:annotation>
-                            <xs:documentation>Начальная (максимальная) цена договора</xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                </xs:sequence>
-                <xs:element name="initialSumInfo">
-                    <xs:annotation>
-                        <xs:documentation>Сведения о начальной (максимальной) цене договора</xs:documentation>
-                    </xs:annotation>
-                    <xs:simpleType>
-                        <xs:restriction base="t:nonEmptyString">
-                            <xs:maxLength value="2000"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-            </xs:choice>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="currency" type="t:currencyType">
+						<xs:annotation>
+							<xs:documentation>Валюта платежа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="initialSum" type="t:money2">
+								<xs:annotation>
+									<xs:documentation>Начальная (максимальная) цена договора</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:choice minOccurs="0">
+								<xs:element name="priceFormula">
+									<xs:annotation>
+										<xs:documentation>Формула цены, устанавливающая правила расчета сумм, подлежащих уплате</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="t:nonEmptyString">
+											<xs:maxLength value="2000"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:sequence>
+									<xs:element name="commodityPrice" type="t:money2">
+										<xs:annotation>
+											<xs:documentation>Цена товара, работы, услуги</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:choice>
+							<xs:element name="maxContractPrice" type="t:money2">
+								<xs:annotation>
+									<xs:documentation>Максимальная цена договора (цена лота)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+				<xs:element name="initialSumInfo">
+					<xs:annotation>
+						<xs:documentation>Сведения о начальной (максимальной) цене договора</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="t:nonEmptyString">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
 			<xs:element name="contractConditions" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Существенные условия контракта</xs:documentation>
@@ -6260,6 +6300,11 @@
                     <xs:documentation>Список значений критериев заявок</xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<xs:element name="commissionDecisionPlace" minOccurs="0" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>Решение комиссии по оценке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -6363,6 +6408,11 @@
 			<xs:element name="criteria" type="t:applicationLotCriteriaListType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Список значений критериев заявок</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commissionDecisionPlace" minOccurs="0" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>Решение комиссии по оценке</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -6610,6 +6660,16 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+			<xs:element name="assessmentOrder" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Порядок оценки заявок</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
             <xs:choice minOccurs="0">
                 <xs:sequence>
                     <xs:element name="currency" type="t:currencyType">
@@ -6882,30 +6942,60 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:choice>
-                <xs:sequence>
-                    <xs:element name="currency" type="t:currencyType">
-                        <xs:annotation>
-                            <xs:documentation>Валюта платежа</xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="initialSum" type="t:money2">
-                        <xs:annotation>
-                            <xs:documentation>Начальная (максимальная) цена договора</xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                </xs:sequence>
-                <xs:element name="initialSumInfo">
-                    <xs:annotation>
-                        <xs:documentation>Сведения о начальной (максимальной) цене договора</xs:documentation>
-                    </xs:annotation>
-                    <xs:simpleType>
-                        <xs:restriction base="t:nonEmptyString">
-                            <xs:maxLength value="2000"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-            </xs:choice>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="currency" type="t:currencyType">
+						<xs:annotation>
+							<xs:documentation>Валюта платежа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="initialSum" type="t:money2">
+								<xs:annotation>
+									<xs:documentation>Начальная (максимальная) цена договора</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:choice minOccurs="0">
+								<xs:element name="priceFormula">
+									<xs:annotation>
+										<xs:documentation>Формула цены, устанавливающая правила расчета сумм, подлежащих уплате</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="t:nonEmptyString">
+											<xs:maxLength value="2000"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:sequence>
+									<xs:element name="commodityPrice" type="t:money2">
+										<xs:annotation>
+											<xs:documentation>Цена товара, работы, услуги</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:choice>
+							<xs:element name="maxContractPrice" type="t:money2">
+								<xs:annotation>
+									<xs:documentation>Максимальная цена договора (цена лота)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+				<xs:element name="initialSumInfo">
+					<xs:annotation>
+						<xs:documentation>Сведения о начальной (максимальной) цене договора</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="t:nonEmptyString">
+							<xs:maxLength value="2000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
             <xs:element name="application" type="protocolPAEPApplicationType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>Сведения о заявках</xs:documentation>
@@ -7053,6 +7143,11 @@
                     <xs:documentation>Сведения о предоставленных документах</xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<xs:element name="commissionDecisionPlace" minOccurs="0" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>Решение комиссии по оценке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
         </xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="protocolRZOKApplicationType">
@@ -7441,6 +7536,11 @@
                     <xs:documentation>Сведения о предоставленных документах</xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<xs:element name="commissionDecisionPlace" minOccurs="0" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>Решение комиссии по оценке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
         </xs:sequence>
     </xs:complexType>
 
@@ -7546,6 +7646,11 @@
                     <xs:documentation>Сведения о предоставленных документах</xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<xs:element name="contractSigned" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак «Заключение договора»</xs:documentation>
+				</xs:annotation>
+			</xs:element>
         </xs:sequence>
     </xs:complexType>
 
@@ -7823,18 +7928,16 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-    <xs:complexType name="purchaseProtocolRZ1AEItemType">
+    <xs:complexType name="purchaseProtocolRZ1AE94FZItemType">
         <xs:annotation>
             <xs:documentation>Данные позиции в пакете</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="t:itemType">
                 <xs:sequence>
-                    <xs:element name="purchaseProtocolRZ1AEData" type="purchaseProtocolRZ1AEDataType">
+                    <xs:element name="purchaseProtocolRZ1AE94FZData" type="purchaseProtocolRZ1AE94FZDataType">
                         <xs:annotation>
-                            <xs:documentation>Протокол рассмотрения первых частей заявок для открытого аукциона в
-                                электронной форме
-                            </xs:documentation>
+                            <xs:documentation>Протокол рассмотрения первых частей заявок для аукциона в электронной форме (по 94-ФЗ)</xs:documentation>
                         </xs:annotation>
                     </xs:element>
                 </xs:sequence>
@@ -7842,18 +7945,16 @@
         </xs:complexContent>
     </xs:complexType>
 
-    <xs:complexType name="purchaseProtocolRZ2AEItemType">
+    <xs:complexType name="purchaseProtocolRZ2AE94FZItemType">
         <xs:annotation>
             <xs:documentation>Данные позиции в пакете</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="t:itemType">
                 <xs:sequence>
-                    <xs:element name="purchaseProtocolRZ2AEData" type="purchaseProtocolRZ2AEDataType">
+                    <xs:element name="purchaseProtocolRZ2AE94FZData" type="purchaseProtocolRZ2AE94FZDataType">
                         <xs:annotation>
-                            <xs:documentation>Протокол рассмотрения вторых частей заявок для открытого аукциона в
-                                электронной форме
-                            </xs:documentation>
+                            <xs:documentation>Протокол рассмотрения вторых частей заявок для аукциона в электронной форме (по 94-ФЗ)</xs:documentation>
                         </xs:annotation>
                     </xs:element>
                 </xs:sequence>
@@ -9122,7 +9223,7 @@
 		<xs:complexContent>
 			<xs:extension base="purchaseProtocolDataType">
 				<xs:sequence>
-                    <xs:element name="protocolSummingupInfo" type="protocolSummingupRefferenceDataType">
+                    <xs:element name="protocolInfo" type="protocolSummingupRefferenceDataType">
                         <xs:annotation>
                             <xs:documentation>Информация об итоговом протоколе</xs:documentation>
                         </xs:annotation>
@@ -9669,7 +9770,7 @@
                             </xs:element>
                         </xs:sequence>
                     </xs:choice>
-                    <xs:element name="protocolSummingupInfo" type="protocolSummingupRefferenceDataType">
+                    <xs:element name="protocolInfo" type="protocolSummingupRefferenceDataType">
                         <xs:annotation>
                             <xs:documentation>Информация об итоговом протоколе</xs:documentation>
                         </xs:annotation>
@@ -10306,6 +10407,11 @@
                             <xs:documentation>Протокол обсуждения предложений о функциональных характеристиках</xs:documentation>
                         </xs:annotation>
                     </xs:element>
+					<xs:element name="protocolRZRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол рассмотрения заявок</xs:documentation>
+						</xs:annotation>
+					</xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
