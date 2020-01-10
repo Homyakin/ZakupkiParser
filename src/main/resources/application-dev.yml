@@ -4,3 +4,10 @@ homyakin:
       url: "ftp.zakupki.gov.ru"
       login: "fz223free"
       password: "fz223free"
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/zakupki
+    password: 12345
+    username: root
