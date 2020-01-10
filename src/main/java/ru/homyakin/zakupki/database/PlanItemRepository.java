@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 public class PlanItemRepository {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private final JdbcTemplate jdbcTemplate;
+    private final LongTermVolumesRepository longTermVolumesRepository;
     private final String INSERT_PLAN_ITEM = "INSERT INTO zakupki.plan_item (guid, purchase_plan_guid, ordinal_number," +
         "contract_subject, plan_item_customer_inn, minimum_requirements, contract_end_date," +
         "additional_info, modification_description, status_code, is_purchase_placed, changed_gws_and_dates," +
@@ -23,8 +24,9 @@ public class PlanItemRepository {
         "VALUES" +
         "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    public PlanItemRepository(DataSource dataSource) {
+    public PlanItemRepository(DataSource dataSource, LongTermVolumesRepository longTermVolumesRepository) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+        this.longTermVolumesRepository = longTermVolumesRepository;
     }
 
     public void insert(PurchasePlanDataItemType purchasePlanItem, Boolean isSmb, String planGuid) {
@@ -63,9 +65,18 @@ public class PlanItemRepository {
                 RepositoryService.convertBoolean(false)
             );
             insertToPurchasePlanItem(purchasePlanItem);
+            if (purchasePlanItem.getLongTermVolumes() != null) {
+                longTermVolumesRepository.insert(purchasePlanItem.getLongTermVolumes(), false,
+                    purchasePlanItem.getGuid());
+            }
+            if (purchasePlanItem.getLongTermSMBVolumes() != null) {
+                longTermVolumesRepository.insert(purchasePlanItem.getLongTermSMBVolumes(), true,
+                    purchasePlanItem.getGuid());
+            }
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }
+
     }
 
     public void insert(InnovationPlanDataItemType innovationPlanItem, Boolean isSmb, String planGuid) {
@@ -104,6 +115,14 @@ public class PlanItemRepository {
                 RepositoryService.convertBoolean(true)
             );
             insertToInnovationPlanItem(innovationPlanItem);
+            if (innovationPlanItem.getLongTermVolumes() != null) {
+                longTermVolumesRepository.insert(innovationPlanItem.getLongTermVolumes(), false,
+                    innovationPlanItem.getGuid());
+            }
+            if (innovationPlanItem.getLongTermSMBVolumes() != null) {
+                longTermVolumesRepository.insert(innovationPlanItem.getLongTermSMBVolumes(), true,
+                    innovationPlanItem.getGuid());
+            }
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }
@@ -126,10 +145,10 @@ public class PlanItemRepository {
 
     private void insertToPurchasePlanItem(PurchasePlanDataItemType purchasePlanItem) {
         String sql = "INSERT INTO zakupki.purchase_plan_item (guid, notice_info_guid, lot_guid," +
-            "okato, region, is_general_address, purchase_method_code, is_electronic, planned_after_second_year," +
+            "okato, region, is_general_address, purchase_method_code, purchase_method_name, is_electronic, planned_after_second_year," +
             "is_purchase_ignored, purchase_period_year)" +
             "VALUES" +
-            "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             jdbcTemplate.update(sql,
                 purchasePlanItem.getPurchaseNoticeInfo().getNoticeInfoGuid(),
@@ -138,6 +157,7 @@ public class PlanItemRepository {
                 purchasePlanItem.getRegion(),
                 RepositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
                 purchasePlanItem.getPurchaseMethodCode(),
+                purchasePlanItem.getPurchaseMethodName(),
                 RepositoryService.convertBoolean(purchasePlanItem.isIsElectronic()),
                 RepositoryService.convertBoolean(purchasePlanItem.isPlannedAfterSecondYear()),
                 RepositoryService.convertBoolean(purchasePlanItem.isIsPurchaseIgnored()),
