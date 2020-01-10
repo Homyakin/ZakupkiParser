@@ -1,8 +1,12 @@
 package ru.homyakin.zakupki.database;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.InnovationPlanDataItemType;
 import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlan;
+import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataItemType;
 import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataType;
 
 import javax.sql.DataSource;
@@ -11,12 +15,17 @@ import javax.sql.DataSource;
 public class PurchasePlanRepository {
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRepository customerRepository;
-    public PurchasePlanRepository(DataSource dataSource, CustomerRepository customerRepository) {
+    private final PlanItemRepository planItemRepository;
+    private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
+    public PurchasePlanRepository(DataSource dataSource,
+                                  CustomerRepository customerRepository,
+                                  PlanItemRepository planItemRepository) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.customerRepository = customerRepository;
+        this.planItemRepository = planItemRepository;
     }
 
-    public void insert(PurchasePlan purchasePlan){
+    public void insert(PurchasePlan purchasePlan) {
         String sql = "INSERT INTO purchase_plan (guid, customer_inn, placer_inn, plan_type, is_upload_complete," +
             "create_date_time, url_eis, url_vsrz, url_kis_rmis, registration_number, name, additional_info," +
             "start_date, end_date, approve_date, publication_date_time, is_digit_form, summ_size_ch15," +
@@ -31,47 +40,62 @@ public class PurchasePlanRepository {
         PurchasePlanDataType purchasePlanData = purchasePlan.getBody().getItem().getPurchasePlanData();
         customerRepository.insert(purchasePlanData.getCustomer().getMainInfo());
         customerRepository.insert(purchasePlanData.getPlacer().getMainInfo());
-        jdbcTemplate.update(sql,
-            purchasePlanData.getGuid(),
-            purchasePlanData.getCustomer().getMainInfo().getInn(),
-            purchasePlanData.getPlacer().getMainInfo().getInn(),
-            purchasePlanData.getPlanType().value(),
-            purchasePlanData.isIsUploadComplete() ? 1 : 0,
-            purchasePlanData.getCreateDateTime(),
-            purchasePlanData.getUrlEIS(),
-            purchasePlanData.getUrlVSRZ(),
-            purchasePlanData.getUrlKisRmis(),
-            purchasePlanData.getRegistrationNumber(),
-            purchasePlanData.getName(),
-            purchasePlanData.getAdditionalInfo(),
-            purchasePlanData.getStartDate(),
-            purchasePlanData.getEndDate(),
-            purchasePlanData.getApproveDate(),
-            purchasePlanData.getPublicationDateTime(),
-            purchasePlanData.isIsDigitForm() ? 1 : 0,
-            purchasePlanData.isSummSizeCh15() ? 1 : 0,
-            purchasePlanData.isIsImportedFromVSRZ() ? 1 : 0,
-            purchasePlanData.getStatus().value(),
-            purchasePlanData.getVersion(),
-            purchasePlanData.getModificationDescription(),
-            purchasePlanData.isUseNewClassifiers() ? 1 : 0,
-            purchasePlanData.getExcludeVolume(),
-            purchasePlanData.getVolumeSMB(),
-            purchasePlanData.getAnnualVolume(),
-            purchasePlanData.getPercentSMB(),
-            purchasePlanData.isSmbPartitionChanged() ? 1 : 0,
-            purchasePlanData.isAnnualVolumeSMBLess18Percent() ? 1 : 0,
-            purchasePlanData.getReportingYear(),
-            purchasePlanData.getPreviousYearAnnualVolume(),
-            purchasePlanData.getPreviousYearAnnualVolumeHiTech(),
-            purchasePlanData.getPreviousYearAnnualVolumeHiTechSMB(),
-            purchasePlanData.getAnnualVolumeHiTechSumm(),
-            purchasePlanData.getAnnualVolumeHiTechIncrease(),
-            purchasePlanData.getAnnualVolumeHiTechPercent(),
-            purchasePlanData.getAnnualVolumeHiTechSMBSumm(),
-            purchasePlanData.getAnnualVolumeHiTechSMBIncrease(),
-            purchasePlanData.getAnnualVolumeHiTechSMBPercent()
-        );
-
+        try {
+            jdbcTemplate.update(sql,
+                purchasePlanData.getGuid(),
+                purchasePlanData.getCustomer().getMainInfo().getInn(),
+                purchasePlanData.getPlacer().getMainInfo().getInn(),
+                purchasePlanData.getPlanType().value(),
+                RepositoryService.convertBoolean(purchasePlanData.isIsUploadComplete()),
+                purchasePlanData.getCreateDateTime(),
+                purchasePlanData.getUrlEIS(),
+                purchasePlanData.getUrlVSRZ(),
+                purchasePlanData.getUrlKisRmis(),
+                purchasePlanData.getRegistrationNumber(),
+                purchasePlanData.getName(),
+                purchasePlanData.getAdditionalInfo(),
+                purchasePlanData.getStartDate(),
+                purchasePlanData.getEndDate(),
+                purchasePlanData.getApproveDate(),
+                purchasePlanData.getPublicationDateTime(),
+                RepositoryService.convertBoolean(purchasePlanData.isIsDigitForm()),
+                RepositoryService.convertBoolean(purchasePlanData.isSummSizeCh15()),
+                RepositoryService.convertBoolean(purchasePlanData.isIsImportedFromVSRZ()),
+                purchasePlanData.getStatus().value(),
+                purchasePlanData.getVersion(),
+                purchasePlanData.getModificationDescription(),
+                RepositoryService.convertBoolean(purchasePlanData.isUseNewClassifiers()),
+                purchasePlanData.getExcludeVolume(),
+                purchasePlanData.getVolumeSMB(),
+                purchasePlanData.getAnnualVolume(),
+                purchasePlanData.getPercentSMB(),
+                RepositoryService.convertBoolean(purchasePlanData.isSmbPartitionChanged()),
+                RepositoryService.convertBoolean(purchasePlanData.isAnnualVolumeSMBLess18Percent()),
+                purchasePlanData.getReportingYear(),
+                purchasePlanData.getPreviousYearAnnualVolume(),
+                purchasePlanData.getPreviousYearAnnualVolumeHiTech(),
+                purchasePlanData.getPreviousYearAnnualVolumeHiTechSMB(),
+                purchasePlanData.getAnnualVolumeHiTechSumm(),
+                purchasePlanData.getAnnualVolumeHiTechIncrease(),
+                purchasePlanData.getAnnualVolumeHiTechPercent(),
+                purchasePlanData.getAnnualVolumeHiTechSMBSumm(),
+                purchasePlanData.getAnnualVolumeHiTechSMBIncrease(),
+                purchasePlanData.getAnnualVolumeHiTechSMBPercent()
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
+        for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItems().getPurchasePlanItem()) {
+            planItemRepository.insert(i, false, purchasePlanData.getGuid());
+        }
+        for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItems().getInnovationPlanItem()) {
+            planItemRepository.insert(i, false, purchasePlanData.getGuid());
+        }
+        for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItemsSMB().getPurchasePlanItem()) {
+            planItemRepository.insert(i, true, purchasePlanData.getGuid());
+        }
+        for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItemsSMB().getInnovationPlanItem()) {
+            planItemRepository.insert(i, true, purchasePlanData.getGuid());
+        }
     }
 }

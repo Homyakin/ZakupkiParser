@@ -1,13 +1,17 @@
 package ru.homyakin.zakupki.database;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.Application;
 import ru.homyakin.zakupki.documentsinfo._223fz.types.CustomerMainInfoType;
 
 import javax.sql.DataSource;
 
 @Component
 public class CustomerRepository {
+    private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private final JdbcTemplate jdbcTemplate;
 
     public CustomerRepository(DataSource dataSource) {
@@ -20,28 +24,33 @@ public class CustomerRepository {
             "timezone_offset, timezone_name, region, customer_assessed_compliance, customer_monitored_compliance)" +
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(
-            sql,
-            customer.getInn(),
-            customer.getFullName(),
-            customer.getShortName(),
-            customer.getIko(),
-            customer.getKpp(),
-            customer.getOgrn(),
-            customer.getLegalAddress(),
-            customer.getPostalAddress(),
-            customer.getPhone(),
-            customer.getFax(),
-            customer.getEmail(),
-            customer.getOkato(),
-            customer.getOkopf(),
-            customer.getOkpo(),
-            customer.getCustomerRegistrationDate(),
-            customer.getTimeZone().getOffset(),
-            customer.getTimeZone().getName(),
-            customer.getRegion(),
-            customer.isCustomerAssessedCompliance() ? 1 : 0,
-            customer.isCustomerMonitoredCompliance() ? 1 : 0
-        );
+        try {
+
+            jdbcTemplate.update(
+                sql,
+                customer.getInn(),
+                customer.getFullName(),
+                customer.getShortName(),
+                customer.getIko(),
+                customer.getKpp(),
+                customer.getOgrn(),
+                customer.getLegalAddress(),
+                customer.getPostalAddress(),
+                customer.getPhone(),
+                customer.getFax(),
+                customer.getEmail(),
+                customer.getOkato(),
+                customer.getOkopf(),
+                customer.getOkpo(),
+                customer.getCustomerRegistrationDate(),
+                customer.getTimeZone().getOffset(),
+                customer.getTimeZone().getName(),
+                customer.getRegion(),
+                RepositoryService.convertBoolean(customer.isCustomerAssessedCompliance()),
+                RepositoryService.convertBoolean(customer.isCustomerMonitoredCompliance())
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
     }
 }

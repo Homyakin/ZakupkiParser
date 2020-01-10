@@ -19,7 +19,8 @@ def insert(table: str, columns: list, json_fields: list):
             try:
                 with connection.cursor() as cursor:
                     s = ", ".join(columns)
-                    sql = f'INSERT INTO zakupki.{table} ({s}) VALUES (%s, %s)'
+                    template = ', '.join(['%s' for _ in range(len(columns))])
+                    sql = f'INSERT INTO zakupki.{table} ({s}) VALUES ({template})'
                     fields = [i[j] for j in json_fields]
                     cursor.execute(sql, fields)
                     connection.commit()
