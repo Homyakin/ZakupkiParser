@@ -35,6 +35,10 @@ public class PlanItemRepository {
 
     public void insert(PurchasePlanDataItemType purchasePlanItem, Boolean isSmb, String planGuid) {
         try {
+            if (isSmb) {
+                updateToSmb(purchasePlanItem.getGuid());
+                return;
+            }
             jdbcTemplate.update(INSERT_PLAN_ITEM,
                 purchasePlanItem.getGuid(),
                 planGuid,
@@ -90,6 +94,10 @@ public class PlanItemRepository {
 
     public void insert(InnovationPlanDataItemType innovationPlanItem, Boolean isSmb, String planGuid) {
         try {
+            if (isSmb) {
+                updateToSmb(innovationPlanItem.getGuid());
+                return;
+            }
             jdbcTemplate.update(INSERT_PLAN_ITEM,
                 innovationPlanItem.getGuid(),
                 planGuid,
@@ -187,6 +195,11 @@ public class PlanItemRepository {
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }
+    }
+
+    private void updateToSmb(String guid) {
+        String sql = "UPDATE zakupki.plan_item SET is_smb = ? WHERE guid = ? ";
+        jdbcTemplate.update(sql, 1, guid);
     }
 
     private String getPlanItemStatus(PurchasePlanItemStatusType status) {

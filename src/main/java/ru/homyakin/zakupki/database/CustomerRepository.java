@@ -28,7 +28,7 @@ public class CustomerRepository {
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            if (checkCustomer(customer.getInn())) return;
+            if (checkCustomer(customer.getInn())) return; //TODO make update if exists
             Integer timeZoneOffset = customer.getTimeZone() != null ? customer.getTimeZone().getOffset() : null;
             String timeZoneName = customer.getTimeZone() != null ? customer.getTimeZone().getName() : null;
             jdbcTemplate.update(

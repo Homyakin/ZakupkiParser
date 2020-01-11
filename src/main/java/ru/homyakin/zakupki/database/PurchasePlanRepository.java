@@ -89,28 +89,28 @@ public class PurchasePlanRepository {
                 purchasePlanData.getAnnualVolumeHiTechSMBIncrease(),
                 purchasePlanData.getAnnualVolumeHiTechSMBPercent()
             );
+            if (purchasePlanData.getPurchasePlanItems() != null) {
+                for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItems().getPurchasePlanItem()) {
+                    planItemRepository.insert(i, false, purchasePlanData.getGuid());
+                }
+            }
+            if (purchasePlanData.getInnovationPlanItems() != null) {
+                for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItems().getInnovationPlanItem()) {
+                    planItemRepository.insert(i, false, purchasePlanData.getGuid());
+                }
+            }
+            if (purchasePlanData.getPurchasePlanItemsSMB() != null) {
+                for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItemsSMB().getPurchasePlanItem()) {
+                    planItemRepository.insert(i, true, purchasePlanData.getGuid());
+                }
+            }
+            if (purchasePlanData.getInnovationPlanItemsSMB() != null) {
+                for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItemsSMB().getInnovationPlanItem()) {
+                    planItemRepository.insert(i, true, purchasePlanData.getGuid());
+                }
+            }
         } catch (Exception e) {
             logger.error("Eternal error", e);
-        }
-        if (purchasePlanData.getPurchasePlanItems() != null) {
-            for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItems().getPurchasePlanItem()) {
-                planItemRepository.insert(i, false, purchasePlanData.getGuid());
-            }
-        }
-        if (purchasePlanData.getInnovationPlanItems() != null) {
-            for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItems().getInnovationPlanItem()) {
-                planItemRepository.insert(i, false, purchasePlanData.getGuid());
-            }
-        }
-        if (purchasePlanData.getPurchasePlanItemsSMB() != null) {
-            for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItemsSMB().getPurchasePlanItem()) {
-                planItemRepository.insert(i, true, purchasePlanData.getGuid());
-            }
-        }
-        if (purchasePlanData.getInnovationPlanItemsSMB() != null) {
-            for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItemsSMB().getInnovationPlanItem()) {
-                planItemRepository.insert(i, true, purchasePlanData.getGuid());
-            }
         }
     }
 }
