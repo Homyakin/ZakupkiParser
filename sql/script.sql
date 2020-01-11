@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS `zakupki`;
+
 CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan` ( 
   `guid` varchar(36) not null,
   `customer_inn` bigint null,
@@ -53,7 +55,9 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`customer` (
   `phone` varchar(300) null,
   `fax` varchar(300) null,
   `email` varchar(300) null,
+  `okato` bigint null,
   `okopf_code` int null,
+  `okpo` int null,
   `customer_registration_date` datetime null,
   `timezone_offset` int null,
   `timezone_name` varchar(100) null,
@@ -76,7 +80,8 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item` (
   `okato` bigint null,
   `region` varchar(1000) null,
   `is_general_address` tinyint(1) null,
-  `purchase_method_code` int not null,
+  `purchase_method_code` int null,
+  `purchase_method_name` varchar(2000) null,
   `is_electronic` tinyint(1) null,
   `planned_after_second_year` tinyint(1) null,
   `is_purchase_ignored` tinyint(1) null,
@@ -101,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volumes` (
   PRIMARY KEY (`plan_item_guid`, `is_smb`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_value_detail` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volume_detail` ( 
   `long_term_value_guid` varchar(36) not null,
   `year` int not null,
   `summ` decimal(22, 2) unsigned null,
@@ -113,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`currency` (
   `code` varchar(3) not null,
   `digital_code` varchar(3) not null,
   `name` varchar(50) not null,
+  `country` varchar(50) not null,
   PRIMARY KEY (`code`)
 );
 
@@ -132,12 +138,6 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_row_item` (
   `okved_code` varchar(20) null,
   `okved2_code` varchar(20) null,
   PRIMARY KEY (`plan_item_guid`, `ordinal_number`)
-);
-
-CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_method` ( 
-  `code` int not null,
-  `name` varchar(2000) null,
-  PRIMARY KEY (`code`)
 );
 
 CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item_row` ( 
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`okei` (
 
 CREATE TABLE IF NOT EXISTS `zakupki`.`plan_status` ( 
   `code` varchar(1) not null,
-  `name` varchar(30) not null,
+  `name` varchar(35) not null,
   PRIMARY KEY (`code`)
 );
 
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`plan_item` (
   `initial_position_guid` varchar(36) null,
   `initial_plan_guid` varchar(36) null,
   `maximum_contract_price` decimal(22, 2) null,
-  `currency_code` int null,
+  `currency_code` varchar(3) null,
   `exchange_rate` decimal(16, 6) null,
   `exchange_rate_date` date null,
   `maximum_contract_price_rub` decimal(22, 2) null,
@@ -229,23 +229,23 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`plan_item` (
 
 CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_category` ( 
   `code` int not null,
-  `description` varchar(200) not null,
+  `description` varchar(1100) not null,
   PRIMARY KEY (`code`)
 );
 
-ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_customer_inn_foreign` FOREIGN KEY (`customer_inn`) REFERENCES `zakupki`.`customer` (`inn`);
+
 ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_placer_inn_foreign` FOREIGN KEY (`placer_inn`) REFERENCES `zakupki`.`customer` (`inn`);
 ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_status_code_foreign` FOREIGN KEY (`status_code`) REFERENCES `zakupki`.`plan_status` (`code`);
+ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_customer_inn_foreign` FOREIGN KEY (`customer_inn`) REFERENCES `zakupki`.`customer` (`inn`);
 
 ALTER TABLE `zakupki`.`customer` ADD CONSTRAINT `organization_okopf_code_foreign` FOREIGN KEY (`okopf_code`) REFERENCES `zakupki`.`okopf` (`code`);
 
 ALTER TABLE `zakupki`.`purchase_plan_item` ADD CONSTRAINT `purchase_plan_item_guid_foreign` FOREIGN KEY (`guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
-ALTER TABLE `zakupki`.`purchase_plan_item` ADD CONSTRAINT `purchase_plan_item_purchase_method_code_foreign` FOREIGN KEY (`purchase_method_code`) REFERENCES `zakupki`.`purchase_method` (`code`);
 
 ALTER TABLE `zakupki`.`long_term_volumes` ADD CONSTRAINT `long_term_volumes_currency_code_foreign` FOREIGN KEY (`currency_code`) REFERENCES `zakupki`.`currency` (`code`);
 ALTER TABLE `zakupki`.`long_term_volumes` ADD CONSTRAINT `long_term_volumes_purchase_plan_item_guid_foreign` FOREIGN KEY (`plan_item_guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
 
-ALTER TABLE `zakupki`.`long_term_value_detail` ADD CONSTRAINT `long_term_value_detail_long_term_value_guid_foreign` FOREIGN KEY (`long_term_value_guid`) REFERENCES `zakupki`.`long_term_volumes` (`plan_item_guid`);
+ALTER TABLE `zakupki`.`long_term_volume_detail` ADD CONSTRAINT `long_term_value_detail_long_term_value_guid_foreign` FOREIGN KEY (`long_term_value_guid`) REFERENCES `zakupki`.`long_term_volumes` (`plan_item_guid`);
 
 ALTER TABLE `zakupki`.`innovation_plan_item` ADD CONSTRAINT `innovation_plan_item_guid_foreign` FOREIGN KEY (`guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
 
@@ -269,6 +269,5 @@ ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_initial_position_gui
 ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_initial_plan_guid_foreign` FOREIGN KEY (`initial_plan_guid`) REFERENCES `zakupki`.`purchase_plan` (`guid`);
 ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_purchase_category_code_foreign` FOREIGN KEY (`purchase_category_code`) REFERENCES `zakupki`.`purchase_category` (`code`);
 ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_currency_code_foreign` FOREIGN KEY (`currency_code`) REFERENCES `zakupki`.`currency` (`code`);
-
 
         
