@@ -3,11 +3,14 @@ package ru.homyakin.zakupki.database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.Application;
 import ru.homyakin.zakupki.documentsinfo._223fz.types.CustomerMainInfoType;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.util.List;
 
 @Component
 public class CustomerRepository {
@@ -25,6 +28,7 @@ public class CustomerRepository {
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
+            if (checkCustomer(customer.getInn())) return;
             Integer timeZoneOffset = customer.getTimeZone() != null ? customer.getTimeZone().getOffset() : null;
             String timeZoneName = customer.getTimeZone() != null ? customer.getTimeZone().getName() : null;
             jdbcTemplate.update(
@@ -53,5 +57,11 @@ public class CustomerRepository {
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }
+    }
+
+    private boolean checkCustomer(String inn) {
+        String sql = "SELECT inn FROM customer WHERE inn = ?";
+        List<String> result = jdbcTemplate.query(sql, new Object[]{inn}, (rs, rowNum) -> rs.getString("inn"));
+        return result.size() != 0;
     }
 }

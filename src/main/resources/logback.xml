@@ -14,19 +14,10 @@
             <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
         </layout>
     </appender>
-    <!-- Фильтры -->
-    <!-- Фильтр по маркеру -->
-    <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
-        <Marker>marker</Marker>
-        <OnMatch>DENY</OnMatch>
-    </turboFilter>
     <!-- Логгеры -->
     <!-- Корневой логгер -->
     <root level="info">
         <appender-ref ref="file" />
-    </root>
-    <!-- Логгер нашего класса  -->
-    <logger name="logging.logback.LoggingLogback" level="info" >
         <appender-ref ref="sout" />
-    </logger>
+    </root>
 </configuration>
