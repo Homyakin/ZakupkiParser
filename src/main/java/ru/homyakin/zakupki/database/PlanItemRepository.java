@@ -79,7 +79,7 @@ public class PlanItemRepository {
                 longTermVolumesRepository.insert(purchasePlanItem.getLongTermSMBVolumes(), true,
                     purchasePlanItem.getGuid());
             }
-            for(PurchasePlanDataItemRowType i: purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
+            for (PurchasePlanDataItemRowType i : purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
                 planItemRowRepository.insert(i, purchasePlanItem.getGuid());
             }
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class PlanItemRepository {
                 longTermVolumesRepository.insert(innovationPlanItem.getLongTermSMBVolumes(), true,
                     innovationPlanItem.getGuid());
             }
-            for(InnovationPlanDataItemRowType i: innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
+            for (InnovationPlanDataItemRowType i : innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
                 planItemRowRepository.insert(i, innovationPlanItem.getGuid());
             }
         } catch (Exception e) {

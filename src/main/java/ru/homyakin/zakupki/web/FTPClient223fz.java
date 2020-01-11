@@ -31,7 +31,7 @@ public class FTPClient223fz implements FTPClientFZ {
      * "purchaseProtocolPAAE", "purchaseProtocolPAAE94", "purchaseProtocolOSZ",
      * "purchaseProtocolRZOK", "purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE");
      */
-    private final static List<String> parsingFolders = Arrays.asList("contract");
+    private final static List<String> parsingFolders = Arrays.asList("purchasePlan");
     private final static String downloadPath = "./zakupki_download";
     private final static FTPClient ftp = new FTPClient();
 

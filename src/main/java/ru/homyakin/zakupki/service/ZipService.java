@@ -3,14 +3,18 @@ package ru.homyakin.zakupki.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.database.PurchasePlanRepository;
 import ru.homyakin.zakupki.documentsinfo.ContractInfo;
+import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlan;
 import ru.homyakin.zakupki.service.parser.ContractParser;
+import ru.homyakin.zakupki.service.parser.PurchasePlanParser;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -19,9 +23,10 @@ public class ZipService {
     private final static Logger logger = LoggerFactory.getLogger(ZipService.class);
 
     private final FileSystemService fileSystemService;
-
-    public ZipService(FileSystemService fileSystemService) {
+    private final PurchasePlanRepository purchasePlanRepository;
+    public ZipService(FileSystemService fileSystemService, PurchasePlanRepository purchasePlanRepository) {
         this.fileSystemService = fileSystemService;
+        this.purchasePlanRepository = purchasePlanRepository;
     }
 
     public void unzipFile(String filePath, String path, String folder) {
@@ -45,6 +50,11 @@ public class ZipService {
                     case "contract":
                         ContractInfo contract = new ContractInfo(ContractParser.parse(path + "/unzip/" + name)
                             .orElseThrow(() -> new IllegalArgumentException("Contract " + path + " wasn't parsed")));
+                        break;
+                    case "purchasePlan":
+                        PurchasePlan purchasePlan = PurchasePlanParser.parse(path + "/unzip/" + name)
+                                .orElseThrow(() -> new IllegalArgumentException("Contract " + path + " wasn't parsed"));
+                        purchasePlanRepository.insert(purchasePlan);
                         break;
                 }
             }
