@@ -40,7 +40,7 @@ public class PlanItemRowRepository {
             purchasePlanDataItemRow.getOkato(),
             purchasePlanDataItemRow.getRegion(),
             RepositoryService.convertBoolean(purchasePlanDataItemRow.isImpossibleToDetermineAttr()),
-            purchasePlanDataItemRow.getOkei().getCode(),
+            okeiCode,
             purchasePlanDataItemRow.getQty()
         );
 

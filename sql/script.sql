@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`okopf` (
 
 CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item` ( 
   `guid` varchar(36) not null,
-  `notice_info_guid` varchar(36) not null,
+  `notice_info_guid` varchar(36) null,
   `lot_guid` varchar(36) null,
   `okato` bigint null,
   `region` varchar(1000) null,
@@ -150,8 +150,8 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item_row` (
   `okato` bigint null,
   `region` varchar(1000) null,
   `impossible_to_determine_attr` tinyint(1) null,
-  `okei_code` varchar(20) not null,
-  `qty` decimal(25, 5) not null,
+  `okei_code` varchar(20) null,
+  `qty` decimal(25, 5) null,
   PRIMARY KEY (`plan_item_guid`, `ordinal_number`)
 );
 
