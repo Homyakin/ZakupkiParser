@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.InnovationPlanDataItemRowType;
 import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.InnovationPlanDataItemType;
+import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataItemRowType;
 import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataItemType;
 
 import javax.sql.DataSource;
@@ -14,6 +16,7 @@ public class PlanItemRepository {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final LongTermVolumesRepository longTermVolumesRepository;
+    private final PlanItemRowRepository planItemRowRepository;
     private final String INSERT_PLAN_ITEM = "INSERT INTO zakupki.plan_item (guid, purchase_plan_guid, ordinal_number," +
         "contract_subject, plan_item_customer_inn, minimum_requirements, contract_end_date," +
         "additional_info, modification_description, status_code, is_purchase_placed, changed_gws_and_dates," +
@@ -24,9 +27,12 @@ public class PlanItemRepository {
         "VALUES" +
         "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    public PlanItemRepository(DataSource dataSource, LongTermVolumesRepository longTermVolumesRepository) {
+    public PlanItemRepository(DataSource dataSource,
+                              LongTermVolumesRepository longTermVolumesRepository,
+                              PlanItemRowRepository planItemRowRepository) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.longTermVolumesRepository = longTermVolumesRepository;
+        this.planItemRowRepository = planItemRowRepository;
     }
 
     public void insert(PurchasePlanDataItemType purchasePlanItem, Boolean isSmb, String planGuid) {
@@ -72,6 +78,9 @@ public class PlanItemRepository {
             if (purchasePlanItem.getLongTermSMBVolumes() != null) {
                 longTermVolumesRepository.insert(purchasePlanItem.getLongTermSMBVolumes(), true,
                     purchasePlanItem.getGuid());
+            }
+            for(PurchasePlanDataItemRowType i: purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
+                planItemRowRepository.insert(i, purchasePlanItem.getGuid());
             }
         } catch (Exception e) {
             logger.error("Eternal error", e);
@@ -122,6 +131,9 @@ public class PlanItemRepository {
             if (innovationPlanItem.getLongTermSMBVolumes() != null) {
                 longTermVolumesRepository.insert(innovationPlanItem.getLongTermSMBVolumes(), true,
                     innovationPlanItem.getGuid());
+            }
+            for(InnovationPlanDataItemRowType i: innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
+                planItemRowRepository.insert(i, innovationPlanItem.getGuid());
             }
         } catch (Exception e) {
             logger.error("Eternal error", e);

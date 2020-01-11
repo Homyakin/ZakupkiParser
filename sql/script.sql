@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item` (
   PRIMARY KEY (`guid`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_row_item` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item_row` ( 
   `plan_item_guid` varchar(36) not null,
   `ordinal_number` int not null,
   `additional_info` varchar(2000) null,
