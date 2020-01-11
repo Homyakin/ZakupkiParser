@@ -5,3 +5,4 @@ ZakupkiParser.iml
 .DS_Store
 __pycache__/
 .vscode/
+*.log

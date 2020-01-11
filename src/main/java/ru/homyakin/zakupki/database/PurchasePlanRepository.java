@@ -47,11 +47,12 @@ public class PurchasePlanRepository {
         customerRepository.insert(purchasePlanData.getPlacer().getMainInfo()); //required field
         try {
             String planStatus = purchasePlanData.getStatus() != null ? purchasePlanData.getStatus().value() : null;
+            String planType = purchasePlanData.getPlanType() != null ? purchasePlanData.getPlanType().value() : null;
             jdbcTemplate.update(sql,
                 purchasePlanData.getGuid(),
                 customerInn,
                 purchasePlanData.getPlacer().getMainInfo().getInn(),
-                purchasePlanData.getPlanType().value(),
+                planType,
                 RepositoryService.convertBoolean(purchasePlanData.isIsUploadComplete()),
                 RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getCreateDateTime()),
                 purchasePlanData.getUrlEIS(),
