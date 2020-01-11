@@ -12,7 +12,7 @@ def insert(table: str, columns: list, json_fields: list):
         charset='utf8mb4',
         cursorclass=DictCursor
     )
-
+    print(f'Inserting {table}')
     with open(f'data/{table}.json') as json_file:
         data = json.load(json_file)
         for i in data:

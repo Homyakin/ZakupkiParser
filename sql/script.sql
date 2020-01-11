@@ -118,7 +118,6 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`currency` (
   `code` varchar(3) not null,
   `digital_code` varchar(3) not null,
   `name` varchar(50) not null,
-  `country` varchar(50) not null,
   PRIMARY KEY (`code`)
 );
 

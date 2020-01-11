@@ -1,0 +1,7 @@
+import insert_currency
+import insert_okdp
+import insert_okei
+import insert_okopf
+import insert_plan_item_status
+import insert_plan_status
+import insert_purchase_category
