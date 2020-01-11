@@ -4,10 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.InnovationPlanDataItemRowType;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.InnovationPlanDataItemType;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataItemRowType;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataItemType;
+import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.*;
+import ru.homyakin.zakupki.documentsinfo._223fz.types.PurchasePlanItemStatusType;
 
 import javax.sql.DataSource;
 
@@ -42,27 +40,27 @@ public class PlanItemRepository {
                 planGuid,
                 purchasePlanItem.getOrdinalNumber(),
                 purchasePlanItem.getContractSubject(),
-                purchasePlanItem.getPlanItemCustomer().getMainInfo().getInn(),
+                purchasePlanItem.getPlanItemCustomer().getMainInfo().getInn(), //required field
                 purchasePlanItem.getMinimumRequirements(),
-                purchasePlanItem.getContractEndDate(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getContractEndDate()),
                 purchasePlanItem.getAdditionalInfo(),
                 purchasePlanItem.getModificationDescription(),
-                purchasePlanItem.getStatus().value(),
+                getPlanItemStatus(purchasePlanItem.getStatus()),
                 RepositoryService.convertBoolean(purchasePlanItem.isIsPurchasePlaced()),
                 RepositoryService.convertBoolean(purchasePlanItem.isChangedGWSAndDates()),
                 RepositoryService.convertBoolean(purchasePlanItem.isChangedNMSKMoreTenPercent()),
                 RepositoryService.convertBoolean(purchasePlanItem.isOtherChanges()),
-                purchasePlanItem.getCheckResult().value(),
+                getPlanItemCheckResult(purchasePlanItem.getCheckResult()),
                 purchasePlanItem.getErrorMessages(),
                 purchasePlanItem.getCancellationReason(),
                 RepositoryService.convertBoolean(purchasePlanItem.isLongTerm()),
                 RepositoryService.convertBoolean(purchasePlanItem.isShared()),
-                purchasePlanItem.getInitialPositionData().getInitialPositionGuid(),
-                purchasePlanItem.getInitialPositionData().getInitialPlanGuid(),
+                getInitialPositionGuid(purchasePlanItem.getInitialPositionData()),
+                getInitialPlanGuid(purchasePlanItem.getInitialPositionData()),
                 purchasePlanItem.getMaximumContractPrice(),
                 RepositoryService.getCurrencyCode(purchasePlanItem.getCurrency()),
                 purchasePlanItem.getExchangeRate(),
-                purchasePlanItem.getExchangeRateDate(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getExchangeRateDate()),
                 purchasePlanItem.getMaximumContractPriceRub(),
                 purchasePlanItem.getOrderPricing(),
                 RepositoryService.convertBoolean(purchasePlanItem.isInnovationEquivalent()),
@@ -79,8 +77,10 @@ public class PlanItemRepository {
                 longTermVolumesRepository.insert(purchasePlanItem.getLongTermSMBVolumes(), true,
                     purchasePlanItem.getGuid());
             }
-            for (PurchasePlanDataItemRowType i : purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
-                planItemRowRepository.insert(i, purchasePlanItem.getGuid());
+            if (purchasePlanItem.getPurchasePlanDataItemRows() != null) {
+                for (PurchasePlanDataItemRowType i : purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
+                    planItemRowRepository.insert(i, purchasePlanItem.getGuid());
+                }
             }
         } catch (Exception e) {
             logger.error("Eternal error", e);
@@ -97,25 +97,25 @@ public class PlanItemRepository {
                 innovationPlanItem.getContractSubject(),
                 innovationPlanItem.getPlanItemCustomer().getMainInfo().getInn(),
                 innovationPlanItem.getMinimumRequirements(),
-                innovationPlanItem.getContractEndDate(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getContractEndDate()),
                 innovationPlanItem.getAdditionalInfo(),
                 innovationPlanItem.getModificationDescription(),
-                innovationPlanItem.getStatus().value(),
+                getPlanItemStatus(innovationPlanItem.getStatus()),
                 RepositoryService.convertBoolean(innovationPlanItem.isIsPurchasePlaced()),
                 RepositoryService.convertBoolean(innovationPlanItem.isChangedGWSAndDates()),
                 RepositoryService.convertBoolean(innovationPlanItem.isChangedNMSKMoreTenPercent()),
                 RepositoryService.convertBoolean(innovationPlanItem.isOtherChanges()),
-                innovationPlanItem.getCheckResult().value(),
+                getPlanItemCheckResult(innovationPlanItem.getCheckResult()),
                 innovationPlanItem.getErrorMessages(),
                 innovationPlanItem.getCancellationReason(),
                 RepositoryService.convertBoolean(innovationPlanItem.isLongTerm()),
                 RepositoryService.convertBoolean(innovationPlanItem.isShared()),
-                innovationPlanItem.getInitialPositionData().getInitialPositionGuid(),
-                innovationPlanItem.getInitialPositionData().getInitialPlanGuid(),
+                getInitialPositionGuid(innovationPlanItem.getInitialPositionData()),
+                getInitialPlanGuid(innovationPlanItem.getInitialPositionData()),
                 innovationPlanItem.getMaximumContractPrice(),
                 RepositoryService.getCurrencyCode(innovationPlanItem.getCurrency()),
                 innovationPlanItem.getExchangeRate(),
-                innovationPlanItem.getExchangeRateDate(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getExchangeRateDate()),
                 innovationPlanItem.getMaximumContractPriceRub(),
                 innovationPlanItem.getOrderPricing(),
                 RepositoryService.convertBoolean(innovationPlanItem.isInnovationEquivalent()),
@@ -132,8 +132,10 @@ public class PlanItemRepository {
                 longTermVolumesRepository.insert(innovationPlanItem.getLongTermSMBVolumes(), true,
                     innovationPlanItem.getGuid());
             }
-            for (InnovationPlanDataItemRowType i : innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
-                planItemRowRepository.insert(i, innovationPlanItem.getGuid());
+            if (innovationPlanItem.getInnovationPlanDataItemRows() != null) {
+                for (InnovationPlanDataItemRowType i : innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
+                    planItemRowRepository.insert(i, innovationPlanItem.getGuid());
+                }
             }
         } catch (Exception e) {
             logger.error("Eternal error", e);
@@ -162,9 +164,16 @@ public class PlanItemRepository {
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
+            String noticeInfoGuid = null;
+            String lotGuid = null;
+            if (purchasePlanItem.getPurchaseNoticeInfo() != null) {
+                noticeInfoGuid = purchasePlanItem.getPurchaseNoticeInfo().getNoticeInfoGuid();
+                lotGuid = purchasePlanItem.getPurchaseNoticeInfo().getLotGuid();
+            }
             jdbcTemplate.update(sql,
-                purchasePlanItem.getPurchaseNoticeInfo().getNoticeInfoGuid(),
-                purchasePlanItem.getPurchaseNoticeInfo().getLotGuid(),
+                purchasePlanItem.getGuid(),
+                noticeInfoGuid,
+                lotGuid,
                 purchasePlanItem.getOkato(),
                 purchasePlanItem.getRegion(),
                 RepositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
@@ -178,5 +187,25 @@ public class PlanItemRepository {
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }
+    }
+
+    private String getPlanItemStatus(PurchasePlanItemStatusType status) {
+        if (status == null) return null;
+        else return status.value();
+    }
+
+    private String getPlanItemCheckResult(PurchasePlanItemCheckResultType checkResult) {
+        if (checkResult == null) return null;
+        else return checkResult.value();
+    }
+
+    private String getInitialPositionGuid(BasePlanDataItemType.InitialPositionData positionData) {
+        if (positionData == null) return null;
+        else return positionData.getInitialPositionGuid();
+    }
+
+    private String getInitialPlanGuid(BasePlanDataItemType.InitialPositionData positionData) {
+        if (positionData == null) return null;
+        else return positionData.getInitialPlanGuid();
     }
 }

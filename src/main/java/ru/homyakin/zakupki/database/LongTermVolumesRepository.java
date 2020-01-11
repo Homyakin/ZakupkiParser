@@ -31,13 +31,15 @@ public class LongTermVolumesRepository {
                 longTermVolume.getVolumeRub(),
                 RepositoryService.getCurrencyCode(longTermVolume.getCurrency()),
                 longTermVolume.getExchangeRate(),
-                longTermVolume.getExchangeRateDate()
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
             );
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }
-        for (LongTermVolumeDetailType i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
-            insertToLongTermVolumeDetail(i, planItemGuid);
+        if (longTermVolume.getDetails() != null) {
+            for (LongTermVolumeDetailType i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
+                insertToLongTermVolumeDetail(i, planItemGuid);
+            }
         }
     }
 

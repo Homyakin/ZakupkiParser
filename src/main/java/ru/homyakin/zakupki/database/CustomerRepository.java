@@ -25,7 +25,8 @@ public class CustomerRepository {
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-
+            Integer timeZoneOffset = customer.getTimeZone() != null ? customer.getTimeZone().getOffset() : null;
+            String timeZoneName = customer.getTimeZone() != null ? customer.getTimeZone().getName() : null;
             jdbcTemplate.update(
                 sql,
                 customer.getInn(),
@@ -42,9 +43,9 @@ public class CustomerRepository {
                 customer.getOkato(),
                 customer.getOkopf(),
                 customer.getOkpo(),
-                customer.getCustomerRegistrationDate(),
-                customer.getTimeZone().getOffset(),
-                customer.getTimeZone().getName(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),
+                timeZoneOffset,
+                timeZoneName,
                 customer.getRegion(),
                 RepositoryService.convertBoolean(customer.isCustomerAssessedCompliance()),
                 RepositoryService.convertBoolean(customer.isCustomerMonitoredCompliance())

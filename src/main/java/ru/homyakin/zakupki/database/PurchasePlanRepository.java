@@ -17,6 +17,7 @@ public class PurchasePlanRepository {
     private final CustomerRepository customerRepository;
     private final PlanItemRepository planItemRepository;
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
+
     public PurchasePlanRepository(DataSource dataSource,
                                   CustomerRepository customerRepository,
                                   PlanItemRepository planItemRepository) {
@@ -38,30 +39,35 @@ public class PurchasePlanRepository {
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PurchasePlanDataType purchasePlanData = purchasePlan.getBody().getItem().getPurchasePlanData();
-        customerRepository.insert(purchasePlanData.getCustomer().getMainInfo());
-        customerRepository.insert(purchasePlanData.getPlacer().getMainInfo());
+        String customerInn = null;
+        if (purchasePlanData.getCustomer() != null) {
+            customerRepository.insert(purchasePlanData.getCustomer().getMainInfo());
+            customerInn = purchasePlanData.getCustomer().getMainInfo().getInn();
+        }
+        customerRepository.insert(purchasePlanData.getPlacer().getMainInfo()); //required field
         try {
+            String planStatus = purchasePlanData.getStatus() != null ? purchasePlanData.getStatus().value() : null;
             jdbcTemplate.update(sql,
                 purchasePlanData.getGuid(),
-                purchasePlanData.getCustomer().getMainInfo().getInn(),
+                customerInn,
                 purchasePlanData.getPlacer().getMainInfo().getInn(),
                 purchasePlanData.getPlanType().value(),
                 RepositoryService.convertBoolean(purchasePlanData.isIsUploadComplete()),
-                purchasePlanData.getCreateDateTime(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getCreateDateTime()),
                 purchasePlanData.getUrlEIS(),
                 purchasePlanData.getUrlVSRZ(),
                 purchasePlanData.getUrlKisRmis(),
                 purchasePlanData.getRegistrationNumber(),
                 purchasePlanData.getName(),
                 purchasePlanData.getAdditionalInfo(),
-                purchasePlanData.getStartDate(),
-                purchasePlanData.getEndDate(),
-                purchasePlanData.getApproveDate(),
-                purchasePlanData.getPublicationDateTime(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getStartDate()),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getEndDate()),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getApproveDate()),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getPublicationDateTime()),
                 RepositoryService.convertBoolean(purchasePlanData.isIsDigitForm()),
                 RepositoryService.convertBoolean(purchasePlanData.isSummSizeCh15()),
                 RepositoryService.convertBoolean(purchasePlanData.isIsImportedFromVSRZ()),
-                purchasePlanData.getStatus().value(),
+                planStatus,
                 purchasePlanData.getVersion(),
                 purchasePlanData.getModificationDescription(),
                 RepositoryService.convertBoolean(purchasePlanData.isUseNewClassifiers()),
@@ -85,17 +91,25 @@ public class PurchasePlanRepository {
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }
-        for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItems().getPurchasePlanItem()) {
-            planItemRepository.insert(i, false, purchasePlanData.getGuid());
+        if (purchasePlanData.getPurchasePlanItems() != null) {
+            for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItems().getPurchasePlanItem()) {
+                planItemRepository.insert(i, false, purchasePlanData.getGuid());
+            }
         }
-        for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItems().getInnovationPlanItem()) {
-            planItemRepository.insert(i, false, purchasePlanData.getGuid());
+        if (purchasePlanData.getInnovationPlanItems() != null) {
+            for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItems().getInnovationPlanItem()) {
+                planItemRepository.insert(i, false, purchasePlanData.getGuid());
+            }
         }
-        for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItemsSMB().getPurchasePlanItem()) {
-            planItemRepository.insert(i, true, purchasePlanData.getGuid());
+        if (purchasePlanData.getPurchasePlanItemsSMB() != null) {
+            for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItemsSMB().getPurchasePlanItem()) {
+                planItemRepository.insert(i, true, purchasePlanData.getGuid());
+            }
         }
-        for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItemsSMB().getInnovationPlanItem()) {
-            planItemRepository.insert(i, true, purchasePlanData.getGuid());
+        if (purchasePlanData.getInnovationPlanItemsSMB() != null) {
+            for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItemsSMB().getInnovationPlanItem()) {
+                planItemRepository.insert(i, true, purchasePlanData.getGuid());
+            }
         }
     }
 }
