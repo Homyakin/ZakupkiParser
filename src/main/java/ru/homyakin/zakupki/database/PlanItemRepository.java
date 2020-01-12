@@ -8,6 +8,7 @@ import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.*;
 import ru.homyakin.zakupki.documentsinfo._223fz.types.PurchasePlanItemStatusType;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Component
 public class PlanItemRepository {
@@ -24,6 +25,13 @@ public class PlanItemRepository {
         "innovation_equivalent, purchase_category_code, is_smb, is_innovation)" +
         "VALUES" +
         "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String UPDATE = "UPDATE plan_item SET ordinal_number = ?, contract_subject = ?, minimum_requirements = ?, " +
+        "contract_end_date = ?, additional_info = ?, modification_description = ?, status_code = ?, is_purchase_placed = ?," +
+        "changed_gws_and_dates = ?, changed_nmsk_more_ten_percent = ?, other_changes = ?, check_result = ?, " +
+        "error_messages = ?, cancellation_reason = ?, long_term = ?, shared = ?, initial_position_guid = ?, " +
+        "initial_plan_guid = ?, maximum_contract_price = ?, currency_code = ?, exchange_rate = ?, " +
+        "exchange_rate_date = ?, maximum_contract_price_rub = ?, order_pricing = ?, innovation_equivalent = ?, " +
+        "purchase_category_code = ?, is_innovation = ? WHERE guid = ?";
 
     public PlanItemRepository(DataSource dataSource,
                               LongTermVolumesRepository longTermVolumesRepository,
@@ -36,8 +44,13 @@ public class PlanItemRepository {
     public void insert(PurchasePlanDataItemType purchasePlanItem, Boolean isSmb, String planGuid) {
         try {
             if (isSmb) {
-                updateToSmb(purchasePlanItem.getGuid());
+                updateSmb(purchasePlanItem.getGuid(), true);
                 return;
+            } else {
+                if (checkPlanItem(purchasePlanItem.getGuid())) {
+                    updateSmb(purchasePlanItem.getGuid(), false);
+                    updatePlanItem(purchasePlanItem);
+                }
             }
             jdbcTemplate.update(INSERT_PLAN_ITEM,
                 purchasePlanItem.getGuid(),
@@ -56,7 +69,7 @@ public class PlanItemRepository {
                 RepositoryService.convertBoolean(purchasePlanItem.isOtherChanges()),
                 getPlanItemCheckResult(purchasePlanItem.getCheckResult()),
                 purchasePlanItem.getErrorMessages(),
-                purchasePlanItem.getCancellationReason(),
+                getCancellationReason(purchasePlanItem.getCancellationReason()),
                 RepositoryService.convertBoolean(purchasePlanItem.isLongTerm()),
                 RepositoryService.convertBoolean(purchasePlanItem.isShared()),
                 getInitialPositionGuid(purchasePlanItem.getInitialPositionData()),
@@ -95,8 +108,13 @@ public class PlanItemRepository {
     public void insert(InnovationPlanDataItemType innovationPlanItem, Boolean isSmb, String planGuid) {
         try {
             if (isSmb) {
-                updateToSmb(innovationPlanItem.getGuid());
+                updateSmb(innovationPlanItem.getGuid(), true);
                 return;
+            } else {
+                if (checkPlanItem(innovationPlanItem.getGuid())) {
+                    updateSmb(innovationPlanItem.getGuid(), false);
+                    updatePlanItem(innovationPlanItem);
+                }
             }
             jdbcTemplate.update(INSERT_PLAN_ITEM,
                 innovationPlanItem.getGuid(),
@@ -115,7 +133,7 @@ public class PlanItemRepository {
                 RepositoryService.convertBoolean(innovationPlanItem.isOtherChanges()),
                 getPlanItemCheckResult(innovationPlanItem.getCheckResult()),
                 innovationPlanItem.getErrorMessages(),
-                innovationPlanItem.getCancellationReason(),
+                getCancellationReason(innovationPlanItem.getCancellationReason()),
                 RepositoryService.convertBoolean(innovationPlanItem.isLongTerm()),
                 RepositoryService.convertBoolean(innovationPlanItem.isShared()),
                 getInitialPositionGuid(innovationPlanItem.getInitialPositionData()),
@@ -197,9 +215,138 @@ public class PlanItemRepository {
         }
     }
 
-    private void updateToSmb(String guid) {
-        String sql = "UPDATE zakupki.plan_item SET is_smb = ? WHERE guid = ? ";
-        jdbcTemplate.update(sql, 1, guid);
+    private void updatePlanItem(PurchasePlanDataItemType purchasePlanItem) {
+        try {
+            jdbcTemplate.update(UPDATE,
+                purchasePlanItem.getOrdinalNumber(),
+                purchasePlanItem.getContractSubject(),
+                purchasePlanItem.getMinimumRequirements(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getContractEndDate()),
+                purchasePlanItem.getAdditionalInfo(),
+                purchasePlanItem.getModificationDescription(),
+                getPlanItemStatus(purchasePlanItem.getStatus()),
+                RepositoryService.convertBoolean(purchasePlanItem.isIsPurchasePlaced()),
+                RepositoryService.convertBoolean(purchasePlanItem.isChangedGWSAndDates()),
+                RepositoryService.convertBoolean(purchasePlanItem.isChangedNMSKMoreTenPercent()),
+                RepositoryService.convertBoolean(purchasePlanItem.isOtherChanges()),
+                getPlanItemCheckResult(purchasePlanItem.getCheckResult()),
+                purchasePlanItem.getErrorMessages(),
+                getCancellationReason(purchasePlanItem.getCancellationReason()),
+                RepositoryService.convertBoolean(purchasePlanItem.isLongTerm()),
+                RepositoryService.convertBoolean(purchasePlanItem.isShared()),
+                getInitialPositionGuid(purchasePlanItem.getInitialPositionData()),
+                getInitialPlanGuid(purchasePlanItem.getInitialPositionData()),
+                purchasePlanItem.getMaximumContractPrice(),
+                RepositoryService.getCurrencyCode(purchasePlanItem.getCurrency()),
+                purchasePlanItem.getExchangeRate(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getExchangeRateDate()),
+                purchasePlanItem.getMaximumContractPriceRub(),
+                purchasePlanItem.getOrderPricing(),
+                RepositoryService.convertBoolean(purchasePlanItem.isInnovationEquivalent()),
+                purchasePlanItem.getPurchaseCategory(),
+                RepositoryService.convertBoolean(false),
+                purchasePlanItem.getGuid()
+            );
+            updatePurchasePlanItem(purchasePlanItem);
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
+    }
+
+    private void updatePlanItem(InnovationPlanDataItemType innovationPlanItem) {
+        try {
+            jdbcTemplate.update(UPDATE,
+                innovationPlanItem.getOrdinalNumber(),
+                innovationPlanItem.getContractSubject(),
+                innovationPlanItem.getMinimumRequirements(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getContractEndDate()),
+                innovationPlanItem.getAdditionalInfo(),
+                innovationPlanItem.getModificationDescription(),
+                getPlanItemStatus(innovationPlanItem.getStatus()),
+                RepositoryService.convertBoolean(innovationPlanItem.isIsPurchasePlaced()),
+                RepositoryService.convertBoolean(innovationPlanItem.isChangedGWSAndDates()),
+                RepositoryService.convertBoolean(innovationPlanItem.isChangedNMSKMoreTenPercent()),
+                RepositoryService.convertBoolean(innovationPlanItem.isOtherChanges()),
+                getPlanItemCheckResult(innovationPlanItem.getCheckResult()),
+                innovationPlanItem.getErrorMessages(),
+                getCancellationReason(innovationPlanItem.getCancellationReason()),
+                RepositoryService.convertBoolean(innovationPlanItem.isLongTerm()),
+                RepositoryService.convertBoolean(innovationPlanItem.isShared()),
+                getInitialPositionGuid(innovationPlanItem.getInitialPositionData()),
+                getInitialPlanGuid(innovationPlanItem.getInitialPositionData()),
+                innovationPlanItem.getMaximumContractPrice(),
+                RepositoryService.getCurrencyCode(innovationPlanItem.getCurrency()),
+                innovationPlanItem.getExchangeRate(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getExchangeRateDate()),
+                innovationPlanItem.getMaximumContractPriceRub(),
+                innovationPlanItem.getOrderPricing(),
+                RepositoryService.convertBoolean(innovationPlanItem.isInnovationEquivalent()),
+                innovationPlanItem.getPurchaseCategory(),
+                RepositoryService.convertBoolean(true),
+                innovationPlanItem.getGuid()
+            );
+            updateInnovationPlanItem(innovationPlanItem);
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
+    }
+
+    private void updateInnovationPlanItem(InnovationPlanDataItemType innovationPlanItem) {
+        String sql = "UPDATE innovation_plan_item SET ignored_purchase = ?, purchase_period_year = ? WHERE guid = ?";
+        try {
+            jdbcTemplate.update(sql,
+                RepositoryService.convertBoolean(innovationPlanItem.isIgnoredPurchase()),
+                innovationPlanItem.getPurchasePeriodYear(),
+                innovationPlanItem.getGuid()
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
+    }
+
+    private void updatePurchasePlanItem(PurchasePlanDataItemType purchasePlanItem) {
+        String sql = "UPDATE purchase_plan_item SET notice_info_guid = ?, lot_guid = ?, okato = ?, region = ?," +
+            "is_general_address = ?, purchase_method_code = ?, purchase_method_name = ?, is_electronic = ?," +
+            "planned_after_second_year = ?, is_purchase_ignored = ?, purchase_period_year = ? WHERE guid = ?";
+        try {
+            String noticeInfoGuid = null;
+            String lotGuid = null;
+            if (purchasePlanItem.getPurchaseNoticeInfo() != null) {
+                noticeInfoGuid = purchasePlanItem.getPurchaseNoticeInfo().getNoticeInfoGuid();
+                lotGuid = purchasePlanItem.getPurchaseNoticeInfo().getLotGuid();
+            }
+            jdbcTemplate.update(sql,
+                noticeInfoGuid,
+                lotGuid,
+                purchasePlanItem.getOkato(),
+                purchasePlanItem.getRegion(),
+                RepositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
+                purchasePlanItem.getPurchaseMethodCode(),
+                purchasePlanItem.getPurchaseMethodName(),
+                RepositoryService.convertBoolean(purchasePlanItem.isIsElectronic()),
+                RepositoryService.convertBoolean(purchasePlanItem.isPlannedAfterSecondYear()),
+                RepositoryService.convertBoolean(purchasePlanItem.isIsPurchaseIgnored()),
+                purchasePlanItem.getPurchasePeriodYear(),
+                purchasePlanItem.getGuid()
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
+    }
+
+    private void updateSmb(String guid, Boolean isSmb) {
+        try {
+            String sql = "UPDATE zakupki.plan_item SET is_smb = ? WHERE guid = ? ";
+            jdbcTemplate.update(sql, RepositoryService.convertBoolean(isSmb), guid);
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
+    }
+
+    private boolean checkPlanItem(String guid) {
+        String sql = "SELECT guid FROM plan_item WHERE guid = ?";
+        List<String> result = jdbcTemplate.query(sql, new Object[]{guid}, (rs, rowNum) -> rs.getString("guid"));
+        return result.size() != 0;
     }
 
     private String getPlanItemStatus(PurchasePlanItemStatusType status) {
@@ -220,5 +367,10 @@ public class PlanItemRepository {
     private String getInitialPlanGuid(BasePlanDataItemType.InitialPositionData positionData) {
         if (positionData == null) return null;
         else return positionData.getInitialPlanGuid();
+    }
+
+    private String getCancellationReason(CancellationReasonType cancellationReason) {
+        if (cancellationReason == null) return null;
+        else return cancellationReason.value();
     }
 }

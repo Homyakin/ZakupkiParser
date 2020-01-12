@@ -2,11 +2,11 @@ CREATE DATABASE IF NOT EXISTS `zakupki`;
 
 CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan` ( 
   `guid` varchar(36) not null,
-  `customer_inn` bigint null,
-  `placer_inn` bigint not null,
+  `customer_inn` varchar(12) null,
+  `placer_inn` varchar(12) not null,
   `plan_type` varchar(10) null,
   `is_upload_complete` tinyint(1) null,
-  `create_date_time` datetime not null,
+  `create_date_time` datetime null,
   `url_eis` varchar(3000) null,
   `url_vsrz` varchar(3000) null,
   `url_kis_rmis` varchar(3000) null,
@@ -44,20 +44,20 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan` (
 );
 
 CREATE TABLE IF NOT EXISTS `zakupki`.`customer` ( 
-  `inn` bigint not null,
+  `inn` varchar(12) not null,
   `full_name` varchar(1000) null,
   `short_name` varchar(500) null,
   `iko` varchar(22) null,
-  `kpp` bigint not null,
-  `ogrn` bigint not null,
+  `kpp` varchar(9) not null,
+  `ogrn` varchar(13) not null,
   `legal_address` varchar(2000) null,
   `postal_address` varchar(2000) null,
   `phone` varchar(300) null,
   `fax` varchar(300) null,
   `email` varchar(300) null,
-  `okato` bigint null,
-  `okopf_code` int null,
-  `okpo` int null,
+  `okato` varchar(11) null,
+  `okopf_code` varchar(5) null,
+  `okpo` varchar(8) null,
   `customer_registration_date` datetime null,
   `timezone_offset` int null,
   `timezone_name` varchar(100) null,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`customer` (
 );
 
 CREATE TABLE IF NOT EXISTS `zakupki`.`okopf` ( 
-  `code` int not null,
+  `code` varchar(5) not null,
   `name` varchar(200) not null,
   PRIMARY KEY (`code`)
 );
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item` (
   `guid` varchar(36) not null,
   `notice_info_guid` varchar(36) null,
   `lot_guid` varchar(36) null,
-  `okato` bigint null,
+  `okato` varchar(11) null,
   `region` varchar(1000) null,
   `is_general_address` tinyint(1) null,
   `purchase_method_code` int null,
@@ -114,18 +114,18 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volume_detail` (
   PRIMARY KEY (`long_term_value_guid`, `year`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`currency` ( 
-  `code` varchar(3) not null,
-  `digital_code` varchar(3) not null,
-  `name` varchar(50) not null,
-  PRIMARY KEY (`code`)
-);
-
 CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item` ( 
   `guid` varchar(36) not null,
   `ignored_purchase` tinyint(1) null,
   `purchase_period_year` int not null,
   PRIMARY KEY (`guid`)
+);
+
+CREATE TABLE IF NOT EXISTS `zakupki`.`currency` ( 
+  `code` varchar(3) not null,
+  `digital_code` varchar(3) not null,
+  `name` varchar(50) not null,
+  PRIMARY KEY (`code`)
 );
 
 CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item_row` ( 
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`plan_item` (
   `purchase_plan_guid` varchar(36) not null,
   `ordinal_number` int not null,
   `contract_subject` varchar(2000) not null,
-  `plan_item_customer_inn` bigint not null,
+  `plan_item_customer_inn` varchar(12) not null,
   `minimum_requirements` varchar(2000) null,
   `contract_end_date` date not null,
   `additional_info` varchar(1000) null,
@@ -232,7 +232,6 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_category` (
   PRIMARY KEY (`code`)
 );
 
-
 ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_placer_inn_foreign` FOREIGN KEY (`placer_inn`) REFERENCES `zakupki`.`customer` (`inn`);
 ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_status_code_foreign` FOREIGN KEY (`status_code`) REFERENCES `zakupki`.`plan_status` (`code`);
 ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_customer_inn_foreign` FOREIGN KEY (`customer_inn`) REFERENCES `zakupki`.`customer` (`inn`);
@@ -248,11 +247,11 @@ ALTER TABLE `zakupki`.`long_term_volume_detail` ADD CONSTRAINT `long_term_value_
 
 ALTER TABLE `zakupki`.`innovation_plan_item` ADD CONSTRAINT `innovation_plan_item_guid_foreign` FOREIGN KEY (`guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
 
-ALTER TABLE `zakupki`.`innovation_plan_row_item` ADD CONSTRAINT `innovation_plan_row_item_okdp_code_foreign` FOREIGN KEY (`okdp_code`) REFERENCES `zakupki`.`okdp` (`code`);
-ALTER TABLE `zakupki`.`innovation_plan_row_item` ADD CONSTRAINT `innovation_plan_row_item_okpd2_code_foreign` FOREIGN KEY (`okpd2_code`) REFERENCES `zakupki`.`okpd2` (`code`);
-ALTER TABLE `zakupki`.`innovation_plan_row_item` ADD CONSTRAINT `innovation_plan_row_item_okved_code_foreign` FOREIGN KEY (`okved_code`) REFERENCES `zakupki`.`okved` (`code`);
-ALTER TABLE `zakupki`.`innovation_plan_row_item` ADD CONSTRAINT `innovation_plan_row_item_okved2_code_foreign` FOREIGN KEY (`okved2_code`) REFERENCES `zakupki`.`okved2` (`code`);
-ALTER TABLE `zakupki`.`innovation_plan_row_item` ADD CONSTRAINT `innovation_plan_row_item_plan_item_guid_foreign` FOREIGN KEY (`plan_item_guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
+ALTER TABLE `zakupki`.`innovation_plan_item_row` ADD CONSTRAINT `innovation_plan_row_item_okdp_code_foreign` FOREIGN KEY (`okdp_code`) REFERENCES `zakupki`.`okdp` (`code`);
+ALTER TABLE `zakupki`.`innovation_plan_item_row` ADD CONSTRAINT `innovation_plan_row_item_okpd2_code_foreign` FOREIGN KEY (`okpd2_code`) REFERENCES `zakupki`.`okpd2` (`code`);
+ALTER TABLE `zakupki`.`innovation_plan_item_row` ADD CONSTRAINT `innovation_plan_row_item_okved_code_foreign` FOREIGN KEY (`okved_code`) REFERENCES `zakupki`.`okved` (`code`);
+ALTER TABLE `zakupki`.`innovation_plan_item_row` ADD CONSTRAINT `innovation_plan_row_item_okved2_code_foreign` FOREIGN KEY (`okved2_code`) REFERENCES `zakupki`.`okved2` (`code`);
+ALTER TABLE `zakupki`.`innovation_plan_item_row` ADD CONSTRAINT `innovation_plan_row_item_plan_item_guid_foreign` FOREIGN KEY (`plan_item_guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
 
 ALTER TABLE `zakupki`.`purchase_plan_item_row` ADD CONSTRAINT `purchase_plan_item_row_okdp_code_foreign` FOREIGN KEY (`okdp_code`) REFERENCES `zakupki`.`okdp` (`code`);
 ALTER TABLE `zakupki`.`purchase_plan_item_row` ADD CONSTRAINT `purchase_plan_item_row_okpd2_code_foreign` FOREIGN KEY (`okpd2_code`) REFERENCES `zakupki`.`okpd2` (`code`);
@@ -268,5 +267,3 @@ ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_initial_position_gui
 ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_initial_plan_guid_foreign` FOREIGN KEY (`initial_plan_guid`) REFERENCES `zakupki`.`purchase_plan` (`guid`);
 ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_purchase_category_code_foreign` FOREIGN KEY (`purchase_category_code`) REFERENCES `zakupki`.`purchase_category` (`code`);
 ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_currency_code_foreign` FOREIGN KEY (`currency_code`) REFERENCES `zakupki`.`currency` (`code`);
-
-        
