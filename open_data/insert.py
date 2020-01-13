@@ -21,7 +21,7 @@ def insert(table: str, columns: list, json_fields: list):
                     s = ", ".join(columns)
                     template = ', '.join(['%s' for _ in range(len(columns))])
                     sql = f'INSERT INTO zakupki.{table} ({s}) VALUES ({template})'
-                    fields = [i[j] for j in json_fields]
+                    fields = [str(i[j]).lower() for j in json_fields]
                     cursor.execute(sql, fields)
                     connection.commit()
             except Exception as e:

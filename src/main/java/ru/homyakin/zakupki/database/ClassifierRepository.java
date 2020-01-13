@@ -23,73 +23,92 @@ public class ClassifierRepository {
     }
 
     public Classifier getClassifier(OkdpProductType okdp) {
-        if(okdp == null) return null;
+        if (okdp == null) return null;
         return getClassifier("okdp", okdp.getCode(), okdp.getName());
     }
 
     public Classifier getClassifier(Okpd2ProductType okpd2) {
-        if(okpd2 == null) return null;
+        if (okpd2 == null) return null;
         return getClassifier("okpd2", okpd2.getCode(), okpd2.getName());
     }
 
     public Classifier getClassifier(OkvedProductType okved) {
-        if(okved == null) return null;
+        if (okved == null) return null;
         return getClassifier("okved", okved.getCode(), okved.getName());
     }
 
     public Classifier getClassifier(Okved2ProductType okved2) {
-        if(okved2 == null) return null;
+        if (okved2 == null) return null;
         return getClassifier("okved2", okved2.getCode(), okved2.getName());
     }
 
     public Classifier getClassifier(OkeiProductType okei) {
-        if(okei == null) return null;
+        if (okei == null) return null;
         return getClassifier("okei", okei.getCode(), okei.getName());
     }
 
     private Classifier getClassifier(String table, String code, String name) {
-        String sql = "SELECT code, name FROM " + table + " WHERE code = ? or name = ?";
-        List<Classifier> result = jdbcTemplate.query(sql,
-            new Object[]{code, name},
+        code = code.toLowerCase();
+        name = name.toLowerCase();
+        String selectByCode = "SELECT code, name FROM " + table + " WHERE code = ?";
+        String selectByName = "SELECT code, name FROM " + table + " WHERE name = ?";
+        List<Classifier> resultCode = jdbcTemplate.query(selectByCode,
+            new Object[]{code},
             (rs, rowNum) ->
                 new Classifier(rs.getString("code"), rs.getString("name"))
         );
-        if (result.size() > 1) {
-            logger.warn("Code and name don't match: {}; {}", code, name);
-            return new Classifier(
-                null,
-                "Code and name don't match: " + code + "; " + name
-            );
-        } else if (result.size() == 0) {
-            logger.warn("Incorrect code and name: {}; {}", code, name);
-            return new Classifier(
-                null,
-                "Incorrect code and name: " + code + "; " + name
-            );
-        } else {
-            if (code.equals(result.get(0).getCode())) {
-                if (name.equals(result.get(0).getName())) {
-                    return result.get(0);
-                } else {
-                    logger.warn("Name {} doesn't match for code {}", name, code);
-                    return new Classifier(
-                        code,
-                        "Name doesn't match: " + name
-                    );
-                }
-            } else {
-                logger.warn("Code {} doesn't match for name {}", code, name);
+        List<Classifier> resultName = jdbcTemplate.query(selectByName,
+            new Object[]{name},
+            (rs, rowNum) ->
+                new Classifier(rs.getString("code"), rs.getString("name"))
+        );
+        if (resultCode.size() == 0) {
+            logger.warn("{}: incorrect code {}", table, code);
+            if (resultName.size() == 0) {
+                logger.warn("{}: incorrect code and name: {}; {}", table, code, name);
                 return new Classifier(
-                    result.get(0).getCode(),
+                    null,
+                    "Incorrect code and name: " + code + "; " + name
+                );
+            } else if (resultName.size() > 1) {
+                logger.warn("{}: several variants for name {}", table, name);
+                return new Classifier(
+                    null,
+                    "Several codes for name: " + name
+                );
+            } else {
+                return new Classifier(
+                    resultName.get(0).getCode(),
                     name
                 );
+            }
+        } else {
+            if (resultCode.get(0).getName().equals(name)) {
+                return new Classifier(
+                    code,
+                    name
+                );
+            } else {
+                if (resultName.size() == 0) {
+                    logger.warn("{}: name {} doesn't exist for code {}", table, name, code);
+                    return new Classifier(
+                        code,
+                        "Name doesn't exist: " + name
+                    );
+                } else {
+                    logger.warn("{}: code and name don't match: {}; {}", table, code, name);
+                    return new Classifier(
+                        null,
+                        "Code and name don't match: " + code + "; " + name
+                    );
+                }
             }
         }
     }
 
-    public class Classifier {
-        private String code;
-        private String name;
+    public static class Classifier {
+        private final String code;
+        private final String name;
 
         public Classifier(String code, String name) {
             this.code = code;
@@ -100,16 +119,8 @@ public class ClassifierRepository {
             return code;
         }
 
-        public void setCode(String code) {
-            this.code = code;
-        }
-
         public String getName() {
             return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
         }
     }
 }
