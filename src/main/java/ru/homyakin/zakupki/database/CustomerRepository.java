@@ -3,13 +3,10 @@ package ru.homyakin.zakupki.database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.Application;
 import ru.homyakin.zakupki.documentsinfo._223fz.types.CustomerMainInfoType;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
 import java.util.List;
 
 @Component

@@ -133,9 +133,13 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item_row` (
   `ordinal_number` int not null,
   `additional_info` varchar(2000) null,
   `okdp_code` varchar(20) null,
+  `okdp_name` varchar(550) null,
   `okpd2_code` varchar(20) null,
+  `okpd2_name` varchar(550) null,
   `okved_code` varchar(20) null,
+  `okved_name` varchar(550) null,
   `okved2_code` varchar(20) null,
+  `okved2_name` varchar(550) null,
   PRIMARY KEY (`plan_item_guid`, `ordinal_number`)
 );
 
@@ -144,13 +148,18 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item_row` (
   `ordinal_number` int not null,
   `additional_info` varchar(2000) null,
   `okdp_code` varchar(20) null,
+  `okdp_name` varchar(550) null,
   `okpd2_code` varchar(20) null,
+  `okpd2_name` varchar(550) null,
   `okved_code` varchar(20) null,
+  `okved_name` varchar(550) null,
+  `okved2_name` varchar(550) null,
   `okved2_code` varchar(20) null,
-  `okato` bigint null,
+  `okato` varchar(11) null,
   `region` varchar(1000) null,
   `impossible_to_determine_attr` tinyint(1) null,
   `okei_code` varchar(20) null,
+  `okei_name` varchar(550) null,
   `qty` decimal(25, 5) null,
   PRIMARY KEY (`plan_item_guid`, `ordinal_number`)
 );
