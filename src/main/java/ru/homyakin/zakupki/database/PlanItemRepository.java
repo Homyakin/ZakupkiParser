@@ -50,6 +50,7 @@ public class PlanItemRepository {
                 if (checkPlanItem(purchasePlanItem.getGuid())) {
                     updateSmb(purchasePlanItem.getGuid(), false);
                     updatePlanItem(purchasePlanItem);
+                    return;
                 }
             }
             jdbcTemplate.update(INSERT_PLAN_ITEM,
