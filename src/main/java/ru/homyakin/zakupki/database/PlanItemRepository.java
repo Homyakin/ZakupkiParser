@@ -50,6 +50,19 @@ public class PlanItemRepository {
                 if (checkPlanItem(purchasePlanItem.getGuid())) {
                     updateSmb(purchasePlanItem.getGuid(), false);
                     updatePlanItem(purchasePlanItem);
+                    if (purchasePlanItem.getLongTermVolumes() != null) {
+                        longTermVolumesRepository.update(purchasePlanItem.getLongTermVolumes(), false,
+                            purchasePlanItem.getGuid());
+                    }
+                    if (purchasePlanItem.getLongTermSMBVolumes() != null) {
+                        longTermVolumesRepository.update(purchasePlanItem.getLongTermSMBVolumes(), true,
+                            purchasePlanItem.getGuid());
+                    }
+                    if (purchasePlanItem.getPurchasePlanDataItemRows() != null) {
+                        for (PurchasePlanDataItemRowType i : purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
+                            planItemRowRepository.update(i, purchasePlanItem.getGuid());
+                        }
+                    }
                     return;
                 }
             }
@@ -115,6 +128,20 @@ public class PlanItemRepository {
                 if (checkPlanItem(innovationPlanItem.getGuid())) {
                     updateSmb(innovationPlanItem.getGuid(), false);
                     updatePlanItem(innovationPlanItem);
+                    if (innovationPlanItem.getLongTermVolumes() != null) {
+                        longTermVolumesRepository.update(innovationPlanItem.getLongTermVolumes(), false,
+                            innovationPlanItem.getGuid());
+                    }
+                    if (innovationPlanItem.getLongTermSMBVolumes() != null) {
+                        longTermVolumesRepository.update(innovationPlanItem.getLongTermSMBVolumes(), true,
+                            innovationPlanItem.getGuid());
+                    }
+                    if (innovationPlanItem.getInnovationPlanDataItemRows() != null) {
+                        for (InnovationPlanDataItemRowType i : innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
+                            planItemRowRepository.update(i, innovationPlanItem.getGuid());
+                        }
+                    }
+                    return;
                 }
             }
             jdbcTemplate.update(INSERT_PLAN_ITEM,
