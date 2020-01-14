@@ -15,7 +15,7 @@ import ru.homyakin.zakupki.documentsinfo._223fz.types.OkvedProductType;
 
 @Component
 public class ClassifierRepository {
-    private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
+    private static final Logger logger = LoggerFactory.getLogger(ClassifierRepository.class);
     private final JdbcTemplate jdbcTemplate;
 
     public ClassifierRepository(DataSource dataSource) {

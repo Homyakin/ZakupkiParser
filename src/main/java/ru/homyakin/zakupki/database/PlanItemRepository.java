@@ -12,10 +12,11 @@ import java.util.List;
 
 @Component
 public class PlanItemRepository {
-    private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlanItemRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final LongTermVolumesRepository longTermVolumesRepository;
     private final PlanItemRowRepository planItemRowRepository;
+    private final PurchaseCategoryRepository purchaseCategoryRepository;
     private final String INSERT_PLAN_ITEM = "INSERT INTO zakupki.plan_item (guid, purchase_plan_guid, ordinal_number," +
         "contract_subject, plan_item_customer_inn, minimum_requirements, contract_end_date," +
         "additional_info, modification_description, status_code, is_purchase_placed, changed_gws_and_dates," +
@@ -35,10 +36,12 @@ public class PlanItemRepository {
 
     public PlanItemRepository(DataSource dataSource,
                               LongTermVolumesRepository longTermVolumesRepository,
-                              PlanItemRowRepository planItemRowRepository) {
+                              PlanItemRowRepository planItemRowRepository,
+                              PurchaseCategoryRepository purchaseCategoryRepository) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.longTermVolumesRepository = longTermVolumesRepository;
         this.planItemRowRepository = planItemRowRepository;
+        this.purchaseCategoryRepository = purchaseCategoryRepository;
     }
 
     public void insert(PurchasePlanDataItemType purchasePlanItem, Boolean isSmb, String planGuid) {
@@ -95,7 +98,7 @@ public class PlanItemRepository {
                 purchasePlanItem.getMaximumContractPriceRub(),
                 purchasePlanItem.getOrderPricing(),
                 RepositoryService.convertBoolean(purchasePlanItem.isInnovationEquivalent()),
-                purchasePlanItem.getPurchaseCategory(),
+                purchaseCategoryRepository.getCategoryCode(purchasePlanItem.getPurchaseCategory()),
                 RepositoryService.convertBoolean(isSmb),
                 RepositoryService.convertBoolean(false)
             );
@@ -173,7 +176,7 @@ public class PlanItemRepository {
                 innovationPlanItem.getMaximumContractPriceRub(),
                 innovationPlanItem.getOrderPricing(),
                 RepositoryService.convertBoolean(innovationPlanItem.isInnovationEquivalent()),
-                innovationPlanItem.getPurchaseCategory(),
+                purchaseCategoryRepository.getCategoryCode(innovationPlanItem.getPurchaseCategory()),
                 RepositoryService.convertBoolean(isSmb),
                 RepositoryService.convertBoolean(true)
             );

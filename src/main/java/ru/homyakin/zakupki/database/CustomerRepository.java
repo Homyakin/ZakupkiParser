@@ -43,7 +43,7 @@ public class CustomerRepository {
                 customer.getEmail(),
                 customer.getOkato(),
                 customer.getOkopf(),
-                customer.getOkpo(),
+                customer.getOkpo().trim(),
                 RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),
                 timeZoneOffset,
                 timeZoneName,

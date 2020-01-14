@@ -51,20 +51,25 @@ public class LongTermVolumesRepository {
         }
         String sql = "UPDATE long_term_volumes SET  volume = ?, volume_rub = ?, currency_code = ?, exchange_rate = ?, " +
             "exchange_rate_date = ? WHERE plan_item_guid = ? and is_smb = ?";
-        jdbcTemplate.update(sql,
-            longTermVolume.getVolume(),
-            longTermVolume.getVolumeRub(),
-            RepositoryService.getCurrencyCode(longTermVolume.getCurrency()),
-            longTermVolume.getExchangeRate(),
-            RepositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate()),
-            planItemGuid,
-            RepositoryService.convertBoolean(isSmb)
-        );
-        if (longTermVolume.getDetails() != null) {
-            for (LongTermVolumeDetailType i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
-                insertToLongTermVolumeDetail(i, planItemGuid, isSmb);
+        try {
+            jdbcTemplate.update(sql,
+                longTermVolume.getVolume(),
+                longTermVolume.getVolumeRub(),
+                RepositoryService.getCurrencyCode(longTermVolume.getCurrency()),
+                longTermVolume.getExchangeRate(),
+                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate()),
+                planItemGuid,
+                RepositoryService.convertBoolean(isSmb)
+            );
+            if (longTermVolume.getDetails() != null) {
+                for (LongTermVolumeDetailType i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
+                    insertToLongTermVolumeDetail(i, planItemGuid, isSmb);
+                }
             }
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
         }
+
     }
 
     private void insertToLongTermVolumeDetail(LongTermVolumeDetailType longTermVolumeDetail, String guid, Boolean isSmb) {
@@ -72,29 +77,37 @@ public class LongTermVolumesRepository {
             updateLongTermVolumeDetail(longTermVolumeDetail, guid, isSmb);
             return;
         }
-        String sql = "INSERT INTO zakupki.long_term_volume_detail (long_term_value_guid, year, is_smb, " +
-            "summ, summ_rub)" +
-            "VALUES" +
-            "(?, ?, ?, ?, ?);";
-        jdbcTemplate.update(sql,
-            guid,
-            longTermVolumeDetail.getYear(),
-            RepositoryService.convertBoolean(isSmb),
-            longTermVolumeDetail.getSumm(),
-            longTermVolumeDetail.getSummRub()
-        );
+        try {
+            String sql = "INSERT INTO zakupki.long_term_volume_detail (long_term_value_guid, year, is_smb, " +
+                "summ, summ_rub)" +
+                "VALUES" +
+                "(?, ?, ?, ?, ?);";
+            jdbcTemplate.update(sql,
+                guid,
+                longTermVolumeDetail.getYear(),
+                RepositoryService.convertBoolean(isSmb),
+                longTermVolumeDetail.getSumm(),
+                longTermVolumeDetail.getSummRub()
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
     }
 
     private void updateLongTermVolumeDetail(LongTermVolumeDetailType longTermVolumeDetail, String guid, Boolean isSmb) {
-        String sql = "UPDATE long_term_volume_detail SET summ = ?, summ_rub = ? WHERE long_term_value_guid = ?" +
-            " and year = ? and is_smb = ?";
-        jdbcTemplate.update(sql,
-            longTermVolumeDetail.getSumm(),
-            longTermVolumeDetail.getSummRub(),
-            guid,
-            longTermVolumeDetail.getYear(),
-            RepositoryService.convertBoolean(isSmb)
-        );
+        try {
+            String sql = "UPDATE long_term_volume_detail SET summ = ?, summ_rub = ? WHERE long_term_value_guid = ?" +
+                " and year = ? and is_smb = ?";
+            jdbcTemplate.update(sql,
+                longTermVolumeDetail.getSumm(),
+                longTermVolumeDetail.getSummRub(),
+                guid,
+                longTermVolumeDetail.getYear(),
+                RepositoryService.convertBoolean(isSmb)
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
     }
 
     private boolean checkLongTermVolume(String guid, Boolean isSmb) {

@@ -16,7 +16,7 @@ public class PurchasePlanRepository {
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRepository customerRepository;
     private final PlanItemRepository planItemRepository;
-    private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
+    private static final Logger logger = LoggerFactory.getLogger(PurchasePlanRepository.class);
 
     public PurchasePlanRepository(DataSource dataSource,
                                   CustomerRepository customerRepository,

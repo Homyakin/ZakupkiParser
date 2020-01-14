@@ -14,7 +14,7 @@ import static ru.homyakin.zakupki.database.ClassifierRepository.Classifier;
 
 @Component
 public class PlanItemRowRepository {
-    private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlanItemRowRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final ClassifierRepository classifierRepository;
 
@@ -35,26 +35,29 @@ public class PlanItemRowRepository {
         Classifier okved = classifierRepository.getClassifier(purchasePlanItemRow.getOkved());
         Classifier okved2 = classifierRepository.getClassifier(purchasePlanItemRow.getOkved2());
         Classifier okei = classifierRepository.getClassifier(purchasePlanItemRow.getOkei());
-        jdbcTemplate.update(sql,
-            planItemGuid,
-            purchasePlanItemRow.getOrdinalNumber(),
-            purchasePlanItemRow.getAdditionalInfo(),
-            getClassifierCode(okdp),
-            getClassifierName(okdp),
-            getClassifierCode(okpd2),
-            getClassifierName(okpd2),
-            getClassifierCode(okved),
-            getClassifierName(okved),
-            getClassifierCode(okved2),
-            getClassifierName(okved2),
-            purchasePlanItemRow.getOkato(),
-            purchasePlanItemRow.getRegion(),
-            RepositoryService.convertBoolean(purchasePlanItemRow.isImpossibleToDetermineAttr()),
-            getClassifierCode(okei),
-            getClassifierName(okei),
-            purchasePlanItemRow.getQty()
-        );
-
+        try {
+            jdbcTemplate.update(sql,
+                planItemGuid,
+                purchasePlanItemRow.getOrdinalNumber(),
+                purchasePlanItemRow.getAdditionalInfo(),
+                getClassifierCode(okdp),
+                getClassifierName(okdp),
+                getClassifierCode(okpd2),
+                getClassifierName(okpd2),
+                getClassifierCode(okved),
+                getClassifierName(okved),
+                getClassifierCode(okved2),
+                getClassifierName(okved2),
+                purchasePlanItemRow.getOkato(),
+                purchasePlanItemRow.getRegion(),
+                RepositoryService.convertBoolean(purchasePlanItemRow.isImpossibleToDetermineAttr()),
+                getClassifierCode(okei),
+                getClassifierName(okei),
+                purchasePlanItemRow.getQty()
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
     }
 
     public void insert(InnovationPlanDataItemRowType innovationPlanItemRow, String planItemGuid) {
@@ -86,34 +89,38 @@ public class PlanItemRowRepository {
             insert(purchasePlanItemRow, planItemGuid);
             return;
         }
-        String sql = "UPDATE purchase_plan_item_row SET additional_info = ?, okdp_code = ?, okdp_name = ?, " +
-            "okpd2_code = ?, okpd2_name = ?, okved_code = ?, okved_name = ?, okved2_code = ?, okved2_name = ?, " +
-            "okato = ?, region = ?, impossible_to_determine_attr = ?, okei_code = ?, okei_name = ?, qty = ? " +
-            "WHERE plan_item_guid = ? and ordinal_number = ?";
-        Classifier okdp = classifierRepository.getClassifier(purchasePlanItemRow.getOkdp());
-        Classifier okpd2 = classifierRepository.getClassifier(purchasePlanItemRow.getOkpd2());
-        Classifier okved = classifierRepository.getClassifier(purchasePlanItemRow.getOkved());
-        Classifier okved2 = classifierRepository.getClassifier(purchasePlanItemRow.getOkved2());
-        Classifier okei = classifierRepository.getClassifier(purchasePlanItemRow.getOkei());
-        jdbcTemplate.update(sql,
-            purchasePlanItemRow.getAdditionalInfo(),
-            getClassifierCode(okdp),
-            getClassifierName(okdp),
-            getClassifierCode(okpd2),
-            getClassifierName(okpd2),
-            getClassifierCode(okved),
-            getClassifierName(okved),
-            getClassifierCode(okved2),
-            getClassifierName(okved2),
-            purchasePlanItemRow.getOkato(),
-            purchasePlanItemRow.getRegion(),
-            RepositoryService.convertBoolean(purchasePlanItemRow.isImpossibleToDetermineAttr()),
-            getClassifierCode(okei),
-            getClassifierName(okei),
-            purchasePlanItemRow.getQty(),
-            planItemGuid,
-            purchasePlanItemRow.getOrdinalNumber()
-        );
+        try {
+            String sql = "UPDATE purchase_plan_item_row SET additional_info = ?, okdp_code = ?, okdp_name = ?, " +
+                "okpd2_code = ?, okpd2_name = ?, okved_code = ?, okved_name = ?, okved2_code = ?, okved2_name = ?, " +
+                "okato = ?, region = ?, impossible_to_determine_attr = ?, okei_code = ?, okei_name = ?, qty = ? " +
+                "WHERE plan_item_guid = ? and ordinal_number = ?";
+            Classifier okdp = classifierRepository.getClassifier(purchasePlanItemRow.getOkdp());
+            Classifier okpd2 = classifierRepository.getClassifier(purchasePlanItemRow.getOkpd2());
+            Classifier okved = classifierRepository.getClassifier(purchasePlanItemRow.getOkved());
+            Classifier okved2 = classifierRepository.getClassifier(purchasePlanItemRow.getOkved2());
+            Classifier okei = classifierRepository.getClassifier(purchasePlanItemRow.getOkei());
+            jdbcTemplate.update(sql,
+                purchasePlanItemRow.getAdditionalInfo(),
+                getClassifierCode(okdp),
+                getClassifierName(okdp),
+                getClassifierCode(okpd2),
+                getClassifierName(okpd2),
+                getClassifierCode(okved),
+                getClassifierName(okved),
+                getClassifierCode(okved2),
+                getClassifierName(okved2),
+                purchasePlanItemRow.getOkato(),
+                purchasePlanItemRow.getRegion(),
+                RepositoryService.convertBoolean(purchasePlanItemRow.isImpossibleToDetermineAttr()),
+                getClassifierCode(okei),
+                getClassifierName(okei),
+                purchasePlanItemRow.getQty(),
+                planItemGuid,
+                purchasePlanItemRow.getOrdinalNumber()
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
     }
 
     public void update(InnovationPlanDataItemRowType innovationPlanItemRow, String planItemGuid) {
@@ -121,26 +128,30 @@ public class PlanItemRowRepository {
             insert(innovationPlanItemRow, planItemGuid);
             return;
         }
-        String sql = "UPDATE innovation_plan_item_row SET additional_info = ?, okdp_code = ?, okdp_name = ?, " +
-            "okpd2_code = ?, okpd2_name = ?, okved_code = ?, okved_name = ?, okved2_code = ?, okved2_name = ? " +
-            "WHERE plan_item_guid = ? and ordinal_number = ?";
-        Classifier okdp = classifierRepository.getClassifier(innovationPlanItemRow.getOkdp());
-        Classifier okpd2 = classifierRepository.getClassifier(innovationPlanItemRow.getOkpd2());
-        Classifier okved = classifierRepository.getClassifier(innovationPlanItemRow.getOkved());
-        Classifier okved2 = classifierRepository.getClassifier(innovationPlanItemRow.getOkved2());
-        jdbcTemplate.update(sql,
-            innovationPlanItemRow.getAdditionalInfo(),
-            getClassifierCode(okdp),
-            getClassifierName(okdp),
-            getClassifierCode(okpd2),
-            getClassifierName(okpd2),
-            getClassifierCode(okved),
-            getClassifierName(okved),
-            getClassifierCode(okved2),
-            getClassifierName(okved2),
-            planItemGuid,
-            innovationPlanItemRow.getOrdinalNumber()
-        );
+        try {
+            String sql = "UPDATE innovation_plan_item_row SET additional_info = ?, okdp_code = ?, okdp_name = ?, " +
+                "okpd2_code = ?, okpd2_name = ?, okved_code = ?, okved_name = ?, okved2_code = ?, okved2_name = ? " +
+                "WHERE plan_item_guid = ? and ordinal_number = ?";
+            Classifier okdp = classifierRepository.getClassifier(innovationPlanItemRow.getOkdp());
+            Classifier okpd2 = classifierRepository.getClassifier(innovationPlanItemRow.getOkpd2());
+            Classifier okved = classifierRepository.getClassifier(innovationPlanItemRow.getOkved());
+            Classifier okved2 = classifierRepository.getClassifier(innovationPlanItemRow.getOkved2());
+            jdbcTemplate.update(sql,
+                innovationPlanItemRow.getAdditionalInfo(),
+                getClassifierCode(okdp),
+                getClassifierName(okdp),
+                getClassifierCode(okpd2),
+                getClassifierName(okpd2),
+                getClassifierCode(okved),
+                getClassifierName(okved),
+                getClassifierCode(okved2),
+                getClassifierName(okved2),
+                planItemGuid,
+                innovationPlanItemRow.getOrdinalNumber()
+            );
+        } catch (Exception e) {
+            logger.error("Eternal error", e);
+        }
     }
 
     private boolean checkPlanItemRow(String guid, Integer ordinalNumber, String table) {
