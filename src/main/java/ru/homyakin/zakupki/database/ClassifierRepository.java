@@ -48,8 +48,8 @@ public class ClassifierRepository {
     }
 
     private Classifier getClassifier(String table, String code, String name) {
-        code = code.toLowerCase();
-        name = name.toLowerCase();
+        code = RepositoryService.removeExtraSpaces(code.toLowerCase());
+        name = RepositoryService.removeExtraSpaces(name.toLowerCase());
         String selectByCode = "SELECT code, name FROM " + table + " WHERE code = ?";
         String selectByName = "SELECT code, name FROM " + table + " WHERE name = ?";
         List<Classifier> resultCode = jdbcTemplate.query(selectByCode,

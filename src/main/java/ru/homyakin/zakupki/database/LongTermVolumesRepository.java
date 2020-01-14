@@ -26,11 +26,11 @@ public class LongTermVolumesRepository {
             "(?, ?, ?, ?, ?, ?, ?);";
         try {
             jdbcTemplate.update(sql,
-                planItemGuid,
+                RepositoryService.removeExtraSpaces(planItemGuid),
                 RepositoryService.convertBoolean(isSmb),
                 longTermVolume.getVolume(),
                 longTermVolume.getVolumeRub(),
-                RepositoryService.getCurrencyCode(longTermVolume.getCurrency()),
+                RepositoryService.removeExtraSpaces(RepositoryService.getCurrencyCode(longTermVolume.getCurrency())),
                 longTermVolume.getExchangeRate(),
                 RepositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
             );
@@ -55,10 +55,10 @@ public class LongTermVolumesRepository {
             jdbcTemplate.update(sql,
                 longTermVolume.getVolume(),
                 longTermVolume.getVolumeRub(),
-                RepositoryService.getCurrencyCode(longTermVolume.getCurrency()),
+                RepositoryService.removeExtraSpaces(RepositoryService.getCurrencyCode(longTermVolume.getCurrency())),
                 longTermVolume.getExchangeRate(),
                 RepositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate()),
-                planItemGuid,
+                RepositoryService.removeExtraSpaces(planItemGuid),
                 RepositoryService.convertBoolean(isSmb)
             );
             if (longTermVolume.getDetails() != null) {
@@ -101,7 +101,7 @@ public class LongTermVolumesRepository {
             jdbcTemplate.update(sql,
                 longTermVolumeDetail.getSumm(),
                 longTermVolumeDetail.getSummRub(),
-                guid,
+                RepositoryService.removeExtraSpaces(guid),
                 longTermVolumeDetail.getYear(),
                 RepositoryService.convertBoolean(isSmb)
             );

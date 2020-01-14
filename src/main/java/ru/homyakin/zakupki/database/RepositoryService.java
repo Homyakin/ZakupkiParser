@@ -14,8 +14,8 @@ public class RepositoryService {
 
     public static String getCurrencyCode(CurrencyType currency) {
         if (currency == null) return null;
-        if (currency.getCode() != null) return currency.getCode();
-        else return currency.getLetterCode();
+        if (currency.getCode() != null) return removeExtraSpaces(currency.getCode());
+        else return removeExtraSpaces(currency.getLetterCode());
     }
 
     public static LocalDate convertFromXMLGregorianCalendarToLocalDate(XMLGregorianCalendar xmlTime) {
@@ -37,5 +37,10 @@ public class RepositoryService {
             xmlTime.getMinute(),
             xmlTime.getSecond()
         );
+    }
+
+    public static String removeExtraSpaces(String s) {
+        if (s == null) return null;
+        return s.trim().replaceAll(" +", " ");
     }
 }
