@@ -1,1282 +1,821 @@
-[
-  {
-    "global_id": 62838349,
-    "system_object_id": "008",
-    "CODE": "008",
-    "STRCODE": "ALL",
-    "NAME": "Лек",
-    "COUNTRY": "Албания"
-  },
-  {
-    "global_id": 62838351,
-    "system_object_id": "032",
-    "CODE": "032",
-    "STRCODE": "ARS",
-    "NAME": "Аргентинское песо",
-    "COUNTRY": "Аргентина"
-  },
-  {
-    "global_id": 62838350,
-    "system_object_id": "012",
-    "CODE": "012",
-    "STRCODE": "DZD",
-    "NAME": "Алжирский динар",
-    "COUNTRY": "Алжир"
-  },
-  {
-    "global_id": 62838352,
-    "system_object_id": "036",
-    "CODE": "036",
-    "STRCODE": "AUD",
-    "NAME": "Австралийский доллар",
-    "COUNTRY": "Австралия; Кирибати; Кокосовые (Килинг) острова;  Науру;  Остров Норфолк; Остров Рождества; Остров Херд и острова Макдональд;  Тувалу"
-  },
-  {
-    "global_id": 62838354,
-    "system_object_id": "048",
-    "CODE": "048",
-    "STRCODE": "BHD",
-    "NAME": "Бахрейнский динар",
-    "COUNTRY": "Бахрейн"
-  },
-  {
-    "global_id": 62838353,
-    "system_object_id": "044",
-    "CODE": "044",
-    "STRCODE": "BSD",
-    "NAME": "Багамский доллар",
-    "COUNTRY": "Багамы"
-  },
-  {
-    "global_id": 62838355,
-    "system_object_id": "052",
-    "CODE": "052",
-    "STRCODE": "BBD",
-    "NAME": "Барбадосский доллар",
-    "COUNTRY": "Барбадос"
-  },
-  {
-    "global_id": 62838356,
-    "system_object_id": "060",
-    "CODE": "060",
-    "STRCODE": "BMD",
-    "NAME": "Бермудский доллар",
-    "COUNTRY": "Бермуды"
-  },
-  {
-    "global_id": 62838357,
-    "system_object_id": "064",
-    "CODE": "064",
-    "STRCODE": "BTN",
-    "NAME": "Нгултрум",
-    "COUNTRY": "Бутан"
-  },
-  {
-    "global_id": 62838358,
-    "system_object_id": "068",
-    "CODE": "068",
-    "STRCODE": "BOB",
-    "NAME": "Боливиано",
-    "COUNTRY": "Боливия, многонациональное государство"
-  },
-  {
-    "global_id": 62838359,
-    "system_object_id": "072",
-    "CODE": "072",
-    "STRCODE": "BWP",
-    "NAME": "Пула",
-    "COUNTRY": "Ботсвана"
-  },
-  {
-    "global_id": 62838360,
-    "system_object_id": "084",
-    "CODE": "084",
-    "STRCODE": "BZD",
-    "NAME": "Белизский доллар",
-    "COUNTRY": "Белиз"
-  },
-  {
-    "global_id": 62838361,
-    "system_object_id": "090",
-    "CODE": "090",
-    "STRCODE": "SBD",
-    "NAME": "Доллар Соломоновых Островов",
-    "COUNTRY": "Соломоновы Острова"
-  },
-  {
-    "global_id": 62838362,
-    "system_object_id": "096",
-    "CODE": "096",
-    "STRCODE": "BND",
-    "NAME": "Брунейский доллар",
-    "COUNTRY": "Бруней-Даруссалам"
-  },
-  {
-    "global_id": 62838363,
-    "system_object_id": "104",
-    "CODE": "104",
-    "STRCODE": "MMK",
-    "NAME": "Кьят",
-    "COUNTRY": "Мьянма"
-  },
-  {
-    "global_id": 62838364,
-    "system_object_id": "108",
-    "CODE": "108",
-    "STRCODE": "BIF",
-    "NAME": "Бурундийский франк",
-    "COUNTRY": "Бурунди"
-  },
-  {
-    "global_id": 62838366,
-    "system_object_id": "124",
-    "CODE": "124",
-    "STRCODE": "CAD",
-    "NAME": "Канадский доллар",
-    "COUNTRY": "Канада"
-  },
-  {
-    "global_id": 62838365,
-    "system_object_id": "116",
-    "CODE": "116",
-    "STRCODE": "KHR",
-    "NAME": "Риель",
-    "COUNTRY": "Камбоджа"
-  },
-  {
-    "global_id": 62838367,
-    "system_object_id": "132",
-    "CODE": "132",
-    "STRCODE": "CVE",
-    "NAME": "Эскудо Кабо-Верде",
-    "COUNTRY": "Кабо-Верде"
-  },
-  {
-    "global_id": 62838368,
-    "system_object_id": "136",
-    "CODE": "136",
-    "STRCODE": "KYD",
-    "NAME": "Доллар Островов Кайман",
-    "COUNTRY": "Острова Кайман"
-  },
-  {
-    "global_id": 62838399,
-    "system_object_id": "368",
-    "CODE": "368",
-    "STRCODE": "IQD",
-    "NAME": "Иракский динар",
-    "COUNTRY": "Ирак"
-  },
-  {
-    "global_id": 62838401,
-    "system_object_id": "392",
-    "CODE": "392",
-    "STRCODE": "JPY",
-    "NAME": "Иена",
-    "COUNTRY": "Япония"
-  },
-  {
-    "global_id": 62838400,
-    "system_object_id": "388",
-    "CODE": "388",
-    "STRCODE": "JMD",
-    "NAME": "Ямайский доллар",
-    "COUNTRY": "Ямайка"
-  },
-  {
-    "global_id": 62838402,
-    "system_object_id": "400",
-    "CODE": "400",
-    "STRCODE": "JOD",
-    "NAME": "Иорданский динар",
-    "COUNTRY": "Иордания"
-  },
-  {
-    "global_id": 62838403,
-    "system_object_id": "404",
-    "CODE": "404",
-    "STRCODE": "KES",
-    "NAME": "Кенийский шиллинг",
-    "COUNTRY": "Кения"
-  },
-  {
-    "global_id": 62838404,
-    "system_object_id": "408",
-    "CODE": "408",
-    "STRCODE": "KPW",
-    "NAME": "Северокорейская вона",
-    "COUNTRY": "Корея, народно-демократическая республика"
-  },
-  {
-    "global_id": 62838405,
-    "system_object_id": "410",
-    "CODE": "410",
-    "STRCODE": "KRW",
-    "NAME": "Вона",
-    "COUNTRY": "Корея, республика"
-  },
-  {
-    "global_id": 62838406,
-    "system_object_id": "414",
-    "CODE": "414",
-    "STRCODE": "KWD",
-    "NAME": "Кувейтский динар",
-    "COUNTRY": "Кувейт"
-  },
-  {
-    "global_id": 62838407,
-    "system_object_id": "417",
-    "CODE": "417",
-    "STRCODE": "KGS",
-    "NAME": "Сом",
-    "COUNTRY": "Киргизия"
-  },
-  {
-    "global_id": 62838408,
-    "system_object_id": "418",
-    "CODE": "418",
-    "STRCODE": "LAK",
-    "NAME": "Кип",
-    "COUNTRY": "Лаосская Народно-Демократическая Республика"
-  },
-  {
-    "global_id": 62838419,
-    "system_object_id": "496",
-    "CODE": "496",
-    "STRCODE": "MNT",
-    "NAME": "Тугрик",
-    "COUNTRY": "Монголия"
-  },
-  {
-    "global_id": 62838422,
-    "system_object_id": "512",
-    "CODE": "512",
-    "STRCODE": "OMR",
-    "NAME": "Оманский риал",
-    "COUNTRY": "Оман"
-  },
-  {
-    "global_id": 62838420,
-    "system_object_id": "498",
-    "CODE": "498",
-    "STRCODE": "MDL",
-    "NAME": "Молдавский лей",
-    "COUNTRY": "Молдова, республика"
-  },
-  {
-    "global_id": 62838421,
-    "system_object_id": "504",
-    "CODE": "504",
-    "STRCODE": "MAD",
-    "NAME": "Марокканский дирхам",
-    "COUNTRY": "Западная Сахара; Марокко"
-  },
-  {
-    "global_id": 62838423,
-    "system_object_id": "516",
-    "CODE": "516",
-    "STRCODE": "NAD",
-    "NAME": "Доллар Намибии",
-    "COUNTRY": "Намибия"
-  },
-  {
-    "global_id": 62838424,
-    "system_object_id": "524",
-    "CODE": "524",
-    "STRCODE": "NPR",
-    "NAME": "Непальская рупия",
-    "COUNTRY": "Непал"
-  },
-  {
-    "global_id": 62838425,
-    "system_object_id": "532",
-    "CODE": "532",
-    "STRCODE": "ANG",
-    "NAME": "Нидерландский антильский гульден",
-    "COUNTRY": "Кюрасао; Сен-Мартен (нидерландская часть)"
-  },
-  {
-    "global_id": 62838370,
-    "system_object_id": "152",
-    "CODE": "152",
-    "STRCODE": "CLР",
-    "NAME": "Чилийское песо",
-    "COUNTRY": "Чили"
-  },
-  {
-    "global_id": 62838369,
-    "system_object_id": "144",
-    "CODE": "144",
-    "STRCODE": "LKR",
-    "NAME": "Шри-Ланкийская рупия",
-    "COUNTRY": "Шри-Ланка"
-  },
-  {
-    "global_id": 62838371,
-    "system_object_id": "156",
-    "CODE": "156",
-    "STRCODE": "CNY",
-    "NAME": "Юань",
-    "COUNTRY": "Китай"
-  },
-  {
-    "global_id": 62838373,
-    "system_object_id": "174",
-    "CODE": "174",
-    "STRCODE": "KMF",
-    "NAME": "Франк Комор",
-    "COUNTRY": "Коморы"
-  },
-  {
-    "global_id": 62838374,
-    "system_object_id": "188",
-    "CODE": "188",
-    "STRCODE": "CRC",
-    "NAME": "Костариканский колон",
-    "COUNTRY": "Коста-Рика"
-  },
-  {
-    "global_id": 62838372,
-    "system_object_id": "170",
-    "CODE": "170",
-    "STRCODE": "COP",
-    "NAME": "Колумбийское песо",
-    "COUNTRY": "Колумбия"
-  },
-  {
-    "global_id": 62838375,
-    "system_object_id": "191",
-    "CODE": "191",
-    "STRCODE": "HRK",
-    "NAME": "Куна",
-    "COUNTRY": "Хорватия"
-  },
-  {
-    "global_id": 62838376,
-    "system_object_id": "192",
-    "CODE": "192",
-    "STRCODE": "CUP",
-    "NAME": "Кубинское песо",
-    "COUNTRY": "Куба"
-  },
-  {
-    "global_id": 62838377,
-    "system_object_id": "203",
-    "CODE": "203",
-    "STRCODE": "CZK",
-    "NAME": "Чешская крона",
-    "COUNTRY": "Чешская Республика"
-  },
-  {
-    "global_id": 62838380,
-    "system_object_id": "222",
-    "CODE": "222",
-    "STRCODE": "SVC",
-    "NAME": "Сальвадорский колон",
-    "COUNTRY": "Эль-Сальвадор"
-  },
-  {
-    "global_id": 62838378,
-    "system_object_id": "208",
-    "CODE": "208",
-    "STRCODE": "DKK",
-    "NAME": "Датская крона",
-    "COUNTRY": "Гренландия; Дания; Фарерские острова"
-  },
-  {
-    "global_id": 62838379,
-    "system_object_id": "214",
-    "CODE": "214",
-    "STRCODE": "DOP",
-    "NAME": "Доминиканское песо",
-    "COUNTRY": "Доминиканская Республика"
-  },
-  {
-    "global_id": 62838381,
-    "system_object_id": "230",
-    "CODE": "230",
-    "STRCODE": "ETB",
-    "NAME": "Эфиопский быр",
-    "COUNTRY": "Эфиопия"
-  },
-  {
-    "global_id": 62838427,
-    "system_object_id": "548",
-    "CODE": "548",
-    "STRCODE": "VUV",
-    "NAME": "Вату",
-    "COUNTRY": "Вануату"
-  },
-  {
-    "global_id": 62838382,
-    "system_object_id": "232",
-    "CODE": "232",
-    "STRCODE": "ERN",
-    "NAME": "Накфа",
-    "COUNTRY": "Эритрея"
-  },
-  {
-    "global_id": 62838426,
-    "system_object_id": "533",
-    "CODE": "533",
-    "STRCODE": "AWG",
-    "NAME": "Арубанский флорин",
-    "COUNTRY": "Аруба"
-  },
-  {
-    "global_id": 62838428,
-    "system_object_id": "554",
-    "CODE": "554",
-    "STRCODE": "NZD",
-    "NAME": "Новозеландский доллар",
-    "COUNTRY": "Ниуэ; Новая Зеландия; Острова Кука; Питкерн; Токелау"
-  },
-  {
-    "global_id": 62838460,
-    "system_object_id": "818",
-    "CODE": "818",
-    "STRCODE": "ЕGP",
-    "NAME": "Египетский фунт",
-    "COUNTRY": "Египет"
-  },
-  {
-    "global_id": 62838461,
-    "system_object_id": "826",
-    "CODE": "826",
-    "STRCODE": "GBP",
-    "NAME": "Фунт стерлингов",
-    "COUNTRY": "Соединенное королевство"
-  },
-  {
-    "global_id": 62838459,
-    "system_object_id": "807",
-    "CODE": "807",
-    "STRCODE": "MKD",
-    "NAME": "Денар",
-    "COUNTRY": "Македония, бывшая Югославская Республика"
-  },
-  {
-    "global_id": 62838463,
-    "system_object_id": "840",
-    "CODE": "840",
-    "STRCODE": "USD",
-    "NAME": "Доллар США",
-    "COUNTRY": "Американское Самоа; Британская территория в Индийском океане; Бонэйр, Синт-Эстатиус и Саба; Виргинские острова (Британские); Виргинские острова (США); Гаити; Гуам; Малые Тихоокеанские Отдаленные острова Соединенных Штатов; Маршалловы Острова; Микронезия, федеративные штаты; Острова Теркс и Кайкос; Палау; Панама; Пуэрто-Рико; Северные Марианские острова; Соединенные Штаты; Тимор-Лесте; Эквадор; Эль-Сальвадор"
-  },
-  {
-    "global_id": 62838462,
-    "system_object_id": "834",
-    "CODE": "834",
-    "STRCODE": "TZS",
-    "NAME": "Танзанийский шиллинг",
-    "COUNTRY": "Танзания, объединенная республика"
-  },
-  {
-    "global_id": 62838464,
-    "system_object_id": "858",
-    "CODE": "858",
-    "STRCODE": "UYU",
-    "NAME": "Уругвайское песо",
-    "COUNTRY": "Уругвай"
-  },
-  {
-    "global_id": 62838468,
-    "system_object_id": "901",
-    "CODE": "901",
-    "STRCODE": "TWD",
-    "NAME": "Новый тайваньский доллар",
-    "COUNTRY": "Тайвань (Китай)"
-  },
-  {
-    "global_id": 62838467,
-    "system_object_id": "886",
-    "CODE": "886",
-    "STRCODE": "YER",
-    "NAME": "Йеменский риал",
-    "COUNTRY": "Йемен"
-  },
-  {
-    "global_id": 62838466,
-    "system_object_id": "882",
-    "CODE": "882",
-    "STRCODE": "WST",
-    "NAME": "Тала",
-    "COUNTRY": "Самоа"
-  },
-  {
-    "global_id": 62838465,
-    "system_object_id": "860",
-    "CODE": "860",
-    "STRCODE": "UZS",
-    "NAME": "Узбекский сум",
-    "COUNTRY": "Узбекистан"
-  },
-  {
-    "global_id": 62838489,
-    "system_object_id": "974",
-    "CODE": "974",
-    "STRCODE": "BYR",
-    "NAME": "Белорусский рубль",
-    "COUNTRY": "Беларусь"
-  },
-  {
-    "global_id": 62838490,
-    "system_object_id": "975",
-    "CODE": "975",
-    "STRCODE": "BGN",
-    "NAME": "Болгарский лев",
-    "COUNTRY": "Болгария"
-  },
-  {
-    "global_id": 62838491,
-    "system_object_id": "976",
-    "CODE": "976",
-    "STRCODE": "CDF",
-    "NAME": "Конголезский франк",
-    "COUNTRY": "Конго, демократическая республика"
-  },
-  {
-    "global_id": 62838492,
-    "system_object_id": "977",
-    "CODE": "977",
-    "STRCODE": "BAM",
-    "NAME": "Конвертируемая марка",
-    "COUNTRY": "Босния и Герцеговина"
-  },
-  {
-    "global_id": 62838493,
-    "system_object_id": "978",
-    "CODE": "978",
-    "STRCODE": "EUR",
-    "NAME": "Евро",
-    "COUNTRY": "Австрия; Андорра; Бельгия; Гваделупа; Германия; Греция; Ирландия; Испания; Италия; Кипр; Латвия; Литва; Люксембург; Майотта; Мальта; Мартиника; Монако; Нидерланды; Папский Престол (Государство-город Ватикан); Португалия; Реюньон; Сан-Марино; Сен-Бартелеми; Сен-Мартен (французская часть); Сент-Пьер и Микелон; Словакия; Словения; Финляндия; Франция; Французская Гвиана; Французские Южные территории; Черногория; Эландские острова; Эстония"
-  },
-  {
-    "global_id": 62838494,
-    "system_object_id": "980",
-    "CODE": "980",
-    "STRCODE": "UAH",
-    "NAME": "Гривна",
-    "COUNTRY": "Украина"
-  },
-  {
-    "global_id": 62838496,
-    "system_object_id": "985",
-    "CODE": "985",
-    "STRCODE": "PLN",
-    "NAME": "Злотый",
-    "COUNTRY": "Польша"
-  },
-  {
-    "global_id": 62838497,
-    "system_object_id": "986",
-    "CODE": "986",
-    "STRCODE": "BRL",
-    "NAME": "Бразильский реал",
-    "COUNTRY": "Бразилия"
-  },
-  {
-    "global_id": 62838495,
-    "system_object_id": "981",
-    "CODE": "981",
-    "STRCODE": "GEL",
-    "NAME": "Лари",
-    "COUNTRY": "Грузия"
-  },
-  {
-    "global_id": 63061340,
-    "system_object_id": "050",
-    "CODE": "050",
-    "STRCODE": "BDT",
-    "NAME": "Така",
-    "COUNTRY": "Бангладеш"
-  },
-  {
-    "global_id": 62838383,
-    "system_object_id": "238",
-    "CODE": "238",
-    "STRCODE": "FKP",
-    "NAME": "Фунт Фолклендских островов",
-    "COUNTRY": "Фолклендские острова (Мальвинские)"
-  },
-  {
-    "global_id": 62838384,
-    "system_object_id": "242",
-    "CODE": "242",
-    "STRCODE": "FJD",
-    "NAME": "Доллар Фиджи",
-    "COUNTRY": "Фиджи"
-  },
-  {
-    "global_id": 62838385,
-    "system_object_id": "262",
-    "CODE": "262",
-    "STRCODE": "DJF",
-    "NAME": "Франк Джибути",
-    "COUNTRY": "Джибути"
-  },
-  {
-    "global_id": 62838386,
-    "system_object_id": "270",
-    "CODE": "270",
-    "STRCODE": "GMD",
-    "NAME": "Даласи",
-    "COUNTRY": "Гамбия"
-  },
-  {
-    "global_id": 62838387,
-    "system_object_id": "292",
-    "CODE": "292",
-    "STRCODE": "GIP",
-    "NAME": "Гибралтарский фунт",
-    "COUNTRY": "Гибралтар"
-  },
-  {
-    "global_id": 62838388,
-    "system_object_id": "320",
-    "CODE": "320",
-    "STRCODE": "GTQ",
-    "NAME": "Кетсаль",
-    "COUNTRY": "Гватемала"
-  },
-  {
-    "global_id": 62838429,
-    "system_object_id": "558",
-    "CODE": "558",
-    "STRCODE": "NIO",
-    "NAME": "Золотая кордоба",
-    "COUNTRY": "Никарагуа"
-  },
-  {
-    "global_id": 62838430,
-    "system_object_id": "566",
-    "CODE": "566",
-    "STRCODE": "NGN",
-    "NAME": "Найра",
-    "COUNTRY": "Нигерия"
-  },
-  {
-    "global_id": 62838431,
-    "system_object_id": "578",
-    "CODE": "578",
-    "STRCODE": "NOK",
-    "NAME": "Норвежская крона",
-    "COUNTRY": "Норвегия; Остров Буве; Шпицберген и Ян Майен"
-  },
-  {
-    "global_id": 62838433,
-    "system_object_id": "590",
-    "CODE": "590",
-    "STRCODE": "PAB",
-    "NAME": "Бальбоа",
-    "COUNTRY": "Панама"
-  },
-  {
-    "global_id": 62838432,
-    "system_object_id": "586",
-    "CODE": "586",
-    "STRCODE": "PKR",
-    "NAME": "Пакистанская рупия",
-    "COUNTRY": "Пакистан"
-  },
-  {
-    "global_id": 62838434,
-    "system_object_id": "598",
-    "CODE": "598",
-    "STRCODE": "PGK",
-    "NAME": "Кина",
-    "COUNTRY": "Папуа Новая Гвинея"
-  },
-  {
-    "global_id": 62838435,
-    "system_object_id": "600",
-    "CODE": "600",
-    "STRCODE": "PYG",
-    "NAME": "Гуарани",
-    "COUNTRY": "Парагвай"
-  },
-  {
-    "global_id": 62838437,
-    "system_object_id": "608",
-    "CODE": "608",
-    "STRCODE": "PНP",
-    "NAME": "Филиппинское песо",
-    "COUNTRY": "Филиппины"
-  },
-  {
-    "global_id": 62838436,
-    "system_object_id": "604",
-    "CODE": "604",
-    "STRCODE": "PEN",
-    "NAME": "Новый соль",
-    "COUNTRY": "Перу"
-  },
-  {
-    "global_id": 62838449,
-    "system_object_id": "728",
-    "CODE": "728",
-    "STRCODE": "SSP",
-    "NAME": "Южносуданский фунт",
-    "COUNTRY": "Южный Судан"
-  },
-  {
-    "global_id": 62838438,
-    "system_object_id": "634",
-    "CODE": "634",
-    "STRCODE": "QAR",
-    "NAME": "Катарский риал",
-    "COUNTRY": "Катар"
-  },
-  {
-    "global_id": 62838450,
-    "system_object_id": "748",
-    "CODE": "748",
-    "STRCODE": "SZL",
-    "NAME": "Лилангени",
-    "COUNTRY": "Свазиленд"
-  },
-  {
-    "global_id": 62838451,
-    "system_object_id": "752",
-    "CODE": "752",
-    "STRCODE": "SEK",
-    "NAME": "Шведская крона",
-    "COUNTRY": "Швеция"
-  },
-  {
-    "global_id": 62838453,
-    "system_object_id": "764",
-    "CODE": "764",
-    "STRCODE": "THB",
-    "NAME": "Бат",
-    "COUNTRY": "Таиланд"
-  },
-  {
-    "global_id": 62838452,
-    "system_object_id": "760",
-    "CODE": "760",
-    "STRCODE": "SYP",
-    "NAME": "Сирийский фунт",
-    "COUNTRY": "Сирийская Арабская Республика"
-  },
-  {
-    "global_id": 62838454,
-    "system_object_id": "776",
-    "CODE": "776",
-    "STRCODE": "TOP",
-    "NAME": "Паанга",
-    "COUNTRY": "Тонга"
-  },
-  {
-    "global_id": 62838455,
-    "system_object_id": "780",
-    "CODE": "780",
-    "STRCODE": "TTD",
-    "NAME": "Доллар Тринидада и Тобаго",
-    "COUNTRY": "Тринидад и Тобаго"
-  },
-  {
-    "global_id": 62838457,
-    "system_object_id": "788",
-    "CODE": "788",
-    "STRCODE": "TND",
-    "NAME": "Тунисский динар",
-    "COUNTRY": "Тунис"
-  },
-  {
-    "global_id": 62838456,
-    "system_object_id": "784",
-    "CODE": "784",
-    "STRCODE": "AED",
-    "NAME": "Дирхам (ОАЭ)",
-    "COUNTRY": "Объединенные Арабские Эмираты (ОАЭ)"
-  },
-  {
-    "global_id": 62838458,
-    "system_object_id": "800",
-    "CODE": "800",
-    "STRCODE": "UGX",
-    "NAME": "Угандийский шиллинг",
-    "COUNTRY": "Уганда"
-  },
-  {
-    "global_id": 62838469,
-    "system_object_id": "931",
-    "CODE": "931",
-    "STRCODE": "CUC",
-    "NAME": "Конвертируемое песо",
-    "COUNTRY": "Куба"
-  },
-  {
-    "global_id": 62838472,
-    "system_object_id": "937",
-    "CODE": "937",
-    "STRCODE": "VEF",
-    "NAME": "Боливар",
-    "COUNTRY": "Венесуэла"
-  },
-  {
-    "global_id": 62838471,
-    "system_object_id": "936",
-    "CODE": "936",
-    "STRCODE": "GHS",
-    "NAME": "Ганский седи",
-    "COUNTRY": "Гана"
-  },
-  {
-    "global_id": 62838473,
-    "system_object_id": "938",
-    "CODE": "938",
-    "STRCODE": "SDG",
-    "NAME": "Суданский фунт",
-    "COUNTRY": "Судан"
-  },
-  {
-    "global_id": 62838470,
-    "system_object_id": "932",
-    "CODE": "932",
-    "STRCODE": "ZWL",
-    "NAME": "Доллар Зимбабве",
-    "COUNTRY": "Зимбабве"
-  },
-  {
-    "global_id": 62838474,
-    "system_object_id": "941",
-    "CODE": "941",
-    "STRCODE": "RSD",
-    "NAME": "Сербский динар",
-    "COUNTRY": "Сербия"
-  },
-  {
-    "global_id": 62838475,
-    "system_object_id": "943",
-    "CODE": "943",
-    "STRCODE": "MZN",
-    "NAME": "Мозамбикский метикал",
-    "COUNTRY": "Мозамбик"
-  },
-  {
-    "global_id": 62838477,
-    "system_object_id": "949",
-    "CODE": "949",
-    "STRCODE": "TRY",
-    "NAME": "Турецкая лира",
-    "COUNTRY": "Турция"
-  },
-  {
-    "global_id": 62838476,
-    "system_object_id": "944",
-    "CODE": "944",
-    "STRCODE": "AZN",
-    "NAME": "Азербайджанский манат",
-    "COUNTRY": "Азербайджан"
-  },
-  {
-    "global_id": 62838479,
-    "system_object_id": "951",
-    "CODE": "951",
-    "STRCODE": "XCD",
-    "NAME": "Восточно-карибский доллар",
-    "COUNTRY": "Ангилья; Антигуа и Барбуда; Гренада; Доминика; Монтсеррат; Сент-Винсент и Гренадины; Сент-Китс и Невис; Сент-Люсия"
-  },
-  {
-    "global_id": 62838478,
-    "system_object_id": "950",
-    "CODE": "950",
-    "STRCODE": "XAF",
-    "NAME": "Франк КФА ВЕАС",
-    "COUNTRY": "Габон; Камерун; Конго; Центрально-Африканская  Республика; Чад; Экваториальная Гвинея"
-  },
-  {
-    "global_id": 62838409,
-    "system_object_id": "422",
-    "CODE": "422",
-    "STRCODE": "LBP",
-    "NAME": "Ливанский фунт",
-    "COUNTRY": "Ливан"
-  },
-  {
-    "global_id": 62838410,
-    "system_object_id": "426",
-    "CODE": "426",
-    "STRCODE": "LSL",
-    "NAME": "Лоти",
-    "COUNTRY": "Лесото"
-  },
-  {
-    "global_id": 62838412,
-    "system_object_id": "434",
-    "CODE": "434",
-    "STRCODE": "LYD",
-    "NAME": "Ливийский динар",
-    "COUNTRY": "Ливия"
-  },
-  {
-    "global_id": 62838411,
-    "system_object_id": "430",
-    "CODE": "430",
-    "STRCODE": "LRD",
-    "NAME": "Либерийский доллар",
-    "COUNTRY": "Либерия"
-  },
-  {
-    "global_id": 62838414,
-    "system_object_id": "454",
-    "CODE": "454",
-    "STRCODE": "MWK",
-    "NAME": "Квача",
-    "COUNTRY": "Малави"
-  },
-  {
-    "global_id": 62838413,
-    "system_object_id": "446",
-    "CODE": "446",
-    "STRCODE": "MOP",
-    "NAME": "Патака",
-    "COUNTRY": "Макао"
-  },
-  {
-    "global_id": 62838416,
-    "system_object_id": "462",
-    "CODE": "462",
-    "STRCODE": "MVR",
-    "NAME": "Руфия",
-    "COUNTRY": "Мальдивы"
-  },
-  {
-    "global_id": 62838415,
-    "system_object_id": "458",
-    "CODE": "458",
-    "STRCODE": "MYR",
-    "NAME": "Малайзийский ринггит",
-    "COUNTRY": "Малайзия"
-  },
-  {
-    "global_id": 62838417,
-    "system_object_id": "478",
-    "CODE": "478",
-    "STRCODE": "MRO",
-    "NAME": "Угия",
-    "COUNTRY": "Мавритания"
-  },
-  {
-    "global_id": 62838418,
-    "system_object_id": "480",
-    "CODE": "480",
-    "STRCODE": "MUR",
-    "NAME": "Маврикийская рупия",
-    "COUNTRY": "Маврикий"
-  },
-  {
-    "global_id": 62838439,
-    "system_object_id": "643",
-    "CODE": "643",
-    "STRCODE": "RUB",
-    "NAME": "Российский рубль",
-    "COUNTRY": "Россия"
-  },
-  {
-    "global_id": 62838441,
-    "system_object_id": "678",
-    "CODE": "678",
-    "STRCODE": "STD",
-    "NAME": "Добра",
-    "COUNTRY": "Сан-Томе и Принсипи"
-  },
-  {
-    "global_id": 62838442,
-    "system_object_id": "682",
-    "CODE": "682",
-    "STRCODE": "SAR",
-    "NAME": "Саудовский риял",
-    "COUNTRY": "Саудовская Аравия"
-  },
-  {
-    "global_id": 62838440,
-    "system_object_id": "654",
-    "CODE": "654",
-    "STRCODE": "SHP",
-    "NAME": "Фунт Святой Елены.",
-    "COUNTRY": "Святая Елена, остров Вознесения, Тристан-да-Кунья"
-  },
-  {
-    "global_id": 62838444,
-    "system_object_id": "694",
-    "CODE": "694",
-    "STRCODE": "SLL",
-    "NAME": "Леоне",
-    "COUNTRY": "Сьерра-Леоне"
-  },
-  {
-    "global_id": 62838446,
-    "system_object_id": "704",
-    "CODE": "704",
-    "STRCODE": "VND",
-    "NAME": "Донг",
-    "COUNTRY": "Вьетнам"
-  },
-  {
-    "global_id": 62838445,
-    "system_object_id": "702",
-    "CODE": "702",
-    "STRCODE": "SGD",
-    "NAME": "Сингапурский доллар",
-    "COUNTRY": "Сингапур"
-  },
-  {
-    "global_id": 62838447,
-    "system_object_id": "706",
-    "CODE": "706",
-    "STRCODE": "SOS",
-    "NAME": "Сомалийский шиллинг",
-    "COUNTRY": "Сомали"
-  },
-  {
-    "global_id": 62838443,
-    "system_object_id": "690",
-    "CODE": "690",
-    "STRCODE": "SCR",
-    "NAME": "Сейшельская рупия",
-    "COUNTRY": "Сейшелы"
-  },
-  {
-    "global_id": 62838448,
-    "system_object_id": "710",
-    "CODE": "710",
-    "STRCODE": "ZAR",
-    "NAME": "Рэнд",
-    "COUNTRY": "Лесото; Намибия; Южная Африка"
-  },
-  {
-    "global_id": 62838480,
-    "system_object_id": "952",
-    "CODE": "952",
-    "STRCODE": "XOF",
-    "NAME": "Франк КФА ВСЕАО",
-    "COUNTRY": "Бенин; Буркина-Фасо; Гвинея-Бисау; Кот д\u0027Ивуар; Мали; Нигер; Сенегал; Того"
-  },
-  {
-    "global_id": 62838481,
-    "system_object_id": "953",
-    "CODE": "953",
-    "STRCODE": "XPF",
-    "NAME": "Франк КФП",
-    "COUNTRY": "Новая Каледония; Французкая Полинезия; Уоллис и Футуна"
-  },
-  {
-    "global_id": 62838484,
-    "system_object_id": "969",
-    "CODE": "969",
-    "STRCODE": "MGA",
-    "NAME": "Малагасийский ариари",
-    "COUNTRY": "Мадагаскар"
-  },
-  {
-    "global_id": 62838482,
-    "system_object_id": "967",
-    "CODE": "967",
-    "STRCODE": "ZMW",
-    "NAME": "Замбийская квача",
-    "COUNTRY": "Замбия"
-  },
-  {
-    "global_id": 62838483,
-    "system_object_id": "968",
-    "CODE": "968",
-    "STRCODE": "SRD",
-    "NAME": "Суринамский доллар",
-    "COUNTRY": "Суринам"
-  },
-  {
-    "global_id": 62838485,
-    "system_object_id": "970",
-    "CODE": "970",
-    "STRCODE": "COU",
-    "NAME": "Единица реальной стоимости",
-    "COUNTRY": "Колумбия"
-  },
-  {
-    "global_id": 62838487,
-    "system_object_id": "972",
-    "CODE": "972",
-    "STRCODE": "TJS",
-    "NAME": "Сомони",
-    "COUNTRY": "Таджикистан"
-  },
-  {
-    "global_id": 62838486,
-    "system_object_id": "971",
-    "CODE": "971",
-    "STRCODE": "AFN",
-    "NAME": "Афгани",
-    "COUNTRY": "Афганистан"
-  },
-  {
-    "global_id": 62838488,
-    "system_object_id": "973",
-    "CODE": "973",
-    "STRCODE": "AOA",
-    "NAME": "Кванза",
-    "COUNTRY": "Ангола"
-  },
-  {
-    "global_id": 63061342,
-    "system_object_id": "376",
-    "CODE": "376",
-    "STRCODE": "ILS",
-    "NAME": "Новый израильский шекель",
-    "COUNTRY": "Израиль"
-  },
-  {
-    "global_id": 63061341,
-    "system_object_id": "051",
-    "CODE": "051",
-    "STRCODE": "AMD",
-    "NAME": "Армянский драм",
-    "COUNTRY": "Армения"
-  },
-  {
-    "global_id": 63061343,
-    "system_object_id": "398",
-    "CODE": "398",
-    "STRCODE": "KZT",
-    "NAME": "Тенге",
-    "COUNTRY": "Казахстан"
-  },
-  {
-    "global_id": 63061344,
-    "system_object_id": "484",
-    "CODE": "484",
-    "STRCODE": "MXN",
-    "NAME": "Мексиканское песо",
-    "COUNTRY": "Мексика"
-  },
-  {
-    "global_id": 63061345,
-    "system_object_id": "646",
-    "CODE": "646",
-    "STRCODE": "RWF",
-    "NAME": "Франк Руанды",
-    "COUNTRY": "Руанда"
-  },
-  {
-    "global_id": 63061346,
-    "system_object_id": "756",
-    "CODE": "756",
-    "STRCODE": "CHF",
-    "NAME": "Швейцарский франк",
-    "COUNTRY": "Лихтенштейн; Швейцария"
-  },
-  {
-    "global_id": 63061347,
-    "system_object_id": "934",
-    "CODE": "934",
-    "STRCODE": "TMT",
-    "NAME": "Новый туркменский манат",
-    "COUNTRY": "Туркменистан"
-  },
-  {
-    "global_id": 63061348,
-    "system_object_id": "940",
-    "CODE": "940",
-    "STRCODE": "UYI",
-    "NAME": "Уругвайское песо в индексированных единицах",
-    "COUNTRY": "Уругвай"
-  },
-  {
-    "global_id": 62838397,
-    "system_object_id": "360",
-    "CODE": "360",
-    "STRCODE": "IDR",
-    "NAME": "Рупия",
-    "COUNTRY": "Индонезия"
-  },
-  {
-    "global_id": 62838394,
-    "system_object_id": "348",
-    "CODE": "348",
-    "STRCODE": "HUF",
-    "NAME": "Форинт",
-    "COUNTRY": "Венгрия"
-  },
-  {
-    "global_id": 62838395,
-    "system_object_id": "352",
-    "CODE": "352",
-    "STRCODE": "ISK",
-    "NAME": "Исландская крона",
-    "COUNTRY": "Исландия"
-  },
-  {
-    "global_id": 62838391,
-    "system_object_id": "332",
-    "CODE": "332",
-    "STRCODE": "HTG",
-    "NAME": "Гурд",
-    "COUNTRY": "Гаити"
-  },
-  {
-    "global_id": 62838393,
-    "system_object_id": "344",
-    "CODE": "344",
-    "STRCODE": "HKD",
-    "NAME": "Гонконгский доллар",
-    "COUNTRY": "Гонконг"
-  },
-  {
-    "global_id": 62838389,
-    "system_object_id": "324",
-    "CODE": "324",
-    "STRCODE": "GNF",
-    "NAME": "Гвинейский франк",
-    "COUNTRY": "Гвинея"
-  },
-  {
-    "global_id": 62838390,
-    "system_object_id": "328",
-    "CODE": "328",
-    "STRCODE": "GYD",
-    "NAME": "Гайанский доллар",
-    "COUNTRY": "Гайана"
-  },
-  {
-    "global_id": 62838396,
-    "system_object_id": "356",
-    "CODE": "356",
-    "STRCODE": "INR",
-    "NAME": "Индийская рупия",
-    "COUNTRY": "Бутан; Индия"
-  },
-  {
-    "global_id": 62838392,
-    "system_object_id": "340",
-    "CODE": "340",
-    "STRCODE": "HNL",
-    "NAME": "Лемпира",
-    "COUNTRY": "Гондурас"
-  },
-  {
-    "global_id": 62838398,
-    "system_object_id": "364",
-    "CODE": "364",
-    "STRCODE": "IRR",
-    "NAME": "Иранский риал",
-    "COUNTRY": "Иран (Исламская Республика)"
-  },
-  {
-    "global_id": 63061349,
-    "system_object_id": "946",
-    "CODE": "946",
-    "STRCODE": "RON",
-    "NAME": "Румынский лей",
-    "COUNTRY": "Румыния"
-  },
-  {
-    "global_id": 63061350,
-    "system_object_id": "960",
-    "CODE": "960",
-    "STRCODE": "XDR",
-    "NAME": "СДР (специальные права заимствования)",
-    "COUNTRY": "Международный валютный фонд (МВФ)"
-  }
+[{
+        "name": "Российский рубль",
+        "code": "RUB",
+        "digitalCode": "643"
+    },
+    {
+        "name": "Евро",
+        "code": "EUR",
+        "digitalCode": "978"
+    },
+    {
+        "name": "Доллар США",
+        "code": "USD",
+        "digitalCode": "840"
+    },
+    {
+        "name": "Лек",
+        "code": "ALL",
+        "digitalCode": "008"
+    },
+    {
+        "name": "Алжирский динар",
+        "code": "DZD",
+        "digitalCode": "012"
+    },
+    {
+        "name": "Аргентинское песо",
+        "code": "ARS",
+        "digitalCode": "032"
+    },
+    {
+        "name": "Австралийский доллар",
+        "code": "AUD",
+        "digitalCode": "036"
+    },
+    {
+        "name": "Багамский доллар",
+        "code": "BSD",
+        "digitalCode": "044"
+    },
+    {
+        "name": "Бахрейнский динар",
+        "code": "BHD",
+        "digitalCode": "048"
+    },
+    {
+        "name": "Така",
+        "code": "BDT",
+        "digitalCode": "050"
+    },
+    {
+        "name": "Армянский драм",
+        "code": "AMD",
+        "digitalCode": "051"
+    },
+    {
+        "name": "Барбадосский доллар",
+        "code": "BBD",
+        "digitalCode": "052"
+    },
+    {
+        "name": "Бермудский доллар",
+        "code": "BMD",
+        "digitalCode": "060"
+    },
+    {
+        "name": "Нгултрум",
+        "code": "BTN",
+        "digitalCode": "064"
+    },
+    {
+        "name": "Боливиано",
+        "code": "BOB",
+        "digitalCode": "068"
+    },
+    {
+        "name": "Пула",
+        "code": "BWP",
+        "digitalCode": "072"
+    },
+    {
+        "name": "Белизский доллар",
+        "code": "BZD",
+        "digitalCode": "084"
+    },
+    {
+        "name": "Доллар Соломоновых Островов",
+        "code": "SBD",
+        "digitalCode": "090"
+    },
+    {
+        "name": "Брунейский доллар",
+        "code": "BND",
+        "digitalCode": "096"
+    },
+    {
+        "name": "Кьят",
+        "code": "MMK",
+        "digitalCode": "104"
+    },
+    {
+        "name": "Бурундийский франк",
+        "code": "BIF",
+        "digitalCode": "108"
+    },
+    {
+        "name": "Риель",
+        "code": "KHR",
+        "digitalCode": "116"
+    },
+    {
+        "name": "Канадский доллар",
+        "code": "CAD",
+        "digitalCode": "124"
+    },
+    {
+        "name": "Эскудо Кабо-Верде",
+        "code": "CVE",
+        "digitalCode": "132"
+    },
+    {
+        "name": "Доллар Островов Кайман",
+        "code": "KYD",
+        "digitalCode": "136"
+    },
+    {
+        "name": "Шри-Ланкийская рупия",
+        "code": "LKR",
+        "digitalCode": "144"
+    },
+    {
+        "name": "Чилийское песо",
+        "code": "CLР",
+        "digitalCode": "152"
+    },
+    {
+        "name": "Юань",
+        "code": "CNY",
+        "digitalCode": "156"
+    },
+    {
+        "name": "Колумбийское песо",
+        "code": "COP",
+        "digitalCode": "170"
+    },
+    {
+        "name": "Франк Комор",
+        "code": "KMF",
+        "digitalCode": "174"
+    },
+    {
+        "name": "Костариканский колон",
+        "code": "CRC",
+        "digitalCode": "188"
+    },
+    {
+        "name": "Хорватская куна",
+        "code": "HRK",
+        "digitalCode": "191"
+    },
+    {
+        "name": "Кубинское песо",
+        "code": "CUP",
+        "digitalCode": "192"
+    },
+    {
+        "name": "Чешская крона",
+        "code": "CZK",
+        "digitalCode": "203"
+    },
+    {
+        "name": "Датская крона",
+        "code": "DKK",
+        "digitalCode": "208"
+    },
+    {
+        "name": "Доминиканское песо",
+        "code": "DOP",
+        "digitalCode": "214"
+    },
+    {
+        "name": "Сальвадорский колон",
+        "code": "SVC",
+        "digitalCode": "222"
+    },
+    {
+        "name": "Эфиопский быр",
+        "code": "ETB",
+        "digitalCode": "230"
+    },
+    {
+        "name": "Накфа",
+        "code": "ERN",
+        "digitalCode": "232"
+    },
+    {
+        "name": "Крона",
+        "code": "EEK",
+        "digitalCode": "233"
+    },
+    {
+        "name": "Фунт Фолклендских островов",
+        "code": "FKP",
+        "digitalCode": "238"
+    },
+    {
+        "name": "Доллар Фиджи",
+        "code": "FJD",
+        "digitalCode": "242"
+    },
+    {
+        "name": "Франк Джибути",
+        "code": "DJF",
+        "digitalCode": "262"
+    },
+    {
+        "name": "Даласи",
+        "code": "GMD",
+        "digitalCode": "270"
+    },
+    {
+        "name": "Гибралтарский фунт",
+        "code": "GIP",
+        "digitalCode": "292"
+    },
+    {
+        "name": "Кетсаль",
+        "code": "GTQ",
+        "digitalCode": "320"
+    },
+    {
+        "name": "Гвинейский франк",
+        "code": "GNF",
+        "digitalCode": "324"
+    },
+    {
+        "name": "Гайанский доллар",
+        "code": "GYD",
+        "digitalCode": "328"
+    },
+    {
+        "name": "Гурд",
+        "code": "HTG",
+        "digitalCode": "332"
+    },
+    {
+        "name": "Лемпира",
+        "code": "HNL",
+        "digitalCode": "340"
+    },
+    {
+        "name": "Гонконгский доллар",
+        "code": "HKD",
+        "digitalCode": "344"
+    },
+    {
+        "name": "Форинт",
+        "code": "HUF",
+        "digitalCode": "348"
+    },
+    {
+        "name": "Исландская крона",
+        "code": "ISK",
+        "digitalCode": "352"
+    },
+    {
+        "name": "Дирхам (ОАЭ)",
+        "code": "AED",
+        "digitalCode": "784"
+    },
+    {
+        "name": "Афгани",
+        "code": "AFN",
+        "digitalCode": "971"
+    },
+    {
+        "name": "Нидерландский антильский гульден",
+        "code": "ANG",
+        "digitalCode": "532"
+    },
+    {
+        "name": "Кванза",
+        "code": "AOA",
+        "digitalCode": "973"
+    },
+    {
+        "name": "Арубанский гульден",
+        "code": "AWG",
+        "digitalCode": "533"
+    },
+    {
+        "name": "Азербайджанский манат",
+        "code": "AZN",
+        "digitalCode": "944"
+    },
+    {
+        "name": "Конвертируемая марка",
+        "code": "BAM",
+        "digitalCode": "977"
+    },
+    {
+        "name": "Болгарский лев",
+        "code": "BGN",
+        "digitalCode": "975"
+    },
+    {
+        "name": "Бразильский реал",
+        "code": "BRL",
+        "digitalCode": "986"
+    },
+    {
+        "name": "Белорусский рубль",
+        "code": "BYR",
+        "digitalCode": "974"
+    },
+    {
+        "name": "Конголезский франк",
+        "code": "CDF",
+        "digitalCode": "976"
+    },
+    {
+        "name": "Швейцарский франк",
+        "code": "CHF",
+        "digitalCode": "756"
+    },
+    {
+        "name": "Единица реальной стоимости",
+        "code": "COU",
+        "digitalCode": "970"
+    },
+    {
+        "name": "Конвертируемое песо",
+        "code": "CUC",
+        "digitalCode": "931"
+    },
+    {
+        "name": "Фунт стерлингов",
+        "code": "GBP",
+        "digitalCode": "826"
+    },
+    {
+        "name": "Лари",
+        "code": "GEL",
+        "digitalCode": "981"
+    },
+    {
+        "name": "Ганский седи",
+        "code": "GHS",
+        "digitalCode": "936"
+    },
+    {
+        "name": "Белорусский рубль",
+        "code": "BYN",
+        "digitalCode": "933"
+    },
+    {
+        "name": "Рупия",
+        "code": "IDR",
+        "digitalCode": "360"
+    },
+    {
+        "name": "Новый израильский шекель",
+        "code": "ILS",
+        "digitalCode": "376"
+    },
+    {
+        "name": "Индийская рупия",
+        "code": "INR",
+        "digitalCode": "356"
+    },
+    {
+        "name": "Иракский динар",
+        "code": "IQD",
+        "digitalCode": "368"
+    },
+    {
+        "name": "Иранский риал",
+        "code": "IRR",
+        "digitalCode": "364"
+    },
+    {
+        "name": "Ямайский доллар",
+        "code": "JMD",
+        "digitalCode": "388"
+    },
+    {
+        "name": "Иорданский динар",
+        "code": "JOD",
+        "digitalCode": "400"
+    },
+    {
+        "name": "Иена",
+        "code": "JPY",
+        "digitalCode": "392"
+    },
+    {
+        "name": "Кенийский шиллинг",
+        "code": "KES",
+        "digitalCode": "404"
+    },
+    {
+        "name": "Сом",
+        "code": "KGS",
+        "digitalCode": "417"
+    },
+    {
+        "name": "Северокорейская вона",
+        "code": "KPW",
+        "digitalCode": "408"
+    },
+    {
+        "name": "Вона",
+        "code": "KRW",
+        "digitalCode": "410"
+    },
+    {
+        "name": "Кувейтский динар",
+        "code": "KWD",
+        "digitalCode": "414"
+    },
+    {
+        "name": "Тенге",
+        "code": "KZT",
+        "digitalCode": "398"
+    },
+    {
+        "name": "Кип",
+        "code": "LAK",
+        "digitalCode": "418"
+    },
+    {
+        "name": "Ливанский фунт",
+        "code": "LBP",
+        "digitalCode": "422"
+    },
+    {
+        "name": "Либерийский доллар",
+        "code": "LRD",
+        "digitalCode": "430"
+    },
+    {
+        "name": "Лоти",
+        "code": "LSL",
+        "digitalCode": "426"
+    },
+    {
+        "name": "Литовский лит",
+        "code": "LTL",
+        "digitalCode": "440"
+    },
+    {
+        "name": "Латвийский лат",
+        "code": "LVL",
+        "digitalCode": "428"
+    },
+    {
+        "name": "Ливийский динар",
+        "code": "LYD",
+        "digitalCode": "434"
+    },
+    {
+        "name": "Марокканский дирхам",
+        "code": "MAD",
+        "digitalCode": "504"
+    },
+    {
+        "name": "Молдавский лей",
+        "code": "MDL",
+        "digitalCode": "498"
+    },
+    {
+        "name": "Малагасийский ариари",
+        "code": "MGA",
+        "digitalCode": "969"
+    },
+    {
+        "name": "Денар",
+        "code": "MKD",
+        "digitalCode": "807"
+    },
+    {
+        "name": "Тугрик",
+        "code": "MNT",
+        "digitalCode": "496"
+    },
+    {
+        "name": "Патака",
+        "code": "MOP",
+        "digitalCode": "446"
+    },
+    {
+        "name": "Угия",
+        "code": "MRO",
+        "digitalCode": "478"
+    },
+    {
+        "name": "Маврикийская рупия",
+        "code": "MUR",
+        "digitalCode": "480"
+    },
+    {
+        "name": "Руфия",
+        "code": "MVR",
+        "digitalCode": "462"
+    },
+    {
+        "name": "Квача",
+        "code": "MWK",
+        "digitalCode": "454"
+    },
+    {
+        "name": "Мексиканское песо",
+        "code": "MXN",
+        "digitalCode": "484"
+    },
+    {
+        "name": "Малайзийский ринггит",
+        "code": "MYR",
+        "digitalCode": "458"
+    },
+    {
+        "name": "Метикал",
+        "code": "MZN",
+        "digitalCode": "943"
+    },
+    {
+        "name": "Доллар Намибии",
+        "code": "NAD",
+        "digitalCode": "516"
+    },
+    {
+        "name": "Найра",
+        "code": "NGN",
+        "digitalCode": "566"
+    },
+    {
+        "name": "Золотая кордоба",
+        "code": "NIO",
+        "digitalCode": "558"
+    },
+    {
+        "name": "Норвежская крона",
+        "code": "NOK",
+        "digitalCode": "578"
+    },
+    {
+        "name": "Непальская рупия",
+        "code": "NPR",
+        "digitalCode": "524"
+    },
+    {
+        "name": "Новозеландский доллар",
+        "code": "NZD",
+        "digitalCode": "554"
+    },
+    {
+        "name": "Оманский риал",
+        "code": "OMR",
+        "digitalCode": "512"
+    },
+    {
+        "name": "Бальбоа",
+        "code": "PAB",
+        "digitalCode": "590"
+    },
+    {
+        "name": "Новый соль",
+        "code": "PEN",
+        "digitalCode": "604"
+    },
+    {
+        "name": "Кина",
+        "code": "PGK",
+        "digitalCode": "598"
+    },
+    {
+        "name": "Пакистанская рупия",
+        "code": "PKR",
+        "digitalCode": "586"
+    },
+    {
+        "name": "Злотый",
+        "code": "PLN",
+        "digitalCode": "985"
+    },
+    {
+        "name": "Гуарани",
+        "code": "PYG",
+        "digitalCode": "600"
+    },
+    {
+        "name": "Филиппинское песо",
+        "code": "PНP",
+        "digitalCode": "608"
+    },
+    {
+        "name": "Катарский риал",
+        "code": "QAR",
+        "digitalCode": "634"
+    },
+    {
+        "name": "Новый румынский лей",
+        "code": "RON",
+        "digitalCode": "946"
+    },
+    {
+        "name": "Сербский динар",
+        "code": "RSD",
+        "digitalCode": "941"
+    },
+    {
+        "name": "Франк Руанды",
+        "code": "RWF",
+        "digitalCode": "646"
+    },
+    {
+        "name": "Саудовский риял",
+        "code": "SAR",
+        "digitalCode": "682"
+    },
+    {
+        "name": "Сейшельская рупия",
+        "code": "SCR",
+        "digitalCode": "690"
+    },
+    {
+        "name": "Суданский фунт",
+        "code": "SDG",
+        "digitalCode": "938"
+    },
+    {
+        "name": "Шведская крона",
+        "code": "SEK",
+        "digitalCode": "752"
+    },
+    {
+        "name": "Сингапурский доллар",
+        "code": "SGD",
+        "digitalCode": "702"
+    },
+    {
+        "name": "Фунт Святой Елены.",
+        "code": "SHP",
+        "digitalCode": "654"
+    },
+    {
+        "name": "Леоне",
+        "code": "SLL",
+        "digitalCode": "694"
+    },
+    {
+        "name": "Сомалийский шиллинг",
+        "code": "SOS",
+        "digitalCode": "706"
+    },
+    {
+        "name": "Суринамский доллар",
+        "code": "SRD",
+        "digitalCode": "968"
+    },
+    {
+        "name": "Добра",
+        "code": "STD",
+        "digitalCode": "678"
+    },
+    {
+        "name": "Сирийский фунт",
+        "code": "SYP",
+        "digitalCode": "760"
+    },
+    {
+        "name": "Лилангени",
+        "code": "SZL",
+        "digitalCode": "748"
+    },
+    {
+        "name": "Бат",
+        "code": "THB",
+        "digitalCode": "764"
+    },
+    {
+        "name": "Сомони",
+        "code": "TJS",
+        "digitalCode": "972"
+    },
+    {
+        "name": "Новый туркменский манат",
+        "code": "TMT",
+        "digitalCode": "934"
+    },
+    {
+        "name": "Тунисский динар",
+        "code": "TND",
+        "digitalCode": "788"
+    },
+    {
+        "name": "Паанга",
+        "code": "TOP",
+        "digitalCode": "776"
+    },
+    {
+        "name": "Турецкая лира",
+        "code": "TRY",
+        "digitalCode": "949"
+    },
+    {
+        "name": "Доллар Тринидада и Тобаго",
+        "code": "TTD",
+        "digitalCode": "780"
+    },
+    {
+        "name": "Новый тайваньский доллар",
+        "code": "TWD",
+        "digitalCode": "901"
+    },
+    {
+        "name": "Танзанийский шиллинг",
+        "code": "TZS",
+        "digitalCode": "834"
+    },
+    {
+        "name": "Гривна",
+        "code": "UAH",
+        "digitalCode": "980"
+    },
+    {
+        "name": "Угандийский шиллинг",
+        "code": "UGX",
+        "digitalCode": "800"
+    },
+    {
+        "name": "Уругвайское песо в индексированных единицах",
+        "code": "UYI",
+        "digitalCode": "940"
+    },
+    {
+        "name": "Уругвайское песо",
+        "code": "UYU",
+        "digitalCode": "858"
+    },
+    {
+        "name": "Узбекский сум",
+        "code": "UZS",
+        "digitalCode": "860"
+    },
+    {
+        "name": "Боливар",
+        "code": "VEF",
+        "digitalCode": "937"
+    },
+    {
+        "name": "Донг",
+        "code": "VND",
+        "digitalCode": "704"
+    },
+    {
+        "name": "Вату",
+        "code": "VUV",
+        "digitalCode": "548"
+    },
+    {
+        "name": "Тала",
+        "code": "WST",
+        "digitalCode": "882"
+    },
+    {
+        "name": "Франк КФА ВЕАС",
+        "code": "XAF",
+        "digitalCode": "950"
+    },
+    {
+        "name": "Восточно-карибский доллар",
+        "code": "XCD",
+        "digitalCode": "951"
+    },
+    {
+        "name": "СДР (специальные права заимствования)",
+        "code": "XDR",
+        "digitalCode": "960"
+    },
+    {
+        "name": "Франк КФА ВСЕАО",
+        "code": "XOF",
+        "digitalCode": "952"
+    },
+    {
+        "name": "Франк КФП",
+        "code": "XPF",
+        "digitalCode": "953"
+    },
+    {
+        "name": "Йеменский риал",
+        "code": "YER",
+        "digitalCode": "886"
+    },
+    {
+        "name": "Рэнд",
+        "code": "ZAR",
+        "digitalCode": "710"
+    },
+    {
+        "name": "Замбийская квача",
+        "code": "ZMW",
+        "digitalCode": "967"
+    },
+    {
+        "name": "Доллар Зимбабве",
+        "code": "ZWL",
+        "digitalCode": "932"
+    },
+    {
+        "name": "Египетский фунт",
+        "code": "EGP",
+        "digitalCode": "818"
+    },
+    {
+        "name": "Замбийская квача",
+        "code": "ZMK",
+        "digitalCode": "894"
+    }
 ]
