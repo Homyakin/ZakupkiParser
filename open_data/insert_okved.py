@@ -1,6 +1,7 @@
-import insert
+import insert_in_db
 
-table = 'okved'
-columns = ['code', 'name']
+def insert():
+    table = 'okved'
+    columns = ['code', 'name']
 
-insert.insert(table, columns, columns)
+    insert_in_db.insert(table, columns, columns)

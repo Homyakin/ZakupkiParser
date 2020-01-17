@@ -1,7 +1,9 @@
-import insert
+import insert_in_db
 
-table = 'currency'
-columns = ['code', 'digital_code', 'name']
-json_fields = ['code', 'digitalCode', 'name']
+def insert():
+    table = 'currency'
+    columns = ['code', 'digital_code', 'name']
+    json_fields = ['code', 'digitalCode', 'name']
 
-insert.insert(table, columns, json_fields)
+    insert_in_db.insert(table, columns, json_fields)
+

@@ -1,6 +1,8 @@
-import insert
+import insert_in_db
 
-table = 'okato'
-columns = ['code', 'name']
+def insert():
+    table = 'okato'
+    columns = ['code', 'name']
 
-insert.insert(table, columns, columns)
+    insert_in_db.insert(table, columns, columns)
+
