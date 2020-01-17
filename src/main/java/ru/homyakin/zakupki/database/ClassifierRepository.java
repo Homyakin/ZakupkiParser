@@ -22,6 +22,18 @@ public class ClassifierRepository {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public String getOkatoCode(String code) {
+        if (code == null) return null;
+        String sql = "SELECT code FROM okato WHERE code = ?";
+        List<String> result = jdbcTemplate.query(
+            sql, new Object[]{code},
+            (rs, rowNum) ->
+                rs.getString("name")
+        );
+        if (result.size() == 0) return null;
+        else return code;
+    }
+
     public Classifier getClassifier(OkdpProductType okdp) {
         if (okdp == null) return null;
         return getClassifier("okdp", okdp.getCode(), okdp.getName());

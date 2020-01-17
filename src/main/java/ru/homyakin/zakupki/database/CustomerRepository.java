@@ -13,9 +13,11 @@ import java.util.List;
 public class CustomerRepository {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private final JdbcTemplate jdbcTemplate;
+    private final ClassifierRepository classifierRepository;
 
-    public CustomerRepository(DataSource dataSource) {
+    public CustomerRepository(DataSource dataSource, ClassifierRepository classifierRepository) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+        this.classifierRepository = classifierRepository;
     }
 
     public void insert(CustomerMainInfoType customer) {
@@ -41,7 +43,7 @@ public class CustomerRepository {
                 RepositoryService.removeExtraSpaces(customer.getPhone()),
                 RepositoryService.removeExtraSpaces(customer.getFax()),
                 RepositoryService.removeExtraSpaces(customer.getEmail()),
-                RepositoryService.removeExtraSpaces(customer.getOkato()),
+                classifierRepository.getOkatoCode(customer.getOkato()),
                 RepositoryService.removeExtraSpaces(customer.getOkopf()),
                 RepositoryService.removeExtraSpaces(customer.getOkpo()),
                 RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),

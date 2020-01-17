@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS zakupki.plan_item;
 DROP TABLE IF EXISTS zakupki.purchase_plan;
 DROP TABLE IF EXISTS zakupki.customer;
 DROP TABLE IF EXISTS zakupki.currency;
+DROP TABLE IF EXISTS zakupki.okato;
 DROP TABLE IF EXISTS zakupki.okdp;
 DROP TABLE IF EXISTS zakupki.okei;
 DROP TABLE IF EXISTS zakupki.okopf;

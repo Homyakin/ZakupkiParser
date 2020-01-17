@@ -17,6 +17,7 @@ public class PlanItemRepository {
     private final LongTermVolumesRepository longTermVolumesRepository;
     private final PlanItemRowRepository planItemRowRepository;
     private final PurchaseCategoryRepository purchaseCategoryRepository;
+    private final ClassifierRepository classifierRepository;
     private final String INSERT_PLAN_ITEM = "INSERT INTO zakupki.plan_item (guid, purchase_plan_guid, ordinal_number," +
         "contract_subject, plan_item_customer_inn, minimum_requirements, contract_end_date," +
         "additional_info, modification_description, status_code, is_purchase_placed, changed_gws_and_dates," +
@@ -34,14 +35,18 @@ public class PlanItemRepository {
         "exchange_rate_date = ?, maximum_contract_price_rub = ?, order_pricing = ?, innovation_equivalent = ?, " +
         "purchase_category_code = ?, is_innovation = ? WHERE guid = ?";
 
-    public PlanItemRepository(DataSource dataSource,
-                              LongTermVolumesRepository longTermVolumesRepository,
-                              PlanItemRowRepository planItemRowRepository,
-                              PurchaseCategoryRepository purchaseCategoryRepository) {
+    public PlanItemRepository(
+        DataSource dataSource,
+        LongTermVolumesRepository longTermVolumesRepository,
+        PlanItemRowRepository planItemRowRepository,
+        PurchaseCategoryRepository purchaseCategoryRepository,
+        ClassifierRepository classifierRepository
+    ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.longTermVolumesRepository = longTermVolumesRepository;
         this.planItemRowRepository = planItemRowRepository;
         this.purchaseCategoryRepository = purchaseCategoryRepository;
+        this.classifierRepository = classifierRepository;
     }
 
     public void insert(PurchasePlanDataItemType purchasePlanItem, Boolean isSmb, String planGuid) {
@@ -231,7 +236,7 @@ public class PlanItemRepository {
                 purchasePlanItem.getGuid(),
                 noticeInfoGuid,
                 lotGuid,
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getOkato()),
+                classifierRepository.getOkatoCode(purchasePlanItem.getOkato()),
                 RepositoryService.removeExtraSpaces(purchasePlanItem.getRegion()),
                 RepositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
                 purchasePlanItem.getPurchaseMethodCode(),

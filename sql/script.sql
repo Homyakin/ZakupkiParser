@@ -195,6 +195,12 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`okei` (
   PRIMARY KEY (`code`)
 );
 
+CREATE TABLE IF NOT EXISTS `zakupki`.`okato` ( 
+  `code` varchar(11) not null,
+  `name` varchar(500) not null,
+  PRIMARY KEY (`code`)
+);
+
 CREATE TABLE IF NOT EXISTS `zakupki`.`plan_status` ( 
   `code` varchar(1) not null,
   `name` varchar(35) not null,
@@ -247,8 +253,10 @@ ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_status_code_
 ALTER TABLE `zakupki`.`purchase_plan` ADD CONSTRAINT `purchase_plan_customer_inn_foreign` FOREIGN KEY (`customer_inn`) REFERENCES `zakupki`.`customer` (`inn`);
 
 ALTER TABLE `zakupki`.`customer` ADD CONSTRAINT `organization_okopf_code_foreign` FOREIGN KEY (`okopf_code`) REFERENCES `zakupki`.`okopf` (`code`);
+ALTER TABLE `zakupki`.`customer` ADD CONSTRAINT `customer_okato_foreign` FOREIGN KEY (`okato`) REFERENCES `zakupki`.`okato` (`code`);
 
 ALTER TABLE `zakupki`.`purchase_plan_item` ADD CONSTRAINT `purchase_plan_item_guid_foreign` FOREIGN KEY (`guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
+ALTER TABLE `zakupki`.`purchase_plan_item` ADD CONSTRAINT `purchase_plan_item_okato_foreign` FOREIGN KEY (`okato`) REFERENCES `zakupki`.`okato` (`code`);
 
 ALTER TABLE `zakupki`.`long_term_volumes` ADD CONSTRAINT `long_term_volumes_currency_code_foreign` FOREIGN KEY (`currency_code`) REFERENCES `zakupki`.`currency` (`code`);
 ALTER TABLE `zakupki`.`long_term_volumes` ADD CONSTRAINT `long_term_volumes_purchase_plan_item_guid_foreign` FOREIGN KEY (`plan_item_guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
@@ -269,6 +277,7 @@ ALTER TABLE `zakupki`.`purchase_plan_item_row` ADD CONSTRAINT `purchase_plan_ite
 ALTER TABLE `zakupki`.`purchase_plan_item_row` ADD CONSTRAINT `purchase_plan_item_row_okved2_foreign` FOREIGN KEY (`okved2_code`) REFERENCES `zakupki`.`okved2` (`code`);
 ALTER TABLE `zakupki`.`purchase_plan_item_row` ADD CONSTRAINT `purchase_plan_item_row_okei_code_foreign` FOREIGN KEY (`okei_code`) REFERENCES `zakupki`.`okei` (`code`);
 ALTER TABLE `zakupki`.`purchase_plan_item_row` ADD CONSTRAINT `purchase_plan_item_row_plan_item_guid_foreign` FOREIGN KEY (`plan_item_guid`) REFERENCES `zakupki`.`plan_item` (`guid`);
+ALTER TABLE `zakupki`.`purchase_plan_item_row` ADD CONSTRAINT `purchase_plan_item_row_okato_foreign` FOREIGN KEY (`okato`) REFERENCES `zakupki`.`okato` (`code`);
 
 ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_purchase_plan_guid_foreign` FOREIGN KEY (`purchase_plan_guid`) REFERENCES `zakupki`.`purchase_plan` (`guid`);
 ALTER TABLE `zakupki`.`plan_item` ADD CONSTRAINT `plan_item_plan_item_customer_inn_foreign` FOREIGN KEY (`plan_item_customer_inn`) REFERENCES `zakupki`.`customer` (`inn`);
