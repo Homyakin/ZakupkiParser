@@ -1,4 +1,5 @@
 import insert_currency
+import insert_okato
 import insert_okdp
 import insert_okei
 import insert_okopf
