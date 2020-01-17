@@ -23,7 +23,10 @@ public class PurchaseCategoryRepository {
             new Object[]{code},
             (rs, rowNum) -> rs.getLong("code")
         );
-        if (result.size() == 0) return 0L;
+        if (result.size() == 0) {
+            logger.warn("purchase category: invalid code: {}", code);
+            return 0L;
+        }
         else return code;
     }
 

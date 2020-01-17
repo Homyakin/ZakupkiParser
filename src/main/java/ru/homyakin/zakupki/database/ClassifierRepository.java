@@ -30,38 +30,16 @@ public class ClassifierRepository {
             (rs, rowNum) ->
                 rs.getString("name")
         );
-        if (result.size() == 0) return null;
+        if (result.size() == 0) {
+            logger.warn("okato: invalid code: {}", code);
+            return null;
+        }
         else return code;
     }
 
-    public Classifier getClassifier(OkdpProductType okdp) {
-        if (okdp == null) return null;
-        return getClassifier("okdp", okdp.getCode(), okdp.getName());
-    }
-
-    public Classifier getClassifier(Okpd2ProductType okpd2) {
-        if (okpd2 == null) return null;
-        return getClassifier("okpd2", okpd2.getCode(), okpd2.getName());
-    }
-
-    public Classifier getClassifier(OkvedProductType okved) {
-        if (okved == null) return null;
-        return getClassifier("okved", okved.getCode(), okved.getName());
-    }
-
-    public Classifier getClassifier(Okved2ProductType okved2) {
-        if (okved2 == null) return null;
-        return getClassifier("okved2", okved2.getCode(), okved2.getName());
-    }
-
-    public Classifier getClassifier(OkeiProductType okei) {
-        if (okei == null) return null;
-        return getClassifier("okei", okei.getCode(), okei.getName());
-    }
-
-    private Classifier getClassifier(String table, String code, String name) {
-        code = RepositoryService.removeExtraSpaces(code.toLowerCase());
-        name = RepositoryService.removeExtraSpaces(name.toLowerCase());
+    public Classifier getClassifier(String table, String code, String name) {
+        code = code.toLowerCase();
+        name = name.toLowerCase();
         String selectByCode = "SELECT code, name FROM " + table + " WHERE code = ?";
         String selectByName = "SELECT code, name FROM " + table + " WHERE name = ?";
         List<Classifier> resultCode = jdbcTemplate.query(selectByCode,

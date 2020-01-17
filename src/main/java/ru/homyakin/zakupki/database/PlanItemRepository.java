@@ -16,8 +16,7 @@ public class PlanItemRepository {
     private final JdbcTemplate jdbcTemplate;
     private final LongTermVolumesRepository longTermVolumesRepository;
     private final PlanItemRowRepository planItemRowRepository;
-    private final PurchaseCategoryRepository purchaseCategoryRepository;
-    private final ClassifierRepository classifierRepository;
+    private final RepositoryService repositoryService;
     private final String INSERT_PLAN_ITEM = "INSERT INTO zakupki.plan_item (guid, purchase_plan_guid, ordinal_number," +
         "contract_subject, plan_item_customer_inn, minimum_requirements, contract_end_date," +
         "additional_info, modification_description, status_code, is_purchase_placed, changed_gws_and_dates," +
@@ -39,14 +38,12 @@ public class PlanItemRepository {
         DataSource dataSource,
         LongTermVolumesRepository longTermVolumesRepository,
         PlanItemRowRepository planItemRowRepository,
-        PurchaseCategoryRepository purchaseCategoryRepository,
-        ClassifierRepository classifierRepository
+        RepositoryService repositoryService
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.longTermVolumesRepository = longTermVolumesRepository;
         this.planItemRowRepository = planItemRowRepository;
-        this.purchaseCategoryRepository = purchaseCategoryRepository;
-        this.classifierRepository = classifierRepository;
+        this.repositoryService = repositoryService;
     }
 
     public void insert(PurchasePlanDataItemType purchasePlanItem, Boolean isSmb, String planGuid) {
@@ -78,34 +75,34 @@ public class PlanItemRepository {
                 purchasePlanItem.getGuid(),
                 planGuid,
                 purchasePlanItem.getOrdinalNumber(),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getContractSubject()),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getPlanItemCustomer().getMainInfo().getInn()), //required field
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getMinimumRequirements()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getContractEndDate()),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getAdditionalInfo()),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getModificationDescription()),
-                RepositoryService.removeExtraSpaces(getPlanItemStatus(purchasePlanItem.getStatus())),
-                RepositoryService.convertBoolean(purchasePlanItem.isIsPurchasePlaced()),
-                RepositoryService.convertBoolean(purchasePlanItem.isChangedGWSAndDates()),
-                RepositoryService.convertBoolean(purchasePlanItem.isChangedNMSKMoreTenPercent()),
-                RepositoryService.convertBoolean(purchasePlanItem.isOtherChanges()),
-                RepositoryService.removeExtraSpaces(getPlanItemCheckResult(purchasePlanItem.getCheckResult())),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getErrorMessages()),
-                RepositoryService.removeExtraSpaces(getCancellationReason(purchasePlanItem.getCancellationReason())),
-                RepositoryService.convertBoolean(purchasePlanItem.isLongTerm()),
-                RepositoryService.convertBoolean(purchasePlanItem.isShared()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getContractSubject()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getPlanItemCustomer().getMainInfo().getInn()), //required field
+                repositoryService.removeExtraSpaces(purchasePlanItem.getMinimumRequirements()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getContractEndDate()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getAdditionalInfo()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getModificationDescription()),
+                repositoryService.removeExtraSpaces(getPlanItemStatus(purchasePlanItem.getStatus())),
+                repositoryService.convertBoolean(purchasePlanItem.isIsPurchasePlaced()),
+                repositoryService.convertBoolean(purchasePlanItem.isChangedGWSAndDates()),
+                repositoryService.convertBoolean(purchasePlanItem.isChangedNMSKMoreTenPercent()),
+                repositoryService.convertBoolean(purchasePlanItem.isOtherChanges()),
+                repositoryService.removeExtraSpaces(getPlanItemCheckResult(purchasePlanItem.getCheckResult())),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getErrorMessages()),
+                repositoryService.removeExtraSpaces(getCancellationReason(purchasePlanItem.getCancellationReason())),
+                repositoryService.convertBoolean(purchasePlanItem.isLongTerm()),
+                repositoryService.convertBoolean(purchasePlanItem.isShared()),
                 getInitialPositionGuid(purchasePlanItem.getInitialPositionData()),
                 getInitialPlanGuid(purchasePlanItem.getInitialPositionData()),
                 purchasePlanItem.getMaximumContractPrice(),
-                RepositoryService.getCurrencyCode(purchasePlanItem.getCurrency()),
+                repositoryService.getCurrencyCode(purchasePlanItem.getCurrency()),
                 purchasePlanItem.getExchangeRate(),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getExchangeRateDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getExchangeRateDate()),
                 purchasePlanItem.getMaximumContractPriceRub(),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getOrderPricing()),
-                RepositoryService.convertBoolean(purchasePlanItem.isInnovationEquivalent()),
-                purchaseCategoryRepository.getCategoryCode(purchasePlanItem.getPurchaseCategory()),
-                RepositoryService.convertBoolean(false),
-                RepositoryService.convertBoolean(false)
+                repositoryService.removeExtraSpaces(purchasePlanItem.getOrderPricing()),
+                repositoryService.convertBoolean(purchasePlanItem.isInnovationEquivalent()),
+                repositoryService.getCategoryCode(purchasePlanItem.getPurchaseCategory()),
+                repositoryService.convertBoolean(false),
+                repositoryService.convertBoolean(false)
             );
             insertToPurchasePlanItem(purchasePlanItem);
             if (purchasePlanItem.getLongTermVolumes() != null) {
@@ -156,34 +153,34 @@ public class PlanItemRepository {
                 innovationPlanItem.getGuid(),
                 planGuid,
                 innovationPlanItem.getOrdinalNumber(),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getContractSubject()),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getPlanItemCustomer().getMainInfo().getInn()), //required field
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getMinimumRequirements()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getContractEndDate()),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getAdditionalInfo()),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getModificationDescription()),
-                RepositoryService.removeExtraSpaces(getPlanItemStatus(innovationPlanItem.getStatus())),
-                RepositoryService.convertBoolean(innovationPlanItem.isIsPurchasePlaced()),
-                RepositoryService.convertBoolean(innovationPlanItem.isChangedGWSAndDates()),
-                RepositoryService.convertBoolean(innovationPlanItem.isChangedNMSKMoreTenPercent()),
-                RepositoryService.convertBoolean(innovationPlanItem.isOtherChanges()),
-                RepositoryService.removeExtraSpaces(getPlanItemCheckResult(innovationPlanItem.getCheckResult())),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getErrorMessages()),
-                RepositoryService.removeExtraSpaces(getCancellationReason(innovationPlanItem.getCancellationReason())),
-                RepositoryService.convertBoolean(innovationPlanItem.isLongTerm()),
-                RepositoryService.convertBoolean(innovationPlanItem.isShared()),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getContractSubject()),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getPlanItemCustomer().getMainInfo().getInn()), //required field
+                repositoryService.removeExtraSpaces(innovationPlanItem.getMinimumRequirements()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getContractEndDate()),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getAdditionalInfo()),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getModificationDescription()),
+                repositoryService.removeExtraSpaces(getPlanItemStatus(innovationPlanItem.getStatus())),
+                repositoryService.convertBoolean(innovationPlanItem.isIsPurchasePlaced()),
+                repositoryService.convertBoolean(innovationPlanItem.isChangedGWSAndDates()),
+                repositoryService.convertBoolean(innovationPlanItem.isChangedNMSKMoreTenPercent()),
+                repositoryService.convertBoolean(innovationPlanItem.isOtherChanges()),
+                repositoryService.removeExtraSpaces(getPlanItemCheckResult(innovationPlanItem.getCheckResult())),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getErrorMessages()),
+                repositoryService.removeExtraSpaces(getCancellationReason(innovationPlanItem.getCancellationReason())),
+                repositoryService.convertBoolean(innovationPlanItem.isLongTerm()),
+                repositoryService.convertBoolean(innovationPlanItem.isShared()),
                 getInitialPositionGuid(innovationPlanItem.getInitialPositionData()),
                 getInitialPlanGuid(innovationPlanItem.getInitialPositionData()),
                 innovationPlanItem.getMaximumContractPrice(),
-                RepositoryService.getCurrencyCode(innovationPlanItem.getCurrency()),
+                repositoryService.getCurrencyCode(innovationPlanItem.getCurrency()),
                 innovationPlanItem.getExchangeRate(),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getExchangeRateDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getExchangeRateDate()),
                 innovationPlanItem.getMaximumContractPriceRub(),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getOrderPricing()),
-                RepositoryService.convertBoolean(innovationPlanItem.isInnovationEquivalent()),
-                purchaseCategoryRepository.getCategoryCode(innovationPlanItem.getPurchaseCategory()),
-                RepositoryService.convertBoolean(false),
-                RepositoryService.convertBoolean(true)
+                repositoryService.removeExtraSpaces(innovationPlanItem.getOrderPricing()),
+                repositoryService.convertBoolean(innovationPlanItem.isInnovationEquivalent()),
+                repositoryService.getCategoryCode(innovationPlanItem.getPurchaseCategory()),
+                repositoryService.convertBoolean(false),
+                repositoryService.convertBoolean(true)
             );
             insertToInnovationPlanItem(innovationPlanItem);
             if (innovationPlanItem.getLongTermVolumes() != null) {
@@ -211,7 +208,7 @@ public class PlanItemRepository {
         try {
             jdbcTemplate.update(sql,
                 innovationPlanItem.getGuid(),
-                RepositoryService.convertBoolean(innovationPlanItem.isIgnoredPurchase()),
+                repositoryService.convertBoolean(innovationPlanItem.isIgnoredPurchase()),
                 innovationPlanItem.getPurchasePeriodYear()
             );
         } catch (Exception e) {
@@ -236,14 +233,14 @@ public class PlanItemRepository {
                 purchasePlanItem.getGuid(),
                 noticeInfoGuid,
                 lotGuid,
-                classifierRepository.getOkatoCode(purchasePlanItem.getOkato()),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getRegion()),
-                RepositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
+                repositoryService.getOkatoCode(purchasePlanItem.getOkato()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getRegion()),
+                repositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
                 purchasePlanItem.getPurchaseMethodCode(),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getPurchaseMethodName()),
-                RepositoryService.convertBoolean(purchasePlanItem.isIsElectronic()),
-                RepositoryService.convertBoolean(purchasePlanItem.isPlannedAfterSecondYear()),
-                RepositoryService.convertBoolean(purchasePlanItem.isIsPurchaseIgnored()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getPurchaseMethodName()),
+                repositoryService.convertBoolean(purchasePlanItem.isIsElectronic()),
+                repositoryService.convertBoolean(purchasePlanItem.isPlannedAfterSecondYear()),
+                repositoryService.convertBoolean(purchasePlanItem.isIsPurchaseIgnored()),
                 purchasePlanItem.getPurchasePeriodYear()
             );
         } catch (Exception e) {
@@ -255,33 +252,33 @@ public class PlanItemRepository {
         try {
             jdbcTemplate.update(UPDATE,
                 purchasePlanItem.getOrdinalNumber(),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getContractSubject()),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getMinimumRequirements()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getContractEndDate()),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getAdditionalInfo()),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getModificationDescription()),
-                RepositoryService.removeExtraSpaces(getPlanItemStatus(purchasePlanItem.getStatus())),
-                RepositoryService.convertBoolean(purchasePlanItem.isIsPurchasePlaced()),
-                RepositoryService.convertBoolean(purchasePlanItem.isChangedGWSAndDates()),
-                RepositoryService.convertBoolean(purchasePlanItem.isChangedNMSKMoreTenPercent()),
-                RepositoryService.convertBoolean(purchasePlanItem.isOtherChanges()),
-                RepositoryService.removeExtraSpaces(getPlanItemCheckResult(purchasePlanItem.getCheckResult())),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getErrorMessages()),
-                RepositoryService.removeExtraSpaces(getCancellationReason(purchasePlanItem.getCancellationReason())),
-                RepositoryService.convertBoolean(purchasePlanItem.isLongTerm()),
-                RepositoryService.convertBoolean(purchasePlanItem.isShared()),
-                RepositoryService.removeExtraSpaces(getInitialPositionGuid(purchasePlanItem.getInitialPositionData())),
-                RepositoryService.removeExtraSpaces(getInitialPlanGuid(purchasePlanItem.getInitialPositionData())),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getContractSubject()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getMinimumRequirements()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getContractEndDate()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getAdditionalInfo()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getModificationDescription()),
+                repositoryService.removeExtraSpaces(getPlanItemStatus(purchasePlanItem.getStatus())),
+                repositoryService.convertBoolean(purchasePlanItem.isIsPurchasePlaced()),
+                repositoryService.convertBoolean(purchasePlanItem.isChangedGWSAndDates()),
+                repositoryService.convertBoolean(purchasePlanItem.isChangedNMSKMoreTenPercent()),
+                repositoryService.convertBoolean(purchasePlanItem.isOtherChanges()),
+                repositoryService.removeExtraSpaces(getPlanItemCheckResult(purchasePlanItem.getCheckResult())),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getErrorMessages()),
+                repositoryService.removeExtraSpaces(getCancellationReason(purchasePlanItem.getCancellationReason())),
+                repositoryService.convertBoolean(purchasePlanItem.isLongTerm()),
+                repositoryService.convertBoolean(purchasePlanItem.isShared()),
+                repositoryService.removeExtraSpaces(getInitialPositionGuid(purchasePlanItem.getInitialPositionData())),
+                repositoryService.removeExtraSpaces(getInitialPlanGuid(purchasePlanItem.getInitialPositionData())),
                 purchasePlanItem.getMaximumContractPrice(),
-                RepositoryService.getCurrencyCode(purchasePlanItem.getCurrency()),
+                repositoryService.getCurrencyCode(purchasePlanItem.getCurrency()),
                 purchasePlanItem.getExchangeRate(),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getExchangeRateDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanItem.getExchangeRateDate()),
                 purchasePlanItem.getMaximumContractPriceRub(),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getOrderPricing()),
-                RepositoryService.convertBoolean(purchasePlanItem.isInnovationEquivalent()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getOrderPricing()),
+                repositoryService.convertBoolean(purchasePlanItem.isInnovationEquivalent()),
                 purchasePlanItem.getPurchaseCategory(),
-                RepositoryService.convertBoolean(false),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getGuid())
+                repositoryService.convertBoolean(false),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getGuid())
             );
             updatePurchasePlanItem(purchasePlanItem);
         } catch (Exception e) {
@@ -293,33 +290,33 @@ public class PlanItemRepository {
         try {
             jdbcTemplate.update(UPDATE,
                 innovationPlanItem.getOrdinalNumber(),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getContractSubject()),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getMinimumRequirements()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getContractEndDate()),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getAdditionalInfo()),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getModificationDescription()),
-                RepositoryService.removeExtraSpaces(getPlanItemStatus(innovationPlanItem.getStatus())),
-                RepositoryService.convertBoolean(innovationPlanItem.isIsPurchasePlaced()),
-                RepositoryService.convertBoolean(innovationPlanItem.isChangedGWSAndDates()),
-                RepositoryService.convertBoolean(innovationPlanItem.isChangedNMSKMoreTenPercent()),
-                RepositoryService.convertBoolean(innovationPlanItem.isOtherChanges()),
-                RepositoryService.removeExtraSpaces(getPlanItemCheckResult(innovationPlanItem.getCheckResult())),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getErrorMessages()),
-                RepositoryService.removeExtraSpaces(getCancellationReason(innovationPlanItem.getCancellationReason())),
-                RepositoryService.convertBoolean(innovationPlanItem.isLongTerm()),
-                RepositoryService.convertBoolean(innovationPlanItem.isShared()),
-                RepositoryService.removeExtraSpaces(getInitialPositionGuid(innovationPlanItem.getInitialPositionData())),
-                RepositoryService.removeExtraSpaces(getInitialPlanGuid(innovationPlanItem.getInitialPositionData())),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getContractSubject()),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getMinimumRequirements()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getContractEndDate()),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getAdditionalInfo()),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getModificationDescription()),
+                repositoryService.removeExtraSpaces(getPlanItemStatus(innovationPlanItem.getStatus())),
+                repositoryService.convertBoolean(innovationPlanItem.isIsPurchasePlaced()),
+                repositoryService.convertBoolean(innovationPlanItem.isChangedGWSAndDates()),
+                repositoryService.convertBoolean(innovationPlanItem.isChangedNMSKMoreTenPercent()),
+                repositoryService.convertBoolean(innovationPlanItem.isOtherChanges()),
+                repositoryService.removeExtraSpaces(getPlanItemCheckResult(innovationPlanItem.getCheckResult())),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getErrorMessages()),
+                repositoryService.removeExtraSpaces(getCancellationReason(innovationPlanItem.getCancellationReason())),
+                repositoryService.convertBoolean(innovationPlanItem.isLongTerm()),
+                repositoryService.convertBoolean(innovationPlanItem.isShared()),
+                repositoryService.removeExtraSpaces(getInitialPositionGuid(innovationPlanItem.getInitialPositionData())),
+                repositoryService.removeExtraSpaces(getInitialPlanGuid(innovationPlanItem.getInitialPositionData())),
                 innovationPlanItem.getMaximumContractPrice(),
-                RepositoryService.getCurrencyCode(innovationPlanItem.getCurrency()),
+                repositoryService.getCurrencyCode(innovationPlanItem.getCurrency()),
                 innovationPlanItem.getExchangeRate(),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getExchangeRateDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(innovationPlanItem.getExchangeRateDate()),
                 innovationPlanItem.getMaximumContractPriceRub(),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getOrderPricing()),
-                RepositoryService.convertBoolean(innovationPlanItem.isInnovationEquivalent()),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getOrderPricing()),
+                repositoryService.convertBoolean(innovationPlanItem.isInnovationEquivalent()),
                 innovationPlanItem.getPurchaseCategory(),
-                RepositoryService.convertBoolean(false),
-                RepositoryService.removeExtraSpaces(innovationPlanItem.getGuid())
+                repositoryService.convertBoolean(false),
+                repositoryService.removeExtraSpaces(innovationPlanItem.getGuid())
             );
             updateInnovationPlanItem(innovationPlanItem);
         } catch (Exception e) {
@@ -331,7 +328,7 @@ public class PlanItemRepository {
         String sql = "UPDATE innovation_plan_item SET ignored_purchase = ?, purchase_period_year = ? WHERE guid = ?";
         try {
             jdbcTemplate.update(sql,
-                RepositoryService.convertBoolean(innovationPlanItem.isIgnoredPurchase()),
+                repositoryService.convertBoolean(innovationPlanItem.isIgnoredPurchase()),
                 innovationPlanItem.getPurchasePeriodYear(),
                 innovationPlanItem.getGuid()
             );
@@ -354,14 +351,14 @@ public class PlanItemRepository {
             jdbcTemplate.update(sql,
                 noticeInfoGuid,
                 lotGuid,
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getOkato()),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getRegion()),
-                RepositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getOkato()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getRegion()),
+                repositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
                 purchasePlanItem.getPurchaseMethodCode(),
-                RepositoryService.removeExtraSpaces(purchasePlanItem.getPurchaseMethodName()),
-                RepositoryService.convertBoolean(purchasePlanItem.isIsElectronic()),
-                RepositoryService.convertBoolean(purchasePlanItem.isPlannedAfterSecondYear()),
-                RepositoryService.convertBoolean(purchasePlanItem.isIsPurchaseIgnored()),
+                repositoryService.removeExtraSpaces(purchasePlanItem.getPurchaseMethodName()),
+                repositoryService.convertBoolean(purchasePlanItem.isIsElectronic()),
+                repositoryService.convertBoolean(purchasePlanItem.isPlannedAfterSecondYear()),
+                repositoryService.convertBoolean(purchasePlanItem.isIsPurchaseIgnored()),
                 purchasePlanItem.getPurchasePeriodYear(),
                 purchasePlanItem.getGuid()
             );
@@ -373,7 +370,7 @@ public class PlanItemRepository {
     private void updateSmb(String guid, Boolean isSmb) {
         try {
             String sql = "UPDATE zakupki.plan_item SET is_smb = ? WHERE guid = ? ";
-            jdbcTemplate.update(sql, RepositoryService.convertBoolean(isSmb), guid);
+            jdbcTemplate.update(sql, repositoryService.convertBoolean(isSmb), guid);
         } catch (Exception e) {
             logger.error("Eternal error", e);
         }

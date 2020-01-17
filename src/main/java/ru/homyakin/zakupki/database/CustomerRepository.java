@@ -13,11 +13,11 @@ import java.util.List;
 public class CustomerRepository {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final ClassifierRepository classifierRepository;
+    private final RepositoryService repositoryService;
 
-    public CustomerRepository(DataSource dataSource, ClassifierRepository classifierRepository) {
+    public CustomerRepository(DataSource dataSource, RepositoryService repositoryService) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.classifierRepository = classifierRepository;
+        this.repositoryService = repositoryService;
     }
 
     public void insert(CustomerMainInfoType customer) {
@@ -32,26 +32,26 @@ public class CustomerRepository {
             String timeZoneName = customer.getTimeZone() != null ? customer.getTimeZone().getName() : null;
             jdbcTemplate.update(
                 sql,
-                RepositoryService.removeExtraSpaces(customer.getInn()),
-                RepositoryService.removeExtraSpaces(customer.getFullName()),
-                RepositoryService.removeExtraSpaces(customer.getShortName()),
-                RepositoryService.removeExtraSpaces(customer.getIko()),
-                RepositoryService.removeExtraSpaces(customer.getKpp()),
-                RepositoryService.removeExtraSpaces(customer.getOgrn()),
-                RepositoryService.removeExtraSpaces(customer.getLegalAddress()),
-                RepositoryService.removeExtraSpaces(customer.getPostalAddress()),
-                RepositoryService.removeExtraSpaces(customer.getPhone()),
-                RepositoryService.removeExtraSpaces(customer.getFax()),
-                RepositoryService.removeExtraSpaces(customer.getEmail()),
-                classifierRepository.getOkatoCode(customer.getOkato()),
-                RepositoryService.removeExtraSpaces(customer.getOkopf()),
-                RepositoryService.removeExtraSpaces(customer.getOkpo()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),
+                repositoryService.removeExtraSpaces(customer.getInn()),
+                repositoryService.removeExtraSpaces(customer.getFullName()),
+                repositoryService.removeExtraSpaces(customer.getShortName()),
+                repositoryService.removeExtraSpaces(customer.getIko()),
+                repositoryService.removeExtraSpaces(customer.getKpp()),
+                repositoryService.removeExtraSpaces(customer.getOgrn()),
+                repositoryService.removeExtraSpaces(customer.getLegalAddress()),
+                repositoryService.removeExtraSpaces(customer.getPostalAddress()),
+                repositoryService.removeExtraSpaces(customer.getPhone()),
+                repositoryService.removeExtraSpaces(customer.getFax()),
+                repositoryService.removeExtraSpaces(customer.getEmail()),
+                repositoryService.getOkatoCode(customer.getOkato()),
+                repositoryService.removeExtraSpaces(customer.getOkopf()),
+                repositoryService.validateOkpo(customer.getOkpo()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),
                 timeZoneOffset,
-                RepositoryService.removeExtraSpaces(timeZoneName),
-                RepositoryService.removeExtraSpaces(customer.getRegion()),
-                RepositoryService.convertBoolean(customer.isCustomerAssessedCompliance()),
-                RepositoryService.convertBoolean(customer.isCustomerMonitoredCompliance())
+                repositoryService.removeExtraSpaces(timeZoneName),
+                repositoryService.removeExtraSpaces(customer.getRegion()),
+                repositoryService.convertBoolean(customer.isCustomerAssessedCompliance()),
+                repositoryService.convertBoolean(customer.isCustomerMonitoredCompliance())
             );
         } catch (Exception e) {
             logger.error("Eternal error", e);

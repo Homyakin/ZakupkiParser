@@ -14,9 +14,11 @@ import javax.sql.DataSource;
 public class LongTermVolumesRepository {
     private static final Logger logger = LoggerFactory.getLogger(LongTermVolumesRepository.class);
     private final JdbcTemplate jdbcTemplate;
+    private final RepositoryService repositoryService;
 
-    public LongTermVolumesRepository(DataSource dataSource) {
+    public LongTermVolumesRepository(DataSource dataSource, RepositoryService repositoryService) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+        this.repositoryService =repositoryService;
     }
 
     public void insert(LongTermVolumeType longTermVolume, Boolean isSmb, String planItemGuid) {
@@ -26,13 +28,13 @@ public class LongTermVolumesRepository {
             "(?, ?, ?, ?, ?, ?, ?);";
         try {
             jdbcTemplate.update(sql,
-                RepositoryService.removeExtraSpaces(planItemGuid),
-                RepositoryService.convertBoolean(isSmb),
+                repositoryService.removeExtraSpaces(planItemGuid),
+                repositoryService.convertBoolean(isSmb),
                 longTermVolume.getVolume(),
                 longTermVolume.getVolumeRub(),
-                RepositoryService.removeExtraSpaces(RepositoryService.getCurrencyCode(longTermVolume.getCurrency())),
+                repositoryService.removeExtraSpaces(repositoryService.getCurrencyCode(longTermVolume.getCurrency())),
                 longTermVolume.getExchangeRate(),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
             );
         } catch (Exception e) {
             logger.error("Eternal error", e);
@@ -55,11 +57,11 @@ public class LongTermVolumesRepository {
             jdbcTemplate.update(sql,
                 longTermVolume.getVolume(),
                 longTermVolume.getVolumeRub(),
-                RepositoryService.removeExtraSpaces(RepositoryService.getCurrencyCode(longTermVolume.getCurrency())),
+                repositoryService.removeExtraSpaces(repositoryService.getCurrencyCode(longTermVolume.getCurrency())),
                 longTermVolume.getExchangeRate(),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate()),
-                RepositoryService.removeExtraSpaces(planItemGuid),
-                RepositoryService.convertBoolean(isSmb)
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate()),
+                repositoryService.removeExtraSpaces(planItemGuid),
+                repositoryService.convertBoolean(isSmb)
             );
             if (longTermVolume.getDetails() != null) {
                 for (LongTermVolumeDetailType i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
@@ -85,7 +87,7 @@ public class LongTermVolumesRepository {
             jdbcTemplate.update(sql,
                 guid,
                 longTermVolumeDetail.getYear(),
-                RepositoryService.convertBoolean(isSmb),
+                repositoryService.convertBoolean(isSmb),
                 longTermVolumeDetail.getSumm(),
                 longTermVolumeDetail.getSummRub()
             );
@@ -101,9 +103,9 @@ public class LongTermVolumesRepository {
             jdbcTemplate.update(sql,
                 longTermVolumeDetail.getSumm(),
                 longTermVolumeDetail.getSummRub(),
-                RepositoryService.removeExtraSpaces(guid),
+                repositoryService.removeExtraSpaces(guid),
                 longTermVolumeDetail.getYear(),
-                RepositoryService.convertBoolean(isSmb)
+                repositoryService.convertBoolean(isSmb)
             );
         } catch (Exception e) {
             logger.error("Eternal error", e);
@@ -113,7 +115,7 @@ public class LongTermVolumesRepository {
     private boolean checkLongTermVolume(String guid, Boolean isSmb) {
         String sql = "SELECT plan_item_guid FROM long_term_volumes WHERE plan_item_guid = ? and is_smb = ?";
         List<String> result = jdbcTemplate.query(sql,
-            new Object[]{guid, RepositoryService.convertBoolean(isSmb)},
+            new Object[]{guid, repositoryService.convertBoolean(isSmb)},
             (rs, rowNum) -> rs.getString("plan_item_guid")
         );
         return result.size() != 0;
@@ -123,7 +125,7 @@ public class LongTermVolumesRepository {
         String sql = "SELECT long_term_value_guid FROM long_term_volume_detail WHERE long_term_value_guid = ?" +
             " and year = ? and is_smb = ?";
         List<String> result = jdbcTemplate.query(sql,
-            new Object[]{guid, year, RepositoryService.convertBoolean(isSmb)},
+            new Object[]{guid, year, repositoryService.convertBoolean(isSmb)},
             (rs, rowNum) -> rs.getString("long_term_value_guid")
         );
         return result.size() != 0;

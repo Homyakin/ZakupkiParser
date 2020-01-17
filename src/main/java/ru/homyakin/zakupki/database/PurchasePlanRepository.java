@@ -16,14 +16,19 @@ public class PurchasePlanRepository {
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRepository customerRepository;
     private final PlanItemRepository planItemRepository;
+    private final RepositoryService repositoryService;
     private static final Logger logger = LoggerFactory.getLogger(PurchasePlanRepository.class);
 
-    public PurchasePlanRepository(DataSource dataSource,
-                                  CustomerRepository customerRepository,
-                                  PlanItemRepository planItemRepository) {
+    public PurchasePlanRepository(
+        DataSource dataSource,
+        CustomerRepository customerRepository,
+        PlanItemRepository planItemRepository,
+        RepositoryService repositoryService
+    ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.customerRepository = customerRepository;
         this.planItemRepository = planItemRepository;
+        this.repositoryService = repositoryService;
     }
 
     public void insert(PurchasePlan purchasePlan) {
@@ -50,34 +55,34 @@ public class PurchasePlanRepository {
             String planType = purchasePlanData.getPlanType() != null ? purchasePlanData.getPlanType().value() : null;
             jdbcTemplate.update(sql,
                 purchasePlanData.getGuid(),
-                RepositoryService.removeExtraSpaces(customerInn),
-                RepositoryService.removeExtraSpaces(purchasePlanData.getPlacer().getMainInfo().getInn()),
-                RepositoryService.removeExtraSpaces(planType),
-                RepositoryService.convertBoolean(purchasePlanData.isIsUploadComplete()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getCreateDateTime()),
-                RepositoryService.removeExtraSpaces(purchasePlanData.getUrlEIS()),
-                RepositoryService.removeExtraSpaces(purchasePlanData.getUrlVSRZ()),
-                RepositoryService.removeExtraSpaces(purchasePlanData.getUrlKisRmis()),
-                RepositoryService.removeExtraSpaces(purchasePlanData.getRegistrationNumber()),
-                RepositoryService.removeExtraSpaces(purchasePlanData.getName()),
-                RepositoryService.removeExtraSpaces(purchasePlanData.getAdditionalInfo()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getStartDate()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getEndDate()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getApproveDate()),
-                RepositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getPublicationDateTime()),
-                RepositoryService.convertBoolean(purchasePlanData.isIsDigitForm()),
-                RepositoryService.convertBoolean(purchasePlanData.isSummSizeCh15()),
-                RepositoryService.convertBoolean(purchasePlanData.isIsImportedFromVSRZ()),
-                RepositoryService.removeExtraSpaces(planStatus),
+                repositoryService.removeExtraSpaces(customerInn),
+                repositoryService.removeExtraSpaces(purchasePlanData.getPlacer().getMainInfo().getInn()),
+                repositoryService.removeExtraSpaces(planType),
+                repositoryService.convertBoolean(purchasePlanData.isIsUploadComplete()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getCreateDateTime()),
+                repositoryService.removeExtraSpaces(purchasePlanData.getUrlEIS()),
+                repositoryService.removeExtraSpaces(purchasePlanData.getUrlVSRZ()),
+                repositoryService.removeExtraSpaces(purchasePlanData.getUrlKisRmis()),
+                repositoryService.removeExtraSpaces(purchasePlanData.getRegistrationNumber()),
+                repositoryService.removeExtraSpaces(purchasePlanData.getName()),
+                repositoryService.removeExtraSpaces(purchasePlanData.getAdditionalInfo()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getStartDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getEndDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getApproveDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getPublicationDateTime()),
+                repositoryService.convertBoolean(purchasePlanData.isIsDigitForm()),
+                repositoryService.convertBoolean(purchasePlanData.isSummSizeCh15()),
+                repositoryService.convertBoolean(purchasePlanData.isIsImportedFromVSRZ()),
+                repositoryService.removeExtraSpaces(planStatus),
                 purchasePlanData.getVersion(),
-                RepositoryService.removeExtraSpaces(purchasePlanData.getModificationDescription()),
-                RepositoryService.convertBoolean(purchasePlanData.isUseNewClassifiers()),
+                repositoryService.removeExtraSpaces(purchasePlanData.getModificationDescription()),
+                repositoryService.convertBoolean(purchasePlanData.isUseNewClassifiers()),
                 purchasePlanData.getExcludeVolume(),
                 purchasePlanData.getVolumeSMB(),
                 purchasePlanData.getAnnualVolume(),
                 purchasePlanData.getPercentSMB(),
-                RepositoryService.convertBoolean(purchasePlanData.isSmbPartitionChanged()),
-                RepositoryService.convertBoolean(purchasePlanData.isAnnualVolumeSMBLess18Percent()),
+                repositoryService.convertBoolean(purchasePlanData.isSmbPartitionChanged()),
+                repositoryService.convertBoolean(purchasePlanData.isAnnualVolumeSMBLess18Percent()),
                 purchasePlanData.getReportingYear(),
                 purchasePlanData.getPreviousYearAnnualVolume(),
                 purchasePlanData.getPreviousYearAnnualVolumeHiTech(),
