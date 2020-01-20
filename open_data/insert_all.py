@@ -11,18 +11,12 @@ import insert_plan_status
 import insert_purchase_category
 import threading
 
-threads = []
-threads.append(threading.Thread(target=insert_currency.insert))
-threads.append(threading.Thread(target=insert_okato.insert))
-threads.append(threading.Thread(target=insert_okdp.insert))
-threads.append(threading.Thread(target=insert_okei.insert))
-threads.append(threading.Thread(target=insert_okopf.insert))
-threads.append(threading.Thread(target=insert_okpd2.insert))
-threads.append(threading.Thread(target=insert_okved.insert))
-threads.append(threading.Thread(target=insert_okved2.insert))
-threads.append(threading.Thread(target=insert_plan_item_status.insert))
-threads.append(threading.Thread(target=insert_plan_status.insert))
-threads.append(threading.Thread(target=insert_purchase_category.insert))
+threads = [threading.Thread(target=insert_currency.insert), threading.Thread(target=insert_okato.insert),
+           threading.Thread(target=insert_okdp.insert), threading.Thread(target=insert_okei.insert),
+           threading.Thread(target=insert_okopf.insert), threading.Thread(target=insert_okpd2.insert),
+           threading.Thread(target=insert_okved.insert), threading.Thread(target=insert_okved2.insert),
+           threading.Thread(target=insert_plan_item_status.insert), threading.Thread(target=insert_plan_status.insert),
+           threading.Thread(target=insert_purchase_category.insert)]
 
 for i in threads:
     i.start()
