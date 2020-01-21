@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `zakupki`;
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan` (
   `guid` varchar(36) not null,
   `customer_inn` varchar(12) null,
   `placer_inn` varchar(12) not null,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan` (
   PRIMARY KEY (`guid`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`customer` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`customer` (
   `inn` varchar(12) not null,
   `full_name` varchar(1000) null,
   `short_name` varchar(500) null,
@@ -67,13 +67,13 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`customer` (
   PRIMARY KEY (`inn`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`okopf` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`okopf` (
   `code` varchar(5) not null,
   `name` varchar(200) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item` (
   `guid` varchar(36) not null,
   `notice_info_guid` varchar(36) null,
   `lot_guid` varchar(36) null,
@@ -89,13 +89,13 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item` (
   PRIMARY KEY (`guid`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`plan_item_status` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`plan_item_status` (
   `code` varchar(1) not null,
   `name` varchar(15) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volumes` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volumes` (
   `plan_item_guid` varchar(36) not null,
   `is_smb` tinyint(1) not null,
   `volume` decimal(22, 2) unsigned null,
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volumes` (
   PRIMARY KEY (`plan_item_guid`, `is_smb`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volume_detail` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volume_detail` (
   `long_term_value_guid` varchar(36) not null,
   `year` int not null,
   `is_smb` tinyint(1) not null,
@@ -115,21 +115,21 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`long_term_volume_detail` (
   PRIMARY KEY (`long_term_value_guid`, `year`, `is_smb`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item` (
   `guid` varchar(36) not null,
   `ignored_purchase` tinyint(1) null,
   `purchase_period_year` int not null,
   PRIMARY KEY (`guid`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`currency` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`currency` (
   `code` varchar(3) not null,
   `digital_code` varchar(3) not null,
   `name` varchar(50) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item_row` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item_row` (
   `plan_item_guid` varchar(36) not null,
   `ordinal_number` int not null,
   `additional_info` varchar(2000) null,
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`innovation_plan_item_row` (
   PRIMARY KEY (`plan_item_guid`, `ordinal_number`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item_row` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item_row` (
   `plan_item_guid` varchar(36) not null,
   `ordinal_number` int not null,
   `additional_info` varchar(2000) null,
@@ -165,49 +165,49 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan_item_row` (
   PRIMARY KEY (`plan_item_guid`, `ordinal_number`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`okdp` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`okdp` (
   `code` varchar(20) not null,
   `name` varchar(500) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`okpd2` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`okpd2` (
   `code` varchar(20) not null,
   `name` varchar(500) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`okved` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`okved` (
   `code` varchar(20) not null,
   `name` varchar(500) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`okved2` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`okved2` (
   `code` varchar(20) not null,
   `name` varchar(500) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`okei` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`okei` (
   `code` varchar(20) not null,
   `name` varchar(500) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`okato` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`okato` (
   `code` varchar(11) not null,
   `name` varchar(500) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`plan_status` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`plan_status` (
   `code` varchar(1) not null,
   `name` varchar(35) not null,
   PRIMARY KEY (`code`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`plan_item` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`plan_item` (
   `guid` varchar(36) not null,
   `purchase_plan_guid` varchar(36) not null,
   `ordinal_number` int not null,
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`plan_item` (
   PRIMARY KEY (`guid`)
 );
 
-CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_category` ( 
+CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_category` (
   `code` int not null,
   `description` varchar(1100) not null,
   PRIMARY KEY (`code`)
