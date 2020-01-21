@@ -8,4 +8,4 @@ __pycache__/
 #runtime
 *.log
 zakupki_download/
-docker/db_zakupki
+database/docker/db_zakupki
