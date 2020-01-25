@@ -1,4 +1,14 @@
 spring:
-  application.name: zakupki-parser
-  profiles.active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/zakupki
+    password: 12345
+    username: root
+
+homyakin:
+  zakupki:
+    ftp:
+      url: "ftp.zakupki.gov.ru"
+      login: "fz223free"
+      password: "fz223free"
+
 

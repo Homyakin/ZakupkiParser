@@ -77,7 +77,7 @@ public class RepositoryService {
     }
 
     public String getOkatoCode(String code) {
-        return getOkatoCode(code);
+        return classifierRepository.getOkatoCode(code);
     }
 
     public Classifier getClassifier(OkdpProductType okdp) {
