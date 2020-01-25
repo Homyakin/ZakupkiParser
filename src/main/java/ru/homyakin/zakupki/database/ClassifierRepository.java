@@ -28,7 +28,7 @@ public class ClassifierRepository {
         List<String> result = jdbcTemplate.query(
             sql, new Object[]{code},
             (rs, rowNum) ->
-                rs.getString("name")
+                rs.getString("code")
         );
         if (result.size() == 0) {
             logger.warn("okato: invalid code: {}", code);
@@ -55,13 +55,13 @@ public class ClassifierRepository {
         if (resultCode.size() == 0) {
             logger.warn("{}: incorrect code {}", table, code);
             if (resultName.size() == 0) {
-                logger.warn("{}: incorrect code and name: {}; {}", table, code, name);
+                logger.error("{}: incorrect code and name: {}; {}", table, code, name);
                 return new Classifier(
                     null,
                     "Incorrect code and name: " + code + "; " + name
                 );
             } else if (resultName.size() > 1) {
-                logger.warn("{}: several variants for name {}", table, name);
+                logger.error("{}: several variants for name {}", table, name);
                 return new Classifier(
                     null,
                     "Several codes for name: " + name
@@ -86,7 +86,7 @@ public class ClassifierRepository {
                         "Name doesn't exist: " + name
                     );
                 } else {
-                    logger.warn("{}: code and name don't match: {}; {}", table, code, name);
+                    logger.error("{}: code and name don't match: {}; {}", table, code, name);
                     return new Classifier(
                         null,
                         "Code and name don't match: " + code + "; " + name

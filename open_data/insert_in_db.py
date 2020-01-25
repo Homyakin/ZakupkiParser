@@ -25,6 +25,6 @@ def insert(table: str, columns: list, json_fields: list):
                     cursor.execute(sql, fields)
                     connection.commit()
             except Exception as e:
-                print(table, e)
-
+                print(table, i, e)
+    print(f'End {table}')
     connection.close()

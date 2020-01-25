@@ -351,7 +351,7 @@ public class PlanItemRepository {
             jdbcTemplate.update(sql,
                 noticeInfoGuid,
                 lotGuid,
-                repositoryService.removeExtraSpaces(purchasePlanItem.getOkato()),
+                repositoryService.getOkatoCode(purchasePlanItem.getOkato()),
                 repositoryService.removeExtraSpaces(purchasePlanItem.getRegion()),
                 repositoryService.convertBoolean(purchasePlanItem.isIsGeneralAddress()),
                 purchasePlanItem.getPurchaseMethodCode(),
