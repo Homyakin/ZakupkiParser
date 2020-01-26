@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.CustomerMainInfoType;
+import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfoType;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -54,7 +54,7 @@ public class CustomerRepository {
                 repositoryService.convertBoolean(customer.isCustomerMonitoredCompliance())
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 

@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.*;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.PurchasePlanItemStatusType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.*;
+import ru.homyakin.zakupki.models._223fz.types.PurchasePlanItemStatusType;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -119,7 +119,7 @@ public class PlanItemRepository {
                 }
             }
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
 
     }
@@ -197,7 +197,7 @@ public class PlanItemRepository {
                 }
             }
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -212,7 +212,7 @@ public class PlanItemRepository {
                 innovationPlanItem.getPurchasePeriodYear()
             );
         } catch (Exception e) {
-            logger.error("Eternal error e");
+            logger.error("Internal database error e");
         }
     }
 
@@ -244,7 +244,7 @@ public class PlanItemRepository {
                 purchasePlanItem.getPurchasePeriodYear()
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -282,7 +282,7 @@ public class PlanItemRepository {
             );
             updatePurchasePlanItem(purchasePlanItem);
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -320,7 +320,7 @@ public class PlanItemRepository {
             );
             updateInnovationPlanItem(innovationPlanItem);
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -333,7 +333,7 @@ public class PlanItemRepository {
                 innovationPlanItem.getGuid()
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -363,7 +363,7 @@ public class PlanItemRepository {
                 purchasePlanItem.getGuid()
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -372,7 +372,7 @@ public class PlanItemRepository {
             String sql = "UPDATE zakupki.plan_item SET is_smb = ? WHERE guid = ? ";
             jdbcTemplate.update(sql, repositoryService.convertBoolean(isSmb), guid);
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 

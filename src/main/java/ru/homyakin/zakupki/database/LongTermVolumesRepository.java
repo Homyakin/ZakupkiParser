@@ -5,8 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.LongTermVolumeDetailType;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.LongTermVolumeType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.LongTermVolumeDetailType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.LongTermVolumeType;
 
 import javax.sql.DataSource;
 
@@ -37,7 +37,7 @@ public class LongTermVolumesRepository {
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
         if (longTermVolume.getDetails() != null) {
             for (LongTermVolumeDetailType i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
@@ -69,7 +69,7 @@ public class LongTermVolumesRepository {
                 }
             }
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
 
     }
@@ -92,7 +92,7 @@ public class LongTermVolumesRepository {
                 longTermVolumeDetail.getSummRub()
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -108,7 +108,7 @@ public class LongTermVolumesRepository {
                 repositoryService.convertBoolean(isSmb)
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 

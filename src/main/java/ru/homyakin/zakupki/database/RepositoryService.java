@@ -3,12 +3,12 @@ package ru.homyakin.zakupki.database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.CurrencyType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.OkdpProductType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.OkeiProductType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.Okpd2ProductType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.Okved2ProductType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.OkvedProductType;
+import ru.homyakin.zakupki.models._223fz.types.CurrencyType;
+import ru.homyakin.zakupki.models._223fz.types.OkdpProductType;
+import ru.homyakin.zakupki.models._223fz.types.OkeiProductType;
+import ru.homyakin.zakupki.models._223fz.types.Okpd2ProductType;
+import ru.homyakin.zakupki.models._223fz.types.Okved2ProductType;
+import ru.homyakin.zakupki.models._223fz.types.OkvedProductType;
 import ru.homyakin.zakupki.database.ClassifierRepository.Classifier;
 
 import javax.xml.datatype.XMLGregorianCalendar;

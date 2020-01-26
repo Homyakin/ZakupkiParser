@@ -5,8 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.InnovationPlanDataItemRowType;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataItemRowType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.InnovationPlanDataItemRowType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlanDataItemRowType;
 
 import javax.sql.DataSource;
 
@@ -58,7 +58,7 @@ public class PlanItemRowRepository {
                 purchasePlanItemRow.getQty()
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -121,7 +121,7 @@ public class PlanItemRowRepository {
                 purchasePlanItemRow.getOrdinalNumber()
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -152,7 +152,7 @@ public class PlanItemRowRepository {
                 innovationPlanItemRow.getOrdinalNumber()
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 

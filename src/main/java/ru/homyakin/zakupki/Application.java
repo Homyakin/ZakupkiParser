@@ -5,10 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import ru.homyakin.zakupki.web.exceptions.NetworkException;
 import ru.homyakin.zakupki.web.FTPClient223fz;
 
 @SpringBootApplication
+@EnableScheduling
 class StartApp implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
     private FTPClient223fz ftp;
@@ -26,7 +28,7 @@ class StartApp implements CommandLineRunner {
         } catch (NetworkException e) {
             logger.error("Network error: {}", e.getMessage(), e);
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal error", e);
         }
     }
 }
