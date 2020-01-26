@@ -22,10 +22,17 @@ for i in os.listdir('xml/data/okato'):
                 print(e)
                 print(i)
 
+file_number = 1
 for i in codes:
     temp = {}
     temp['code'] = i
     temp['name'] = codes[i]
     out.append(temp)
-with open('xml/data/okato.json', 'w') as f:
-    json.dump(out, f, ensure_ascii=False)
+    if len(out) == 5000:
+        with open(f'xml/data/okato/okato{file_number}.json', 'w') as f:
+            json.dump(out, f, ensure_ascii=False)
+        file_number += 1
+        out = []
+if len(out) != 0:
+    with open(f'xml/data/okato/okato{file_number}.json', 'w') as f:
+                json.dump(out, f, ensure_ascii=False)

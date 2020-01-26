@@ -13,14 +13,26 @@ for i in os.listdir('xml/data/okdp'):
                 temp = {}
                 temp['name'] = i['ns2:nsiOkdpData']['ns2:name']
                 temp['code'] = i['ns2:nsiOkdpData']['ns2:code']
-                if temp['code'] not in codes:
-                    codes[temp['code']] = temp['name']
-                else:
+                if temp['code'] in codes:
                     print(codes[temp['code']])
                     print(temp['code'], temp['name'])
-                out.append(temp)
+                else:
+                    codes[temp['code']] = temp['name']
             except Exception as e:
                 print(e)
                 print(i)
-    with open('xml/data/okdp.json', 'w') as f:
-        json.dump(out, f, ensure_ascii=False)
+
+file_number = 1
+for i in codes:
+    temp = {}
+    temp['code'] = i
+    temp['name'] = codes[i]
+    out.append(temp)
+    if len(out) == 5000:
+        with open(f'xml/data/okdp/okdp{file_number}.json', 'w') as f:
+            json.dump(out, f, ensure_ascii=False)
+        file_number += 1
+        out = []
+if len(out) != 0:
+    with open(f'xml/data/okdp/okdp{file_number}.json', 'w') as f:
+                json.dump(out, f, ensure_ascii=False)

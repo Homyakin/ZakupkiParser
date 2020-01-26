@@ -1,7 +1,7 @@
-import insert_in_db
+import insert_from_file
 
 def insert():
     table = 'purchase_category'
     columns = ['code', 'description']
 
-    insert_in_db.insert(table, columns, columns)
+    insert_from_file.insert(table, table, columns, columns)
