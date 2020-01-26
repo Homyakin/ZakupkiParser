@@ -1,7 +1,7 @@
-import insert_in_db
+import insert_from_file
 
 def insert():
     table = 'plan_status'
     columns = ['code', 'name']
 
-    insert_in_db.insert(table, columns, columns)
+    insert_from_file.insert(table, table, columns, columns)

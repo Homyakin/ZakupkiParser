@@ -1,7 +1,7 @@
-import insert_in_db
+import insert_from_folder
 
 def insert():
     table = 'okdp'
     columns = ['code', 'name']
 
-    insert_in_db.insert(table, columns, columns)
+    insert_from_folder.insert(table, columns, columns)

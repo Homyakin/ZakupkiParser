@@ -3,7 +3,7 @@ from pymysql.cursors import DictCursor
 import json
 
 
-def insert(table: str, columns: list, json_fields: list):
+def insert(table: str, filename: str, columns: list, json_fields: list):
     connection = pymysql.connect(
         host='localhost',
         user='root',
@@ -12,8 +12,8 @@ def insert(table: str, columns: list, json_fields: list):
         charset='utf8mb4',
         cursorclass=DictCursor
     )
-    print(f'Inserting {table}')
-    with open(f'data/{table}.json') as json_file:
+    print(f'Inserting {filename}')
+    with open(f'data/{filename}.json') as json_file:
         data = json.load(json_file)
         for i in data:
             try:
@@ -25,6 +25,6 @@ def insert(table: str, columns: list, json_fields: list):
                     cursor.execute(sql, fields)
                     connection.commit()
             except Exception as e:
-                print(table, e)
-
+                print(table, i, e)
+    print(f'End {filename}')
     connection.close()
