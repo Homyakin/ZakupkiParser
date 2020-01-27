@@ -18,10 +18,16 @@ public class ParseFileProcessing {
 
     private final Queue<ParseFile> queue;
     private final PurchasePlanRepository purchasePlanRepository;
+    private final DatabasePoolTaskExecutor executor;
 
-    public ParseFileProcessing(Queue<ParseFile> queue, PurchasePlanRepository purchasePlanRepository) {
+    public ParseFileProcessing(
+        Queue<ParseFile> queue,
+        PurchasePlanRepository purchasePlanRepository,
+        DatabasePoolTaskExecutor executor
+    ) {
         this.queue = queue;
         this.purchasePlanRepository = purchasePlanRepository;
+        this.executor = executor;
     }
 
     @Scheduled(fixedRate = 1000)
@@ -39,6 +45,7 @@ public class ParseFileProcessing {
                         PurchasePlan purchasePlan = PurchasePlanParser.parse(file.getFilepath())
                             .orElseThrow(() -> new IllegalArgumentException("Contract " + file.getFilepath() + " wasn't parsed"));
                         purchasePlanRepository.insert(purchasePlan);
+                        /*You can't insert plan data in parallel, because later plans can update previous ones.*/
                         break;
                 }
             } catch (RuntimeException e) {

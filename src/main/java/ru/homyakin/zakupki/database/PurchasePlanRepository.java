@@ -12,7 +12,7 @@ import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlanDataType;
 import javax.sql.DataSource;
 
 @Component
-public class PurchasePlanRepository {
+public class PurchasePlanRepository extends BaseRepository<PurchasePlan> {
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRepository customerRepository;
     private final PlanItemRepository planItemRepository;
