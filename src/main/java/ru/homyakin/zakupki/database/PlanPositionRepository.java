@@ -10,7 +10,7 @@ import ru.homyakin.zakupki.models._223fz.types.PlanInfoType;
 
 @Component
 public class PlanPositionRepository {
-    private static final Logger logger = LoggerFactory.getLogger(ContractRepository.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlanPositionRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final RepositoryService repositoryService;
 
@@ -23,15 +23,19 @@ public class PlanPositionRepository {
         String sql = "INSERT INTO zakupki.plan_position (guid, plan_guid, plan_registration_number," +
             "position_number, lot_plan_position, contract_subject)" +
             "VALUES (?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(
-            sql,
-            position.getPositionGuid(),
-            position.getPlanGuid(),
-            position.getPlanRegistrationNumber(),
-            position.getPositionNumber(),
-            getLotPlanPosition(position.getLotPlanPosition()),
-            position.getContractSubject()
-        );
+        try {
+            jdbcTemplate.update(
+                sql,
+                position.getPositionGuid(),
+                position.getPlanGuid(),
+                position.getPlanRegistrationNumber(),
+                position.getPositionNumber(),
+                getLotPlanPosition(position.getLotPlanPosition()),
+                repositoryService.removeExtraSpaces(position.getContractSubject())
+            );
+        } catch (RuntimeException e) {
+            logger.error("Internal database error", e);
+        }
     }
 
     private String getLotPlanPosition(LotPlanPositionType lotPlanPosition) {

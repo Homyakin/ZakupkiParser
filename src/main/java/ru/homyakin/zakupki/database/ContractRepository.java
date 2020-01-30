@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.contract.ContractDataType;
 import ru.homyakin.zakupki.models._223fz.contract.ContractStatusType;
+import ru.homyakin.zakupki.models._223fz.types.ElectronicPlaceInfoType;
 
 @Component
 public class ContractRepository extends BaseRepository<Contract> {
@@ -15,17 +16,23 @@ public class ContractRepository extends BaseRepository<Contract> {
     private final JdbcTemplate jdbcTemplate;
     private final PlanPositionRepository planPositionRepository;
     private final CustomerRepository customerRepository;
+    private final PurchaseNoticeInfoRepository purchaseNoticeInfoRepository;
+    private final ContractPositionRepository contractPositionRepository;
     private final RepositoryService repositoryService;
 
     public ContractRepository(
         DataSource dataSource,
         PlanPositionRepository planPositionRepository,
         CustomerRepository customerRepository,
+        PurchaseNoticeInfoRepository purchaseNoticeInfoRepository,
+        ContractPositionRepository contractPositionRepository,
         RepositoryService repositoryService
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.planPositionRepository = planPositionRepository;
         this.customerRepository = customerRepository;
+        this.purchaseNoticeInfoRepository = purchaseNoticeInfoRepository;
+        this.contractPositionRepository = contractPositionRepository;
         this.repositoryService = repositoryService;
     }
 
@@ -47,54 +54,101 @@ public class ContractRepository extends BaseRepository<Contract> {
             " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         ContractDataType contractData = contract.getBody().getItem().getContractData();
-        planPositionRepository.insert(contractData.getPlanPosition());
-        customerRepository.insert(contractData.getCustomer().getMainInfo());
-        customerRepository.insert(contractData.getPlacer().getMainInfo());
-        String detachedOrgInn = null;
-        if (contractData.getDetachedOrg() != null) {
-            customerRepository.insert(contractData.getDetachedOrg().getMainInfo());
-            detachedOrgInn = contractData.getDetachedOrg().getMainInfo().getInn();
+        try {
+            planPositionRepository.insert(contractData.getPlanPosition());
+            customerRepository.insert(contractData.getCustomer().getMainInfo());
+            customerRepository.insert(contractData.getPlacer().getMainInfo());
+            String detachedOrgInn = null;
+            if (contractData.getDetachedOrg() != null) {
+                customerRepository.insert(contractData.getDetachedOrg().getMainInfo());
+                detachedOrgInn = contractData.getDetachedOrg().getMainInfo().getInn();
+            }
+            purchaseNoticeInfoRepository.insert(contractData.getPurchaseNoticeInfo());
+            jdbcTemplate.update(
+                sql,
+                contractData.getGuid(),
+                contractData.getRegistrationNumber(),
+                repositoryService.convertBoolean(contractData.isNotice44()),
+                repositoryService.convertBoolean(contractData.isNoticeNotPlacedByFz223P5S4()),
+                contractData.getNotice44Num(),
+                contractData.getLot44Num(),
+                repositoryService.convertBoolean(contractData.isTermination()),
+                repositoryService.convertBoolean(contractData.isExtension()),
+                repositoryService.convertBoolean(contractData.isProlongation()),
+                repositoryService.convertBoolean(contractData.isCustomerAppealedOrNeedsApproval()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getCustomerApprovalOrAntimonopolyDescisionDate()),
+                repositoryService.removeExtraSpaces(contractData.getStartExecutionTerm()),
+                repositoryService.removeExtraSpaces(contractData.getEndExecutionTerm()),
+                contractData.getPlanPosition().getPositionGuid(),
+                contractData.getUrlEIS(),
+                contractData.getUrlVSRZ(),
+                contractData.getUrlKisRmis(),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getCreateDateTime()),
+                contractData.getCustomer().getMainInfo().getInn(),
+                contractData.getPlacer().getMainInfo().getInn(),
+                detachedOrgInn,
+                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getPublicationDate()),
+                getContractStatusCode(contractData.getStatus()),
+                contractData.getVersion(),
+                contractData.getModificationDescription(),
+                repositoryService.convertBoolean(contractData.isDigitalPurchase()),
+                contractData.getDigitalPurchaseCode(),
+                repositoryService.convertBoolean(contractData.isProvider()),
+                contractData.getProviderCode(),
+                repositoryService.convertBoolean(contractData.isChangeContract()),
+                contractData.getContractRegNumber(),
+                contractData.getName(),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getContractDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getApproveDate()),
+                contractData.getPurchaseNoticeInfo().getGuid(),
+                contractData.getPurchaseNoticeInfo().getPurchaseNoticeNumber(),
+                contractData.getLotGuid(),
+                repositoryService.removeExtraSpaces(contractData.getSubjectContract()),
+                contractData.getPurchaseTypeInfo().getCode(),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getResumeDate()),
+                repositoryService.convertBoolean(contractData.isHasSubcontractor()),
+                contractData.getHasSubcontractorCode(),
+                contractData.getSubcontractorsTotal(),
+                repositoryService.convertBoolean(contractData.isHasGoodInfo()),
+                repositoryService.removeExtraSpaces(contractData.getAdditionalInfo()),
+                contractData.getPrice(),
+                contractData.getExchangeRate(),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getExchangeRateDate()),
+                contractData.getRubPrice(),
+                repositoryService.getCurrencyCode(contractData.getCurrency()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getStartExecutionDate()),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getEndExecutionDate()),
+                repositoryService.convertBoolean(contractData.isHasOkpdAndOkdpRows()),
+                repositoryService.convertBoolean(contractData.isHasOkpd2Rows()),
+                repositoryService.convertBoolean(contractData.isIsElectronicPlace()),
+                repositoryService.removeExtraSpaces(getElectronicPlaceInfoName(contractData.getElectronicPlaceInfo())),
+                repositoryService.removeExtraSpaces(getElectronicPlaceInfoUrl(contractData.getElectronicPlaceInfo())),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getElectorincPlacePublishDate()),
+                contractData.getElectorincPlaceGuid()
+            );
+            if (contractData.getContractPositions() != null) {
+                contractData.getContractPositions().getContractPosition().forEach(it ->
+                    contractPositionRepository.insert(it, contractData.getGuid())
+                );
+            }
+        } catch (RuntimeException e) {
+            logger.error("Internal database error", e);
         }
-        jdbcTemplate.update(sql,
-            contractData.getGuid(),
-            contractData.getRegistrationNumber(),
-            repositoryService.convertBoolean(contractData.isNotice44()),
-            repositoryService.convertBoolean(contractData.isNoticeNotPlacedByFz223P5S4()),
-            contractData.getNotice44Num(),
-            contractData.getLot44Num(),
-            repositoryService.convertBoolean(contractData.isTermination()),
-            repositoryService.convertBoolean(contractData.isExtension()),
-            repositoryService.convertBoolean(contractData.isProlongation()),
-            repositoryService.convertBoolean(contractData.isCustomerAppealedOrNeedsApproval()),
-            repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getCustomerApprovalOrAntimonopolyDescisionDate()),
-            repositoryService.removeExtraSpaces(contractData.getStartExecutionTerm()),
-            repositoryService.removeExtraSpaces(contractData.getEndExecutionTerm()),
-            contractData.getPlanPosition().getPositionGuid(),
-            contractData.getUrlEIS(),
-            contractData.getUrlVSRZ(),
-            contractData.getUrlKisRmis(),
-            repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getCreateDateTime()),
-            contractData.getCustomer().getMainInfo().getInn(),
-            contractData.getPlacer().getMainInfo().getInn(),
-            detachedOrgInn,
-            repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getPublicationDate()),
-            getContractStatusCode(contractData.getStatus()),
-            contractData.getVersion(),
-            contractData.getModificationDescription(),
-            repositoryService.convertBoolean(contractData.isDigitalPurchase()),
-            contractData.getDigitalPurchaseCode(),
-            repositoryService.convertBoolean(contractData.isProvider()),
-            contractData.getProviderCode(),
-            repositoryService.convertBoolean(contractData.isChangeContract()),
-            contractData.getContractRegNumber(),
-            contractData.getName(),
-            repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getContractDate()),
-            repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getApproveDate())
-        );
     }
 
     private String getContractStatusCode(ContractStatusType contractStatus) {
         if (contractStatus == null) return null;
         else return contractStatus.value();
     }
+
+    private String getElectronicPlaceInfoName(ElectronicPlaceInfoType electronicPlaceInfo) {
+        if (electronicPlaceInfo == null) return null;
+        else return electronicPlaceInfo.getName();
+    }
+
+    private String getElectronicPlaceInfoUrl(ElectronicPlaceInfoType electronicPlaceInfo) {
+        if (electronicPlaceInfo == null) return null;
+        else return electronicPlaceInfo.getUrl();
+    }
 }
+
