@@ -1,5 +1,6 @@
 package ru.homyakin.zakupki.database;
 
+import java.util.List;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,7 @@ public class SupplierRepository {
             "address_id, address_rf_id, provider_include_msp_date, is_in_order_173n)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
+            if (checkSupplier(supplier.getInn())) return;
             ClassifierRepository.Classifier okopf = repositoryService.getOkopf(supplier.getOkopf(), supplier.getOkopfName());
             jdbcTemplate.update(
                 sql,
@@ -69,6 +71,12 @@ public class SupplierRepository {
         } catch (RuntimeException e) {
             logger.error("Internal database error", e);
         }
+    }
+
+    private boolean checkSupplier(String inn) {
+        String sql = "SELECT inn FROM supplier WHERE inn = ?";
+        List<String> result = jdbcTemplate.query(sql, new Object[]{inn}, (rs, rowNum) -> rs.getString("inn"));
+        return result.size() != 0;
     }
 
     private void insertSupplierToContract(String supplierInn, String contractGuid) {

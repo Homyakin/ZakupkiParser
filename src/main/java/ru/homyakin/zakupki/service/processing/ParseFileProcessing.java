@@ -4,9 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import ru.homyakin.zakupki.database.ContractRepository;
 import ru.homyakin.zakupki.database.PurchasePlanRepository;
-import ru.homyakin.zakupki.models.ContractInfo;
 import ru.homyakin.zakupki.models.ParseFile;
+import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlan;
 import ru.homyakin.zakupki.service.parser.ContractParser;
 import ru.homyakin.zakupki.service.parser.PurchasePlanParser;
@@ -18,15 +19,18 @@ public class ParseFileProcessing {
 
     private final Queue<ParseFile> queue;
     private final PurchasePlanRepository purchasePlanRepository;
+    private final ContractRepository contractRepository;
     private final DatabasePoolTaskExecutor executor;
 
     public ParseFileProcessing(
         Queue<ParseFile> queue,
         PurchasePlanRepository purchasePlanRepository,
+        ContractRepository contractRepository,
         DatabasePoolTaskExecutor executor
     ) {
         this.queue = queue;
         this.purchasePlanRepository = purchasePlanRepository;
+        this.contractRepository = contractRepository;
         this.executor = executor;
     }
 
@@ -38,8 +42,9 @@ public class ParseFileProcessing {
                 logger.info("Start processing {}; {}", file.getType().getValue(), file.getFilepath());
                 switch (file.getType()) {
                     case CONTRACT:
-                        ContractInfo contract = new ContractInfo(ContractParser.parse(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Contract " + file.getFilepath() + " wasn't parsed")));
+                        Contract contract = ContractParser.parse(file.getFilepath())
+                            .orElseThrow(() -> new IllegalArgumentException("Contract " + file.getFilepath() + " wasn't parsed"));
+                        contractRepository.insert(contract);
                         break;
                     case PURCHASE_PLAN:
                         PurchasePlan purchasePlan = PurchasePlanParser.parse(file.getFilepath())
