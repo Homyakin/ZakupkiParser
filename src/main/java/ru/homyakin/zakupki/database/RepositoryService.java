@@ -81,6 +81,16 @@ public class RepositoryService {
         return classifierRepository.getOkatoCode(code);
     }
 
+    public String getClassifierCode(Classifier classifier) {
+        if (classifier == null) return null;
+        else return classifier.getCode();
+    }
+
+    public String getClassifierName(Classifier classifier) {
+        if (classifier == null) return null;
+        else return classifier.getName();
+    }
+
     public String getCountryCode(CountryType country) {
         if (country == null) return null;
         else return country.getDigitalCode();
@@ -89,6 +99,16 @@ public class RepositoryService {
     public Classifier getClassifier(OkdpProductType okdp) {
         if (okdp == null) return null;
         return getClassifier("okdp", okdp.getCode(), okdp.getName());
+    }
+
+    public Classifier getOkopf(String okopfCode, String okopfName) {
+        if (okopfCode == null) return null;
+        return getClassifier("okopf", okopfCode, okopfName);
+    }
+
+    public Classifier getOktmo(String oktmoCode, String oktmoName) {
+        if (oktmoCode == null) return null;
+        return getClassifier("oktmo", oktmoCode, oktmoName);
     }
 
     public Classifier getClassifier(OkpdProductType okpd) {

@@ -1,14 +1,13 @@
 package ru.homyakin.zakupki.database;
 
 import java.util.List;
+import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.purchaseplan.InnovationPlanDataItemRowType;
 import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlanDataItemRowType;
-
-import javax.sql.DataSource;
 
 import static ru.homyakin.zakupki.database.ClassifierRepository.Classifier;
 
@@ -42,19 +41,19 @@ public class PlanItemRowRepository {
                 planItemGuid,
                 purchasePlanItemRow.getOrdinalNumber(),
                 repositoryService.removeExtraSpaces(purchasePlanItemRow.getAdditionalInfo()),
-                getClassifierCode(okdp),
-                getClassifierName(okdp),
-                getClassifierCode(okpd2),
-                getClassifierName(okpd2),
-                getClassifierCode(okved),
-                getClassifierName(okved),
-                getClassifierCode(okved2),
-                getClassifierName(okved2),
+                repositoryService.getClassifierCode(okdp),
+                repositoryService.getClassifierName(okdp),
+                repositoryService.getClassifierCode(okpd2),
+                repositoryService.getClassifierName(okpd2),
+                repositoryService.getClassifierCode(okved),
+                repositoryService.getClassifierName(okved),
+                repositoryService.getClassifierCode(okved2),
+                repositoryService.getClassifierName(okved2),
                 repositoryService.getOkatoCode(purchasePlanItemRow.getOkato()),
                 repositoryService.removeExtraSpaces(purchasePlanItemRow.getRegion()),
                 repositoryService.convertBoolean(purchasePlanItemRow.isImpossibleToDetermineAttr()),
-                getClassifierCode(okei),
-                getClassifierName(okei),
+                repositoryService.getClassifierCode(okei),
+                repositoryService.getClassifierName(okei),
                 purchasePlanItemRow.getQty()
             );
         } catch (Exception e) {
@@ -75,14 +74,14 @@ public class PlanItemRowRepository {
             planItemGuid,
             innovationPlanItemRow.getOrdinalNumber(),
             repositoryService.removeExtraSpaces(innovationPlanItemRow.getAdditionalInfo()),
-            getClassifierCode(okdp),
-            getClassifierName(okdp),
-            getClassifierCode(okpd2),
-            getClassifierName(okpd2),
-            getClassifierCode(okved),
-            getClassifierName(okved),
-            getClassifierCode(okved2),
-            getClassifierName(okved2)
+            repositoryService.getClassifierCode(okdp),
+            repositoryService.getClassifierName(okdp),
+            repositoryService.getClassifierCode(okpd2),
+            repositoryService.getClassifierName(okpd2),
+            repositoryService.getClassifierCode(okved),
+            repositoryService.getClassifierName(okved),
+            repositoryService.getClassifierCode(okved2),
+            repositoryService.getClassifierName(okved2)
         );
     }
 
@@ -103,19 +102,19 @@ public class PlanItemRowRepository {
             Classifier okei = repositoryService.getClassifier(purchasePlanItemRow.getOkei());
             jdbcTemplate.update(sql,
                 repositoryService.removeExtraSpaces(purchasePlanItemRow.getAdditionalInfo()),
-                getClassifierCode(okdp),
-                getClassifierName(okdp),
-                getClassifierCode(okpd2),
-                getClassifierName(okpd2),
-                getClassifierCode(okved),
-                getClassifierName(okved),
-                getClassifierCode(okved2),
-                getClassifierName(okved2),
+                repositoryService.getClassifierCode(okdp),
+                repositoryService.getClassifierName(okdp),
+                repositoryService.getClassifierCode(okpd2),
+                repositoryService.getClassifierName(okpd2),
+                repositoryService.getClassifierCode(okved),
+                repositoryService.getClassifierName(okved),
+                repositoryService.getClassifierCode(okved2),
+                repositoryService.getClassifierName(okved2),
                 repositoryService.getOkatoCode(purchasePlanItemRow.getOkato()),
                 repositoryService.removeExtraSpaces(purchasePlanItemRow.getRegion()),
                 repositoryService.convertBoolean(purchasePlanItemRow.isImpossibleToDetermineAttr()),
-                getClassifierCode(okei),
-                getClassifierName(okei),
+                repositoryService.getClassifierCode(okei),
+                repositoryService.getClassifierName(okei),
                 purchasePlanItemRow.getQty(),
                 planItemGuid,
                 purchasePlanItemRow.getOrdinalNumber()
@@ -140,14 +139,14 @@ public class PlanItemRowRepository {
             Classifier okved2 = repositoryService.getClassifier(innovationPlanItemRow.getOkved2());
             jdbcTemplate.update(sql,
                 innovationPlanItemRow.getAdditionalInfo(),
-                getClassifierCode(okdp),
-                getClassifierName(okdp),
-                getClassifierCode(okpd2),
-                getClassifierName(okpd2),
-                getClassifierCode(okved),
-                getClassifierName(okved),
-                getClassifierCode(okved2),
-                getClassifierName(okved2),
+                repositoryService.getClassifierCode(okdp),
+                repositoryService.getClassifierName(okdp),
+                repositoryService.getClassifierCode(okpd2),
+                repositoryService.getClassifierName(okpd2),
+                repositoryService.getClassifierCode(okved),
+                repositoryService.getClassifierName(okved),
+                repositoryService.getClassifierCode(okved2),
+                repositoryService.getClassifierName(okved2),
                 planItemGuid,
                 innovationPlanItemRow.getOrdinalNumber()
             );
@@ -163,15 +162,5 @@ public class PlanItemRowRepository {
             (rs, rowNum) -> rs.getString("plan_item_guid")
         );
         return result.size() != 0;
-    }
-
-    private String getClassifierCode(Classifier classifier) {
-        if (classifier == null) return null;
-        else return classifier.getCode();
-    }
-
-    private String getClassifierName(Classifier classifier) {
-        if (classifier == null) return null;
-        else return classifier.getName();
     }
 }

@@ -29,6 +29,7 @@ DROP TABLE IF EXISTS zakupki.oktmo;
 DROP TABLE IF EXISTS zakupki.plan_position;
 DROP TABLE IF EXISTS zakupki.purchase_notice_info;
 DROP TABLE IF EXISTS zakupki.supplier;
+DROP TABLE IF EXISTS zakupki.supplier_without_inn;
 DROP TABLE IF EXISTS zakupki.supplier_address;
 DROP TABLE IF EXISTS zakupki.supplier_to_contract;
 SET FOREIGN_KEY_CHECKS = 1;

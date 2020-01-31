@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.contract.ContractDataType;
 import ru.homyakin.zakupki.models._223fz.contract.ContractStatusType;
+import ru.homyakin.zakupki.models._223fz.contract.PositionType;
+import ru.homyakin.zakupki.models._223fz.contract.SupplierMainType;
 import ru.homyakin.zakupki.models._223fz.types.ElectronicPlaceInfoType;
 
 @Component
@@ -18,6 +20,7 @@ public class ContractRepository extends BaseRepository<Contract> {
     private final CustomerRepository customerRepository;
     private final PurchaseNoticeInfoRepository purchaseNoticeInfoRepository;
     private final ContractPositionRepository contractPositionRepository;
+    private final SupplierRepository supplierRepository;
     private final RepositoryService repositoryService;
 
     public ContractRepository(
@@ -26,6 +29,7 @@ public class ContractRepository extends BaseRepository<Contract> {
         CustomerRepository customerRepository,
         PurchaseNoticeInfoRepository purchaseNoticeInfoRepository,
         ContractPositionRepository contractPositionRepository,
+        SupplierRepository supplierRepository,
         RepositoryService repositoryService
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -33,6 +37,7 @@ public class ContractRepository extends BaseRepository<Contract> {
         this.customerRepository = customerRepository;
         this.purchaseNoticeInfoRepository = purchaseNoticeInfoRepository;
         this.contractPositionRepository = contractPositionRepository;
+        this.supplierRepository = supplierRepository;
         this.repositoryService = repositoryService;
     }
 
@@ -127,9 +132,13 @@ public class ContractRepository extends BaseRepository<Contract> {
                 contractData.getElectorincPlaceGuid()
             );
             if (contractData.getContractPositions() != null) {
-                contractData.getContractPositions().getContractPosition().forEach(it ->
-                    contractPositionRepository.insert(it, contractData.getGuid())
-                );
+                for (PositionType position : contractData.getContractPositions().getContractPosition()) {
+                    contractPositionRepository.insert(position, contractData.getGuid());
+                }
+            }
+
+            for (SupplierMainType supplier : contractData.getSupplierInfo()) {
+                supplierRepository.insert(supplier, contractData.getGuid());
             }
         } catch (RuntimeException e) {
             logger.error("Internal database error", e);

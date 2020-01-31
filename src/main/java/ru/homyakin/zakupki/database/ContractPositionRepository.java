@@ -23,29 +23,33 @@ public class ContractPositionRepository {
             "name, okdp_code, okdp_name, okpd_code, okpd_name, okpd2_code, okpd2_name, country_code," +
             "producer_country, impossible_to_determine_attr, okei_code, okei_name, qty)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        ClassifierRepository.Classifier okdp = repositoryService.getClassifier(position.getOkdp());
-        ClassifierRepository.Classifier okpd = repositoryService.getClassifier(position.getOkpd());
-        ClassifierRepository.Classifier okpd2 = repositoryService.getClassifier(position.getOkpd2());
-        ClassifierRepository.Classifier okei = repositoryService.getClassifier(position.getOkei());
+        try {
+            ClassifierRepository.Classifier okdp = repositoryService.getClassifier(position.getOkdp());
+            ClassifierRepository.Classifier okpd = repositoryService.getClassifier(position.getOkpd());
+            ClassifierRepository.Classifier okpd2 = repositoryService.getClassifier(position.getOkpd2());
+            ClassifierRepository.Classifier okei = repositoryService.getClassifier(position.getOkei());
 
-        jdbcTemplate.update(
-            sql,
-            contractGuid,
-            position.getOrdinalNumber(),
-            position.getGuid(),
-            repositoryService.removeExtraSpaces(position.getName()),
-            okdp.getCode(),
-            okdp.getName(),
-            okpd.getCode(),
-            okpd.getName(),
-            okpd2.getCode(),
-            okpd2.getName(),
-            repositoryService.getCountryCode(position.getCountry()),
-            repositoryService.convertBoolean(position.isProducerCountry()),
-            repositoryService.convertBoolean(position.isImpossibleToDetermineAttr()),
-            okei.getCode(),
-            okei.getName(),
-            position.getQty()
-        );
+            jdbcTemplate.update(
+                sql,
+                contractGuid,
+                position.getOrdinalNumber(),
+                position.getGuid(),
+                repositoryService.removeExtraSpaces(position.getName()),
+                repositoryService.getClassifierCode(okdp),
+                repositoryService.getClassifierName(okdp),
+                repositoryService.getClassifierCode(okpd),
+                repositoryService.getClassifierName(okpd),
+                repositoryService.getClassifierCode(okpd2),
+                repositoryService.getClassifierName(okpd2),
+                repositoryService.getCountryCode(position.getCountry()),
+                repositoryService.convertBoolean(position.isProducerCountry()),
+                repositoryService.convertBoolean(position.isImpossibleToDetermineAttr()),
+                repositoryService.getClassifierCode(okei),
+                repositoryService.getClassifierName(okei),
+                position.getQty()
+            );
+        } catch (RuntimeException e) {
+            logger.error("Internal database error");
+        }
     }
 }
