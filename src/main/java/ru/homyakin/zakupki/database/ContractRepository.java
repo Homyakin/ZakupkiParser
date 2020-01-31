@@ -3,12 +3,14 @@ package ru.homyakin.zakupki.database;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.contract.ContractDataType;
 import ru.homyakin.zakupki.models._223fz.contract.ContractStatusType;
 import ru.homyakin.zakupki.models._223fz.contract.PositionType;
+import ru.homyakin.zakupki.models._223fz.contract.PurchaseNoticeInfoType;
 import ru.homyakin.zakupki.models._223fz.contract.SupplierMainType;
 import ru.homyakin.zakupki.models._223fz.types.ElectronicPlaceInfoType;
 
@@ -60,7 +62,12 @@ public class ContractRepository extends BaseRepository<Contract> {
 
         ContractDataType contractData = contract.getBody().getItem().getContractData();
         try {
-            planPositionRepository.insert(contractData.getPlanPosition());
+            String planPositionGuid = null;
+            if (contractData.getPlanPosition() != null) {
+                planPositionRepository.insert(contractData.getPlanPosition());
+                planPositionGuid = contractData.getPlanPosition().getPlanGuid();
+            }
+
             customerRepository.insert(contractData.getCustomer().getMainInfo());
             customerRepository.insert(contractData.getPlacer().getMainInfo());
             String detachedOrgInn = null;
@@ -69,6 +76,7 @@ public class ContractRepository extends BaseRepository<Contract> {
                 detachedOrgInn = contractData.getDetachedOrg().getMainInfo().getInn();
             }
             purchaseNoticeInfoRepository.insert(contractData.getPurchaseNoticeInfo());
+            logger.info("Inserting contract with guid: {}", contractData.getGuid());
             jdbcTemplate.update(
                 sql,
                 contractData.getGuid(),
@@ -84,7 +92,7 @@ public class ContractRepository extends BaseRepository<Contract> {
                 repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getCustomerApprovalOrAntimonopolyDescisionDate()),
                 repositoryService.removeExtraSpaces(contractData.getStartExecutionTerm()),
                 repositoryService.removeExtraSpaces(contractData.getEndExecutionTerm()),
-                contractData.getPlanPosition().getPositionGuid(),
+                planPositionGuid,
                 contractData.getUrlEIS(),
                 contractData.getUrlVSRZ(),
                 contractData.getUrlKisRmis(),
@@ -105,8 +113,8 @@ public class ContractRepository extends BaseRepository<Contract> {
                 contractData.getName(),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getContractDate()),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(contractData.getApproveDate()),
-                contractData.getPurchaseNoticeInfo().getGuid(),
-                contractData.getPurchaseNoticeInfo().getPurchaseNoticeNumber(),
+                getPurchaseNoticeInfoTypeGuid(contractData.getPurchaseNoticeInfo()),
+                getPurchaseNoticeInfoTypeNumber(contractData.getPurchaseNoticeInfo()),
                 contractData.getLotGuid(),
                 repositoryService.removeExtraSpaces(contractData.getSubjectContract()),
                 contractData.getPurchaseTypeInfo().getCode(),
@@ -140,9 +148,22 @@ public class ContractRepository extends BaseRepository<Contract> {
             for (SupplierMainType supplier : contractData.getSupplierInfo()) {
                 supplierRepository.insert(supplier, contractData.getGuid());
             }
+        } catch (DuplicateKeyException ignored) {
+            //TODO check difference between files
+            logger.warn("Duplicate contract");
         } catch (RuntimeException e) {
             logger.error("Internal database error", e);
         }
+    }
+
+    private String getPurchaseNoticeInfoTypeGuid(PurchaseNoticeInfoType purchaseNoticeInfo) {
+        if (purchaseNoticeInfo == null) return null;
+        else return purchaseNoticeInfo.getGuid();
+    }
+
+    private String getPurchaseNoticeInfoTypeNumber(PurchaseNoticeInfoType purchaseNoticeInfo) {
+        if (purchaseNoticeInfo == null) return null;
+        else return purchaseNoticeInfo.getPurchaseNoticeNumber();
     }
 
     private String getContractStatusCode(ContractStatusType contractStatus) {

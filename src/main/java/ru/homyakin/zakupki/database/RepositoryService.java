@@ -108,7 +108,7 @@ public class RepositoryService {
 
     public Classifier getOktmo(String oktmoCode, String oktmoName) {
         if (oktmoCode == null) return null;
-        return getClassifier("oktmo", oktmoCode, oktmoName);
+        return classifierRepository.getOktmo(oktmoCode, oktmoName);
     }
 
     public Classifier getClassifier(OkpdProductType okpd) {

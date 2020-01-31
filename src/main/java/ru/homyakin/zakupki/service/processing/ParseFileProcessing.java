@@ -54,7 +54,7 @@ public class ParseFileProcessing {
                         break;
                 }
             } catch (RuntimeException e) {
-                logger.error("Internal processing error");
+                logger.error("Internal processing error", e);
             }
         }
     }

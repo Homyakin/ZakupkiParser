@@ -32,6 +32,21 @@ public class ClassifierRepository {
         else return code;
     }
 
+    public Classifier getOktmo(String code, String name) {
+        if(name != null) return getClassifier("oktmo", code, name);
+        String sql = "SELECT code FROM oktmo WHERE code = ?";
+        List<String> result = jdbcTemplate.query(
+            sql, new Object[]{code},
+            (rs, rowNum) ->
+                rs.getString("code")
+        );
+        if (result.size() == 0) {
+            logger.warn("oktmo: invalid code: {}", code);
+            return null;
+        }
+        else return new Classifier(code, null);
+    }
+
     public Classifier getClassifier(String table, String code, String name) {
         code = code.toLowerCase();
         name = name.toLowerCase();

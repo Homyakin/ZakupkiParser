@@ -49,7 +49,7 @@ public class ContractPositionRepository {
                 position.getQty()
             );
         } catch (RuntimeException e) {
-            logger.error("Internal database error");
+            logger.error("Internal database error", e);
         }
     }
 }

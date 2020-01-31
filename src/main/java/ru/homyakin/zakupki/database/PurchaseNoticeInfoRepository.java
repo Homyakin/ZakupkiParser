@@ -1,5 +1,6 @@
 package ru.homyakin.zakupki.database;
 
+import java.util.List;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +20,30 @@ public class PurchaseNoticeInfoRepository {
     }
 
     public void insert(PurchaseNoticeInfoType purchaseNoticeInfo) {
+        if (purchaseNoticeInfo == null) return;
+        if (checkPurchaseNotice(purchaseNoticeInfo.getGuid(), purchaseNoticeInfo.getPurchaseNoticeNumber())) return;
         String sql = "INSERT INTO zakupki.purchase_notice_info (guid, number, publication_date_time," +
             "name) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(
+        try {
+            jdbcTemplate.update(
+                sql,
+                purchaseNoticeInfo.getGuid(),
+                purchaseNoticeInfo.getPurchaseNoticeNumber(),
+                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchaseNoticeInfo.getPublicationDateTime()),
+                purchaseNoticeInfo.getName()
+            );
+        } catch (RuntimeException e) {
+            logger.error("Internal database error", e);
+        }
+    }
+
+    private boolean checkPurchaseNotice(String guid, String number) {
+        String sql = "SELECT guid FROM purchase_notice_info WHERE guid = ? and number = ?";
+        List<String> result = jdbcTemplate.query(
             sql,
-            purchaseNoticeInfo.getGuid(),
-            purchaseNoticeInfo.getPurchaseNoticeNumber(),
-            repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(purchaseNoticeInfo.getPublicationDateTime()),
-            purchaseNoticeInfo.getName()
+            new Object[]{guid, number},
+            (rs, rowNum) -> rs.getString("guid")
         );
+        return result.size() != 0;
     }
 }

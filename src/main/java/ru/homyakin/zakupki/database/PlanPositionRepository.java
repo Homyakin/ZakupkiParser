@@ -1,5 +1,6 @@
 package ru.homyakin.zakupki.database;
 
+import java.util.List;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ public class PlanPositionRepository {
     }
 
     public void insert(PlanInfoType position) {
+        if (position == null) return;
         String sql = "INSERT INTO zakupki.plan_position (guid, plan_guid, plan_registration_number," +
             "position_number, lot_plan_position, contract_subject)" +
             "VALUES (?, ?, ?, ?, ?, ?)";
