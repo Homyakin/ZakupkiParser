@@ -1,3 +1,4 @@
+import insert_contract_status
 import insert_country
 import insert_currency
 import insert_okato
@@ -22,7 +23,7 @@ threads = [threading.Thread(target=insert_currency.insert), threading.Thread(tar
            threading.Thread(target=insert_plan_item_status.insert), threading.Thread(target=insert_plan_status.insert),
            threading.Thread(target=insert_purchase_category.insert), threading.Thread(target=insert_country.insert),
            threading.Thread(target=insert_purchase_type.insert), threading.Thread(target=insert_oktmo.insert),
-           threading.Thread(target=insert_okpd.insert)]
+           threading.Thread(target=insert_okpd.insert), threading.Thread(target=insert_contract_status.insert)]
 
 for i in threads:
     i.start()

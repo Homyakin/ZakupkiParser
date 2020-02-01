@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:contract xmlns:ns2="http://zakupki.gov.ru/223fz/contract/1"
+              xmlns:ns20="http://zakupki.gov.ru/223fz/purchasePlanAdditionalPosition/1"
+              xmlns:ns21="http://zakupki.gov.ru/223fz/webRequest/1"
+              xmlns:ns10="http://zakupki.gov.ru/223fz/orderClauseList/1"
+              xmlns:ns22="http://zakupki.gov.ru/223fz/ecp-packet/1"
+              xmlns:ns11="http://zakupki.gov.ru/223fz/disagreementProtocol/1"
+              xmlns:ns12="http://zakupki.gov.ru/223fz/complaint/1"
+              xmlns:ns13="http://zakupki.gov.ru/223fz/notificationIssue/1"
+              xmlns:ns14="http://zakupki.gov.ru/223fz/purchasePlan/1"
+              xmlns:ns15="http://zakupki.gov.ru/223fz/purchasePlanProject/1"
+              xmlns:ns16="http://zakupki.gov.ru/223fz/typalOrderClauseList/1"
+              xmlns:ns17="http://zakupki.gov.ru/223fz/missedNotice/1"
+              xmlns:ns18="http://zakupki.gov.ru/223fz/purchasePlanProjectAdditionalPosition/1"
+              xmlns:ns19="http://zakupki.gov.ru/223fz/decisionSuspension/1"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:ns3="http://zakupki.gov.ru/223fz/dishonestSupplier/1"
+              xmlns:ns4="http://zakupki.gov.ru/223fz/reference/1"
+              xmlns:ns5="http://zakupki.gov.ru/223fz/stopCommodity/1"
+              xmlns:ns6="http://zakupki.gov.ru/223fz/purchase/1"
+              xmlns:ns7="http://zakupki.gov.ru/223fz/exclusion/1"
+              xmlns:ns8="http://zakupki.gov.ru/223fz/machineryListInfo/1"
+              xmlns:ns9="http://zakupki.gov.ru/223fz/revenue/1"
+              xsi:schemaLocation="http://zakupki.gov.ru/223/integration/schema/TFF-8.2 http://zakupki.gov.ru/223/integration/schema/TFF-8.2/Types.xsd">
+    <header>
+        <guid>a3b3fe87-eae9-4dd2-9029-da7aa49e6cf0</guid>
+        <createDateTime>2018-08-07T16:42:53</createDateTime>
+    </header>
+    <ns2:body>
+        <ns2:item>
+            <guid>8bf19988-dff6-4a10-ac32-e4917c21f9fe</guid>
+            <ns2:contractData>
+                <ns2:guid>5244776b-ebf6-415d-b58c-c8d5f7faefda</ns2:guid>
+                <ns2:registrationNumber>50105018196180001160001</ns2:registrationNumber>
+                <ns2:notice44>false</ns2:notice44>
+                <ns2:noticeNotPlacedByFz223p5s4>false</ns2:noticeNotPlacedByFz223p5s4>
+                <ns2:termination>false</ns2:termination>
+                <ns2:extension>false</ns2:extension>
+                <ns2:prolongation>false</ns2:prolongation>
+                <ns2:customerAppealedOrNeedsApproval>false</ns2:customerAppealedOrNeedsApproval>
+                <ns2:lotNum>1</ns2:lotNum>
+                <ns2:urlEIS>https://zakupki.gov.ru/223/contract/private/contract/view/general-information.html?id=5289362&amp;viewMode=VSRI</ns2:urlEIS>
+                <ns2:createDateTime>2018-08-07T16:35:14</ns2:createDateTime>
+                <ns2:customer>
+                    <mainInfo>
+                        <fullName>АКЦИОНЕРНОЕ ОБЩЕСТВО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</fullName>
+                        <shortName>АО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</shortName>
+                        <iko>50105018196010501001</iko>
+                        <inn>0105018196</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100707318</ogrn>
+                        <legalAddress>385003, Респ Адыгея, г Майкоп, ул Апшеронская, дом 4</legalAddress>
+                        <postalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</postalAddress>
+                        <phone>7-8772-523180</phone>
+                        <fax>7-8772-560255</fax>
+                        <email>mail@adyggaz.ru</email>
+                        <okato>79401000000</okato>
+                        <okopf>12267</okopf>
+                        <okopfName>Непубличные акционерные общества</okopfName>
+                        <okpo>03251056</okpo>
+                        <customerRegistrationDate>1995-03-30T00:00:00</customerRegistrationDate>
+                    </mainInfo>
+                </ns2:customer>
+                <ns2:placer>
+                    <mainInfo>
+                        <fullName>АКЦИОНЕРНОЕ ОБЩЕСТВО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</fullName>
+                        <shortName>АО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</shortName>
+                        <iko>50105018196010501001</iko>
+                        <inn>0105018196</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100707318</ogrn>
+                        <legalAddress>385003, Респ Адыгея, г Майкоп, ул Апшеронская, дом 4</legalAddress>
+                        <postalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</postalAddress>
+                        <phone>7-8772-523180</phone>
+                        <fax>7-8772-560255</fax>
+                        <email>mail@adyggaz.ru</email>
+                        <okato>79401000000</okato>
+                        <okopf>12267</okopf>
+                        <okopfName>Непубличные акционерные общества</okopfName>
+                        <okpo>03251056</okpo>
+                    </mainInfo>
+                </ns2:placer>
+                <ns2:detachedOrg>
+                    <mainInfo>
+                        <fullName>АКЦИОНЕРНОЕ ОБЩЕСТВО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</fullName>
+                        <shortName>АО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</shortName>
+                        <iko>50105018196010501001</iko>
+                        <inn>0105018196</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100707318</ogrn>
+                        <legalAddress>385003, Респ Адыгея, г Майкоп, ул Апшеронская, дом 4</legalAddress>
+                        <postalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</postalAddress>
+                        <phone>7-8772-523180</phone>
+                        <fax>7-8772-560255</fax>
+                        <email>mail@adyggaz.ru</email>
+                        <okato>79401000000</okato>
+                        <okopf>12267</okopf>
+                        <okopfName>Непубличные акционерные общества</okopfName>
+                        <okpo>03251056</okpo>
+                    </mainInfo>
+                </ns2:detachedOrg>
+                <ns2:publicationDate>2018-08-07T16:42:53</ns2:publicationDate>
+                <ns2:status>P</ns2:status>
+                <ns2:version>1</ns2:version>
+                <ns2:digitalPurchase>true</ns2:digitalPurchase>
+                <ns2:digitalPurchaseCode>300001</ns2:digitalPurchaseCode>
+                <ns2:provider>false</ns2:provider>
+                <ns2:changeContract>false</ns2:changeContract>
+                <ns2:attachments>
+                    <totalDocumentsCount>1</totalDocumentsCount>
+                    <document>
+                        <guid>409f31c1-c535-4d74-bc5d-ead3e822eb9d</guid>
+                        <createDateTime>2018-08-07T16:42:27</createDateTime>
+                        <fileName>Договор АРО ВДПО от 06.08.2018г 636-АГ-2-0368-18.pdf</fileName>
+                        <description>Договор АРО ВДПО от 06.08.2018г 636-АГ-2-0368-18</description>
+                        <url>https://zakupki.gov.ru/223/contract/private/download/download.html?id=28583267</url>
+                        <registrationNumber>50105018196180001160002</registrationNumber>
+                    </document>
+                </ns2:attachments>
+                <ns2:contractRegNumber>50105018196180001160000</ns2:contractRegNumber>
+                <ns2:name>636  / АГ-2/0368/18</ns2:name>
+                <ns2:contractDate>2018-08-06</ns2:contractDate>
+                <ns2:purchaseNoticeInfo>
+                    <ns2:guid>ece70074-9a6a-4625-add9-fe1087fff223</ns2:guid>
+                    <ns2:purchaseNoticeNumber>31806781106</ns2:purchaseNoticeNumber>
+                    <ns2:publicationDateTime>2018-08-02T10:33:46</ns2:publicationDateTime>
+                    <ns2:name>Услуги обучения по дополнительной общеобразовательной программе «Пожарно-технический минимум для руководителей и ответственных за пожарную безопасность в учреждениях (офисах)» (10 уч. часов).</ns2:name>
+                </ns2:purchaseNoticeInfo>
+                <ns2:lotGuid>9ef66ef5-1cea-42d6-bd7f-e4be13687ed9</ns2:lotGuid>
+                <ns2:subjectContract>Услуги обучения по дополнительной общеобразовательной программе «Пожарно-технический минимум для руководителей и ответственных за пожарную безопасность в учреждениях (офисах)» (10 уч. часов)</ns2:subjectContract>
+                <ns2:purchaseTypeInfo>
+                    <ns2:code>30000</ns2:code>
+                    <ns2:name>Закупка у единственного поставщика (подрядчика, исполнителя)</ns2:name>
+                </ns2:purchaseTypeInfo>
+                <ns2:resumeDate>2018-08-02</ns2:resumeDate>
+                <ns2:hasSubcontractor>false</ns2:hasSubcontractor>
+                <ns2:price>229500</ns2:price>
+                <ns2:currency>
+                    <code>RUB</code>
+                    <digitalCode>643</digitalCode>
+                    <name>Российский рубль</name>
+                </ns2:currency>
+                <ns2:startExecutionDate>2018-08-06</ns2:startExecutionDate>
+                <ns2:endExecutionDate>2018-12-31</ns2:endExecutionDate>
+                <ns2:contractPositions>
+                    <ns2:contractPosition>
+                        <ns2:guid>f8e03edd-f1f5-4851-8c2f-d39666648df4</ns2:guid>
+                        <ns2:name>Услуги по профессиональному обучению</ns2:name>
+                        <ns2:ordinalNumber>1</ns2:ordinalNumber>
+                        <ns2:okpd2>
+                            <code>85.3</code>
+                            <name>Услуги по профессиональному обучению</name>
+                        </ns2:okpd2>
+                        <ns2:impossibleToDetermineAttr>false</ns2:impossibleToDetermineAttr>
+                        <ns2:okei>
+                            <code>876</code>
+                            <name>Условная единица</name>
+                        </ns2:okei>
+                        <ns2:qty>1</ns2:qty>
+                    </ns2:contractPosition>
+                </ns2:contractPositions>
+                <ns2:contractConfirmingDocs>
+                    <ns2:contractDoc>
+                        <ns2:confirmingDocCode>1</ns2:confirmingDocCode>
+                        <ns2:confirmingDocCodeTitle>Протокол, составленный по результатам закупки</ns2:confirmingDocCodeTitle>
+                        <ns2:protocolInfoGuid>0ccf0b75-5cf3-4665-9d8d-df17f051da21</ns2:protocolInfoGuid>
+                        <ns2:protocolName>Протокол для способа "Закупка у единственного поставщика (исполнителя, подрядчика)" 31806781106-01</ns2:protocolName>
+                        <ns2:docDate>2018-08-02</ns2:docDate>
+                        <ns2:docNum>31806781106-01</ns2:docNum>
+                    </ns2:contractDoc>
+                </ns2:contractConfirmingDocs>
+                <ns2:hasOkpdAndOkdpRows>false</ns2:hasOkpdAndOkdpRows>
+                <ns2:hasOkpd2Rows>true</ns2:hasOkpd2Rows>
+            </ns2:contractData>
+        </ns2:item>
+    </ns2:body>
+</ns2:contract>

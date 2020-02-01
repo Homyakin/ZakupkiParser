@@ -23,7 +23,7 @@ public class ParserTest {
     public void contractParserTest() {
         try {
             ContractInfo contractInfo = new ContractInfo(ContractParser.parse(
-                    getFilePath("test_files/contract_test.xml")
+                    getFilePath("test_files/contract/contract_test.xml")
             ).orElseThrow(() -> new IllegalArgumentException()));
             Assert.assertNotNull(contractInfo);
             Assert.assertEquals(GUID, contractInfo.getGUID());

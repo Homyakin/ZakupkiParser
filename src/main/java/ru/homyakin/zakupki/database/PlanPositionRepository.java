@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.exceptions.NoXmlnsException;
 import ru.homyakin.zakupki.models._223fz.types.LotPlanPositionType;
 import ru.homyakin.zakupki.models._223fz.types.PlanInfoType;
 
@@ -22,6 +23,7 @@ public class PlanPositionRepository {
 
     public void insert(PlanInfoType position) {
         if (position == null) return;
+        if(position.getPositionGuid() == null) throw new NoXmlnsException("No xmlns");
         String sql = "INSERT INTO zakupki.plan_position (guid, plan_guid, plan_registration_number," +
             "position_number, lot_plan_position, contract_subject)" +
             "VALUES (?, ?, ?, ?, ?, ?)";

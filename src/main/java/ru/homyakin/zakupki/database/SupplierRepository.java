@@ -26,7 +26,7 @@ public class SupplierRepository {
     }
 
     public void insert(SupplierMainType supplier, String contractGuid) {
-        if (supplier.getInn() == null) {
+        if (supplier.getInn() == null || supplier.getInn().equals("000000000000")) {
             insertSupplierWithoutInn(supplier, contractGuid);
             return;
         }

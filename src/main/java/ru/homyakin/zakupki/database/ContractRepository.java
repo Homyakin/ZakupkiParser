@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.exceptions.NoXmlnsException;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.contract.ContractDataType;
 import ru.homyakin.zakupki.models._223fz.contract.ContractStatusType;
@@ -61,29 +62,32 @@ public class ContractRepository extends BaseRepository<Contract> {
             " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         ContractDataType contractData = contract.getBody().getItem().getContractData();
+        logger.info("Inserting contract with guid: {}", contractData.getGuid());
         try {
             String planPositionGuid = null;
             if (contractData.getPlanPosition() != null) {
                 planPositionRepository.insert(contractData.getPlanPosition());
                 planPositionGuid = contractData.getPlanPosition().getPlanGuid();
             }
-
+            if (contractData.getCustomer().getMainInfo() == null) {
+                throw new NoXmlnsException("There is no xmlns in xml");
+            }
             customerRepository.insert(contractData.getCustomer().getMainInfo());
             customerRepository.insert(contractData.getPlacer().getMainInfo());
             String detachedOrgInn = null;
             if (contractData.getDetachedOrg() != null) {
-                customerRepository.insert(contractData.getDetachedOrg().getMainInfo());
+                if (contractData.getDetachedOrg().getMainInfo() == null) logger.warn("NO MAIN INFO");
                 detachedOrgInn = contractData.getDetachedOrg().getMainInfo().getInn();
             }
             purchaseNoticeInfoRepository.insert(contractData.getPurchaseNoticeInfo());
-            logger.info("Inserting contract with guid: {}", contractData.getGuid());
+
             jdbcTemplate.update(
                 sql,
                 contractData.getGuid(),
                 contractData.getRegistrationNumber(),
                 repositoryService.convertBoolean(contractData.isNotice44()),
                 repositoryService.convertBoolean(contractData.isNoticeNotPlacedByFz223P5S4()),
-                contractData.getNotice44Num(),
+                checkNotice44NumLength(contractData.getNotice44Num()),
                 contractData.getLot44Num(),
                 repositoryService.convertBoolean(contractData.isTermination()),
                 repositoryService.convertBoolean(contractData.isExtension()),
@@ -144,16 +148,27 @@ public class ContractRepository extends BaseRepository<Contract> {
                     contractPositionRepository.insert(position, contractData.getGuid());
                 }
             }
-
             for (SupplierMainType supplier : contractData.getSupplierInfo()) {
                 supplierRepository.insert(supplier, contractData.getGuid());
             }
+        } catch (NoXmlnsException e) {
+            logger.error("No xmlns in xml (http://zakupki.gov.ru/223fz/types/1)");
+            //throw e;
+            //TODO add move file
         } catch (DuplicateKeyException ignored) {
             //TODO check difference between files
             logger.warn("Duplicate contract");
         } catch (RuntimeException e) {
             logger.error("Internal database error", e);
         }
+    }
+
+    private String checkNotice44NumLength(String s) {
+        if(s.length() > 500) {
+            logger.warn("Length of notice 44 num is too long");
+            return "Data too long";
+        }
+        return s;
     }
 
     private String getPurchaseNoticeInfoTypeGuid(PurchaseNoticeInfoType purchaseNoticeInfo) {
