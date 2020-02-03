@@ -156,15 +156,16 @@ public class ContractRepository extends BaseRepository<Contract> {
             //throw e;
             //TODO add move file
         } catch (DuplicateKeyException ignored) {
-            //TODO check difference between files
-            logger.warn("Duplicate contract");
+            //Same file
+            //TODO add check to queue of existing file
         } catch (RuntimeException e) {
             logger.error("Internal database error", e);
         }
     }
 
     private String checkNotice44NumLength(String s) {
-        if(s.length() > 500) {
+        if (s == null) return null;
+        if (s.length() > 500) {
             logger.warn("Length of notice 44 num is too long");
             return "Data too long";
         }

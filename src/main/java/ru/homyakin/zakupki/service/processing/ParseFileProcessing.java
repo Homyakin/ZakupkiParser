@@ -34,7 +34,7 @@ public class ParseFileProcessing {
         this.executor = executor;
     }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedDelay = 1000)
     public void processParseFiles() {
         while (!queue.isEmpty()) {
             try {

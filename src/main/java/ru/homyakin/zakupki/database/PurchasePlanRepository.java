@@ -44,6 +44,7 @@ public class PurchasePlanRepository extends BaseRepository<PurchasePlan> {
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PurchasePlanDataType purchasePlanData = purchasePlan.getBody().getItem().getPurchasePlanData();
+        logger.info("Inserting purchase plan with guid: {}", purchasePlanData.getGuid());
         String customerInn = null;
         if (purchasePlanData.getCustomer() != null) {
             customerRepository.insert(purchasePlanData.getCustomer().getMainInfo());

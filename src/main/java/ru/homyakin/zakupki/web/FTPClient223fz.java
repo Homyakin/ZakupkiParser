@@ -1,5 +1,11 @@
 package ru.homyakin.zakupki.web;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
@@ -10,12 +16,6 @@ import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.service.ZipService;
 import ru.homyakin.zakupki.web.exceptions.ConnectException;
 import ru.homyakin.zakupki.web.exceptions.LoginException;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class FTPClient223fz implements FTPClientFZ {
@@ -31,11 +31,10 @@ public class FTPClient223fz implements FTPClientFZ {
      * "purchaseProtocolPAAE", "purchaseProtocolPAAE94", "purchaseProtocolOSZ",
      * "purchaseProtocolRZOK", "purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE");
      */
-   // private final static List<String> parsingFolders = Arrays.asList("purchasePlan");
-    private final static List<String> parsingFolders = Arrays.asList("contract");
+    private final static List<String> allParsingFolders = Arrays.asList("purchasePlan", "contract");
     private final static String downloadPath = "./zakupki_download";
     private final static FTPClient ftp = new FTPClient();
-
+    private final List<String> parsingFolders = new ArrayList<String>();
     private final ZipService zipService;
     private final FileSystemService fileSystemService;
     private final FtpConfiguration ftpConfiguration;
@@ -44,6 +43,17 @@ public class FTPClient223fz implements FTPClientFZ {
         this.zipService = zipService;
         this.fileSystemService = fileSystemService;
         this.ftpConfiguration = ftpConfiguration;
+    }
+
+    public List<String> getAllParsingFolders() {
+        return allParsingFolders;
+    }
+
+    public void addParsingFolder(String name) {
+        if (!parsingFolders.contains(name)) {
+            parsingFolders.add(name);
+            logger.info("Add {}", name);
+        }
     }
 
     @Override
