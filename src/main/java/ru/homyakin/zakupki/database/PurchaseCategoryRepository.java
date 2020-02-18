@@ -19,15 +19,14 @@ public class PurchaseCategoryRepository {
     public Long getCategoryCode(Long code) {
         if (code == null) return null;
         String sql = "SELECT code FROM purchase_category WHERE code = ?";
-        List<Long> result = jdbcTemplate.query(sql,
+        List<Long> result = jdbcTemplate.query(
+            sql,
             new Object[]{code},
             (rs, rowNum) -> rs.getLong("code")
         );
         if (result.size() == 0) {
             logger.warn("purchase category: invalid code: {}", code);
             return 0L;
-        }
-        else return code;
+        } else return code;
     }
-
 }

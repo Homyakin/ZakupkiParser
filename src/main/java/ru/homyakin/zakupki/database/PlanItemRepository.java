@@ -1,14 +1,17 @@
 package ru.homyakin.zakupki.database;
 
+import java.util.List;
+import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.models._223fz.purchaseplan.*;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.BasePlanDataItemType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.CancellationReasonType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.InnovationPlanDataItemType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlanDataItemType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlanItemCheckResultType;
 import ru.homyakin.zakupki.models._223fz.types.PurchasePlanItemStatusType;
-
-import javax.sql.DataSource;
-import java.util.List;
 
 @Component
 public class PlanItemRepository {
@@ -64,14 +67,15 @@ public class PlanItemRepository {
                             purchasePlanItem.getGuid());
                     }
                     if (purchasePlanItem.getPurchasePlanDataItemRows() != null) {
-                        for (PurchasePlanDataItemRowType i : purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
+                        for (var i : purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
                             planItemRowRepository.update(i, purchasePlanItem.getGuid());
                         }
                     }
                     return;
                 }
             }
-            jdbcTemplate.update(INSERT_PLAN_ITEM,
+            jdbcTemplate.update(
+                INSERT_PLAN_ITEM,
                 purchasePlanItem.getGuid(),
                 planGuid,
                 purchasePlanItem.getOrdinalNumber(),
@@ -114,7 +118,7 @@ public class PlanItemRepository {
                     purchasePlanItem.getGuid());
             }
             if (purchasePlanItem.getPurchasePlanDataItemRows() != null) {
-                for (PurchasePlanDataItemRowType i : purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
+                for (var i : purchasePlanItem.getPurchasePlanDataItemRows().getPurchasePlanRowItem()) {
                     planItemRowRepository.insert(i, purchasePlanItem.getGuid());
                 }
             }
@@ -142,14 +146,15 @@ public class PlanItemRepository {
                             innovationPlanItem.getGuid());
                     }
                     if (innovationPlanItem.getInnovationPlanDataItemRows() != null) {
-                        for (InnovationPlanDataItemRowType i : innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
+                        for (var i : innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
                             planItemRowRepository.update(i, innovationPlanItem.getGuid());
                         }
                     }
                     return;
                 }
             }
-            jdbcTemplate.update(INSERT_PLAN_ITEM,
+            jdbcTemplate.update(
+                INSERT_PLAN_ITEM,
                 innovationPlanItem.getGuid(),
                 planGuid,
                 innovationPlanItem.getOrdinalNumber(),
@@ -192,7 +197,7 @@ public class PlanItemRepository {
                     innovationPlanItem.getGuid());
             }
             if (innovationPlanItem.getInnovationPlanDataItemRows() != null) {
-                for (InnovationPlanDataItemRowType i : innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
+                for (var i : innovationPlanItem.getInnovationPlanDataItemRows().getInnovationPlanRowItem()) {
                     planItemRowRepository.insert(i, innovationPlanItem.getGuid());
                 }
             }
@@ -206,7 +211,8 @@ public class PlanItemRepository {
             "VALUES" +
             "(?, ?, ?)";
         try {
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 innovationPlanItem.getGuid(),
                 repositoryService.convertBoolean(innovationPlanItem.isIgnoredPurchase()),
                 innovationPlanItem.getPurchasePeriodYear()
@@ -229,7 +235,8 @@ public class PlanItemRepository {
                 noticeInfoGuid = purchasePlanItem.getPurchaseNoticeInfo().getNoticeInfoGuid();
                 lotGuid = purchasePlanItem.getPurchaseNoticeInfo().getLotGuid();
             }
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 purchasePlanItem.getGuid(),
                 noticeInfoGuid,
                 lotGuid,
@@ -250,7 +257,8 @@ public class PlanItemRepository {
 
     private void updatePlanItem(PurchasePlanDataItemType purchasePlanItem) {
         try {
-            jdbcTemplate.update(UPDATE,
+            jdbcTemplate.update(
+                UPDATE,
                 purchasePlanItem.getOrdinalNumber(),
                 repositoryService.removeExtraSpaces(purchasePlanItem.getContractSubject()),
                 repositoryService.removeExtraSpaces(purchasePlanItem.getMinimumRequirements()),
@@ -288,7 +296,8 @@ public class PlanItemRepository {
 
     private void updatePlanItem(InnovationPlanDataItemType innovationPlanItem) {
         try {
-            jdbcTemplate.update(UPDATE,
+            jdbcTemplate.update(
+                UPDATE,
                 innovationPlanItem.getOrdinalNumber(),
                 repositoryService.removeExtraSpaces(innovationPlanItem.getContractSubject()),
                 repositoryService.removeExtraSpaces(innovationPlanItem.getMinimumRequirements()),
@@ -327,7 +336,8 @@ public class PlanItemRepository {
     private void updateInnovationPlanItem(InnovationPlanDataItemType innovationPlanItem) {
         String sql = "UPDATE innovation_plan_item SET ignored_purchase = ?, purchase_period_year = ? WHERE guid = ?";
         try {
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 repositoryService.convertBoolean(innovationPlanItem.isIgnoredPurchase()),
                 innovationPlanItem.getPurchasePeriodYear(),
                 innovationPlanItem.getGuid()
@@ -348,7 +358,8 @@ public class PlanItemRepository {
                 noticeInfoGuid = purchasePlanItem.getPurchaseNoticeInfo().getNoticeInfoGuid();
                 lotGuid = purchasePlanItem.getPurchaseNoticeInfo().getLotGuid();
             }
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 noticeInfoGuid,
                 lotGuid,
                 repositoryService.getOkatoCode(purchasePlanItem.getOkato()),

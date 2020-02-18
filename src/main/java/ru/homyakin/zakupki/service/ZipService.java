@@ -31,7 +31,7 @@ public class ZipService {
 
     public void unzipFile(String filePath, String path, String folder) {
         logger.info("Start unzipping {}", filePath);
-        try (ZipInputStream zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
+        try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
             ZipEntry entry;
             String name;
             while ((entry = zin.getNextEntry()) != null) {

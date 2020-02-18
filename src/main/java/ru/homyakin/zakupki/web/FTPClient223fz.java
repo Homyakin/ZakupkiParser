@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -34,7 +33,7 @@ public class FTPClient223fz implements FTPClientFZ {
     private final static List<String> allParsingFolders = Arrays.asList("purchasePlan", "contract");
     private final static String downloadPath = "./zakupki_download";
     private final static FTPClient ftp = new FTPClient();
-    private final List<String> parsingFolders = new ArrayList<String>();
+    private final List<String> parsingFolders = new ArrayList<>();
     private final ZipService zipService;
     private final FileSystemService fileSystemService;
     private final FtpConfiguration ftpConfiguration;
@@ -93,11 +92,11 @@ public class FTPClient223fz implements FTPClientFZ {
 
     private void searchRegionsDirectories(String workspace) {
         try {
-            FTPFile[] namesDirectories = ftp.listDirectories(workspace);
-            for (FTPFile n : namesDirectories) {
-                if (!n.getName().equals("archive")) {
-                    makeDownloadDirectories(workspace + "/" + n.getName());
-                    searchInRegions(workspace + "/" + n.getName());
+            var namesDirectories = ftp.listDirectories(workspace);
+            for (var directory : namesDirectories) {
+                if (!directory.getName().equals("archive")) {
+                    makeDownloadDirectories(workspace + "/" + directory.getName());
+                    searchInRegions(workspace + "/" + directory.getName());
                 }
             }
         } catch (IOException e) {
@@ -106,17 +105,17 @@ public class FTPClient223fz implements FTPClientFZ {
     }
 
     private void makeDownloadDirectories(String workspace) {
-        for (String s : parsingFolders) { //TODO make it from searchInRegions
-            fileSystemService.makeDirectory(downloadPath + workspace + "/" + s + "/daily/unzip");
+        for (var folder : parsingFolders) { //TODO make it from searchInRegions
+            fileSystemService.makeDirectory(downloadPath + workspace + "/" + folder + "/daily/unzip");
         }
     }
 
     private void searchInRegions(String workspace) {
         try {
-            FTPFile[] namesDirectories = ftp.listDirectories(workspace);
-            for (FTPFile n : namesDirectories) {
-                if (parsingFolders.contains(n.getName())) {
-                    searchFiles(workspace + "/" + n.getName() + "/daily", n.getName());
+            var namesDirectories = ftp.listDirectories(workspace);
+            for (var directory : namesDirectories) {
+                if (parsingFolders.contains(directory.getName())) {
+                    searchFiles(workspace + "/" + directory.getName() + "/daily", directory.getName());
                 }
             }
         } catch (IOException e) {
@@ -127,15 +126,15 @@ public class FTPClient223fz implements FTPClientFZ {
     private void searchFiles(String workspace, String folder) {
         logger.info("Start parsing {}", workspace);
         try {
-            FTPFile[] files = ftp.listFiles(workspace);
-            for (FTPFile remote : files) {
-                if (remote.isFile()) {
-                    if (downloadFile(downloadPath + workspace + "/" + remote.getName(),
-                        workspace + "/" + remote.getName())) {
-                        zipService.unzipFile(downloadPath + workspace + "/" + remote.getName(),
+            var files = ftp.listFiles(workspace);
+            for (var remoteFile : files) {
+                if (remoteFile.isFile()) {
+                    if (downloadFile(downloadPath + workspace + "/" + remoteFile.getName(),
+                        workspace + "/" + remoteFile.getName())) {
+                        zipService.unzipFile(downloadPath + workspace + "/" + remoteFile.getName(),
                             downloadPath + workspace, folder);
                     } else {
-                        logger.error("Unable to download {}", workspace + "/" + remote.getName());
+                        logger.error("Unable to download {}", workspace + "/" + remoteFile.getName());
                     }
                 }
             }

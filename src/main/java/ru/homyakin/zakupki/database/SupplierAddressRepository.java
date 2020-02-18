@@ -14,12 +14,10 @@ import ru.homyakin.zakupki.models._223fz.contract.SupplierAddressType;
 @Component
 public class SupplierAddressRepository {
     private static final Logger logger = LoggerFactory.getLogger(SupplierAddressRepository.class);
-    private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert simpleJdbcInsert;
     private final RepositoryService repositoryService;
 
     public SupplierAddressRepository(DataSource dataSource, RepositoryService repositoryService) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
         this.repositoryService = repositoryService;
         simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
             .withTableName("supplier_address")

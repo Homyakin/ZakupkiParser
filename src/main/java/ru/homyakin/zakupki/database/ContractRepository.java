@@ -10,9 +10,7 @@ import ru.homyakin.zakupki.exceptions.NoXmlnsException;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.contract.ContractDataType;
 import ru.homyakin.zakupki.models._223fz.contract.ContractStatusType;
-import ru.homyakin.zakupki.models._223fz.contract.PositionType;
 import ru.homyakin.zakupki.models._223fz.contract.PurchaseNoticeInfoType;
-import ru.homyakin.zakupki.models._223fz.contract.SupplierMainType;
 import ru.homyakin.zakupki.models._223fz.types.ElectronicPlaceInfoType;
 
 @Component
@@ -144,11 +142,11 @@ public class ContractRepository extends BaseRepository<Contract> {
                 contractData.getElectorincPlaceGuid()
             );
             if (contractData.getContractPositions() != null) {
-                for (PositionType position : contractData.getContractPositions().getContractPosition()) {
+                for (var position : contractData.getContractPositions().getContractPosition()) {
                     contractPositionRepository.insert(position, contractData.getGuid());
                 }
             }
-            for (SupplierMainType supplier : contractData.getSupplierInfo()) {
+            for (var supplier : contractData.getSupplierInfo()) {
                 supplierRepository.insert(supplier, contractData.getGuid());
             }
         } catch (NoXmlnsException e) {

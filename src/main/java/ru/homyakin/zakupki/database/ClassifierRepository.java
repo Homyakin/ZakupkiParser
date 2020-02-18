@@ -1,12 +1,11 @@
 package ru.homyakin.zakupki.database;
 
 import java.util.List;
+import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import javax.sql.DataSource;
 
 @Component
 public class ClassifierRepository {
@@ -21,19 +20,18 @@ public class ClassifierRepository {
         if (code == null) return null;
         String sql = "SELECT code FROM okato WHERE code = ?";
         List<String> result = jdbcTemplate.query(
-            sql, new Object[]{code},
-            (rs, rowNum) ->
-                rs.getString("code")
+            sql,
+            new Object[]{code},
+            (rs, rowNum) -> rs.getString("code")
         );
         if (result.size() == 0) {
             logger.warn("okato: invalid code: {}", code);
             return null;
-        }
-        else return code;
+        } else return code;
     }
 
     public Classifier getOktmo(String code, String name) {
-        if(name != null) return getClassifier("oktmo", code, name);
+        if (name != null) return getClassifier("oktmo", code, name);
         String sql = "SELECT code FROM oktmo WHERE code = ?";
         List<String> result = jdbcTemplate.query(
             sql, new Object[]{code},
@@ -43,8 +41,7 @@ public class ClassifierRepository {
         if (result.size() == 0) {
             logger.warn("oktmo: invalid code: {}", code);
             return null;
-        }
-        else return new Classifier(code, null);
+        } else return new Classifier(code, null);
     }
 
     public Classifier getClassifier(String table, String code, String name) {

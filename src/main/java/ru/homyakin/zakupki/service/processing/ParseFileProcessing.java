@@ -20,18 +20,15 @@ public class ParseFileProcessing {
     private final Queue<ParseFile> queue;
     private final PurchasePlanRepository purchasePlanRepository;
     private final ContractRepository contractRepository;
-    private final DatabasePoolTaskExecutor executor;
 
     public ParseFileProcessing(
         Queue<ParseFile> queue,
         PurchasePlanRepository purchasePlanRepository,
-        ContractRepository contractRepository,
-        DatabasePoolTaskExecutor executor
+        ContractRepository contractRepository
     ) {
         this.queue = queue;
         this.purchasePlanRepository = purchasePlanRepository;
         this.contractRepository = contractRepository;
-        this.executor = executor;
     }
 
     @Scheduled(fixedDelay = 1000)
