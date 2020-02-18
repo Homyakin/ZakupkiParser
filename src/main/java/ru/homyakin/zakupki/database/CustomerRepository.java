@@ -1,13 +1,13 @@
 package ru.homyakin.zakupki.database;
 
+import java.util.List;
+import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.CustomerMainInfoType;
-
-import javax.sql.DataSource;
-import java.util.List;
+import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfoType;
 
 @Component
 public class CustomerRepository {
@@ -21,6 +21,7 @@ public class CustomerRepository {
     }
 
     public void insert(CustomerMainInfoType customer) {
+        if (customer == null) return;
         String sql = "INSERT INTO customer (inn, full_name, short_name, iko, kpp, ogrn, legal_address," +
             "postal_address, phone, fax, email, okato, okopf_code, okpo, customer_registration_date," +
             "timezone_offset, timezone_name, region, customer_assessed_compliance, customer_monitored_compliance)" +
@@ -53,8 +54,10 @@ public class CustomerRepository {
                 repositoryService.convertBoolean(customer.isCustomerAssessedCompliance()),
                 repositoryService.convertBoolean(customer.isCustomerMonitoredCompliance())
             );
+        } catch (DuplicateKeyException ignored) {
+
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 

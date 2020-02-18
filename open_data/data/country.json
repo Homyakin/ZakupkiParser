@@ -1,0 +1,1930 @@
+[
+  {
+    "global_id": 273329414,
+    "ALFA3": "AUT",
+    "SHORTNAME": "АВСТРИЯ",
+    "FULLNAME": "Австрийская Республика",
+    "ALFA2": "AT",
+    "CODE": "040"
+  },
+  {
+    "global_id": 273329415,
+    "ALFA3": "TCD",
+    "SHORTNAME": "ЧАД",
+    "FULLNAME": "Республика Чад",
+    "ALFA2": "TD",
+    "CODE": "148"
+  },
+  {
+    "global_id": 273329416,
+    "ALFA3": "COM",
+    "SHORTNAME": "КОМОРЫ",
+    "FULLNAME": "Союз Коморы",
+    "ALFA2": "KM",
+    "CODE": "174"
+  },
+  {
+    "global_id": 273329417,
+    "ALFA3": "GAB",
+    "SHORTNAME": "ГАБОН",
+    "FULLNAME": "Габонская Республика",
+    "ALFA2": "GA",
+    "CODE": "266"
+  },
+  {
+    "global_id": 273329418,
+    "ALFA3": "PSE",
+    "SHORTNAME": "ПАЛЕСТИНА, ГОСУДАРСТВО",
+    "FULLNAME": "Государство Палестина",
+    "ALFA2": "PS",
+    "CODE": "275"
+  },
+  {
+    "global_id": 273329419,
+    "ALFA3": "GLP",
+    "SHORTNAME": "ГВАДЕЛУПА",
+    "ALFA2": "GP",
+    "CODE": "312"
+  },
+  {
+    "global_id": 273329420,
+    "ALFA3": "HND",
+    "SHORTNAME": "ГОНДУРАС",
+    "FULLNAME": "Республика Гондурас",
+    "ALFA2": "HN",
+    "CODE": "340"
+  },
+  {
+    "global_id": 273329421,
+    "ALFA3": "IRN",
+    "SHORTNAME": "ИРАН (ИСЛАМСКАЯ РЕСПУБЛИКА)",
+    "FULLNAME": "Исламская Республика Иран",
+    "ALFA2": "IR",
+    "CODE": "364"
+  },
+  {
+    "global_id": 273329422,
+    "ALFA3": "IRL",
+    "SHORTNAME": "ИРЛАНДИЯ",
+    "ALFA2": "IE",
+    "CODE": "372"
+  },
+  {
+    "global_id": 273329423,
+    "ALFA3": "JPN",
+    "SHORTNAME": "ЯПОНИЯ",
+    "ALFA2": "JP",
+    "CODE": "392"
+  },
+  {
+    "global_id": 273329424,
+    "ALFA3": "KEN",
+    "SHORTNAME": "КЕНИЯ",
+    "FULLNAME": "Республика Кения",
+    "ALFA2": "KE",
+    "CODE": "404"
+  },
+  {
+    "global_id": 273329425,
+    "ALFA3": "KGZ",
+    "SHORTNAME": "КИРГИЗИЯ",
+    "FULLNAME": "Киргизская Республика",
+    "ALFA2": "KG",
+    "CODE": "417"
+  },
+  {
+    "global_id": 273329426,
+    "ALFA3": "MLT",
+    "SHORTNAME": "МАЛЬТА",
+    "FULLNAME": "Республика Мальта",
+    "ALFA2": "MT",
+    "CODE": "470"
+  },
+  {
+    "global_id": 273329427,
+    "ALFA3": "MOZ",
+    "SHORTNAME": "МОЗАМБИК",
+    "FULLNAME": "Республика Мозамбик",
+    "ALFA2": "МZ",
+    "CODE": "508"
+  },
+  {
+    "global_id": 273329428,
+    "ALFA3": "ABW",
+    "SHORTNAME": "АРУБА",
+    "ALFA2": "AW",
+    "CODE": "533"
+  },
+  {
+    "global_id": 273329429,
+    "ALFA3": "NCL",
+    "SHORTNAME": "НОВАЯ КАЛЕДОНИЯ",
+    "ALFA2": "NC",
+    "CODE": "540"
+  },
+  {
+    "global_id": 273329430,
+    "ALFA3": "SVK",
+    "SHORTNAME": "СЛОВАКИЯ",
+    "FULLNAME": "Словацкая Республика",
+    "ALFA2": "SK",
+    "CODE": "703"
+  },
+  {
+    "global_id": 273329431,
+    "ALFA3": "SWZ",
+    "SHORTNAME": "ЭСВАТИНИ",
+    "FULLNAME": "Королевство Эсватини",
+    "ALFA2": "SZ",
+    "CODE": "748"
+  },
+  {
+    "global_id": 273329432,
+    "ALFA3": "TZA",
+    "SHORTNAME": "ТАНЗАНИЯ, ОБЪЕДИНЕННАЯ РЕСПУБЛИКА",
+    "FULLNAME": "Объединенная Республика Танзания",
+    "ALFA2": "TZ",
+    "CODE": "834"
+  },
+  {
+    "global_id": 273329433,
+    "ALFA3": "WLF",
+    "SHORTNAME": "УОЛЛИС И ФУТУНА",
+    "ALFA2": "WF",
+    "CODE": "876"
+  },
+  {
+    "global_id": 273330121,
+    "ALFA3": "SGP",
+    "SHORTNAME": "СИНГАПУР",
+    "FULLNAME": "Республика Сингапур",
+    "ALFA2": "SG",
+    "CODE": "702"
+  },
+  {
+    "global_id": 273330122,
+    "ALFA3": "VNM",
+    "SHORTNAME": "ВЬЕТНАМ",
+    "FULLNAME": "Социалистическая Республика Вьетнам",
+    "ALFA2": "VN",
+    "CODE": "704"
+  },
+  {
+    "global_id": 273330123,
+    "ALFA3": "SVN",
+    "SHORTNAME": "СЛОВЕНИЯ",
+    "FULLNAME": "Республика Словения",
+    "ALFA2": "SI",
+    "CODE": "705"
+  },
+  {
+    "global_id": 273330124,
+    "ALFA3": "SOM",
+    "SHORTNAME": "СОМАЛИ",
+    "FULLNAME": "Федеративная Республика Сомали",
+    "ALFA2": "SO",
+    "CODE": "706"
+  },
+  {
+    "global_id": 273330125,
+    "ALFA3": "ZAF",
+    "SHORTNAME": "ЮЖНАЯ АФРИКА",
+    "FULLNAME": "Южно-Африканская Республика",
+    "ALFA2": "ZA",
+    "CODE": "710"
+  },
+  {
+    "global_id": 273330126,
+    "ALFA3": "ZWE",
+    "SHORTNAME": "ЗИМБАБВЕ",
+    "FULLNAME": "Республика Зимбабве",
+    "ALFA2": "ZW",
+    "CODE": "716"
+  },
+  {
+    "global_id": 273330127,
+    "ALFA3": "ESP",
+    "SHORTNAME": "ИСПАНИЯ",
+    "FULLNAME": "Королевство Испания",
+    "ALFA2": "ES",
+    "CODE": "724"
+  },
+  {
+    "global_id": 273330128,
+    "ALFA3": "SSD",
+    "SHORTNAME": "ЮЖНЫЙ СУДАН",
+    "FULLNAME": "Республика Южный Судан",
+    "ALFA2": "SS",
+    "CODE": "728"
+  },
+  {
+    "global_id": 273330129,
+    "ALFA3": "SDN",
+    "SHORTNAME": "СУДАН",
+    "FULLNAME": "Республика Судан",
+    "ALFA2": "SD",
+    "CODE": "729"
+  },
+  {
+    "global_id": 273330130,
+    "ALFA3": "ESH",
+    "SHORTNAME": "ЗАПАДНАЯ САХАРА",
+    "ALFA2": "EH",
+    "CODE": "732"
+  },
+  {
+    "global_id": 273330131,
+    "ALFA3": "SUR",
+    "SHORTNAME": "СУРИНАМ",
+    "FULLNAME": "Республика Суринам",
+    "ALFA2": "SR",
+    "CODE": "740"
+  },
+  {
+    "global_id": 273330132,
+    "ALFA3": "SJM",
+    "SHORTNAME": "ШПИЦБЕРГЕН И ЯН МАЙЕН",
+    "ALFA2": "SJ",
+    "CODE": "744"
+  },
+  {
+    "global_id": 273330133,
+    "ALFA3": "SWE",
+    "SHORTNAME": "ШВЕЦИЯ",
+    "FULLNAME": "Королевство Швеция",
+    "ALFA2": "SE",
+    "CODE": "752"
+  },
+  {
+    "global_id": 273330134,
+    "ALFA3": "CHE",
+    "SHORTNAME": "ШВЕЙЦАРИЯ",
+    "FULLNAME": "Швейцарская Конфедерация",
+    "ALFA2": "CH",
+    "CODE": "756"
+  },
+  {
+    "global_id": 273330135,
+    "ALFA3": "SYR",
+    "SHORTNAME": "СИРИЙСКАЯ АРАБСКАЯ РЕСПУБЛИКА",
+    "ALFA2": "SY",
+    "CODE": "760"
+  },
+  {
+    "global_id": 273330136,
+    "ALFA3": "TJK",
+    "SHORTNAME": "ТАДЖИКИСТАН",
+    "FULLNAME": "Республика Таджикистан",
+    "ALFA2": "TJ",
+    "CODE": "762"
+  },
+  {
+    "global_id": 273330137,
+    "ALFA3": "THA",
+    "SHORTNAME": "ТАИЛАНД",
+    "FULLNAME": "Королевство Таиланд",
+    "ALFA2": "TH",
+    "CODE": "764"
+  },
+  {
+    "global_id": 273330138,
+    "ALFA3": "TGO",
+    "SHORTNAME": "ТОГО",
+    "FULLNAME": "Тоголезская Республика",
+    "ALFA2": "TG",
+    "CODE": "768"
+  },
+  {
+    "global_id": 273330139,
+    "ALFA3": "TKL",
+    "SHORTNAME": "ТОКЕЛАУ",
+    "ALFA2": "TK",
+    "CODE": "772"
+  },
+  {
+    "global_id": 273330140,
+    "ALFA3": "TON",
+    "SHORTNAME": "ТОНГА",
+    "FULLNAME": "Королевство Тонга",
+    "ALFA2": "TO",
+    "CODE": "776"
+  },
+  {
+    "global_id": 273330141,
+    "ALFA3": "TTO",
+    "SHORTNAME": "ТРИНИДАД И ТОБАГО",
+    "FULLNAME": "Республика Тринидад и Тобаго",
+    "ALFA2": "TT",
+    "CODE": "780"
+  },
+  {
+    "global_id": 273330142,
+    "ALFA3": "ARE",
+    "SHORTNAME": "ОБЪЕДИНЕННЫЕ АРАБСКИЕ ЭМИРАТЫ",
+    "ALFA2": "AE",
+    "CODE": "784"
+  },
+  {
+    "global_id": 273330143,
+    "ALFA3": "TUN",
+    "SHORTNAME": "ТУНИС",
+    "FULLNAME": "Тунисская Республика",
+    "ALFA2": "TN",
+    "CODE": "788"
+  },
+  {
+    "global_id": 273330144,
+    "ALFA3": "TUR",
+    "SHORTNAME": "ТУРЦИЯ",
+    "FULLNAME": "Турецкая Республика",
+    "ALFA2": "TR",
+    "CODE": "792"
+  },
+  {
+    "global_id": 273330145,
+    "ALFA3": "TKM",
+    "SHORTNAME": "ТУРКМЕНИСТАН",
+    "ALFA2": "TM",
+    "CODE": "795"
+  },
+  {
+    "global_id": 273330146,
+    "ALFA3": "TCA",
+    "SHORTNAME": "ОСТРОВА ТЕРКС И КАЙКОС",
+    "ALFA2": "TC",
+    "CODE": "796"
+  },
+  {
+    "global_id": 273330147,
+    "ALFA3": "TUV",
+    "SHORTNAME": "ТУВАЛУ",
+    "ALFA2": "TV",
+    "CODE": "798"
+  },
+  {
+    "global_id": 273330148,
+    "ALFA3": "UGA",
+    "SHORTNAME": "УГАНДА",
+    "FULLNAME": "Республика Уганда",
+    "ALFA2": "UG",
+    "CODE": "800"
+  },
+  {
+    "global_id": 273330149,
+    "ALFA3": "UKR",
+    "SHORTNAME": "УКРАИНА",
+    "ALFA2": "UA",
+    "CODE": "804"
+  },
+  {
+    "global_id": 273330150,
+    "ALFA3": "MKD",
+    "SHORTNAME": "РЕСПУБЛИКА МАКЕДОНИЯ",
+    "ALFA2": "MK",
+    "CODE": "807"
+  },
+  {
+    "global_id": 273330151,
+    "ALFA3": "EGY",
+    "SHORTNAME": "ЕГИПЕТ",
+    "FULLNAME": "Арабская Республика Египет",
+    "ALFA2": "EG",
+    "CODE": "818"
+  },
+  {
+    "global_id": 273330152,
+    "ALFA3": "GBR",
+    "SHORTNAME": "СОЕДИНЕННОЕ КОРОЛЕВСТВО",
+    "FULLNAME": "Соединенное Королевство Великобритании и Северной Ирландии",
+    "ALFA2": "GB",
+    "CODE": "826"
+  },
+  {
+    "global_id": 273330153,
+    "ALFA3": "GGY",
+    "SHORTNAME": "ГЕРНСИ",
+    "ALFA2": "GG",
+    "CODE": "831"
+  },
+  {
+    "global_id": 273330154,
+    "ALFA3": "JEY",
+    "SHORTNAME": "ДЖЕРСИ",
+    "ALFA2": "JE",
+    "CODE": "832"
+  },
+  {
+    "global_id": 273330155,
+    "ALFA3": "IMN",
+    "SHORTNAME": "ОСТРОВ МЭН",
+    "ALFA2": "IM",
+    "CODE": "833"
+  },
+  {
+    "global_id": 273330156,
+    "ALFA3": "USA",
+    "SHORTNAME": "СОЕДИНЕННЫЕ ШТАТЫ",
+    "FULLNAME": "Соединенные Штаты Америки",
+    "ALFA2": "US",
+    "CODE": "840"
+  },
+  {
+    "global_id": 273330157,
+    "ALFA3": "VIR",
+    "SHORTNAME": "ВИРГИНСКИЕ ОСТРОВА (США)",
+    "FULLNAME": "Виргинские острова Соединенных Штатов",
+    "ALFA2": "VI",
+    "CODE": "850"
+  },
+  {
+    "global_id": 273330158,
+    "ALFA3": "BFA",
+    "SHORTNAME": "БУРКИНА-ФАСО",
+    "ALFA2": "BF",
+    "CODE": "854"
+  },
+  {
+    "global_id": 273330159,
+    "ALFA3": "URY",
+    "SHORTNAME": "УРУГВАЙ",
+    "FULLNAME": "Восточная Республика Уругвай",
+    "ALFA2": "UY",
+    "CODE": "858"
+  },
+  {
+    "global_id": 273330160,
+    "ALFA3": "UZB",
+    "SHORTNAME": "УЗБЕКИСТАН",
+    "FULLNAME": "Республика Узбекистан",
+    "ALFA2": "UZ",
+    "CODE": "860"
+  },
+  {
+    "global_id": 273330161,
+    "ALFA3": "VEN",
+    "SHORTNAME": "ВЕНЕСУЭЛА (БОЛИВАРИАНСКАЯ РЕСПУБЛИКА)",
+    "FULLNAME": "Боливарианская Республика Венесуэла",
+    "ALFA2": "VE",
+    "CODE": "862"
+  },
+  {
+    "global_id": 273330162,
+    "ALFA3": "WSM",
+    "SHORTNAME": "САМОА",
+    "FULLNAME": "Независимое Государство Самоа",
+    "ALFA2": "WS",
+    "CODE": "882"
+  },
+  {
+    "global_id": 273330163,
+    "ALFA3": "YEM",
+    "SHORTNAME": "ЙЕМЕН",
+    "FULLNAME": "Йеменская Республика",
+    "ALFA2": "YE",
+    "CODE": "887"
+  },
+  {
+    "global_id": 273330164,
+    "ALFA3": "ZMB",
+    "SHORTNAME": "ЗАМБИЯ",
+    "FULLNAME": "Республика Замбия",
+    "ALFA2": "ZM",
+    "CODE": "894"
+  },
+  {
+    "global_id": 273330165,
+    "ALFA3": "ABH",
+    "SHORTNAME": "АБХАЗИЯ",
+    "FULLNAME": "Республика Абхазия",
+    "ALFA2": "AB",
+    "CODE": "895"
+  },
+  {
+    "global_id": 273330166,
+    "ALFA3": "OST",
+    "SHORTNAME": "ЮЖНАЯ ОСЕТИЯ",
+    "FULLNAME": "Республика Южная Осетия",
+    "ALFA2": "OS",
+    "CODE": "896"
+  },
+  {
+    "global_id": 273330167,
+    "ALFA3": "AFG",
+    "SHORTNAME": "АФГАНИСТАН",
+    "FULLNAME": "Переходное Исламское Государство Афганистан",
+    "ALFA2": "AF",
+    "CODE": "004"
+  },
+  {
+    "global_id": 273330168,
+    "ALFA3": "ALB",
+    "SHORTNAME": "АЛБАНИЯ",
+    "FULLNAME": "Республика Албания",
+    "ALFA2": "AL",
+    "CODE": "008"
+  },
+  {
+    "global_id": 273330169,
+    "ALFA3": "ATA",
+    "SHORTNAME": "АНТАРКТИДА",
+    "ALFA2": "AQ",
+    "CODE": "010"
+  },
+  {
+    "global_id": 273330170,
+    "ALFA3": "DZA",
+    "SHORTNAME": "АЛЖИР",
+    "FULLNAME": "Алжирская Народная Демократическая Республика",
+    "ALFA2": "DZ",
+    "CODE": "012"
+  },
+  {
+    "global_id": 273330171,
+    "ALFA3": "ASM",
+    "SHORTNAME": "АМЕРИКАНСКОЕ САМОА",
+    "ALFA2": "AS",
+    "CODE": "016"
+  },
+  {
+    "global_id": 273330172,
+    "ALFA3": "AND",
+    "SHORTNAME": "АНДОРРА",
+    "FULLNAME": "Княжество Андорра",
+    "ALFA2": "AD",
+    "CODE": "020"
+  },
+  {
+    "global_id": 273330173,
+    "ALFA3": "AGO",
+    "SHORTNAME": "АНГОЛА",
+    "FULLNAME": "Республика Ангола",
+    "ALFA2": "AO",
+    "CODE": "024"
+  },
+  {
+    "global_id": 273330174,
+    "ALFA3": "ATG",
+    "SHORTNAME": "АНТИГУА И БАРБУДА",
+    "ALFA2": "AG",
+    "CODE": "028"
+  },
+  {
+    "global_id": 273330175,
+    "ALFA3": "AZE",
+    "SHORTNAME": "АЗЕРБАЙДЖАН",
+    "FULLNAME": "Республика Азербайджан",
+    "ALFA2": "AZ",
+    "CODE": "031"
+  },
+  {
+    "global_id": 273330176,
+    "ALFA3": "ARG",
+    "SHORTNAME": "АРГЕНТИНА",
+    "FULLNAME": "Аргентинская Республика",
+    "ALFA2": "AR",
+    "CODE": "032"
+  },
+  {
+    "global_id": 273330177,
+    "ALFA3": "AUS",
+    "SHORTNAME": "АВСТРАЛИЯ",
+    "ALFA2": "AU",
+    "CODE": "036"
+  },
+  {
+    "global_id": 273330178,
+    "ALFA3": "BHS",
+    "SHORTNAME": "БАГАМЫ",
+    "FULLNAME": "Содружество Багамы",
+    "ALFA2": "BS",
+    "CODE": "044"
+  },
+  {
+    "global_id": 273330179,
+    "ALFA3": "BHR",
+    "SHORTNAME": "БАХРЕЙН",
+    "FULLNAME": "Королевство Бахрейн",
+    "ALFA2": "BH",
+    "CODE": "048"
+  },
+  {
+    "global_id": 273330180,
+    "ALFA3": "BGD",
+    "SHORTNAME": "БАНГЛАДЕШ",
+    "FULLNAME": "Народная Республика Бангладеш",
+    "ALFA2": "BD",
+    "CODE": "050"
+  },
+  {
+    "global_id": 273330181,
+    "ALFA3": "ARM",
+    "SHORTNAME": "АРМЕНИЯ",
+    "FULLNAME": "Республика Армения",
+    "ALFA2": "AM",
+    "CODE": "051"
+  },
+  {
+    "global_id": 273330182,
+    "ALFA3": "BRB",
+    "SHORTNAME": "БАРБАДОС",
+    "ALFA2": "BB",
+    "CODE": "052"
+  },
+  {
+    "global_id": 273330183,
+    "ALFA3": "BEL",
+    "SHORTNAME": "БЕЛЬГИЯ",
+    "FULLNAME": "Королевство Бельгии",
+    "ALFA2": "BE",
+    "CODE": "056"
+  },
+  {
+    "global_id": 273330184,
+    "ALFA3": "BMU",
+    "SHORTNAME": "БЕРМУДЫ",
+    "ALFA2": "BM",
+    "CODE": "060"
+  },
+  {
+    "global_id": 273330185,
+    "ALFA3": "BTN",
+    "SHORTNAME": "БУТАН",
+    "FULLNAME": "Королевство Бутан",
+    "ALFA2": "BT",
+    "CODE": "064"
+  },
+  {
+    "global_id": 273330186,
+    "ALFA3": "BOL",
+    "SHORTNAME": "БОЛИВИЯ, МНОГОНАЦИОНАЛЬНОЕ ГОСУДАРСТВО",
+    "FULLNAME": "Многонациональное Государство Боливия",
+    "ALFA2": "BO",
+    "CODE": "068"
+  },
+  {
+    "global_id": 273330187,
+    "ALFA3": "BIH",
+    "SHORTNAME": "БОСНИЯ И ГЕРЦЕГОВИНА",
+    "ALFA2": "BA",
+    "CODE": "070"
+  },
+  {
+    "global_id": 273330188,
+    "ALFA3": "BWA",
+    "SHORTNAME": "БОТСВАНА",
+    "FULLNAME": "Республика Ботсвана",
+    "ALFA2": "BW",
+    "CODE": "072"
+  },
+  {
+    "global_id": 273330189,
+    "ALFA3": "BVT",
+    "SHORTNAME": "ОСТРОВ БУВЕ",
+    "ALFA2": "BV",
+    "CODE": "074"
+  },
+  {
+    "global_id": 273330190,
+    "ALFA3": "BRA",
+    "SHORTNAME": "БРАЗИЛИЯ",
+    "FULLNAME": "Федеративная Республика Бразилия",
+    "ALFA2": "BR",
+    "CODE": "076"
+  },
+  {
+    "global_id": 273330191,
+    "ALFA3": "BLZ",
+    "SHORTNAME": "БЕЛИЗ",
+    "ALFA2": "BZ",
+    "CODE": "084"
+  },
+  {
+    "global_id": 273330192,
+    "ALFA3": "IOT",
+    "SHORTNAME": "БРИТАНСКАЯ ТЕРРИТОРИЯ В ИНДИЙСКОМ ОКЕАНЕ",
+    "ALFA2": "IO",
+    "CODE": "086"
+  },
+  {
+    "global_id": 273330193,
+    "ALFA3": "SLB",
+    "SHORTNAME": "СОЛОМОНОВЫ ОСТРОВА",
+    "ALFA2": "SB",
+    "CODE": "090"
+  },
+  {
+    "global_id": 273330194,
+    "ALFA3": "VGB",
+    "SHORTNAME": "ВИРГИНСКИЕ ОСТРОВА (БРИТАНСКИЕ)",
+    "FULLNAME": "Британские Виргинские острова",
+    "ALFA2": "VG",
+    "CODE": "092"
+  },
+  {
+    "global_id": 273330195,
+    "ALFA3": "BRN",
+    "SHORTNAME": "БРУНЕЙ-ДАРУССАЛАМ",
+    "ALFA2": "BN",
+    "CODE": "096"
+  },
+  {
+    "global_id": 273330196,
+    "ALFA3": "BGR",
+    "SHORTNAME": "БОЛГАРИЯ",
+    "FULLNAME": "Республика Болгария",
+    "ALFA2": "BG",
+    "CODE": "100"
+  },
+  {
+    "global_id": 273330197,
+    "ALFA3": "MMR",
+    "SHORTNAME": "МЬЯНМА",
+    "FULLNAME": "Республика Союза Мьянма",
+    "ALFA2": "MM",
+    "CODE": "104"
+  },
+  {
+    "global_id": 273330198,
+    "ALFA3": "BDI",
+    "SHORTNAME": "БУРУНДИ",
+    "FULLNAME": "Республика Бурунди",
+    "ALFA2": "BI",
+    "CODE": "108"
+  },
+  {
+    "global_id": 273330199,
+    "ALFA3": "BLR",
+    "SHORTNAME": "БЕЛАРУСЬ",
+    "FULLNAME": "Республика Беларусь",
+    "ALFA2": "BY",
+    "CODE": "112"
+  },
+  {
+    "global_id": 273330200,
+    "ALFA3": "KHM",
+    "SHORTNAME": "КАМБОДЖА",
+    "FULLNAME": "Королевство Камбоджа",
+    "ALFA2": "KH",
+    "CODE": "116"
+  },
+  {
+    "global_id": 273330201,
+    "ALFA3": "CMR",
+    "SHORTNAME": "КАМЕРУН",
+    "FULLNAME": "Республика Камерун",
+    "ALFA2": "CM",
+    "CODE": "120"
+  },
+  {
+    "global_id": 273330202,
+    "ALFA3": "CAN",
+    "SHORTNAME": "КАНАДА",
+    "ALFA2": "CA",
+    "CODE": "124"
+  },
+  {
+    "global_id": 273330203,
+    "ALFA3": "CPV",
+    "SHORTNAME": "КАБО-ВЕРДЕ",
+    "FULLNAME": "Республика Кабо-Верде",
+    "ALFA2": "CV",
+    "CODE": "132"
+  },
+  {
+    "global_id": 273330204,
+    "ALFA3": "CYM",
+    "SHORTNAME": "ОСТРОВА КАЙМАН",
+    "ALFA2": "KY",
+    "CODE": "136"
+  },
+  {
+    "global_id": 273330205,
+    "ALFA3": "CAF",
+    "SHORTNAME": "ЦЕНТРАЛЬНО-АФРИКАНСКАЯ РЕСПУБЛИКА",
+    "ALFA2": "CF",
+    "CODE": "140"
+  },
+  {
+    "global_id": 273330206,
+    "ALFA3": "LKA",
+    "SHORTNAME": "ШРИ-ЛАНКА",
+    "FULLNAME": "Демократическая Социалистическая Республика Шри-Ланка",
+    "ALFA2": "LK",
+    "CODE": "144"
+  },
+  {
+    "global_id": 273330207,
+    "ALFA3": "CHL",
+    "SHORTNAME": "ЧИЛИ",
+    "FULLNAME": "Республика Чили",
+    "ALFA2": "CL",
+    "CODE": "152"
+  },
+  {
+    "global_id": 273330208,
+    "ALFA3": "CHN",
+    "SHORTNAME": "КИТАЙ",
+    "FULLNAME": "Китайская Народная Республика",
+    "ALFA2": "CN",
+    "CODE": "156"
+  },
+  {
+    "global_id": 273330209,
+    "ALFA3": "TWN",
+    "SHORTNAME": "ТАЙВАНЬ (КИТАЙ)",
+    "ALFA2": "TW",
+    "CODE": "158"
+  },
+  {
+    "global_id": 273330210,
+    "ALFA3": "CXR",
+    "SHORTNAME": "ОСТРОВ РОЖДЕСТВА",
+    "ALFA2": "CX",
+    "CODE": "162"
+  },
+  {
+    "global_id": 273330211,
+    "ALFA3": "CCK",
+    "SHORTNAME": "КОКОСОВЫЕ (КИЛИНГ) ОСТРОВА",
+    "ALFA2": "CC",
+    "CODE": "166"
+  },
+  {
+    "global_id": 273330212,
+    "ALFA3": "COL",
+    "SHORTNAME": "КОЛУМБИЯ",
+    "FULLNAME": "Республика Колумбия",
+    "ALFA2": "CO",
+    "CODE": "170"
+  },
+  {
+    "global_id": 273330213,
+    "ALFA3": "MYT",
+    "SHORTNAME": "МАЙОТТА",
+    "ALFA2": "YT",
+    "CODE": "175"
+  },
+  {
+    "global_id": 273330214,
+    "ALFA3": "COG",
+    "SHORTNAME": "КОНГО",
+    "FULLNAME": "Республика Конго",
+    "ALFA2": "CG",
+    "CODE": "178"
+  },
+  {
+    "global_id": 273330215,
+    "ALFA3": "COD",
+    "SHORTNAME": "КОНГО, ДЕМОКРАТИЧЕСКАЯ РЕСПУБЛИКА",
+    "FULLNAME": "Демократическая Республика Конго",
+    "ALFA2": "CD",
+    "CODE": "180"
+  },
+  {
+    "global_id": 273330216,
+    "ALFA3": "COK",
+    "SHORTNAME": "ОСТРОВА КУКА",
+    "ALFA2": "CK",
+    "CODE": "184"
+  },
+  {
+    "global_id": 273330217,
+    "ALFA3": "CRI",
+    "SHORTNAME": "КОСТА-РИКА",
+    "FULLNAME": "Республика Коста-Рика",
+    "ALFA2": "CR",
+    "CODE": "188"
+  },
+  {
+    "global_id": 273330218,
+    "ALFA3": "HRV",
+    "SHORTNAME": "ХОРВАТИЯ",
+    "FULLNAME": "Республика Хорватия",
+    "ALFA2": "HR",
+    "CODE": "191"
+  },
+  {
+    "global_id": 273330219,
+    "ALFA3": "CUB",
+    "SHORTNAME": "КУБА",
+    "FULLNAME": "Республика Куба",
+    "ALFA2": "CU",
+    "CODE": "192"
+  },
+  {
+    "global_id": 273330220,
+    "ALFA3": "CYP",
+    "SHORTNAME": "КИПР",
+    "FULLNAME": "Республика Кипр",
+    "ALFA2": "CY",
+    "CODE": "196"
+  },
+  {
+    "global_id": 273330221,
+    "ALFA3": "CZE",
+    "SHORTNAME": "ЧЕХИЯ",
+    "FULLNAME": "Чешская Республика",
+    "ALFA2": "CZ",
+    "CODE": "203"
+  },
+  {
+    "global_id": 273330222,
+    "ALFA3": "BEN",
+    "SHORTNAME": "БЕНИН",
+    "FULLNAME": "Республика Бенин",
+    "ALFA2": "BJ",
+    "CODE": "204"
+  },
+  {
+    "global_id": 273330223,
+    "ALFA3": "DNK",
+    "SHORTNAME": "ДАНИЯ",
+    "FULLNAME": "Королевство Дания",
+    "ALFA2": "DK",
+    "CODE": "208"
+  },
+  {
+    "global_id": 273330224,
+    "ALFA3": "DMA",
+    "SHORTNAME": "ДОМИНИКА",
+    "FULLNAME": "Содружество Доминики",
+    "ALFA2": "DM",
+    "CODE": "212"
+  },
+  {
+    "global_id": 273330225,
+    "ALFA3": "DOM",
+    "SHORTNAME": "ДОМИНИКАНСКАЯ РЕСПУБЛИКА",
+    "ALFA2": "DO",
+    "CODE": "214"
+  },
+  {
+    "global_id": 273330226,
+    "ALFA3": "ECU",
+    "SHORTNAME": "ЭКВАДОР",
+    "FULLNAME": "Республика Эквадор",
+    "ALFA2": "EC",
+    "CODE": "218"
+  },
+  {
+    "global_id": 273330227,
+    "ALFA3": "SLV",
+    "SHORTNAME": "ЭЛЬ-САЛЬВАДОР",
+    "FULLNAME": "Республика Эль-Сальвадор",
+    "ALFA2": "SV",
+    "CODE": "222"
+  },
+  {
+    "global_id": 273330228,
+    "ALFA3": "GNQ",
+    "SHORTNAME": "ЭКВАТОРИАЛЬНАЯ ГВИНЕЯ",
+    "FULLNAME": "Республика Экваториальная Гвинея",
+    "ALFA2": "GQ",
+    "CODE": "226"
+  },
+  {
+    "global_id": 273330229,
+    "ALFA3": "ETH",
+    "SHORTNAME": "ЭФИОПИЯ",
+    "FULLNAME": "Федеративная Демократическая Республика Эфиопия",
+    "ALFA2": "ET",
+    "CODE": "231"
+  },
+  {
+    "global_id": 273330230,
+    "ALFA3": "ERI",
+    "SHORTNAME": "ЭРИТРЕЯ",
+    "FULLNAME": "Государство Эритрея",
+    "ALFA2": "ER",
+    "CODE": "232"
+  },
+  {
+    "global_id": 273330231,
+    "ALFA3": "EST",
+    "SHORTNAME": "ЭСТОНИЯ",
+    "FULLNAME": "Эстонская Республика",
+    "ALFA2": "EE",
+    "CODE": "233"
+  },
+  {
+    "global_id": 273330232,
+    "ALFA3": "FRO",
+    "SHORTNAME": "ФАРЕРСКИЕ ОСТРОВА",
+    "ALFA2": "FO",
+    "CODE": "234"
+  },
+  {
+    "global_id": 273330233,
+    "ALFA3": "FLK",
+    "SHORTNAME": "ФОЛКЛЕНДСКИЕ ОСТРОВА (МАЛЬВИНСКИЕ)",
+    "ALFA2": "FK",
+    "CODE": "238"
+  },
+  {
+    "global_id": 273330234,
+    "ALFA3": "SGS",
+    "SHORTNAME": "ЮЖНАЯ ДЖОРДЖИЯ И ЮЖНЫЕ САНДВИЧЕВЫ ОСТРОВА",
+    "ALFA2": "GS",
+    "CODE": "239"
+  },
+  {
+    "global_id": 273330235,
+    "ALFA3": "FJI",
+    "SHORTNAME": "ФИДЖИ",
+    "FULLNAME": "Республика Фиджи",
+    "ALFA2": "FJ",
+    "CODE": "242"
+  },
+  {
+    "global_id": 273330236,
+    "ALFA3": "FIN",
+    "SHORTNAME": "ФИНЛЯНДИЯ",
+    "FULLNAME": "Финляндская Республика",
+    "ALFA2": "FI",
+    "CODE": "246"
+  },
+  {
+    "global_id": 273330237,
+    "ALFA3": "ALA",
+    "SHORTNAME": "ЭЛАНДСКИЕ ОСТРОВА",
+    "ALFA2": "AX",
+    "CODE": "248"
+  },
+  {
+    "global_id": 273330238,
+    "ALFA3": "FRA",
+    "SHORTNAME": "ФРАНЦИЯ",
+    "FULLNAME": "Французская Республика",
+    "ALFA2": "FR",
+    "CODE": "250"
+  },
+  {
+    "global_id": 273330239,
+    "ALFA3": "GUF",
+    "SHORTNAME": "ФРАНЦУЗСКАЯ ГВИАНА",
+    "ALFA2": "GF",
+    "CODE": "254"
+  },
+  {
+    "global_id": 273330240,
+    "ALFA3": "PYF",
+    "SHORTNAME": "ФРАНЦУЗСКАЯ ПОЛИНЕЗИЯ",
+    "ALFA2": "PF",
+    "CODE": "258"
+  },
+  {
+    "global_id": 273330241,
+    "ALFA3": "ATF",
+    "SHORTNAME": "ФРАНЦУЗСКИЕ ЮЖНЫЕ ТЕРРИТОРИИ",
+    "ALFA2": "TF",
+    "CODE": "260"
+  },
+  {
+    "global_id": 273330242,
+    "ALFA3": "DJI",
+    "SHORTNAME": "ДЖИБУТИ",
+    "FULLNAME": "Республика Джибути",
+    "ALFA2": "DJ",
+    "CODE": "262"
+  },
+  {
+    "global_id": 273330243,
+    "ALFA3": "GEO",
+    "SHORTNAME": "ГРУЗИЯ",
+    "ALFA2": "GE",
+    "CODE": "268"
+  },
+  {
+    "global_id": 273330244,
+    "ALFA3": "GMB",
+    "SHORTNAME": "ГАМБИЯ",
+    "FULLNAME": "Исламская Республика Гамбия",
+    "ALFA2": "GM",
+    "CODE": "270"
+  },
+  {
+    "global_id": 273330245,
+    "ALFA3": "DEU",
+    "SHORTNAME": "ГЕРМАНИЯ",
+    "FULLNAME": "Федеративная Республика Германия",
+    "ALFA2": "DE",
+    "CODE": "276"
+  },
+  {
+    "global_id": 273330246,
+    "ALFA3": "GHA",
+    "SHORTNAME": "ГАНА",
+    "FULLNAME": "Республика Гана",
+    "ALFA2": "GH",
+    "CODE": "288"
+  },
+  {
+    "global_id": 273330247,
+    "ALFA3": "GIB",
+    "SHORTNAME": "ГИБРАЛТАР",
+    "ALFA2": "GI",
+    "CODE": "292"
+  },
+  {
+    "global_id": 273330248,
+    "ALFA3": "KIR",
+    "SHORTNAME": "КИРИБАТИ",
+    "FULLNAME": "Республика Кирибати",
+    "ALFA2": "KI",
+    "CODE": "296"
+  },
+  {
+    "global_id": 273330249,
+    "ALFA3": "GRC",
+    "SHORTNAME": "ГРЕЦИЯ",
+    "FULLNAME": "Греческая Республика",
+    "ALFA2": "GR",
+    "CODE": "300"
+  },
+  {
+    "global_id": 273330250,
+    "ALFA3": "GRL",
+    "SHORTNAME": "ГРЕНЛАНДИЯ",
+    "ALFA2": "GL",
+    "CODE": "304"
+  },
+  {
+    "global_id": 273330251,
+    "ALFA3": "GRD",
+    "SHORTNAME": "ГРЕНАДА",
+    "ALFA2": "GD",
+    "CODE": "308"
+  },
+  {
+    "global_id": 273330252,
+    "ALFA3": "GUM",
+    "SHORTNAME": "ГУАМ",
+    "ALFA2": "GU",
+    "CODE": "316"
+  },
+  {
+    "global_id": 273330253,
+    "ALFA3": "GTM",
+    "SHORTNAME": "ГВАТЕМАЛА",
+    "FULLNAME": "Республика Гватемала",
+    "ALFA2": "GT",
+    "CODE": "320"
+  },
+  {
+    "global_id": 273330254,
+    "ALFA3": "GIN",
+    "SHORTNAME": "ГВИНЕЯ",
+    "FULLNAME": "Гвинейская Республика",
+    "ALFA2": "GN",
+    "CODE": "324"
+  },
+  {
+    "global_id": 273330255,
+    "ALFA3": "GUY",
+    "SHORTNAME": "ГАЙАНА",
+    "FULLNAME": "Кооперативная Республика Гайана",
+    "ALFA2": "GY",
+    "CODE": "328"
+  },
+  {
+    "global_id": 273330256,
+    "ALFA3": "HTI",
+    "SHORTNAME": "ГАИТИ",
+    "FULLNAME": "Республика Гаити",
+    "ALFA2": "HT",
+    "CODE": "332"
+  },
+  {
+    "global_id": 273330257,
+    "ALFA3": "HMD",
+    "SHORTNAME": "ОСТРОВ ХЕРД И ОСТРОВА МАКДОНАЛЬД",
+    "ALFA2": "HM",
+    "CODE": "334"
+  },
+  {
+    "global_id": 273330258,
+    "ALFA3": "VAT",
+    "SHORTNAME": "ПАПСКИЙ ПРЕСТОЛ (ГОСУДАРСТВО-ГОРОД ВАТИКАН)",
+    "ALFA2": "VA",
+    "CODE": "336"
+  },
+  {
+    "global_id": 273330259,
+    "ALFA3": "HKG",
+    "SHORTNAME": "ГОНКОНГ",
+    "FULLNAME": "Специальный административный регион Китая Гонконг",
+    "ALFA2": "HK",
+    "CODE": "344"
+  },
+  {
+    "global_id": 273330260,
+    "ALFA3": "HUN",
+    "SHORTNAME": "ВЕНГРИЯ",
+    "FULLNAME": "Венгрия",
+    "ALFA2": "HU",
+    "CODE": "348"
+  },
+  {
+    "global_id": 273330261,
+    "ALFA3": "ISL",
+    "SHORTNAME": "ИСЛАНДИЯ",
+    "FULLNAME": "Республика Исландия",
+    "ALFA2": "IS",
+    "CODE": "352"
+  },
+  {
+    "global_id": 273330262,
+    "ALFA3": "IND",
+    "SHORTNAME": "ИНДИЯ",
+    "FULLNAME": "Республика Индия",
+    "ALFA2": "IN",
+    "CODE": "356"
+  },
+  {
+    "global_id": 273330263,
+    "ALFA3": "IDN",
+    "SHORTNAME": "ИНДОНЕЗИЯ",
+    "FULLNAME": "Республика Индонезия",
+    "ALFA2": "ID",
+    "CODE": "360"
+  },
+  {
+    "global_id": 273330264,
+    "ALFA3": "IRQ",
+    "SHORTNAME": "ИРАК",
+    "FULLNAME": "Республика Ирак",
+    "ALFA2": "IQ",
+    "CODE": "368"
+  },
+  {
+    "global_id": 273330265,
+    "ALFA3": "ISR",
+    "SHORTNAME": "ИЗРАИЛЬ",
+    "FULLNAME": "Государство Израиль",
+    "ALFA2": "IL",
+    "CODE": "376"
+  },
+  {
+    "global_id": 273330266,
+    "ALFA3": "ITA",
+    "SHORTNAME": "ИТАЛИЯ",
+    "FULLNAME": "Итальянская Республика",
+    "ALFA2": "IT",
+    "CODE": "380"
+  },
+  {
+    "global_id": 273330267,
+    "ALFA3": "CIV",
+    "SHORTNAME": "КОТ Д`ИВУАР",
+    "FULLNAME": "Республика Кот д`Ивуар",
+    "ALFA2": "CI",
+    "CODE": "384"
+  },
+  {
+    "global_id": 273330268,
+    "ALFA3": "JAM",
+    "SHORTNAME": "ЯМАЙКА",
+    "ALFA2": "JM",
+    "CODE": "388"
+  },
+  {
+    "global_id": 273330269,
+    "ALFA3": "KAZ",
+    "SHORTNAME": "КАЗАХСТАН",
+    "FULLNAME": "Республика Казахстан",
+    "ALFA2": "KZ",
+    "CODE": "398"
+  },
+  {
+    "global_id": 273330270,
+    "ALFA3": "JOR",
+    "SHORTNAME": "ИОРДАНИЯ",
+    "FULLNAME": "Иорданское Хашимитское Королевство",
+    "ALFA2": "JO",
+    "CODE": "400"
+  },
+  {
+    "global_id": 273330271,
+    "ALFA3": "PRK",
+    "SHORTNAME": "КОРЕЯ, НАРОДНО-ДЕМОКРАТИЧЕСКАЯ РЕСПУБЛИКА",
+    "FULLNAME": "Корейская Народно-Демократическая Республика",
+    "ALFA2": "KP",
+    "CODE": "408"
+  },
+  {
+    "global_id": 273330272,
+    "ALFA3": "KOR",
+    "SHORTNAME": "КОРЕЯ, РЕСПУБЛИКА",
+    "FULLNAME": "Республика Корея",
+    "ALFA2": "KR",
+    "CODE": "410"
+  },
+  {
+    "global_id": 273330273,
+    "ALFA3": "KWT",
+    "SHORTNAME": "КУВЕЙТ",
+    "FULLNAME": "Государство Кувейт",
+    "ALFA2": "KW",
+    "CODE": "414"
+  },
+  {
+    "global_id": 273330274,
+    "ALFA3": "LAO",
+    "SHORTNAME": "ЛАОССКАЯ НАРОДНО-ДЕМОКРАТИЧЕСКАЯ РЕСПУБЛИКА",
+    "ALFA2": "LA",
+    "CODE": "418"
+  },
+  {
+    "global_id": 273330275,
+    "ALFA3": "LBN",
+    "SHORTNAME": "ЛИВАН",
+    "FULLNAME": "Ливанская Республика",
+    "ALFA2": "LB",
+    "CODE": "422"
+  },
+  {
+    "global_id": 273330276,
+    "ALFA3": "LSO",
+    "SHORTNAME": "ЛЕСОТО",
+    "FULLNAME": "Королевство Лесото",
+    "ALFA2": "LS",
+    "CODE": "426"
+  },
+  {
+    "global_id": 273330277,
+    "ALFA3": "LVA",
+    "SHORTNAME": "ЛАТВИЯ",
+    "FULLNAME": "Латвийская Республика",
+    "ALFA2": "LV",
+    "CODE": "428"
+  },
+  {
+    "global_id": 273330278,
+    "ALFA3": "LBR",
+    "SHORTNAME": "ЛИБЕРИЯ",
+    "FULLNAME": "Республика Либерия",
+    "ALFA2": "LR",
+    "CODE": "430"
+  },
+  {
+    "global_id": 273330279,
+    "ALFA3": "LBY",
+    "SHORTNAME": "ЛИВИЯ",
+    "FULLNAME": "Государство Ливия",
+    "ALFA2": "LY",
+    "CODE": "434"
+  },
+  {
+    "global_id": 273330280,
+    "ALFA3": "LIE",
+    "SHORTNAME": "ЛИХТЕНШТЕЙН",
+    "FULLNAME": "Княжество Лихтенштейн",
+    "ALFA2": "LI",
+    "CODE": "438"
+  },
+  {
+    "global_id": 273330281,
+    "ALFA3": "LTU",
+    "SHORTNAME": "ЛИТВА",
+    "FULLNAME": "Литовская Республика",
+    "ALFA2": "LT",
+    "CODE": "440"
+  },
+  {
+    "global_id": 273330282,
+    "ALFA3": "LUX",
+    "SHORTNAME": "ЛЮКСЕМБУРГ",
+    "FULLNAME": "Великое Герцогство Люксембург",
+    "ALFA2": "LU",
+    "CODE": "442"
+  },
+  {
+    "global_id": 273330283,
+    "ALFA3": "MAC",
+    "SHORTNAME": "МАКАО",
+    "FULLNAME": "Специальный административный регион Китая Макао",
+    "ALFA2": "MO",
+    "CODE": "446"
+  },
+  {
+    "global_id": 273330284,
+    "ALFA3": "MDG",
+    "SHORTNAME": "МАДАГАСКАР",
+    "FULLNAME": "Республика Мадагаскар",
+    "ALFA2": "MG",
+    "CODE": "450"
+  },
+  {
+    "global_id": 273330285,
+    "ALFA3": "MWI",
+    "SHORTNAME": "МАЛАВИ",
+    "FULLNAME": "Республика Малави",
+    "ALFA2": "MW",
+    "CODE": "454"
+  },
+  {
+    "global_id": 273330286,
+    "ALFA3": "MYS",
+    "SHORTNAME": "МАЛАЙЗИЯ",
+    "ALFA2": "MY",
+    "CODE": "458"
+  },
+  {
+    "global_id": 273330287,
+    "ALFA3": "MDV",
+    "SHORTNAME": "МАЛЬДИВЫ",
+    "FULLNAME": "Мальдивская Республика",
+    "ALFA2": "MV",
+    "CODE": "462"
+  },
+  {
+    "global_id": 273330288,
+    "ALFA3": "MLI",
+    "SHORTNAME": "МАЛИ",
+    "FULLNAME": "Республика Мали",
+    "ALFA2": "ML",
+    "CODE": "466"
+  },
+  {
+    "global_id": 273330289,
+    "ALFA3": "MTQ",
+    "SHORTNAME": "МАРТИНИКА",
+    "ALFA2": "MQ",
+    "CODE": "474"
+  },
+  {
+    "global_id": 273330290,
+    "ALFA3": "MRT",
+    "SHORTNAME": "МАВРИТАНИЯ",
+    "FULLNAME": "Исламская Республика Мавритания",
+    "ALFA2": "MR",
+    "CODE": "478"
+  },
+  {
+    "global_id": 273330291,
+    "ALFA3": "MUS",
+    "SHORTNAME": "МАВРИКИЙ",
+    "FULLNAME": "Республика Маврикий",
+    "ALFA2": "MU",
+    "CODE": "480"
+  },
+  {
+    "global_id": 273330292,
+    "ALFA3": "MEX",
+    "SHORTNAME": "МЕКСИКА",
+    "FULLNAME": "Мексиканские Соединенные Штаты",
+    "ALFA2": "MX",
+    "CODE": "484"
+  },
+  {
+    "global_id": 273330293,
+    "ALFA3": "MCO",
+    "SHORTNAME": "МОНАКО",
+    "FULLNAME": "Княжество Монако",
+    "ALFA2": "MC",
+    "CODE": "492"
+  },
+  {
+    "global_id": 273330294,
+    "ALFA3": "MNG",
+    "SHORTNAME": "МОНГОЛИЯ",
+    "ALFA2": "MN",
+    "CODE": "496"
+  },
+  {
+    "global_id": 273330295,
+    "ALFA3": "MDA",
+    "SHORTNAME": "МОЛДОВА, РЕСПУБЛИКА",
+    "FULLNAME": "Республика Молдова",
+    "ALFA2": "MD",
+    "CODE": "498"
+  },
+  {
+    "global_id": 273330296,
+    "ALFA3": "MNE",
+    "SHORTNAME": "ЧЕРНОГОРИЯ",
+    "ALFA2": "ME",
+    "CODE": "499"
+  },
+  {
+    "global_id": 273330297,
+    "ALFA3": "MSR",
+    "SHORTNAME": "МОНТСЕРРАТ",
+    "ALFA2": "MS",
+    "CODE": "500"
+  },
+  {
+    "global_id": 273330298,
+    "ALFA3": "MAR",
+    "SHORTNAME": "МАРОККО",
+    "FULLNAME": "Королевство Марокко",
+    "ALFA2": "MA",
+    "CODE": "504"
+  },
+  {
+    "global_id": 273330299,
+    "ALFA3": "OMN",
+    "SHORTNAME": "ОМАН",
+    "FULLNAME": "Султанат Оман",
+    "ALFA2": "OM",
+    "CODE": "512"
+  },
+  {
+    "global_id": 273330300,
+    "ALFA3": "NAM",
+    "SHORTNAME": "НАМИБИЯ",
+    "FULLNAME": "Республика Намибия",
+    "ALFA2": "NA",
+    "CODE": "516"
+  },
+  {
+    "global_id": 273330301,
+    "ALFA3": "NRU",
+    "SHORTNAME": "НАУРУ",
+    "FULLNAME": "Республика Науру",
+    "ALFA2": "NR",
+    "CODE": "520"
+  },
+  {
+    "global_id": 273330302,
+    "ALFA3": "NPL",
+    "SHORTNAME": "НЕПАЛ",
+    "FULLNAME": "Федеративная Демократическая Республика Непал",
+    "ALFA2": "NP",
+    "CODE": "524"
+  },
+  {
+    "global_id": 273330303,
+    "ALFA3": "NLD",
+    "SHORTNAME": "НИДЕРЛАНДЫ",
+    "FULLNAME": "Королевство Нидерландов",
+    "ALFA2": "NL",
+    "CODE": "528"
+  },
+  {
+    "global_id": 273330304,
+    "ALFA3": "CUW",
+    "SHORTNAME": "КЮРАСАО",
+    "ALFA2": "CW",
+    "CODE": "531"
+  },
+  {
+    "global_id": 273330305,
+    "ALFA3": "SXM",
+    "SHORTNAME": "СЕН-МАРТЕН (нидерландская часть)",
+    "ALFA2": "SX",
+    "CODE": "534"
+  },
+  {
+    "global_id": 273330306,
+    "ALFA3": "BES",
+    "SHORTNAME": "БОНЭЙР, СИНТ-ЭСТАТИУС И САБА",
+    "ALFA2": "BQ",
+    "CODE": "535"
+  },
+  {
+    "global_id": 273330307,
+    "ALFA3": "VUT",
+    "SHORTNAME": "ВАНУАТУ",
+    "FULLNAME": "Республика Вануату",
+    "ALFA2": "VU",
+    "CODE": "548"
+  },
+  {
+    "global_id": 273330308,
+    "ALFA3": "NZL",
+    "SHORTNAME": "НОВАЯ ЗЕЛАНДИЯ",
+    "ALFA2": "NZ",
+    "CODE": "554"
+  },
+  {
+    "global_id": 273330309,
+    "ALFA3": "NIC",
+    "SHORTNAME": "НИКАРАГУА",
+    "FULLNAME": "Республика Никарагуа",
+    "ALFA2": "NI",
+    "CODE": "558"
+  },
+  {
+    "global_id": 273330310,
+    "ALFA3": "NER",
+    "SHORTNAME": "НИГЕР",
+    "FULLNAME": "Республика Нигер",
+    "ALFA2": "NE",
+    "CODE": "562"
+  },
+  {
+    "global_id": 273330311,
+    "ALFA3": "NGA",
+    "SHORTNAME": "НИГЕРИЯ",
+    "FULLNAME": "Федеративная Республика Нигерия",
+    "ALFA2": "NG",
+    "CODE": "566"
+  },
+  {
+    "global_id": 273330312,
+    "ALFA3": "NIU",
+    "SHORTNAME": "НИУЭ",
+    "FULLNAME": "Ниуэ",
+    "ALFA2": "NU",
+    "CODE": "570"
+  },
+  {
+    "global_id": 273330313,
+    "ALFA3": "NFK",
+    "SHORTNAME": "ОСТРОВ НОРФОЛК",
+    "ALFA2": "NF",
+    "CODE": "574"
+  },
+  {
+    "global_id": 273330314,
+    "ALFA3": "NOR",
+    "SHORTNAME": "НОРВЕГИЯ",
+    "FULLNAME": "Королевство Норвегия",
+    "ALFA2": "NO",
+    "CODE": "578"
+  },
+  {
+    "global_id": 273330315,
+    "ALFA3": "MNP",
+    "SHORTNAME": "СЕВЕРНЫЕ МАРИАНСКИЕ ОСТРОВА",
+    "FULLNAME": "Содружество Северных Марианских островов",
+    "ALFA2": "MP",
+    "CODE": "580"
+  },
+  {
+    "global_id": 273330316,
+    "ALFA3": "UMI",
+    "SHORTNAME": "МАЛЫЕ ТИХООКЕАНСКИЕ ОТДАЛЕННЫЕ ОСТРОВА СОЕДИНЕННЫХ ШТАТОВ",
+    "ALFA2": "UM",
+    "CODE": "581"
+  },
+  {
+    "global_id": 273330317,
+    "ALFA3": "FSM",
+    "SHORTNAME": "МИКРОНЕЗИЯ, ФЕДЕРАТИВНЫЕ ШТАТЫ",
+    "FULLNAME": "Федеративные Штаты Микронезии",
+    "ALFA2": "FM",
+    "CODE": "583"
+  },
+  {
+    "global_id": 273330318,
+    "ALFA3": "MHL",
+    "SHORTNAME": "МАРШАЛЛОВЫ ОСТРОВА",
+    "FULLNAME": "Республика Маршалловы Острова",
+    "ALFA2": "MH",
+    "CODE": "584"
+  },
+  {
+    "global_id": 273330319,
+    "ALFA3": "PLW",
+    "SHORTNAME": "ПАЛАУ",
+    "FULLNAME": "Республика Палау",
+    "ALFA2": "PW",
+    "CODE": "585"
+  },
+  {
+    "global_id": 273330320,
+    "ALFA3": "PAK",
+    "SHORTNAME": "ПАКИСТАН",
+    "FULLNAME": "Исламская Республика Пакистан",
+    "ALFA2": "PK",
+    "CODE": "586"
+  },
+  {
+    "global_id": 273330321,
+    "ALFA3": "PAN",
+    "SHORTNAME": "ПАНАМА",
+    "FULLNAME": "Республика Панама",
+    "ALFA2": "PA",
+    "CODE": "591"
+  },
+  {
+    "global_id": 273330322,
+    "ALFA3": "PNG",
+    "SHORTNAME": "ПАПУА НОВАЯ ГВИНЕЯ",
+    "FULLNAME": "Независимое Государство Папуа Новая Гвинея",
+    "ALFA2": "PG",
+    "CODE": "598"
+  },
+  {
+    "global_id": 273330323,
+    "ALFA3": "PRY",
+    "SHORTNAME": "ПАРАГВАЙ",
+    "FULLNAME": "Республика Парагвай",
+    "ALFA2": "PY",
+    "CODE": "600"
+  },
+  {
+    "global_id": 273330324,
+    "ALFA3": "PER",
+    "SHORTNAME": "ПЕРУ",
+    "FULLNAME": "Республика Перу",
+    "ALFA2": "PE",
+    "CODE": "604"
+  },
+  {
+    "global_id": 273330325,
+    "ALFA3": "PHL",
+    "SHORTNAME": "ФИЛИППИНЫ",
+    "FULLNAME": "Республика Филиппины",
+    "ALFA2": "PH",
+    "CODE": "608"
+  },
+  {
+    "global_id": 273330326,
+    "ALFA3": "PCN",
+    "SHORTNAME": "ПИТКЕРН",
+    "ALFA2": "PN",
+    "CODE": "612"
+  },
+  {
+    "global_id": 273330327,
+    "ALFA3": "POL",
+    "SHORTNAME": "ПОЛЬША",
+    "FULLNAME": "Республика Польша",
+    "ALFA2": "PL",
+    "CODE": "616"
+  },
+  {
+    "global_id": 273330328,
+    "ALFA3": "PRT",
+    "SHORTNAME": "ПОРТУГАЛИЯ",
+    "FULLNAME": "Португальская Республика",
+    "ALFA2": "PT",
+    "CODE": "620"
+  },
+  {
+    "global_id": 273330329,
+    "ALFA3": "GNB",
+    "SHORTNAME": "ГВИНЕЯ-БИСАУ",
+    "FULLNAME": "Республика Гвинея-Бисау",
+    "ALFA2": "GW",
+    "CODE": "624"
+  },
+  {
+    "global_id": 273330330,
+    "ALFA3": "TLS",
+    "SHORTNAME": "ТИМОР-ЛЕСТЕ",
+    "FULLNAME": "Демократическая Республика Тимор-Лесте",
+    "ALFA2": "TL",
+    "CODE": "626"
+  },
+  {
+    "global_id": 273330331,
+    "ALFA3": "PRI",
+    "SHORTNAME": "ПУЭРТО-РИКО",
+    "ALFA2": "PR",
+    "CODE": "630"
+  },
+  {
+    "global_id": 273330332,
+    "ALFA3": "QAT",
+    "SHORTNAME": "КАТАР",
+    "FULLNAME": "Государство Катар",
+    "ALFA2": "QA",
+    "CODE": "634"
+  },
+  {
+    "global_id": 273330333,
+    "ALFA3": "REU",
+    "SHORTNAME": "РЕЮНЬОН",
+    "ALFA2": "RE",
+    "CODE": "638"
+  },
+  {
+    "global_id": 273330334,
+    "ALFA3": "ROU",
+    "SHORTNAME": "РУМЫНИЯ",
+    "ALFA2": "RO",
+    "CODE": "642"
+  },
+  {
+    "global_id": 273330335,
+    "ALFA3": "RUS",
+    "SHORTNAME": "РОССИЯ",
+    "FULLNAME": "Российская Федерация",
+    "ALFA2": "RU",
+    "CODE": "643"
+  },
+  {
+    "global_id": 273330336,
+    "ALFA3": "RWA",
+    "SHORTNAME": "РУАНДА",
+    "FULLNAME": "Руандийская Республика",
+    "ALFA2": "RW",
+    "CODE": "646"
+  },
+  {
+    "global_id": 273330337,
+    "ALFA3": "BLM",
+    "SHORTNAME": "СЕН-БАРТЕЛЕМИ",
+    "ALFA2": "BL",
+    "CODE": "652"
+  },
+  {
+    "global_id": 273330338,
+    "ALFA3": "SHN",
+    "SHORTNAME": "СВЯТАЯ ЕЛЕНА, ОСТРОВ ВОЗНЕСЕНИЯ, ТРИСТАН-ДА-КУНЬЯ",
+    "ALFA2": "SH",
+    "CODE": "654"
+  },
+  {
+    "global_id": 273330339,
+    "ALFA3": "KNA",
+    "SHORTNAME": "СЕНТ-КИТС И НЕВИС",
+    "ALFA2": "KN",
+    "CODE": "659"
+  },
+  {
+    "global_id": 273330340,
+    "ALFA3": "AIA",
+    "SHORTNAME": "АНГИЛЬЯ",
+    "ALFA2": "AI",
+    "CODE": "660"
+  },
+  {
+    "global_id": 273330341,
+    "ALFA3": "LCA",
+    "SHORTNAME": "СЕНТ-ЛЮСИЯ",
+    "ALFA2": "LC",
+    "CODE": "662"
+  },
+  {
+    "global_id": 273330342,
+    "ALFA3": "MAF",
+    "SHORTNAME": "СЕН-МАРТЕН (ФРАНЦУЗСКАЯ ЧАСТЬ)",
+    "ALFA2": "MF",
+    "CODE": "663"
+  },
+  {
+    "global_id": 273330343,
+    "ALFA3": "SPM",
+    "SHORTNAME": "СЕНТ-ПЬЕР И МИКЕЛОН",
+    "ALFA2": "PM",
+    "CODE": "666"
+  },
+  {
+    "global_id": 273330344,
+    "ALFA3": "VCT",
+    "SHORTNAME": "СЕНТ-ВИНСЕНТ И ГРЕНАДИНЫ",
+    "ALFA2": "VC",
+    "CODE": "670"
+  },
+  {
+    "global_id": 273330345,
+    "ALFA3": "SMR",
+    "SHORTNAME": "САН-МАРИНО",
+    "FULLNAME": "Республика Сан-Марино",
+    "ALFA2": "SM",
+    "CODE": "674"
+  },
+  {
+    "global_id": 273330346,
+    "ALFA3": "STP",
+    "SHORTNAME": "САН-ТОМЕ И ПРИНСИПИ",
+    "FULLNAME": "Демократическая Республика Сан-Томе и Принсипи",
+    "ALFA2": "ST",
+    "CODE": "678"
+  },
+  {
+    "global_id": 273330347,
+    "ALFA3": "SAU",
+    "SHORTNAME": "САУДОВСКАЯ АРАВИЯ",
+    "FULLNAME": "Королевство Саудовская Аравия",
+    "ALFA2": "SA",
+    "CODE": "682"
+  },
+  {
+    "global_id": 273330348,
+    "ALFA3": "SEN",
+    "SHORTNAME": "СЕНЕГАЛ",
+    "FULLNAME": "Республика Сенегал",
+    "ALFA2": "SN",
+    "CODE": "686"
+  },
+  {
+    "global_id": 273330349,
+    "ALFA3": "SRB",
+    "SHORTNAME": "СЕРБИЯ",
+    "FULLNAME": "Республика Сербия",
+    "ALFA2": "RS",
+    "CODE": "688"
+  },
+  {
+    "global_id": 273330350,
+    "ALFA3": "SYC",
+    "SHORTNAME": "СЕЙШЕЛЫ",
+    "FULLNAME": "Республика Сейшелы",
+    "ALFA2": "SC",
+    "CODE": "690"
+  },
+  {
+    "global_id": 273330351,
+    "ALFA3": "SLE",
+    "SHORTNAME": "СЬЕРРА-ЛЕОНЕ",
+    "FULLNAME": "Республика Сьерра-Леоне",
+    "ALFA2": "SL",
+    "CODE": "694"
+  }
+]

@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import ru.homyakin.zakupki.documentsinfo.ContractInfo;
+import ru.homyakin.zakupki.models.ContractInfo;
 import ru.homyakin.zakupki.service.parser.ContractParser;
 
 import java.math.BigDecimal;
@@ -23,7 +23,7 @@ public class ParserTest {
     public void contractParserTest() {
         try {
             ContractInfo contractInfo = new ContractInfo(ContractParser.parse(
-                    getFilePath("test_files/contract_test.xml")
+                    getFilePath("test_files/contract/contract_test.xml")
             ).orElseThrow(() -> new IllegalArgumentException()));
             Assert.assertNotNull(contractInfo);
             Assert.assertEquals(GUID, contractInfo.getGUID());

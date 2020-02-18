@@ -5,8 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.LongTermVolumeDetailType;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.LongTermVolumeType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.LongTermVolumeDetailType;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.LongTermVolumeType;
 
 import javax.sql.DataSource;
 
@@ -27,7 +27,8 @@ public class LongTermVolumesRepository {
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?);";
         try {
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 repositoryService.removeExtraSpaces(planItemGuid),
                 repositoryService.convertBoolean(isSmb),
                 longTermVolume.getVolume(),
@@ -37,10 +38,10 @@ public class LongTermVolumesRepository {
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
         if (longTermVolume.getDetails() != null) {
-            for (LongTermVolumeDetailType i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
+            for (var i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
                 insertToLongTermVolumeDetail(i, planItemGuid, isSmb);
             }
         }
@@ -54,7 +55,8 @@ public class LongTermVolumesRepository {
         String sql = "UPDATE long_term_volumes SET  volume = ?, volume_rub = ?, currency_code = ?, exchange_rate = ?, " +
             "exchange_rate_date = ? WHERE plan_item_guid = ? and is_smb = ?";
         try {
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 longTermVolume.getVolume(),
                 longTermVolume.getVolumeRub(),
                 repositoryService.removeExtraSpaces(repositoryService.getCurrencyCode(longTermVolume.getCurrency())),
@@ -64,12 +66,12 @@ public class LongTermVolumesRepository {
                 repositoryService.convertBoolean(isSmb)
             );
             if (longTermVolume.getDetails() != null) {
-                for (LongTermVolumeDetailType i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
+                for (var i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
                     insertToLongTermVolumeDetail(i, planItemGuid, isSmb);
                 }
             }
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
 
     }
@@ -84,7 +86,8 @@ public class LongTermVolumesRepository {
                 "summ, summ_rub)" +
                 "VALUES" +
                 "(?, ?, ?, ?, ?);";
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 guid,
                 longTermVolumeDetail.getYear(),
                 repositoryService.convertBoolean(isSmb),
@@ -92,7 +95,7 @@ public class LongTermVolumesRepository {
                 longTermVolumeDetail.getSummRub()
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 
@@ -100,7 +103,8 @@ public class LongTermVolumesRepository {
         try {
             String sql = "UPDATE long_term_volume_detail SET summ = ?, summ_rub = ? WHERE long_term_value_guid = ?" +
                 " and year = ? and is_smb = ?";
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 longTermVolumeDetail.getSumm(),
                 longTermVolumeDetail.getSummRub(),
                 repositoryService.removeExtraSpaces(guid),
@@ -108,7 +112,7 @@ public class LongTermVolumesRepository {
                 repositoryService.convertBoolean(isSmb)
             );
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 

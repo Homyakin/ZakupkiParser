@@ -1,23 +1,20 @@
 package ru.homyakin.zakupki.database;
 
+import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.InnovationPlanDataItemType;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlan;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataItemType;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlanDataType;
-
-import javax.sql.DataSource;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlan;
+import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlanDataType;
 
 @Component
-public class PurchasePlanRepository {
+public class PurchasePlanRepository extends BaseRepository<PurchasePlan> {
+    private static final Logger logger = LoggerFactory.getLogger(PurchasePlanRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRepository customerRepository;
     private final PlanItemRepository planItemRepository;
     private final RepositoryService repositoryService;
-    private static final Logger logger = LoggerFactory.getLogger(PurchasePlanRepository.class);
 
     public PurchasePlanRepository(
         DataSource dataSource,
@@ -44,6 +41,7 @@ public class PurchasePlanRepository {
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PurchasePlanDataType purchasePlanData = purchasePlan.getBody().getItem().getPurchasePlanData();
+        logger.info("Inserting purchase plan with guid: {}", purchasePlanData.getGuid());
         String customerInn = null;
         if (purchasePlanData.getCustomer() != null) {
             customerRepository.insert(purchasePlanData.getCustomer().getMainInfo());
@@ -53,7 +51,8 @@ public class PurchasePlanRepository {
         try {
             String planStatus = purchasePlanData.getStatus() != null ? purchasePlanData.getStatus().value() : null;
             String planType = purchasePlanData.getPlanType() != null ? purchasePlanData.getPlanType().value() : null;
-            jdbcTemplate.update(sql,
+            jdbcTemplate.update(
+                sql,
                 purchasePlanData.getGuid(),
                 repositoryService.removeExtraSpaces(customerInn),
                 repositoryService.removeExtraSpaces(purchasePlanData.getPlacer().getMainInfo().getInn()),
@@ -95,27 +94,27 @@ public class PurchasePlanRepository {
                 purchasePlanData.getAnnualVolumeHiTechSMBPercent()
             );
             if (purchasePlanData.getPurchasePlanItems() != null) {
-                for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItems().getPurchasePlanItem()) {
+                for (var i : purchasePlanData.getPurchasePlanItems().getPurchasePlanItem()) {
                     planItemRepository.insert(i, false, purchasePlanData.getGuid());
                 }
             }
             if (purchasePlanData.getInnovationPlanItems() != null) {
-                for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItems().getInnovationPlanItem()) {
+                for (var i : purchasePlanData.getInnovationPlanItems().getInnovationPlanItem()) {
                     planItemRepository.insert(i, false, purchasePlanData.getGuid());
                 }
             }
             if (purchasePlanData.getPurchasePlanItemsSMB() != null) {
-                for (PurchasePlanDataItemType i : purchasePlanData.getPurchasePlanItemsSMB().getPurchasePlanItem()) {
+                for (var i : purchasePlanData.getPurchasePlanItemsSMB().getPurchasePlanItem()) {
                     planItemRepository.insert(i, true, purchasePlanData.getGuid());
                 }
             }
             if (purchasePlanData.getInnovationPlanItemsSMB() != null) {
-                for (InnovationPlanDataItemType i : purchasePlanData.getInnovationPlanItemsSMB().getInnovationPlanItem()) {
+                for (var i : purchasePlanData.getInnovationPlanItemsSMB().getInnovationPlanItem()) {
                     planItemRepository.insert(i, true, purchasePlanData.getGuid());
                 }
             }
         } catch (Exception e) {
-            logger.error("Eternal error", e);
+            logger.error("Internal database error", e);
         }
     }
 }

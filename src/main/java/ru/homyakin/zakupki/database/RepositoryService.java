@@ -1,19 +1,20 @@
 package ru.homyakin.zakupki.database;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import javax.xml.datatype.XMLGregorianCalendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.CurrencyType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.OkdpProductType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.OkeiProductType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.Okpd2ProductType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.Okved2ProductType;
-import ru.homyakin.zakupki.documentsinfo._223fz.types.OkvedProductType;
 import ru.homyakin.zakupki.database.ClassifierRepository.Classifier;
-
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import ru.homyakin.zakupki.models._223fz.types.CountryType;
+import ru.homyakin.zakupki.models._223fz.types.CurrencyType;
+import ru.homyakin.zakupki.models._223fz.types.OkdpProductType;
+import ru.homyakin.zakupki.models._223fz.types.OkeiProductType;
+import ru.homyakin.zakupki.models._223fz.types.Okpd2ProductType;
+import ru.homyakin.zakupki.models._223fz.types.OkpdProductType;
+import ru.homyakin.zakupki.models._223fz.types.Okved2ProductType;
+import ru.homyakin.zakupki.models._223fz.types.OkvedProductType;
 
 @Component
 public class RepositoryService {
@@ -80,9 +81,39 @@ public class RepositoryService {
         return classifierRepository.getOkatoCode(code);
     }
 
+    public String getClassifierCode(Classifier classifier) {
+        if (classifier == null) return null;
+        else return classifier.getCode();
+    }
+
+    public String getClassifierName(Classifier classifier) {
+        if (classifier == null) return null;
+        else return classifier.getName();
+    }
+
+    public String getCountryCode(CountryType country) {
+        if (country == null) return null;
+        else return country.getDigitalCode();
+    }
+
     public Classifier getClassifier(OkdpProductType okdp) {
         if (okdp == null) return null;
         return getClassifier("okdp", okdp.getCode(), okdp.getName());
+    }
+
+    public Classifier getOkopf(String okopfCode, String okopfName) {
+        if (okopfCode == null) return null;
+        return getClassifier("okopf", okopfCode, okopfName);
+    }
+
+    public Classifier getOktmo(String oktmoCode, String oktmoName) {
+        if (oktmoCode == null) return null;
+        return classifierRepository.getOktmo(oktmoCode, oktmoName);
+    }
+
+    public Classifier getClassifier(OkpdProductType okpd) {
+        if (okpd == null) return null;
+        return getClassifier("okpd", okpd.getCode(), okpd.getName());
     }
 
     public Classifier getClassifier(Okpd2ProductType okpd2) {

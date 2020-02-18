@@ -3,18 +3,14 @@ package ru.homyakin.zakupki.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.database.PurchasePlanRepository;
-import ru.homyakin.zakupki.documentsinfo.ContractInfo;
-import ru.homyakin.zakupki.documentsinfo._223fz.purchaseplan.PurchasePlan;
-import ru.homyakin.zakupki.service.parser.ContractParser;
-import ru.homyakin.zakupki.service.parser.PurchasePlanParser;
-
+import ru.homyakin.zakupki.models.FileType;
+import ru.homyakin.zakupki.models.ParseFile;
+import ru.homyakin.zakupki.service.storage.Queue;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -23,15 +19,19 @@ public class ZipService {
     private final static Logger logger = LoggerFactory.getLogger(ZipService.class);
 
     private final FileSystemService fileSystemService;
-    private final PurchasePlanRepository purchasePlanRepository;
-    public ZipService(FileSystemService fileSystemService, PurchasePlanRepository purchasePlanRepository) {
+    private final Queue<ParseFile> parseFileQueue;
+
+    public ZipService(
+        FileSystemService fileSystemService,
+        Queue<ParseFile> parseFileQueue
+    ) {
         this.fileSystemService = fileSystemService;
-        this.purchasePlanRepository = purchasePlanRepository;
+        this.parseFileQueue = parseFileQueue;
     }
 
     public void unzipFile(String filePath, String path, String folder) {
         logger.info("Start unzipping {}", filePath);
-        try (ZipInputStream zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
+        try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
             ZipEntry entry;
             String name;
             while ((entry = zin.getNextEntry()) != null) {
@@ -42,24 +42,16 @@ public class ZipService {
                 for (int len = zin.read(buffer); len != -1; len = zin.read(buffer)) {
                     outputFile.write(buffer, 0, len);
                 }
-
                 outputFile.flush();
                 zin.closeEntry();
                 outputFile.close();
-                switch (folder) {
-                    case "contract":
-                        ContractInfo contract = new ContractInfo(ContractParser.parse(path + "/unzip/" + name)
-                            .orElseThrow(() -> new IllegalArgumentException("Contract " + path + " wasn't parsed")));
-                        break;
-                    case "purchasePlan":
-                        PurchasePlan purchasePlan = PurchasePlanParser.parse(path + "/unzip/" + name)
-                                .orElseThrow(() -> new IllegalArgumentException("Contract " + path + " wasn't parsed"));
-                        purchasePlanRepository.insert(purchasePlan);
-                        break;
-                }
+
+                parseFileQueue.put(new ParseFile(path + "/unzip/" + name, FileType.fromString(folder)));
             }
         } catch (IllegalArgumentException e) {
             logger.error("Argument error ", e);
+        } catch (RuntimeException e) {
+            logger.error("Internal error", e);
         } catch (IOException e) {
             logger.error("Error in unzipping process of file {}", filePath, e);
         }

@@ -1,6 +1,6 @@
 package ru.homyakin.zakupki.service.parser;
 
-import ru.homyakin.zakupki.documentsinfo._223fz.contract.Contract;
+import ru.homyakin.zakupki.models._223fz.contract.Contract;
 
 import java.util.Optional;
 
