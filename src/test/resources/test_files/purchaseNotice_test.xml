@@ -1,145 +1,405 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:purchaseNoticeZK xsi:schemaLocation="http://zakupki.gov.ru/223/integration/schema/TFF-2.0/purchase.xsd" xmlns:ns5="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns="http://zakupki.gov.ru/223fz/types/1" xmlns:ns2="http://zakupki.gov.ru/223fz/purchase/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://zakupki.gov.ru/223fz/reference/1" xmlns:ns4="http://zakupki.gov.ru/223fz/purchasePlan/1">
+<ns2:purchaseNotice xsi:schemaLocation="http://zakupki.gov.ru/223/integration/schema/TFF-5.0 http://zakupki.gov.ru/223/integration/schema/TFF-5.0/purchase.xsd" xmlns="http://zakupki.gov.ru/223fz/types/1" xmlns:ns10="http://zakupki.gov.ru/223fz/reference/1" xmlns:ns11="http://zakupki.gov.ru/223fz/purchasePlanProjectAdditionalPosition/1" xmlns:ns12="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns:ns13="http://zakupki.gov.ru/223fz/purchasePlanProject/1" xmlns:ns14="http://zakupki.gov.ru/223fz/stopCommodity/1" xmlns:ns15="http://zakupki.gov.ru/223fz/machineryListInfo/1" xmlns:ns16="http://zakupki.gov.ru/223fz/disagreementProtocol/1" xmlns:ns17="http://zakupki.gov.ru/223fz/revenue/1" xmlns:ns18="http://zakupki.gov.ru/223fz/complaint/1" xmlns:ns19="http://zakupki.gov.ru/223fz/webRequest/1" xmlns:ns2="http://zakupki.gov.ru/223fz/purchase/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://zakupki.gov.ru/223fz/dishonestSupplier/1" xmlns:ns4="http://zakupki.gov.ru/223fz/decisionSuspension/1" xmlns:ns5="http://zakupki.gov.ru/223fz/notificationIssue/1" xmlns:ns6="http://zakupki.gov.ru/223fz/missedNotice/1" xmlns:ns7="http://zakupki.gov.ru/223fz/contract/1" xmlns:ns8="http://zakupki.gov.ru/223fz/purchasePlanAdditionalPosition/1" xmlns:ns9="http://zakupki.gov.ru/223fz/purchasePlan/1">
     <header>
-        <guid>c639acb2-1d75-4d0d-b1cb-c1ff21b5e84c</guid>
-        <createDateTime>2012-11-02T16:03:53.592+04:00</createDateTime>
+        <guid>3b45f2da-7bda-4acf-b467-5fc339f36849</guid>
+        <createDateTime>2016-07-22T07:35:12</createDateTime>
     </header>
     <ns2:body>
         <ns2:item>
-            <guid>0e8d2e38-05ca-458f-a628-9f16164300fc</guid>
-            <ns2:purchaseNoticeZKData>
-                <ns2:guid>0e8d2e38-05ca-458f-a628-9f16164300fc</ns2:guid>
-                <ns2:createDateTime>2012-11-02T15:52:41.963+04:00</ns2:createDateTime>
-                <ns2:registrationNumber>31200022868</ns2:registrationNumber>
-                <ns2:name>Извещение
-о проведении запроса котировок № 2-ЗК
-на разработку и издание сборника нормативных правовых актов
-по развитию малого и среднего предпринимательства</ns2:name>
+            <guid>233dcc3f-448f-406c-b724-f369570799f0</guid>
+            <ns2:purchaseNoticeData>
+                <ns2:guid>233dcc3f-448f-406c-b724-f369570799f0</ns2:guid>
+                <ns2:createDateTime>2016-07-22T07:33:04</ns2:createDateTime>
+                <ns2:urlOOS>https://zakupki.gov.ru/223/purchase/private/purchase/notice-info/details.html?noticeInfoId=4709492</ns2:urlOOS>
+                <ns2:registrationNumber>31603913641</ns2:registrationNumber>
+                <ns2:name>Лот 93-16-КС (ТЗ) "Высоконапорный водовод тв.р.куст №65- куст  №77"</ns2:name>
                 <ns2:customer>
                     <mainInfo>
-                        <fullName>автономное учреждение Республики Адыгея "Республиканский бизнес-инкубатор"</fullName>
-                        <shortName>АУ РА "Республиканский бизнес-инкубатор"</shortName>
-                        <inn>0105062780</inn>
-                        <kpp>010501001</kpp>
-                        <ogrn>1110105000081</ogrn>
-                        <legalAddress>385000, Адыгея, Майкоп, Подгорная, дом 403-е</legalAddress>
-                        <postalAddress>38500, Республика Адыгея, г.Майкоп, ул. Подгорная 403-е</postalAddress>
+                        <fullName>ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО "НЕФТЯНАЯ КОМПАНИЯ "РОСНЕФТЬ"</fullName>
+                        <shortName>ПАО "НК "РОСНЕФТЬ"</shortName>
+                        <iko>67706107510997150001</iko>
+                        <inn>7706107510</inn>
+                        <kpp>770601001</kpp>
+                        <ogrn>1027700043502</ogrn>
+                        <legalAddress>115035, Г МОСКВА, НАБ СОФИЙСКАЯ, дом 26/1</legalAddress>
+                        <postalAddress>Россия, 115035, г. Москва, Софийская набережная, д. 26/1 </postalAddress>
+                        <phone>07-495-7774400</phone>
+                        <email>postman@rosneft.ru</email>
+                        <okato>45286596000</okato>
+                        <okpo>00044428</okpo>
                     </mainInfo>
                 </ns2:customer>
-                <ns2:purchaseMethodCode>4</ns2:purchaseMethodCode>
-                <ns2:purchaseCodeName>Запрос котировок</ns2:purchaseCodeName>
+                <ns2:purchaseMethodCode>24576</ns2:purchaseMethodCode>
+                <ns2:purchaseCodeName>Открытый запрос цен в электронной форме</ns2:purchaseCodeName>
                 <ns2:placer>
                     <mainInfo>
-                        <fullName>автономное учреждение Республики Адыгея "Республиканский бизнес-инкубатор"</fullName>
-                        <shortName>АУ РА "Республиканский бизнес-инкубатор"</shortName>
-                        <inn>0105062780</inn>
-                        <kpp>010501001</kpp>
-                        <ogrn>1110105000081</ogrn>
-                        <legalAddress>385000, Адыгея, Майкоп, Подгорная, дом 403-е</legalAddress>
-                        <postalAddress>38500, Республика Адыгея, г.Майкоп, ул. Подгорная 403-е</postalAddress>
+                        <fullName>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "РН-ЮГАНСКНЕФТЕГАЗ"</fullName>
+                        <shortName>ООО "РН-ЮГАНСКНЕФТЕГАЗ"</shortName>
+                        <iko>78604035473860401001</iko>
+                        <inn>8604035473</inn>
+                        <kpp>860401001</kpp>
+                        <ogrn>1058602819538</ogrn>
+                        <legalAddress>628309, АО ХАНТЫ-МАНСИЙСКИЙ АВТОНОМНЫЙ ОКРУГ - ЮГРА, г НЕФТЕЮГАНСК, ул ЛЕНИНА, дом 26</legalAddress>
+                        <postalAddress>628309, Ханты-Мансийский Автономный округ - Югра АО, Нефтеюганск г, Ленина ул, дом 26</postalAddress>
+                        <phone>7-3463-315328</phone>
+                        <email>rn_yng@yungjsc.com</email>
+                        <okato>00000000000</okato>
+                        <okpo>76841742</okpo>
                     </mainInfo>
                 </ns2:placer>
                 <ns2:contact>
-                    <firstName>Заира</firstName>
-                    <middleName>Аслановна</middleName>
-                    <lastName>Хапапхи</lastName>
-                    <phone>7-8772-548502</phone>
-                    <fax>7-8772-548502</fax>
-                    <email>rbi_adygheya@mail.ru</email>
+                    <firstName>Ирина</firstName>
+                    <middleName>Александровна</middleName>
+                    <lastName>Поляшева</lastName>
+                    <phone>+8 (3463) 333236</phone>
+                    <email>PolyashevaIA@yungjsc.com</email>
                     <organization>
                         <mainInfo>
-                            <fullName>автономное учреждение Республики Адыгея "Республиканский бизнес-инкубатор"</fullName>
-                            <shortName>АУ РА "Республиканский бизнес-инкубатор"</shortName>
-                            <inn>0105062780</inn>
-                            <kpp>010501001</kpp>
-                            <ogrn>1110105000081</ogrn>
-                            <legalAddress>385000, Адыгея, Майкоп, Подгорная, дом 403-е</legalAddress>
-                            <postalAddress>38500, Республика Адыгея, г.Майкоп, ул. Подгорная 403-е</postalAddress>
+                            <fullName>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "РН-ЮГАНСКНЕФТЕГАЗ"</fullName>
+                            <shortName>ООО "РН-ЮГАНСКНЕФТЕГАЗ"</shortName>
+                            <iko>78604035473860401001</iko>
+                            <inn>8604035473</inn>
+                            <kpp>860401001</kpp>
+                            <ogrn>1058602819538</ogrn>
+                            <legalAddress>628309, АО ХАНТЫ-МАНСИЙСКИЙ АВТОНОМНЫЙ ОКРУГ - ЮГРА, г НЕФТЕЮГАНСК, ул ЛЕНИНА, дом 26</legalAddress>
+                            <postalAddress>628309, Ханты-Мансийский Автономный округ - Югра АО, Нефтеюганск г, Ленина ул, дом 26</postalAddress>
+                            <phone>7-3463-315328</phone>
+                            <email>rn_yng@yungjsc.com</email>
+                            <okato>00000000000</okato>
+                            <okpo>76841742</okpo>
                         </mainInfo>
                     </organization>
                 </ns2:contact>
-                <ns2:publicationDateTime>2012-11-02T16:03:53.443+04:00</ns2:publicationDateTime>
+                <ns2:publicationDateTime>2016-07-22T07:35:12</ns2:publicationDateTime>
                 <ns2:documentationDelivery>
-                    <deliveryStartDateTime>2012-11-06+04:00</deliveryStartDateTime>
-                    <deliveryEndDateTime>2012-11-14+04:00</deliveryEndDateTime>
-                    <place>385000, Республика Адыгея, г. Майкоп, ул. Подгорная, 403-е</place>
-                    <procedure>котировочная заявка должна подаваться в письменной форме на бумажном носителе по форме, прилагаемой к Извещению или в форме электронного документа.
-	Котировочная заявка, поданная в форме электронного документа, должна соответствовать требованиям законодательства об электронной цифровой подписи.</procedure>
-                    <url>www.zakupki.gov.ru</url>
+                    <deliveryStartDateTime>2016-07-25</deliveryStartDateTime>
+                    <deliveryEndDateTime>2016-08-05</deliveryEndDateTime>
+                    <place>http://rn.tektorg.ru</place>
+                    <procedure>Размещается в электронном виде в сети Интернет. Прикладывается дополнительная копия электронным вариантом документов PDF + расчеты в Excel. Предоставление Поставщикам/ Участникам закупки печатной копи</procedure>
                 </ns2:documentationDelivery>
                 <ns2:status>P</ns2:status>
-                <ns2:version>1</ns2:version>
+                <ns2:version>2</ns2:version>
+                <ns2:modificationDescription>Выгрузка из САР</ns2:modificationDescription>
+                <ns2:notDishonest>true</ns2:notDishonest>
+                <ns2:attachments>
+                    <totalDocumentsCount>4</totalDocumentsCount>
+                    <document>
+                        <guid>4a9e97be-cba4-439f-bb4d-be0c17a97185</guid>
+                        <createDateTime>2016-07-22T07:34:39</createDateTime>
+                        <fileName>7. Документация по лоту  93-16-КС (ТЗ).rar</fileName>
+                        <description>7. Документация по лоту  93-16-КС (ТЗ)</description>
+                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=23865461</url>
+                    </document>
+                    <document>
+                        <guid>7b204c18-3191-4f6a-b2f2-d0c6c431fef6</guid>
+                        <createDateTime>2016-07-22T04:07:37</createDateTime>
+                        <fileName>Пакет закупочной документации поставщика.rar</fileName>
+                        <description>Пакет закупочной документации поставщика.rar</description>
+                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=23865413</url>
+                    </document>
+                    <document>
+                        <guid>ec720ffd-cb1a-4325-9521-9c334680644c</guid>
+                        <createDateTime>2016-07-22T04:07:27</createDateTime>
+                        <fileName>Документация по лоту  93-16-КС (ТЗ).docx</fileName>
+                        <description>Документация по лоту  93-16-КС (ТЗ).docx</description>
+                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=23865414</url>
+                    </document>
+                    <document>
+                        <guid>c0fd2cd0-a88c-462e-a7e0-42b97df4ed81</guid>
+                        <createDateTime>2016-07-22T07:34:52</createDateTime>
+                        <fileName>Пакет закупочной документации поставщика.rar</fileName>
+                        <description>Пакет закупочной документации поставщика</description>
+                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=23865465</url>
+                    </document>
+                </ns2:attachments>
+                <ns2:modificationDate>2016-07-22T07:35:12</ns2:modificationDate>
+                <ns2:saveUserId>152145</ns2:saveUserId>
+                <ns2:deliveryPlaceIndication>DIFFERENT_PLACE</ns2:deliveryPlaceIndication>
+                <ns2:emergency>false</ns2:emergency>
+                <ns2:electronicPlaceInfo>
+                    <name>УЭТП ЗАО "ТЭК-Торг" Секция ОАО «НК «Роснефть»</name>
+                    <url>http://rn.tektorg.ru</url>
+                    <electronicPlaceId>1076</electronicPlaceId>
+                </ns2:electronicPlaceInfo>
+                <ns2:submissionCloseDateTime>2016-08-05T18:00:00</ns2:submissionCloseDateTime>
+                <ns2:publicationPlannedDate>2016-07-25</ns2:publicationPlannedDate>
+                <ns2:templateVersion>3</ns2:templateVersion>
+                <ns2:templateStructure>
+                    <ns2:level>
+                        <ns2:tabLevel>NOTICE</ns2:tabLevel>
+                        <ns2:tab>
+                            <tabOrdinal>1</tabOrdinal>
+                            <tabName>Общая информация</tabName>
+                            <fixedName>MAIN</fixedName>
+                            <section>
+                                <sectionOrdinal>1</sectionOrdinal>
+                                <sectionName>Сведения о состоянии извещения</sectionName>
+                                <fixedName>MAIN_STATUS</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>2</sectionOrdinal>
+                                <sectionName>Сведения о заказчике</sectionName>
+                                <fixedName>MAIN_CUSTOMER</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>3</sectionOrdinal>
+                                <sectionName>Общие сведения о закупке</sectionName>
+                                <fixedName>MAIN_PURCHASE</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>4</sectionOrdinal>
+                                <sectionName>Контактная информация</sectionName>
+                                <fixedName>MAIN_CONTACTS</fixedName>
+                            </section>
+                        </ns2:tab>
+                        <ns2:tab>
+                            <tabOrdinal>2</tabOrdinal>
+                            <tabName>Порядок размещения закупки</tabName>
+                            <fixedName>COMMISSION</fixedName>
+                            <section>
+                                <sectionOrdinal>1</sectionOrdinal>
+                                <sectionName>Публикация извещения</sectionName>
+                                <fixedName>COMMISSION_PUBLISH</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>2</sectionOrdinal>
+                                <sectionName>Расширенные данные</sectionName>
+                            </section>
+                        </ns2:tab>
+                        <ns2:tab>
+                            <tabOrdinal>3</tabOrdinal>
+                            <tabName>Список лотов</tabName>
+                            <fixedName>LOTS</fixedName>
+                            <section>
+                                <sectionOrdinal>1</sectionOrdinal>
+                                <sectionName>Сведения о лотах</sectionName>
+                                <fixedName>LOTS_INFO</fixedName>
+                            </section>
+                        </ns2:tab>
+                        <ns2:tab>
+                            <tabOrdinal>6</tabOrdinal>
+                            <tabName>Документация</tabName>
+                            <fixedName>DOCS</fixedName>
+                            <section>
+                                <sectionOrdinal>1</sectionOrdinal>
+                                <sectionName>Предоставление документации</sectionName>
+                                <fixedName>DOCS_INFO</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>2</sectionOrdinal>
+                                <sectionName>Файлы документации</sectionName>
+                                <fixedName>DOCS_FILES</fixedName>
+                            </section>
+                        </ns2:tab>
+                    </ns2:level>
+                    <ns2:level>
+                        <ns2:tabLevel>LOT</ns2:tabLevel>
+                        <ns2:tab>
+                            <tabOrdinal>4</tabOrdinal>
+                            <tabName>Сведения о лоте</tabName>
+                            <fixedName>LOT_INFORMATION</fixedName>
+                            <section>
+                                <sectionOrdinal>1</sectionOrdinal>
+                                <sectionName>Общая информация о лоте</sectionName>
+                                <fixedName>LOT_INFO</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>2</sectionOrdinal>
+                                <sectionName>Информация о товаре, работе, услуге</sectionName>
+                                <fixedName>LOT_GOODS</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>3</sectionOrdinal>
+                                <sectionName>Место поставки</sectionName>
+                                <fixedName>LOT_PLACE</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>5</sectionOrdinal>
+                                <sectionName>Расширенные данные</sectionName>
+                            </section>
+                        </ns2:tab>
+                    </ns2:level>
+                    <ns2:level>
+                        <ns2:tabLevel>LOT_CUSTOMER</ns2:tabLevel>
+                        <ns2:tab>
+                            <tabOrdinal>5</tabOrdinal>
+                            <tabName>Сведения по заказчику</tabName>
+                            <fixedName>LOT_CUSTOMER</fixedName>
+                            <section>
+                                <sectionOrdinal>1</sectionOrdinal>
+                                <sectionName>Общая информация по Заказчику</sectionName>
+                                <fixedName>LOT_CUSTOMER_INFO</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>2</sectionOrdinal>
+                                <sectionName>Информация о товаре, работе, услуге</sectionName>
+                                <fixedName>LOT_CUSTOMER_GOODS</fixedName>
+                            </section>
+                            <section>
+                                <sectionOrdinal>3</sectionOrdinal>
+                                <sectionName>Место поставки</sectionName>
+                                <fixedName>LOT_CUSTOMER_PLACE</fixedName>
+                            </section>
+                        </ns2:tab>
+                    </ns2:level>
+                </ns2:templateStructure>
+                <ns2:extendFields>
+                    <noticeExtendField>
+                        <extendField>
+                            <integrCode>examinationPlace</integrCode>
+                            <description>Место рассмотрения заявок</description>
+                            <type>TEXT</type>
+                            <value>
+                                <text>г. Нефтеюганск. ул. Ленина, 26а</text>
+                            </value>
+                        </extendField>
+                        <extendField>
+                            <integrCode>examinationDateTime</integrCode>
+                            <description>Дата и время рассмотрения заявок</description>
+                            <type>DATETIME</type>
+                            <value>
+                                <dateTime>2016-08-09T14:00:00</dateTime>
+                            </value>
+                        </extendField>
+                        <extendField>
+                            <integrCode>purchaseDateTime</integrCode>
+                            <description>Дата и время подведения итогов</description>
+                            <type>DATETIME</type>
+                            <value>
+                                <dateTime>2016-09-22T16:00:00</dateTime>
+                            </value>
+                        </extendField>
+                        <position>
+                            <tabOrdinal>2</tabOrdinal>
+                            <tabName>COMMISSION</tabName>
+                            <sectionOrdinal>1</sectionOrdinal>
+                            <sectionName>COMISSION_SEC_Публикация извещения</sectionName>
+                        </position>
+                    </noticeExtendField>
+                    <noticeExtendField>
+                        <extendField>
+                            <integrCode>submissionstartdatetime</integrCode>
+                            <description>Дата начала подачи заявок </description>
+                            <type>DATE</type>
+                            <value>
+                                <date>2016-07-25</date>
+                            </value>
+                        </extendField>
+                        <position>
+                            <tabOrdinal>2</tabOrdinal>
+                            <tabName>COMMISSION</tabName>
+                            <sectionOrdinal>2</sectionOrdinal>
+                            <sectionName>COMISSION_SEC_Расширенные данные</sectionName>
+                        </position>
+                    </noticeExtendField>
+                </ns2:extendFields>
                 <ns2:lots>
                     <lot>
+                        <guid>11866a0d-8151-1ee6-93f8-36ab18a703fd</guid>
                         <ordinalNumber>1</ordinalNumber>
-                        <subject>разработка и издание сборников нормативных правовых актов по развитию малого и среднего предпринимательства, в соответствии с техническим заданием.</subject>
-                        <currency>
-                            <code>RUB</code>
-                            <digitalCode>810</digitalCode>
-                            <name>Российский рубль</name>
-                        </currency>
-                        <initialSum>280000</initialSum>
-                        <deliveryPlace>385000, Республика Адыгея, г. Майкоп, ул. Подгорная, 403-е</deliveryPlace>
-                        <lotItems>
-                            <lotItem>
-                                <ordinalNumber>1</ordinalNumber>
-                                <okdp>
-                                    <code>2200000</code>
-                                    <name>ПОЛИГРАФИЧЕСКАЯ И ПЕЧАТНАЯ ПРОДУКЦИЯ</name>
-                                </okdp>
-                                <okved>
-                                    <code>22</code>
-                                    <name>ИЗДАТЕЛЬСКАЯ И ПОЛИГРАФИЧЕСКАЯ ДЕЯТЕЛЬНОСТЬ, ТИРАЖИРОВАНИЕ ЗАПИСАННЫХ НОСИТЕЛЕЙ ИНФОРМАЦИИ</name>
-                                </okved>
-                                <okei>
-                                    <code>796</code>
-                                    <name>Штука</name>
-                                </okei>
-                                <qty>4000</qty>
-                                <additionalInfo>Формат 60Х84/16 (145 Х 200 мм), 148 страниц
-Печать 4+4 (CMYK)
-Ламинация обложки -матовая
-Плотность обложки 350 г/кв.м.
-Бумага MAXISILK UPM (или аналог)мелованная матовая, основной блок бумага офсетная, плотность 90 г/кв.м., потетрадное скрепление блока нитками без марли.
-
-Подготовка текстового материала: анализ и обобщение современного законодательства по данному вопросу, а также составление грамотных и компетентных комментариев. Затем изготовление макета и верстки. Обязательное согласование с заказчиком на каждом этапе работы.</additionalInfo>
-                            </lotItem>
-                        </lotItems>
+                        <lotEditEnabled>false</lotEditEnabled>
+                        <lotData>
+                            <subject>Выполнение СМР: Высоконапорный водовод тв.р.куст №65- куст  №77</subject>
+                            <currency>
+                                <code>RUB</code>
+                                <digitalCode>643</digitalCode>
+                                <name>Российский рубль</name>
+                            </currency>
+                            <initialSum>3077055.86</initialSum>
+                            <deliveryPlace>
+                                <address>Омбинское м/р</address>
+                            </deliveryPlace>
+                            <lotItems>
+                                <newCodes>true</newCodes>
+                                <lotItem>
+                                    <guid>11866a0d-8151-1ee6-93f8-37dd4ba8d600</guid>
+                                    <ordinalNumber>1</ordinalNumber>
+                                    <okpd2>
+                                        <code>41.20.20.310</code>
+                                        <name>Сооружения топливно-энергетических, металлургических, химических и нефтехимических производств</name>
+                                    </okpd2>
+                                    <okved2>
+                                        <code>42.21</code>
+                                        <name>Строительство инженерных коммуникаций для водоснабжения и водоотведения, газоснабжения</name>
+                                    </okved2>
+                                    <okei>
+                                        <code>008</code>
+                                        <name>Километр; Тысяча метров</name>
+                                    </okei>
+                                    <qty>0.698</qty>
+                                </lotItem>
+                            </lotItems>
+                            <forSmallOrMiddle>true</forSmallOrMiddle>
+                            <excludePurchaseFromPlan>false</excludePurchaseFromPlan>
+                            <notFederalLaw223>false</notFederalLaw223>
+                            <subcontractorsRequirement>false</subcontractorsRequirement>
+                            <ignoredPurchase>false</ignoredPurchase>
+                        </lotData>
+                        <deliveryPlaceIndication>GL</deliveryPlaceIndication>
+                        <jointLotData>
+                            <jointLot>false</jointLot>
+                        </jointLotData>
+                        <lotPlanInfo>
+                            <planRegistrationNumber>2150133389</planRegistrationNumber>
+                            <planGuid>1cea32fe-45d4-4915-bc04-39fb678ccf2e</planGuid>
+                            <positionNumber>429</positionNumber>
+                            <lotPlanPosition>COMMODITY</lotPlanPosition>
+                            <positionGuid>370ef3ca-ae9f-02a8-e053-ac11070db1f9</positionGuid>
+                        </lotPlanInfo>
+                        <cancelled>false</cancelled>
+                        <extendFields>
+                            <noticeExtendField>
+                                <extendField>
+                                    <integrCode>lotpublicationplanneddate</integrCode>
+                                    <description>Дата публикации извещения </description>
+                                    <type>DATE</type>
+                                    <value>
+                                        <date>2016-07-22</date>
+                                    </value>
+                                </extendField>
+                                <extendField>
+                                    <integrCode>lotsubmissionstartdatetime</integrCode>
+                                    <description>Дата начала подачи заявок </description>
+                                    <type>DATE</type>
+                                    <value>
+                                        <date>2016-07-25</date>
+                                    </value>
+                                </extendField>
+                                <extendField>
+                                    <integrCode>lotendreq</integrCode>
+                                    <description>Дата и время окончания подачи заявок </description>
+                                    <type>DATETIME</type>
+                                    <value>
+                                        <dateTime>2016-08-05T18:00:00</dateTime>
+                                    </value>
+                                </extendField>
+                                <extendField>
+                                    <integrCode>lotexaminationdatetime</integrCode>
+                                    <description>Дата и время рассмотрения заявок </description>
+                                    <type>DATETIME</type>
+                                    <value>
+                                        <dateTime>2016-08-09T14:00:00</dateTime>
+                                    </value>
+                                </extendField>
+                                <extendField>
+                                    <integrCode>lotsummarizingdatetime</integrCode>
+                                    <description>Дата и время подведения итогов закупки </description>
+                                    <type>DATETIME</type>
+                                    <value>
+                                        <dateTime>2016-09-22T16:00:00</dateTime>
+                                    </value>
+                                </extendField>
+                                <position>
+                                    <tabOrdinal>4</tabOrdinal>
+                                    <tabName>LOT_INFORMATION</tabName>
+                                    <sectionOrdinal>5</sectionOrdinal>
+                                    <sectionName>LOT_INFO_SEC_Расширенные данные</sectionName>
+                                </position>
+                            </noticeExtendField>
+                        </extendFields>
                     </lot>
                 </ns2:lots>
-                <ns2:attachements>
-                    <document>
-                        <createDateTime>2012-11-02T16:00:08.988+04:00</createDateTime>
-                        <fileName>закупки извещение 2 (1).doc</fileName>
-                        <description>закупки извещение 2 (1)</description>
-                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=75524</url>
-                    </document>
-                    <document>
-                        <createDateTime>2012-11-02T16:00:16.175+04:00</createDateTime>
-                        <fileName>тех. задание 2.doc</fileName>
-                        <description>тех. задание 2</description>
-                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=75526</url>
-                    </document>
-                    <document>
-                        <createDateTime>2012-11-02T16:00:21.158+04:00</createDateTime>
-                        <fileName>проект договора закупки - копия.doc</fileName>
-                        <description>проект договора закупки - копия</description>
-                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=75527</url>
-                    </document>
-                    <document>
-                        <createDateTime>2012-11-02T16:00:27.030+04:00</createDateTime>
-                        <fileName>Форма котировочной заявки №2.doc</fileName>
-                        <description>Форма котировочной заявки №2</description>
-                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=75528</url>
-                    </document>
-                </ns2:attachements>
-                <ns2:quotationExaminationTime>2012-11-15T10:00:00.000+04:00</ns2:quotationExaminationTime>
-                <ns2:quotationExaminationPlace>385000, Республика Адыгея, г. Майкоп, ул. Подгорная, 403-е</ns2:quotationExaminationPlace>
-                <ns2:quotationForm>котировочная заявка должна подаваться в письменной форме на бумажном носителе по форме, прилагаемой к Извещению или в форме электронного документа.
-	Котировочная заявка, поданная в форме электронного документа, должна соответствовать требованиям законодательства об электронной цифровой подписи.</ns2:quotationForm>
-                <ns2:submissionCloseDateTime>2012-11-14T18:00:00.000+04:00</ns2:submissionCloseDateTime>
-                <ns2:publicationPlannedDate>2012-11-06+04:00</ns2:publicationPlannedDate>
-            </ns2:purchaseNoticeZKData>
+            </ns2:purchaseNoticeData>
         </ns2:item>
     </ns2:body>
-</ns2:purchaseNoticeZK>
+</ns2:purchaseNotice>

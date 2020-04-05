@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:purchaseNoticeZK xsi:schemaLocation="http://zakupki.gov.ru/223/integration/schema/TFF-2.0/purchase.xsd" xmlns:ns5="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns="http://zakupki.gov.ru/223fz/types/1" xmlns:ns2="http://zakupki.gov.ru/223fz/purchase/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://zakupki.gov.ru/223fz/reference/1" xmlns:ns4="http://zakupki.gov.ru/223fz/purchasePlan/1">
+    <header>
+        <guid>c639acb2-1d75-4d0d-b1cb-c1ff21b5e84c</guid>
+        <createDateTime>2012-11-02T16:03:53.592+04:00</createDateTime>
+    </header>
+    <ns2:body>
+        <ns2:item>
+            <guid>0e8d2e38-05ca-458f-a628-9f16164300fc</guid>
+            <ns2:purchaseNoticeZKData>
+                <ns2:guid>0e8d2e38-05ca-458f-a628-9f16164300fc</ns2:guid>
+                <ns2:createDateTime>2012-11-02T15:52:41.963+04:00</ns2:createDateTime>
+                <ns2:registrationNumber>31200022868</ns2:registrationNumber>
+                <ns2:name>Извещение
+о проведении запроса котировок № 2-ЗК
+на разработку и издание сборника нормативных правовых актов
+по развитию малого и среднего предпринимательства</ns2:name>
+                <ns2:customer>
+                    <mainInfo>
+                        <fullName>автономное учреждение Республики Адыгея "Республиканский бизнес-инкубатор"</fullName>
+                        <shortName>АУ РА "Республиканский бизнес-инкубатор"</shortName>
+                        <inn>0105062780</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1110105000081</ogrn>
+                        <legalAddress>385000, Адыгея, Майкоп, Подгорная, дом 403-е</legalAddress>
+                        <postalAddress>38500, Республика Адыгея, г.Майкоп, ул. Подгорная 403-е</postalAddress>
+                    </mainInfo>
+                </ns2:customer>
+                <ns2:purchaseMethodCode>4</ns2:purchaseMethodCode>
+                <ns2:purchaseCodeName>Запрос котировок</ns2:purchaseCodeName>
+                <ns2:placer>
+                    <mainInfo>
+                        <fullName>автономное учреждение Республики Адыгея "Республиканский бизнес-инкубатор"</fullName>
+                        <shortName>АУ РА "Республиканский бизнес-инкубатор"</shortName>
+                        <inn>0105062780</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1110105000081</ogrn>
+                        <legalAddress>385000, Адыгея, Майкоп, Подгорная, дом 403-е</legalAddress>
+                        <postalAddress>38500, Республика Адыгея, г.Майкоп, ул. Подгорная 403-е</postalAddress>
+                    </mainInfo>
+                </ns2:placer>
+                <ns2:contact>
+                    <firstName>Заира</firstName>
+                    <middleName>Аслановна</middleName>
+                    <lastName>Хапапхи</lastName>
+                    <phone>7-8772-548502</phone>
+                    <fax>7-8772-548502</fax>
+                    <email>rbi_adygheya@mail.ru</email>
+                    <organization>
+                        <mainInfo>
+                            <fullName>автономное учреждение Республики Адыгея "Республиканский бизнес-инкубатор"</fullName>
+                            <shortName>АУ РА "Республиканский бизнес-инкубатор"</shortName>
+                            <inn>0105062780</inn>
+                            <kpp>010501001</kpp>
+                            <ogrn>1110105000081</ogrn>
+                            <legalAddress>385000, Адыгея, Майкоп, Подгорная, дом 403-е</legalAddress>
+                            <postalAddress>38500, Республика Адыгея, г.Майкоп, ул. Подгорная 403-е</postalAddress>
+                        </mainInfo>
+                    </organization>
+                </ns2:contact>
+                <ns2:publicationDateTime>2012-11-02T16:03:53.443+04:00</ns2:publicationDateTime>
+                <ns2:documentationDelivery>
+                    <deliveryStartDateTime>2012-11-06+04:00</deliveryStartDateTime>
+                    <deliveryEndDateTime>2012-11-14+04:00</deliveryEndDateTime>
+                    <place>385000, Республика Адыгея, г. Майкоп, ул. Подгорная, 403-е</place>
+                    <procedure>котировочная заявка должна подаваться в письменной форме на бумажном носителе по форме, прилагаемой к Извещению или в форме электронного документа.
+	Котировочная заявка, поданная в форме электронного документа, должна соответствовать требованиям законодательства об электронной цифровой подписи.</procedure>
+                    <url>www.zakupki.gov.ru</url>
+                </ns2:documentationDelivery>
+                <ns2:status>P</ns2:status>
+                <ns2:version>1</ns2:version>
+                <ns2:lots>
+                    <lot>
+                        <ordinalNumber>1</ordinalNumber>
+                        <subject>разработка и издание сборников нормативных правовых актов по развитию малого и среднего предпринимательства, в соответствии с техническим заданием.</subject>
+                        <currency>
+                            <code>RUB</code>
+                            <digitalCode>810</digitalCode>
+                            <name>Российский рубль</name>
+                        </currency>
+                        <initialSum>280000</initialSum>
+                        <deliveryPlace>385000, Республика Адыгея, г. Майкоп, ул. Подгорная, 403-е</deliveryPlace>
+                        <lotItems>
+                            <lotItem>
+                                <ordinalNumber>1</ordinalNumber>
+                                <okdp>
+                                    <code>2200000</code>
+                                    <name>ПОЛИГРАФИЧЕСКАЯ И ПЕЧАТНАЯ ПРОДУКЦИЯ</name>
+                                </okdp>
+                                <okved>
+                                    <code>22</code>
+                                    <name>ИЗДАТЕЛЬСКАЯ И ПОЛИГРАФИЧЕСКАЯ ДЕЯТЕЛЬНОСТЬ, ТИРАЖИРОВАНИЕ ЗАПИСАННЫХ НОСИТЕЛЕЙ ИНФОРМАЦИИ</name>
+                                </okved>
+                                <okei>
+                                    <code>796</code>
+                                    <name>Штука</name>
+                                </okei>
+                                <qty>4000</qty>
+                                <additionalInfo>Формат 60Х84/16 (145 Х 200 мм), 148 страниц
+Печать 4+4 (CMYK)
+Ламинация обложки -матовая
+Плотность обложки 350 г/кв.м.
+Бумага MAXISILK UPM (или аналог)мелованная матовая, основной блок бумага офсетная, плотность 90 г/кв.м., потетрадное скрепление блока нитками без марли.
+
+Подготовка текстового материала: анализ и обобщение современного законодательства по данному вопросу, а также составление грамотных и компетентных комментариев. Затем изготовление макета и верстки. Обязательное согласование с заказчиком на каждом этапе работы.</additionalInfo>
+                            </lotItem>
+                        </lotItems>
+                    </lot>
+                </ns2:lots>
+                <ns2:attachements>
+                    <document>
+                        <createDateTime>2012-11-02T16:00:08.988+04:00</createDateTime>
+                        <fileName>закупки извещение 2 (1).doc</fileName>
+                        <description>закупки извещение 2 (1)</description>
+                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=75524</url>
+                    </document>
+                    <document>
+                        <createDateTime>2012-11-02T16:00:16.175+04:00</createDateTime>
+                        <fileName>тех. задание 2.doc</fileName>
+                        <description>тех. задание 2</description>
+                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=75526</url>
+                    </document>
+                    <document>
+                        <createDateTime>2012-11-02T16:00:21.158+04:00</createDateTime>
+                        <fileName>проект договора закупки - копия.doc</fileName>
+                        <description>проект договора закупки - копия</description>
+                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=75527</url>
+                    </document>
+                    <document>
+                        <createDateTime>2012-11-02T16:00:27.030+04:00</createDateTime>
+                        <fileName>Форма котировочной заявки №2.doc</fileName>
+                        <description>Форма котировочной заявки №2</description>
+                        <url>http://zakupki.gov.ru/223/purchase/public/download/download.html?id=75528</url>
+                    </document>
+                </ns2:attachements>
+                <ns2:quotationExaminationTime>2012-11-15T10:00:00.000+04:00</ns2:quotationExaminationTime>
+                <ns2:quotationExaminationPlace>385000, Республика Адыгея, г. Майкоп, ул. Подгорная, 403-е</ns2:quotationExaminationPlace>
+                <ns2:quotationForm>котировочная заявка должна подаваться в письменной форме на бумажном носителе по форме, прилагаемой к Извещению или в форме электронного документа.
+	Котировочная заявка, поданная в форме электронного документа, должна соответствовать требованиям законодательства об электронной цифровой подписи.</ns2:quotationForm>
+                <ns2:submissionCloseDateTime>2012-11-14T18:00:00.000+04:00</ns2:submissionCloseDateTime>
+                <ns2:publicationPlannedDate>2012-11-06+04:00</ns2:publicationPlannedDate>
+            </ns2:purchaseNoticeZKData>
+        </ns2:item>
+    </ns2:body>
+</ns2:purchaseNoticeZK>
