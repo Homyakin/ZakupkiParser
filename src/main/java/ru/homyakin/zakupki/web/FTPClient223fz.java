@@ -30,7 +30,8 @@ public class FTPClient223fz implements FTPClientFZ {
      * "purchaseProtocolPAAE", "purchaseProtocolPAAE94", "purchaseProtocolOSZ",
      * "purchaseProtocolRZOK", "purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE");
      */
-    private final static List<String> allParsingFolders = Arrays.asList("purchasePlan", "contract");
+    //TODO String -> FileType
+    private final static List<String> allParsingFolders = Arrays.asList("purchasePlan", "contract", "purchaseNotice");
     private final static String downloadPath = "./zakupki_download";
     private final static FTPClient ftp = new FTPClient();
     private final List<String> parsingFolders = new ArrayList<>();
@@ -51,7 +52,7 @@ public class FTPClient223fz implements FTPClientFZ {
     public void addParsingFolder(String name) {
         if (!parsingFolders.contains(name)) {
             parsingFolders.add(name);
-            logger.info("Add {}", name);
+            logger.info("Added {}", name);
         }
     }
 

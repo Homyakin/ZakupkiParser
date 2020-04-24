@@ -2,7 +2,8 @@ package ru.homyakin.zakupki.models;
 
 public enum FileType {
     CONTRACT("contract"),
-    PURCHASE_PLAN("purchasePlan");
+    PURCHASE_PLAN("purchasePlan"),
+    PURCHASE_NOTICE("purchaseNotice");
 
     private String value;
 

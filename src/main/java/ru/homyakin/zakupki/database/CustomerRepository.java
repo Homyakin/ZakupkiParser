@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfo3Type;
 import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfoType;
 
 @Component
@@ -56,6 +57,27 @@ public class CustomerRepository {
             );
         } catch (DuplicateKeyException ignored) {
 
+        } catch (Exception e) {
+            logger.error("Internal database error", e);
+        }
+    }
+
+    public void insert(CustomerMainInfo3Type customer) {
+        if (customer == null) return;
+        try {
+            if (checkCustomer(customer.getInn())) return; //TODO make update if exists
+            String sql = "INSERT INTO customer (inn, full_name, short_name, kpp, ogrn, legal_address," +
+                "postal_address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            jdbcTemplate.update(
+                sql,
+                customer.getInn(),
+                customer.getFullName(),
+                customer.getShortName(),
+                customer.getKpp(),
+                customer.getOgrn(),
+                customer.getLegalAddress(),
+                customer.getPostalAddress()
+            );
         } catch (Exception e) {
             logger.error("Internal database error", e);
         }

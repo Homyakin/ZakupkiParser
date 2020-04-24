@@ -30,7 +30,7 @@ class StartApp implements CommandLineRunner {
             for (int i = 0; i < folders.size(); ++i) {
                 System.out.println(i + 1 + " " + folders.get(i));
             }
-            int folder = -1;
+            /*int folder = -1;
             Scanner sc = new Scanner(System.in);
             while (folder != 0) {
                 folder = sc.nextInt();
@@ -38,7 +38,8 @@ class StartApp implements CommandLineRunner {
                     continue;
                 }
                 ftp.addParsingFolder(folders.get(folder - 1));
-            }
+            }*/
+            ftp.addParsingFolder("purchaseNotice");
             ftp.connect();
             ftp.login();
             ftp.parseFTPServer();
@@ -51,7 +52,6 @@ class StartApp implements CommandLineRunner {
 }
 
 public class Application {
-    //TODO add Spring
     //TODO add reconnecting to server if something went wrong
     public static void main(String[] args) {
         SpringApplication.run(StartApp.class, args);
