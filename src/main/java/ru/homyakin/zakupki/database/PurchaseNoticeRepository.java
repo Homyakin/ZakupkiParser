@@ -87,12 +87,13 @@ public class PurchaseNoticeRepository extends BaseRepository<PurchaseNotice> {
                 data.getPurchaseCodeName(),
                 data.getPlacer().getMainInfo().getInn(),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
+                data.getStatus() != null ? data.getStatus().value() : null,
                 data.getVersion(),
                 repositoryService.removeExtraSpaces(data.getModificationDescription()),
                 repositoryService.convertBoolean(data.isNotDishonest()),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(data.getModificationDate()),
                 data.getSaveUserId(),
-                data.getDeliveryPlaceIndication().value(),
+                data.getDeliveryPlaceIndication() != null ? data.getDeliveryPlaceIndication().value() : null,
                 repositoryService.convertBoolean(data.isEmergency()),
                 repositoryService.convertBoolean(data.isJointPurchase()),
                 repositoryService.convertBoolean(data.isForSmallOrMiddle()),
@@ -109,7 +110,7 @@ public class PurchaseNoticeRepository extends BaseRepository<PurchaseNotice> {
                 repositoryService.removeExtraSpaces(data.getConsiderationSecondPartPlace()),
                 repositoryService.removeExtraSpaces(data.getConsiderationSecondPartOrder()),
                 repositoryService.convertBoolean(data.isIsUploadComplete()),
-                data.getElectronicPlaceInfo().getElectronicPlaceId(), //TODO electronic place insert
+                data.getElectronicPlaceInfo() != null ? data.getElectronicPlaceInfo().getElectronicPlaceId() : null,
                 repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(data.getSubmissionCloseDateTime()),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(data.getPublicationPlannedDate())
             );
@@ -124,7 +125,7 @@ public class PurchaseNoticeRepository extends BaseRepository<PurchaseNotice> {
                     }
                 }
             }
-            for(var lot: data.getLots().getLot()) {
+            for (var lot : data.getLots().getLot()) {
                 purchaseNoticeLotRepository.insert(lot, data.getGuid());
             }
         } catch (Exception e) {

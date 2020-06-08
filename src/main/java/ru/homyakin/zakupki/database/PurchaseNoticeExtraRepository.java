@@ -3,6 +3,7 @@ package ru.homyakin.zakupki.database;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.BaseExtendFieldType;
@@ -40,6 +41,7 @@ public class PurchaseNoticeExtraRepository {
                 nsi.code,
                 nsi.name
             );
+        } catch (DuplicateKeyException ignored) {
         } catch (Exception e) {
             logger.error("Error during inserting purchase notice extra", e);
         }

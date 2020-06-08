@@ -19,6 +19,7 @@ public class PlacingProcedureRepository {
     }
 
     public void insert(PurchaseNoticeDataType.PlacingProcedure placingProcedure, String noticeGuid) {
+        if (placingProcedure == null) return;
         String sql = "INSERT INTO zakupki.placing_procedure (purchase_notice_data_guid, examination_place," +
             "examination_date_time, summingup_date_time, summingup_place) VALUES (?, ?, ?, ?, ?)";
         try {

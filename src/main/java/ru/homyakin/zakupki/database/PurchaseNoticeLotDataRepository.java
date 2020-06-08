@@ -24,16 +24,14 @@ public class PurchaseNoticeLotDataRepository {
     }
 
     public void insert(LotType.LotData data, String lotGuid) {
-        String sql = "INSERT INTO zakupki.purchase_notice_data (guid, create_date_time, url_eis, url_vsrz, url_kis_rmis," +
-            "registration_number, name, customer_inn, detached_org_inn, blocked_customer_inn, purchase_method_code," +
-            "purchase_code_name, placer_inn, publication_date_time, purchase_notice_status_code, version, modification_description," +
-            "not_dishonest, modification_date, save_user_id, delivery_place_indication, emergency, joint_purchase," +
-            "for_small_or_middle, change_decision_date, antimonopoly_decision_taken, additional_info, appl_submision_place," +
-            "appl_submision_start_date, appl_submision_order, envelope_opening_order, appl_examination_order," +
-            "summingup_order, auction_order, consideration_second_part_place, consideration_second_part_order," +
-            "is_upload_complete, electronic_place_id, submission_close_date_time, publication_planned_date)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
-            "?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO zakupki.purchase_notice_lot_data (purchase_notice_lot_guid, subject, currency_code," +
+            "exchange_rate, exchange_rate_date, initial_sum, starting_contract_price_rub, price_formula, commodity_price," +
+            "commodity_price_rub, max_contract_price, max_contract_price_rub, initial_sum_info, order_pricing," +
+            "delivery_state, delivery_region, delivery_region_okato, delivery_address, for_small_or_middle," +
+            "exclude_purchase_from_plan, subcontractors_requirement, ignored_purchase, purchase_category_code," +
+            "centralized, purchase_description, application_supply_needed, application_supply_summ, application_supply_currency_code," +
+            "application_supply_extra, major_contract_conditions, antimonopoly_decision_taken)" +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             jdbcTemplate.update(
                 sql,

@@ -3,6 +3,7 @@ package ru.homyakin.zakupki.database;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.LotType;
@@ -47,7 +48,7 @@ public class PurchaseNoticeLotRepository {
                 noticeGuid,
                 lot.getOrdinalNumber(),
                 repositoryService.convertBoolean(lot.isLotEditEnabled()),
-                lot.getDeliveryPlaceIndication().value(),
+                lot.getDeliveryPlaceIndication() != null ? lot.getDeliveryPlaceIndication().value() : null,
                 repositoryService.convertBoolean(isJointLot(lot.getJointLotData())),
                 plan != null ? plan.getPlanGuid() : null,
                 plan != null ? plan.getPositionNumber() : null,
@@ -73,11 +74,13 @@ public class PurchaseNoticeLotRepository {
             }
             purchaseNoticeLotDataRepository.insert(lot.getLotData(), lot.getGuid());
             if (isJointLot(lot.getJointLotData())) {
-                for(var lotCustomer: lot.getJointLotData().getLotCustomers().getLotCustomer()) {
+                for (var lotCustomer : lot.getJointLotData().getLotCustomers().getLotCustomer()) {
                     jointLotDataRepository.insert(lotCustomer, lot.getGuid());
                 }
             }
 
+        } catch (DuplicateKeyException ignored) {
+            //TODO посмотреть файлы
         } catch (Exception e) {
             logger.error("Error during inserting purchase notice lot", e);
         }

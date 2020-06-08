@@ -52,13 +52,16 @@ public class RepositoryService {
 
     public LocalDateTime convertFromXMLGregorianCalendarToLocalDateTime(XMLGregorianCalendar xmlTime) {
         if (xmlTime == null) return null;
+        var hour = xmlTime.getHour() >= 0 && xmlTime.getHour() <= 23 ? xmlTime.getHour() : 0;
+        var minute = xmlTime.getMinute() >= 0 && xmlTime.getMinute() <= 60 ? xmlTime.getMinute() : 0;
+        var second = xmlTime.getSecond() >= 0 && xmlTime.getSecond() <= 60 ? xmlTime.getSecond() : 0;
         return LocalDateTime.of(
             xmlTime.getYear(),
             xmlTime.getMonth(),
             xmlTime.getDay(),
-            xmlTime.getHour(),
-            xmlTime.getMinute(),
-            xmlTime.getSecond()
+            hour,
+            minute,
+            second
         );
     }
 
@@ -97,42 +100,42 @@ public class RepositoryService {
     }
 
     public Classifier getClassifier(OkdpProductType okdp) {
-        if (okdp == null) return null;
+        if (okdp == null) return new Classifier(null, null);
         return getClassifier("okdp", okdp.getCode(), okdp.getName());
     }
 
     public Classifier getOkopf(String okopfCode, String okopfName) {
-        if (okopfCode == null) return null;
+        if (okopfCode == null) return new Classifier(null, null);
         return getClassifier("okopf", okopfCode, okopfName);
     }
 
     public Classifier getOktmo(String oktmoCode, String oktmoName) {
-        if (oktmoCode == null) return null;
+        if (oktmoCode == null) return new Classifier(null, null);
         return classifierRepository.getOktmo(oktmoCode, oktmoName);
     }
 
     public Classifier getClassifier(OkpdProductType okpd) {
-        if (okpd == null) return null;
+        if (okpd == null) return new Classifier(null, null);
         return getClassifier("okpd", okpd.getCode(), okpd.getName());
     }
 
     public Classifier getClassifier(Okpd2ProductType okpd2) {
-        if (okpd2 == null) return null;
+        if (okpd2 == null) return new Classifier(null, null);
         return getClassifier("okpd2", okpd2.getCode(), okpd2.getName());
     }
 
     public Classifier getClassifier(OkvedProductType okved) {
-        if (okved == null) return null;
+        if (okved == null) return new Classifier(null, null);
         return getClassifier("okved", okved.getCode(), okved.getName());
     }
 
     public Classifier getClassifier(Okved2ProductType okved2) {
-        if (okved2 == null) return null;
+        if (okved2 == null) return new Classifier(null, null);
         return getClassifier("okved2", okved2.getCode(), okved2.getName());
     }
 
     public Classifier getClassifier(OkeiProductType okei) {
-        if (okei == null) return null;
+        if (okei == null) return new Classifier(null, null);
         return getClassifier("okei", okei.getCode(), okei.getName());
     }
 

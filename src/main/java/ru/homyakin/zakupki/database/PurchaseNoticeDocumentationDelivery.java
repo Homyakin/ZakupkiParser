@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.DocDeliveryInfoType;
@@ -44,6 +45,8 @@ public class PurchaseNoticeDocumentationDelivery {
                 sum,
                 paymentProcedure
             );
+        } catch (DuplicateKeyException ignored) {
+            //TODO посмотреть файлы
         } catch (Exception e) {
             logger.error("Error during inserting documentation delivery", e);
         }
