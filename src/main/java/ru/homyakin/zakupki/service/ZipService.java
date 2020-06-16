@@ -46,7 +46,10 @@ public class ZipService {
                 zin.closeEntry();
                 outputFile.close();
 
-                parseFileQueue.put(new ParseFile(path + "/unzip/" + name, FileType.fromString(folder)));
+                parseFileQueue.put(new ParseFile(
+                    path + "/unzip/" + name,
+                    FileType.fromString(folder).orElseThrow(() -> new IllegalArgumentException("Illegal folder name"))
+                ));
             }
         } catch (IllegalArgumentException e) {
             logger.error("Argument error ", e);

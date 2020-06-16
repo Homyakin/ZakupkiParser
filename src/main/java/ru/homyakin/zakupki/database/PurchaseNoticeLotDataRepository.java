@@ -24,6 +24,7 @@ public class PurchaseNoticeLotDataRepository {
     }
 
     public void insert(LotType.LotData data, String lotGuid) {
+        if (data == null) return;
         String sql = "INSERT INTO zakupki.purchase_notice_lot_data (purchase_notice_lot_guid, subject, currency_code," +
             "exchange_rate, exchange_rate_date, initial_sum, starting_contract_price_rub, price_formula, commodity_price," +
             "commodity_price_rub, max_contract_price, max_contract_price_rub, initial_sum_info, order_pricing," +

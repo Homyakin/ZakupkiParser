@@ -21,7 +21,7 @@ public class PurchaseNoticeDocumentationDelivery {
     }
 
     public void insert(DocDeliveryInfoType delivery, String noticeGuid) {
-        String sql = "INSERT INTO zakupki.purchase_notice_documentation_delivery (purchase_notice_data_guid," +
+        String sql = "INSERT INTO zakupki.purchase_notice_documentation_delivery (purchase_notice_guid," +
             "delivery_start_date_time, delivery_end_date_time, place, documentation_procedure, currency_code," +
             "sum, payment_procedure)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

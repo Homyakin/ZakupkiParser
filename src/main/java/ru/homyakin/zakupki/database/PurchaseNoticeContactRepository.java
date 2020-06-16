@@ -17,7 +17,7 @@ public class PurchaseNoticeContactRepository {
     }
 
     public void insert(ContactInfoType contact, String noticeGuid) {
-        String sql = "INSERT INTO zakupki.purchase_notice_contact (purchase_notice_data_guid, first_name, middle_name," +
+        String sql = "INSERT INTO zakupki.purchase_notice_contact (purchase_notice_guid, first_name, middle_name," +
             "last_name, phone, fax, email, additional_contact_info)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(

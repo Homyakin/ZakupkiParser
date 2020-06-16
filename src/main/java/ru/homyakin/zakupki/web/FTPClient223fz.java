@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.config.FtpConfiguration;
+import ru.homyakin.zakupki.models.FileType;
 import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.service.ZipService;
 import ru.homyakin.zakupki.web.exceptions.ConnectException;
@@ -30,8 +31,6 @@ public class FTPClient223fz implements FTPClientFZ {
      * "purchaseProtocolPAAE", "purchaseProtocolPAAE94", "purchaseProtocolOSZ",
      * "purchaseProtocolRZOK", "purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE");
      */
-    //TODO String -> FileType
-    private final static List<String> allParsingFolders = Arrays.asList("purchasePlan", "contract", "purchaseNotice");
     private final static String downloadPath = "./zakupki_download";
     private final static FTPClient ftp = new FTPClient();
     private final List<String> parsingFolders = new ArrayList<>();
@@ -45,14 +44,14 @@ public class FTPClient223fz implements FTPClientFZ {
         this.ftpConfiguration = ftpConfiguration;
     }
 
-    public List<String> getAllParsingFolders() {
-        return allParsingFolders;
+    public FileType[] getAllParsingFolders() {
+        return FileType.values();
     }
 
-    public void addParsingFolder(String name) {
-        if (!parsingFolders.contains(name)) {
-            parsingFolders.add(name);
-            logger.info("Added {}", name);
+    public void addParsingFolder(FileType fileType) {
+        if (!parsingFolders.contains(fileType.getValue())) {
+            parsingFolders.add(fileType.getValue());
+            logger.info("Added {}", fileType.getValue());
         }
     }
 

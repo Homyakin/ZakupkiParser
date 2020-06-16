@@ -25,19 +25,19 @@ public class Application implements CommandLineRunner {
     public void run(String... args) {
         try {
 
-            List<String> folders = ftp.getAllParsingFolders();
+            var folders = ftp.getAllParsingFolders();
             System.out.println("0: Start");
-            for (int i = 0; i < folders.size(); ++i) {
-                System.out.println(i + 1 + " " + folders.get(i));
+            for (int i = 0; i < folders.length; ++i) {
+                System.out.println(i + 1 + ": " + folders[i].getValue());
             }
             int folder = -1;
             Scanner sc = new Scanner(System.in);
             while (folder != 0) {
                 folder = sc.nextInt();
-                if (folder < 1 || folder > folders.size()) {
+                if (folder < 1 || folder > folders.length) {
                     continue;
                 }
-                ftp.addParsingFolder(folders.get(folder - 1));
+                ftp.addParsingFolder(folders[folder - 1]);
             }
             ftp.connect();
             ftp.login();

@@ -20,7 +20,7 @@ public class PurchaseNoticeExtraRepository {
     }
 
     public void insert(BaseExtendFieldType field, String noticeGuid) {
-        String sql = "INSERT INTO zakupki.purchase_notice_extra (purchase_notice_data_guid, integr_code," +
+        String sql = "INSERT INTO zakupki.purchase_notice_extra (purchase_notice_guid, integr_code," +
             "description, text, number_int, number, boolean, datetime, date, url, nsi_code, nsi_name)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
