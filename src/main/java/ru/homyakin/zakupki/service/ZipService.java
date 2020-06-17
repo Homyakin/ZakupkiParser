@@ -30,7 +30,7 @@ public class ZipService {
     }
 
     public void unzipFile(String filePath, String path, String folder) {
-        logger.info("Start unzipping {}", filePath);
+        logger.debug("Start unzipping {}", filePath);
         try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
             ZipEntry entry;
             String name;
@@ -46,7 +46,10 @@ public class ZipService {
                 zin.closeEntry();
                 outputFile.close();
 
-                parseFileQueue.put(new ParseFile(path + "/unzip/" + name, FileType.fromString(folder)));
+                parseFileQueue.put(new ParseFile(
+                    path + "/unzip/" + name,
+                    FileType.fromString(folder).orElseThrow(() -> new IllegalArgumentException("Illegal folder name"))
+                ));
             }
         } catch (IllegalArgumentException e) {
             logger.error("Argument error ", e);

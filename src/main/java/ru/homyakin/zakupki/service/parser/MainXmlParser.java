@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class MainXmlParser {
     private final static Logger logger = LoggerFactory.getLogger(MainXmlParser.class);
-
+    //TODO check empty file
     protected static <T> Optional<T> parse(String filePath, Class<T> clazz) {
         try {
             logger.info("Start parsing {}", filePath);

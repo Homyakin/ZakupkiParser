@@ -9,7 +9,7 @@
     <version>1.0</version>
 
     <properties>
-        <java.version>13</java.version>
+        <java.version>14</java.version>
         <spring.version>2.2.4.RELEASE</spring.version>
     </properties>
 

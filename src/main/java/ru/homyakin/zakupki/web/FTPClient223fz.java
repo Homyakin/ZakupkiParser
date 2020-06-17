@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.config.FtpConfiguration;
+import ru.homyakin.zakupki.models.FileType;
 import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.service.ZipService;
 import ru.homyakin.zakupki.web.exceptions.ConnectException;
@@ -30,10 +32,10 @@ public class FTPClient223fz implements FTPClientFZ {
      * "purchaseProtocolPAAE", "purchaseProtocolPAAE94", "purchaseProtocolOSZ",
      * "purchaseProtocolRZOK", "purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE");
      */
-    private final static List<String> allParsingFolders = Arrays.asList("purchasePlan", "contract");
     private final static String downloadPath = "./zakupki_download";
     private final static FTPClient ftp = new FTPClient();
     private final List<String> parsingFolders = new ArrayList<>();
+    private final List<String> parsingRegions = new ArrayList<>();
     private final ZipService zipService;
     private final FileSystemService fileSystemService;
     private final FtpConfiguration ftpConfiguration;
@@ -44,14 +46,40 @@ public class FTPClient223fz implements FTPClientFZ {
         this.ftpConfiguration = ftpConfiguration;
     }
 
-    public List<String> getAllParsingFolders() {
-        return allParsingFolders;
+    public FileType[] getAllParsingFolders() {
+        return FileType.values();
     }
 
-    public void addParsingFolder(String name) {
-        if (!parsingFolders.contains(name)) {
-            parsingFolders.add(name);
-            logger.info("Add {}", name);
+    public List<String> getAllRegions() {
+        var list = new ArrayList<String>();
+        try {
+            var namesDirectories = ftp.listDirectories(basicWorkspace);
+            for (var directory : namesDirectories) {
+                if (
+                    !directory.getName().equals("archive") &&
+                        !directory.getName().equals("ast") &&
+                        !directory.getName().equals("undefined")
+                ) {
+                    list.add(directory.getName());
+                }
+            }
+        } catch (IOException e) {
+            logger.error("Something went wrong wile listing {}", basicWorkspace, e);
+        }
+        return list;
+    }
+
+    public void addParsingFolder(FileType fileType) {
+        if (!parsingFolders.contains(fileType.getValue())) {
+            parsingFolders.add(fileType.getValue());
+            logger.info("Added {}", fileType.getValue());
+        }
+    }
+
+    public void addParsingRegion(String regions) {
+        if (!parsingRegions.contains(regions)) {
+            parsingRegions.add(regions);
+            logger.info("Added {}", regions);
         }
     }
 
@@ -87,20 +115,13 @@ public class FTPClient223fz implements FTPClientFZ {
     @Override
     public void parseFTPServer() {
         logger.info("Start parsing in: {}", ftpConfiguration.getUrl());
-        searchRegionsDirectories(basicWorkspace);
+        searchRegionsDirectories();
     }
 
-    private void searchRegionsDirectories(String workspace) {
-        try {
-            var namesDirectories = ftp.listDirectories(workspace);
-            for (var directory : namesDirectories) {
-                if (!directory.getName().equals("archive")) {
-                    makeDownloadDirectories(workspace + "/" + directory.getName());
-                    searchInRegions(workspace + "/" + directory.getName());
-                }
-            }
-        } catch (IOException e) {
-            logger.error("Something went wrong wile listing {}", workspace, e);
+    private void searchRegionsDirectories() {
+        for (var region : parsingRegions) {
+            makeDownloadDirectories(basicWorkspace + "/" + region);
+            searchInRegions(basicWorkspace + "/" + region);
         }
     }
 
@@ -111,15 +132,8 @@ public class FTPClient223fz implements FTPClientFZ {
     }
 
     private void searchInRegions(String workspace) {
-        try {
-            var namesDirectories = ftp.listDirectories(workspace);
-            for (var directory : namesDirectories) {
-                if (parsingFolders.contains(directory.getName())) {
-                    searchFiles(workspace + "/" + directory.getName() + "/daily", directory.getName());
-                }
-            }
-        } catch (IOException e) {
-            logger.error("Something went wrong wile listing {}", workspace, e);
+        for (var folder : parsingFolders) {
+            searchFiles(workspace + "/" + folder + "/daily", folder);
         }
     }
 
@@ -145,7 +159,7 @@ public class FTPClient223fz implements FTPClientFZ {
     }
 
     private boolean downloadFile(String localFilePath, String remoteFilePath) {
-        logger.info("Start downloading {}", localFilePath);
+        logger.debug("Start downloading {}", localFilePath);
         Path localFile = fileSystemService.makeFile(localFilePath);
         boolean isDownload = false;
         try {
