@@ -145,7 +145,7 @@ public class FTPClient223fz implements FTPClientFZ {
     }
 
     private boolean downloadFile(String localFilePath, String remoteFilePath) {
-        logger.info("Start downloading {}", localFilePath);
+        logger.debug("Start downloading {}", localFilePath);
         Path localFile = fileSystemService.makeFile(localFilePath);
         boolean isDownload = false;
         try {
