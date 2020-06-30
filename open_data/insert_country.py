@@ -15,7 +15,7 @@ def insert():
         cursorclass=DictCursor
     )
     print(f'Inserting {table}')
-    with open(f'data/{table}.json') as json_file:
+    with open(f'data/{table}.json', encoding='utf-8') as json_file:
         data = json.load(json_file)
         for i in data:
             try:

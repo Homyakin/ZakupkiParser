@@ -13,7 +13,7 @@ def insert(table: str, filename: str, columns: list, json_fields: list):
         cursorclass=DictCursor
     )
     print(f'Inserting {filename}')
-    with open(f'data/{filename}.json') as json_file:
+    with open(f'data/{filename}.json', encoding='utf-8') as json_file:
         data = json.load(json_file)
         for i in data:
             try:
