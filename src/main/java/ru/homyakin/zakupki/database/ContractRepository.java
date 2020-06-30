@@ -65,7 +65,7 @@ public class ContractRepository extends BaseRepository<Contract> {
             String planPositionGuid = null;
             if (contractData.getPlanPosition() != null) {
                 planPositionRepository.insert(contractData.getPlanPosition());
-                planPositionGuid = contractData.getPlanPosition().getPlanGuid();
+                planPositionGuid = contractData.getPlanPosition().getPositionGuid();
             }
             if (contractData.getCustomer().getMainInfo() == null) {
                 throw new NoXmlnsException("There is no xmlns in xml");

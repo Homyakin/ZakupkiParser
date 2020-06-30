@@ -14,13 +14,16 @@ public class PlanItemRowRepository {
     private static final Logger logger = LoggerFactory.getLogger(PlanItemRowRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final RepositoryService repositoryService;
+    private final ClassifierService classifierService;
 
     public PlanItemRowRepository(
         DataSource dataSource,
-        RepositoryService repositoryService
+        RepositoryService repositoryService,
+        ClassifierService classifierService
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.repositoryService = repositoryService;
+        this.classifierService = classifierService;
     }
 
     public void insert(PurchasePlanDataItemRowType purchasePlanItemRow, String planItemGuid) {
@@ -29,30 +32,25 @@ public class PlanItemRowRepository {
             " region, impossible_to_determine_attr, okei_code, okei_name, qty)" +
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        var okdp = repositoryService.getClassifier(purchasePlanItemRow.getOkdp());
-        var okpd2 = repositoryService.getClassifier(purchasePlanItemRow.getOkpd2());
-        var okved = repositoryService.getClassifier(purchasePlanItemRow.getOkved());
-        var okved2 = repositoryService.getClassifier(purchasePlanItemRow.getOkved2());
-        var okei = repositoryService.getClassifier(purchasePlanItemRow.getOkei());
         try {
             jdbcTemplate.update(
                 sql,
                 planItemGuid,
                 purchasePlanItemRow.getOrdinalNumber(),
                 repositoryService.removeExtraSpaces(purchasePlanItemRow.getAdditionalInfo()),
-                repositoryService.getClassifierCode(okdp),
-                repositoryService.getClassifierName(okdp),
-                repositoryService.getClassifierCode(okpd2),
-                repositoryService.getClassifierName(okpd2),
-                repositoryService.getClassifierCode(okved),
-                repositoryService.getClassifierName(okved),
-                repositoryService.getClassifierCode(okved2),
-                repositoryService.getClassifierName(okved2),
-                repositoryService.getOkatoCode(purchasePlanItemRow.getOkato()),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkdp()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkdp()),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkpd2()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkpd2()),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkved()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkved()),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkved2()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkved2()),
+                purchasePlanItemRow.getOkato(),
                 repositoryService.removeExtraSpaces(purchasePlanItemRow.getRegion()),
                 repositoryService.convertBoolean(purchasePlanItemRow.isImpossibleToDetermineAttr()),
-                repositoryService.getClassifierCode(okei),
-                repositoryService.getClassifierName(okei),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkei()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkei()),
                 purchasePlanItemRow.getQty()
             );
         } catch (Exception e) {
@@ -65,23 +63,19 @@ public class PlanItemRowRepository {
             "okdp_code, okdp_name, okpd2_code, okpd2_name, okved_code, okved_name, okved2_code, okved2_name)" +
             "VALUES" +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        var okdp = repositoryService.getClassifier(innovationPlanItemRow.getOkdp());
-        var okpd2 = repositoryService.getClassifier(innovationPlanItemRow.getOkpd2());
-        var okved = repositoryService.getClassifier(innovationPlanItemRow.getOkved());
-        var okved2 = repositoryService.getClassifier(innovationPlanItemRow.getOkved2());
         jdbcTemplate.update(
             sql,
             planItemGuid,
             innovationPlanItemRow.getOrdinalNumber(),
             repositoryService.removeExtraSpaces(innovationPlanItemRow.getAdditionalInfo()),
-            repositoryService.getClassifierCode(okdp),
-            repositoryService.getClassifierName(okdp),
-            repositoryService.getClassifierCode(okpd2),
-            repositoryService.getClassifierName(okpd2),
-            repositoryService.getClassifierCode(okved),
-            repositoryService.getClassifierName(okved),
-            repositoryService.getClassifierCode(okved2),
-            repositoryService.getClassifierName(okved2)
+            classifierService.getClassifierCode(innovationPlanItemRow.getOkdp()),
+            classifierService.getClassifierName(innovationPlanItemRow.getOkdp()),
+            classifierService.getClassifierCode(innovationPlanItemRow.getOkpd2()),
+            classifierService.getClassifierName(innovationPlanItemRow.getOkpd2()),
+            classifierService.getClassifierCode(innovationPlanItemRow.getOkved()),
+            classifierService.getClassifierName(innovationPlanItemRow.getOkved()),
+            classifierService.getClassifierCode(innovationPlanItemRow.getOkved2()),
+            classifierService.getClassifierName(innovationPlanItemRow.getOkved2())
         );
     }
 
@@ -95,27 +89,22 @@ public class PlanItemRowRepository {
                 "okpd2_code = ?, okpd2_name = ?, okved_code = ?, okved_name = ?, okved2_code = ?, okved2_name = ?, " +
                 "okato = ?, region = ?, impossible_to_determine_attr = ?, okei_code = ?, okei_name = ?, qty = ? " +
                 "WHERE plan_item_guid = ? and ordinal_number = ?";
-            var okdp = repositoryService.getClassifier(purchasePlanItemRow.getOkdp());
-            var okpd2 = repositoryService.getClassifier(purchasePlanItemRow.getOkpd2());
-            var okved = repositoryService.getClassifier(purchasePlanItemRow.getOkved());
-            var okved2 = repositoryService.getClassifier(purchasePlanItemRow.getOkved2());
-            var okei = repositoryService.getClassifier(purchasePlanItemRow.getOkei());
             jdbcTemplate.update(
                 sql,
                 repositoryService.removeExtraSpaces(purchasePlanItemRow.getAdditionalInfo()),
-                repositoryService.getClassifierCode(okdp),
-                repositoryService.getClassifierName(okdp),
-                repositoryService.getClassifierCode(okpd2),
-                repositoryService.getClassifierName(okpd2),
-                repositoryService.getClassifierCode(okved),
-                repositoryService.getClassifierName(okved),
-                repositoryService.getClassifierCode(okved2),
-                repositoryService.getClassifierName(okved2),
-                repositoryService.getOkatoCode(purchasePlanItemRow.getOkato()),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkdp()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkdp()),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkpd2()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkpd2()),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkved()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkved()),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkved2()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkved2()),
+                purchasePlanItemRow.getOkato(),
                 repositoryService.removeExtraSpaces(purchasePlanItemRow.getRegion()),
                 repositoryService.convertBoolean(purchasePlanItemRow.isImpossibleToDetermineAttr()),
-                repositoryService.getClassifierCode(okei),
-                repositoryService.getClassifierName(okei),
+                classifierService.getClassifierCode(purchasePlanItemRow.getOkei()),
+                classifierService.getClassifierName(purchasePlanItemRow.getOkei()),
                 purchasePlanItemRow.getQty(),
                 planItemGuid,
                 purchasePlanItemRow.getOrdinalNumber()
@@ -134,21 +123,17 @@ public class PlanItemRowRepository {
             String sql = "UPDATE innovation_plan_item_row SET additional_info = ?, okdp_code = ?, okdp_name = ?, " +
                 "okpd2_code = ?, okpd2_name = ?, okved_code = ?, okved_name = ?, okved2_code = ?, okved2_name = ? " +
                 "WHERE plan_item_guid = ? and ordinal_number = ?";
-            var okdp = repositoryService.getClassifier(innovationPlanItemRow.getOkdp());
-            var okpd2 = repositoryService.getClassifier(innovationPlanItemRow.getOkpd2());
-            var okved = repositoryService.getClassifier(innovationPlanItemRow.getOkved());
-            var okved2 = repositoryService.getClassifier(innovationPlanItemRow.getOkved2());
             jdbcTemplate.update(
                 sql,
                 innovationPlanItemRow.getAdditionalInfo(),
-                repositoryService.getClassifierCode(okdp),
-                repositoryService.getClassifierName(okdp),
-                repositoryService.getClassifierCode(okpd2),
-                repositoryService.getClassifierName(okpd2),
-                repositoryService.getClassifierCode(okved),
-                repositoryService.getClassifierName(okved),
-                repositoryService.getClassifierCode(okved2),
-                repositoryService.getClassifierName(okved2),
+                classifierService.getClassifierCode(innovationPlanItemRow.getOkdp()),
+                classifierService.getClassifierName(innovationPlanItemRow.getOkdp()),
+                classifierService.getClassifierCode(innovationPlanItemRow.getOkpd2()),
+                classifierService.getClassifierName(innovationPlanItemRow.getOkpd2()),
+                classifierService.getClassifierCode(innovationPlanItemRow.getOkved()),
+                classifierService.getClassifierName(innovationPlanItemRow.getOkved()),
+                classifierService.getClassifierCode(innovationPlanItemRow.getOkved2()),
+                classifierService.getClassifierName(innovationPlanItemRow.getOkved2()),
                 planItemGuid,
                 innovationPlanItemRow.getOrdinalNumber()
             );

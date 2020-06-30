@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.contract.SupplierAddressType;
@@ -28,12 +27,11 @@ public class SupplierAddressRepository {
         if (address == null) return null;
         try {
             Map<String, Object> parameters = new HashMap<>(19);
-            ClassifierRepository.Classifier oktmo = repositoryService.getOktmo(address.getOktmo(), address.getOktmoName());
             parameters.put("egrul_egrip_changed", repositoryService.convertBoolean(address.isEgrulEgripChanged()));
             parameters.put("country_code", repositoryService.getCountryCode(address.getCountry()));
             parameters.put("post_code", address.getPostCode());
-            parameters.put("oktmo_code", repositoryService.getClassifierCode(oktmo));
-            parameters.put("oktmo_name", repositoryService.getClassifierName(oktmo));
+            parameters.put("oktmo_code", address.getOktmo());
+            parameters.put("oktmo_name", address.getOktmoName());
             parameters.put("region_code", getRegionCode(address.getRegion()));
             parameters.put("region_name", getRegionName(address.getRegion()));
             parameters.put("area", address.getArea());

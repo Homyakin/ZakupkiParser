@@ -38,7 +38,6 @@ public class SupplierRepository {
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             if (checkSupplier(supplier.getInn())) return;
-            ClassifierRepository.Classifier okopf = repositoryService.getOkopf(supplier.getOkopf(), supplier.getOkopfName());
             jdbcTemplate.update(
                 sql,
                 supplier.getInn(),
@@ -60,8 +59,8 @@ public class SupplierRepository {
                 repositoryService.convertBoolean(supplier.isNonResident()),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(supplier.getRegistrationDate()),
                 repositoryService.convertBoolean(supplier.isTax()),
-                repositoryService.getClassifierCode(okopf),
-                repositoryService.getClassifierName(okopf),
+                supplier.getOkopf(),
+                supplier.getOkopfName(),
                 supplierAddressRepository.insert(supplier.getAddress()),
                 supplierAddressRepository.insert(supplier.getAddressRf()),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(supplier.getProviderIncludeMSPDate()),
@@ -96,7 +95,6 @@ public class SupplierRepository {
             "registration_date, tax, okopf_code, okopf_name, address_id, address_rf_id, provider_include_msp_date," +
             "is_in_order_173n)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        ClassifierRepository.Classifier okopf = repositoryService.getOkopf(supplier.getOkopf(), supplier.getOkopfName());
         try {
             jdbcTemplate.update(
                 sql,
@@ -120,8 +118,8 @@ public class SupplierRepository {
                 repositoryService.convertBoolean(supplier.isNonResident()),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(supplier.getRegistrationDate()),
                 repositoryService.convertBoolean(supplier.isTax()),
-                repositoryService.getClassifierCode(okopf),
-                repositoryService.getClassifierName(okopf),
+                supplier.getOkopf(),
+                supplier.getOkopfName(),
                 supplierAddressRepository.insert(supplier.getAddress()),
                 supplierAddressRepository.insert(supplier.getAddressRf()),
                 repositoryService.convertFromXMLGregorianCalendarToLocalDate(supplier.getProviderIncludeMSPDate()),

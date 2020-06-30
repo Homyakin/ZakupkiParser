@@ -6,27 +6,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.database.ClassifierRepository.Classifier;
 import ru.homyakin.zakupki.models._223fz.types.CountryType;
 import ru.homyakin.zakupki.models._223fz.types.CurrencyType;
-import ru.homyakin.zakupki.models._223fz.types.OkdpProductType;
-import ru.homyakin.zakupki.models._223fz.types.OkeiProductType;
-import ru.homyakin.zakupki.models._223fz.types.Okpd2ProductType;
-import ru.homyakin.zakupki.models._223fz.types.OkpdProductType;
-import ru.homyakin.zakupki.models._223fz.types.Okved2ProductType;
-import ru.homyakin.zakupki.models._223fz.types.OkvedProductType;
 
 @Component
 public class RepositoryService {
     private final static Logger logger = LoggerFactory.getLogger(RepositoryService.class);
-    private final ClassifierRepository classifierRepository;
     private final PurchaseCategoryRepository purchaseCategoryRepository;
 
     public RepositoryService(
-        ClassifierRepository classifierRepository,
         PurchaseCategoryRepository purchaseCategoryRepository
     ) {
-        this.classifierRepository = classifierRepository;
         this.purchaseCategoryRepository = purchaseCategoryRepository;
     }
 
@@ -80,67 +70,9 @@ public class RepositoryService {
         return s.trim().replaceAll(" +", " ");
     }
 
-    public String getOkatoCode(String code) {
-        return classifierRepository.getOkatoCode(code);
-    }
-
-    public String getClassifierCode(Classifier classifier) {
-        if (classifier == null) return null;
-        else return classifier.getCode();
-    }
-
-    public String getClassifierName(Classifier classifier) {
-        if (classifier == null) return null;
-        else return classifier.getName();
-    }
-
     public String getCountryCode(CountryType country) {
         if (country == null) return null;
         else return country.getDigitalCode();
-    }
-
-    public Classifier getClassifier(OkdpProductType okdp) {
-        if (okdp == null) return new Classifier(null, null);
-        return getClassifier("okdp", okdp.getCode(), okdp.getName());
-    }
-
-    public Classifier getOkopf(String okopfCode, String okopfName) {
-        if (okopfCode == null) return new Classifier(null, null);
-        return getClassifier("okopf", okopfCode, okopfName);
-    }
-
-    public Classifier getOktmo(String oktmoCode, String oktmoName) {
-        if (oktmoCode == null) return new Classifier(null, null);
-        return classifierRepository.getOktmo(oktmoCode, oktmoName);
-    }
-
-    public Classifier getClassifier(OkpdProductType okpd) {
-        if (okpd == null) return new Classifier(null, null);
-        return getClassifier("okpd", okpd.getCode(), okpd.getName());
-    }
-
-    public Classifier getClassifier(Okpd2ProductType okpd2) {
-        if (okpd2 == null) return new Classifier(null, null);
-        return getClassifier("okpd2", okpd2.getCode(), okpd2.getName());
-    }
-
-    public Classifier getClassifier(OkvedProductType okved) {
-        if (okved == null) return new Classifier(null, null);
-        return getClassifier("okved", okved.getCode(), okved.getName());
-    }
-
-    public Classifier getClassifier(Okved2ProductType okved2) {
-        if (okved2 == null) return new Classifier(null, null);
-        return getClassifier("okved2", okved2.getCode(), okved2.getName());
-    }
-
-    public Classifier getClassifier(OkeiProductType okei) {
-        if (okei == null) return new Classifier(null, null);
-        return getClassifier("okei", okei.getCode(), okei.getName());
-    }
-
-    private Classifier getClassifier(String table, String code, String name) {
-        return classifierRepository.getClassifier(table, removeExtraSpaces(code), removeExtraSpaces(name));
     }
 
     public Long getCategoryCode(Long purchaseCategory) {

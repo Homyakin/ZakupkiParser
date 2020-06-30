@@ -12,10 +12,16 @@ public class PurchaseNoticeLotItemRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeLotItemRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final RepositoryService repositoryService;
+    private final ClassifierService classifierService;
 
-    public PurchaseNoticeLotItemRepository(DataSource dataSource, RepositoryService repositoryService) {
+    public PurchaseNoticeLotItemRepository(
+        DataSource dataSource,
+        RepositoryService repositoryService,
+        ClassifierService classifierService
+    ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.repositoryService = repositoryService;
+        this.classifierService = classifierService;
     }
 
     public void insert(LotItemType item, String lotGuid) {
@@ -25,31 +31,26 @@ public class PurchaseNoticeLotItemRepository {
             "delivery_region_okato, delivery_address, commodity_item_price, commodity_item_price_rub)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            var okdp = repositoryService.getClassifier(item.getOkdp());
-            var okpd2 = repositoryService.getClassifier(item.getOkpd2());
-            var okved = repositoryService.getClassifier(item.getOkved());
-            var okved2 = repositoryService.getClassifier(item.getOkved2());
-            var okei = repositoryService.getClassifier(item.getOkei());
             jdbcTemplate.update(
                 sql,
                 item.getGuid(),
                 lotGuid,
                 item.getOrdinalNumber(),
-                okdp.getCode(),
-                okdp.getName(),
-                okpd2.getCode(),
-                okpd2.getName(),
-                okved.getCode(),
-                okved.getName(),
-                okved2.getCode(),
-                okved2.getName(),
-                okei.getCode(),
-                okei.getName(),
+                classifierService.getClassifierCode(item.getOkdp()),
+                classifierService.getClassifierName(item.getOkdp()),
+                classifierService.getClassifierCode(item.getOkpd2()),
+                classifierService.getClassifierName(item.getOkpd2()),
+                classifierService.getClassifierCode(item.getOkved()),
+                classifierService.getClassifierName(item.getOkved()),
+                classifierService.getClassifierCode(item.getOkved2()),
+                classifierService.getClassifierName(item.getOkved2()),
+                classifierService.getClassifierCode(item.getOkei()),
+                classifierService.getClassifierName(item.getOkei()),
                 item.getQty(),
                 item.getAdditionalInfo(),
                 item.getDeliveryPlace() != null ? item.getDeliveryPlace().getState() : null,
                 item.getDeliveryPlace() != null ? item.getDeliveryPlace().getRegion() : null,
-                item.getDeliveryPlace() != null ? repositoryService.getOkatoCode(item.getDeliveryPlace().getRegionOkato()) : null,
+                item.getDeliveryPlace() != null ? item.getDeliveryPlace().getRegionOkato() : null,
                 item.getDeliveryPlace() != null ? item.getDeliveryPlace().getAddress() : null,
                 item.getCommodityItemPrice(),
                 item.getCommodityItemPriceRub()

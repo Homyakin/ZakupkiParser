@@ -12,10 +12,16 @@ public class ContractPositionRepository {
     private static final Logger logger = LoggerFactory.getLogger(ContractPositionRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final RepositoryService repositoryService;
+    private final ClassifierService classifierService;
 
-    public ContractPositionRepository(DataSource dataSource, RepositoryService repositoryService) {
+    public ContractPositionRepository(
+        DataSource dataSource,
+        RepositoryService repositoryService,
+        ClassifierService classifierService
+    ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.repositoryService = repositoryService;
+        this.classifierService = classifierService;
     }
 
     public void insert(PositionType position, String contractGuid) {
@@ -24,28 +30,23 @@ public class ContractPositionRepository {
             "producer_country, impossible_to_determine_attr, okei_code, okei_name, qty)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            ClassifierRepository.Classifier okdp = repositoryService.getClassifier(position.getOkdp());
-            ClassifierRepository.Classifier okpd = repositoryService.getClassifier(position.getOkpd());
-            ClassifierRepository.Classifier okpd2 = repositoryService.getClassifier(position.getOkpd2());
-            ClassifierRepository.Classifier okei = repositoryService.getClassifier(position.getOkei());
-
             jdbcTemplate.update(
                 sql,
                 contractGuid,
                 position.getOrdinalNumber(),
                 position.getGuid(),
                 repositoryService.removeExtraSpaces(position.getName()),
-                repositoryService.getClassifierCode(okdp),
-                repositoryService.getClassifierName(okdp),
-                repositoryService.getClassifierCode(okpd),
-                repositoryService.getClassifierName(okpd),
-                repositoryService.getClassifierCode(okpd2),
-                repositoryService.getClassifierName(okpd2),
+                classifierService.getClassifierCode(position.getOkdp()),
+                classifierService.getClassifierName(position.getOkdp()),
+                classifierService.getClassifierCode(position.getOkpd()),
+                classifierService.getClassifierName(position.getOkpd()),
+                classifierService.getClassifierCode(position.getOkpd2()),
+                classifierService.getClassifierName(position.getOkpd2()),
                 repositoryService.getCountryCode(position.getCountry()),
                 repositoryService.convertBoolean(position.isProducerCountry()),
                 repositoryService.convertBoolean(position.isImpossibleToDetermineAttr()),
-                repositoryService.getClassifierCode(okei),
-                repositoryService.getClassifierName(okei),
+                classifierService.getClassifierCode(position.getOkei()),
+                classifierService.getClassifierName(position.getOkei()),
                 position.getQty()
             );
         } catch (RuntimeException e) {
