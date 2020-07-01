@@ -33,4 +33,9 @@ public class ParserTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testParsingEmptyFile() {
+        ContractParser.parse(getFilePath("test_files/contract/contract_empty.xml"));
+    }
 }
