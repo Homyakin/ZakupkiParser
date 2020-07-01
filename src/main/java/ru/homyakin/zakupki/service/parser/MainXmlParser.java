@@ -3,6 +3,7 @@ package ru.homyakin.zakupki.service.parser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +29,17 @@ public class MainXmlParser {
         } catch (ClassCastException e) {
             logger.error("Can't cast to class {}", clazz.getName(), e);
             throw new IllegalStateException("Unable to cast");
+        }
+    }
+
+    protected static <T> Optional<T> parse(InputStream inputStream, Class<T> clazz) {
+        try {
+            JAXBContext jc = JAXBContext.newInstance(clazz);
+            Unmarshaller unmarshaller = jc.createUnmarshaller();
+            return Optional.of(clazz.cast(unmarshaller.unmarshal(inputStream)));
+        } catch (JAXBException e) {
+            logger.error("Unable to parse", e);
+            throw new IllegalStateException("Unable to parse");
         }
     }
 

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><ns2:contract xmlns:ns2="http://zakupki.gov.ru/223fz/contract/1" xmlns="http://zakupki.gov.ru/223fz/types/1" xmlns:ns20="http://zakupki.gov.ru/223fz/complaint/1" xmlns:ns21="http://zakupki.gov.ru/223fz/notificationIssue/1" xmlns:ns22="http://zakupki.gov.ru/223fz/purchasePlanProject/1" xmlns:ns23="http://zakupki.gov.ru/223fz/ecp-packet/1" xmlns:ns24="http://zakupki.gov.ru/223fz/webRequest/1" xmlns:ns3="http://zakupki.gov.ru/223fz/dishonestSupplier/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://zakupki.gov.ru/223fz/disagreementProtocol/1" xmlns:ns5="http://zakupki.gov.ru/223fz/purchasePlan/1" xmlns:ns6="http://zakupki.gov.ru/223fz/purchasePlanProjectAdditionalPosition/1" xmlns:ns7="http://zakupki.gov.ru/223fz/customerRegistry/1" xmlns:ns8="http://zakupki.gov.ru/223fz/purchase/1" xmlns:ns9="http://zakupki.gov.ru/223fz/stopCommodity/1" xmlns:ns10="http://zakupki.gov.ru/223fz/reference/1" xmlns:ns11="http://zakupki.gov.ru/223fz/exclusion/1" xmlns:ns12="http://zakupki.gov.ru/223fz/typalOrderClauseList/1" xmlns:ns13="http://zakupki.gov.ru/223fz/machineryListInfo/1" xmlns:ns14="http://zakupki.gov.ru/223fz/revenue/1" xmlns:ns15="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns:ns16="http://zakupki.gov.ru/223fz/missedNotice/1" xmlns:ns17="http://zakupki.gov.ru/223fz/decisionSuspension/1" xmlns:ns18="http://zakupki.gov.ru/223fz/purchasePlanAdditionalPosition/1" xmlns:ns19="http://zakupki.gov.ru/223fz/agencyRelation/1" xsi:schemaLocation="http://zakupki.gov.ru/223/integration/schema/TFF-9.0.3 http://zakupki.gov.ru/223/integration/schema/TFF-9.0.3/Types.xsd">
+    <header xmlns="">
+        <guid>4cb1e1f4-2c47-45e1-8714-244ebedf74ee</guid>
+        <createDateTime>2019-04-08T17:25:16</createDateTime>
+    </header>
+    <ns2:body xmlns="">
+        <ns2:item>
+            <guid>3c5cb8f9-1382-4312-b711-4c93be79b23f</guid>
+            <ns2:contractData>
+                <ns2:guid>43951014-79a6-4ab8-8a63-cfef7c3f8f19</ns2:guid>
+                <ns2:registrationNumber>50105018196190000360001</ns2:registrationNumber>
+                <ns2:notice44>false</ns2:notice44>
+                <ns2:noticeNotPlacedByFz223p5s4>false</ns2:noticeNotPlacedByFz223p5s4>
+                <ns2:termination>false</ns2:termination>
+                <ns2:extension>false</ns2:extension>
+                <ns2:prolongation>false</ns2:prolongation>
+                <ns2:customerAppealedOrNeedsApproval>false</ns2:customerAppealedOrNeedsApproval>
+                <ns2:lotNum>1</ns2:lotNum>
+                <ns2:urlEIS>https://zakupki.gov.ru/223/contract/private/contract/view/general-information.html?id=6736185&amp;viewMode=VSRI</ns2:urlEIS>
+                <ns2:createDateTime>2019-04-08T17:17:42</ns2:createDateTime>
+                <ns2:customer>
+                    <mainInfo>
+                        <fullName>АКЦИОНЕРНОЕ ОБЩЕСТВО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</fullName>
+                        <shortName>АО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</shortName>
+                        <iko>50105018196010501001</iko>
+                        <inn>0105018196</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100707318</ogrn>
+                        <legalAddress>385003, Респ Адыгея, г Майкоп, ул Апшеронская, дом 4</legalAddress>
+                        <postalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</postalAddress>
+                        <phone>7-8772-523180</phone>
+                        <fax>7-8772-560255</fax>
+                        <email>mail@adyggaz.ru</email>
+                        <okato>79401000000</okato>
+                        <okopf>12267</okopf>
+                        <okopfName>Непубличные акционерные общества</okopfName>
+                        <okpo>03251056</okpo>
+                        <customerRegistrationDate>1995-03-30T00:00:00</customerRegistrationDate>
+                    </mainInfo>
+                </ns2:customer>
+                <ns2:placer>
+                    <mainInfo>
+                        <fullName>АКЦИОНЕРНОЕ ОБЩЕСТВО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</fullName>
+                        <shortName>АО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</shortName>
+                        <iko>50105018196010501001</iko>
+                        <inn>0105018196</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100707318</ogrn>
+                        <legalAddress>385003, Респ Адыгея, г Майкоп, ул Апшеронская, дом 4</legalAddress>
+                        <postalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</postalAddress>
+                        <phone>7-8772-523180</phone>
+                        <fax>7-8772-560255</fax>
+                        <email>mail@adyggaz.ru</email>
+                        <okato>79401000000</okato>
+                        <okopf>12267</okopf>
+                        <okopfName>Непубличные акционерные общества</okopfName>
+                        <okpo>03251056</okpo>
+                    </mainInfo>
+                </ns2:placer>
+                <ns2:detachedOrg>
+                    <mainInfo>
+                        <fullName>АКЦИОНЕРНОЕ ОБЩЕСТВО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</fullName>
+                        <shortName>АО "ГАЗПРОМ ГАЗОРАСПРЕДЕЛЕНИЕ МАЙКОП"</shortName>
+                        <iko>50105018196010501001</iko>
+                        <inn>0105018196</inn>
+                        <kpp>010501001</kpp>
+                        <ogrn>1020100707318</ogrn>
+                        <legalAddress>385003, Респ Адыгея, г Майкоп, ул Апшеронская, дом 4</legalAddress>
+                        <postalAddress>385003, Адыгея, Майкоп, Апшеронская, дом 4</postalAddress>
+                        <phone>7-8772-523180</phone>
+                        <fax>7-8772-560255</fax>
+                        <email>mail@adyggaz.ru</email>
+                        <okato>79401000000</okato>
+                        <okopf>12267</okopf>
+                        <okopfName>Непубличные акционерные общества</okopfName>
+                        <okpo>03251056</okpo>
+                    </mainInfo>
+                </ns2:detachedOrg>
+                <ns2:publicationDate>2019-04-08T17:25:16</ns2:publicationDate>
+                <ns2:status>P</ns2:status>
+                <ns2:version>1</ns2:version>
+                <ns2:digitalPurchase>true</ns2:digitalPurchase>
+                <ns2:digitalPurchaseCode>400001</ns2:digitalPurchaseCode>
+                <ns2:provider>false</ns2:provider>
+                <ns2:changeContract>false</ns2:changeContract>
+                <ns2:attachments>
+                    <totalDocumentsCount>1</totalDocumentsCount>
+                    <document>
+                        <guid>acd647dd-39b7-4158-acd2-4e3b2f879a08</guid>
+                        <createDateTime>2019-04-08T17:23:23</createDateTime>
+                        <fileName>Дог.№184699.pdf</fileName>
+                        <description>Дог.№184699</description>
+                        <url>https://zakupki.gov.ru/223/contract/private/download/download.html?id=39042458</url>
+                        <registrationNumber>50105018196190000360002</registrationNumber>
+                    </document>
+                </ns2:attachments>
+                <ns2:contractRegNumber>50105018196190000360000</ns2:contractRegNumber>
+                <ns2:name>АГ-1/0131/19</ns2:name>
+                <ns2:contractDate>2019-04-08</ns2:contractDate>
+                <ns2:purchaseNoticeInfo>
+                    <ns2:guid>251fbee5-9304-4ddb-82f5-f2cba2ab6c4a</ns2:guid>
+                    <ns2:purchaseNoticeNumber>31907607605</ns2:purchaseNoticeNumber>
+                    <ns2:publicationDateTime>2019-03-05T14:08:49</ns2:publicationDateTime>
+                    <ns2:name>Запрос предложений в электронной форме по номенклатурной группе "Трубы"</ns2:name>
+                </ns2:purchaseNoticeInfo>
+                <ns2:lotGuid>982f5604-70b6-494e-87ef-75b9a9a5e97a</ns2:lotGuid>
+                <ns2:subjectContract>Трубы, профили пустотелые и их фитинги стальные</ns2:subjectContract>
+                <ns2:purchaseTypeInfo>
+                    <ns2:code>40000</ns2:code>
+                    <ns2:name>Иной способ закупки, предусмотренный правовым актом заказчика, указанным в части 1 статьи 2 Федерального закона</ns2:name>
+                </ns2:purchaseTypeInfo>
+                <ns2:resumeDate>2019-03-19</ns2:resumeDate>
+                <ns2:hasSubcontractor>false</ns2:hasSubcontractor>
+                <ns2:price>1064005</ns2:price>
+                <ns2:currency>
+                    <code>RUB</code>
+                    <digitalCode>643</digitalCode>
+                    <name>Российский рубль</name>
+                </ns2:currency>
+                <ns2:startExecutionDate>2019-04-08</ns2:startExecutionDate>
+                <ns2:endExecutionDate>2019-12-31</ns2:endExecutionDate>
+                <ns2:contractPositions>
+                    <ns2:contractPosition>
+                        <ns2:guid>b6ed35a3-a970-434d-ab4e-9077b46d15f7</ns2:guid>
+                        <ns2:name>Трубы, профили пустотелые и их фитинги стальные</ns2:name>
+                        <ns2:ordinalNumber>2</ns2:ordinalNumber>
+                        <ns2:okpd2>
+                            <code>24.20</code>
+                            <name>Трубы, профили пустотелые и их фитинги стальные</name>
+                        </ns2:okpd2>
+                        <ns2:impossibleToDetermineAttr>false</ns2:impossibleToDetermineAttr>
+                        <ns2:okei>
+                            <code>796</code>
+                            <name>Штука</name>
+                        </ns2:okei>
+                        <ns2:qty>1</ns2:qty>
+                    </ns2:contractPosition>
+                </ns2:contractPositions>
+                <ns2:contractConfirmingDocs>
+                    <ns2:contractDoc>
+                        <ns2:confirmingDocCode>1</ns2:confirmingDocCode>
+                        <ns2:confirmingDocCodeTitle>Протокол, составленный по результатам закупки</ns2:confirmingDocCodeTitle>
+                        <ns2:protocolInfoGuid>44ad0b36-b4db-4075-b3dd-d408f7da046e</ns2:protocolInfoGuid>
+                        <ns2:protocolName>Протокол вскрытия конвертов 31907607605-01</ns2:protocolName>
+                        <ns2:docDate>2019-03-19</ns2:docDate>
+                        <ns2:docNum>31907607605-01</ns2:docNum>
+                    </ns2:contractDoc>
+                </ns2:contractConfirmingDocs>
+                <ns2:hasOkpdAndOkdpRows>false</ns2:hasOkpdAndOkdpRows>
+                <ns2:hasOkpd2Rows>true</ns2:hasOkpd2Rows>
+            </ns2:contractData>
+        </ns2:item>
+    </ns2:body>
+</ns2:contract>
