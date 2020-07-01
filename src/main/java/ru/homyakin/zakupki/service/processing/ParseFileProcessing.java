@@ -45,71 +45,80 @@ public class ParseFileProcessing {
                 logger.info("Start processing {}; {}", file.getType().getValue(), file.getFilepath());
                 switch (file.getType()) {
                     case CONTRACT -> {
-                        var contract = ContractParser.parse(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Contract " + file.getFilepath() + " wasn't parsed"));
-                        contractRepository.insert(contract);
+                        var contract = ContractParser.parse(file.getFilepath());
+                        contract.ifPresent(contractRepository::insert);
                         /*You can't insert contract in parallel, because later contract can update previous ones.*/
                     }
                     case PURCHASE_PLAN -> {
-                        var purchasePlan = PurchasePlanParser.parse(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase plan " + file.getFilepath() + " wasn't parsed"));
-                        purchasePlanRepository.insert(purchasePlan);
+                        var purchasePlan = PurchasePlanParser.parse(file.getFilepath());
+                        purchasePlan.ifPresent(purchasePlanRepository::insert);
                         /*You can't insert plan data in parallel, because later plans can update previous ones.*/
                     }
                     case PURCHASE_NOTICE, PURCHASE_NOTICE_IS -> {
-                        var purchaseNotice = PurchaseNoticeParser.parse(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeData(), FileType.PURCHASE_NOTICE);
+                        var purchaseNotice = PurchaseNoticeParser.parse(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeData(), FileType.PURCHASE_NOTICE)
+                        );
                     }
                     case PURCHASE_NOTICE_AE -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseAE(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeAEData(), FileType.PURCHASE_NOTICE_AE);
+                        var purchaseNotice = PurchaseNoticeParser.parseAE(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeAEData(), FileType.PURCHASE_NOTICE_AE)
+                        );
                     }
                     case PURCHASE_NOTICE_AE94 -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseAE94(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeAE94FZData(), FileType.PURCHASE_NOTICE_AE94);
+                        var purchaseNotice = PurchaseNoticeParser.parseAE94(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeAE94FZData(), FileType.PURCHASE_NOTICE_AE94)
+                        );
                     }
                     case PURCHASE_NOTICE_AESMBO -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseAESMBO(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeAESMBOData(), FileType.PURCHASE_NOTICE_AESMBO);
+                        var purchaseNotice = PurchaseNoticeParser.parseAESMBO(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeAESMBOData(), FileType.PURCHASE_NOTICE_AESMBO)
+                        );
                     }
                     case PURCHASE_NOTICE_EP -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseEP(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeEPData(), FileType.PURCHASE_NOTICE_EP);
+                        var purchaseNotice = PurchaseNoticeParser.parseEP(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeEPData(), FileType.PURCHASE_NOTICE_EP)
+                        );
                     }
                     case PURCHASE_NOTICE_KESMBO -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseKESMBO(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeKESMBOData(), FileType.PURCHASE_NOTICE_KESMBO);
+                        var purchaseNotice = PurchaseNoticeParser.parseKESMBO(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeKESMBOData(), FileType.PURCHASE_NOTICE_KESMBO)
+                        );
                     }
                     case PURCHASE_NOTICE_OA -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseOA(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeOAData(), FileType.PURCHASE_NOTICE_OA);
+                        var purchaseNotice = PurchaseNoticeParser.parseOA(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeOAData(), FileType.PURCHASE_NOTICE_OA)
+                        );
                     }
                     case PURCHASE_NOTICE_OK -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseOK(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeOKData(), FileType.PURCHASE_NOTICE_OK);
+                        var purchaseNotice = PurchaseNoticeParser.parseOK(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeOKData(), FileType.PURCHASE_NOTICE_OK)
+                        );
                     }
                     case PURCHASE_NOTICE_ZK -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseZK(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeZKData(), FileType.PURCHASE_NOTICE_ZK);
+                        var purchaseNotice = PurchaseNoticeParser.parseZK(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeZKData(), FileType.PURCHASE_NOTICE_ZK)
+                        );
                     }
                     case PURCHASE_NOTICE_ZKESMBO -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseZKESMBO(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeZKESMBOData(), FileType.PURCHASE_NOTICE_ZKESMBO);
+                        var purchaseNotice = PurchaseNoticeParser.parseZKESMBO(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeZKESMBOData(), FileType.PURCHASE_NOTICE_ZKESMBO)
+                        );
                     }
                     case PURCHASE_NOTICE_ZPESMBO -> {
-                        var purchaseNotice = PurchaseNoticeParser.parseZPESMBO(file.getFilepath())
-                            .orElseThrow(() -> new IllegalArgumentException("Purchase notice " + file.getFilepath() + " wasn't parsed"));
-                        purchaseNoticeRepository.insert(purchaseNotice.getBody().getItem().getPurchaseNoticeZPESMBOData(), FileType.PURCHASE_NOTICE_ZPESMBO);
+                        var purchaseNotice = PurchaseNoticeParser.parseZPESMBO(file.getFilepath());
+                        purchaseNotice.ifPresent(
+                            it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeZPESMBOData(), FileType.PURCHASE_NOTICE_ZPESMBO)
+                        );
                     }
                     default -> logger.error("Unknown file type");
                 }
