@@ -3,11 +3,12 @@ package ru.homyakin.zakupki.web;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -39,6 +40,8 @@ public class FTPClient223fz implements FTPClientFZ {
     private final ZipService zipService;
     private final FileSystemService fileSystemService;
     private final FtpConfiguration ftpConfiguration;
+    private LocalDate startDate = LocalDate.of(2000, 1, 1);
+    private LocalDate endDate = LocalDate.of(4000, 1, 1);
 
     public FTPClient223fz(ZipService zipService, FileSystemService fileSystemService, FtpConfiguration ftpConfiguration) {
         this.zipService = zipService;
@@ -118,6 +121,14 @@ public class FTPClient223fz implements FTPClientFZ {
         searchRegionsDirectories();
     }
 
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
     private void searchRegionsDirectories() {
         for (var region : parsingRegions) {
             makeDownloadDirectories(basicWorkspace + "/" + region);
@@ -142,7 +153,11 @@ public class FTPClient223fz implements FTPClientFZ {
         try {
             var files = ftp.listFiles(workspace);
             for (var remoteFile : files) {
-                if (remoteFile.isFile()) {
+                var calendar = remoteFile.getTimestamp();
+                LocalDate date = LocalDateTime
+                    .ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId())
+                    .toLocalDate();
+                if (remoteFile.isFile() && isDateInInterval(date)) {
                     if (downloadFile(downloadPath + workspace + "/" + remoteFile.getName(),
                         workspace + "/" + remoteFile.getName())) {
                         zipService.unzipFile(downloadPath + workspace + "/" + remoteFile.getName(),
@@ -155,7 +170,10 @@ public class FTPClient223fz implements FTPClientFZ {
         } catch (IOException e) {
             logger.error("Something went wrong wile listing {}", workspace, e);
         }
+    }
 
+    private boolean isDateInInterval(LocalDate date) {
+        return date.isAfter(startDate) && date.isBefore(endDate) || date.equals(startDate) || date.equals(endDate);
     }
 
     private boolean downloadFile(String localFilePath, String remoteFilePath) {
