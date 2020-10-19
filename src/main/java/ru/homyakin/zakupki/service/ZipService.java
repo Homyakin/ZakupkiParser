@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models.FileType;
 import ru.homyakin.zakupki.models.ParseFile;
-import ru.homyakin.zakupki.service.storage.Queue;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -13,23 +12,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import ru.homyakin.zakupki.service.storage.RegionFilesStorage;
 
 @Component
 public class ZipService {
     private final static Logger logger = LoggerFactory.getLogger(ZipService.class);
 
     private final FileSystemService fileSystemService;
-    private final Queue<ParseFile> parseFileQueue;
+    private final RegionFilesStorage storage;
 
     public ZipService(
         FileSystemService fileSystemService,
-        Queue<ParseFile> parseFileQueue
+        RegionFilesStorage storage
     ) {
         this.fileSystemService = fileSystemService;
-        this.parseFileQueue = parseFileQueue;
+        this.storage = storage;
     }
 
-    public void unzipFile(String filePath, String path, String folder) {
+    public void unzipFile(String filePath, String path, String folder, String region) {
         logger.debug("Start unzipping {}", filePath);
         try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
             ZipEntry entry;
@@ -45,11 +45,11 @@ public class ZipService {
                 outputFile.flush();
                 zin.closeEntry();
                 outputFile.close();
-
-                parseFileQueue.put(new ParseFile(
+                var file = new ParseFile(
                     path + "/unzip/" + name,
                     FileType.fromString(folder).orElseThrow(() -> new IllegalArgumentException("Illegal folder name"))
-                ));
+                );
+                storage.insert(region, file);
             }
         } catch (IllegalArgumentException e) {
             logger.error("Argument error ", e);

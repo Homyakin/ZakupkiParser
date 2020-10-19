@@ -132,7 +132,7 @@ public class FTPClient223fz implements FTPClientFZ {
     private void searchRegionsDirectories() {
         for (var region : parsingRegions) {
             makeDownloadDirectories(basicWorkspace + "/" + region);
-            searchInRegions(basicWorkspace + "/" + region);
+            searchInRegions(basicWorkspace + "/" + region, region);
         }
     }
 
@@ -142,13 +142,13 @@ public class FTPClient223fz implements FTPClientFZ {
         }
     }
 
-    private void searchInRegions(String workspace) {
+    private void searchInRegions(String workspace, String region) {
         for (var folder : parsingFolders) {
-            searchFiles(workspace + "/" + folder + "/daily", folder);
+            searchFiles(workspace + "/" + folder + "/daily", folder, region);
         }
     }
 
-    private void searchFiles(String workspace, String folder) {
+    private void searchFiles(String workspace, String folder, String region) {
         logger.info("Start parsing {}", workspace);
         try {
             var files = ftp.listFiles(workspace);
@@ -161,7 +161,7 @@ public class FTPClient223fz implements FTPClientFZ {
                     if (downloadFile(downloadPath + workspace + "/" + remoteFile.getName(),
                         workspace + "/" + remoteFile.getName())) {
                         zipService.unzipFile(downloadPath + workspace + "/" + remoteFile.getName(),
-                            downloadPath + workspace, folder);
+                            downloadPath + workspace, folder, region);
                     } else {
                         logger.error("Unable to download {}", workspace + "/" + remoteFile.getName());
                     }

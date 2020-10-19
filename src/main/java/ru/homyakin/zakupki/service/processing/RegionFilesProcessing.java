@@ -1,5 +1,9 @@
 package ru.homyakin.zakupki.service.processing;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -9,36 +13,47 @@ import ru.homyakin.zakupki.database.PurchaseNoticeRepository;
 import ru.homyakin.zakupki.database.PurchasePlanRepository;
 import ru.homyakin.zakupki.models.FileType;
 import ru.homyakin.zakupki.models.ParseFile;
-import ru.homyakin.zakupki.models._223fz.contract.Contract;
-import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlan;
 import ru.homyakin.zakupki.service.parser.ContractParser;
 import ru.homyakin.zakupki.service.parser.PurchaseNoticeParser;
 import ru.homyakin.zakupki.service.parser.PurchasePlanParser;
-import ru.homyakin.zakupki.service.storage.Queue;
+import ru.homyakin.zakupki.service.storage.ParseFileQueue;
+import ru.homyakin.zakupki.service.storage.RegionFilesStorage;
 
 @Service
-public class ParseFileProcessing {
-    private final static Logger logger = LoggerFactory.getLogger(ParseFileProcessing.class);
+public class RegionFilesProcessing {
+    private final static Logger logger = LoggerFactory.getLogger(RegionFilesProcessing.class);
 
-    private final Queue<ParseFile> queue;
     private final PurchasePlanRepository purchasePlanRepository;
     private final ContractRepository contractRepository;
     private final PurchaseNoticeRepository purchaseNoticeRepository;
+    private final RegionFilesStorage storage;
+    private final List<String> regionFilesInProcess = new ArrayList<>();
+    private final ExecutorService executor = Executors.newFixedThreadPool(15);
 
-    public ParseFileProcessing(
-        Queue<ParseFile> queue,
+    public RegionFilesProcessing(
         PurchasePlanRepository purchasePlanRepository,
         ContractRepository contractRepository,
-        PurchaseNoticeRepository purchaseNoticeRepository
+        PurchaseNoticeRepository purchaseNoticeRepository,
+        RegionFilesStorage storage
     ) {
-        this.queue = queue;
         this.purchasePlanRepository = purchasePlanRepository;
         this.contractRepository = contractRepository;
         this.purchaseNoticeRepository = purchaseNoticeRepository;
+        this.storage = storage;
     }
 
-    @Scheduled(fixedDelay = 1000)
-    public void processParseFiles() {
+    @Scheduled(fixedDelay = 60 *    1000)
+    public void processFiles() {
+        var m = storage.getMap();
+        for (var entry: m.entrySet()) {
+            if (!regionFilesInProcess.contains(entry.getKey())) {
+                executor.submit(() -> this.processParseFiles(entry.getValue()));
+                regionFilesInProcess.add(entry.getKey());
+            }
+        }
+    }
+
+    public void processParseFiles(ParseFileQueue queue) {
         while (!queue.isEmpty()) {
             try {
                 ParseFile file = queue.take();

@@ -4,10 +4,8 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import ru.homyakin.zakupki.models.ParseFile;
 
-@Service
 public class ParseFileQueue extends Queue<ParseFile> {
     private BlockingQueue<ParseFile> queue = new LinkedBlockingQueue<ParseFile>();
     private static final Logger logger = LoggerFactory.getLogger(ParseFileQueue.class);
