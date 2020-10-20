@@ -1,7 +1,9 @@
 package ru.homyakin.zakupki.service.processing;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.slf4j.Logger;
@@ -27,7 +29,7 @@ public class RegionFilesProcessing {
     private final ContractRepository contractRepository;
     private final PurchaseNoticeRepository purchaseNoticeRepository;
     private final RegionFilesStorage storage;
-    private final List<String> regionFilesInProcess = new ArrayList<>();
+    private final List<String> regionFilesInProcess = new CopyOnWriteArrayList<>();
     private final ExecutorService executor = Executors.newFixedThreadPool(15);
 
     public RegionFilesProcessing(
@@ -47,13 +49,13 @@ public class RegionFilesProcessing {
         var m = storage.getMap();
         for (var entry: m.entrySet()) {
             if (!regionFilesInProcess.contains(entry.getKey())) {
-                executor.submit(() -> this.processParseFiles(entry.getValue()));
+                executor.submit(() -> this.processParseFiles(entry.getValue(), entry.getKey()));
                 regionFilesInProcess.add(entry.getKey());
             }
         }
     }
 
-    public void processParseFiles(ParseFileQueue queue) {
+    public void processParseFiles(ParseFileQueue queue, String regionFile) {
         while (!queue.isEmpty()) {
             try {
                 ParseFile file = queue.take();
@@ -141,5 +143,6 @@ public class RegionFilesProcessing {
                 logger.error("Internal processing error", e);
             }
         }
+        regionFilesInProcess.remove(regionFile);
     }
 }
