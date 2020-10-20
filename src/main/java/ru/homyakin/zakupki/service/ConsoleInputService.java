@@ -22,14 +22,20 @@ public class ConsoleInputService {
         for (int i = 0; i < folders.length; ++i) {
             System.out.println(i + 1 + ": " + folders[i].getValue());
         }
-        int folder = -1;
+        System.out.println("100: Добавить всё");
+        int folderIdx = -1;
         Scanner sc = new Scanner(System.in);
-        while (folder != 0) {
-            folder = sc.nextInt();
-            if (folder < 1 || folder > folders.length) {
+        while (folderIdx != 0) {
+            folderIdx = sc.nextInt();
+            if (folderIdx == 100) {
+                for (var folder: folders) {
+                    ftp.addParsingFolder(folder);
+                }
+            }
+            if (folderIdx < 1 || folderIdx > folders.length) {
                 continue;
             }
-            ftp.addParsingFolder(folders[folder - 1]);
+            ftp.addParsingFolder(folders[folderIdx - 1]);
         }
     }
 
@@ -39,14 +45,20 @@ public class ConsoleInputService {
         for (int i = 0; i < regions.size(); ++i) {
             System.out.println(i + 1 + ": " + regions.get(i));
         }
-        int folder = -1;
+        System.out.println("100: Добавить всё");
+        int regionIdx = -1;
         Scanner sc = new Scanner(System.in);
-        while (folder != 0) {
-            folder = sc.nextInt();
-            if (folder < 1 || folder > regions.size()) {
+        while (regionIdx != 0) {
+            regionIdx = sc.nextInt();
+            if (regionIdx == 100) {
+                for (var region: regions) {
+                    ftp.addParsingRegion(region);
+                }
+            }
+            if (regionIdx < 1 || regionIdx > regions.size()) {
                 continue;
             }
-            ftp.addParsingRegion(regions.get(folder - 1));
+            ftp.addParsingRegion(regions.get(regionIdx - 1));
         }
     }
 
