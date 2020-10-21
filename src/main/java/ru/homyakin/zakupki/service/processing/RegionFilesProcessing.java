@@ -44,7 +44,7 @@ public class RegionFilesProcessing {
         this.storage = storage;
     }
 
-    @Scheduled(fixedDelay = 60 *    1000)
+    @Scheduled(initialDelay = 10 * 1000, fixedDelay = 60 * 1000)
     public void processFiles() {
         var m = storage.getMap();
         for (var entry: m.entrySet()) {
