@@ -2,6 +2,7 @@ package ru.homyakin.zakupki.service.parser;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ public class ContractParser extends MainXmlParser {
         if (contract.isPresent() && contract.get().getBody().getItem().getContractData().getCustomer().getMainInfo() == null) {
             logger.warn("No xmlns in contract");
             try {
-                var contractString = Files.readString(Paths.get(filePath));
+                var contractString = Files.readString(Paths.get(URI.create("file://" + filePath)));
                 var xml = "";
                 if (contractString.contains(XMLNS)) {
                     xml = contractString.replaceAll("xmlns=\"\"","");
