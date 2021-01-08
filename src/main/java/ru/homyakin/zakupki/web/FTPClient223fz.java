@@ -3,6 +3,7 @@ package ru.homyakin.zakupki.web;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class FTPClient223fz implements FTPClientFZ {
      * "purchaseProtocolPAAE", "purchaseProtocolPAAE94", "purchaseProtocolOSZ",
      * "purchaseProtocolRZOK", "purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE");
      */
-    private final static String downloadPath = "./zakupki_download";
+    private final static String downloadPath = Paths.get(".").toAbsolutePath().normalize().toString() + "/zakupki_download";
     private final static FTPClient ftp = new FTPClient();
     private final List<String> parsingFolders = new ArrayList<>();
     private final List<String> parsingRegions = new ArrayList<>();
