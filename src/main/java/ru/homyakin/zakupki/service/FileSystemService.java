@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.service.exceptions.FileSystemException;
-
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,12 +26,13 @@ public class FileSystemService {
     public Path makeFile(String filePath) {
         Path localFile = Paths.get(filePath);
         try {
+            if (Files.exists(localFile)) {
+                Files.delete(localFile);
+            }
             Files.createFile(localFile);
         } catch (IOException e) {
-            if (!(e instanceof FileAlreadyExistsException)) {
-                logger.error("Unable to create file {}", filePath, e);
-                throw new FileSystemException("Directory for file doesn't exist " + filePath);
-            }
+            logger.error("Unable to create file {}", filePath, e);
+            throw new RuntimeException(e);
         }
         return localFile;
     }

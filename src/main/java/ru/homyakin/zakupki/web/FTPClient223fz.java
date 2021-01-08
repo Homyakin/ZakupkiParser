@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,6 +105,7 @@ public class FTPClient223fz implements FTPClientFZ {
         try {
             if (ftp.login(ftpConfiguration.getLogin(), ftpConfiguration.getPassword())) {
                 ftp.enterLocalPassiveMode();
+                ftp.setFileType(FTP.BINARY_FILE_TYPE);
                 logger.info("Successful login to the ftp server");
             } else {
                 logger.error("Unable to login to the ftp server");
@@ -181,8 +183,8 @@ public class FTPClient223fz implements FTPClientFZ {
         logger.debug("Start downloading {}", localFilePath);
         Path localFile = fileSystemService.makeFile(localFilePath);
         boolean isDownload = false;
-        try {
-            isDownload = ftp.retrieveFile(remoteFilePath, Files.newOutputStream(localFile));
+        try(var stream = Files.newOutputStream(localFile)) {
+            isDownload = ftp.retrieveFile(remoteFilePath, stream);
         } catch (IOException e) {
             logger.error("Something went wrong wile downloading {}", remoteFilePath, e);
         }
