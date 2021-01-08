@@ -17,11 +17,18 @@ public class ContractParser extends MainXmlParser {
 
     public static Optional<Contract> parse(String filePath) {
         var contract = parse(filePath, Contract.class);
+        // Ecли содерживое xml существует, но его не удалось распарсить, тогда вручную меняем содержимое xml
         if (contract.isPresent() && contract.get().getBody().getItem().getContractData().getCustomer().getMainInfo() == null) {
             logger.warn("No xmlns in contract");
             try {
-                var contractString = Files.readString(Paths.get(URI.create("file://" + filePath)));
+                var contractString = Files.readString(
+                    Paths.get(URI.create("file://" + changePathIfWindows(filePath)))
+                );
                 var xml = "";
+                /*
+                 Два варианта сломанных xml, наличие строки xmlns=""
+                 или отсутствие xmlns="http://zakupki.gov.ru/223fz/types/1"
+                 */
                 if (contractString.contains(XMLNS)) {
                     xml = contractString.replaceAll("xmlns=\"\"","");
                 } else {
@@ -37,5 +44,12 @@ public class ContractParser extends MainXmlParser {
             }
         }
         return contract;
+    }
+
+    private static String changePathIfWindows(String path) {
+        if (path.contains("\\")) {
+            return "/" + path.replace("\\", "/");
+        }
+        return path;
     }
 }
