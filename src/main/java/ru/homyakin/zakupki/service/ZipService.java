@@ -1,11 +1,10 @@
 package ru.homyakin.zakupki.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.models.FileType;
-import ru.homyakin.zakupki.models.ParseFile;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -13,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-import ru.homyakin.zakupki.service.storage.RegionFilesStorage;
 
 @Component
 public class ZipService {
@@ -27,7 +25,7 @@ public class ZipService {
         this.fileSystemService = fileSystemService;
     }
 
-    public ArrayList<String> unzipFile(String unzippingFilePath, String unzippingPath) {
+    public List<String> unzipFile(String unzippingFilePath, String unzippingPath) {
         logger.debug("Start unzipping {}", unzippingFilePath);
         var unzippedFiles = new ArrayList<String>();
         try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(unzippingFilePath)))) {

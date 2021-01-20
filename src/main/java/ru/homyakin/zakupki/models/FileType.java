@@ -27,14 +27,4 @@ public enum FileType {
     public String getValue() {
         return value;
     }
-
-    public static Optional<FileType> fromString(String text) {
-        for (FileType i : FileType.values()) {
-            if (i.value.equalsIgnoreCase(text)) {
-                return Optional.of(i);
-            }
-        }
-        return Optional.empty();
-    }
-
 }

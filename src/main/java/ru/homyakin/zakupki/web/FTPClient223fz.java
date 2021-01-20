@@ -27,19 +27,9 @@ import ru.homyakin.zakupki.web.exceptions.LoginException;
 public class FTPClient223fz implements FTPClientFZ {
     private final static Logger logger = LoggerFactory.getLogger(FTPClient223fz.class);
     private final static String basicWorkspace = "/out/published";
-    /*
-     * private final static List<String> parsingFolders = Arrays.asList("contract",
-     * "contractInfo", "contractCompleting", "purchaseNotice", "purchaseNoticeAE",
-     * "purchaseNoticeAE94", "purchaseNoticeAESMBO", "purchaseNoticeEP",
-     * "purchaseNoticeIS", "purchaseNoticeOA", "purchaseNoticeOK",
-     * "purchaseNoticeZK", "purchaseNoticeZKESMBO", "purchaseProtocol",
-     * "purchaseProtocolZK", "purchaseProtocolVK", "purchaseProtocolPAEP",
-     * "purchaseProtocolPAAE", "purchaseProtocolPAAE94", "purchaseProtocolOSZ",
-     * "purchaseProtocolRZOK", "purchaseProtocolRZ1AE", "purchaseProtocolRZ2AE");
-     */
     private final static String downloadPath = Paths.get(".").toAbsolutePath().normalize().toString() + "/zakupki_download";
     private final static FTPClient ftp = new FTPClient();
-    private final List<String> parsingFolders = new ArrayList<>();
+    private final List<FileType> parsingFolders = new ArrayList<>();
     private final List<String> parsingRegions = new ArrayList<>();
     private final ZipService zipService;
     private final RegionFilesStorage storage;
@@ -84,8 +74,8 @@ public class FTPClient223fz implements FTPClientFZ {
     }
 
     public void addParsingFolder(FileType fileType) {
-        if (!parsingFolders.contains(fileType.getValue())) {
-            parsingFolders.add(fileType.getValue());
+        if (!parsingFolders.contains(fileType)) {
+            parsingFolders.add(fileType);
             logger.info("Added {}", fileType.getValue());
         }
     }
@@ -149,11 +139,11 @@ public class FTPClient223fz implements FTPClientFZ {
 
     private void searchInRegions(String workspace, String region) {
         for (var folder : parsingFolders) {
-            searchFiles(workspace + "/" + folder + "/daily", folder, region);
+            searchFiles(workspace + "/" + folder.getValue() + "/daily", folder, region);
         }
     }
 
-    private void searchFiles(String workspace, String folder, String region) {
+    private void searchFiles(String workspace, FileType fileType, String region) {
         logger.info("Start parsing {}", workspace);
         try {
             var files = ftp.listFiles(workspace);
@@ -172,7 +162,7 @@ public class FTPClient223fz implements FTPClientFZ {
                         for (var filePath: unzippedFiles) {
                             var file = new ParseFile(
                                 filePath,
-                                FileType.fromString(folder).orElseThrow(() -> new IllegalArgumentException("Illegal folder name"))
+                                fileType
                             );
                             storage.insert(region, file);
                         }

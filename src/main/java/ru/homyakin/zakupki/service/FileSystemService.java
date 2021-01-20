@@ -3,7 +3,6 @@ package ru.homyakin.zakupki.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.service.exceptions.FileSystemException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
