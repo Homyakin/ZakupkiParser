@@ -13,22 +13,13 @@ import java.nio.file.Paths;
 public class FileSystemService {
     private final static Logger logger = LoggerFactory.getLogger(FileSystemService.class);
 
-    public void makeDirectory(String directoryPath) {
-        Path dir = Paths.get(directoryPath);
-        try {
-            Files.createDirectories(dir);
-        } catch (IOException e) {
-            logger.error("Unable to create directory {}", dir, e);
-            throw new FileSystemException("Unable to create directory");
-        }
-    }
-
     public Path makeFile(String filePath) {
         Path localFile = Paths.get(filePath);
         try {
             if (Files.exists(localFile)) {
                 Files.delete(localFile);
             }
+            Files.createDirectories(localFile.getParent());
             Files.createFile(localFile);
         } catch (IOException e) {
             logger.error("Unable to create file {}", filePath, e);

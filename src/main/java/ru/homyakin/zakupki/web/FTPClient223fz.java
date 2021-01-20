@@ -16,8 +16,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.config.FtpConfiguration;
 import ru.homyakin.zakupki.models.FileType;
+import ru.homyakin.zakupki.models.ParseFile;
 import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.service.ZipService;
+import ru.homyakin.zakupki.service.storage.RegionFilesStorage;
 import ru.homyakin.zakupki.web.exceptions.ConnectException;
 import ru.homyakin.zakupki.web.exceptions.LoginException;
 
@@ -40,13 +42,20 @@ public class FTPClient223fz implements FTPClientFZ {
     private final List<String> parsingFolders = new ArrayList<>();
     private final List<String> parsingRegions = new ArrayList<>();
     private final ZipService zipService;
+    private final RegionFilesStorage storage;
     private final FileSystemService fileSystemService;
     private final FtpConfiguration ftpConfiguration;
     private LocalDate startDate = LocalDate.of(2000, 1, 1);
     private LocalDate endDate = LocalDate.of(4000, 1, 1);
 
-    public FTPClient223fz(ZipService zipService, FileSystemService fileSystemService, FtpConfiguration ftpConfiguration) {
+    public FTPClient223fz(
+        ZipService zipService,
+        FileSystemService fileSystemService,
+        FtpConfiguration ftpConfiguration,
+        RegionFilesStorage storage
+    ) {
         this.zipService = zipService;
+        this.storage = storage;
         this.fileSystemService = fileSystemService;
         this.ftpConfiguration = ftpConfiguration;
     }
@@ -134,14 +143,7 @@ public class FTPClient223fz implements FTPClientFZ {
 
     private void searchRegionsDirectories() {
         for (var region : parsingRegions) {
-            makeDownloadDirectories(basicWorkspace + "/" + region);
             searchInRegions(basicWorkspace + "/" + region, region);
-        }
-    }
-
-    private void makeDownloadDirectories(String workspace) {
-        for (var folder : parsingFolders) { //TODO make it from searchInRegions
-            fileSystemService.makeDirectory(downloadPath + workspace + "/" + folder + "/daily/unzip");
         }
     }
 
@@ -163,8 +165,17 @@ public class FTPClient223fz implements FTPClientFZ {
                 if (remoteFile.isFile() && isDateInInterval(date)) {
                     if (downloadFile(downloadPath + workspace + "/" + remoteFile.getName(),
                         workspace + "/" + remoteFile.getName())) {
-                        zipService.unzipFile(downloadPath + workspace + "/" + remoteFile.getName(),
-                            downloadPath + workspace, folder, region);
+                        var unzippedFiles = zipService.unzipFile(
+                            downloadPath + workspace + "/" + remoteFile.getName(),
+                            downloadPath + workspace
+                        );
+                        for (var filePath: unzippedFiles) {
+                            var file = new ParseFile(
+                                filePath,
+                                FileType.fromString(folder).orElseThrow(() -> new IllegalArgumentException("Illegal folder name"))
+                            );
+                            storage.insert(region, file);
+                        }
                     } else {
                         logger.error("Unable to download {}", workspace + "/" + remoteFile.getName());
                     }

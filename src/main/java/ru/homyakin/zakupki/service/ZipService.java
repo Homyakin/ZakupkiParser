@@ -1,5 +1,6 @@
 package ru.homyakin.zakupki.service;
 
+import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,24 +20,28 @@ public class ZipService {
     private final static Logger logger = LoggerFactory.getLogger(ZipService.class);
 
     private final FileSystemService fileSystemService;
-    private final RegionFilesStorage storage;
 
     public ZipService(
-        FileSystemService fileSystemService,
-        RegionFilesStorage storage
+        FileSystemService fileSystemService
     ) {
         this.fileSystemService = fileSystemService;
-        this.storage = storage;
     }
 
-    public void unzipFile(String filePath, String path, String folder, String region) {
-        logger.debug("Start unzipping {}", filePath);
-        try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
+    public ArrayList<String> unzipFile(String unzippingFilePath, String unzippingPath) {
+        logger.debug("Start unzipping {}", unzippingFilePath);
+        var unzippedFiles = new ArrayList<String>();
+        try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(unzippingFilePath)))) {
             ZipEntry entry;
-            String name;
+            var unzippingFileName = Paths
+                .get(unzippingFilePath)
+                .getFileName()
+                .toString()
+                .replaceAll("\\.xml\\.zip", ""); //убираем расширение
             while ((entry = zin.getNextEntry()) != null) {
-                name = entry.getName();
-                Path localFile = fileSystemService.makeFile(path + "/unzip/" + name);
+                var fileName = entry.getName();
+                var filePath = String.format("%s/unzip/%s/%s", unzippingPath, unzippingFileName, fileName);
+                Path localFile = fileSystemService.makeFile(filePath);
+
                 OutputStream outputFile = Files.newOutputStream(localFile);
                 byte[] buffer = new byte[4096];
                 for (int len = zin.read(buffer); len != -1; len = zin.read(buffer)) {
@@ -45,18 +50,16 @@ public class ZipService {
                 outputFile.flush();
                 zin.closeEntry();
                 outputFile.close();
-                var file = new ParseFile(
-                    path + "/unzip/" + name,
-                    FileType.fromString(folder).orElseThrow(() -> new IllegalArgumentException("Illegal folder name"))
-                );
-                storage.insert(region, file);
+
+                unzippedFiles.add(filePath);
             }
         } catch (IllegalArgumentException e) {
             logger.error("Argument error ", e);
         } catch (RuntimeException e) {
             logger.error("Internal error", e);
         } catch (IOException e) {
-            logger.error("Error in unzipping process of file {}", filePath, e);
+            logger.error("Error in unzipping process of file {}", unzippingFilePath, e);
         }
+        return unzippedFiles;
     }
 }
