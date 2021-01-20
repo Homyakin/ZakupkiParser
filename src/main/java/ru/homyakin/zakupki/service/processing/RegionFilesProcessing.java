@@ -1,7 +1,5 @@
 package ru.homyakin.zakupki.service.processing;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
@@ -10,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import ru.homyakin.zakupki.config.AppConfiguration;
 import ru.homyakin.zakupki.database.ContractRepository;
 import ru.homyakin.zakupki.database.PurchaseNoticeRepository;
 import ru.homyakin.zakupki.database.PurchasePlanRepository;
@@ -30,18 +29,20 @@ public class RegionFilesProcessing {
     private final PurchaseNoticeRepository purchaseNoticeRepository;
     private final RegionFilesStorage storage;
     private final List<String> regionFilesInProcess = new CopyOnWriteArrayList<>();
-    private final ExecutorService executor = Executors.newFixedThreadPool(15);
+    private final ExecutorService executor;
 
     public RegionFilesProcessing(
         PurchasePlanRepository purchasePlanRepository,
         ContractRepository contractRepository,
         PurchaseNoticeRepository purchaseNoticeRepository,
-        RegionFilesStorage storage
+        RegionFilesStorage storage,
+        AppConfiguration appConfiguration
     ) {
         this.purchasePlanRepository = purchasePlanRepository;
         this.contractRepository = contractRepository;
         this.purchaseNoticeRepository = purchaseNoticeRepository;
         this.storage = storage;
+        this.executor = Executors.newFixedThreadPool(appConfiguration.getMaxThreads());
     }
 
     @Scheduled(initialDelay = 10 * 1000, fixedDelay = 60 * 1000)
@@ -64,12 +65,10 @@ public class RegionFilesProcessing {
                     case CONTRACT -> {
                         var contract = ContractParser.parse(file.getFilepath());
                         contract.ifPresent(contractRepository::insert);
-                        /*You can't insert contract in parallel, because later contract can update previous ones.*/
                     }
                     case PURCHASE_PLAN -> {
                         var purchasePlan = PurchasePlanParser.parse(file.getFilepath());
                         purchasePlan.ifPresent(purchasePlanRepository::insert);
-                        /*You can't insert plan data in parallel, because later plans can update previous ones.*/
                     }
                     case PURCHASE_NOTICE, PURCHASE_NOTICE_IS -> {
                         var purchaseNotice = PurchaseNoticeParser.parse(file.getFilepath());

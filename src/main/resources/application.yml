@@ -12,5 +12,7 @@ homyakin:
       url: "ftp.zakupki.gov.ru"
       login: "fz223free"
       password: "fz223free"
+    app:
+      max-threads: 15
 
 
