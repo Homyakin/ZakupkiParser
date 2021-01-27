@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import ru.homyakin.zakupki.models.ParseFile;
 
 public class ParseFileQueue extends Queue<ParseFile> {
-    private BlockingQueue<ParseFile> queue = new LinkedBlockingQueue<ParseFile>();
+    private final BlockingQueue<ParseFile> queue = new LinkedBlockingQueue<ParseFile>();
     private static final Logger logger = LoggerFactory.getLogger(ParseFileQueue.class);
 
     @Override

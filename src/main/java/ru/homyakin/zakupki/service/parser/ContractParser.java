@@ -5,11 +5,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
-
-import java.util.Optional;
 
 public class ContractParser extends MainXmlParser {
     private final static Logger logger = LoggerFactory.getLogger(ContractParser.class);

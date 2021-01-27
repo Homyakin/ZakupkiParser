@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class ContractInfo implements DocumentInfo {
 
-    private ContractDataType contractData;
+    private final ContractDataType contractData;
 
     public ContractInfo(Contract contract) {
         this.contractData = contract.getBody().getItem().getContractData();

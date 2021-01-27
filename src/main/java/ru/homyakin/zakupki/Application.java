@@ -6,8 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import ru.homyakin.zakupki.service.ConsoleInputService;
-import ru.homyakin.zakupki.web.FtpClient223Fz;
 import ru.homyakin.zakupki.web.exceptions.NetworkException;
 
 @SpringBootApplication
