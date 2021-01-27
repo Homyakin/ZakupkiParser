@@ -1,6 +1,5 @@
 package ru.homyakin.zakupki.database;
 
-import java.util.List;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,16 +9,17 @@ import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.exceptions.NoXmlnsException;
 import ru.homyakin.zakupki.models._223fz.types.LotPlanPositionType;
 import ru.homyakin.zakupki.models._223fz.types.PlanInfoType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class PlanPositionRepository {
     private static final Logger logger = LoggerFactory.getLogger(PlanPositionRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
-    public PlanPositionRepository(DataSource dataSource, RepositoryService repositoryService) {
+    public PlanPositionRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(PlanInfoType position) {
@@ -36,7 +36,7 @@ public class PlanPositionRepository {
                 position.getPlanRegistrationNumber(),
                 position.getPositionNumber(),
                 getLotPlanPosition(position.getLotPlanPosition()),
-                repositoryService.removeExtraSpaces(position.getContractSubject())
+                repositoryUtils.removeExtraSpaces(position.getContractSubject())
             );
         } catch (DuplicateKeyException e) {
 

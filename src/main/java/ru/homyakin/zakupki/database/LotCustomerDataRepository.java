@@ -6,21 +6,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.LotCustomerType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class LotCustomerDataRepository {
     private static final Logger logger = LoggerFactory.getLogger(LotCustomerDataRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
     private final JointCustomerLotItemRepository jointCustomerLotItemRepository;
 
     public LotCustomerDataRepository(
         DataSource dataSource,
-        RepositoryService repositoryService,
+        RepositoryUtils repositoryUtils,
         JointCustomerLotItemRepository jointCustomerLotItemRepository
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
         this.jointCustomerLotItemRepository = jointCustomerLotItemRepository;
     }
 
@@ -39,9 +40,9 @@ public class LotCustomerDataRepository {
                 sql,
                 lotGuid,
                 lotCustomer.getCustomerInfo().getInn(),
-                repositoryService.getCurrencyCode(data.getCurrency()),
+                repositoryUtils.getCurrencyCode(data.getCurrency()),
                 data.getExchangeInfo() != null ? data.getExchangeInfo().getExchangeRate() : null,
-                data.getExchangeInfo() != null ? repositoryService.convertFromXMLGregorianCalendarToLocalDate(data.getExchangeInfo().getExchangeRateDate()) : null,
+                data.getExchangeInfo() != null ? repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getExchangeInfo().getExchangeRateDate()) : null,
                 data.getInitialSum(),
                 data.getStartingContractPriceRub(),
                 data.getPriceFormula(),
@@ -49,13 +50,13 @@ public class LotCustomerDataRepository {
                 data.getPriceRub(),
                 data.getMaxContractPrice(),
                 data.getMaxContractPriceRub(),
-                repositoryService.convertBoolean(data.isExcludePurchaseFromPlan()),
+                repositoryUtils.convertBoolean(data.isExcludePurchaseFromPlan()),
                 data.getOrderPricing(),
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getState() : null,
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getRegion() : null,
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getRegionOkato() : null,
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getAddress() : null,
-                repositoryService.convertBoolean(data.isNotInLaw223()),
+                repositoryUtils.convertBoolean(data.isNotInLaw223()),
                 info.getPlanGuid(),
                 info.getPositionNumber(),
                 info.getLotPlanPosition().value(),

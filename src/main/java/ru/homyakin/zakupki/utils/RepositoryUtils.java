@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database;
+package ru.homyakin.zakupki.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -6,15 +6,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.database.PurchaseCategoryRepository;
 import ru.homyakin.zakupki.models._223fz.types.CountryType;
 import ru.homyakin.zakupki.models._223fz.types.CurrencyType;
 
 @Component
-public class RepositoryService {
-    private final static Logger logger = LoggerFactory.getLogger(RepositoryService.class);
+public class RepositoryUtils {
+    private final static Logger logger = LoggerFactory.getLogger(RepositoryUtils.class);
     private final PurchaseCategoryRepository purchaseCategoryRepository;
 
-    public RepositoryService(
+    public RepositoryUtils(
         PurchaseCategoryRepository purchaseCategoryRepository
     ) {
         this.purchaseCategoryRepository = purchaseCategoryRepository;

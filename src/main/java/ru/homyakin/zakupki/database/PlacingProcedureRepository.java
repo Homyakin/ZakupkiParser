@@ -6,16 +6,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeDataType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class PlacingProcedureRepository {
     private static final Logger logger = LoggerFactory.getLogger(PlacingProcedureRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
-    public PlacingProcedureRepository(DataSource dataSource, RepositoryService repositoryService) {
+    public PlacingProcedureRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(PurchaseNoticeDataType.PlacingProcedure placingProcedure, String noticeGuid) {
@@ -27,8 +28,8 @@ public class PlacingProcedureRepository {
                 sql,
                 noticeGuid,
                 placingProcedure.getExaminationPlace(),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(placingProcedure.getExaminationDateTime()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(placingProcedure.getSummingupDateTime()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(placingProcedure.getExaminationDateTime()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(placingProcedure.getSummingupDateTime()),
                 placingProcedure.getSummingupPlace()
             );
         } catch (Exception e) {

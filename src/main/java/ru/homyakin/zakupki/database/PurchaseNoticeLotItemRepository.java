@@ -6,21 +6,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.LotItemType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class PurchaseNoticeLotItemRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeLotItemRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
     private final ClassifierService classifierService;
 
     public PurchaseNoticeLotItemRepository(
         DataSource dataSource,
-        RepositoryService repositoryService,
+        RepositoryUtils repositoryUtils,
         ClassifierService classifierService
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
         this.classifierService = classifierService;
     }
 

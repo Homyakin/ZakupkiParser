@@ -8,12 +8,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.LotType;
 import ru.homyakin.zakupki.models._223fz.types.LotTypeIS;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class PurchaseNoticeLotRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeLotRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
     private final LotCriteriaRepository lotCriteriaRepository;
     private final PurchaseNoticeLotDataRepository purchaseNoticeLotDataRepository;
     private final LotExtraRepository lotExtraRepository;
@@ -21,14 +22,14 @@ public class PurchaseNoticeLotRepository {
 
     public PurchaseNoticeLotRepository(
         DataSource dataSource,
-        RepositoryService repositoryService,
+        RepositoryUtils repositoryUtils,
         LotCriteriaRepository lotCriteriaRepository,
         PurchaseNoticeLotDataRepository purchaseNoticeLotDataRepository,
         LotExtraRepository lotExtraRepository,
         JointLotDataRepository jointLotDataRepository
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
         this.lotCriteriaRepository = lotCriteriaRepository;
         this.purchaseNoticeLotDataRepository = purchaseNoticeLotDataRepository;
         this.lotExtraRepository = lotExtraRepository;
@@ -47,18 +48,18 @@ public class PurchaseNoticeLotRepository {
                 lot.getGuid(),
                 noticeGuid,
                 lot.getOrdinalNumber(),
-                repositoryService.convertBoolean(lot.isLotEditEnabled()),
+                repositoryUtils.convertBoolean(lot.isLotEditEnabled()),
                 lot.getDeliveryPlaceIndication() != null ? lot.getDeliveryPlaceIndication().value() : null,
-                repositoryService.convertBoolean(isJointLot(lot.getJointLotData())),
+                repositoryUtils.convertBoolean(isJointLot(lot.getJointLotData())),
                 plan != null ? plan.getPlanGuid() : null,
                 plan != null ? plan.getPositionNumber() : null,
                 plan != null ? plan.getLotPlanPosition().value() : null,
                 plan != null ? plan.getPositionGuid() : null,
                 plan != null ? plan.getContractSubject() : null,
-                repositoryService.convertBoolean(lot.isCancelled()),
-                lot.getCancellation() != null ? repositoryService.convertFromXMLGregorianCalendarToLocalDate(lot.getCancellation().getCancelDate()) : null,
+                repositoryUtils.convertBoolean(lot.isCancelled()),
+                lot.getCancellation() != null ? repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(lot.getCancellation().getCancelDate()) : null,
                 lot.getCancellation() != null ? lot.getCancellation().getCancelInfo() : null,
-                lot.getCancellation() != null ? repositoryService.convertBoolean(lot.getCancellation().isEmergency()) : null
+                lot.getCancellation() != null ? repositoryUtils.convertBoolean(lot.getCancellation().isEmergency()) : null
             );
             if (lot instanceof LotTypeIS) {
                 var lotIS = (LotTypeIS) lot;

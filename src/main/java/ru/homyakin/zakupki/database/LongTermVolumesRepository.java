@@ -9,16 +9,17 @@ import ru.homyakin.zakupki.models._223fz.purchaseplan.LongTermVolumeDetailType;
 import ru.homyakin.zakupki.models._223fz.purchaseplan.LongTermVolumeType;
 
 import javax.sql.DataSource;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class LongTermVolumesRepository {
     private static final Logger logger = LoggerFactory.getLogger(LongTermVolumesRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
-    public LongTermVolumesRepository(DataSource dataSource, RepositoryService repositoryService) {
+    public LongTermVolumesRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService =repositoryService;
+        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(LongTermVolumeType longTermVolume, Boolean isSmb, String planItemGuid) {
@@ -29,13 +30,13 @@ public class LongTermVolumesRepository {
         try {
             jdbcTemplate.update(
                 sql,
-                repositoryService.removeExtraSpaces(planItemGuid),
-                repositoryService.convertBoolean(isSmb),
+                repositoryUtils.removeExtraSpaces(planItemGuid),
+                repositoryUtils.convertBoolean(isSmb),
                 longTermVolume.getVolume(),
                 longTermVolume.getVolumeRub(),
-                repositoryService.removeExtraSpaces(repositoryService.getCurrencyCode(longTermVolume.getCurrency())),
+                repositoryUtils.removeExtraSpaces(repositoryUtils.getCurrencyCode(longTermVolume.getCurrency())),
                 longTermVolume.getExchangeRate(),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
             );
         } catch (Exception e) {
             logger.error("Internal database error", e);
@@ -59,11 +60,11 @@ public class LongTermVolumesRepository {
                 sql,
                 longTermVolume.getVolume(),
                 longTermVolume.getVolumeRub(),
-                repositoryService.removeExtraSpaces(repositoryService.getCurrencyCode(longTermVolume.getCurrency())),
+                repositoryUtils.removeExtraSpaces(repositoryUtils.getCurrencyCode(longTermVolume.getCurrency())),
                 longTermVolume.getExchangeRate(),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate()),
-                repositoryService.removeExtraSpaces(planItemGuid),
-                repositoryService.convertBoolean(isSmb)
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate()),
+                repositoryUtils.removeExtraSpaces(planItemGuid),
+                repositoryUtils.convertBoolean(isSmb)
             );
             if (longTermVolume.getDetails() != null) {
                 for (var i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
@@ -90,7 +91,7 @@ public class LongTermVolumesRepository {
                 sql,
                 guid,
                 longTermVolumeDetail.getYear(),
-                repositoryService.convertBoolean(isSmb),
+                repositoryUtils.convertBoolean(isSmb),
                 longTermVolumeDetail.getSumm(),
                 longTermVolumeDetail.getSummRub()
             );
@@ -107,9 +108,9 @@ public class LongTermVolumesRepository {
                 sql,
                 longTermVolumeDetail.getSumm(),
                 longTermVolumeDetail.getSummRub(),
-                repositoryService.removeExtraSpaces(guid),
+                repositoryUtils.removeExtraSpaces(guid),
                 longTermVolumeDetail.getYear(),
-                repositoryService.convertBoolean(isSmb)
+                repositoryUtils.convertBoolean(isSmb)
             );
         } catch (Exception e) {
             logger.error("Internal database error", e);
@@ -119,7 +120,7 @@ public class LongTermVolumesRepository {
     private boolean checkLongTermVolume(String guid, Boolean isSmb) {
         String sql = "SELECT plan_item_guid FROM long_term_volumes WHERE plan_item_guid = ? and is_smb = ?";
         List<String> result = jdbcTemplate.query(sql,
-            new Object[]{guid, repositoryService.convertBoolean(isSmb)},
+            new Object[]{guid, repositoryUtils.convertBoolean(isSmb)},
             (rs, rowNum) -> rs.getString("plan_item_guid")
         );
         return result.size() != 0;
@@ -129,7 +130,7 @@ public class LongTermVolumesRepository {
         String sql = "SELECT long_term_value_guid FROM long_term_volume_detail WHERE long_term_value_guid = ?" +
             " and year = ? and is_smb = ?";
         List<String> result = jdbcTemplate.query(sql,
-            new Object[]{guid, year, repositoryService.convertBoolean(isSmb)},
+            new Object[]{guid, year, repositoryUtils.convertBoolean(isSmb)},
             (rs, rowNum) -> rs.getString("long_term_value_guid")
         );
         return result.size() != 0;

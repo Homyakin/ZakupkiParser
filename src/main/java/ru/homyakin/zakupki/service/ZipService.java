@@ -25,19 +25,18 @@ public class ZipService {
         this.fileSystemService = fileSystemService;
     }
 
-    public List<String> unzipFile(String unzippingFilePath, String unzippingPath) {
-        logger.debug("Start unzipping {}", unzippingFilePath);
+    public List<String> unzipFile(Path unzippingFile) {
+        logger.debug("Start unzipping {}", unzippingFile.toString());
         var unzippedFiles = new ArrayList<String>();
-        try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(unzippingFilePath)))) {
+        try (var zin = new ZipInputStream(Files.newInputStream(unzippingFile))) {
             ZipEntry entry;
-            var unzippingFileName = Paths
-                .get(unzippingFilePath)
+            var unzippingFileName = unzippingFile
                 .getFileName()
                 .toString()
                 .replaceAll("\\.xml\\.zip", ""); //убираем расширение
             while ((entry = zin.getNextEntry()) != null) {
                 var fileName = entry.getName();
-                var filePath = String.format("%s/unzip/%s/%s", unzippingPath, unzippingFileName, fileName);
+                var filePath = String.format("%s/unzip/%s/%s", unzippingFile.getParent().toString(), unzippingFileName, fileName);
                 Path localFile = fileSystemService.makeFile(filePath);
 
                 OutputStream outputFile = Files.newOutputStream(localFile);
@@ -56,7 +55,7 @@ public class ZipService {
         } catch (RuntimeException e) {
             logger.error("Internal error", e);
         } catch (IOException e) {
-            logger.error("Error in unzipping process of file {}", unzippingFilePath, e);
+            logger.error("Error in unzipping process of file {}", unzippingFile.toString(), e);
         }
         return unzippedFiles;
     }

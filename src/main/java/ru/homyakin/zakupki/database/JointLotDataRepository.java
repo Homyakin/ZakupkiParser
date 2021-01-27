@@ -6,22 +6,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.LotCustomerType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class JointLotDataRepository {
     private static final Logger logger = LoggerFactory.getLogger(JointLotDataRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRepository customerRepository;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
     public JointLotDataRepository(
         DataSource dataSource,
         CustomerRepository customerRepository,
-        RepositoryService repositoryService
+        RepositoryUtils repositoryUtils
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.customerRepository = customerRepository;
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(LotCustomerType lotCustomer, String lotGuid) {
@@ -37,12 +38,12 @@ public class JointLotDataRepository {
                 lotCustomer.getCustomerInfo().getInn(),
                 lotCustomer.getAdditionalInfo(),
                 lotCustomer.getDeliveryPlaceIndication().value(),
-                repositoryService.convertBoolean(lotCustomer.isLotCustomerEditEnabled()),
-                repositoryService.convertBoolean(lotCustomer.isTax()),
-                repositoryService.convertBoolean(lotCustomer.isNonResident()),
+                repositoryUtils.convertBoolean(lotCustomer.isLotCustomerEditEnabled()),
+                repositoryUtils.convertBoolean(lotCustomer.isTax()),
+                repositoryUtils.convertBoolean(lotCustomer.isNonResident()),
                 lotCustomer.getNonResidentInfo() != null ? lotCustomer.getNonResidentInfo().getName() : null,
                 lotCustomer.getNonResidentInfo() != null ? lotCustomer.getNonResidentInfo().getCode() : null,
-                lotCustomer.getNonResidentInfo() != null ? repositoryService.getCountryCode(lotCustomer.getNonResidentInfo().getCountry()) : null
+                lotCustomer.getNonResidentInfo() != null ? repositoryUtils.getCountryCode(lotCustomer.getNonResidentInfo().getCountry()) : null
             );
         } catch (Exception e) {
             logger.error("Error during inserting joint lot data", e);

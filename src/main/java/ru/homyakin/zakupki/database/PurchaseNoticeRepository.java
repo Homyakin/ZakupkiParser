@@ -8,7 +8,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models.FileType;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNotice;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAE94FZDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAEDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeDataBaseType;
@@ -18,12 +17,13 @@ import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeOADataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeOKDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeZKDataType;
 import ru.homyakin.zakupki.models._223fz.types.ElectronicPlaceInfoType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class PurchaseNoticeRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
     private final CustomerRepository customerRepository;
     private final ElectronicPlaceRepository electronicPlaceRepository;
     private final PlacingProcedureRepository placingProcedureRepository;
@@ -34,7 +34,7 @@ public class PurchaseNoticeRepository {
 
     public PurchaseNoticeRepository(
         DataSource dataSource,
-        RepositoryService repositoryService,
+        RepositoryUtils repositoryUtils,
         CustomerRepository customerRepository,
         ElectronicPlaceRepository electronicPlaceRepository,
         PlacingProcedureRepository placingProcedureRepository,
@@ -44,7 +44,7 @@ public class PurchaseNoticeRepository {
         PurchaseNoticeLotRepository purchaseNoticeLotRepository
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
         this.customerRepository = customerRepository;
         this.electronicPlaceRepository = electronicPlaceRepository;
         this.placingProcedureRepository = placingProcedureRepository;
@@ -118,7 +118,7 @@ public class PurchaseNoticeRepository {
                 sql,
                 data.getGuid(),
                 fileType.getValue(),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
                 data.getUrlEIS(),
                 data.getUrlVSRZ(),
                 data.getUrlKisRmis(),
@@ -130,33 +130,33 @@ public class PurchaseNoticeRepository {
                 data.getPurchaseMethodCode(),
                 data.getPurchaseCodeName(),
                 data.getPlacer().getMainInfo().getInn(),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
                 data.getStatus() != null ? data.getStatus().value() : null,
                 data.getVersion(),
-                repositoryService.removeExtraSpaces(data.getModificationDescription()),
-                repositoryService.convertBoolean(data.isNotDishonest()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(data.getModificationDate()),
+                repositoryUtils.removeExtraSpaces(data.getModificationDescription()),
+                repositoryUtils.convertBoolean(data.isNotDishonest()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getModificationDate()),
                 data.getSaveUserId(),
                 data.getDeliveryPlaceIndication() != null ? data.getDeliveryPlaceIndication().value() : null,
-                repositoryService.convertBoolean(data.isEmergency()),
-                repositoryService.convertBoolean(data.isJointPurchase()),
-                repositoryService.convertBoolean(data.isForSmallOrMiddle()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(data.getChangeDecisionDate()),
-                repositoryService.convertBoolean(data.isAntimonopolyDecisionTaken()),
-                repositoryService.removeExtraSpaces(data.getAdditionalInfo()),
-                repositoryService.removeExtraSpaces(data.getApplSubmisionPlace()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(data.getApplSubmisionStartDate()),
-                repositoryService.removeExtraSpaces(data.getApplSubmisionOrder()),
-                repositoryService.removeExtraSpaces(data.getEnvelopeOpeningOrder()),
-                repositoryService.removeExtraSpaces(data.getApplExaminationOrder()),
-                repositoryService.removeExtraSpaces(data.getSummingupOrder()),
-                repositoryService.removeExtraSpaces(data.getAuctionOrder()),
-                repositoryService.removeExtraSpaces(data.getConsiderationSecondPartPlace()),
-                repositoryService.removeExtraSpaces(data.getConsiderationSecondPartOrder()),
-                repositoryService.convertBoolean(data.isIsUploadComplete()),
+                repositoryUtils.convertBoolean(data.isEmergency()),
+                repositoryUtils.convertBoolean(data.isJointPurchase()),
+                repositoryUtils.convertBoolean(data.isForSmallOrMiddle()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getChangeDecisionDate()),
+                repositoryUtils.convertBoolean(data.isAntimonopolyDecisionTaken()),
+                repositoryUtils.removeExtraSpaces(data.getAdditionalInfo()),
+                repositoryUtils.removeExtraSpaces(data.getApplSubmisionPlace()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getApplSubmisionStartDate()),
+                repositoryUtils.removeExtraSpaces(data.getApplSubmisionOrder()),
+                repositoryUtils.removeExtraSpaces(data.getEnvelopeOpeningOrder()),
+                repositoryUtils.removeExtraSpaces(data.getApplExaminationOrder()),
+                repositoryUtils.removeExtraSpaces(data.getSummingupOrder()),
+                repositoryUtils.removeExtraSpaces(data.getAuctionOrder()),
+                repositoryUtils.removeExtraSpaces(data.getConsiderationSecondPartPlace()),
+                repositoryUtils.removeExtraSpaces(data.getConsiderationSecondPartOrder()),
+                repositoryUtils.convertBoolean(data.isIsUploadComplete()),
                 electronicPlaceInfo != null ? electronicPlaceInfo.getElectronicPlaceId() : null,
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(submissionCloseDateTime),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(publicationPlannedDate)
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(submissionCloseDateTime),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(publicationPlannedDate)
             );
             if (data instanceof PurchaseNoticeDataType) {
                 var notice = (PurchaseNoticeDataType) data;

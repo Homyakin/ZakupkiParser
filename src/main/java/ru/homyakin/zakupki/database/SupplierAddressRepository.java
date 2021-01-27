@@ -9,15 +9,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.contract.SupplierAddressType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class SupplierAddressRepository {
     private static final Logger logger = LoggerFactory.getLogger(SupplierAddressRepository.class);
     private final SimpleJdbcInsert simpleJdbcInsert;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
-    public SupplierAddressRepository(DataSource dataSource, RepositoryService repositoryService) {
-        this.repositoryService = repositoryService;
+    public SupplierAddressRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
+        this.repositoryUtils = repositoryUtils;
         simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
             .withTableName("supplier_address")
             .usingGeneratedKeyColumns("id");
@@ -27,8 +28,8 @@ public class SupplierAddressRepository {
         if (address == null) return null;
         try {
             Map<String, Object> parameters = new HashMap<>(19);
-            parameters.put("egrul_egrip_changed", repositoryService.convertBoolean(address.isEgrulEgripChanged()));
-            parameters.put("country_code", repositoryService.getCountryCode(address.getCountry()));
+            parameters.put("egrul_egrip_changed", repositoryUtils.convertBoolean(address.isEgrulEgripChanged()));
+            parameters.put("country_code", repositoryUtils.getCountryCode(address.getCountry()));
             parameters.put("post_code", address.getPostCode());
             parameters.put("oktmo_code", address.getOktmo());
             parameters.put("oktmo_name", address.getOktmoName());

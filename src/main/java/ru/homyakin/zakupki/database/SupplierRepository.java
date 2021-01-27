@@ -7,22 +7,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.contract.SupplierMainType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class SupplierRepository {
     private static final Logger logger = LoggerFactory.getLogger(SupplierRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final SupplierAddressRepository supplierAddressRepository;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
     public SupplierRepository(
         DataSource dataSource,
         SupplierAddressRepository supplierAddressRepository,
-        RepositoryService repositoryService
+        RepositoryUtils repositoryUtils
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.supplierAddressRepository = supplierAddressRepository;
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(SupplierMainType supplier, String contractGuid) {
@@ -51,20 +52,20 @@ public class SupplierRepository {
                 supplier.getAdditionalCode(),
                 supplier.getAdditionalInfo(),
                 supplier.getType().value(),
-                repositoryService.convertBoolean(supplier.isProvider()),
+                repositoryUtils.convertBoolean(supplier.isProvider()),
                 supplier.getProviderCode(),
-                repositoryService.convertBoolean(supplier.isSubcontractor()),
+                repositoryUtils.convertBoolean(supplier.isSubcontractor()),
                 supplier.getSubcontractorCode(),
-                repositoryService.convertBoolean(supplier.isIndividual()),
-                repositoryService.convertBoolean(supplier.isNonResident()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(supplier.getRegistrationDate()),
-                repositoryService.convertBoolean(supplier.isTax()),
+                repositoryUtils.convertBoolean(supplier.isIndividual()),
+                repositoryUtils.convertBoolean(supplier.isNonResident()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(supplier.getRegistrationDate()),
+                repositoryUtils.convertBoolean(supplier.isTax()),
                 supplier.getOkopf(),
                 supplier.getOkopfName(),
                 supplierAddressRepository.insert(supplier.getAddress()),
                 supplierAddressRepository.insert(supplier.getAddressRf()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(supplier.getProviderIncludeMSPDate()),
-                repositoryService.convertBoolean(supplier.isIsInOrder173N())
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(supplier.getProviderIncludeMSPDate()),
+                repositoryUtils.convertBoolean(supplier.isIsInOrder173N())
             );
             insertSupplierToContract(supplier.getInn(), contractGuid);
         } catch (RuntimeException e) {
@@ -110,20 +111,20 @@ public class SupplierRepository {
                 supplier.getAdditionalCode(),
                 supplier.getAdditionalInfo(),
                 supplier.getType().value(),
-                repositoryService.convertBoolean(supplier.isProvider()),
+                repositoryUtils.convertBoolean(supplier.isProvider()),
                 supplier.getProviderCode(),
-                repositoryService.convertBoolean(supplier.isSubcontractor()),
+                repositoryUtils.convertBoolean(supplier.isSubcontractor()),
                 supplier.getSubcontractorCode(),
-                repositoryService.convertBoolean(supplier.isIndividual()),
-                repositoryService.convertBoolean(supplier.isNonResident()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(supplier.getRegistrationDate()),
-                repositoryService.convertBoolean(supplier.isTax()),
+                repositoryUtils.convertBoolean(supplier.isIndividual()),
+                repositoryUtils.convertBoolean(supplier.isNonResident()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(supplier.getRegistrationDate()),
+                repositoryUtils.convertBoolean(supplier.isTax()),
                 supplier.getOkopf(),
                 supplier.getOkopfName(),
                 supplierAddressRepository.insert(supplier.getAddress()),
                 supplierAddressRepository.insert(supplier.getAddressRf()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(supplier.getProviderIncludeMSPDate()),
-                repositoryService.convertBoolean(supplier.isIsInOrder173N())
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(supplier.getProviderIncludeMSPDate()),
+                repositoryUtils.convertBoolean(supplier.isIsInOrder173N())
             );
         } catch (RuntimeException e) {
             logger.error("Internal database error", e);

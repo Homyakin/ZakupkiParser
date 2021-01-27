@@ -7,30 +7,23 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import ru.homyakin.zakupki.service.ConsoleInputService;
-import ru.homyakin.zakupki.web.FTPClient223fz;
+import ru.homyakin.zakupki.web.FtpClient223Fz;
 import ru.homyakin.zakupki.web.exceptions.NetworkException;
 
 @SpringBootApplication
 @EnableScheduling
 public class Application implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
-    private final FTPClient223fz ftp;
-    private final ConsoleInputService consoleInputService;
+    private final ParserEngine parserEngine;
 
-    public Application(FTPClient223fz ftp, ConsoleInputService consoleInputService) {
-        this.ftp = ftp;
-        this.consoleInputService = consoleInputService;
+    public Application(ParserEngine parserEngine) {
+        this.parserEngine = parserEngine;
     }
 
     @Override
     public void run(String... args) {
         try {
-            ftp.connect();
-            ftp.login();
-            consoleInputService.selectRegions();
-            consoleInputService.selectFolders();
-            consoleInputService.selectTimePeriod();
-            ftp.parseFTPServer();
+            parserEngine.launch();
         } catch (NetworkException e) {
             logger.error("Network error: {}", e.getMessage(), e);
         } catch (Exception e) {

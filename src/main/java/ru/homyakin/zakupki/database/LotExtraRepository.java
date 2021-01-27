@@ -6,16 +6,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.BaseExtendFieldType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class LotExtraRepository {
     private static final Logger logger = LoggerFactory.getLogger(LotExtraRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
-    public LotExtraRepository(DataSource dataSource, RepositoryService repositoryService) {
+    public LotExtraRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(BaseExtendFieldType field, String lotGuid) {
@@ -33,9 +34,9 @@ public class LotExtraRepository {
                 value.getText(),
                 value.getInteger(),
                 value.getNumber(),
-                repositoryService.convertBoolean(value.isBoolean()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(value.getDateTime()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDate(value.getDate()),
+                repositoryUtils.convertBoolean(value.isBoolean()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(value.getDateTime()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(value.getDate()),
                 value.getUrl(),
                 nsi.code,
                 nsi.name
@@ -52,7 +53,7 @@ public class LotExtraRepository {
             case OKPD_2 -> new Nsi(field.getValue().getNsi().getOkpd2().getCode(), name);
             case OKVED -> new Nsi(field.getValue().getNsi().getOkved().getCode(), name);
             case OKVED_2 -> new Nsi(field.getValue().getNsi().getOkved2().getCode(), name);
-            case CURRENCY -> new Nsi(repositoryService.getCurrencyCode(field.getValue().getNsi().getCurrency()), name);
+            case CURRENCY -> new Nsi(repositoryUtils.getCurrencyCode(field.getValue().getNsi().getCurrency()), name);
             default -> new Nsi(null, null);
         };
     }

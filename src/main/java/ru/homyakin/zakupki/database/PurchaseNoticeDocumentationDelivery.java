@@ -8,16 +8,17 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.DocDeliveryInfoType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class PurchaseNoticeDocumentationDelivery {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeDocumentationDelivery.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
-    public PurchaseNoticeDocumentationDelivery(DataSource dataSource, RepositoryService repositoryService) {
+    public PurchaseNoticeDocumentationDelivery(DataSource dataSource, RepositoryUtils repositoryUtils) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(DocDeliveryInfoType delivery, String noticeGuid) {
@@ -29,7 +30,7 @@ public class PurchaseNoticeDocumentationDelivery {
         String paymentProcedure = null;
         BigDecimal sum = null;
         if (delivery.getPayment() != null) {
-            currencyCode = repositoryService.getCurrencyCode(delivery.getPayment().getCurrency());
+            currencyCode = repositoryUtils.getCurrencyCode(delivery.getPayment().getCurrency());
             paymentProcedure = delivery.getPayment().getProcedure();
             sum = delivery.getPayment().getSum();
         }
@@ -37,8 +38,8 @@ public class PurchaseNoticeDocumentationDelivery {
             jdbcTemplate.update(
                 sql,
                 noticeGuid,
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(delivery.getDeliveryStartDateTime()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(delivery.getDeliveryEndDateTime()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(delivery.getDeliveryStartDateTime()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(delivery.getDeliveryEndDateTime()),
                 delivery.getPlace(),
                 delivery.getProcedure(),
                 currencyCode,

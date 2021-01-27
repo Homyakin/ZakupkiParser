@@ -6,20 +6,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.LotType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class PurchaseNoticeLotDataRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeLotDataRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
     private final PurchaseNoticeLotItemRepository purchaseNoticeLotItemRepository;
     public PurchaseNoticeLotDataRepository(
         DataSource dataSource,
-        RepositoryService repositoryService,
+        RepositoryUtils repositoryUtils,
         PurchaseNoticeLotItemRepository purchaseNoticeLotItemRepository
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
         this.purchaseNoticeLotItemRepository = purchaseNoticeLotItemRepository;
     }
 
@@ -38,9 +39,9 @@ public class PurchaseNoticeLotDataRepository {
                 sql,
                 lotGuid,
                 data.getSubject(),
-                repositoryService.getCurrencyCode(data.getCurrency()),
+                repositoryUtils.getCurrencyCode(data.getCurrency()),
                 data.getExchangeInfo() != null ? data.getExchangeInfo().getExchangeRate() : null,
-                data.getExchangeInfo() != null ? repositoryService.convertFromXMLGregorianCalendarToLocalDate(data.getExchangeInfo().getExchangeRateDate()) : null,
+                data.getExchangeInfo() != null ? repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getExchangeInfo().getExchangeRateDate()) : null,
                 data.getInitialSum(),
                 data.getStartingContractPriceRub(),
                 data.getPriceFormula(),
@@ -54,19 +55,19 @@ public class PurchaseNoticeLotDataRepository {
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getRegion() : null,
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getRegionOkato() : null,
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getAddress() : null,
-                repositoryService.convertBoolean(data.isForSmallOrMiddle()),
-                repositoryService.convertBoolean(data.isExcludePurchaseFromPlan()),
-                repositoryService.convertBoolean(data.isSubcontractorsRequirement()),
-                repositoryService.convertBoolean(data.isIgnoredPurchase()),
+                repositoryUtils.convertBoolean(data.isForSmallOrMiddle()),
+                repositoryUtils.convertBoolean(data.isExcludePurchaseFromPlan()),
+                repositoryUtils.convertBoolean(data.isSubcontractorsRequirement()),
+                repositoryUtils.convertBoolean(data.isIgnoredPurchase()),
                 data.getPurchaseCategory() != null ? data.getPurchaseCategory().getCode() : null,
-                repositoryService.convertBoolean(data.isCentralized()),
+                repositoryUtils.convertBoolean(data.isCentralized()),
                 data.getPurchaseDescription(),
-                repositoryService.convertBoolean(data.isApplicationSupplyNeeded()),
+                repositoryUtils.convertBoolean(data.isApplicationSupplyNeeded()),
                 data.getApplicationSupplySumm(),
-                repositoryService.getCurrencyCode(data.getApplicationSupplyCurrency()),
+                repositoryUtils.getCurrencyCode(data.getApplicationSupplyCurrency()),
                 data.getApplicationSupplyExtra(),
                 data.getMajorContractConditions(),
-                repositoryService.convertBoolean(data.isAntimonopolyDecisionTaken())
+                repositoryUtils.convertBoolean(data.isAntimonopolyDecisionTaken())
             );
             for(var item: data.getLotItems().getLotItem()) {
                 purchaseNoticeLotItemRepository.insert(item, lotGuid);

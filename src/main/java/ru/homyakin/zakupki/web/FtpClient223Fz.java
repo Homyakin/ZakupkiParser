@@ -5,27 +5,28 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.config.FtpConfiguration;
 import ru.homyakin.zakupki.models.FileType;
-import ru.homyakin.zakupki.models.ParseFile;
 import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.service.ZipService;
 import ru.homyakin.zakupki.service.storage.RegionFilesStorage;
+import ru.homyakin.zakupki.utils.CommonUtils;
 import ru.homyakin.zakupki.web.exceptions.ConnectException;
 import ru.homyakin.zakupki.web.exceptions.LoginException;
 
 @Component
-public class FTPClient223fz implements FTPClientFZ {
-    private final static Logger logger = LoggerFactory.getLogger(FTPClient223fz.class);
+public class FtpClient223Fz implements FtpClientFz {
+    private final static Logger logger = LoggerFactory.getLogger(FtpClient223Fz.class);
     private final static String basicWorkspace = "/out/published";
     private final static String downloadPath = Paths.get(".").toAbsolutePath().normalize().toString() + "/zakupki_download";
     private final static FTPClient ftp = new FTPClient();
@@ -35,19 +36,22 @@ public class FTPClient223fz implements FTPClientFZ {
     private final RegionFilesStorage storage;
     private final FileSystemService fileSystemService;
     private final FtpConfiguration ftpConfiguration;
+    private final CommonUtils commonUtils;
     private LocalDate startDate = LocalDate.of(2000, 1, 1);
     private LocalDate endDate = LocalDate.of(4000, 1, 1);
 
-    public FTPClient223fz(
+    public FtpClient223Fz(
         ZipService zipService,
         FileSystemService fileSystemService,
         FtpConfiguration ftpConfiguration,
-        RegionFilesStorage storage
+        RegionFilesStorage storage,
+        CommonUtils commonUtils
     ) {
         this.zipService = zipService;
         this.storage = storage;
         this.fileSystemService = fileSystemService;
         this.ftpConfiguration = ftpConfiguration;
+        this.commonUtils = commonUtils;
     }
 
     public FileType[] getAllParsingFolders() {
@@ -71,20 +75,6 @@ public class FTPClient223fz implements FTPClientFZ {
             logger.error("Something went wrong wile listing {}", basicWorkspace, e);
         }
         return list;
-    }
-
-    public void addParsingFolder(FileType fileType) {
-        if (!parsingFolders.contains(fileType)) {
-            parsingFolders.add(fileType);
-            logger.info("Added {}", fileType.getValue());
-        }
-    }
-
-    public void addParsingRegion(String regions) {
-        if (!parsingRegions.contains(regions)) {
-            parsingRegions.add(regions);
-            logger.info("Added {}", regions);
-        }
     }
 
     @Override
@@ -117,12 +107,6 @@ public class FTPClient223fz implements FTPClientFZ {
         }
     }
 
-    @Override
-    public void parseFTPServer() {
-        logger.info("Start parsing in: {}", ftpConfiguration.getUrl());
-        searchRegionsDirectories();
-    }
-
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
@@ -131,64 +115,41 @@ public class FTPClient223fz implements FTPClientFZ {
         this.endDate = endDate;
     }
 
-    private void searchRegionsDirectories() {
-        for (var region : parsingRegions) {
-            searchInRegions(basicWorkspace + "/" + region, region);
-        }
-    }
-
-    private void searchInRegions(String workspace, String region) {
-        for (var folder : parsingFolders) {
-            searchFiles(workspace + "/" + folder.getValue() + "/daily", folder, region);
-        }
-    }
-
-    private void searchFiles(String workspace, FileType fileType, String region) {
-        logger.info("Start parsing {}", workspace);
+    public List<FTPFile> getFilesInRegionFolder(String region, FileType fileType) {
+        var workspace = String.format("%s/%s/%s/daily", basicWorkspace, region, fileType.getValue());
+        var fileList = new ArrayList<FTPFile>();
         try {
             var files = ftp.listFiles(workspace);
             for (var remoteFile : files) {
-                var calendar = remoteFile.getTimestamp();
-                LocalDate date = LocalDateTime
-                    .ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId())
-                    .toLocalDate();
+                LocalDate date = commonUtils.convertCalendarToLocalDate(remoteFile.getTimestamp());
                 if (remoteFile.isFile() && isDateInInterval(date)) {
-                    if (downloadFile(downloadPath + workspace + "/" + remoteFile.getName(),
-                        workspace + "/" + remoteFile.getName())) {
-                        var unzippedFiles = zipService.unzipFile(
-                            downloadPath + workspace + "/" + remoteFile.getName(),
-                            downloadPath + workspace
-                        );
-                        for (var filePath: unzippedFiles) {
-                            var file = new ParseFile(
-                                filePath,
-                                fileType
-                            );
-                            storage.insert(region, file);
-                        }
-                    } else {
-                        logger.error("Unable to download {}", workspace + "/" + remoteFile.getName());
-                    }
+                    fileList.add(remoteFile);
                 }
             }
         } catch (IOException e) {
             logger.error("Something went wrong wile listing {}", workspace, e);
         }
+        return fileList;
+    }
+
+    public Optional<Path> downloadFile(FTPFile ftpFile, String region, FileType fileType) {
+        var localPath = String.format("%s/%s/%s/%s", downloadPath, region, fileType.getValue(), ftpFile.getName());
+        var remotePath = String.format("%s/%s/%s/daily/%s", basicWorkspace, region, fileType.getValue(), ftpFile.getName());
+        Path localFile = fileSystemService.makeFile(localPath);
+        boolean isDownload = false;
+        try(var stream = Files.newOutputStream(localFile)) {
+            isDownload = ftp.retrieveFile(remotePath, stream);
+        } catch (IOException e) {
+            logger.error("Something went wrong wile downloading {}", remotePath, e);
+        }
+        if (!isDownload) {
+            logger.error("Something went wrong wile downloading {}", remotePath);
+            return Optional.empty();
+        }
+        return Optional.of(localFile);
     }
 
     private boolean isDateInInterval(LocalDate date) {
         return date.isAfter(startDate) && date.isBefore(endDate) || date.equals(startDate) || date.equals(endDate);
-    }
-
-    private boolean downloadFile(String localFilePath, String remoteFilePath) {
-        logger.debug("Start downloading {}", localFilePath);
-        Path localFile = fileSystemService.makeFile(localFilePath);
-        boolean isDownload = false;
-        try(var stream = Files.newOutputStream(localFile)) {
-            isDownload = ftp.retrieveFile(remoteFilePath, stream);
-        } catch (IOException e) {
-            logger.error("Something went wrong wile downloading {}", remoteFilePath, e);
-        }
-        return isDownload;
     }
 }
