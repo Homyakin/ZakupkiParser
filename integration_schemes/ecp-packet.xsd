@@ -152,6 +152,11 @@
                                                 <xs:documentation>Договор в электронной форме</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
+										<xs:element name="biddingTimeInfo" type="p:biddingTimeInfoItemType">
+											<xs:annotation>
+												<xs:documentation>Сведения о времени проведения торгов</xs:documentation>
+											</xs:annotation>
+										</xs:element>
 									</xs:choice>
 									<xs:element name="printForm" type="t:documentType">
 										<xs:annotation>

@@ -43,7 +43,7 @@ public class ContractPositionRepository {
                 classifierService.getClassifierName(position.getOkpd()),
                 classifierService.getClassifierCode(position.getOkpd2()),
                 classifierService.getClassifierName(position.getOkpd2()),
-                repositoryUtils.getCountryCode(position.getCountry()),
+                repositoryUtils.getCountryCode(position.getCountryManufacturer()), //TODO страна происхождение плюс страна производитель????
                 repositoryUtils.convertBoolean(position.isProducerCountry()),
                 repositoryUtils.convertBoolean(position.isImpossibleToDetermineAttr()),
                 classifierService.getClassifierCode(position.getOkei()),

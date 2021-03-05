@@ -315,7 +315,7 @@
 
             <xs:element name="endExecutionTerm" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Условие начала исполнения договора</xs:documentation>
+                    <xs:documentation>Условие окончания исполнения договора</xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="t:nonEmptyString">
@@ -425,6 +425,11 @@
                         <xs:maxLength value="6"/>
                     </xs:restriction>
                 </xs:simpleType>
+            </xs:element>
+            <xs:element name="emergency" minOccurs="0" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Признак "Закупка осуществляется вследствие аварии, иных чрезвычайных ситуаций природного или техногенного характера, непреодолимой силы, при необходимости срочного медицинского вмешательства, а также для предотвращения угрозы возникновения указанных ситуаций"</xs:documentation>
+                </xs:annotation>
             </xs:element>
             <xs:element name="provider" type="xs:boolean">
                 <xs:annotation>
@@ -615,6 +620,11 @@
                     <xs:documentation>Позиции договора</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="totalBudget" minOccurs="0" maxOccurs="1" type="t:money2">
+                <xs:annotation>
+                    <xs:documentation>Итого за счёт бюджетных средств</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="contractChangeDocs" type="contractDocListType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Документы информации об изменении договора</xs:documentation>
@@ -656,6 +666,11 @@
             <xs:element name="electorincPlaceGuid" type="t:guidType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Глобальный идентификатор сведений о договоре в электронной форме</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAuthorizedBody" type="xs:base64Binary" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Подпись уполномоченного органа</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -804,6 +819,11 @@
                     <xs:documentation>Прикрепленные документы</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="signatureAuthorizedBody" type="xs:base64Binary" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Подпись уполномоченного органа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="contractBaseLotType">
@@ -921,6 +941,11 @@
                     <xs:element name="positions" type="completingPositionsType">
                         <xs:annotation>
                             <xs:documentation>Сведения об исполнении</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="completionStageEndDate" type="xs:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата окончания исполнения договора (отдельного этапа исполнения договора)</xs:documentation>
                         </xs:annotation>
                     </xs:element>
                 </xs:sequence>
@@ -1116,6 +1141,11 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="signatureAuthorizedBody" type="xs:base64Binary" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Подпись уполномоченного органа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="subcontractorInfoDataType">
@@ -1176,7 +1206,7 @@
 
             <xs:element name="endExecutionTerm" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Условие начала исполнения договора</xs:documentation>
+                    <xs:documentation>Условие окончания исполнения договора</xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="t:nonEmptyString">
@@ -1359,6 +1389,11 @@
                     <xs:documentation>Позиции договора с субподрядчиком</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="totalBudget" minOccurs="0" maxOccurs="1" type="t:money2">
+                <xs:annotation>
+                    <xs:documentation>Итого за счёт бюджетных средств</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="attachments" type="t:documentListType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Прикрепленные документы</xs:documentation>
@@ -1372,6 +1407,11 @@
             <xs:element name="hasOkpd2Rows" type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Признак наличия записей с заполненными ОКПД2</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAuthorizedBody" type="xs:base64Binary" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Подпись уполномоченного органа</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -1618,9 +1658,65 @@
                     </xs:annotation>
                 </xs:element>
             </xs:choice>
-            <xs:element name="country" type="t:countryType" minOccurs="0">
+            <xs:element name="typeObjectPurchase" type="typeObjectPurchaseType" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Страна</xs:documentation>
+                    <xs:documentation>Тип объекта закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="countriesOfOrigin" type="countriesOfOriginType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Страны происхождения товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="countryManufacturer" type="t:countryType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Страна регистрации производителя товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="typeProvision" type="typeProvisionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Тип финансового обеспечения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractNum" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер контракта 44-ФЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:pattern value="\d{19}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="contractEndStage" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата окончания этапа контракта 44-ФЗ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="targetCode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код целевой статьи расходов по этапу контракта 44-ФЗ или по субсидии, предоставляемой в целях реализации национальных и федеральных проектов</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="typeCode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код вида расходов по этапу контракта 44-ФЗ или по субсидии, предоставляемой в целях реализации национальных и федеральных проектов</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="100"/>
+                        <xs:maxInclusive value="999"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="amountOfBudgetFunds" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Объем финансового обеспечения</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="producerCountry" type="xs:boolean" minOccurs="0">
@@ -1645,6 +1741,31 @@
                     </xs:annotation>
                 </xs:element>
             </xs:sequence>
+            <xs:element name="unitPrice" type="t:unsignedMoney2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Цена за единицу</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="currency" type="t:currencyType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Валюта</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="exchangeRate" type="t:money6" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Курс валюты цены за единицу</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rubUnitPrice" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Цена за единицу в рублевом эквиваленте</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="sourceInfo" type="sourceInfoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Источник сведений о контракте</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="contractPositionLinkType">
@@ -1686,6 +1807,67 @@
                     </xs:annotation>
                 </xs:element>
             </xs:choice>
+            <xs:element name="typeObjectPurchase" type="typeObjectPurchaseType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Тип объекта закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="countriesOfOrigin" type="countriesOfOriginType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Страны происхождения товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="countryManufacturer" type="t:countryType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Страна регистрации производителя товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="typeProvision" type="typeProvisionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Тип финансового обеспечения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractNum" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер контракта 44-ФЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:pattern value="\d{19}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="contractEndStage" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата окончания этапа контракта 44-ФЗ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="targetCode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код целевой статьи расходов по этапу контракта 44-ФЗ или по субсидии, предоставляемой в целях реализации национальных и федеральных проектов</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="typeCode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код вида расходов по этапу контракта 44-ФЗ или по субсидии, предоставляемой в целях реализации национальных и федеральных проектов</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="100"/>
+                        <xs:maxInclusive value="999"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="amountOfBudgetFunds" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Объем финансового обеспечения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="contractPositionQtyType">
@@ -1764,6 +1946,11 @@
             <xs:element name="total" minOccurs="0" maxOccurs="1" type="t:money2">
                 <xs:annotation>
                     <xs:documentation>Итого</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="totalBudget" minOccurs="0" maxOccurs="1" type="t:money2">
+                <xs:annotation>
+                    <xs:documentation>Итого за счёт бюджетных средств</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -2035,6 +2222,31 @@
                     <xs:documentation>Количество</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="unitPrice" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Цена за единицу</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="currency" type="t:currencyType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Валюта</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="exchangeRate" type="t:money6" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Курс валюты цены за единицу</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="exchangeRateDate" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата, на которую установлен курс валюты</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rubUnitPrice" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Цена за единицу в рублевом эквиваленте</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="prepayment" type="xs:boolean" minOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Оплата авансом</xs:documentation>
@@ -2167,7 +2379,7 @@
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="code" type="xs:positiveInteger">
+                        <xs:element name="code" type="t:positiveIntegerWithoutSigns">
                             <xs:annotation>
                                 <xs:documentation>Код региона. </xs:documentation>
                                 <xs:documentation>Для поставщика - резидента элемент обязательный. </xs:documentation>
@@ -2520,4 +2732,91 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:simpleType name="typeObjectPurchaseType">
+        <xs:annotation>
+            <xs:documentation>Тип объекта закупки</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="G">
+                <xs:annotation>
+                    <xs:documentation>Товар</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="W">
+                <xs:annotation>
+                    <xs:documentation>Работа</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="S">
+                <xs:annotation>
+                    <xs:documentation>Услуга</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="countriesOfOriginType">
+        <xs:annotation>
+            <xs:documentation>Страны происхождения товара</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="country" type="t:countryType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Страна происхождения товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="typeProvisionType">
+        <xs:annotation>
+            <xs:documentation>Тип финансового обеспечения за счет бюджетных средств</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RESOURCES_FZ44">
+                <xs:annotation>
+                    <xs:documentation>За счет средств, предусмотренных контрактом 44-ФЗ</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RESOURCES_FZ44_NATIONAL_PROJECTS">
+                <xs:annotation>
+                    <xs:documentation>За счет средств, предусмотренных контрактом 44-ФЗ, выделяемых в рамках национальных проектов</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NATIONAL_PROJECTS_SUBSIDIES">
+                <xs:annotation>
+                    <xs:documentation>За счет средств субсидий, выделяемых в рамках национальных проектов/За счет средств субсидии, предоставляемой в целях реализации национальных и федеральных проектов и (или) комплексного плана модернизации и расширения магистральной инфраструктуры</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NATIONAL_FEDERAL_PROJECTS_SUBSIDIES">
+                <xs:annotation>
+                    <xs:documentation>За счет средств субсидии, предоставляемой в целях реализации национальных и федеральных проектов и (или) комплексного плана модернизации и расширения магистральной инфраструктуры</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NO_BUDGET_RESOURCES_FZ44">
+                <xs:annotation>
+                    <xs:documentation>Нет финансирования за счет бюджетных средств</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="sourceInfoType">
+        <xs:annotation>
+            <xs:documentation>Источник сведений о контракте</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PLAN_POSITION">
+                <xs:annotation>
+                    <xs:documentation>Источником является «Позиция плана закупки»</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CONTRACT_FZ_44">
+                <xs:annotation>
+                    <xs:documentation>Источником является«Контракт из Реестра контрактов 44-ФЗ»</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
