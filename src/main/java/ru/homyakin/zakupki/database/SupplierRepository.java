@@ -38,35 +38,36 @@ public class SupplierRepository {
             "address_id, address_rf_id, provider_include_msp_date, is_in_order_173n)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            if (checkSupplier(supplier.getInn())) return;
-            jdbcTemplate.update(
-                sql,
-                supplier.getInn(),
-                supplier.getName(),
-                supplier.getShortName(),
-                supplier.getBrandName(),
-                supplier.getAdditionalFullName(),
-                supplier.getKpp(),
-                supplier.getOkpo(),
-                supplier.getCode(),
-                supplier.getAdditionalCode(),
-                supplier.getAdditionalInfo(),
-                supplier.getType().value(),
-                repositoryUtils.convertBoolean(supplier.isProvider()),
-                supplier.getProviderCode(),
-                repositoryUtils.convertBoolean(supplier.isSubcontractor()),
-                supplier.getSubcontractorCode(),
-                repositoryUtils.convertBoolean(supplier.isIndividual()),
-                repositoryUtils.convertBoolean(supplier.isNonResident()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(supplier.getRegistrationDate()),
-                repositoryUtils.convertBoolean(supplier.isTax()),
-                supplier.getOkopf(),
-                supplier.getOkopfName(),
-                supplierAddressRepository.insert(supplier.getAddress()),
-                supplierAddressRepository.insert(supplier.getAddressRf()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(supplier.getProviderIncludeMSPDate()),
-                repositoryUtils.convertBoolean(supplier.isIsInOrder173N())
-            );
+            if (!checkSupplier(supplier.getInn())) {
+                jdbcTemplate.update(
+                    sql,
+                    supplier.getInn(),
+                    supplier.getName(),
+                    supplier.getShortName(),
+                    supplier.getBrandName(),
+                    supplier.getAdditionalFullName(),
+                    supplier.getKpp(),
+                    supplier.getOkpo(),
+                    supplier.getCode(),
+                    supplier.getAdditionalCode(),
+                    supplier.getAdditionalInfo(),
+                    supplier.getType().value(),
+                    repositoryUtils.convertBoolean(supplier.isProvider()),
+                    supplier.getProviderCode(),
+                    repositoryUtils.convertBoolean(supplier.isSubcontractor()),
+                    supplier.getSubcontractorCode(),
+                    repositoryUtils.convertBoolean(supplier.isIndividual()),
+                    repositoryUtils.convertBoolean(supplier.isNonResident()),
+                    repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(supplier.getRegistrationDate()),
+                    repositoryUtils.convertBoolean(supplier.isTax()),
+                    supplier.getOkopf(),
+                    supplier.getOkopfName(),
+                    supplierAddressRepository.insert(supplier.getAddress()),
+                    supplierAddressRepository.insert(supplier.getAddressRf()),
+                    repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(supplier.getProviderIncludeMSPDate()),
+                    repositoryUtils.convertBoolean(supplier.isIsInOrder173N())
+                );
+            }
             insertSupplierToContract(supplier.getInn(), contractGuid);
         } catch (RuntimeException e) {
             logger.error("Internal database error", e);
