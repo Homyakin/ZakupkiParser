@@ -50,7 +50,7 @@ public class ContractRepository extends BaseRepository<Contract> {
             "prolongation, customer_appeale_or_needs_approval, customer_approval_or_antimonopoly_descision_date," +
             "start_execution_term, end_execution_term, plan_position_guid, url_eis, url_vsrz, url_kis_rmis," +
             "create_date_time, customer_inn, placer_inn, detached_org_inn, publication_date, contract_status_code," +
-            "version, modification_description, digital_purchase, digital_purchase_code, provider, provider_code," +
+            "version, modification_description, digital_purchase, digital_purchase_code, emergency, provider, provider_code," +
             "change_contract, contract_reg_number, name, contract_date, approve_date, purchase_notice_info_guid," +
             "purchase_notice_info_number, lotGuid, subject_contract, purchase_type_code, resume_date, " +
             "has_subcontractor, has_subcontractor_code, subcontractors_total, has_good_info, additional_info," +
@@ -58,7 +58,7 @@ public class ContractRepository extends BaseRepository<Contract> {
             "end_execution_date, has_okpd_and_okdp_rows, has_okpd2_rows, is_electronic_place, electronic_place_name," +
             "electronic_place_url, electronic_place_publish_date, electronic_place_guid)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
-            " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         ContractDataType contractData = contract.getBody().getItem().getContractData();
         logger.info("Inserting contract with guid: {}", contractData.getGuid());
@@ -109,6 +109,7 @@ public class ContractRepository extends BaseRepository<Contract> {
                 contractData.getModificationDescription(),
                 repositoryUtils.convertBoolean(contractData.isDigitalPurchase()),
                 contractData.getDigitalPurchaseCode(),
+                repositoryUtils.convertBoolean(contractData.isEmergency()),
                 repositoryUtils.convertBoolean(contractData.isProvider()),
                 contractData.getProviderCode(),
                 repositoryUtils.convertBoolean(contractData.isChangeContract()),
