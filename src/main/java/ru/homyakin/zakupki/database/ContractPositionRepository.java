@@ -1,11 +1,13 @@
 package ru.homyakin.zakupki.database;
 
+import java.util.List;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.contract.PositionType;
+import ru.homyakin.zakupki.utils.CommonUtils;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
@@ -14,44 +16,67 @@ public class ContractPositionRepository {
     private final JdbcTemplate jdbcTemplate;
     private final RepositoryUtils repositoryUtils;
     private final ClassifierService classifierService;
+    private final CommonUtils commonUtils;
+    private final PositionToContractRepository positionToContractRepository;
 
     public ContractPositionRepository(
         DataSource dataSource,
         RepositoryUtils repositoryUtils,
-        ClassifierService classifierService
+        ClassifierService classifierService,
+        CommonUtils commonUtils,
+        PositionToContractRepository positionToContractRepository
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.repositoryUtils = repositoryUtils;
         this.classifierService = classifierService;
+        this.commonUtils = commonUtils;
+        this.positionToContractRepository = positionToContractRepository;
     }
 
     public void insert(PositionType position, String contractGuid) {
-        String sql = "INSERT INTO zakupki.contract_position (contract_guid, ordinal_number, guid," +
+        String sql = "INSERT INTO zakupki.contract_position (guid," +
             "name, okdp_code, okdp_name, okpd_code, okpd_name, okpd2_code, okpd2_name, country_code," +
             "producer_country, impossible_to_determine_attr, okei_code, okei_name, qty)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         try {
-            jdbcTemplate.update(
-                sql,
-                contractGuid,
-                position.getOrdinalNumber(),
-                position.getGuid(),
-                repositoryUtils.removeExtraSpaces(position.getName()),
-                classifierService.getClassifierCode(position.getOkdp()),
-                classifierService.getClassifierName(position.getOkdp()),
-                classifierService.getClassifierCode(position.getOkpd()),
-                classifierService.getClassifierName(position.getOkpd()),
-                classifierService.getClassifierCode(position.getOkpd2()),
-                classifierService.getClassifierName(position.getOkpd2()),
-                repositoryUtils.getCountryCode(position.getCountryManufacturer()), //TODO страна происхождение плюс страна производитель????
-                repositoryUtils.convertBoolean(position.isProducerCountry()),
-                repositoryUtils.convertBoolean(position.isImpossibleToDetermineAttr()),
-                classifierService.getClassifierCode(position.getOkei()),
-                classifierService.getClassifierName(position.getOkei()),
-                position.getQty()
-            );
+            var guid = getGuid(position.getGuid());
+            if (!checkPosition(guid)) {
+                jdbcTemplate.update(
+                    sql,
+                    guid,
+                    repositoryUtils.removeExtraSpaces(position.getName()),
+                    classifierService.getClassifierCode(position.getOkdp()),
+                    classifierService.getClassifierName(position.getOkdp()),
+                    classifierService.getClassifierCode(position.getOkpd()),
+                    classifierService.getClassifierName(position.getOkpd()),
+                    classifierService.getClassifierCode(position.getOkpd2()),
+                    classifierService.getClassifierName(position.getOkpd2()),
+                    repositoryUtils.getCountryCode(position.getCountryManufacturer()), //TODO страна происхождение плюс страна производитель????
+                    repositoryUtils.convertBoolean(position.isProducerCountry()),
+                    repositoryUtils.convertBoolean(position.isImpossibleToDetermineAttr()),
+                    classifierService.getClassifierCode(position.getOkei()),
+                    classifierService.getClassifierName(position.getOkei()),
+                    position.getQty()
+                );
+            }
+            positionToContractRepository.insert(contractGuid, guid);
         } catch (RuntimeException e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during insert in contract_position", e);
+        }
+    }
+
+    private boolean checkPosition(String guid) {
+        String sql = "SELECT guid FROM zakupki.contract_position WHERE guid = ?";
+        List<String> result = jdbcTemplate.query(sql, new Object[]{guid}, (rs, rowNum) -> rs.getString("guid"));
+        return result.size() != 0;
+    }
+
+    private String getGuid(String guid) {
+        if (guid != null) {
+            return guid;
+        } else {
+            return String.format("autogenerated-%s", commonUtils.generateGuid());
         }
     }
 }

@@ -31,7 +31,7 @@ public class SupplierRepository {
             insertSupplierWithoutInn(supplier, contractGuid);
             return;
         }
-        //TODO add existing check
+
         String sql = "INSERT INTO zakupki.supplier (inn, name, short_name, brand_name, additional_full_name," +
             "kpp, okpo, code, additional_code, additional_info, type, provider, provider_code, subcontractor," +
             "subcontractor_code, individual, non_resident, registration_date, tax, okopf_code, okopf_name," +
