@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.database.purchase_plan.JointCustomerLotItemRepository;
 import ru.homyakin.zakupki.models._223fz.types.LotCustomerType;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 

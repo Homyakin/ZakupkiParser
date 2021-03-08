@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database.purchase_plan;
+package ru.homyakin.zakupki.database.purchase_notice;
 
 import javax.sql.DataSource;
 import org.slf4j.Logger;

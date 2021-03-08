@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.database.purchase_plan.JointLotDataRepository;
 import ru.homyakin.zakupki.models._223fz.types.LotType;
 import ru.homyakin.zakupki.models._223fz.types.LotTypeIS;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
