@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database;
+package ru.homyakin.zakupki.database.contract;
 
 import java.util.List;
 import javax.sql.DataSource;
@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.database.ClassifierService;
 import ru.homyakin.zakupki.models._223fz.contract.PositionType;
 import ru.homyakin.zakupki.utils.CommonUtils;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
@@ -17,20 +18,17 @@ public class ContractPositionRepository {
     private final RepositoryUtils repositoryUtils;
     private final ClassifierService classifierService;
     private final CommonUtils commonUtils;
-    private final PositionToContractRepository positionToContractRepository;
 
     public ContractPositionRepository(
         DataSource dataSource,
         RepositoryUtils repositoryUtils,
         ClassifierService classifierService,
-        CommonUtils commonUtils,
-        PositionToContractRepository positionToContractRepository
+        CommonUtils commonUtils
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.repositoryUtils = repositoryUtils;
         this.classifierService = classifierService;
         this.commonUtils = commonUtils;
-        this.positionToContractRepository = positionToContractRepository;
     }
 
     public void insert(PositionType position, String contractGuid) {
@@ -60,9 +58,22 @@ public class ContractPositionRepository {
                     position.getQty()
                 );
             }
-            positionToContractRepository.insert(contractGuid, guid);
+            insertPositionToContract(guid, contractGuid);
         } catch (RuntimeException e) {
             logger.error("Error during insert in contract_position", e);
+        }
+    }
+
+    private void insertPositionToContract(String positionGuid, String contractGuid) {
+        var sql = "INSERT INTO zakupki.position_to_contract (contract_guid, position_guid) VALUES (?, ?)";
+        try {
+            jdbcTemplate.update(
+                sql,
+                contractGuid,
+                positionGuid
+            );
+        } catch (Exception e) {
+            logger.error("Error during insert in position_to_contract", e);
         }
     }
 

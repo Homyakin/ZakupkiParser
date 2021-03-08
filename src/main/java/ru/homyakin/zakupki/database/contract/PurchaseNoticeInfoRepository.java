@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database;
+package ru.homyakin.zakupki.database.contract;
 
 import java.util.List;
 import javax.sql.DataSource;

@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database;
+package ru.homyakin.zakupki.database.purchase_notice;
 
 import javax.sql.DataSource;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.database.CustomerRepository;
+import ru.homyakin.zakupki.database.purchase_plan.ElectronicPlaceRepository;
 import ru.homyakin.zakupki.models.FileType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAE94FZDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAEDataType;

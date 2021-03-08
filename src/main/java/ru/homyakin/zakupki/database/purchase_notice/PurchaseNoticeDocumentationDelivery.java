@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database;
+package ru.homyakin.zakupki.database.purchase_notice;
 
 import java.math.BigDecimal;
 import javax.sql.DataSource;

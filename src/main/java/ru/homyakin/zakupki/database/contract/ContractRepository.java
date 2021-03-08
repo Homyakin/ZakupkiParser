@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database;
+package ru.homyakin.zakupki.database.contract;
 
 import javax.sql.DataSource;
 import org.slf4j.Logger;
@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.database.BaseRepository;
+import ru.homyakin.zakupki.database.CustomerRepository;
 import ru.homyakin.zakupki.exceptions.NoXmlnsException;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.contract.ContractDataType;

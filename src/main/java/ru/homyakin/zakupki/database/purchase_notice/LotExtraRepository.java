@@ -1,35 +1,34 @@
-package ru.homyakin.zakupki.database;
+package ru.homyakin.zakupki.database.purchase_notice;
 
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.BaseExtendFieldType;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
-public class PurchaseNoticeExtraRepository {
-    private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeExtraRepository.class);
+public class LotExtraRepository {
+    private static final Logger logger = LoggerFactory.getLogger(LotExtraRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final RepositoryUtils repositoryUtils;
 
-    public PurchaseNoticeExtraRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
+    public LotExtraRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.repositoryUtils = repositoryUtils;
     }
 
-    public void insert(BaseExtendFieldType field, String noticeGuid) {
-        String sql = "INSERT INTO zakupki.purchase_notice_extra (purchase_notice_guid, integr_code," +
-            "description, text, number_int, number, boolean, datetime, date, url, nsi_code, nsi_name)" +
+    public void insert(BaseExtendFieldType field, String lotGuid) {
+        String sql = "INSERT INTO zakupki.lot_extra (purchase_notice_lot_guid, integr_code, description," +
+            "text, number_int, number, boolean, datetime, date, url, nsi_code, nsi_name)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             var value = field.getValue();
             var nsi = getNsi(field);
             jdbcTemplate.update(
                 sql,
-                noticeGuid,
+                lotGuid,
                 field.getIntegrCode(),
                 field.getDescription(),
                 value.getText(),
@@ -42,9 +41,8 @@ public class PurchaseNoticeExtraRepository {
                 nsi.code,
                 nsi.name
             );
-        } catch (DuplicateKeyException ignored) {
         } catch (Exception e) {
-            logger.error("Error during inserting purchase notice extra", e);
+            logger.error("Error during inserting lot extra", e);
         }
     }
 

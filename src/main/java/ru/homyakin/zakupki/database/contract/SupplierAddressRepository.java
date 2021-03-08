@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database;
+package ru.homyakin.zakupki.database.contract;
 
 import java.math.BigInteger;
 import java.util.HashMap;
