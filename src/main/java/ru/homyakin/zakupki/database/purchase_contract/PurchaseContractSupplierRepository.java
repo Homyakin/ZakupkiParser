@@ -80,6 +80,10 @@ public class PurchaseContractSupplierRepository {
         if (kpp == null || kpp.equals("000000000")) {
             return Optional.empty();
         }
+        if (kpp.length() > 9) {
+            logger.warn("Kpp {} is more then 9", kpp);
+            return Optional.empty();
+        }
         return Optional.of(kpp);
     }
 
