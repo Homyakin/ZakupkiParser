@@ -40,6 +40,7 @@ public class NonResidentInfoRepository {
                 repositoryUtils.mapSupplierType(nonResidentInfo.getType()),
                 nonResidentInfo.getName(),
                 nonResidentInfo.getCode(),
+                nonResidentInfo.getAdditionalCode(),
                 repositoryUtils.getCountryCode(nonResidentInfo.getCountry()),
                 nonResidentInfo.getAddress()
             );
