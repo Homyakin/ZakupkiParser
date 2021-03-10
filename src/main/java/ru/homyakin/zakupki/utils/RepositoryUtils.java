@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.PurchaseCategoryRepository;
 import ru.homyakin.zakupki.models._223fz.types.CountryType;
 import ru.homyakin.zakupki.models._223fz.types.CurrencyType;
+import ru.homyakin.zakupki.models._223fz.types.SupplierType;
 
 @Component
 public class RepositoryUtils {
@@ -78,5 +79,12 @@ public class RepositoryUtils {
 
     public Long getCategoryCode(Long purchaseCategory) {
         return purchaseCategoryRepository.getCategoryCode(purchaseCategory);
+    }
+
+    public String mapSupplierType(SupplierType type) {
+        return switch (type) {
+            case L -> "Юридическое лицо";
+            case P -> "Физическое лицо";
+        };
     }
 }

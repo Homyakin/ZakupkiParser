@@ -28,7 +28,7 @@ public class JointLotDataRepository {
 
     public void insert(LotCustomerType lotCustomer, String lotGuid) {
         String sql = "INSERT INTO zakupki.joint_lot_data (purchase_notice_lot_guid, customer_inn, additional_info," +
-            "delivary_place_indication_code, lot_customer_edit_enabled, tax, non_resident, non_resident_name," +
+            "delivery_place_indication_code, lot_customer_edit_enabled, tax, non_resident, non_resident_name," +
             "non_resident_code, country_code)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {

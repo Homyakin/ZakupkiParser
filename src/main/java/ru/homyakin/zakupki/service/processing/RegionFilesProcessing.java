@@ -10,11 +10,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.homyakin.zakupki.config.AppConfiguration;
 import ru.homyakin.zakupki.database.contract.ContractRepository;
+import ru.homyakin.zakupki.database.purchase_contract.PurchaseContractRepository;
 import ru.homyakin.zakupki.database.purchase_notice.PurchaseNoticeRepository;
 import ru.homyakin.zakupki.database.purchase_plan.PurchasePlanRepository;
 import ru.homyakin.zakupki.models.FileType;
 import ru.homyakin.zakupki.models.ParseFile;
 import ru.homyakin.zakupki.service.parser.ContractParser;
+import ru.homyakin.zakupki.service.parser.PurchaseContractParser;
 import ru.homyakin.zakupki.service.parser.PurchaseNoticeParser;
 import ru.homyakin.zakupki.service.parser.PurchasePlanParser;
 import ru.homyakin.zakupki.service.storage.ParseFileQueue;
@@ -27,6 +29,7 @@ public class RegionFilesProcessing {
     private final PurchasePlanRepository purchasePlanRepository;
     private final ContractRepository contractRepository;
     private final PurchaseNoticeRepository purchaseNoticeRepository;
+    private final PurchaseContractRepository purchaseContractRepository;
     private final RegionFilesStorage storage;
     private final List<String> regionFilesInProcess = new CopyOnWriteArrayList<>();
     private final ExecutorService executor;
@@ -35,6 +38,7 @@ public class RegionFilesProcessing {
         PurchasePlanRepository purchasePlanRepository,
         ContractRepository contractRepository,
         PurchaseNoticeRepository purchaseNoticeRepository,
+        PurchaseContractRepository purchaseContractRepository,
         RegionFilesStorage storage,
         AppConfiguration appConfiguration
     ) {
@@ -43,12 +47,13 @@ public class RegionFilesProcessing {
         this.purchaseNoticeRepository = purchaseNoticeRepository;
         this.storage = storage;
         this.executor = Executors.newFixedThreadPool(appConfiguration.getMaxThreads());
+        this.purchaseContractRepository = purchaseContractRepository;
     }
 
     @Scheduled(initialDelay = 10 * 1000, fixedDelay = 60 * 1000)
     public void processFiles() {
         var m = storage.getMap();
-        for (var entry: m.entrySet()) {
+        for (var entry : m.entrySet()) {
             if (!regionFilesInProcess.contains(entry.getKey())) {
                 executor.submit(() -> this.processParseFiles(entry.getValue(), entry.getKey()));
                 regionFilesInProcess.add(entry.getKey());
@@ -62,14 +67,9 @@ public class RegionFilesProcessing {
                 ParseFile file = queue.take();
                 logger.info("Start processing {}; {}", file.getType().getValue(), file.getFilepath());
                 switch (file.getType()) {
-                    case CONTRACT -> {
-                        var contract = ContractParser.parse(file.getFilepath());
-                        contract.ifPresent(contractRepository::insert);
-                    }
-                    case PURCHASE_PLAN -> {
-                        var purchasePlan = PurchasePlanParser.parse(file.getFilepath());
-                        purchasePlan.ifPresent(purchasePlanRepository::insert);
-                    }
+                    case CONTRACT -> ContractParser.parse(file.getFilepath()).ifPresent(contractRepository::insert);
+                    case PURCHASE_CONTRACT -> PurchaseContractParser.parse(file.getFilepath()).ifPresent(purchaseContractRepository::insert);
+                    case PURCHASE_PLAN -> PurchasePlanParser.parse(file.getFilepath()).ifPresent(purchasePlanRepository::insert);
                     case PURCHASE_NOTICE, PURCHASE_NOTICE_IS -> {
                         var purchaseNotice = PurchaseNoticeParser.parse(file.getFilepath());
                         purchaseNotice.ifPresent(
@@ -136,7 +136,7 @@ public class RegionFilesProcessing {
                             it -> purchaseNoticeRepository.insert(it.getBody().getItem().getPurchaseNoticeZPESMBOData(), FileType.PURCHASE_NOTICE_ZPESMBO)
                         );
                     }
-                    default -> logger.error("Unknown file type");
+                    default -> logger.error("Unknown file type {}", file.getType());
                 }
             } catch (RuntimeException e) {
                 logger.error("Internal processing error", e);

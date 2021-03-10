@@ -38,7 +38,7 @@ public class PurchaseNoticeLotRepository {
 
     public void insert(LotType lot, String noticeGuid) {
         String sql = "INSERT INTO zakupki.purchase_notice_lot (guid, purchase_notice_guid, ordinal_number," +
-            "lot_edit_enabled, delivary_place_indication_code, joint_lot, plan_guid, position_number," +
+            "lot_edit_enabled, delivery_place_indication_code, joint_lot, plan_guid, position_number," +
             "lot_plan_position, position_guid, contract_subject, cancelled, cancel_date, cancel_info, emergency)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {

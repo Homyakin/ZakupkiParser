@@ -30,7 +30,7 @@ public class JointCustomerLotItemRepository {
         String sql = "INSERT INTO zakupki.joint_customer_lot_item (guid, lot_customer_data_joint_lot_data_purchase_notice_lot_guid," +
             "lot_customer_data_joint_lot_data_customer_inn, ordinalNumber, okdp_code, okdp_name, okpd2_code," +
             "okpd2_name, okved_code, okved_name, okved2_code, okved2_name, okei_code, okei_name, qty, additional_info," +
-            "delivery_state, delivery_region, delivary_region_okato, delivery_address, commodity_item_price," +
+            "delivery_state, delivery_region, delivery_region_okato, delivery_address, commodity_item_price," +
             "commodity_item_price_rub)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
