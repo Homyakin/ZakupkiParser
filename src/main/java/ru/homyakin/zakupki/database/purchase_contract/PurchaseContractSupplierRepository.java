@@ -81,7 +81,7 @@ public class PurchaseContractSupplierRepository {
             return Optional.empty();
         }
         if (kpp.length() > 9) {
-            logger.warn("Kpp {} is more then 9", kpp);
+            logger.warn("Kpp {} is more than 9", kpp);
             return Optional.empty();
         }
         return Optional.of(kpp);
