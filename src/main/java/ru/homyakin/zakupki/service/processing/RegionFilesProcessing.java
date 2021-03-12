@@ -1,5 +1,6 @@
 package ru.homyakin.zakupki.service.processing;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
@@ -21,6 +22,7 @@ import ru.homyakin.zakupki.service.parser.PurchaseNoticeParser;
 import ru.homyakin.zakupki.service.parser.PurchasePlanParser;
 import ru.homyakin.zakupki.service.storage.ParseFileQueue;
 import ru.homyakin.zakupki.service.storage.RegionFilesStorage;
+import ru.homyakin.zakupki.utils.CommonUtils;
 
 @Service
 public class RegionFilesProcessing {
@@ -33,6 +35,7 @@ public class RegionFilesProcessing {
     private final RegionFilesStorage storage;
     private final List<String> regionFilesInProcess = new CopyOnWriteArrayList<>();
     private final ExecutorService executor;
+    private final CommonUtils commonUtils;
 
     public RegionFilesProcessing(
         PurchasePlanRepository purchasePlanRepository,
@@ -40,7 +43,8 @@ public class RegionFilesProcessing {
         PurchaseNoticeRepository purchaseNoticeRepository,
         PurchaseContractRepository purchaseContractRepository,
         RegionFilesStorage storage,
-        AppConfiguration appConfiguration
+        AppConfiguration appConfiguration,
+        CommonUtils commonUtils
     ) {
         this.purchasePlanRepository = purchasePlanRepository;
         this.contractRepository = contractRepository;
@@ -48,6 +52,7 @@ public class RegionFilesProcessing {
         this.storage = storage;
         this.executor = Executors.newFixedThreadPool(appConfiguration.getMaxThreads());
         this.purchaseContractRepository = purchaseContractRepository;
+        this.commonUtils = commonUtils;
     }
 
     @Scheduled(initialDelay = 10 * 1000, fixedDelay = 60 * 1000)
@@ -67,7 +72,9 @@ public class RegionFilesProcessing {
                 ParseFile file = queue.take();
                 logger.info("Start processing {}; {}", file.getType().getValue(), file.getFilepath());
                 switch (file.getType()) {
-                    case CONTRACT -> ContractParser.parse(file.getFilepath()).ifPresent(contractRepository::insert);
+                    case CONTRACT -> ContractParser.parse(file.getFilepath()).ifPresent(
+                        it -> contractRepository.insert(it, commonUtils.extractRegionFromFilePath(file.getFilepath()))
+                    );
                     case PURCHASE_CONTRACT -> PurchaseContractParser.parse(file.getFilepath()).ifPresent(purchaseContractRepository::insert);
                     case PURCHASE_PLAN -> PurchasePlanParser.parse(file.getFilepath()).ifPresent(purchasePlanRepository::insert);
                     case PURCHASE_NOTICE, PURCHASE_NOTICE_IS -> {

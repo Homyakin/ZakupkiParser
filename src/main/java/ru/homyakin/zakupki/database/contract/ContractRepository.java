@@ -17,7 +17,7 @@ import ru.homyakin.zakupki.models._223fz.types.ElectronicPlaceInfoType;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
-public class ContractRepository extends BaseRepository<Contract> {
+public class ContractRepository {
     private static final Logger logger = LoggerFactory.getLogger(ContractRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final PlanPositionRepository planPositionRepository;
@@ -45,8 +45,7 @@ public class ContractRepository extends BaseRepository<Contract> {
         this.repositoryUtils = repositoryUtils;
     }
 
-    @Override
-    public void insert(Contract contract) {
+    public void insert(Contract contract, String region) {
         String sql = "INSERT INTO zakupki.contract (guid, registration_number, notice_44fz, " +
             "notice_not_placed_by_fz223p5s4, notice_44_num, lot_44_num, termination, extension," +
             "prolongation, customer_appeale_or_needs_approval, customer_approval_or_antimonopoly_descision_date," +
@@ -58,9 +57,9 @@ public class ContractRepository extends BaseRepository<Contract> {
             "has_subcontractor, has_subcontractor_code, subcontractors_total, has_good_info, additional_info," +
             "price, exchange_rate, exchange_rate_date, rub_price, currency_code, start_execution_date," +
             "end_execution_date, has_okpd_and_okdp_rows, has_okpd2_rows, is_electronic_place, electronic_place_name," +
-            "electronic_place_url, electronic_place_publish_date, electronic_place_guid)" +
+            "electronic_place_url, electronic_place_publish_date, electronic_place_guid, region_name)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
-            " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         ContractDataType contractData = contract.getBody().getItem().getContractData();
         logger.info("Inserting contract with guid: {}", contractData.getGuid());
@@ -143,7 +142,8 @@ public class ContractRepository extends BaseRepository<Contract> {
                 repositoryUtils.removeExtraSpaces(getElectronicPlaceInfoName(contractData.getElectronicPlaceInfo())),
                 repositoryUtils.removeExtraSpaces(getElectronicPlaceInfoUrl(contractData.getElectronicPlaceInfo())),
                 repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(contractData.getElectorincPlacePublishDate()),
-                contractData.getElectorincPlaceGuid()
+                contractData.getElectorincPlaceGuid(),
+                region
             );
             if (contractData.getContractPositions() != null) {
                 for (var position : contractData.getContractPositions().getContractPosition()) {
