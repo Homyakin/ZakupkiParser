@@ -52,13 +52,12 @@ public class PurchaseContractRepository {
             "supplier_guid, non_resident_info_guid, delivery_place_guid, delivery_place_indication_code, type, name," +
             "additional_info, publication_date_time, contract_status_code, version, modification_description)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        String supplierGuid = null;
         try {
             var data = purchaseContract.getBody().getItem().getPurchaseContractData();
             purchaseContractLotRepository.insert(data.getLot());
             customerRepository.insert(data.getCustomerInfo());
             customerRepository.insert(data.getPlacer().getMainInfo());
-
+            String supplierGuid = null;
             if (data.getSupplier() != null) {
                 supplierGuid = purchaseContractSupplierRepository.insert(data.getSupplier().getMainInfo()).orElse(null);
             }

@@ -54,7 +54,7 @@ public class ContractRepository extends BaseRepository<Contract> {
             "create_date_time, customer_inn, placer_inn, detached_org_inn, publication_date, contract_status_code," +
             "version, modification_description, digital_purchase, digital_purchase_code, emergency, provider, provider_code," +
             "change_contract, contract_reg_number, name, contract_date, approve_date, purchase_notice_info_guid," +
-            "purchase_notice_info_number, lotGuid, subject_contract, purchase_type_code, resume_date, " +
+            "purchase_notice_info_number, lot_guid, subject_contract, purchase_type_code, resume_date, " +
             "has_subcontractor, has_subcontractor_code, subcontractors_total, has_good_info, additional_info," +
             "price, exchange_rate, exchange_rate_date, rub_price, currency_code, start_execution_date," +
             "end_execution_date, has_okpd_and_okdp_rows, has_okpd2_rows, is_electronic_place, electronic_place_name," +
