@@ -1,7 +1,7 @@
 package ru.homyakin.zakupki.web.exceptions;
 
 public class LoginException extends NetworkException {
-    private String message;
+    private final String message;
 
     public LoginException(String message) {
         this.message = message;

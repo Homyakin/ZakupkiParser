@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://zakupki.gov.ru/oos/polls/rest/api/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zakupki.gov.ru/oos/polls/rest/api/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="getPollInfoListResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о опросах</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="serviceCallResultStatus" type="serviceCallResultStatusType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="polls" type="pollListType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Список сведений о опросах</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="serviceCallResultStatusType">
+		<xs:annotation>
+			<xs:documentation>Результат вызова сервиса</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status">
+				<xs:annotation>
+					<xs:documentation>Статус обработки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:enumeration value="0">
+							<xs:annotation>
+								<xs:documentation>Ошибок нет, сервис вернул запрошенные данные</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="1">
+							<xs:annotation>
+								<xs:documentation>Системная ошибка</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="message" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Текстовая расшифровка ошибки, включающая дополнительную информацию</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="pollInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о опросе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Внутренний идентификатор опроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pollTitle" type="pollTitleType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Название опроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pollURL" type="urlType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>URL принятия участия в опросе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pollResultsURL" type="urlType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>URL результатов опроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pollStatus" type="pollStatusType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Статус опроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<!-- Publish date -->
+			<xs:element name="publishDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Дата размещения опроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<!-- Complete date -->
+			<xs:element name="completeDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Дата завершения опроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="showResultsToParticipants" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Признак того, что показ результатов опроса участникам разрешен. При отсутствии данного признака у опроса, результаты опроса не могут быть просмотрены, соответственно гиперссылка на просмотр результатов опроса не формируется.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="isUserVoted" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Признак того, принимал ли пользователь, указанный в параметре запроса username, участие в данном опросе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="pollListType">
+		<xs:annotation>
+			<xs:documentation>Список сведений о опросах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+            <xs:element name="total" type="xs:int" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Количество найденных опросов</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="pollInfo" type="pollInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о опросе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="pollTitleType">
+		<xs:annotation>
+			<xs:documentation>Название опроса</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="400"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="urlType">
+		<xs:annotation>
+			<xs:documentation>URL</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2000"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="pollStatusType">
+		<xs:annotation>
+			<xs:documentation>Статус опроса</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACTIVE">
+				<xs:annotation>
+					<xs:documentation>Действующий (текущий) опрос</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="COMPLETED">
+				<xs:annotation>
+					<xs:documentation>Завершенный опрос</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

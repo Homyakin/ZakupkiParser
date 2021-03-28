@@ -275,6 +275,48 @@
             </xs:complexContent>
         </xs:complexType>
     </xs:element>
+    <xs:element name="typalOrderClauseVersionsDataResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос от ВСРЗ сведений о типовом положении о закупках по реестровому номеру</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="refguid" type="t:guidType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Идентификатор обработанного запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="result" type="t:resultType">
+                                        <xs:annotation>
+                                            <xs:documentation>Результат обработки запроса</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="body" type="typalOrderClauseVersionsDataType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Данные ответа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="violations" type="t:violationListType" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Выявленные в процессе обработки запроса нарушения и ошибки</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="noticeVersionsDataResponse">
         <xs:annotation>
             <xs:documentation>Ответ на запрос от ВСРЗ сведений об извещениях о закупках по реестровому номеру</xs:documentation>
@@ -545,6 +587,17 @@
             <xs:element name="regNumber" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Регистрационный номер сведений</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="10"/>
+                        <xs:maxLength value="23"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="contractRegNumber" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Регистрационный номер договора</xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -950,6 +1003,36 @@
         </xs:complexContent>
     </xs:complexType>
 
+    <xs:complexType name="typalOrderClauseVersionsDataType">
+        <xs:sequence>
+            <xs:element name="result" type="resultType">
+                <xs:annotation>
+                    <xs:documentation>Результат поиска сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versions" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Перечень сведений в ответе</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="version" type="typalOrderClauseType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Описание элемента ответа версий типового положения о закупке</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="zipEncodedData" type="xs:base64Binary" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="typalOrderClauseType">
+        <xs:complexContent>
+            <xs:extension base="commonInfoVersionByRegNum"/>
+        </xs:complexContent>
+    </xs:complexType>
+
 
     <xs:simpleType name="resultType">
         <xs:annotation>
@@ -1076,6 +1159,17 @@
                             <xs:documentation>Этап договора</xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element name="contractRegNumber" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Регистрационный номер договора</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="10"/>
+                                <xs:maxLength value="23"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -1142,6 +1236,11 @@
 
     <xs:simpleType name="entityTypeType">
         <xs:restriction base="xs:string">
+            <xs:enumeration value="typalOrderClause">
+                <xs:annotation>
+                    <xs:documentation>Типовое положение о закупке</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
             <xs:enumeration value="orderClause">
                 <xs:annotation>
                     <xs:documentation>Положение о закупке</xs:documentation>
@@ -1250,6 +1349,11 @@
             <xs:enumeration value="purchaseLotCancellation">
                 <xs:annotation>
                     <xs:documentation>Сведения об отмене лота</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="biddingTimeInfo">
+                <xs:annotation>
+                    <xs:documentation>Сведения о времени проведения торгов</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>

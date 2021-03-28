@@ -326,10 +326,10 @@
                     <xs:documentation>Контактное лицо</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="grantedUserWoAttorney" type="t:grantedUserWoAttorneyType" minOccurs="0">
+            <xs:element name="grantedUsersWoAttorney" type="t:grantedUserWoAttorneyType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>
-                        Информация о лице, имеющем право действовать без доверенности
+                        Информация о лицах, имеющих право действовать без доверенности
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>

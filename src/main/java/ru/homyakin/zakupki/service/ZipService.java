@@ -1,42 +1,43 @@
 package ru.homyakin.zakupki.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.models.FileType;
-import ru.homyakin.zakupki.models.ParseFile;
-import ru.homyakin.zakupki.service.storage.Queue;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ZipService {
     private final static Logger logger = LoggerFactory.getLogger(ZipService.class);
 
     private final FileSystemService fileSystemService;
-    private final Queue<ParseFile> parseFileQueue;
 
     public ZipService(
-        FileSystemService fileSystemService,
-        Queue<ParseFile> parseFileQueue
+        FileSystemService fileSystemService
     ) {
         this.fileSystemService = fileSystemService;
-        this.parseFileQueue = parseFileQueue;
     }
 
-    public void unzipFile(String filePath, String path, String folder) {
-        logger.debug("Start unzipping {}", filePath);
-        try (var zin = new ZipInputStream(Files.newInputStream(Paths.get(filePath)))) {
+    public List<String> unzipFile(Path unzippingFile) {
+        logger.debug("Start unzipping {}", unzippingFile.toString());
+        var unzippedFiles = new ArrayList<String>();
+        try (var zin = new ZipInputStream(Files.newInputStream(unzippingFile))) {
             ZipEntry entry;
-            String name;
+            var unzippingFileName = unzippingFile
+                .getFileName()
+                .toString()
+                .replaceAll("\\.xml\\.zip", ""); //убираем расширение
             while ((entry = zin.getNextEntry()) != null) {
-                name = entry.getName();
-                Path localFile = fileSystemService.makeFile(path + "/unzip/" + name);
+                var fileName = entry.getName();
+                var filePath = String.format("%s/unzip/%s/%s", unzippingFile.getParent().toString(), unzippingFileName, fileName);
+                Path localFile = fileSystemService.makeFile(filePath);
+
                 OutputStream outputFile = Files.newOutputStream(localFile);
                 byte[] buffer = new byte[4096];
                 for (int len = zin.read(buffer); len != -1; len = zin.read(buffer)) {
@@ -46,17 +47,15 @@ public class ZipService {
                 zin.closeEntry();
                 outputFile.close();
 
-                parseFileQueue.put(new ParseFile(
-                    path + "/unzip/" + name,
-                    FileType.fromString(folder).orElseThrow(() -> new IllegalArgumentException("Illegal folder name"))
-                ));
+                unzippedFiles.add(filePath);
             }
         } catch (IllegalArgumentException e) {
             logger.error("Argument error ", e);
         } catch (RuntimeException e) {
             logger.error("Internal error", e);
         } catch (IOException e) {
-            logger.error("Error in unzipping process of file {}", filePath, e);
+            logger.error("Error in unzipping process of file {}", unzippingFile.toString(), e);
         }
+        return unzippedFiles;
     }
 }

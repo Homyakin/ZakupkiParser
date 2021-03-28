@@ -1554,11 +1554,6 @@ CAdES-A</xs:documentation>
                     <xs:documentation>Регистрационный номер</xs:documentation>
                 </xs:annotation>
             </xs:element>
-			<!--<xs:element name="cryptoSigns" type="cryptoSignsType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>ЭЦП документа</xs:documentation>
-				</xs:annotation>
-			</xs:element>-->
 		</xs:sequence>
 	</xs:complexType>
 
@@ -2221,12 +2216,12 @@ CAdES-A</xs:documentation>
         <xs:sequence>
             <xs:element name="cancelDate" type="xs:date">
                 <xs:annotation>
-                    <xs:documentation>Дата отмены лота</xs:documentation>
+                    <xs:documentation>Дата принятия решения</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="cancelInfo">
                 <xs:annotation>
-                    <xs:documentation>Причина отмены лота</xs:documentation>
+                    <xs:documentation>Основание принятия решения</xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="nonEmptyString">
@@ -3285,7 +3280,7 @@ CAdES-A</xs:documentation>
 		<xs:restriction base="xs:string">
 			<xs:maxLength value="300"/>
 			<xs:minLength value="1"/>
-            <xs:pattern value="[\-a-zA-Zа-яА-Я0-9!#%&amp;'\*\+/=\?\^_`\{\|\}~]+(\.[\-a-zA-Zа-яА-Я0-9!#%&amp;'\*\+/=\?\^_`\{\|\}~]+)*@([a-zA-Zа-яА-Я0-9]([\-_a-zA-Zа-яА-Я0-9]{0,61}[a-zA-Zа-яА-Я0-9])?\.)*[\-a-zA-Zа-яА-Я0-9]+(\.[\-a-zA-Zа-яА-Я0-9]+)*"/>
+			<xs:pattern value="([\-a-zA-Zа-яА-Я0-9!#%&amp;'\*\+/=\?\^_`\{\|\}~]+(\.[\-a-zA-Zа-яА-Я0-9!#%&amp;'\*\+/=\?\^_`\{\|\}~]+)*@([a-zA-Zа-яА-Я0-9]([\-_a-zA-Zа-яА-Я0-9]{0,61}[a-zA-Zа-яА-Я0-9])?\.)*[\-a-zA-Zа-яА-Я0-9]+(\.[\-a-zA-Zа-яА-Я0-9]+)*)+(,\s?[\-a-zA-Zа-яА-Я0-9!#%&amp;'\*\+/=\?\^_`\{\|\}~]+(\.[\-a-zA-Zа-яА-Я0-9!#%&amp;'\*\+/=\?\^_`\{\|\}~]+)*@([a-zA-Zа-яА-Я0-9]([\-_a-zA-Zа-яА-Я0-9]{0,61}[a-zA-Zа-яА-Я0-9])?\.)*[\-a-zA-Zа-яА-Я0-9]+(\.[\-a-zA-Zа-яА-Я0-9]+)*)*"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="guidType">
@@ -4124,6 +4119,11 @@ CAdES-A</xs:documentation>
                     <xs:documentation>Логический</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
+			<xs:enumeration value="TIME">
+				<xs:annotation>
+					<xs:documentation>Время</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
             <xs:enumeration value="DATETIME">
                 <xs:annotation>
                     <xs:documentation>Дата / время</xs:documentation>
@@ -4907,6 +4907,11 @@ CAdES-A</xs:documentation>
                     <xs:documentation>Логический</xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<xs:element name="time" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>Время</xs:documentation>
+				</xs:annotation>
+			</xs:element>
             <xs:element name="dateTime" type="xs:dateTime">
                 <xs:annotation>
                     <xs:documentation>Дата и время</xs:documentation>
@@ -5084,6 +5089,11 @@ CAdES-A</xs:documentation>
                     <xs:documentation>Логический</xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<xs:element name="time" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>Время</xs:documentation>
+				</xs:annotation>
+			</xs:element>
             <xs:element name="dateTime" type="xs:dateTime">
                 <xs:annotation>
                     <xs:documentation>Дата и время</xs:documentation>
@@ -5658,5 +5668,20 @@ CAdES-A</xs:documentation>
 			<xs:enumeration value="processing"/>
 		</xs:restriction>
 	</xs:simpleType>
+
+	<xs:simpleType name="positiveIntegerWithoutSigns">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:pattern value="\d*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="hiddenFzFields">
+		<xs:annotation>
+			<xs:documentation>Скрытые поля 223 ФЗ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="0" maxOccurs="unbounded"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
 
 </xs:schema>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><ns2:contract xmlns:ns2="http://zakupki.gov.ru/223fz/contract/1" xmlns="http://zakupki.gov.ru/223fz/types/1" xmlns:ns20="http://zakupki.gov.ru/223fz/purchasePlanProject/1" xmlns:ns21="http://zakupki.gov.ru/223fz/customerRegistry/1" xmlns:ns22="http://zakupki.gov.ru/223fz/typalOrderClauseList/1" xmlns:ns23="http://zakupki.gov.ru/223fz/purchasePlanProjectAdditionalPosition/1" xmlns:ns24="http://zakupki.gov.ru/223fz/ecp-packet/1" xmlns:ns25="http://zakupki.gov.ru/223fz/webRequest/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://zakupki.gov.ru/223fz/dishonestSupplier/1" xmlns:ns4="http://zakupki.gov.ru/223fz/purchasePlan/1" xmlns:ns5="http://zakupki.gov.ru/223fz/purchasePlanUpdatePositionDataType/1" xmlns:ns6="http://zakupki.gov.ru/223fz/missedNotice/1" xmlns:ns7="http://zakupki.gov.ru/223fz/stopCommodity/1" xmlns:ns8="http://zakupki.gov.ru/223fz/reference/1" xmlns:ns9="http://zakupki.gov.ru/223fz/exclusion/1" xmlns:ns10="http://zakupki.gov.ru/223fz/decisionSuspension/1" xmlns:ns11="http://zakupki.gov.ru/223fz/purchasePlanAdditionalPosition/1" xmlns:ns12="http://zakupki.gov.ru/223fz/agencyRelation/1" xmlns:ns13="http://zakupki.gov.ru/223fz/machineryListInfo/1" xmlns:ns14="http://zakupki.gov.ru/223fz/purchase/1" xmlns:ns15="http://zakupki.gov.ru/223fz/revenue/1" xmlns:ns16="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns:ns17="http://zakupki.gov.ru/223fz/complaint/1" xmlns:ns18="http://zakupki.gov.ru/223fz/disagreementProtocol/1" xmlns:ns19="http://zakupki.gov.ru/223fz/notificationIssue/1" xsi:schemaLocation="https://zakupki.gov.ru/223/integration/schema/TFF-9.3 https://zakupki.gov.ru/223/integration/schema/TFF-9.3/contract.xsd">
+    <header xmlns="">
+        <guid>0cf39fb9-72fa-4535-b2fa-2e76efefaf1f</guid>
+        <createDateTime>2019-12-17T04:54:48</createDateTime>
+    </header>
+    <ns2:body xmlns="">
+        <ns2:item>
+            <guid>36860ca5-e4c7-40ca-b09a-b7305b0b1620</guid>
+            <ns2:contractData>
+                <ns2:guid>1a4369e1-751b-4af7-ba40-1b77b4939753</ns2:guid>
+                <ns2:registrationNumber>52208008370190000010001</ns2:registrationNumber>
+                <ns2:notice44>false</ns2:notice44>
+                <ns2:noticeNotPlacedByFz223p5s4>false</ns2:noticeNotPlacedByFz223p5s4>
+                <ns2:termination>false</ns2:termination>
+                <ns2:extension>false</ns2:extension>
+                <ns2:prolongation>false</ns2:prolongation>
+                <ns2:customerAppealedOrNeedsApproval>false</ns2:customerAppealedOrNeedsApproval>
+                <ns2:lotNum>1</ns2:lotNum>
+                <ns2:urlEIS>https://lk.zakupki.gov.ru/223/contract/private/contract/view/general-information.html?id=8160494&amp;viewMode=VSRI</ns2:urlEIS>
+                <ns2:createDateTime>2019-12-17T04:16:35</ns2:createDateTime>
+                <ns2:customer>
+                    <mainInfo>
+                        <fullName>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "СТРОЙСИБ"</fullName>
+                        <shortName>ООО "СТРОЙСИБ"</shortName>
+                        <iko>52208008370220801001</iko>
+                        <inn>2208008370</inn>
+                        <kpp>220801001</kpp>
+                        <ogrn>1022200769755</ogrn>
+                        <legalAddress>658080, КРАЙ АЛТАЙСКИЙ, Г НОВОАЛТАЙСК, УЛ ДЕПОВСКАЯ, дом 38Б</legalAddress>
+                        <postalAddress>658080, Алтайский край, г.Новоалтайск, ул.Деповская,38б</postalAddress>
+                        <phone>83853222717</phone>
+                        <email>stroysib-nov@mail.ru</email>
+                        <okato>01413000000</okato>
+                        <okopf>12300</okopf>
+                        <okopfName>Общества с ограниченной ответственностью</okopfName>
+                        <okpo>53167591</okpo>
+                        <customerRegistrationDate>2000-05-25T00:00:00</customerRegistrationDate>
+                    </mainInfo>
+                </ns2:customer>
+                <ns2:placer>
+                    <mainInfo>
+                        <fullName>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "СТРОЙСИБ"</fullName>
+                        <shortName>ООО "СТРОЙСИБ"</shortName>
+                        <iko>52208008370220801001</iko>
+                        <inn>2208008370</inn>
+                        <kpp>220801001</kpp>
+                        <ogrn>1022200769755</ogrn>
+                        <legalAddress>658080, КРАЙ АЛТАЙСКИЙ, Г НОВОАЛТАЙСК, УЛ ДЕПОВСКАЯ, дом 38Б</legalAddress>
+                        <postalAddress>658080, Алтайский край, г.Новоалтайск, ул.Деповская,38б</postalAddress>
+                        <phone>83853222717</phone>
+                        <email>stroysib-nov@mail.ru</email>
+                        <okato>01413000000</okato>
+                        <okopf>12300</okopf>
+                        <okopfName>Общества с ограниченной ответственностью</okopfName>
+                        <okpo>53167591</okpo>
+                    </mainInfo>
+                </ns2:placer>
+                <ns2:detachedOrg>
+                    <mainInfo>
+                        <fullName>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "СТРОЙСИБ"</fullName>
+                        <shortName>ООО "СТРОЙСИБ"</shortName>
+                        <iko>52208008370220801001</iko>
+                        <inn>2208008370</inn>
+                        <kpp>220801001</kpp>
+                        <ogrn>1022200769755</ogrn>
+                        <legalAddress>658080, КРАЙ АЛТАЙСКИЙ, Г НОВОАЛТАЙСК, УЛ ДЕПОВСКАЯ, дом 38Б</legalAddress>
+                        <postalAddress>658080, Алтайский край, г.Новоалтайск, ул.Деповская,38б</postalAddress>
+                        <phone>83853222717</phone>
+                        <email>stroysib-nov@mail.ru</email>
+                        <okato>01413000000</okato>
+                        <okopf>12300</okopf>
+                        <okopfName>Общества с ограниченной ответственностью</okopfName>
+                        <okpo>53167591</okpo>
+                    </mainInfo>
+                </ns2:detachedOrg>
+                <ns2:publicationDate>2019-12-17T04:54:48</ns2:publicationDate>
+                <ns2:status>P</ns2:status>
+                <ns2:version>1</ns2:version>
+                <ns2:digitalPurchase>false</ns2:digitalPurchase>
+                <ns2:digitalPurchaseCode>400002</ns2:digitalPurchaseCode>
+                <ns2:provider>false</ns2:provider>
+                <ns2:changeContract>false</ns2:changeContract>
+                <ns2:attachments>
+                    <totalDocumentsCount>1</totalDocumentsCount>
+                    <document>
+                        <guid>cc0b39ff-f72f-48ea-b06d-51f6326195ad</guid>
+                        <createDateTime>2019-12-17T04:53:14</createDateTime>
+                        <fileName>Договор тепловые сети  17.12.19.PDF</fileName>
+                        <description>Договор тепловые сети  17.12.19</description>
+                        <url>https://lk.zakupki.gov.ru/223/contract/private/download/download.html?id=50857916</url>
+                        <registrationNumber>52208008370190000010002</registrationNumber>
+                    </document>
+                </ns2:attachments>
+                <ns2:contractRegNumber>52208008370190000010000</ns2:contractRegNumber>
+                <ns2:name>5</ns2:name>
+                <ns2:contractDate>2019-12-17</ns2:contractDate>
+                <ns2:purchaseNoticeInfo>
+                    <ns2:guid>ff05867a-38fe-456d-a81e-dd319a8d1f76</ns2:guid>
+                    <ns2:purchaseNoticeNumber>31908517877</ns2:purchaseNoticeNumber>
+                    <ns2:publicationDateTime>2019-11-14T10:43:53</ns2:publicationDateTime>
+                    <ns2:name>Услуги по обслуживанию тепловых сетей</ns2:name>
+                </ns2:purchaseNoticeInfo>
+                <ns2:lotGuid>bf2232dd-98e9-4adc-9fd3-667fb2bf809a</ns2:lotGuid>
+                <ns2:subjectContract>Услуги по обслуживанию тепловых сетей</ns2:subjectContract>
+                <ns2:purchaseTypeInfo>
+                    <ns2:code>40000</ns2:code>
+                    <ns2:name>Иной способ закупки, предусмотренный правовым актом заказчика, указанным в части 1 статьи 2 Федерального закона</ns2:name>
+                </ns2:purchaseTypeInfo>
+                <ns2:resumeDate>2019-12-05</ns2:resumeDate>
+                <ns2:hasSubcontractor>false</ns2:hasSubcontractor>
+                <ns2:price>192000</ns2:price>
+                <ns2:currency>
+                    <code>RUB</code>
+                    <digitalCode>643</digitalCode>
+                    <name>Российский рубль</name>
+                </ns2:currency>
+                <ns2:startExecutionDate>2020-01-01</ns2:startExecutionDate>
+                <ns2:endExecutionDate>2020-12-31</ns2:endExecutionDate>
+                <ns2:contractPositions>
+                    <ns2:contractPosition>
+                        <ns2:guid>519fc68f-0dac-4549-939b-791a455657a4</ns2:guid>
+                        <ns2:name>Пар и горячая вода; услуги по снабжению паром и горячей водой</ns2:name>
+                        <ns2:ordinalNumber>1</ns2:ordinalNumber>
+                        <ns2:okpd2>
+                            <code>35.30.1</code>
+                            <name>Пар и горячая вода; услуги по снабжению паром и горячей водой</name>
+                        </ns2:okpd2>
+                        <ns2:impossibleToDetermineAttr>false</ns2:impossibleToDetermineAttr>
+                        <ns2:okei>
+                            <code>006</code>
+                            <name>Метр</name>
+                        </ns2:okei>
+                        <ns2:qty>816</ns2:qty>
+                    </ns2:contractPosition>
+                </ns2:contractPositions>
+                <ns2:contractConfirmingDocs>
+                    <ns2:contractDoc>
+                        <ns2:confirmingDocCode>1</ns2:confirmingDocCode>
+                        <ns2:confirmingDocCodeTitle>Протокол, составленный по результатам закупки</ns2:confirmingDocCodeTitle>
+                        <ns2:docDate>2019-12-05</ns2:docDate>
+                    </ns2:contractDoc>
+                </ns2:contractConfirmingDocs>
+                <ns2:hasOkpdAndOkdpRows>false</ns2:hasOkpdAndOkdpRows>
+                <ns2:hasOkpd2Rows>true</ns2:hasOkpd2Rows>
+            </ns2:contractData>
+        </ns2:item>
+    </ns2:body>
+</ns2:contract>

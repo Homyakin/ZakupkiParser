@@ -9,16 +9,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfo3Type;
 import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfoType;
+import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
 public class CustomerRepository {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryService repositoryService;
+    private final RepositoryUtils repositoryUtils;
 
-    public CustomerRepository(DataSource dataSource, RepositoryService repositoryService) {
+    public CustomerRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryService = repositoryService;
+        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(CustomerMainInfoType customer) {
@@ -34,26 +35,26 @@ public class CustomerRepository {
             String timeZoneName = customer.getTimeZone() != null ? customer.getTimeZone().getName() : null;
             jdbcTemplate.update(
                 sql,
-                repositoryService.removeExtraSpaces(customer.getInn()),
-                repositoryService.removeExtraSpaces(customer.getFullName()),
-                repositoryService.removeExtraSpaces(customer.getShortName()),
-                repositoryService.removeExtraSpaces(customer.getIko()),
-                repositoryService.removeExtraSpaces(customer.getKpp()),
-                repositoryService.removeExtraSpaces(customer.getOgrn()),
-                repositoryService.removeExtraSpaces(customer.getLegalAddress()),
-                repositoryService.removeExtraSpaces(customer.getPostalAddress()),
-                repositoryService.removeExtraSpaces(customer.getPhone()),
-                repositoryService.removeExtraSpaces(customer.getFax()),
-                repositoryService.removeExtraSpaces(customer.getEmail()),
-                repositoryService.getOkatoCode(customer.getOkato()),
-                repositoryService.removeExtraSpaces(customer.getOkopf()),
-                repositoryService.validateOkpo(customer.getOkpo()),
-                repositoryService.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),
+                repositoryUtils.removeExtraSpaces(customer.getInn()),
+                repositoryUtils.removeExtraSpaces(customer.getFullName()),
+                repositoryUtils.removeExtraSpaces(customer.getShortName()),
+                repositoryUtils.removeExtraSpaces(customer.getIko()),
+                repositoryUtils.removeExtraSpaces(customer.getKpp()),
+                repositoryUtils.removeExtraSpaces(customer.getOgrn()),
+                repositoryUtils.removeExtraSpaces(customer.getLegalAddress()),
+                repositoryUtils.removeExtraSpaces(customer.getPostalAddress()),
+                repositoryUtils.removeExtraSpaces(customer.getPhone()),
+                repositoryUtils.removeExtraSpaces(customer.getFax()),
+                repositoryUtils.removeExtraSpaces(customer.getEmail()),
+                customer.getOkato(),
+                customer.getOkopf(),
+                repositoryUtils.validateOkpo(customer.getOkpo()),
+                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),
                 timeZoneOffset,
-                repositoryService.removeExtraSpaces(timeZoneName),
-                repositoryService.removeExtraSpaces(customer.getRegion()),
-                repositoryService.convertBoolean(customer.isCustomerAssessedCompliance()),
-                repositoryService.convertBoolean(customer.isCustomerMonitoredCompliance())
+                repositoryUtils.removeExtraSpaces(timeZoneName),
+                repositoryUtils.removeExtraSpaces(customer.getRegion()),
+                repositoryUtils.convertBoolean(customer.isCustomerAssessedCompliance()),
+                repositoryUtils.convertBoolean(customer.isCustomerMonitoredCompliance())
             );
         } catch (DuplicateKeyException ignored) {
 

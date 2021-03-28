@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:contract xsi:schemaLocation="http://zakupki.gov.ru/223/integration/schema/TFF-3.5 http://zakupki.gov.ru/223/integration/schema/TFF-3.5/Types.xsd" xmlns:ns5="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns="http://zakupki.gov.ru/223fz/types/1" xmlns:ns6="http://zakupki.gov.ru/223fz/revenue/1" xmlns:ns7="http://zakupki.gov.ru/223fz/purchase/1" xmlns:ns8="http://zakupki.gov.ru/223fz/complaint/1" xmlns:ns10="http://zakupki.gov.ru/223fz/webRequest/1" xmlns:ns9="http://zakupki.gov.ru/223fz/purchasePlan/1" xmlns:ns2="http://zakupki.gov.ru/223fz/contract/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://zakupki.gov.ru/223fz/dishonestSupplier/1" xmlns:ns4="http://zakupki.gov.ru/223fz/reference/1">
+    <header>
+        <guid>57d95358-38bf-4118-92ec-4a162a7ccf26</guid>
+        <createDateTime>2015-01-16T16:32:42</createDateTime>
+    </header>
+    <ns2:body>
+        <ns2:item>
+            <guid>54fcd7e4-a653-48cd-98cc-66a9e76a72cf</guid>
+            <ns2:contractData>
+                <ns2:guid>d9c350a0-1869-4fff-952a-b0085cfb3772</ns2:guid>
+                <ns2:urlOOS>https://zakupki.gov.ru/223/contract/private/contract/view/general-information.html?id=3780&amp;viewMode=VSRI</ns2:urlOOS>
+                <ns2:createDateTime>2015-01-16T16:15:37</ns2:createDateTime>
+                <ns2:customer>
+                    <mainInfo>
+                        <fullName>Открытое акционерное общество  "Международный аэропорт Владикавказ"</fullName>
+                        <shortName>ОАО "МАВ"</shortName>
+                        <inn>1511012960</inn>
+                        <kpp>151101001</kpp>
+                        <ogrn>1041500801352</ogrn>
+                        <legalAddress>363000, Северная Осетия - Алания, Беслан</legalAddress>
+                        <postalAddress>363000, Республика Северная Осетия - Алания, г. Беслан, аэропорт "Владикавказ"</postalAddress>
+                        <phone>8-8672-408835</phone>
+                        <email>vap@osetia.ru</email>
+                        <okato>90235501000</okato>
+                        <okopf>47</okopf>
+                        <okopfName>Открытые акционерные общества</okopfName>
+                    </mainInfo>
+                </ns2:customer>
+                <ns2:placer>
+                    <mainInfo>
+                        <fullName>Открытое акционерное общество  "Международный аэропорт Владикавказ"</fullName>
+                        <shortName>ОАО "МАВ"</shortName>
+                        <inn>1511012960</inn>
+                        <kpp>151101001</kpp>
+                        <ogrn>1041500801352</ogrn>
+                        <legalAddress>363000, Северная Осетия - Алания, Беслан</legalAddress>
+                        <postalAddress>363000, Республика Северная Осетия - Алания, г. Беслан, аэропорт "Владикавказ"</postalAddress>
+                        <phone>8-8672-408835</phone>
+                        <email>vap@osetia.ru</email>
+                        <okato>90235501000</okato>
+                    </mainInfo>
+                </ns2:placer>
+                <ns2:publicationDate>2015-01-16T16:32:42</ns2:publicationDate>
+                <ns2:status>P</ns2:status>
+                <ns2:version>1</ns2:version>
+                <ns2:digitalPurchase>false</ns2:digitalPurchase>
+                <ns2:digitalPurchaseCode>300002</ns2:digitalPurchaseCode>
+                <ns2:provider>false</ns2:provider>
+                <ns2:changeContract>false</ns2:changeContract>
+                <ns2:attachments/>
+                <ns2:contractRegNumber>51511012960150000010000</ns2:contractRegNumber>
+                <ns2:contractDate>2015-01-15T00:00:00</ns2:contractDate>
+                <ns2:subjectContract>поставка авиационного керосина ТС-1</ns2:subjectContract>
+                <ns2:purchaseTypeInfo>
+                    <ns2:code>30000</ns2:code>
+                    <ns2:name>Закупка у единственного поставщика (подрядчика, исполнителя)</ns2:name>
+                </ns2:purchaseTypeInfo>
+                <ns2:supplierInfo>
+                    <ns2:name>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ТОПЛИВОЗАПРАВОЧНАЯ КОМПАНИЯ АЭРОПОРТ"</ns2:name>
+                    <ns2:shortName>ООО "ТЗК АЭРОПОРТ"</ns2:shortName>
+                    <ns2:inn>1513030845</ns2:inn>
+                    <ns2:kpp>151101001</ns2:kpp>
+                    <ns2:okpo>37410922</ns2:okpo>
+                    <ns2:type>L</ns2:type>
+                    <ns2:provider>false</ns2:provider>
+                    <ns2:subcontractor>false</ns2:subcontractor>
+                    <ns2:individual>false</ns2:individual>
+                    <ns2:nonResident>false</ns2:nonResident>
+                    <ns2:registrationDate>2012-07-30T00:00:00</ns2:registrationDate>
+                    <ns2:tax>true</ns2:tax>
+                    <ns2:okopf>65</ns2:okopf>
+                    <ns2:okopfName>Общества с ограниченной ответственностью</ns2:okopfName>
+                    <ns2:address>
+                        <ns2:country>
+                            <name>РОССИЯ</name>
+                            <digitalCode>643</digitalCode>
+                        </ns2:country>
+                        <ns2:postCode>362000</ns2:postCode>
+                        <ns2:oktmo>90635101</ns2:oktmo>
+                        <ns2:region>
+                            <ns2:fullName>СЕВЕРНАЯ ОСЕТИЯ - АЛАНИЯ Респ</ns2:fullName>
+                        </ns2:region>
+                        <ns2:city>
+                            <ns2:fullName>БЕСЛАН г</ns2:fullName>
+                        </ns2:city>
+                    </ns2:address>
+                </ns2:supplierInfo>
+                <ns2:hasSubcontractor>false</ns2:hasSubcontractor>
+                <ns2:price>3984420</ns2:price>
+                <ns2:currency>
+                    <code>RUB</code>
+                    <digitalCode>643</digitalCode>
+                    <name>Российский рубль</name>
+                </ns2:currency>
+                <ns2:startExecutionDate>2015-01-01T00:00:00</ns2:startExecutionDate>
+                <ns2:endExecutionDate>2015-01-31T00:00:00</ns2:endExecutionDate>
+                <ns2:contractPositions>
+                    <ns2:contractPosition>
+                        <ns2:guid>b301f5fd-10dd-468e-b0bc-f61dd150c28e</ns2:guid>
+                        <ns2:name>авиационный еросин ТС-1</ns2:name>
+                        <ns2:ordinalNumber>1</ns2:ordinalNumber>
+                        <ns2:okdp>
+                            <code>2320221</code>
+                            <name>Топливо для реактивных двигателей (керосин авиационный)</name>
+                        </ns2:okdp>
+                        <ns2:country>
+                            <name>Российская Федерация</name>
+                            <digitalCode>643</digitalCode>
+                        </ns2:country>
+                        <ns2:okei>
+                            <code>168</code>
+                            <name>Тонна; Метрическая тонна (1000 кг)</name>
+                        </ns2:okei>
+                        <ns2:qty>120.74</ns2:qty>
+                    </ns2:contractPosition>
+                </ns2:contractPositions>
+                <ns2:contractConfirmingDocs>
+                    <ns2:contractDoc>
+                        <ns2:confirmingDocCode>2</ns2:confirmingDocCode>
+                        <ns2:confirmingDocCodeTitle>Иной документ</ns2:confirmingDocCodeTitle>
+                        <ns2:docDate>2015-01-15T00:00:00</ns2:docDate>
+                    </ns2:contractDoc>
+                </ns2:contractConfirmingDocs>
+            </ns2:contractData>
+        </ns2:item>
+    </ns2:body>
+</ns2:contract>

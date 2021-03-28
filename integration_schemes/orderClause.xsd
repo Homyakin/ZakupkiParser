@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2008 (http://www.altova.com) by A (A) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/orderClauseList/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/orderClauseList/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
 
-	<xs:element name="orderClause">
-		<xs:annotation>
-			<xs:documentation>Положение о закупке товаров, работ, услуг</xs:documentation>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="t:packetType">
-					<xs:sequence>
-						<xs:element name="body">
-							<xs:annotation>
-								<xs:documentation>Данные информационного пакета</xs:documentation>
-							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="item" type="orderClauseItemType">
-										<xs:annotation>
-											<xs:documentation>Позиция в информационном пакете</xs:documentation>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-					</xs:sequence>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
+    <xs:element name="orderClause">
+        <xs:annotation>
+            <xs:documentation>Положение о закупке товаров, работ, услуг</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="t:packetType">
+                    <xs:sequence>
+                        <xs:element name="body">
+                            <xs:annotation>
+                                <xs:documentation>Данные информационного пакета</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="item" type="orderClauseItemType">
+                                        <xs:annotation>
+                                            <xs:documentation>Позиция в информационном пакете</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="orderClauseDataType">
         <xs:annotation>
@@ -207,7 +207,7 @@
                             <xs:documentation>Реестровый номер положения головной организации</xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element name="headAgencyLinkReason">
+                    <xs:element name="headAgencyLinkReason" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>Основание присоединения к положению другой организации</xs:documentation>
                         </xs:annotation>
@@ -331,25 +331,30 @@
                     <xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="signatureAuthorizedBody" type="xs:base64Binary" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Подпись уполномоченного органа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
-	<xs:complexType name="orderClauseItemType">
-		<xs:annotation>
-			<xs:documentation>Данные позиции в пакете</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="t:itemType">
-				<xs:sequence>
-					<xs:element name="orderClauseData" type="orderClauseDataType">
+    <xs:complexType name="orderClauseItemType">
+        <xs:annotation>
+            <xs:documentation>Данные позиции в пакете</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="t:itemType">
+                <xs:sequence>
+                    <xs:element name="orderClauseData" type="orderClauseDataType">
                         <xs:annotation>
                             <xs:documentation>Положение о закупке товаров, работ, услуг</xs:documentation>
                         </xs:annotation>
                     </xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
     <xs:complexType name="purchaseMethodType">
         <xs:annotation>
             <xs:documentation>Сведения о способах закупки</xs:documentation>

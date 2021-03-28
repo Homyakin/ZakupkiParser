@@ -81,11 +81,16 @@
             </xs:choice>
             <xs:element name="isUploadComplete" type="xs:boolean" default="false" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Признак «Загрузка завершена»</xs:documentation>
+                    <xs:documentation>Признак «Загрузка завершена». Устанавливается в случае передачи сведений плана закупки или пакета дозагрузки позиций.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-		</xs:sequence>
-	</xs:complexType>
+            <xs:element name="signatureAuthorizedBody" type="xs:base64Binary" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Подпись уполномоченного органа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 
 	<xs:complexType name="purchasePlanDataType">
 		<xs:annotation>
@@ -447,7 +452,7 @@
 					</xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="contractEndDate" type="xs:date">
+            <xs:element name="contractEndDate" type="xs:date" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Срок исполнения договора</xs:documentation>
                 </xs:annotation>
@@ -561,6 +566,88 @@
                     <xs:documentation>Глобальный идентификатор позиции размещенной версии плана</xs:documentation>
                 </xs:annotation>
             </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="positionFinancialProvisionVolumeData">
+        <xs:annotation>
+            <xs:documentation>Строки финансового обспечения за счет бюджетных средств</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="positionFinancialProvisionVolumeItem" type="positionFinancialProvisionVolumeDataType" minOccurs="0"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Строка финансового обспечения за счет бюджетных средств</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="positionFinancialProvisionVolumeDataType">
+        <xs:annotation>
+            <xs:documentation>Строка финансового обспечения за счет бюджетных средств</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="targetCode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код целевой статьи расходов по этапу контракта 44-ФЗ или по субсидии, предоставляемой в целях реализации национальных и федеральных проектов</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="typeCode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код вида расходов по этапу контракта 44-ФЗ или по субсидии, предоставляемой в целях реализации национальных и федеральных проектов</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="100"/>
+                        <xs:maxInclusive value="999"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="contractNum" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Реестровый номер контракта 44-ФЗ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="t:nonEmptyString">
+                        <xs:pattern value="\d{19}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="contractEndStageDate" minOccurs="0" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата окончания этапа контракта 44-ФЗ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice>
+                <xs:element name="financialVolumePositionRub" type="t:money2">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Объем финансового обеспечения за счет средств субсидии, предоставляемой в целях реализации национальных и федеральных проектов и (или) комплексного плана модернизации и расширения магистральной инфраструктуры
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="financialVolumePositionRub44" type="t:money2">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Объем финансового обеспечения субподрядного договора за счет средств, предусмотренных контрактом
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="financialVolumePositionRub44NP" type="t:money2">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Объем финансового обеспечения субподрядного договора за счет средств, предусмотренных контрактом, выделяемых в рамках национальных проектов/комплексного плана модернизации и расширения магистральной инфраструктуры
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
         </xs:sequence>
     </xs:complexType>
 
@@ -693,7 +780,11 @@
                                     раздел «Информация об объемах привлечения субъектов малого и среднего предпринимательства» (longTermSMBVolumes);
                                     «Количество (объем)» (qty);
                                     «Единица измерения» (okei);
-                                    «Невозможно определить количество (объем)» (impossibleToDetermineAttr)</xs:documentation>
+                                    «Невозможно определить количество (объем)» (impossibleToDetermineAttr);
+                                    «Начальная (максимальная) цена договора включает финансирование за счет бюджетных средств» (maximumContractPriceFromBudget);
+                                    «Объем финансового обеспечения за счет бюджетных средств» (amountExpenseOfBudget);
+                                    раздел «Строки финансового обспечения за счет бюджетных средств» (positionFinancialProvisionVolumes)
+                                </xs:documentation>
                             </xs:annotation>
                         </xs:element>
                         <xs:sequence>
@@ -784,7 +875,26 @@
                                 раздел «Информация об объемах привлечения субъектов малого и среднего предпринимательства» (longTermSMBVolumes);
                                 «Количество (объем)» (qty);
                                 «Единица измерения» (okei);
-                                «Невозможно определить количество (объем)» (impossibleToDetermineAttr)</xs:documentation>
+                                «Невозможно определить количество (объем)» (impossibleToDetermineAttr);
+                                «Начальная (максимальная) цена договора включает финансирование за счет бюджетных средств» (maximumContractPriceFromBudget);
+                                «Объем финансового обеспечения за счет бюджетных средств» (amountExpenseOfBudget);
+                                раздел «Строки финансового обспечения за счет бюджетных средств» (positionFinancialProvisionVolumes)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name = "maximumContractPriceFromBudget" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Начальная (максимальная) цена договора включает финансирование за счет бюджетных средств</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="amountExpenseOfBudget" type="t:decimal20_2" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Объем финансового обеспечения за счет бюджетных средств</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="positionFinancialProvisionVolumes" type="positionFinancialProvisionVolumeData" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Строки финансового обспечения за счет бюджетных средств</xs:documentation>
                         </xs:annotation>
                     </xs:element>
                 </xs:sequence>
@@ -1001,29 +1111,29 @@
         <xs:complexContent>
             <xs:extension base="basePlanDataItemRowType">
                 <xs:sequence>
-                	<xs:choice>
-                    	<xs:element name="okdp" type="t:okdpProductType">
-                        	<xs:annotation>
-                            	<xs:documentation>ОКДП</xs:documentation>
-                        	</xs:annotation>
-                    	</xs:element>
-                    	<xs:element name="okpd2" type="t:okpd2ProductType">
-                        	<xs:annotation>
-	                            <xs:documentation>ОКПД2</xs:documentation>
-                        	</xs:annotation>
-                    	</xs:element>
+                    <xs:choice>
+                        <xs:element name="okdp" type="t:okdpProductType">
+                            <xs:annotation>
+                                <xs:documentation>ОКДП</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="okpd2" type="t:okpd2ProductType">
+                            <xs:annotation>
+                                <xs:documentation>ОКПД2</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                     </xs:choice>
                     <xs:choice>
-                    	<xs:element name="okved" type="t:okvedProductType">
-                        	<xs:annotation>
-	                            <xs:documentation>ОКВЭД</xs:documentation>
-                        	</xs:annotation>
-                    	</xs:element>
-                    	<xs:element name="okved2" type="t:okved2ProductType">
-                        	<xs:annotation>
-	                            <xs:documentation>ОКВЭД2</xs:documentation>
-                        	</xs:annotation>
-                    	</xs:element>
+                        <xs:element name="okved" type="t:okvedProductType">
+                            <xs:annotation>
+                                <xs:documentation>ОКВЭД</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="okved2" type="t:okved2ProductType">
+                            <xs:annotation>
+                                <xs:documentation>ОКВЭД2</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                     </xs:choice>
                     <xs:element name="okato" type="t:codeOkatoType" minOccurs="0">
                         <xs:annotation>
@@ -1057,10 +1167,39 @@
                             </xs:annotation>
                         </xs:element>
                     </xs:sequence>
+                    <xs:element name="typeObjectPurchase" type="purchaseType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Тип объекта закупки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
+
+    <xs:simpleType name="purchaseType">
+        <xs:annotation>
+            <xs:documentation>Тип объекта закупки</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="G">
+                <xs:annotation>
+                    <xs:documentation>Товар</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="W">
+                <xs:annotation>
+                    <xs:documentation>Работа</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="S">
+                <xs:annotation>
+                    <xs:documentation>Услуга</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
 
     <xs:complexType name="innovationPlanDataItemRowType">
         <xs:annotation>
@@ -1271,7 +1410,7 @@
             </xs:enumeration>
             <xs:enumeration value="27">
                 <xs:annotation>
-                    <xs:documentation>закупки государственными компаниями, созданными на основании федерального закона, товаров, работ, услуг, по результатам которых заключаются на срок более 5 лет договоры (соглашения), которые предусматривают софинансирование, проектирование и (или) разработку рабочей документации и строительство (реконструкцию и (или) комплексное обустройство), эксплуатацию, включая содержание, ремонт (при необходимости капитальный ремонт) автомобильных дорог (участков автомобильных дорог) общего пользования федерального значения и (или) отдельных дорожных сооружений, являющихся их технологической частью, а также могут предусматривать выполнение функций оператора по сбору платы за проезд по платным автомобильным дорогам (платным участкам автомобильных дорог) общего пользования федерального значения, при условии установления указанными заказчиками в отношении участников закупки требований о привлечении к исполнению таких договоров (соглашений) субподрядчиков (соисполнителей) из числа субъектов малого и среднего предпринимательства</xs:documentation>
+                    <xs:documentation>закупки государственными компаниями, созданными на основании федерального закона, товаров, работ, услуг, по результатам которых заключаются на срок более 5 лет договоры (соглашения), которые предусматривают одновременно софинансирование, проектирование и (или) разработку рабочей документации, строительство (реконструкцию и (или) комплексное обустройство), эксплуатацию, включая содержание, ремонт (при необходимости), капитальный ремонт (при необходимости) автомобильных дорог (участков автомобильных дорог) общего пользования федерального значения и (или) отдельных дорожных сооружений, являющихся их технологической частью, выполнение функций оператора по сбору платы за проезд по платным автомобильным дорогам (платным участкам автомобильных дорог) общего пользования федерального значения (при необходимости), при условии установления указанными заказчиками в отношении участников закупки требований о привлечении к исполнению таких договоров (соглашений) субподрядчиков (соисполнителей) из числа субъектов малого и среднего предпринимательства</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="28">
@@ -1282,6 +1421,11 @@
             <xs:enumeration value="29">
                 <xs:annotation>
                     <xs:documentation>закупки работ, услуг по проектированию, строительству, эксплуатации, реконструкции, капитальному ремонту, техническому перевооружению, консервации и ликвидации объектов, которые в соответствии с законодательством Российской Федерации относятся к категории опасных производственных объектов, либо критически важных объектов топливно-энергетического комплекса, критических элементов объектов топливно-энергетического комплекса, определяемых в соответствии с законодательством Российской Федерации о безопасности объектов топливно-энергетического комплекса (за исключением закупки работ, услуг, включенных в утвержденный заказчиком перечень товаров, работ, услуг (в том числе инновационной продукции, высокотехнологичной продукции), закупки которых осуществляются у субъектов малого и среднего предпринимательства, в случае если начальная (максимальная) цена договора на выполнение работ, оказание услуг по результатам указанных закупок превышает 400 млн. рублей</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="30">
+                <xs:annotation>
+                    <xs:documentation>закупки лизинговыми компаниями предметов лизинга, в случае если начальная (максимальная) цена обязательного договора купли-продажи, заключаемого для выполнения своих обязательств по договору лизинга, превышает 400 млн. рублей</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>

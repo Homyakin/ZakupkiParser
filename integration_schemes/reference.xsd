@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2008 (http://www.altova.com) by A (A) -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/reference/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/reference/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zakupki.gov.ru/223fz/reference/1" xmlns:t="http://zakupki.gov.ru/223fz/types/1" targetNamespace="http://zakupki.gov.ru/223fz/reference/1" elementFormDefault="qualified">
 	<xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
 	<xs:complexType name="nsiOkatoDataType">
 		<xs:annotation>
@@ -722,7 +722,7 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="t:nonEmptyString">
-                        <xs:pattern value="[A-Q]{1}"/>
+                        <xs:pattern value="[A-Q]"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -806,7 +806,7 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="t:nonEmptyString">
-						<xs:pattern value="[A-Q]{1}"/>
+						<xs:pattern value="[A-Q]"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -844,7 +844,7 @@
 					<xs:documentation>Глобальный идентификатор элемента справочника</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="code" type="t:organizationCodeType" minOccurs="0" maxOccurs="1">
+			<xs:element name="code" type="t:organizationCodeType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Индивидуальный код организации</xs:documentation>
 				</xs:annotation>
@@ -1281,7 +1281,7 @@
 				</xs:simpleType>
 			</xs:element>
 			<xs:element name="successionInfo" type="SuccessionInfo"
-                        minOccurs="0" maxOccurs="1"/>
+                        minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
     <xs:complexType name="SuccessionInfo">
@@ -1301,14 +1301,14 @@
                               выделения</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-			<xs:element name="inn" type="t:innType" maxOccurs="1"
+			<xs:element name="inn" type="t:innType"
                         minOccurs="0"/>
-            <xs:element name="ogrn" type="t:ogrnType" maxOccurs="1"
+            <xs:element name="ogrn" type="t:ogrnType"
                         minOccurs="0"/>
-			<xs:element name="kpp" type="t:kppType" maxOccurs="1"
+			<xs:element name="kpp" type="t:kppType"
                         minOccurs="0"/>
-            <xs:element name="fullName" maxOccurs="1" type="xs:string"/>
-			<xs:element name="shortName" maxOccurs="1" type="xs:string" minOccurs="0" />
+            <xs:element name="fullName" type="xs:string"/>
+			<xs:element name="shortName" type="xs:string" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>
 	<xs:complexType name="nsiOrganizationItemType">
@@ -1381,7 +1381,7 @@
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="template" type="t:orderClauseTemplateType" minOccurs="1" maxOccurs="unbounded">
+                        <xs:element name="template" type="t:orderClauseTemplateType" maxOccurs="unbounded">
                             <xs:annotation>
                                 <xs:documentation>Шаблон</xs:documentation>
                             </xs:annotation>
@@ -1449,7 +1449,7 @@
 			<xs:sequence>
 				<xs:element name="purchaseMethod" type="xs:long" maxOccurs="unbounded" minOccurs="0">
 					<xs:annotation>
-						<xs:documentation>Код cпособа закупки</xs:documentation>
+						<xs:documentation>Код способа закупки</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 			</xs:sequence>
@@ -1464,7 +1464,7 @@
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="template" type="t:protocolTemplateType" minOccurs="1" maxOccurs="unbounded">
+                        <xs:element name="template" type="t:protocolTemplateType" maxOccurs="unbounded">
                             <xs:annotation>
                                 <xs:documentation>Шаблон</xs:documentation>
                             </xs:annotation>
@@ -1475,6 +1475,11 @@
 			<xs:element name="protocolKind" minOccurs="0" type="protocolKindType">
 				<xs:annotation>
 					<xs:documentation>Вид протокола</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lotOriented" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Признак многолотовости</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1528,7 +1533,7 @@
             </xs:element>
 			<xs:element name="code" type="xs:long">
 				<xs:annotation>
-					<xs:documentation>Код cпособа закупки</xs:documentation>
+					<xs:documentation>Код способа закупки</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="name">
@@ -1543,7 +1548,7 @@
 			</xs:element>
             <xs:element name="parentCode" type="xs:long">
                 <xs:annotation>
-                    <xs:documentation>Код родительского cпособа закупки</xs:documentation>
+                    <xs:documentation>Код родительского способа закупки</xs:documentation>
                 </xs:annotation>
             </xs:element>
 			<xs:element name="orderNumber" type="xs:int">
@@ -1577,7 +1582,7 @@
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="template" type="t:noticeTemplateType" minOccurs="1" maxOccurs="unbounded">
+                        <xs:element name="template" type="t:noticeTemplateType" maxOccurs="unbounded">
                             <xs:annotation>
                                 <xs:documentation>Шаблон</xs:documentation>
                             </xs:annotation>
@@ -1612,6 +1617,11 @@
 					<xs:documentation>Вид типового способа</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="lotOriented" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Признак многолотовости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -1620,7 +1630,7 @@
             <xs:documentation>Автоматизированные переходы на другие подэтапы</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="transition" type="phaseTransition" minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="transition" type="phaseTransition" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>Переход</xs:documentation>
                 </xs:annotation>
@@ -1651,7 +1661,7 @@
             <xs:documentation>Перечень подэтапов</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="phase" type="purchasePhase" minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="phase" type="purchasePhase" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>Подэтап</xs:documentation>
                 </xs:annotation>

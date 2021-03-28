@@ -4,6 +4,7 @@ import java.util.Optional;
 
 public enum FileType {
     CONTRACT("contract"),
+    PURCHASE_CONTRACT("purchaseContract"),
     PURCHASE_PLAN("purchasePlan"),
     PURCHASE_NOTICE("purchaseNotice"),
     PURCHASE_NOTICE_AE("purchaseNoticeAE"),
@@ -36,5 +37,4 @@ public enum FileType {
         }
         return Optional.empty();
     }
-
 }

@@ -29,6 +29,7 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:complexType name="typalOrderClauseItemType">
 		<xs:annotation>
 			<xs:documentation>Данные позиции в пакете</xs:documentation>
@@ -45,22 +46,68 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+
 	<xs:complexType name="typalOrderClauseDataType">
 		<xs:annotation>
 			<xs:documentation>Типовое положение о закупке товаров, работ, услуг</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
+			<xs:element name="guid" type="t:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор положения о закупках</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания сведений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="urlEIS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Url документа в ЕИС</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="3000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="urlVSRZ" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Url документа в ВСРЗ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="3000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="urlKisRmis" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Url документа в КИС/РМИС</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="3000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
 			<xs:element name="placeDate" type="xs:dateTime" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Дата размещения сведений</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="creator" type="t:customerInfoType" minOccurs="0">
+			<xs:element name="creator" type="t:customerInfoType">
 				<xs:annotation>
-					<xs:documentation>Организация, создавшая типовое положение</xs:documentation>
+					<xs:documentation>Данные о владельце типового положения о закупке</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="name" minOccurs="0">
+			<xs:element name="status" type="t:orderClauseStatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Статус положения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
 				<xs:annotation>
 					<xs:documentation>Наименование типового положения</xs:documentation>
 				</xs:annotation>
@@ -70,17 +117,22 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="approveDate" type="xs:dateTime" minOccurs="0">
+			<xs:element name="registrationNumber" type="t:registrationNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер типового положения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="approveDate" type="xs:dateTime">
 				<xs:annotation>
 					<xs:documentation>Дата утверждения типового положения</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="useForBaseDate" type="xs:dateTime" minOccurs="0">
+			<xs:element name="useForBaseDate" type="xs:dateTime">
 				<xs:annotation>
 					<xs:documentation>Срок изменения или утверждения положения о закупке на основании типового положения</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="contractSignPeriod" minOccurs="0">
+			<xs:element name="contractSignPeriod">
 				<xs:annotation>
 					<xs:documentation>Срок заключения договора</xs:documentation>
 				</xs:annotation>
@@ -90,7 +142,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="purchaseOrder" minOccurs="0">
+			<xs:element name="purchaseOrder">
 				<xs:annotation>
 					<xs:documentation>Порядок подготовки и (или) осуществления закупки</xs:documentation>
 				</xs:annotation>
@@ -131,7 +183,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="smbParticipationSpecifics" minOccurs="0">
+			<xs:element name="smbParticipationSpecifics">
 				<xs:annotation>
 					<xs:documentation>Особенности участия субъектов малого и среднего предпринимательства</xs:documentation>
 				</xs:annotation>
@@ -141,14 +193,24 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="purchaseMethod" type="purchaseMethodType" minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="purchaseMethod" type="purchaseMethodType" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Сведения о способах закупки</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="customerInfo" type="t:customerInfoType" minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="customerInfo" type="t:customerInfoType" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Сведения о заказчиках, применение типового положения о закупке для которых является обязательным</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="attachments" type="t:documentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="signatureAuthorizedBody" type="xs:base64Binary" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подпись уполномоченного органа</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -158,6 +220,11 @@
 			<xs:documentation>Сведения о способах закупки</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
+			<xs:element name="purchaseMethodCode" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Cпособ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="purchaseMethodName">
 				<xs:annotation>
 					<xs:documentation>Название способа закупки</xs:documentation>
