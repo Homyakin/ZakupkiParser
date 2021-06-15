@@ -13,8 +13,8 @@ public class RegionFilesStorage {
     private final Map<String, ParseFileQueue> storage = new ConcurrentHashMap<>();
 
     public void insert(String region, ParseFile file) {
-        var key = region + file.getType().getValue();
-        if (!storage.containsKey(region + file.getType().getValue())) {
+        var key = region + file.getFolder().getName();
+        if (!storage.containsKey(region + file.getFolder().getName())) {
             storage.put(key, new ParseFileQueue());
         }
         storage.get(key).put(file);

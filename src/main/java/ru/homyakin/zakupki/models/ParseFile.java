@@ -2,15 +2,15 @@ package ru.homyakin.zakupki.models;
 
 public class ParseFile {
     private final String filepath;
-    private final FileType type;
+    private final Folder folder;
 
-    public ParseFile(String filepath, FileType type) {
+    public ParseFile(String filepath, Folder folder) {
         this.filepath = filepath;
-        this.type = type;
+        this.folder = folder;
     }
 
-    public FileType getType() {
-        return type;
+    public Folder getFolder() {
+        return folder;
     }
 
     public String getFilepath() {

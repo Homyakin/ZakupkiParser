@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.CustomerRepository;
 import ru.homyakin.zakupki.database.purchase_plan.ElectronicPlaceRepository;
-import ru.homyakin.zakupki.models.FileType;
+import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAE94FZDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAEDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeDataBaseType;
@@ -56,7 +56,7 @@ public class PurchaseNoticeRepository {
         this.purchaseNoticeLotRepository = purchaseNoticeLotRepository;
     }
 
-    public void insert(PurchaseNoticeDataBaseType data, FileType fileType) {
+    public void insert(PurchaseNoticeDataBaseType data, Folder folder) {
         String sql = "INSERT INTO zakupki.purchase_notice (guid, purchase_notice_type_code, create_date_time, url_eis, url_vsrz, " +
             "url_kis_rmis, registration_number, name, customer_inn, detached_org_inn, blocked_customer_inn," +
             "purchase_method_code, purchase_code_name, placer_inn, publication_date_time, purchase_notice_status_code," +
@@ -119,7 +119,7 @@ public class PurchaseNoticeRepository {
             jdbcTemplate.update(
                 sql,
                 data.getGuid(),
-                fileType.getValue(),
+                folder.getName(),
                 repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
                 data.getUrlEIS(),
                 data.getUrlVSRZ(),

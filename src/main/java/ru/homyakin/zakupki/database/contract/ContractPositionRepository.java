@@ -61,7 +61,7 @@ public class ContractPositionRepository {
                     repositoryUtils.getCurrencyCode(position.getCurrency()),
                     position.getExchangeRate(),
                     position.getRubUnitPrice(),
-                    position.getSourceInfo().value()
+                    position.getSourceInfo() != null ? position.getSourceInfo().value() : null
                 );
             }
             insertPositionToContract(guid, contractGuid);
