@@ -34,8 +34,9 @@ public class ContractPositionRepository {
     public void insert(PositionType position, String contractGuid) {
         String sql = "INSERT INTO zakupki.contract_position (guid," +
             "name, okdp_code, okdp_name, okpd_code, okpd_name, okpd2_code, okpd2_name, country_code," +
-            "producer_country, impossible_to_determine_attr, okei_code, okei_name, qty)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "producer_country, impossible_to_determine_attr, okei_code, okei_name, qty, unit_price, currency_code, " +
+            "exchange_rate, rub_unit_price, source_info)" +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             var guid = getGuid(position.getGuid());
@@ -55,7 +56,12 @@ public class ContractPositionRepository {
                     repositoryUtils.convertBoolean(position.isImpossibleToDetermineAttr()),
                     classifierService.getClassifierCode(position.getOkei()),
                     classifierService.getClassifierName(position.getOkei()),
-                    position.getQty()
+                    position.getQty(),
+                    position.getUnitPrice(),
+                    repositoryUtils.getCurrencyCode(position.getCurrency()),
+                    position.getExchangeRate(),
+                    position.getRubUnitPrice(),
+                    position.getSourceInfo() != null ? position.getSourceInfo().value() : null
                 );
             }
             insertPositionToContract(guid, contractGuid);

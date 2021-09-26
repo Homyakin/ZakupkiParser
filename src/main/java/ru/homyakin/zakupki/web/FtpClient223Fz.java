@@ -1,6 +1,7 @@
 package ru.homyakin.zakupki.web;
 
 import java.io.IOException;
+import java.net.NoRouteToHostException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,9 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.config.FtpConfiguration;
 import ru.homyakin.zakupki.models.FileType;
+import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.service.FileSystemService;
-import ru.homyakin.zakupki.service.ZipService;
-import ru.homyakin.zakupki.service.storage.RegionFilesStorage;
 import ru.homyakin.zakupki.utils.CommonUtils;
 import ru.homyakin.zakupki.web.exceptions.ConnectException;
 import ru.homyakin.zakupki.web.exceptions.LoginException;
@@ -30,10 +30,6 @@ public class FtpClient223Fz implements FtpClientFz {
     private final static String basicWorkspace = "/out/published";
     private final static String downloadPath = Paths.get(".").toAbsolutePath().normalize().toString() + "/zakupki_download";
     private final static FTPClient ftp = new FTPClient();
-    private final List<FileType> parsingFolders = new ArrayList<>();
-    private final List<String> parsingRegions = new ArrayList<>();
-    private final ZipService zipService;
-    private final RegionFilesStorage storage;
     private final FileSystemService fileSystemService;
     private final FtpConfiguration ftpConfiguration;
     private final CommonUtils commonUtils;
@@ -41,23 +37,15 @@ public class FtpClient223Fz implements FtpClientFz {
     private LocalDate endDate = LocalDate.of(4000, 1, 1);
 
     public FtpClient223Fz(
-        ZipService zipService,
         FileSystemService fileSystemService,
         FtpConfiguration ftpConfiguration,
-        RegionFilesStorage storage,
         CommonUtils commonUtils
     ) {
-        this.zipService = zipService;
-        this.storage = storage;
         this.fileSystemService = fileSystemService;
         this.ftpConfiguration = ftpConfiguration;
         this.commonUtils = commonUtils;
     }
-
-    public FileType[] getAllParsingFolders() {
-        return FileType.values();
-    }
-
+    
     public List<String> getAllRegions() {
         var list = new ArrayList<String>();
         try {
@@ -115,8 +103,8 @@ public class FtpClient223Fz implements FtpClientFz {
         this.endDate = endDate;
     }
 
-    public List<FTPFile> getFilesInRegionFolder(String region, FileType fileType) {
-        var workspace = String.format("%s/%s/%s/daily", basicWorkspace, region, fileType.getValue());
+    public List<FTPFile> getFilesInRegionFolder(String region, Folder folder) {
+        var workspace = String.format("%s/%s/%s/daily", basicWorkspace, region, folder.getName());
         var fileList = new ArrayList<FTPFile>();
         try {
             var files = ftp.listFiles(workspace);
@@ -132,15 +120,28 @@ public class FtpClient223Fz implements FtpClientFz {
         return fileList;
     }
 
-    public Optional<Path> downloadFile(FTPFile ftpFile, String region, FileType fileType) {
-        var localPath = String.format("%s/%s/%s/%s", downloadPath, region, fileType.getValue(), ftpFile.getName());
-        var remotePath = String.format("%s/%s/%s/daily/%s", basicWorkspace, region, fileType.getValue(), ftpFile.getName());
+    public Optional<Path> downloadFile(FTPFile ftpFile, String region, Folder folder) {
+        var localPath = String.format("%s/%s/%s/%s", downloadPath, region, folder.getName(), ftpFile.getName());
+        var remotePath = String.format("%s/%s/%s/daily/%s", basicWorkspace, region, folder.getName(), ftpFile.getName());
         Path localFile = fileSystemService.makeFile(localPath);
         boolean isDownload = false;
-        try(var stream = Files.newOutputStream(localFile)) {
-            isDownload = ftp.retrieveFile(remotePath, stream);
-        } catch (IOException e) {
-            logger.error("Something went wrong wile downloading {}", remotePath, e);
+        for (int retryCount = 1; !isDownload; ++retryCount) {
+            try(var stream = Files.newOutputStream(localFile)) {
+                isDownload = ftp.retrieveFile(remotePath, stream);
+            }  catch (NoRouteToHostException e) {
+                logger.warn("NoRouteToHostException on {}, try waiting and retry {}", remotePath, retryCount);
+                try {
+                    //Походу закупки поставили ограничитель на количество запросов, дадим им передышку
+                    Thread.sleep(10 * 1000);
+                } catch (InterruptedException ignored) {
+                }
+            }catch (IOException e) {
+                logger.error("Something went wrong wile downloading {}", remotePath, e);
+                break;
+            }
+            if (isDownload && retryCount > 1) {
+                logger.info("Success retry on {}; count {}", remotePath, retryCount);
+            }
         }
         if (!isDownload) {
             logger.error("Something went wrong wile downloading {}", remotePath);

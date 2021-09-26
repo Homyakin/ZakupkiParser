@@ -16,11 +16,11 @@ public class CommonUtils {
             .toLocalDate();
     }
 
-    public String generateGuid() {
+    public static String generateGuid() {
         return UUID.randomUUID().toString();
     }
 
-    public String extractRegionFromFilePath(String filePath) {
+    public static String extractRegionFromFilePath(String filePath) {
         //Формат типФайла_Регион(может содержать _)_Дата.xml
         var path = Path.of(filePath);
         var words = path.getFileName().toString().split("_");

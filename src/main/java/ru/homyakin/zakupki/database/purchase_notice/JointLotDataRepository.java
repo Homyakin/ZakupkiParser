@@ -14,16 +14,13 @@ public class JointLotDataRepository {
     private static final Logger logger = LoggerFactory.getLogger(JointLotDataRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRepository customerRepository;
-    private final RepositoryUtils repositoryUtils;
 
     public JointLotDataRepository(
         DataSource dataSource,
-        CustomerRepository customerRepository,
-        RepositoryUtils repositoryUtils
+        CustomerRepository customerRepository
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.customerRepository = customerRepository;
-        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(LotCustomerType lotCustomer, String lotGuid) {
@@ -38,13 +35,13 @@ public class JointLotDataRepository {
                 lotGuid,
                 lotCustomer.getCustomerInfo().getInn(),
                 lotCustomer.getAdditionalInfo(),
-                lotCustomer.getDeliveryPlaceIndication().value(),
-                repositoryUtils.convertBoolean(lotCustomer.isLotCustomerEditEnabled()),
-                repositoryUtils.convertBoolean(lotCustomer.isTax()),
-                repositoryUtils.convertBoolean(lotCustomer.isNonResident()),
+                lotCustomer.getDeliveryPlaceIndication() != null ? lotCustomer.getDeliveryPlaceIndication().value() : null,
+                RepositoryUtils.convertBoolean(lotCustomer.isLotCustomerEditEnabled()),
+                RepositoryUtils.convertBoolean(lotCustomer.isTax()),
+                RepositoryUtils.convertBoolean(lotCustomer.isNonResident()),
                 lotCustomer.getNonResidentInfo() != null ? lotCustomer.getNonResidentInfo().getName() : null,
                 lotCustomer.getNonResidentInfo() != null ? lotCustomer.getNonResidentInfo().getCode() : null,
-                lotCustomer.getNonResidentInfo() != null ? repositoryUtils.getCountryCode(lotCustomer.getNonResidentInfo().getCountry()) : null
+                lotCustomer.getNonResidentInfo() != null ? RepositoryUtils.getCountryCode(lotCustomer.getNonResidentInfo().getCountry()) : null
             );
         } catch (Exception e) {
             logger.error("Error during inserting joint lot data", e);

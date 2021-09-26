@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.CustomerRepository;
 import ru.homyakin.zakupki.database.purchase_plan.ElectronicPlaceRepository;
-import ru.homyakin.zakupki.models.FileType;
+import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAE94FZDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAEDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeDataBaseType;
@@ -25,7 +25,6 @@ import ru.homyakin.zakupki.utils.RepositoryUtils;
 public class PurchaseNoticeRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryUtils repositoryUtils;
     private final CustomerRepository customerRepository;
     private final ElectronicPlaceRepository electronicPlaceRepository;
     private final PlacingProcedureRepository placingProcedureRepository;
@@ -33,20 +32,20 @@ public class PurchaseNoticeRepository {
     private final PurchaseNoticeDocumentationDelivery purchaseNoticeDocumentationDelivery;
     private final PurchaseNoticeExtraRepository purchaseNoticeExtraRepository;
     private final PurchaseNoticeLotRepository purchaseNoticeLotRepository;
+    private final PurchaseNoticeToLotRepository purchaseNoticeToLotRepository;
 
     public PurchaseNoticeRepository(
         DataSource dataSource,
-        RepositoryUtils repositoryUtils,
         CustomerRepository customerRepository,
         ElectronicPlaceRepository electronicPlaceRepository,
         PlacingProcedureRepository placingProcedureRepository,
         PurchaseNoticeContactRepository purchaseNoticeContactRepository,
         PurchaseNoticeDocumentationDelivery purchaseNoticeDocumentationDelivery,
         PurchaseNoticeExtraRepository purchaseNoticeExtraRepository,
-        PurchaseNoticeLotRepository purchaseNoticeLotRepository
+        PurchaseNoticeLotRepository purchaseNoticeLotRepository,
+        PurchaseNoticeToLotRepository purchaseNoticeToLotRepository
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryUtils = repositoryUtils;
         this.customerRepository = customerRepository;
         this.electronicPlaceRepository = electronicPlaceRepository;
         this.placingProcedureRepository = placingProcedureRepository;
@@ -54,9 +53,10 @@ public class PurchaseNoticeRepository {
         this.purchaseNoticeDocumentationDelivery = purchaseNoticeDocumentationDelivery;
         this.purchaseNoticeExtraRepository = purchaseNoticeExtraRepository;
         this.purchaseNoticeLotRepository = purchaseNoticeLotRepository;
+        this.purchaseNoticeToLotRepository = purchaseNoticeToLotRepository;
     }
 
-    public void insert(PurchaseNoticeDataBaseType data, FileType fileType) {
+    public void insert(PurchaseNoticeDataBaseType data, Folder folder, String region) {
         String sql = "INSERT INTO zakupki.purchase_notice (guid, purchase_notice_type_code, create_date_time, url_eis, url_vsrz, " +
             "url_kis_rmis, registration_number, name, customer_inn, detached_org_inn, blocked_customer_inn," +
             "purchase_method_code, purchase_code_name, placer_inn, publication_date_time, purchase_notice_status_code," +
@@ -65,9 +65,9 @@ public class PurchaseNoticeRepository {
             "antimonopoly_decision_taken, additional_info, appl_submision_place, appl_submision_start_date," +
             "appl_submision_order, envelope_opening_order, appl_examination_order, summingup_order, auction_order," +
             "consideration_second_part_place, consideration_second_part_order, is_upload_complete, electronic_place_id," +
-            "submission_close_date_time, publication_planned_date)" +
+            "submission_close_date_time, publication_planned_date, region_name)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
-            "?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         logger.info("Inserting purchase notice with guid: {}", data.getGuid());
         try {
             customerRepository.insert(data.getCustomer().getMainInfo());
@@ -86,32 +86,26 @@ public class PurchaseNoticeRepository {
             ElectronicPlaceInfoType electronicPlaceInfo = null;
             XMLGregorianCalendar submissionCloseDateTime = null;
             XMLGregorianCalendar publicationPlannedDate = null;
-            //TODO change when smart instanceof release
-            if (data instanceof PurchaseNoticeDataType) {
-                var notice = (PurchaseNoticeDataType) data;
+
+            if (data instanceof PurchaseNoticeDataType notice) {
                 electronicPlaceInfo = notice.getElectronicPlaceInfo();
                 submissionCloseDateTime = notice.getSubmissionCloseDateTime();
                 publicationPlannedDate = notice.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeAE94FZDataType) {
-                var noticeAE94 = (PurchaseNoticeAE94FZDataType) data;
+            } else if (data instanceof PurchaseNoticeAE94FZDataType noticeAE94) {
                 electronicPlaceInfo = noticeAE94.getElectronicPlaceInfo();
                 submissionCloseDateTime = noticeAE94.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeAE94.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeAEDataType) {
-                var noticeAE = (PurchaseNoticeAEDataType) data;
+            } else if (data instanceof PurchaseNoticeAEDataType noticeAE) {
                 electronicPlaceInfo = noticeAE.getElectronicPlaceInfo();
                 submissionCloseDateTime = noticeAE.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeAE.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeOADataType) {
-                var noticeOA = (PurchaseNoticeOADataType) data;
+            } else if (data instanceof PurchaseNoticeOADataType noticeOA) {
                 submissionCloseDateTime = noticeOA.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeOA.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeOKDataType) {
-                var noticeOK = (PurchaseNoticeOKDataType) data;
+            } else if (data instanceof PurchaseNoticeOKDataType noticeOK) {
                 submissionCloseDateTime = noticeOK.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeOK.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeZKDataType) {
-                var noticeZK = (PurchaseNoticeZKDataType) data;
+            } else if (data instanceof PurchaseNoticeZKDataType noticeZK) {
                 submissionCloseDateTime = noticeZK.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeZK.getPublicationPlannedDate();
             }
@@ -119,8 +113,8 @@ public class PurchaseNoticeRepository {
             jdbcTemplate.update(
                 sql,
                 data.getGuid(),
-                fileType.getValue(),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
+                folder.getName(),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
                 data.getUrlEIS(),
                 data.getUrlVSRZ(),
                 data.getUrlKisRmis(),
@@ -132,36 +126,36 @@ public class PurchaseNoticeRepository {
                 data.getPurchaseMethodCode(),
                 data.getPurchaseCodeName(),
                 data.getPlacer().getMainInfo().getInn(),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
                 data.getStatus() != null ? data.getStatus().value() : null,
                 data.getVersion(),
-                repositoryUtils.removeExtraSpaces(data.getModificationDescription()),
-                repositoryUtils.convertBoolean(data.isNotDishonest()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getModificationDate()),
+                RepositoryUtils.removeExtraSpaces(data.getModificationDescription()),
+                RepositoryUtils.convertBoolean(data.isNotDishonest()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getModificationDate()),
                 data.getSaveUserId(),
                 data.getDeliveryPlaceIndication() != null ? data.getDeliveryPlaceIndication().value() : null,
-                repositoryUtils.convertBoolean(data.isEmergency()),
-                repositoryUtils.convertBoolean(data.isJointPurchase()),
-                repositoryUtils.convertBoolean(data.isForSmallOrMiddle()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getChangeDecisionDate()),
-                repositoryUtils.convertBoolean(data.isAntimonopolyDecisionTaken()),
-                repositoryUtils.removeExtraSpaces(data.getAdditionalInfo()),
-                repositoryUtils.removeExtraSpaces(data.getApplSubmisionPlace()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getApplSubmisionStartDate()),
-                repositoryUtils.removeExtraSpaces(data.getApplSubmisionOrder()),
-                repositoryUtils.removeExtraSpaces(data.getEnvelopeOpeningOrder()),
-                repositoryUtils.removeExtraSpaces(data.getApplExaminationOrder()),
-                repositoryUtils.removeExtraSpaces(data.getSummingupOrder()),
-                repositoryUtils.removeExtraSpaces(data.getAuctionOrder()),
-                repositoryUtils.removeExtraSpaces(data.getConsiderationSecondPartPlace()),
-                repositoryUtils.removeExtraSpaces(data.getConsiderationSecondPartOrder()),
-                repositoryUtils.convertBoolean(data.isIsUploadComplete()),
+                RepositoryUtils.convertBoolean(data.isEmergency()),
+                RepositoryUtils.convertBoolean(data.isJointPurchase()),
+                RepositoryUtils.convertBoolean(data.isForSmallOrMiddle()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getChangeDecisionDate()),
+                RepositoryUtils.convertBoolean(data.isAntimonopolyDecisionTaken()),
+                RepositoryUtils.removeExtraSpaces(data.getAdditionalInfo()),
+                RepositoryUtils.removeExtraSpaces(data.getApplSubmisionPlace()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getApplSubmisionStartDate()),
+                RepositoryUtils.removeExtraSpaces(data.getApplSubmisionOrder()),
+                RepositoryUtils.removeExtraSpaces(data.getEnvelopeOpeningOrder()),
+                RepositoryUtils.removeExtraSpaces(data.getApplExaminationOrder()),
+                RepositoryUtils.removeExtraSpaces(data.getSummingupOrder()),
+                RepositoryUtils.removeExtraSpaces(data.getAuctionOrder()),
+                RepositoryUtils.removeExtraSpaces(data.getConsiderationSecondPartPlace()),
+                RepositoryUtils.removeExtraSpaces(data.getConsiderationSecondPartOrder()),
+                RepositoryUtils.convertBoolean(data.isIsUploadComplete()),
                 electronicPlaceInfo != null ? electronicPlaceInfo.getElectronicPlaceId() : null,
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(submissionCloseDateTime),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(publicationPlannedDate)
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(submissionCloseDateTime),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(publicationPlannedDate),
+                region
             );
-            if (data instanceof PurchaseNoticeDataType) {
-                var notice = (PurchaseNoticeDataType) data;
+            if (data instanceof PurchaseNoticeDataType notice) {
                 placingProcedureRepository.insert(notice.getPlacingProcedure(), data.getGuid());
                 if (notice.getExtendFields() != null) {
                     for (var noticeField : notice.getExtendFields().getNoticeExtendField()) {
@@ -173,19 +167,22 @@ public class PurchaseNoticeRepository {
             }
             purchaseNoticeContactRepository.insert(data.getContact(), data.getGuid());
             purchaseNoticeDocumentationDelivery.insert(data.getDocumentationDelivery(), data.getGuid());
-            if (data instanceof PurchaseNoticeDataType) {
-                var notice = (PurchaseNoticeDataType) data;
-                for (var lot : notice.getLots().getLot()) {
-                    purchaseNoticeLotRepository.insert(lot, data.getGuid());
+            if (data instanceof PurchaseNoticeDataType notice) {
+                if (notice.getLots() != null) {
+                    for (var lot : notice.getLots().getLot()) {
+                        purchaseNoticeLotRepository.insert(lot);
+                        purchaseNoticeToLotRepository.insert(data.getGuid(), lot.getGuid());
+                    }
                 }
-            } else if (data instanceof PurchaseNoticeNonISBaseType) {
-                var noticeNonIS = (PurchaseNoticeNonISBaseType) data;
-                for (var lot : noticeNonIS.getLots().getLot()) {
-                    purchaseNoticeLotRepository.insert(lot, data.getGuid());
+            } else if (data instanceof PurchaseNoticeNonISBaseType noticeNonIS) {
+                if (noticeNonIS.getLots() != null) {
+                    for (var lot : noticeNonIS.getLots().getLot()) {
+                        purchaseNoticeLotRepository.insert(lot);
+                        purchaseNoticeToLotRepository.insert(data.getGuid(), lot.getGuid());
+                    }
                 }
             }
         } catch (DuplicateKeyException ignored) {
-
         } catch (Exception e) {
             logger.error("Error during inserting purchase notice with guid {}", data.getGuid(), e);
         }

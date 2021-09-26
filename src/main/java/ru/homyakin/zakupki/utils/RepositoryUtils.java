@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.PurchaseCategoryRepository;
+import ru.homyakin.zakupki.models._223fz.types.AcceptedType2;
 import ru.homyakin.zakupki.models._223fz.types.CountryType;
 import ru.homyakin.zakupki.models._223fz.types.CurrencyType;
 import ru.homyakin.zakupki.models._223fz.types.SupplierType;
@@ -22,18 +23,18 @@ public class RepositoryUtils {
         this.purchaseCategoryRepository = purchaseCategoryRepository;
     }
 
-    public Integer convertBoolean(Boolean statement) {
+    public static Integer convertBoolean(Boolean statement) {
         if (statement == null) return null;
         else return statement ? 1 : 0;
     }
 
-    public String getCurrencyCode(CurrencyType currency) {
+    public static String getCurrencyCode(CurrencyType currency) {
         if (currency == null) return null;
         if (currency.getCode() != null) return removeExtraSpaces(currency.getCode());
         else return removeExtraSpaces(currency.getLetterCode());
     }
 
-    public LocalDate convertFromXMLGregorianCalendarToLocalDate(XMLGregorianCalendar xmlTime) {
+    public static LocalDate convertFromXMLGregorianCalendarToLocalDate(XMLGregorianCalendar xmlTime) {
         if (xmlTime == null) return null;
         return LocalDate.of(
             xmlTime.getYear(),
@@ -42,7 +43,7 @@ public class RepositoryUtils {
         );
     }
 
-    public LocalDateTime convertFromXMLGregorianCalendarToLocalDateTime(XMLGregorianCalendar xmlTime) {
+    public static LocalDateTime convertFromXMLGregorianCalendarToLocalDateTime(XMLGregorianCalendar xmlTime) {
         if (xmlTime == null) return null;
         var hour = xmlTime.getHour() >= 0 && xmlTime.getHour() <= 23 ? xmlTime.getHour() : 0;
         var minute = xmlTime.getMinute() >= 0 && xmlTime.getMinute() <= 60 ? xmlTime.getMinute() : 0;
@@ -67,12 +68,12 @@ public class RepositoryUtils {
         return okpo;
     }
 
-    public String removeExtraSpaces(String s) {
+    public static String removeExtraSpaces(String s) {
         if (s == null) return null;
         return s.trim().replaceAll(" +", " ");
     }
 
-    public String getCountryCode(CountryType country) {
+    public static String getCountryCode(CountryType country) {
         if (country == null) return null;
         else return country.getDigitalCode();
     }
@@ -82,9 +83,19 @@ public class RepositoryUtils {
     }
 
     public String mapSupplierType(SupplierType type) {
+        if (type == null) return null;
         return switch (type) {
             case L -> "Юридическое лицо";
             case P -> "Физическое лицо";
+        };
+    }
+
+    public static String mapAcceptedToString(AcceptedType2 accepted) {
+        if (accepted == null) return null;
+        return switch (accepted) {
+            case T -> "Допущен";
+            case F -> "Не допущен";
+            case N -> "Не указывается в данном протоколе";
         };
     }
 }

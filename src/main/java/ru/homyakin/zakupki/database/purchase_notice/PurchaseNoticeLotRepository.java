@@ -14,7 +14,6 @@ import ru.homyakin.zakupki.utils.RepositoryUtils;
 public class PurchaseNoticeLotRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeLotRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryUtils repositoryUtils;
     private final LotCriteriaRepository lotCriteriaRepository;
     private final PurchaseNoticeLotDataRepository purchaseNoticeLotDataRepository;
     private final LotExtraRepository lotExtraRepository;
@@ -22,47 +21,43 @@ public class PurchaseNoticeLotRepository {
 
     public PurchaseNoticeLotRepository(
         DataSource dataSource,
-        RepositoryUtils repositoryUtils,
         LotCriteriaRepository lotCriteriaRepository,
         PurchaseNoticeLotDataRepository purchaseNoticeLotDataRepository,
         LotExtraRepository lotExtraRepository,
         JointLotDataRepository jointLotDataRepository
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryUtils = repositoryUtils;
         this.lotCriteriaRepository = lotCriteriaRepository;
         this.purchaseNoticeLotDataRepository = purchaseNoticeLotDataRepository;
         this.lotExtraRepository = lotExtraRepository;
         this.jointLotDataRepository = jointLotDataRepository;
     }
 
-    public void insert(LotType lot, String noticeGuid) {
-        String sql = "INSERT INTO zakupki.purchase_notice_lot (guid, purchase_notice_guid, ordinal_number," +
+    public void insert(LotType lot) {
+        String sql = "INSERT INTO zakupki.purchase_notice_lot (guid, ordinal_number," +
             "lot_edit_enabled, delivery_place_indication_code, joint_lot, plan_guid, position_number," +
             "lot_plan_position, position_guid, contract_subject, cancelled, cancel_date, cancel_info, emergency)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             var plan = lot.getLotPlanInfo();
             jdbcTemplate.update(
                 sql,
                 lot.getGuid(),
-                noticeGuid,
                 lot.getOrdinalNumber(),
-                repositoryUtils.convertBoolean(lot.isLotEditEnabled()),
+                RepositoryUtils.convertBoolean(lot.isLotEditEnabled()),
                 lot.getDeliveryPlaceIndication() != null ? lot.getDeliveryPlaceIndication().value() : null,
-                repositoryUtils.convertBoolean(isJointLot(lot.getJointLotData())),
+                RepositoryUtils.convertBoolean(isJointLot(lot.getJointLotData())),
                 plan != null ? plan.getPlanGuid() : null,
                 plan != null ? plan.getPositionNumber() : null,
                 plan != null ? plan.getLotPlanPosition().value() : null,
                 plan != null ? plan.getPositionGuid() : null,
                 plan != null ? plan.getContractSubject() : null,
-                repositoryUtils.convertBoolean(lot.isCancelled()),
-                lot.getCancellation() != null ? repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(lot.getCancellation().getCancelDate()) : null,
+                RepositoryUtils.convertBoolean(lot.isCancelled()),
+                lot.getCancellation() != null ? RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(lot.getCancellation().getCancelDate()) : null,
                 lot.getCancellation() != null ? lot.getCancellation().getCancelInfo() : null,
-                lot.getCancellation() != null ? repositoryUtils.convertBoolean(lot.getCancellation().isEmergency()) : null
+                lot.getCancellation() != null ? RepositoryUtils.convertBoolean(lot.getCancellation().isEmergency()) : null
             );
-            if (lot instanceof LotTypeIS) {
-                var lotIS = (LotTypeIS) lot;
+            if (lot instanceof LotTypeIS lotIS) {
                 if (lotIS.getExtendFields() != null) {
                     for (var noticeField : lotIS.getExtendFields().getNoticeExtendField()) {
                         for (var field : noticeField.getExtendField()) {
@@ -84,7 +79,6 @@ public class PurchaseNoticeLotRepository {
             }
 
         } catch (DuplicateKeyException ignored) {
-            //TODO посмотреть файлы
         } catch (Exception e) {
             logger.error("Error during inserting purchase notice lot", e);
         }

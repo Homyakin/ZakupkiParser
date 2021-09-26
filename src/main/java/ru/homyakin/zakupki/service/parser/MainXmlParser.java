@@ -11,12 +11,20 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.homyakin.zakupki.models._223fz.contract.Contract;
 
 public class MainXmlParser {
     private final static Logger logger = LoggerFactory.getLogger(MainXmlParser.class);
 
-    protected static <T> Optional<T> parse(String filePath, Class<T> clazz) {
+    public static Optional<Object> parse(String filePath, Class clazz) {
+        return parse(filePath, clazz, true); //TODO сделать красивее
+    }
+
+    public static Optional<Object> parse(String filePath, Class clazz, boolean check) {
         try {
+            if (clazz.isAssignableFrom(Contract.class) && check) {
+                return ContractParser.parse(filePath);
+            }
             logger.info("Start parsing {}", filePath);
             if (isFileEmpty(filePath)) return Optional.empty();
             JAXBContext jc = JAXBContext.newInstance(clazz);

@@ -1,4 +1,4 @@
-package ru.homyakin.zakupki.database.purchase_contract;
+package ru.homyakin.zakupki.database;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,19 +7,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.models._223fz.types.NonResidentInfoType;
 import ru.homyakin.zakupki.models._223fz.types.SupplierMainInfoType;
 import ru.homyakin.zakupki.utils.CommonUtils;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
-public class PurchaseContractSupplierRepository {
-    private final static Logger logger = LoggerFactory.getLogger(PurchaseContractSupplierRepository.class);
+public class SupplierInfoRepository {
+    private final static Logger logger = LoggerFactory.getLogger(SupplierInfoRepository.class);
     private final JdbcTemplate jdbcTemplate;
     private final CommonUtils commonUtils;
     private final RepositoryUtils repositoryUtils;
 
-    public PurchaseContractSupplierRepository(
+    public SupplierInfoRepository(
         DataSource dataSource,
         CommonUtils commonUtils,
         RepositoryUtils repositoryUtils
@@ -30,7 +29,7 @@ public class PurchaseContractSupplierRepository {
     }
 
     public Optional<String> insert(SupplierMainInfoType supplier) {
-        var sql = "INSERT INTO zakupki.purchase_contract_supplier (guid, inn, name, kpp, ogrn, type, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        var sql = "INSERT INTO zakupki.supplier_info (guid, inn, name, kpp, ogrn, type, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
         if (supplier == null) return Optional.empty();
         try {
             var inn = validateInn(supplier.getInn());
@@ -88,7 +87,7 @@ public class PurchaseContractSupplierRepository {
     }
 
     private Optional<String> getSupplierByInn(String inn) {
-        String sql = "SELECT guid FROM purchase_contract_supplier WHERE inn = ?";
+        String sql = "SELECT guid FROM supplier_info WHERE inn = ?";
         List<String> result = jdbcTemplate.query(sql, new Object[]{inn}, (rs, rowNum) -> rs.getString("guid"));
         if (result.size() == 0) {
             return Optional.empty();
@@ -98,7 +97,7 @@ public class PurchaseContractSupplierRepository {
     }
 
     private Optional<String> getSupplierByOgrn(String ogrn) {
-        String sql = "SELECT guid FROM purchase_contract_supplier WHERE ogrn = ?";
+        String sql = "SELECT guid FROM supplier_info WHERE ogrn = ?";
         List<String> result = jdbcTemplate.query(sql, new Object[]{ogrn}, (rs, rowNum) -> rs.getString("guid"));
         if (result.size() == 0) {
             return Optional.empty();

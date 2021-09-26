@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.CustomerRepository;
 import ru.homyakin.zakupki.database.DeliveryPlaceRepository;
+import ru.homyakin.zakupki.database.NonResidentInfoRepository;
+import ru.homyakin.zakupki.database.SupplierInfoRepository;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseContract;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
@@ -15,43 +17,40 @@ import ru.homyakin.zakupki.utils.RepositoryUtils;
 public class PurchaseContractRepository {
     private final static Logger logger = LoggerFactory.getLogger(PurchaseContractRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryUtils repositoryUtils;
     private final DeliveryPlaceRepository deliveryPlaceRepository;
     private final NonResidentInfoRepository nonResidentInfoRepository;
     private final ContractItemRepository contractItemRepository;
     private final PurchaseContractLotRepository purchaseContractLotRepository;
     private final PurchaseInfoRepository purchaseInfoRepository;
     private final CustomerRepository customerRepository;
-    private final PurchaseContractSupplierRepository purchaseContractSupplierRepository;
+    private final SupplierInfoRepository supplierInfoRepository;
 
     public PurchaseContractRepository(
         DataSource dataSource,
-        RepositoryUtils repositoryUtils,
         DeliveryPlaceRepository deliveryPlaceRepository,
         NonResidentInfoRepository nonResidentInfoRepository,
         ContractItemRepository contractItemRepository,
         PurchaseContractLotRepository purchaseContractLotRepository,
         PurchaseInfoRepository purchaseInfoRepository,
         CustomerRepository customerRepository,
-        PurchaseContractSupplierRepository purchaseContractSupplierRepository
+        SupplierInfoRepository supplierInfoRepository
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryUtils = repositoryUtils;
         this.deliveryPlaceRepository = deliveryPlaceRepository;
         this.nonResidentInfoRepository = nonResidentInfoRepository;
         this.contractItemRepository = contractItemRepository;
         this.purchaseContractLotRepository = purchaseContractLotRepository;
         this.purchaseInfoRepository = purchaseInfoRepository;
         this.customerRepository = customerRepository;
-        this.purchaseContractSupplierRepository = purchaseContractSupplierRepository;
+        this.supplierInfoRepository = supplierInfoRepository;
     }
 
-    public void insert(PurchaseContract purchaseContract) {
+    public void insert(PurchaseContract purchaseContract, String region) {
         String sql = "INSERT INTO zakupki.purchase_contract (guid, registration_number, create_date_time," +
             "contract_create_date, lot_guid, currency_code, sum, purchase_info_guid, placer_inn, customer_inn," +
             "supplier_guid, non_resident_info_guid, delivery_place_guid, delivery_place_indication_code, type, name," +
-            "additional_info, publication_date_time, contract_status_code, version, modification_description)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "additional_info, publication_date_time, contract_status_code, version, modification_description, region_name)" +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             var data = purchaseContract.getBody().getItem().getPurchaseContractData();
             purchaseContractLotRepository.insert(data.getLot());
@@ -59,16 +58,16 @@ public class PurchaseContractRepository {
             customerRepository.insert(data.getPlacer().getMainInfo());
             String supplierGuid = null;
             if (data.getSupplier() != null) {
-                supplierGuid = purchaseContractSupplierRepository.insert(data.getSupplier().getMainInfo()).orElse(null);
+                supplierGuid = supplierInfoRepository.insert(data.getSupplier().getMainInfo()).orElse(null);
             }
             jdbcTemplate.update(
                 sql,
                 data.getGuid(),
                 data.getRegistrationNumber(),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getContractCreateDate()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getContractCreateDate()),
                 data.getLot().getGuid(),
-                repositoryUtils.getCurrencyCode(data.getCurrency()),
+                RepositoryUtils.getCurrencyCode(data.getCurrency()),
                 data.getSum(),
                 purchaseInfoRepository.insert(data.getPurchaseInfo()).orElse(null),
                 data.getPlacer().getMainInfo().getInn(),
@@ -80,10 +79,11 @@ public class PurchaseContractRepository {
                 data.getType().value(),
                 data.getName(),
                 data.getAdditionalInfo(),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
                 data.getStatus().value(),
                 data.getVersion(),
-                data.getModificationDescription()
+                data.getModificationDescription(),
+                region
             );
             if (data.getContractItems() != null) {
                 for (var item : data.getContractItems().getContractItem()) {

@@ -8,16 +8,20 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.NonNull;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 
 public class ContractParser extends MainXmlParser {
     private final static Logger logger = LoggerFactory.getLogger(ContractParser.class);
     private final static String XMLNS = "xmlns=\"http://zakupki.gov.ru/223fz/types/1\"";
 
-    public static Optional<Contract> parse(String filePath) {
-        var contract = parse(filePath, Contract.class);
+    public static Optional<Object> parse(String filePath) {
+        var parsedObject = parse(filePath, Contract.class, false);
+        if (parsedObject.isEmpty()) {
+            return Optional.empty();
+        }
         // Ecли содерживое xml существует, но его не удалось распарсить, тогда вручную меняем содержимое xml
-        if (contract.isPresent() && contract.get().getBody().getItem().getContractData().getCustomer().getMainInfo() == null) {
+        if (parsedObject.get() instanceof Contract contract && contract.getBody().getItem().getContractData().getCustomer().getMainInfo() == null) {
             logger.warn("No xmlns in contract");
             try {
                 var contractString = Files.readString(
@@ -37,15 +41,16 @@ public class ContractParser extends MainXmlParser {
                     var endXml = contractString.substring(startIdxOfXmlNs + 13);
                     xml = startXml + xmlns + endXml;
                 }
-                contract = parse(new ByteArrayInputStream(xml.getBytes()), Contract.class);
+                return parse(new ByteArrayInputStream(xml.getBytes()), Contract.class)
+                    .map(it -> it);
             } catch (IOException e) {
                 throw new IllegalStateException("Unable to read file", e);
             }
         }
-        return contract;
+        return parsedObject;
     }
 
-    private static String changePathIfWindows(String path) {
+    private static String changePathIfWindows(@NonNull String path) {
         if (path.contains("\\")) {
             return "/" + path.replace("\\", "/");
         }

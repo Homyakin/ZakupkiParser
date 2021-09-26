@@ -22,6 +22,7 @@ public class PurchaseNoticeDocumentationDelivery {
     }
 
     public void insert(DocDeliveryInfoType delivery, String noticeGuid) {
+        if (delivery == null) return;
         String sql = "INSERT INTO zakupki.purchase_notice_documentation_delivery (purchase_notice_guid," +
             "delivery_start_date_time, delivery_end_date_time, place, documentation_procedure, currency_code," +
             "sum, payment_procedure)" +
@@ -30,7 +31,7 @@ public class PurchaseNoticeDocumentationDelivery {
         String paymentProcedure = null;
         BigDecimal sum = null;
         if (delivery.getPayment() != null) {
-            currencyCode = repositoryUtils.getCurrencyCode(delivery.getPayment().getCurrency());
+            currencyCode = RepositoryUtils.getCurrencyCode(delivery.getPayment().getCurrency());
             paymentProcedure = delivery.getPayment().getProcedure();
             sum = delivery.getPayment().getSum();
         }
@@ -38,8 +39,8 @@ public class PurchaseNoticeDocumentationDelivery {
             jdbcTemplate.update(
                 sql,
                 noticeGuid,
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(delivery.getDeliveryStartDateTime()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(delivery.getDeliveryEndDateTime()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(delivery.getDeliveryStartDateTime()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(delivery.getDeliveryEndDateTime()),
                 delivery.getPlace(),
                 delivery.getProcedure(),
                 currencyCode,

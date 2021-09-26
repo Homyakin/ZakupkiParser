@@ -38,7 +38,7 @@ public class ParserEngine {
         ftpClient.login();
 
         var selectedRegions = consoleInputService.selectFromList(ftpClient.getAllRegions());
-        var selectedFolders = consoleInputService.selectFromList(getAllFolders());
+        var selectedTypes = consoleInputService.selectFromList(getAllFileTypes());
         var startDate = consoleInputService.selectStartDate();
         if (startDate.isPresent()) {
             ftpClient.setStartDate(startDate.get());
@@ -46,29 +46,32 @@ public class ParserEngine {
         }
 
         for (var region : selectedRegions) {
-            for (var folder : selectedFolders) {
-                logger.info("Start parsing {} {}", region, folder);
-                var fileType = FileType.fromString(folder).orElseThrow(() -> new IllegalStateException("Unknown file type"));
-                var files = ftpClient.getFilesInRegionFolder(region, fileType);
-                for (var file : files) {
-                    var localFile = ftpClient.downloadFile(file, region, fileType);
-                    if (localFile.isPresent()) {
-                        var unzippedFilePaths = zipService.unzipFile(localFile.get());
-                        for (var filePath: unzippedFilePaths) {
-                            var parseFile = new ParseFile(filePath, fileType);
-                            storage.insert(region, parseFile);
+            for (var type : selectedTypes) {
+                logger.info("Start parsing {} {}", region, type);
+                var fileType = FileType.fromString(type).orElseThrow(() -> new IllegalStateException("Unknown file type"));
+                for (var folder : fileType.getFolders()) {
+                    var files = ftpClient.getFilesInRegionFolder(region, folder);
+                    for (var file : files) {
+                        var localFile = ftpClient.downloadFile(file, region, folder);
+                        if (localFile.isPresent()) {
+                            var unzippedFilePaths = zipService.unzipFile(localFile.get());
+                            for (var filePath: unzippedFilePaths) {
+                                var parseFile = new ParseFile(filePath, folder);
+                                storage.insert(region, parseFile);
+                            }
                         }
                     }
                 }
+
             }
         }
     }
 
-    private List<String> getAllFolders() {
-        var folders = ftpClient.getAllParsingFolders();
+    private List<String> getAllFileTypes() {
+        var fileTypes = FileType.values();
         return Arrays
-            .stream(folders)
-            .map(FileType::getValue)
+            .stream(fileTypes)
+            .map(FileType::getName)
             .collect(Collectors.toList());
     }
 }
