@@ -12,15 +12,12 @@ import ru.homyakin.zakupki.utils.RepositoryUtils;
 public class PurchaseNoticeLotDataRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeLotDataRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryUtils repositoryUtils;
     private final PurchaseNoticeLotItemRepository purchaseNoticeLotItemRepository;
     public PurchaseNoticeLotDataRepository(
         DataSource dataSource,
-        RepositoryUtils repositoryUtils,
         PurchaseNoticeLotItemRepository purchaseNoticeLotItemRepository
     ) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryUtils = repositoryUtils;
         this.purchaseNoticeLotItemRepository = purchaseNoticeLotItemRepository;
     }
 
@@ -39,9 +36,9 @@ public class PurchaseNoticeLotDataRepository {
                 sql,
                 lotGuid,
                 data.getSubject(),
-                repositoryUtils.getCurrencyCode(data.getCurrency()),
+                RepositoryUtils.getCurrencyCode(data.getCurrency()),
                 data.getExchangeInfo() != null ? data.getExchangeInfo().getExchangeRate() : null,
-                data.getExchangeInfo() != null ? repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getExchangeInfo().getExchangeRateDate()) : null,
+                data.getExchangeInfo() != null ? RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getExchangeInfo().getExchangeRateDate()) : null,
                 data.getInitialSum(),
                 data.getStartingContractPriceRub(),
                 data.getPriceFormula(),
@@ -55,22 +52,24 @@ public class PurchaseNoticeLotDataRepository {
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getRegion() : null,
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getRegionOkato() : null,
                 data.getDeliveryPlace() != null ? data.getDeliveryPlace().getAddress() : null,
-                repositoryUtils.convertBoolean(data.isForSmallOrMiddle()),
-                repositoryUtils.convertBoolean(data.isExcludePurchaseFromPlan()),
-                repositoryUtils.convertBoolean(data.isSubcontractorsRequirement()),
-                repositoryUtils.convertBoolean(data.isIgnoredPurchase()),
+                RepositoryUtils.convertBoolean(data.isForSmallOrMiddle()),
+                RepositoryUtils.convertBoolean(data.isExcludePurchaseFromPlan()),
+                RepositoryUtils.convertBoolean(data.isSubcontractorsRequirement()),
+                RepositoryUtils.convertBoolean(data.isIgnoredPurchase()),
                 data.getPurchaseCategory() != null ? data.getPurchaseCategory().getCode() : null,
-                repositoryUtils.convertBoolean(data.isCentralized()),
+                RepositoryUtils.convertBoolean(data.isCentralized()),
                 data.getPurchaseDescription(),
-                repositoryUtils.convertBoolean(data.isApplicationSupplyNeeded()),
+                RepositoryUtils.convertBoolean(data.isApplicationSupplyNeeded()),
                 data.getApplicationSupplySumm(),
-                repositoryUtils.getCurrencyCode(data.getApplicationSupplyCurrency()),
+                RepositoryUtils.getCurrencyCode(data.getApplicationSupplyCurrency()),
                 data.getApplicationSupplyExtra(),
                 data.getMajorContractConditions(),
-                repositoryUtils.convertBoolean(data.isAntimonopolyDecisionTaken())
+                RepositoryUtils.convertBoolean(data.isAntimonopolyDecisionTaken())
             );
-            for(var item: data.getLotItems().getLotItem()) {
-                purchaseNoticeLotItemRepository.insert(item, lotGuid);
+            if (data.getLotItems() != null) {
+                for(var item: data.getLotItems().getLotItem()) {
+                    purchaseNoticeLotItemRepository.insert(item, lotGuid);
+                }
             }
         } catch (Exception e) {
             logger.error("Error during inserting lot data", e);

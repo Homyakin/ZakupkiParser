@@ -73,7 +73,7 @@ public class RepositoryUtils {
         return s.trim().replaceAll(" +", " ");
     }
 
-    public String getCountryCode(CountryType country) {
+    public static String getCountryCode(CountryType country) {
         if (country == null) return null;
         else return country.getDigitalCode();
     }
