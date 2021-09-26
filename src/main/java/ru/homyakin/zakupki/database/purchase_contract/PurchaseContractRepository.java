@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.CustomerRepository;
 import ru.homyakin.zakupki.database.DeliveryPlaceRepository;
+import ru.homyakin.zakupki.database.NonResidentInfoRepository;
+import ru.homyakin.zakupki.database.SupplierInfoRepository;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseContract;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
@@ -22,7 +24,7 @@ public class PurchaseContractRepository {
     private final PurchaseContractLotRepository purchaseContractLotRepository;
     private final PurchaseInfoRepository purchaseInfoRepository;
     private final CustomerRepository customerRepository;
-    private final PurchaseContractSupplierRepository purchaseContractSupplierRepository;
+    private final SupplierInfoRepository supplierInfoRepository;
 
     public PurchaseContractRepository(
         DataSource dataSource,
@@ -33,7 +35,7 @@ public class PurchaseContractRepository {
         PurchaseContractLotRepository purchaseContractLotRepository,
         PurchaseInfoRepository purchaseInfoRepository,
         CustomerRepository customerRepository,
-        PurchaseContractSupplierRepository purchaseContractSupplierRepository
+        SupplierInfoRepository supplierInfoRepository
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.repositoryUtils = repositoryUtils;
@@ -43,7 +45,7 @@ public class PurchaseContractRepository {
         this.purchaseContractLotRepository = purchaseContractLotRepository;
         this.purchaseInfoRepository = purchaseInfoRepository;
         this.customerRepository = customerRepository;
-        this.purchaseContractSupplierRepository = purchaseContractSupplierRepository;
+        this.supplierInfoRepository = supplierInfoRepository;
     }
 
     public void insert(PurchaseContract purchaseContract) {
@@ -59,7 +61,7 @@ public class PurchaseContractRepository {
             customerRepository.insert(data.getPlacer().getMainInfo());
             String supplierGuid = null;
             if (data.getSupplier() != null) {
-                supplierGuid = purchaseContractSupplierRepository.insert(data.getSupplier().getMainInfo()).orElse(null);
+                supplierGuid = supplierInfoRepository.insert(data.getSupplier().getMainInfo()).orElse(null);
             }
             jdbcTemplate.update(
                 sql,

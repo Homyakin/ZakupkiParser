@@ -8,6 +8,7 @@ import ru.homyakin.zakupki.database.purchase_contract.PurchaseContractRepository
 import ru.homyakin.zakupki.database.purchase_notice.PurchaseNoticeProxy;
 import ru.homyakin.zakupki.database.purchase_notice.PurchaseNoticeRepository;
 import ru.homyakin.zakupki.database.purchase_plan.PurchasePlanRepository;
+import ru.homyakin.zakupki.database.purchase_protocol.PurchaseProtocolProxy;
 import ru.homyakin.zakupki.models.FileType;
 import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.models.ParseFile;
@@ -30,17 +31,20 @@ public class RepositoryRouter {
     private final ContractRepository contractRepository;
     private final PurchaseNoticeProxy purchaseNoticeProxy;
     private final PurchaseContractRepository purchaseContractRepository;
+    private final PurchaseProtocolProxy purchaseProtocolProxy;
 
     public RepositoryRouter(
         PurchasePlanRepository purchasePlanRepository,
         ContractRepository contractRepository,
         PurchaseNoticeProxy purchaseNoticeProxy,
-        PurchaseContractRepository purchaseContractRepository
+        PurchaseContractRepository purchaseContractRepository,
+        PurchaseProtocolProxy purchaseProtocolProxy
     ) {
         this.purchasePlanRepository = purchasePlanRepository;
         this.contractRepository = contractRepository;
         this.purchaseNoticeProxy = purchaseNoticeProxy;
         this.purchaseContractRepository = purchaseContractRepository;
+        this.purchaseProtocolProxy = purchaseProtocolProxy;
     }
 
     public void route(Object parsedObject, ParseFile file) {
@@ -52,12 +56,13 @@ public class RepositoryRouter {
             purchasePlanRepository.insert(purchasePlan);
         }
 
-        var fileType = FileType.fromFolder(
-            file.getFolder()).orElseThrow(() -> new IllegalStateException("Unknown file type")
-        );
+        var fileType = FileType
+            .fromFolder(file.getFolder())
+            .orElseThrow(() -> new IllegalStateException("Unknown file type"));
 
         switch (fileType) {
             case PURCHASE_NOTICE -> purchaseNoticeProxy.insert(parsedObject, file.getFolder());
+            case PURCHASE_PROTOCOL -> purchaseProtocolProxy.insert(parsedObject, file.getFolder(), CommonUtils.extractRegionFromFilePath(file.getFilepath()));
             default -> logger.error("Unknown file type");
         }
     }

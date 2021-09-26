@@ -9,8 +9,8 @@
     <version>1.0</version>
 
     <properties>
-        <java.version>16</java.version>
-        <spring.version>2.4.0</spring.version>
+        <java.version>17</java.version>
+        <spring.version>2.5.4</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -63,6 +63,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
             <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId> <!-- Конфликтная версия 2.0.0-alpha1-->
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2 -->
         <dependency>

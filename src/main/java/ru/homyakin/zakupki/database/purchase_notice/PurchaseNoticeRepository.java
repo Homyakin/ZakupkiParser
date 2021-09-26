@@ -86,32 +86,26 @@ public class PurchaseNoticeRepository {
             ElectronicPlaceInfoType electronicPlaceInfo = null;
             XMLGregorianCalendar submissionCloseDateTime = null;
             XMLGregorianCalendar publicationPlannedDate = null;
-            //TODO change when smart instanceof release
-            if (data instanceof PurchaseNoticeDataType) {
-                var notice = (PurchaseNoticeDataType) data;
+
+            if (data instanceof PurchaseNoticeDataType notice) {
                 electronicPlaceInfo = notice.getElectronicPlaceInfo();
                 submissionCloseDateTime = notice.getSubmissionCloseDateTime();
                 publicationPlannedDate = notice.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeAE94FZDataType) {
-                var noticeAE94 = (PurchaseNoticeAE94FZDataType) data;
+            } else if (data instanceof PurchaseNoticeAE94FZDataType noticeAE94) {
                 electronicPlaceInfo = noticeAE94.getElectronicPlaceInfo();
                 submissionCloseDateTime = noticeAE94.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeAE94.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeAEDataType) {
-                var noticeAE = (PurchaseNoticeAEDataType) data;
+            } else if (data instanceof PurchaseNoticeAEDataType noticeAE) {
                 electronicPlaceInfo = noticeAE.getElectronicPlaceInfo();
                 submissionCloseDateTime = noticeAE.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeAE.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeOADataType) {
-                var noticeOA = (PurchaseNoticeOADataType) data;
+            } else if (data instanceof PurchaseNoticeOADataType noticeOA) {
                 submissionCloseDateTime = noticeOA.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeOA.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeOKDataType) {
-                var noticeOK = (PurchaseNoticeOKDataType) data;
+            } else if (data instanceof PurchaseNoticeOKDataType noticeOK) {
                 submissionCloseDateTime = noticeOK.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeOK.getPublicationPlannedDate();
-            } else if (data instanceof PurchaseNoticeZKDataType) {
-                var noticeZK = (PurchaseNoticeZKDataType) data;
+            } else if (data instanceof PurchaseNoticeZKDataType noticeZK) {
                 submissionCloseDateTime = noticeZK.getSubmissionCloseDateTime();
                 publicationPlannedDate = noticeZK.getPublicationPlannedDate();
             }

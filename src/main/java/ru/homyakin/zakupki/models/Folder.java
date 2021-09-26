@@ -1,6 +1,7 @@
 package ru.homyakin.zakupki.models;
 
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
+import ru.homyakin.zakupki.models._223fz.purchase.ProtocolCancellationType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseContract;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNotice;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAE;
@@ -78,7 +79,7 @@ public enum Folder {
     PURCHASE_PROTOCOL_CCKESMBO("purchaseProtocolCCKESMBO", PurchaseProtocolCCKESMBO.class),
     PURCHASE_PROTOCOL_CCZKESMBO("purchaseProtocolCCZKESMBO", PurchaseProtocolCCZKESMBO.class),
     PURCHASE_PROTOCOL_CCZPESMBO("purchaseProtocolCCZPESMBO", PurchaseProtocolCCZPESMBO.class),
-    PURCHASE_PROTOCOL_CANCELLATION("purchaseProtocolCancellation", PurchaseProtocol.class), // TODO ??
+    PURCHASE_PROTOCOL_CANCELLATION("purchaseProtocolCancellation", ProtocolCancellationType.class),
     PURCHASE_PROTOCOL_COLLACATION_AESMBO("purchaseProtocolCollationAESMBO", PurchaseProtocolCollationAESMBO.class),
     PURCHASE_PROTOCOL_EVASION_AESMBO("purchaseProtocolEvasionAESMBO", PurchaseProtocolEvasionAESMBO.class),
     PURCHASE_PROTOCOL_EVASION_KESMBO("purchaseProtocolEvasionKESMBO", PurchaseProtocolEvasionKESMBO.class),
