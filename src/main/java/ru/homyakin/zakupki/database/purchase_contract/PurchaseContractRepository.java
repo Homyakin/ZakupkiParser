@@ -17,7 +17,6 @@ import ru.homyakin.zakupki.utils.RepositoryUtils;
 public class PurchaseContractRepository {
     private final static Logger logger = LoggerFactory.getLogger(PurchaseContractRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryUtils repositoryUtils;
     private final DeliveryPlaceRepository deliveryPlaceRepository;
     private final NonResidentInfoRepository nonResidentInfoRepository;
     private final ContractItemRepository contractItemRepository;
@@ -28,7 +27,6 @@ public class PurchaseContractRepository {
 
     public PurchaseContractRepository(
         DataSource dataSource,
-        RepositoryUtils repositoryUtils,
         DeliveryPlaceRepository deliveryPlaceRepository,
         NonResidentInfoRepository nonResidentInfoRepository,
         ContractItemRepository contractItemRepository,
@@ -38,7 +36,6 @@ public class PurchaseContractRepository {
         SupplierInfoRepository supplierInfoRepository
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryUtils = repositoryUtils;
         this.deliveryPlaceRepository = deliveryPlaceRepository;
         this.nonResidentInfoRepository = nonResidentInfoRepository;
         this.contractItemRepository = contractItemRepository;
@@ -48,12 +45,12 @@ public class PurchaseContractRepository {
         this.supplierInfoRepository = supplierInfoRepository;
     }
 
-    public void insert(PurchaseContract purchaseContract) {
+    public void insert(PurchaseContract purchaseContract, String region) {
         String sql = "INSERT INTO zakupki.purchase_contract (guid, registration_number, create_date_time," +
             "contract_create_date, lot_guid, currency_code, sum, purchase_info_guid, placer_inn, customer_inn," +
             "supplier_guid, non_resident_info_guid, delivery_place_guid, delivery_place_indication_code, type, name," +
-            "additional_info, publication_date_time, contract_status_code, version, modification_description)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "additional_info, publication_date_time, contract_status_code, version, modification_description, region_name)" +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             var data = purchaseContract.getBody().getItem().getPurchaseContractData();
             purchaseContractLotRepository.insert(data.getLot());
@@ -67,10 +64,10 @@ public class PurchaseContractRepository {
                 sql,
                 data.getGuid(),
                 data.getRegistrationNumber(),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getContractCreateDate()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getCreateDateTime()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(data.getContractCreateDate()),
                 data.getLot().getGuid(),
-                repositoryUtils.getCurrencyCode(data.getCurrency()),
+                RepositoryUtils.getCurrencyCode(data.getCurrency()),
                 data.getSum(),
                 purchaseInfoRepository.insert(data.getPurchaseInfo()).orElse(null),
                 data.getPlacer().getMainInfo().getInn(),
@@ -82,10 +79,11 @@ public class PurchaseContractRepository {
                 data.getType().value(),
                 data.getName(),
                 data.getAdditionalInfo(),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(data.getPublicationDateTime()),
                 data.getStatus().value(),
                 data.getVersion(),
-                data.getModificationDescription()
+                data.getModificationDescription(),
+                region
             );
             if (data.getContractItems() != null) {
                 for (var item : data.getContractItems().getContractItem()) {

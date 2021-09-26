@@ -48,10 +48,11 @@ public class RepositoryRouter {
     }
 
     public void route(Object parsedObject, ParseFile file) {
+        var region = CommonUtils.extractRegionFromFilePath(file.getFilepath());
         if (parsedObject instanceof Contract contract) {
-            contractRepository.insert(contract, CommonUtils.extractRegionFromFilePath(file.getFilepath()));
+            contractRepository.insert(contract, region);
         } else if (parsedObject instanceof PurchaseContract purchaseContract) {
-            purchaseContractRepository.insert(purchaseContract);
+            purchaseContractRepository.insert(purchaseContract, region);
         } else if (parsedObject instanceof PurchasePlan purchasePlan) {
             purchasePlanRepository.insert(purchasePlan);
         }
@@ -61,8 +62,8 @@ public class RepositoryRouter {
             .orElseThrow(() -> new IllegalStateException("Unknown file type"));
 
         switch (fileType) {
-            case PURCHASE_NOTICE -> purchaseNoticeProxy.insert(parsedObject, file.getFolder(), CommonUtils.extractRegionFromFilePath(file.getFilepath()));
-            case PURCHASE_PROTOCOL -> purchaseProtocolProxy.insert(parsedObject, file.getFolder(), CommonUtils.extractRegionFromFilePath(file.getFilepath()));
+            case PURCHASE_NOTICE -> purchaseNoticeProxy.insert(parsedObject, file.getFolder(), region);
+            case PURCHASE_PROTOCOL -> purchaseProtocolProxy.insert(parsedObject, file.getFolder(), region);
             default -> logger.error("Unknown file type");
         }
     }
