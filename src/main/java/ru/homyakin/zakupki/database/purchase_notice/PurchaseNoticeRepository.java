@@ -56,7 +56,7 @@ public class PurchaseNoticeRepository {
         this.purchaseNoticeToLotRepository = purchaseNoticeToLotRepository;
     }
 
-    public void insert(PurchaseNoticeDataBaseType data, Folder folder) {
+    public void insert(PurchaseNoticeDataBaseType data, Folder folder, String region) {
         String sql = "INSERT INTO zakupki.purchase_notice (guid, purchase_notice_type_code, create_date_time, url_eis, url_vsrz, " +
             "url_kis_rmis, registration_number, name, customer_inn, detached_org_inn, blocked_customer_inn," +
             "purchase_method_code, purchase_code_name, placer_inn, publication_date_time, purchase_notice_status_code," +
@@ -65,9 +65,9 @@ public class PurchaseNoticeRepository {
             "antimonopoly_decision_taken, additional_info, appl_submision_place, appl_submision_start_date," +
             "appl_submision_order, envelope_opening_order, appl_examination_order, summingup_order, auction_order," +
             "consideration_second_part_place, consideration_second_part_order, is_upload_complete, electronic_place_id," +
-            "submission_close_date_time, publication_planned_date)" +
+            "submission_close_date_time, publication_planned_date, region_name)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
-            "?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         logger.info("Inserting purchase notice with guid: {}", data.getGuid());
         try {
             customerRepository.insert(data.getCustomer().getMainInfo());
@@ -152,7 +152,8 @@ public class PurchaseNoticeRepository {
                 RepositoryUtils.convertBoolean(data.isIsUploadComplete()),
                 electronicPlaceInfo != null ? electronicPlaceInfo.getElectronicPlaceId() : null,
                 RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(submissionCloseDateTime),
-                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(publicationPlannedDate)
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(publicationPlannedDate),
+                region
             );
             if (data instanceof PurchaseNoticeDataType notice) {
                 placingProcedureRepository.insert(notice.getPlacingProcedure(), data.getGuid());

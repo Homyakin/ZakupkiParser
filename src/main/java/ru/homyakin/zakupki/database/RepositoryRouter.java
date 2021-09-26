@@ -61,7 +61,7 @@ public class RepositoryRouter {
             .orElseThrow(() -> new IllegalStateException("Unknown file type"));
 
         switch (fileType) {
-            case PURCHASE_NOTICE -> purchaseNoticeProxy.insert(parsedObject, file.getFolder());
+            case PURCHASE_NOTICE -> purchaseNoticeProxy.insert(parsedObject, file.getFolder(), CommonUtils.extractRegionFromFilePath(file.getFilepath()));
             case PURCHASE_PROTOCOL -> purchaseProtocolProxy.insert(parsedObject, file.getFolder(), CommonUtils.extractRegionFromFilePath(file.getFilepath()));
             default -> logger.error("Unknown file type");
         }
