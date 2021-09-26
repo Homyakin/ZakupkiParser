@@ -64,7 +64,7 @@ public class RepositoryRouter {
         switch (fileType) {
             case PURCHASE_NOTICE -> purchaseNoticeProxy.insert(parsedObject, file.getFolder(), region);
             case PURCHASE_PROTOCOL -> purchaseProtocolProxy.insert(parsedObject, file.getFolder(), region);
-            default -> logger.error("Unknown file type");
+            case CONTRACT, PURCHASE_CONTRACT, PURCHASE_PLAN -> { }
         }
     }
 }
