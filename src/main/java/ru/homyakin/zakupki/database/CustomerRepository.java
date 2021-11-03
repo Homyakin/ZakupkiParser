@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.models._223fz.contract.ContractCompletingInfoExportType;
 import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfo3Type;
 import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfoType;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
@@ -15,11 +16,9 @@ import ru.homyakin.zakupki.utils.RepositoryUtils;
 public class CustomerRepository {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryUtils repositoryUtils;
 
-    public CustomerRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
+    public CustomerRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(CustomerMainInfoType customer) {
@@ -35,31 +34,31 @@ public class CustomerRepository {
             String timeZoneName = customer.getTimeZone() != null ? customer.getTimeZone().getName() : null;
             jdbcTemplate.update(
                 sql,
-                repositoryUtils.removeExtraSpaces(customer.getInn()),
-                repositoryUtils.removeExtraSpaces(customer.getFullName()),
-                repositoryUtils.removeExtraSpaces(customer.getShortName()),
-                repositoryUtils.removeExtraSpaces(customer.getIko()),
-                repositoryUtils.removeExtraSpaces(customer.getKpp()),
-                repositoryUtils.removeExtraSpaces(customer.getOgrn()),
-                repositoryUtils.removeExtraSpaces(customer.getLegalAddress()),
-                repositoryUtils.removeExtraSpaces(customer.getPostalAddress()),
-                repositoryUtils.removeExtraSpaces(customer.getPhone()),
-                repositoryUtils.removeExtraSpaces(customer.getFax()),
-                repositoryUtils.removeExtraSpaces(customer.getEmail()),
+                RepositoryUtils.removeExtraSpaces(customer.getInn()),
+                RepositoryUtils.removeExtraSpaces(customer.getFullName()),
+                RepositoryUtils.removeExtraSpaces(customer.getShortName()),
+                RepositoryUtils.removeExtraSpaces(customer.getIko()),
+                RepositoryUtils.removeExtraSpaces(customer.getKpp()),
+                RepositoryUtils.removeExtraSpaces(customer.getOgrn()),
+                RepositoryUtils.removeExtraSpaces(customer.getLegalAddress()),
+                RepositoryUtils.removeExtraSpaces(customer.getPostalAddress()),
+                RepositoryUtils.removeExtraSpaces(customer.getPhone()),
+                RepositoryUtils.removeExtraSpaces(customer.getFax()),
+                RepositoryUtils.removeExtraSpaces(customer.getEmail()),
                 customer.getOkato(),
                 customer.getOkopf(),
-                repositoryUtils.validateOkpo(customer.getOkpo()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),
+                RepositoryUtils.validateOkpo(customer.getOkpo()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(customer.getCustomerRegistrationDate()),
                 timeZoneOffset,
-                repositoryUtils.removeExtraSpaces(timeZoneName),
-                repositoryUtils.removeExtraSpaces(customer.getRegion()),
-                repositoryUtils.convertBoolean(customer.isCustomerAssessedCompliance()),
-                repositoryUtils.convertBoolean(customer.isCustomerMonitoredCompliance())
+                RepositoryUtils.removeExtraSpaces(timeZoneName),
+                RepositoryUtils.removeExtraSpaces(customer.getRegion()),
+                RepositoryUtils.convertBoolean(customer.isCustomerAssessedCompliance()),
+                RepositoryUtils.convertBoolean(customer.isCustomerMonitoredCompliance())
             );
         } catch (DuplicateKeyException ignored) {
 
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting to customer", e);
         }
     }
 
@@ -80,7 +79,24 @@ public class CustomerRepository {
                 customer.getPostalAddress()
             );
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting to customer", e);
+        }
+    }
+
+    public void insert(ContractCompletingInfoExportType.Placer placer) {
+        if (placer == null) return;
+        try {
+            if (checkCustomer(placer.getInn())) return; //TODO make update if exists
+            String sql = "INSERT INTO customer (inn, full_name, kpp, ogrn) VALUES (?, ?, ?, ?)";
+            jdbcTemplate.update(
+                sql,
+                placer.getInn(),
+                placer.getName(),
+                placer.getKpp(),
+                placer.getOgrn()
+            );
+        } catch (Exception e) {
+            logger.error("Error during inserting to customer", e);
         }
     }
 

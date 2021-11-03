@@ -1,54 +1,46 @@
 package ru.homyakin.zakupki.database;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.contract.ContractRepository;
+import ru.homyakin.zakupki.database.contract_performance.ContractPerformanceProxy;
 import ru.homyakin.zakupki.database.purchase_contract.PurchaseContractRepository;
 import ru.homyakin.zakupki.database.purchase_notice.PurchaseNoticeProxy;
-import ru.homyakin.zakupki.database.purchase_notice.PurchaseNoticeRepository;
 import ru.homyakin.zakupki.database.purchase_plan.PurchasePlanRepository;
 import ru.homyakin.zakupki.database.purchase_protocol.PurchaseProtocolProxy;
 import ru.homyakin.zakupki.models.FileType;
-import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.models.ParseFile;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseContract;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNotice;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAE;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAE94FZ;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAESMBO;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeEP;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeKESMBO;
 import ru.homyakin.zakupki.models._223fz.purchaseplan.PurchasePlan;
 import ru.homyakin.zakupki.utils.CommonUtils;
 
 @Component
 public class RepositoryRouter {
-    private final static Logger logger = LoggerFactory.getLogger(RepositoryRouter.class);
-
     private final PurchasePlanRepository purchasePlanRepository;
     private final ContractRepository contractRepository;
     private final PurchaseNoticeProxy purchaseNoticeProxy;
     private final PurchaseContractRepository purchaseContractRepository;
     private final PurchaseProtocolProxy purchaseProtocolProxy;
+    private final ContractPerformanceProxy contractPerformanceProxy;
 
     public RepositoryRouter(
         PurchasePlanRepository purchasePlanRepository,
         ContractRepository contractRepository,
         PurchaseNoticeProxy purchaseNoticeProxy,
         PurchaseContractRepository purchaseContractRepository,
-        PurchaseProtocolProxy purchaseProtocolProxy
+        PurchaseProtocolProxy purchaseProtocolProxy,
+        ContractPerformanceProxy contractPerformanceProxy
     ) {
         this.purchasePlanRepository = purchasePlanRepository;
         this.contractRepository = contractRepository;
         this.purchaseNoticeProxy = purchaseNoticeProxy;
         this.purchaseContractRepository = purchaseContractRepository;
         this.purchaseProtocolProxy = purchaseProtocolProxy;
+        this.contractPerformanceProxy = contractPerformanceProxy;
     }
 
     public void route(Object parsedObject, ParseFile file) {
-        var region = CommonUtils.extractRegionFromFilePath(file.getFilepath());
+        var region = CommonUtils.extractRegionFromFilePath(file.filepath());
         if (parsedObject instanceof Contract contract) {
             contractRepository.insert(contract, region);
         } else if (parsedObject instanceof PurchaseContract purchaseContract) {
@@ -58,12 +50,13 @@ public class RepositoryRouter {
         }
 
         var fileType = FileType
-            .fromFolder(file.getFolder())
+            .fromFolder(file.folder())
             .orElseThrow(() -> new IllegalStateException("Unknown file type"));
 
         switch (fileType) {
-            case PURCHASE_NOTICE -> purchaseNoticeProxy.insert(parsedObject, file.getFolder(), region);
-            case PURCHASE_PROTOCOL -> purchaseProtocolProxy.insert(parsedObject, file.getFolder(), region);
+            case PURCHASE_NOTICE -> purchaseNoticeProxy.insert(parsedObject, file.folder(), region);
+            case PURCHASE_PROTOCOL -> purchaseProtocolProxy.insert(parsedObject, file.folder(), region);
+            case CONTRACT_PERFORMANCE -> contractPerformanceProxy.insert(parsedObject);
             case CONTRACT, PURCHASE_CONTRACT, PURCHASE_PLAN -> { }
         }
     }

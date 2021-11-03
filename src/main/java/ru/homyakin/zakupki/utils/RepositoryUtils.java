@@ -58,7 +58,7 @@ public class RepositoryUtils {
         );
     }
 
-    public String validateOkpo(String okpo) {
+    public static String validateOkpo(String okpo) {
         okpo = removeExtraSpaces(okpo);
         if (okpo == null) return null;
         if (okpo.length() > 8) {

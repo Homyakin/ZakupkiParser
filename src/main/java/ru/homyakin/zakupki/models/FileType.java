@@ -75,7 +75,11 @@ public enum FileType {
         Folder.PURCHASE_PROTOCOL_ZRPZKESMBO,
         Folder.PURCHASE_PROTOCOL_ZRPZZKESMBO,
         Folder.PURCHASE_PROTOCOL_ZRPZZPESMBO
-    ))
+    )),
+    CONTRACT_PERFORMANCE("Исполнение договора", List.of(
+        Folder.CONTRACT_CANCELLATION_INFORMATION,
+        Folder.PERFORMANCE_CONTRACT_INFORMATION
+    )),
     ;
 
     private final String name;

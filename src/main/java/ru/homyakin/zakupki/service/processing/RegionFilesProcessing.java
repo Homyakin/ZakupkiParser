@@ -49,8 +49,8 @@ public class RegionFilesProcessing {
         while (!queue.isEmpty()) {
             try {
                 ParseFile file = queue.take();
-                logger.info("Start processing {}; {}", file.getFolder().getName(), file.getFilepath());
-                MainXmlParser.parse(file.getFilepath(), file.getFolder().getModelClass())
+                logger.info("Start processing {}; {}", file.folder().getName(), file.filepath());
+                MainXmlParser.parse(file.filepath(), file.folder().getModelClass())
                     .ifPresent(parsedObject -> repositoryRouter.route(parsedObject, file));
             } catch (RuntimeException e) {
                 logger.error("Internal processing error", e);
