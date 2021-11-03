@@ -10,18 +10,13 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import ru.homyakin.zakupki.web.FtpClient223Fz;
 
 @Service
 public class ConsoleInputService {
     private final static Logger logger = LoggerFactory.getLogger(ConsoleInputService.class);
-    private final FtpClient223Fz ftp;
+
     private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private boolean skipDate = false;
-
-    public  ConsoleInputService(FtpClient223Fz ftp) {
-        this.ftp = ftp;
-    }
 
     public List<String> selectFromList(List<String> list) {
         System.out.println("0: Продолжить");

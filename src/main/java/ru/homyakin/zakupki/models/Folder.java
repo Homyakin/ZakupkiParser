@@ -1,6 +1,8 @@
 package ru.homyakin.zakupki.models;
 
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
+import ru.homyakin.zakupki.models._223fz.contract.ContractCancellationInformation;
+import ru.homyakin.zakupki.models._223fz.contract.PerformanceContractInformation;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolCancellationType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseContract;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNotice;
@@ -127,6 +129,8 @@ public enum Folder {
     PURCHASE_PROTOCOL_ZRPZKESMBO("purchaseProtocolZRPZKESMBO", PurchaseProtocolZRPZKESMBO.class),
     PURCHASE_PROTOCOL_ZRPZZKESMBO("purchaseProtocolZRPZZKESMBO", PurchaseProtocolZRPZZKESMBO.class),
     PURCHASE_PROTOCOL_ZRPZZPESMBO("purchaseProtocolZRPZZPESMBO", PurchaseProtocolZRPZZPESMBO.class),
+    CONTRACT_CANCELLATION_INFORMATION("contractCancellationInformation", ContractCancellationInformation.class),
+    PERFORMANCE_CONTRACT_INFORMATION("performanceContractInformation", PerformanceContractInformation.class),
     ;
     private final String name;
     private final Class modelClass;
