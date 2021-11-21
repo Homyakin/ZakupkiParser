@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.LotType;
 import ru.homyakin.zakupki.models._223fz.types.LotTypeIS;
+import ru.homyakin.zakupki.utils.CommonUtils;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
@@ -39,6 +40,7 @@ public class PurchaseNoticeLotRepository {
             "lot_plan_position, position_guid, contract_subject, cancelled, cancel_date, cancel_info, emergency)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
+            lot.setGuid(CommonUtils.validateAndGetGuid(lot.getGuid()));
             var plan = lot.getLotPlanInfo();
             jdbcTemplate.update(
                 sql,

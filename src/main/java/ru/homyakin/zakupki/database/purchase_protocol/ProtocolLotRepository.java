@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.purchase.LotParameters;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotType;
+import ru.homyakin.zakupki.utils.CommonUtils;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 @Component
@@ -27,6 +28,7 @@ public class ProtocolLotRepository {
 
     public void insert(ProtocolLotType lot, LotParameters lotParameters) {
         try {
+            lot.setGuid(CommonUtils.validateAndGetGuid(lot.getGuid()));
             jdbcTemplate.update(
                 INSERT,
                 lot.getGuid(),

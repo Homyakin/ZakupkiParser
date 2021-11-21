@@ -15,16 +15,13 @@ import ru.homyakin.zakupki.utils.RepositoryUtils;
 public class SupplierInfoRepository {
     private final static Logger logger = LoggerFactory.getLogger(SupplierInfoRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final CommonUtils commonUtils;
     private final RepositoryUtils repositoryUtils;
 
     public SupplierInfoRepository(
         DataSource dataSource,
-        CommonUtils commonUtils,
         RepositoryUtils repositoryUtils
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.commonUtils = commonUtils;
         this.repositoryUtils = repositoryUtils;
     }
 
@@ -32,7 +29,7 @@ public class SupplierInfoRepository {
         var sql = "INSERT INTO zakupki.supplier_info (guid, inn, name, kpp, ogrn, type, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
         if (supplier == null) return Optional.empty();
         try {
-            var inn = validateInn(supplier.getInn());
+            var inn = CommonUtils.validateInn(supplier.getInn());
             var ogrn = validateOgrn(supplier.getOgrn());
             Optional<String> guid = Optional.empty();
             if (inn.isPresent()) {
@@ -43,7 +40,7 @@ public class SupplierInfoRepository {
                 guid = getSupplierByOgrn(ogrn.get());
             }
             if (guid.isPresent()) return guid;
-            guid = Optional.of(commonUtils.generateGuid());
+            guid = Optional.of(CommonUtils.generateGuid());
             jdbcTemplate.update(
                 sql,
                 guid.get(),
@@ -59,13 +56,6 @@ public class SupplierInfoRepository {
             logger.error("Error during inserting in purchase_contract_supplier", e);
             return Optional.empty();
         }
-    }
-
-    private Optional<String> validateInn(String inn) {
-        if (inn == null || inn.equals("0000000000")) {
-            return Optional.empty();
-        }
-        return Optional.of(inn);
     }
 
     private Optional<String> validateOgrn(String ogrn) {
