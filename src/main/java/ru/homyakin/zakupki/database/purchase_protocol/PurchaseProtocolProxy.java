@@ -3,6 +3,8 @@ package ru.homyakin.zakupki.database.purchase_protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticeOszMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticePaaeMapper;
 import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolCancellationType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocol;
@@ -11,7 +13,6 @@ import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolCCKESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolCCZKESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolCCZPESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolCollationAESMBO;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolEvasionAESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolEvasionKESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolEvasionZKESMBO;
@@ -19,7 +20,6 @@ import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolEvasionZPESMBO
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolFCDKESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolFKVOKESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolOSZ;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolOSZDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAAE;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAAE94FZ;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAEP;
@@ -88,13 +88,11 @@ public class PurchaseProtocolProxy {
         } else if (parsedObject instanceof PurchaseProtocolFKVOKESMBO purchaseProtocol) {
             purchaseProtocolRepository.insert(purchaseProtocol.getBody().getItem().getPurchaseProtocolFKVOKESMBOData(), folder, region);
         } else if (parsedObject instanceof PurchaseProtocolOSZ purchaseProtocolOSZ) {
-            logger.error("PurchaseProtocolOSZ");
-            //TODO purchaseProtocolRepository.insert(purchaseProtocolOSZ.getBody().getItem().getPurchaseProtocolOSZData(), folder);
-            countNotProcessed++;
+            var data = PurchaseNoticeOszMapper.mapOszToDataType(purchaseProtocolOSZ.getBody().getItem().getPurchaseProtocolOSZData());
+            purchaseProtocolRepository.insert(data, folder, region);
         } else if (parsedObject instanceof PurchaseProtocolPAAE purchaseProtocol) {
-            logger.error("PurchaseProtocolPAAE");
-            //TODO purchaseProtocolRepository.insert(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAAEData(), folder);
-            countNotProcessed++;
+            var data = PurchaseNoticePaaeMapper.mapPaaeToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAAEData());
+            purchaseProtocolRepository.insert(data, folder, region);
         } else if (parsedObject instanceof PurchaseProtocolPAAE94FZ purchaseProtocol) {
             logger.error("PurchaseProtocolPAAE94FZ");
             //TODO purchaseProtocolRepository.insert(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAAE94FZData(), folder);
@@ -180,51 +178,5 @@ public class PurchaseProtocolProxy {
         if (countProcessed % 100 == 0) {
             logger.warn("Not processed protocols {} of {}", countNotProcessed, countProcessed);
         }
-    }
-
-    private PurchaseProtocolDataType convert(PurchaseProtocolOSZDataType protocolOSZ) {
-        var protocol = new PurchaseProtocolDataType();
-        // PurchaseProtocolBaseDataType
-        protocol.setGuid(protocol.getGuid());
-        protocol.setCreateDateTime(protocolOSZ.getCreateDateTime());
-        protocol.setUrlEIS(protocolOSZ.getUrlEIS());
-        protocol.setUrlVSRZ(protocolOSZ.getUrlVSRZ());
-        protocol.setUrlKisRmis(protocolOSZ.getUrlKisRmis());
-        protocol.setPurchaseInfo(protocolOSZ.getPurchaseInfo());
-        protocol.setRegistrationNumber(protocolOSZ.getRegistrationNumber());
-        protocol.setPlacer(protocolOSZ.getPlacer());
-        protocol.setCustomer(protocolOSZ.getCustomer());
-        protocol.setAdditionalInfo(protocolOSZ.getAdditionalInfo());
-        protocol.setMissedContest(protocolOSZ.isMissedContest());
-        protocol.setMissedReason(protocolOSZ.getMissedReason());
-        protocol.setPurchaseCancellationReason(protocolOSZ.getPurchaseCancellationReason());
-        protocol.setPublicationDateTime(protocolOSZ.getPublicationDateTime());
-        protocol.setStatus(protocolOSZ.getStatus());
-        protocol.setVersion(protocolOSZ.getVersion());
-        protocol.setModificationDescription(protocolOSZ.getModificationDescription());
-        protocol.setAttachments(protocolOSZ.getAttachments());
-        protocol.setAllocationReference(protocolOSZ.getAllocationReference());
-        protocol.setSignatureAuthorizedBody(protocolOSZ.getSignatureAuthorizedBody());
-        // PurchaseProtocolBaseDataType
-        /*
-        @XmlSchemaType(name = "dateTime")
-        protected XMLGregorianCalendar procedureDate;
-        protocol.setProcedureDate(protocolOSZ.getProcedureDate());
-        protected String procedurePlace;
-        protocol.setProcedurePlace(protocolOSZ.getProcedurePlace());
-        protected ProtocolLotApplicationListType lotApplicationsList;
-        protocol.setLotApplicationsList(protocolOSZ.getLotApplicationsList());
-        @XmlSchemaType(name = "date")
-        protected XMLGregorianCalendar protocolSignDate;
-        protected Long templateVersion;
-        protected Boolean isLotOriented;
-        protected PurchaseProtocolDataType.TemplateStructure templateStructure;
-        protected ProtocolTemplateHideBlocks templateBlocks;
-        protected ProtocolExtendFieldValueListType extendFields;
-        protected String commissionNumber;
-        protected String commissionName;
-        protected String commissionResult;
-        */
-        return protocol;
     }
 }

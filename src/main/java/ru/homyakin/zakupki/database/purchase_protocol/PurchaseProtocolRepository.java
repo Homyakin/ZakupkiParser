@@ -19,10 +19,10 @@ public class PurchaseProtocolRepository {
         insert into purchase_protocol (guid, create_date_time, url_eis, url_vsrz, url_kis_rmis,
          protocol_purchase_info_guid, registration_number, placer_inn, customer_inn, additional_info, missed_contest,
          missed_reason, purchase_cancellation_reason, publication_date_time, status, version, modification_description,
-         allocation_reference_guid, type, type_name, target_phase_code, procedure_date, procedure_place,
+         type, type_name, target_phase_code, procedure_date, procedure_place,
          protocol_signed_date, template_version, is_lot_oriented, commission_number, commission_name, commission_result,
          region_name, protocol_type)
-         values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+         values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         """;
 
     private final JdbcTemplate jdbcTemplate;
@@ -71,7 +71,6 @@ public class PurchaseProtocolRepository {
                 mapStatusToString(protocol.getStatus()),
                 protocol.getVersion(),
                 protocol.getModificationDescription(),
-                getAllocationReferenceGuid(protocol), // TODO че это
                 protocol.getType(),
                 protocol.getTypeName(),
                 protocol.getTargetPhaseCode(),
@@ -97,12 +96,6 @@ public class PurchaseProtocolRepository {
                 );
             }
         }
-    }
-
-    private String getAllocationReferenceGuid(PurchaseProtocolDataType protocol) {
-        if (protocol.getAllocationReference() == null) return null;
-        if (protocol.getAllocationReference().getProtocolRequisites() == null) return null;
-        return protocol.getAllocationReference().getProtocolRequisites().getGuid();
     }
 
     private String mapStatusToString(PurchaseProtocolStatusType status) {

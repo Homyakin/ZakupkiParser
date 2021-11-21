@@ -160,6 +160,10 @@ public class ProtocolLotApplications {
         return this.application;
     }
 
+    public void setApplication(List<ProtocolApplicationType> application) {
+        this.application = application;
+    }
+
     /**
      * Gets the value of the documentsRequirement property.
      * 

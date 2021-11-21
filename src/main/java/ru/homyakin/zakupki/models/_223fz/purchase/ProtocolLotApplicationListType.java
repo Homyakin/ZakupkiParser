@@ -75,4 +75,8 @@ public class ProtocolLotApplicationListType {
         return this.protocolLotApplications;
     }
 
+    public void setProtocolLotApplications(List<ProtocolLotApplications> protocolLotApplications) {
+        this.protocolLotApplications = protocolLotApplications;
+    }
+
 }
