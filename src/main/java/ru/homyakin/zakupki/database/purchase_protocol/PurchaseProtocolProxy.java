@@ -15,6 +15,7 @@ import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolRzae
 import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolRzoaMapper;
 import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolRzokMapper;
 import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolVkMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolZkMapper;
 import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolCancellation;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocol;
@@ -164,14 +165,11 @@ public class PurchaseProtocolProxy {
             logger.warn("ProtocolCancellation");
             countNotProcessed++;
         } else if (parsedObject instanceof PurchaseProtocolZK purchaseProtocol) {
-            //TODO
+            data = Optional.of(PurchaseProtocolZkMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolZKData()));
         } else {
             logger.error("Unknown class {}", parsedObject.getClass().getSimpleName());
         }
         data.ifPresent(it -> purchaseProtocolRepository.insert(it, folder, region));
         countProcessed++;
-        if (countProcessed % 100 == 0) {
-            logger.warn("Not processed protocols {} of {}", countNotProcessed, countProcessed);
-        }
     }
 }
