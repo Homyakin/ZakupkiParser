@@ -3,7 +3,7 @@ package ru.homyakin.zakupki.database.purchase_protocol.utils;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAOADataType;
 
-public class PurchaseNoticePaoaMapper {
+public class PurchaseProtocolPaoaMapper {
     public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolPAOADataType paoaDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(paoaDataType.getGuid());

@@ -9,7 +9,7 @@ import ru.homyakin.zakupki.models._223fz.purchase.ProtocolPAAE94FZLotApplication
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAAE94FZDataType;
 
-public class PurchaseNoticePaae94fzMapper {
+public class PurchaseProtocolPaae94fzMapper {
     public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolPAAE94FZDataType paae94fzDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(paae94fzDataType.getGuid());
@@ -44,12 +44,11 @@ public class PurchaseNoticePaae94fzMapper {
 
     private static ProtocolLotApplicationListType mapApplicationList(ProtocolPAAE94FZLotApplicationListType paae94fzListType) {
         if (paae94fzListType == null) return null;
-        paae94fzListType.getProtocolLotApplications();
         var listType = new ProtocolLotApplicationListType();
         if (paae94fzListType.getProtocolLotApplications() != null) {
             listType.setProtocolLotApplications(
                 paae94fzListType.getProtocolLotApplications().stream()
-                    .map(PurchaseNoticePaae94fzMapper::mapLotApplications)
+                    .map(PurchaseProtocolPaae94fzMapper::mapLotApplications)
                     .toList()
             );
         }
@@ -63,7 +62,7 @@ public class PurchaseNoticePaae94fzMapper {
         if (paae94fzLotApplications.getApplication() != null) {
             lotApplications.setApplication(
                 paae94fzLotApplications.getApplication().stream()
-                    .map(PurchaseNoticePaae94fzMapper::mapApplication)
+                    .map(PurchaseProtocolPaae94fzMapper::mapApplication)
                     .toList()
             );
         }

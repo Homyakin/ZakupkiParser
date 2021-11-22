@@ -11,7 +11,6 @@ import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZOALotApplications;
 public class RzoaApplicationsMapper {
     public static ProtocolLotApplicationListType mapApplicationList(ProtocolRZOALotApplicationListType rzoaListType) {
         if (rzoaListType == null) return null;
-        rzoaListType.getProtocolLotApplications();
         var listType = new ProtocolLotApplicationListType();
         if (rzoaListType.getProtocolLotApplications() != null) {
             listType.setProtocolLotApplications(

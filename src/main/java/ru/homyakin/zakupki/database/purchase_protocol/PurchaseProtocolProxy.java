@@ -4,16 +4,17 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticeOszMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticePaae94fzMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticePaaeMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticePaepMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticePaoaMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticeRz1ae94fzMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticeRz2ae94fzMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticeRzaeMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticeRzoaMapper;
-import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseNoticeRzokMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolOszMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolPaae94fzMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolPaaeMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolPaepMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolPaoaMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolRz1ae94fzMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolRz2ae94fzMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolRzaeMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolRzoaMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolRzokMapper;
+import ru.homyakin.zakupki.database.purchase_protocol.utils.PurchaseProtocolVkMapper;
 import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolCancellation;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocol;
@@ -100,17 +101,17 @@ public class PurchaseProtocolProxy {
         } else if (parsedObject instanceof PurchaseProtocolFKVOKESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolFKVOKESMBOData());
         } else if (parsedObject instanceof PurchaseProtocolOSZ purchaseProtocolOSZ) {
-            data = Optional.of(PurchaseNoticeOszMapper.mapToDataType(purchaseProtocolOSZ.getBody().getItem().getPurchaseProtocolOSZData()));
+            data = Optional.of(PurchaseProtocolOszMapper.mapToDataType(purchaseProtocolOSZ.getBody().getItem().getPurchaseProtocolOSZData()));
         } else if (parsedObject instanceof PurchaseProtocolPAAE purchaseProtocol) {
-            data = Optional.of(PurchaseNoticePaaeMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAAEData()));
+            data = Optional.of(PurchaseProtocolPaaeMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAAEData()));
         } else if (parsedObject instanceof PurchaseProtocolPAAE94FZ purchaseProtocol) {
-            data = Optional.of(PurchaseNoticePaae94fzMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAAE94FZData()));
+            data = Optional.of(PurchaseProtocolPaae94fzMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAAE94FZData()));
         } else if (parsedObject instanceof PurchaseProtocolPAEP purchaseProtocol) {
-            data = Optional.of(PurchaseNoticePaepMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAEPData()));
+            data = Optional.of(PurchaseProtocolPaepMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAEPData()));
         } else if (parsedObject instanceof PurchaseProtocolPAOA purchaseProtocol) {
-            data = Optional.of(PurchaseNoticePaoaMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAOAData()));
+            data = Optional.of(PurchaseProtocolPaoaMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolPAOAData()));
         } else if (parsedObject instanceof PurchaseProtocolRZ1AE94FZ purchaseProtocol) {
-            data = Optional.of(PurchaseNoticeRz1ae94fzMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZ1AE94FZData()));
+            data = Optional.of(PurchaseProtocolRz1ae94fzMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZ1AE94FZData()));
         } else if (parsedObject instanceof PurchaseProtocolRZ1AESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZ1AESMBOData());
         } else if (parsedObject instanceof PurchaseProtocolRZ1KESMBO purchaseProtocol) {
@@ -118,7 +119,7 @@ public class PurchaseProtocolProxy {
         } else if (parsedObject instanceof PurchaseProtocolRZ1ZPESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZ1ZPESMBOData());
         } else if (parsedObject instanceof PurchaseProtocolRZ2AE94FZ purchaseProtocol) {
-            data = Optional.of(PurchaseNoticeRz2ae94fzMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZ2AE94FZData()));
+            data = Optional.of(PurchaseProtocolRz2ae94fzMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZ2AE94FZData()));
         } else if (parsedObject instanceof PurchaseProtocolRZ2AESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZ2AESMBOData());
         } else if (parsedObject instanceof PurchaseProtocolRZ2KESMBO purchaseProtocol) {
@@ -126,11 +127,11 @@ public class PurchaseProtocolProxy {
         } else if (parsedObject instanceof PurchaseProtocolRZ2ZPESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZ2ZPESMBOData());
         } else if (parsedObject instanceof PurchaseProtocolRZAE purchaseProtocol) {
-            data = Optional.of(PurchaseNoticeRzaeMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZAEData()));
+            data = Optional.of(PurchaseProtocolRzaeMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZAEData()));
         } else if (parsedObject instanceof PurchaseProtocolRZOA purchaseProtocol) {
-            data = Optional.of(PurchaseNoticeRzoaMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZOAData()));
+            data = Optional.of(PurchaseProtocolRzoaMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZOAData()));
         } else if (parsedObject instanceof PurchaseProtocolRZOK purchaseProtocol) {
-            data = Optional.of(PurchaseNoticeRzokMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZOKData()));
+            data = Optional.of(PurchaseProtocolRzokMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZOKData()));
         } else if (parsedObject instanceof PurchaseProtocolRZZKESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolRZZKESMBOData());
         } else if (parsedObject instanceof PurchaseProtocolRejectionAESMBO purchaseProtocol) {
@@ -150,9 +151,7 @@ public class PurchaseProtocolProxy {
         } else if (parsedObject instanceof PurchaseProtocolSummingupZPESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolSummingupZPESMBOData());
         } else if (parsedObject instanceof PurchaseProtocolVK purchaseProtocol) {
-            logger.error("PurchaseProtocolVK");
-            //TODO purchaseProtocolRepository.insert(purchaseProtocol.getBody().getItem().getPurchaseProtocolVKData(), folder);
-            countNotProcessed++;
+            data = Optional.of(PurchaseProtocolVkMapper.mapToDataType(purchaseProtocol.getBody().getItem().getPurchaseProtocolVKData()));
         } else if (parsedObject instanceof PurchaseProtocolZRPZAESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolZRPZAESMBOData());
         } else if (parsedObject instanceof PurchaseProtocolZRPZKESMBO purchaseProtocol) {
@@ -162,8 +161,7 @@ public class PurchaseProtocolProxy {
         } else if (parsedObject instanceof PurchaseProtocolZRPZZPESMBO purchaseProtocol) {
             data = Optional.of(purchaseProtocol.getBody().getItem().getPurchaseProtocolZRPZZPESMBOData());
         } else if (parsedObject instanceof ProtocolCancellation purchaseProtocol) {
-            logger.error("ProtocolCancellation");
-            //TODO purchaseProtocolRepository.insert(purchaseProtocol.getProtocolCancellationData(), folder, region);
+            logger.warn("ProtocolCancellation");
             countNotProcessed++;
         } else if (parsedObject instanceof PurchaseProtocolZK purchaseProtocol) {
             //TODO

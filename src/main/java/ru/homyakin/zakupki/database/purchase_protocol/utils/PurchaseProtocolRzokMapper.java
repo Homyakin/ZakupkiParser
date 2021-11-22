@@ -4,17 +4,13 @@ import ru.homyakin.zakupki.models._223fz.purchase.ProtocolApplicationType;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotApplicationListType;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotApplications;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZOAApplicationType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZOALotApplicationListType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZOALotApplications;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZOKApplicationType;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZOKLotApplicationListType;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZOKLotApplications;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolRZOADataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolRZOKDataType;
 
-public class PurchaseNoticeRzokMapper {
+public class PurchaseProtocolRzokMapper {
     public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolRZOKDataType rzokDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(rzokDataType.getGuid());
@@ -50,12 +46,11 @@ public class PurchaseNoticeRzokMapper {
 
     public static ProtocolLotApplicationListType mapApplicationList(ProtocolRZOKLotApplicationListType rzokListType) {
         if (rzokListType == null) return null;
-        rzokListType.getProtocolLotApplications();
         var listType = new ProtocolLotApplicationListType();
         if (rzokListType.getProtocolLotApplications() != null) {
             listType.setProtocolLotApplications(
                 rzokListType.getProtocolLotApplications().stream()
-                    .map(PurchaseNoticeRzokMapper::mapLotApplications)
+                    .map(PurchaseProtocolRzokMapper::mapLotApplications)
                     .toList()
             );
         }
@@ -72,7 +67,7 @@ public class PurchaseNoticeRzokMapper {
         if (rzokLotApplications.getApplication() != null) {
             lotApplications.setApplication(
                 rzokLotApplications.getApplication().stream()
-                    .map(PurchaseNoticeRzokMapper::mapApplication)
+                    .map(PurchaseProtocolRzokMapper::mapApplication)
                     .toList()
             );
         }

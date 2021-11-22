@@ -4,7 +4,7 @@ import java.util.Optional;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAAEDataType;
 
-public class PurchaseNoticePaaeMapper {
+public class PurchaseProtocolPaaeMapper {
     public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolPAAEDataType paaeDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(paaeDataType.getGuid());

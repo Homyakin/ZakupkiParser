@@ -11,7 +11,7 @@ import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolRZAEDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolRZOADataType;
 
-public class PurchaseNoticeRzoaMapper {
+public class PurchaseProtocolRzoaMapper {
     public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolRZOADataType rzaeDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(rzaeDataType.getGuid());

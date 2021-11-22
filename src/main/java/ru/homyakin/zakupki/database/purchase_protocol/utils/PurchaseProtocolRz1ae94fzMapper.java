@@ -4,17 +4,13 @@ import ru.homyakin.zakupki.models._223fz.purchase.ProtocolApplicationType;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotApplicationListType;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotApplications;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolOSZApplicationType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolOSZLotApplicationListType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolOSZLotApplications;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZ1AEApplicationType;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZ1AELotApplicationListType;
 import ru.homyakin.zakupki.models._223fz.purchase.ProtocolRZ1AELotApplications;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
-import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolOSZDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolRZ1AE94FZDataType;
 
-public class PurchaseNoticeRz1ae94fzMapper {
+public class PurchaseProtocolRz1ae94fzMapper {
     public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolRZ1AE94FZDataType rz1AE94FZDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(rz1AE94FZDataType.getGuid());
@@ -50,12 +46,11 @@ public class PurchaseNoticeRz1ae94fzMapper {
 
     private static ProtocolLotApplicationListType mapApplicationList(ProtocolRZ1AELotApplicationListType rz1aeListType) {
         if (rz1aeListType == null) return null;
-        rz1aeListType.getProtocolLotApplications();
         var listType = new ProtocolLotApplicationListType();
         if (rz1aeListType.getProtocolLotApplications() != null) {
             listType.setProtocolLotApplications(
                 rz1aeListType.getProtocolLotApplications().stream()
-                    .map(PurchaseNoticeRz1ae94fzMapper::mapLotApplications)
+                    .map(PurchaseProtocolRz1ae94fzMapper::mapLotApplications)
                     .toList()
             );
         }
@@ -79,7 +74,7 @@ public class PurchaseNoticeRz1ae94fzMapper {
         if (rz1aeLotApplications.getApplication() != null) {
             lotApplications.setApplication(
                 rz1aeLotApplications.getApplication().stream()
-                    .map(PurchaseNoticeRz1ae94fzMapper::mapApplication)
+                    .map(PurchaseProtocolRz1ae94fzMapper::mapApplication)
                     .toList()
             );
         }

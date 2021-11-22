@@ -82,7 +82,7 @@ public enum Folder {
     PURCHASE_PROTOCOL_CCKESMBO("purchaseProtocolCCKESMBO", PurchaseProtocolCCKESMBO.class),
     PURCHASE_PROTOCOL_CCZKESMBO("purchaseProtocolCCZKESMBO", PurchaseProtocolCCZKESMBO.class),
     PURCHASE_PROTOCOL_CCZPESMBO("purchaseProtocolCCZPESMBO", PurchaseProtocolCCZPESMBO.class),
-    PURCHASE_PROTOCOL_CANCELLATION("purchaseProtocolCancellation", ProtocolCancellation.class), // TODO проверить
+    // PURCHASE_PROTOCOL_CANCELLATION("purchaseProtocolCancellation", ProtocolCancellation.class), TODO проверить
     PURCHASE_PROTOCOL_COLLACATION_AESMBO("purchaseProtocolCollationAESMBO", PurchaseProtocolCollationAESMBO.class),
     PURCHASE_PROTOCOL_EVASION_AESMBO("purchaseProtocolEvasionAESMBO", PurchaseProtocolEvasionAESMBO.class),
     PURCHASE_PROTOCOL_EVASION_KESMBO("purchaseProtocolEvasionKESMBO", PurchaseProtocolEvasionKESMBO.class),

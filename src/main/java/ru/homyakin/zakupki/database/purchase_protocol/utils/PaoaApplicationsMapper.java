@@ -10,7 +10,6 @@ import ru.homyakin.zakupki.models._223fz.purchase.ProtocolPAOALotApplications;
 public class PaoaApplicationsMapper {
     public static ProtocolLotApplicationListType mapApplicationList(ProtocolPAOALotApplicationListType paoaListType) {
         if (paoaListType == null) return null;
-        paoaListType.getProtocolLotApplications();
         var listType = new ProtocolLotApplicationListType();
         if (paoaListType.getProtocolLotApplications() != null) {
             listType.setProtocolLotApplications(

@@ -10,7 +10,7 @@ import ru.homyakin.zakupki.models._223fz.purchase.ProtocolOSZLotApplications;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolOSZDataType;
 
-public class PurchaseNoticeOszMapper {
+public class PurchaseProtocolOszMapper {
     public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolOSZDataType oszDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(oszDataType.getGuid());
@@ -47,12 +47,11 @@ public class PurchaseNoticeOszMapper {
 
     private static ProtocolLotApplicationListType mapApplicationList(ProtocolOSZLotApplicationListType oszListType) {
         if (oszListType == null) return null;
-        oszListType.getProtocolLotApplications();
         var listType = new ProtocolLotApplicationListType();
         if (oszListType.getProtocolLotApplications() != null) {
             listType.setProtocolLotApplications(
                 oszListType.getProtocolLotApplications().stream()
-                    .map(PurchaseNoticeOszMapper::mapLotApplications)
+                    .map(PurchaseProtocolOszMapper::mapLotApplications)
                     .toList()
             );
         }
@@ -70,7 +69,7 @@ public class PurchaseNoticeOszMapper {
         if (oszLotApplications.getApplication() != null) {
             lotApplications.setApplication(
                 oszLotApplications.getApplication().stream()
-                    .map(PurchaseNoticeOszMapper::mapApplication)
+                    .map(PurchaseProtocolOszMapper::mapApplication)
                     .toList()
             );
         }
