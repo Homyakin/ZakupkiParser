@@ -11,37 +11,37 @@ import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolOSZDataType;
 
 public class PurchaseNoticeOszMapper {
-    public static PurchaseProtocolDataType mapOszToDataType(PurchaseProtocolOSZDataType osz) {
+    public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolOSZDataType oszDataType) {
         var dataType = new PurchaseProtocolDataType();
-        dataType.setGuid(osz.getGuid());
-        dataType.setCreateDateTime(osz.getCreateDateTime());
-        dataType.setUrlEIS(osz.getUrlEIS());
-        dataType.setUrlVSRZ(osz.getUrlVSRZ());
-        dataType.setUrlKisRmis(osz.getUrlKisRmis());
-        dataType.setPurchaseInfo(osz.getPurchaseInfo());
-        dataType.setRegistrationNumber(osz.getRegistrationNumber());
-        dataType.setPlacer(osz.getPlacer());
-        dataType.setCustomer(osz.getCustomer());
-        dataType.setAdditionalInfo(osz.getAdditionalInfo());
-        dataType.setMissedContest(osz.isMissedContest());
-        dataType.setMissedReason(osz.getMissedReason());
-        dataType.setPurchaseCancellationReason(osz.getPurchaseCancellationReason());
-        dataType.setPublicationDateTime(osz.getPublicationDateTime());
-        dataType.setStatus(osz.getStatus());
-        dataType.setVersion(osz.getVersion());
-        dataType.setModificationDescription(osz.getModificationDescription());
+        dataType.setGuid(oszDataType.getGuid());
+        dataType.setCreateDateTime(oszDataType.getCreateDateTime());
+        dataType.setUrlEIS(oszDataType.getUrlEIS());
+        dataType.setUrlVSRZ(oszDataType.getUrlVSRZ());
+        dataType.setUrlKisRmis(oszDataType.getUrlKisRmis());
+        dataType.setPurchaseInfo(oszDataType.getPurchaseInfo());
+        dataType.setRegistrationNumber(oszDataType.getRegistrationNumber());
+        dataType.setPlacer(oszDataType.getPlacer());
+        dataType.setCustomer(oszDataType.getCustomer());
+        dataType.setAdditionalInfo(oszDataType.getAdditionalInfo());
+        dataType.setMissedContest(oszDataType.isMissedContest());
+        dataType.setMissedReason(oszDataType.getMissedReason());
+        dataType.setPurchaseCancellationReason(oszDataType.getPurchaseCancellationReason());
+        dataType.setPublicationDateTime(oszDataType.getPublicationDateTime());
+        dataType.setStatus(oszDataType.getStatus());
+        dataType.setVersion(oszDataType.getVersion());
+        dataType.setModificationDescription(oszDataType.getModificationDescription());
         dataType.setType(0);
         dataType.setTypeName("Протокол оценки и сопоставления заявок для открытого конкурса");
         dataType.setTargetPhaseCode(null);
-        dataType.setProcedureDate(osz.getProcedureDate());
-        dataType.setProcedurePlace(osz.getProcedurePlace());
-        dataType.setProtocolSignDate(osz.getProtocolSignDate());
-        dataType.setTemplateVersion(osz.getProtocolRZVersion()); // Возможны несовпадения
+        dataType.setProcedureDate(oszDataType.getProcedureDate());
+        dataType.setProcedurePlace(oszDataType.getProcedurePlace());
+        dataType.setProtocolSignDate(oszDataType.getProtocolSignDate());
+        dataType.setTemplateVersion(oszDataType.getProtocolRZVersion()); // Возможны несовпадения
         dataType.setIsLotOriented(null);
-        dataType.setCommissionNumber(osz.getCommissionNumber());
-        dataType.setCommissionName(osz.getCommissionName());
-        dataType.setCommissionResult(osz.getCommissionResult());
-        dataType.setLotApplicationsList(mapApplicationList(osz.getLotApplicationsList()));
+        dataType.setCommissionNumber(oszDataType.getCommissionNumber());
+        dataType.setCommissionName(oszDataType.getCommissionName());
+        dataType.setCommissionResult(oszDataType.getCommissionResult());
+        dataType.setLotApplicationsList(mapApplicationList(oszDataType.getLotApplicationsList()));
         return dataType;
     }
 

@@ -1,18 +1,10 @@
 package ru.homyakin.zakupki.database.purchase_protocol.utils;
 
-import java.util.Optional;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolApplicationType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotApplicationListType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolLotApplications;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolPAOAApplicationType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolPAOALotApplicationListType;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolPAOALotApplications;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAOADataType;
-import ru.homyakin.zakupki.utils.RepositoryUtils;
 
 public class PurchaseNoticePaoaMapper {
-    public static PurchaseProtocolDataType mapPaaeToDataType(PurchaseProtocolPAOADataType paoaDataType) {
+    public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolPAOADataType paoaDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(paoaDataType.getGuid());
         dataType.setCreateDateTime(paoaDataType.getCreateDateTime());

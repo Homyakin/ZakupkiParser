@@ -11,7 +11,7 @@ import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAEPDataType;
 
 public class PurchaseNoticePaepMapper {
-    public static PurchaseProtocolDataType mapPaaeToDataType(PurchaseProtocolPAEPDataType paepDataType) {
+    public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolPAEPDataType paepDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(paepDataType.getGuid());
         dataType.setCreateDateTime(paepDataType.getCreateDateTime());
@@ -66,6 +66,7 @@ public class PurchaseNoticePaepMapper {
         lot.setPriceFormula(paepLotApplications.getPriceFormula());
         lot.setCommodityPrice(paepLotApplications.getCommodityPrice());
         lot.setPriceFormula(paepLotApplications.getPriceFormula());
+        lot.setMaxContractPrice(paepLotApplications.getMaxContractPrice());
         lot.setInitialSumInfo(paepLotApplications.getInitialSumInfo());
         lotApplications.setLot(lot);
         if (paepLotApplications.getApplication() != null) {

@@ -10,7 +10,7 @@ import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolDataType;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolPAAE94FZDataType;
 
 public class PurchaseNoticePaae94fzMapper {
-    public static PurchaseProtocolDataType mapPaaeToDataType(PurchaseProtocolPAAE94FZDataType paae94fzDataType) {
+    public static PurchaseProtocolDataType mapToDataType(PurchaseProtocolPAAE94FZDataType paae94fzDataType) {
         var dataType = new PurchaseProtocolDataType();
         dataType.setGuid(paae94fzDataType.getGuid());
         dataType.setCreateDateTime(paae94fzDataType.getCreateDateTime());
