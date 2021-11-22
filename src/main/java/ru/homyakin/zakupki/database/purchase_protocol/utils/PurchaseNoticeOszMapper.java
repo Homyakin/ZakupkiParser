@@ -50,13 +50,11 @@ public class PurchaseNoticeOszMapper {
         oszListType.getProtocolLotApplications();
         var listType = new ProtocolLotApplicationListType();
         if (oszListType.getProtocolLotApplications() != null) {
-            if (oszListType.getProtocolLotApplications() != null) {
-                listType.setProtocolLotApplications(
-                    oszListType.getProtocolLotApplications().stream()
-                        .map(PurchaseNoticeOszMapper::mapLotApplications)
-                        .toList()
-                );
-            }
+            listType.setProtocolLotApplications(
+                oszListType.getProtocolLotApplications().stream()
+                    .map(PurchaseNoticeOszMapper::mapLotApplications)
+                    .toList()
+            );
         }
         return listType;
     }

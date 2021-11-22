@@ -3,7 +3,7 @@ package ru.homyakin.zakupki.models;
 import ru.homyakin.zakupki.models._223fz.contract.Contract;
 import ru.homyakin.zakupki.models._223fz.contract.ContractCancellationInformation;
 import ru.homyakin.zakupki.models._223fz.contract.PerformanceContractInformation;
-import ru.homyakin.zakupki.models._223fz.purchase.ProtocolCancellationType;
+import ru.homyakin.zakupki.models._223fz.purchase.ProtocolCancellation;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseContract;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNotice;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseNoticeAE;
@@ -54,6 +54,7 @@ import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolSummingupKESMB
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolSummingupZKESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolSummingupZPESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolVK;
+import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolZK;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolZRPZAESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolZRPZKESMBO;
 import ru.homyakin.zakupki.models._223fz.purchase.PurchaseProtocolZRPZZKESMBO;
@@ -81,7 +82,7 @@ public enum Folder {
     PURCHASE_PROTOCOL_CCKESMBO("purchaseProtocolCCKESMBO", PurchaseProtocolCCKESMBO.class),
     PURCHASE_PROTOCOL_CCZKESMBO("purchaseProtocolCCZKESMBO", PurchaseProtocolCCZKESMBO.class),
     PURCHASE_PROTOCOL_CCZPESMBO("purchaseProtocolCCZPESMBO", PurchaseProtocolCCZPESMBO.class),
-    PURCHASE_PROTOCOL_CANCELLATION("purchaseProtocolCancellation", ProtocolCancellationType.class),
+    PURCHASE_PROTOCOL_CANCELLATION("purchaseProtocolCancellation", ProtocolCancellation.class), // TODO проверить
     PURCHASE_PROTOCOL_COLLACATION_AESMBO("purchaseProtocolCollationAESMBO", PurchaseProtocolCollationAESMBO.class),
     PURCHASE_PROTOCOL_EVASION_AESMBO("purchaseProtocolEvasionAESMBO", PurchaseProtocolEvasionAESMBO.class),
     PURCHASE_PROTOCOL_EVASION_KESMBO("purchaseProtocolEvasionKESMBO", PurchaseProtocolEvasionKESMBO.class),
@@ -89,21 +90,21 @@ public enum Folder {
     PURCHASE_PROTOCOL_EVASION_ZPESMBO("purchaseProtocolEvasionZPESMBO", PurchaseProtocolEvasionZPESMBO.class),
     PURCHASE_PROTOCOL_FCDKESMBO("purchaseProtocolFCDKESMBO", PurchaseProtocolFCDKESMBO.class),
     PURCHASE_PROTOCOL_FKVOKESMBO("purchaseProtocolFKVOKESMBO", PurchaseProtocolFKVOKESMBO.class),
-    PURCHASE_PROTOCOL_IP("purchaseProtocolIP", PurchaseProtocol.class), //TODO ??
+    PURCHASE_PROTOCOL_IP("purchaseProtocolIP", PurchaseProtocol.class), // не используется с 2012
     PURCHASE_PROTOCOL_OSZ("purchaseProtocolOSZ", PurchaseProtocolOSZ.class),
     PURCHASE_PROTOCOL_PAAE("purchaseProtocolPAAE", PurchaseProtocolPAAE.class),
     PURCHASE_PROTOCOL_PAAE94("purchaseProtocolPAAE94", PurchaseProtocolPAAE94FZ.class),
     PURCHASE_PROTOCOL_PAEP("purchaseProtocolPAEP", PurchaseProtocolPAEP.class),
     PURCHASE_PROTOCOL_PAOA("purchaseProtocolPAOA", PurchaseProtocolPAOA.class),
-    PURCHASE_PROTOCOL_PA_AE("purchaseProtocolPA_AE", PurchaseProtocolPAAE.class), //TODO
-    PURCHASE_PROTOCOL_PA_OA("purchaseProtocolPA_OA", PurchaseProtocolPAOA.class),
-    PURCHASE_PROTOCOL_RKZ("purchaseProtocolRKZ", PurchaseProtocol.class), //TODO
-    PURCHASE_PROTOCOL_RZ1AE("purchaseProtocolRZ1AE", PurchaseProtocolRZ1AE94FZ.class), //TODO
+    PURCHASE_PROTOCOL_PA_AE("purchaseProtocolPA_AE", PurchaseProtocolPAAE.class), // не используется с 2012
+    PURCHASE_PROTOCOL_PA_OA("purchaseProtocolPA_OA", PurchaseProtocolPAOA.class), // не используется с 2012
+    PURCHASE_PROTOCOL_RKZ("purchaseProtocolRKZ", PurchaseProtocolZK.class), // не используется с 2012
+    PURCHASE_PROTOCOL_RZ1AE("purchaseProtocolRZ1AE", PurchaseProtocolRZ1AE94FZ.class),
     PURCHASE_PROTOCOL_RZ1AE94FZ("purchaseProtocolRZ1AE94FZ", PurchaseProtocolRZ1AE94FZ.class),
     PURCHASE_PROTOCOL_RZ1AESMBO("purchaseProtocolRZ1AESMBO", PurchaseProtocolRZ1AESMBO.class),
     PURCHASE_PROTOCOL_RZ1KESMBO("purchaseProtocolRZ1KESMBO", PurchaseProtocolRZ1KESMBO.class),
     PURCHASE_PROTOCOL_RZ1ZPESMBO("purchaseProtocolRZ1ZPESMBO", PurchaseProtocolRZ1ZPESMBO.class),
-    PURCHASE_PROTOCOL_RZ2AE("purchaseProtocolRZ2AE", PurchaseProtocolRZ2AE94FZ.class), //TODO
+    PURCHASE_PROTOCOL_RZ2AE("purchaseProtocolRZ2AE", PurchaseProtocolRZ2AE94FZ.class),
     PURCHASE_PROTOCOL_RZ2AE94FZ("purchaseProtocolRZ2AE94FZ", PurchaseProtocolRZ2AE94FZ.class),
     PURCHASE_PROTOCOL_RZ2AESMBO("purchaseProtocolRZ2AESMBO", PurchaseProtocolRZ2AESMBO.class),
     PURCHASE_PROTOCOL_RZ2KESMBO("purchaseProtocolRZ2KESMBO", PurchaseProtocolRZ2KESMBO.class),
@@ -133,14 +134,14 @@ public enum Folder {
     PERFORMANCE_CONTRACT_INFORMATION("performanceContractInformation", PerformanceContractInformation.class),
     ;
     private final String name;
-    private final Class modelClass;
+    private final Class<?> modelClass;
 
-    Folder(String name, Class modelClass) {
+    Folder(String name, Class<?> modelClass) {
         this.name = name;
         this.modelClass = modelClass;
     }
 
-    public Class getModelClass() {
+    public Class<?> getModelClass() {
         return modelClass;
     }
 
