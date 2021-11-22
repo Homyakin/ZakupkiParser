@@ -96,16 +96,31 @@ public class FtpClient223Fz implements FtpClientFz {
     public List<FTPFile> getFilesInRegionFolder(String region, Folder folder, LocalDate startDate, LocalDate endDate) {
         var workspace = String.format("%s/%s/%s/daily", basicWorkspace, region, folder.getName());
         var fileList = new ArrayList<FTPFile>();
-        try {
-            var files = ftp.listFiles(workspace);
-            for (var remoteFile : files) {
-                LocalDate date = commonUtils.convertCalendarToLocalDate(remoteFile.getTimestamp());
-                if (remoteFile.isFile() && CommonUtils.isDateInInterval(startDate, endDate, date)) {
-                    fileList.add(remoteFile);
+        boolean isListed = false;
+        for (int retryCount = 1; !isListed; ++retryCount) {
+            try {
+                var files = ftp.listFiles(workspace);
+                for (var remoteFile : files) {
+                    LocalDate date = commonUtils.convertCalendarToLocalDate(remoteFile.getTimestamp());
+                    if (remoteFile.isFile() && CommonUtils.isDateInInterval(startDate, endDate, date)) {
+                        fileList.add(remoteFile);
+                    }
                 }
+                isListed = true;
+            }  catch (NoRouteToHostException e) {
+                logger.warn("NoRouteToHostException on listing {}, try waiting and retry {}", workspace, retryCount);
+                try {
+                    //Походу закупки поставили ограничитель на количество запросов, дадим им передышку
+                    Thread.sleep(10 * 1000);
+                } catch (InterruptedException ignored) {
+                }
+            }catch (IOException e) {
+                logger.error("Something went wrong wile listing {}", workspace, e);
+                break;
             }
-        } catch (IOException e) {
-            logger.error("Something went wrong wile listing {}", workspace, e);
+            if (isListed && retryCount > 1) {
+                logger.info("Success retry on listing {}; count {}", workspace, retryCount);
+            }
         }
         return fileList;
     }
