@@ -33,8 +33,6 @@ public class FtpClient223Fz implements FtpClientFz {
     private final FileSystemService fileSystemService;
     private final FtpConfiguration ftpConfiguration;
     private final CommonUtils commonUtils;
-    private LocalDate startDate = LocalDate.of(2000, 1, 1);
-    private LocalDate endDate = LocalDate.of(4000, 1, 1);
 
     public FtpClient223Fz(
         FileSystemService fileSystemService,
@@ -95,22 +93,14 @@ public class FtpClient223Fz implements FtpClientFz {
         }
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public List<FTPFile> getFilesInRegionFolder(String region, Folder folder) {
+    public List<FTPFile> getFilesInRegionFolder(String region, Folder folder, LocalDate startDate, LocalDate endDate) {
         var workspace = String.format("%s/%s/%s/daily", basicWorkspace, region, folder.getName());
         var fileList = new ArrayList<FTPFile>();
         try {
             var files = ftp.listFiles(workspace);
             for (var remoteFile : files) {
                 LocalDate date = commonUtils.convertCalendarToLocalDate(remoteFile.getTimestamp());
-                if (remoteFile.isFile() && isDateInInterval(date)) {
+                if (remoteFile.isFile() && CommonUtils.isDateInInterval(startDate, endDate, date)) {
                     fileList.add(remoteFile);
                 }
             }
@@ -148,9 +138,5 @@ public class FtpClient223Fz implements FtpClientFz {
             return Optional.empty();
         }
         return Optional.of(localFile);
-    }
-
-    private boolean isDateInInterval(LocalDate date) {
-        return date.isAfter(startDate) && date.isBefore(endDate) || date.equals(startDate) || date.equals(endDate);
     }
 }

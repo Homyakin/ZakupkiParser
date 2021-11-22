@@ -1,5 +1,6 @@
 package ru.homyakin.zakupki;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import ru.homyakin.zakupki.models.ParseFile;
 import ru.homyakin.zakupki.service.ConsoleInputService;
 import ru.homyakin.zakupki.service.ZipService;
 import ru.homyakin.zakupki.service.storage.RegionFilesStorage;
+import ru.homyakin.zakupki.utils.CommonUtils;
 import ru.homyakin.zakupki.web.FtpClient223Fz;
 
 @Component
@@ -36,34 +38,35 @@ public class ParserEngine {
     public void launch() {
         ftpClient.connect();
         ftpClient.login();
+        final var selectedRegions = consoleInputService.selectFromList(ftpClient.getAllRegions());
+        final var selectedTypes = consoleInputService.selectFromList(getAllFileTypes());
+        final var startDate = consoleInputService.selectStartDate().orElseGet(() -> LocalDate.of(2000, 1, 1));
+        final var endDate = consoleInputService.selectEndDate().orElseGet(() -> LocalDate.of(4000, 1, 1));
 
-        var selectedRegions = consoleInputService.selectFromList(ftpClient.getAllRegions());
-        var selectedTypes = consoleInputService.selectFromList(getAllFileTypes());
-        var startDate = consoleInputService.selectStartDate();
-        if (startDate.isPresent()) {
-            ftpClient.setStartDate(startDate.get());
-            ftpClient.setEndDate(consoleInputService.selectEndDate().get()); //всегда не null здесь
-        }
-
-        for (var region : selectedRegions) {
-            for (var type : selectedTypes) {
-                logger.info("Start parsing {} {}", region, type);
-                var fileType = FileType.fromString(type).orElseThrow(() -> new IllegalStateException("Unknown file type"));
-                for (var folder : fileType.getFolders()) {
-                    var files = ftpClient.getFilesInRegionFolder(region, folder);
-                    for (var file : files) {
-                        var localFile = ftpClient.downloadFile(file, region, folder);
-                        if (localFile.isPresent()) {
-                            var unzippedFilePaths = zipService.unzipFile(localFile.get());
-                            for (var filePath: unzippedFilePaths) {
-                                var parseFile = new ParseFile(filePath, folder);
-                                storage.insert(region, parseFile);
+        var currentDate = startDate;
+        while (CommonUtils.isDateInInterval(startDate, endDate, currentDate)) {
+            final var nextDate = currentDate.plusMonths(1);
+            for (final var region : selectedRegions) {
+                for (final var type : selectedTypes) {
+                    logger.info("Start parsing {} {}", region, type);
+                    final var fileType = FileType.fromString(type).orElseThrow(() -> new IllegalStateException("Unknown file type"));
+                    for (final var folder : fileType.getFolders()) {
+                        final var files = ftpClient.getFilesInRegionFolder(region, folder, currentDate, nextDate);
+                        for (final var file : files) {
+                            final var localFile = ftpClient.downloadFile(file, region, folder);
+                            if (localFile.isPresent()) {
+                                final var unzippedFilePaths = zipService.unzipFile(localFile.get());
+                                for (final var filePath: unzippedFilePaths) {
+                                    final var parseFile = new ParseFile(filePath, folder);
+                                    storage.insert(region, parseFile);
+                                }
                             }
                         }
                     }
-                }
 
+                }
             }
+            currentDate = nextDate;
         }
     }
 

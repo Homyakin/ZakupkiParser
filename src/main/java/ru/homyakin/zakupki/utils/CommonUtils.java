@@ -50,4 +50,8 @@ public class CommonUtils {
         }
         return Optional.of(inn);
     }
+
+    public static boolean isDateInInterval(LocalDate startDate, LocalDate endDate, LocalDate date) {
+        return date.isAfter(startDate) && date.isBefore(endDate) || date.equals(startDate) || date.equals(endDate);
+    }
 }

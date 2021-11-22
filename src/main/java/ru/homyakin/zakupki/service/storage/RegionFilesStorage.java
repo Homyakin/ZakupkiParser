@@ -23,17 +23,4 @@ public class RegionFilesStorage {
     public Map<String, ParseFileQueue> getMap() {
         return storage;
     }
-
-    @Scheduled(fixedDelay = 10 * 60 * 1000)
-    public void clear() {
-        var keysToDelete = new ArrayList<String>();
-        for (var entry: storage.entrySet()) {
-            if (entry.getValue().isEmpty()) {
-                keysToDelete.add(entry.getKey());
-            }
-        }
-        for (var key: keysToDelete) {
-            storage.remove(key);
-        }
-    }
 }
