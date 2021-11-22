@@ -1,6 +1,8 @@
 package ru.homyakin.zakupki;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,11 +46,14 @@ public class ParserEngine {
         final var endDate = consoleInputService.selectEndDate().orElseGet(() -> LocalDate.of(4000, 1, 1));
 
         var currentDate = startDate;
-        while (CommonUtils.isDateInInterval(startDate, endDate, currentDate)) {
-            final var nextDate = currentDate.plusMonths(1);
+        while (currentDate.isBefore(endDate)) {
+            LocalDate nextDate = currentDate.plusMonths(1);
+            if (nextDate.isAfter(endDate)) {
+                nextDate = endDate;
+            }
             for (final var region : selectedRegions) {
                 for (final var type : selectedTypes) {
-                    logger.info("Start parsing {} {}", region, type);
+                    logger.info("Start parsing {} {} from {} to {}", region, type, currentDate, nextDate);
                     final var fileType = FileType.fromString(type).orElseThrow(() -> new IllegalStateException("Unknown file type"));
                     for (final var folder : fileType.getFolders()) {
                         final var files = ftpClient.getFilesInRegionFolder(region, folder, currentDate, nextDate);
