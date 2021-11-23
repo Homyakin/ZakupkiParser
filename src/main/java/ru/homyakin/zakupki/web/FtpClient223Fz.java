@@ -1,6 +1,7 @@
 package ru.homyakin.zakupki.web;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.NoRouteToHostException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,11 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.config.FtpConfiguration;
-import ru.homyakin.zakupki.models.FileType;
 import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.utils.CommonUtils;
-import ru.homyakin.zakupki.web.exceptions.ConnectException;
 import ru.homyakin.zakupki.web.exceptions.LoginException;
 
 @Component
@@ -70,7 +69,7 @@ public class FtpClient223Fz implements FtpClientFz {
         } catch (IOException e) {
             logger.error("Can't connect to the server", e);
             logger.info("Server reply:{}", Arrays.toString(ftp.getReplyStrings()));
-            throw new ConnectException("Unable to connect to server: " + ftpConfiguration.getUrl());
+            throw new IllegalStateException("Unable to connect to server: " + ftpConfiguration.getUrl());
         }
         logger.info("Server reply:{}", Arrays.toString(ftp.getReplyStrings()));
     }
@@ -89,7 +88,7 @@ public class FtpClient223Fz implements FtpClientFz {
             }
         } catch (IOException e) {
             logger.error("Server error", e);
-            throw new ConnectException("Unable to connect to server: " + ftpConfiguration.getUrl());
+            throw new IllegalStateException("Unable to connect to server: " + ftpConfiguration.getUrl());
         }
     }
 
