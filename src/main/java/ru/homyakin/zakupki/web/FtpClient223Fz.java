@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import org.apache.commons.net.MalformedServerReplyException;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -106,7 +107,7 @@ public class FtpClient223Fz implements FtpClientFz {
                     }
                 }
                 isListed = true;
-            }  catch (NoRouteToHostException | ConnectException e) {
+            }  catch (NoRouteToHostException | ConnectException | MalformedServerReplyException e) {
                 logger.warn("{} on listing {}, try waiting and retry {}", e.getClass().getSimpleName(), workspace, retryCount);
                 try {
                     //Походу закупки поставили ограничитель на количество запросов, дадим им передышку
@@ -132,7 +133,7 @@ public class FtpClient223Fz implements FtpClientFz {
         for (int retryCount = 1; !isDownload; ++retryCount) {
             try(var stream = Files.newOutputStream(localFile)) {
                 isDownload = ftp.retrieveFile(remotePath, stream);
-            }  catch (NoRouteToHostException | ConnectException e) {
+            }  catch (NoRouteToHostException | ConnectException | MalformedServerReplyException e) {
                 logger.warn("{} on {}, try waiting and retry {}", e.getClass().getSimpleName(), remotePath, retryCount);
                 try {
                     //Походу закупки поставили ограничитель на количество запросов, дадим им передышку
@@ -148,7 +149,6 @@ public class FtpClient223Fz implements FtpClientFz {
             }
         }
         if (!isDownload) {
-            logger.error("Something went wrong wile downloading {}", remotePath);
             return Optional.empty();
         }
         return Optional.of(localFile);
