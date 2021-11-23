@@ -48,7 +48,7 @@ public class SupplierAddressRepository {
             parameters.put("admin_division", address.getAdminDivision());
             return simpleJdbcInsert.executeAndReturnKey(parameters);
         } catch (RuntimeException e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into supplier address", e);
             return null;
         }
     }

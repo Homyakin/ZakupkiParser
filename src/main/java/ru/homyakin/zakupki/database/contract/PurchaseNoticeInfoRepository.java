@@ -34,7 +34,7 @@ public class PurchaseNoticeInfoRepository {
                 purchaseNoticeInfo.getName()
             );
         } catch (RuntimeException e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into purchase notice info", e);
         }
     }
 

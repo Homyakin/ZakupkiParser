@@ -41,7 +41,7 @@ public class PlanPositionRepository {
         } catch (DuplicateKeyException e) {
 
         } catch (RuntimeException e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into plan position", e);
         }
     }
 

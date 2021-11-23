@@ -117,7 +117,7 @@ public class PurchasePlanRepository extends BaseRepository<PurchasePlan> {
                 }
             }
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into purchase plan", e);
         }
     }
 }

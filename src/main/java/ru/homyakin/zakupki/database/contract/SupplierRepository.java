@@ -67,7 +67,7 @@ public class SupplierRepository {
             }
             insertSupplierToContract(guid, contractGuid);
         } catch (RuntimeException e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into supplier", e);
         }
     }
 

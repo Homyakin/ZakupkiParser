@@ -107,8 +107,8 @@ public class FtpClient223Fz implements FtpClientFz {
                     }
                 }
                 isListed = true;
-            }  catch (NoRouteToHostException e) {
-                logger.warn("NoRouteToHostException on listing {}, try waiting and retry {}", workspace, retryCount);
+            }  catch (NoRouteToHostException | ConnectException e) {
+                logger.warn("{} on listing {}, try waiting and retry {}", e.getClass().getSimpleName(), workspace, retryCount);
                 try {
                     //Походу закупки поставили ограничитель на количество запросов, дадим им передышку
                     Thread.sleep(10 * 1000);
@@ -133,8 +133,8 @@ public class FtpClient223Fz implements FtpClientFz {
         for (int retryCount = 1; !isDownload; ++retryCount) {
             try(var stream = Files.newOutputStream(localFile)) {
                 isDownload = ftp.retrieveFile(remotePath, stream);
-            }  catch (NoRouteToHostException e) {
-                logger.warn("NoRouteToHostException on {}, try waiting and retry {}", remotePath, retryCount);
+            }  catch (NoRouteToHostException | ConnectException e) {
+                logger.warn("{} on {}, try waiting and retry {}", e.getClass().getSimpleName(), remotePath, retryCount);
                 try {
                     //Походу закупки поставили ограничитель на количество запросов, дадим им передышку
                     Thread.sleep(10 * 1000);

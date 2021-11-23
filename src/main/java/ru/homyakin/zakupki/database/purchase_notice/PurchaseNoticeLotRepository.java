@@ -74,11 +74,13 @@ public class PurchaseNoticeLotRepository {
                 }
             }
             purchaseNoticeLotDataRepository.insert(lot.getLotData(), lot.getGuid());
+            //TODO
+            /*
             if (isJointLot(lot.getJointLotData())) {
                 for (var lotCustomer : lot.getJointLotData().getLotCustomers().getLotCustomer()) {
                     jointLotDataRepository.insert(lotCustomer, lot.getGuid());
                 }
-            }
+            }*/
 
         } catch (DuplicateKeyException ignored) {
         } catch (Exception e) {

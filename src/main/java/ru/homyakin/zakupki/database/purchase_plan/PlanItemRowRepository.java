@@ -56,7 +56,7 @@ public class PlanItemRowRepository {
                 purchasePlanItemRow.getQty()
             );
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting plan item row", e);
         }
     }
 
@@ -112,7 +112,7 @@ public class PlanItemRowRepository {
                 purchasePlanItemRow.getOrdinalNumber()
             );
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during updating plan item row", e);
         }
     }
 
@@ -140,7 +140,7 @@ public class PlanItemRowRepository {
                 innovationPlanItemRow.getOrdinalNumber()
             );
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during updating innovation_plan_item_row", e);
         }
     }
 

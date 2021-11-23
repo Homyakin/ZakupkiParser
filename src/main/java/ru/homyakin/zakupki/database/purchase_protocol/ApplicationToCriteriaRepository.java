@@ -11,7 +11,7 @@ public class ApplicationToCriteriaRepository {
     private final static Logger logger = LoggerFactory.getLogger(ApplicationToCriteriaRepository.class);
     private final static String INSERT =
         """
-        insert into application_to_criteria (application_guid, protocol_lot_applications_id, protocol_lot_criteria_guid) values (?, ?, ?);
+        insert into application_to_criteria (application_guid, application_protocol_lot_applications_id, protocol_lot_criteria_guid) values (?, ?, ?);
         """;
     private final JdbcTemplate jdbcTemplate;
 

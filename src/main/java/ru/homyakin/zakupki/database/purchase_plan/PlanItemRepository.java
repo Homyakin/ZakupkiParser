@@ -124,7 +124,7 @@ public class PlanItemRepository {
                 }
             }
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into plan item", e);
         }
 
     }

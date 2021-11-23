@@ -3,6 +3,7 @@ package ru.homyakin.zakupki.database.purchase_notice;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.ClassifierService;
@@ -53,6 +54,7 @@ public class PurchaseNoticeLotItemRepository {
                 item.getCommodityItemPrice(),
                 item.getCommodityItemPriceRub()
             );
+        } catch (DuplicateKeyException ignored) {
         } catch (Exception e) {
             logger.error("Error during inserting purchase notice lot item", e);
         }

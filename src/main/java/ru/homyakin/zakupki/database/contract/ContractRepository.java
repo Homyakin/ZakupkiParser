@@ -78,6 +78,7 @@ public class ContractRepository {
             if (contractData.getDetachedOrg() != null) {
                 if (contractData.getDetachedOrg().getMainInfo() == null) logger.warn("NO MAIN INFO");
                 detachedOrgInn = contractData.getDetachedOrg().getMainInfo().getInn();
+                customerRepository.insert(contractData.getDetachedOrg().getMainInfo());
             }
             purchaseNoticeInfoRepository.insert(contractData.getPurchaseNoticeInfo());
 
@@ -161,7 +162,7 @@ public class ContractRepository {
             //Same file
             //TODO add check to queue of existing file
         } catch (RuntimeException e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into contract", e);
         }
     }
 

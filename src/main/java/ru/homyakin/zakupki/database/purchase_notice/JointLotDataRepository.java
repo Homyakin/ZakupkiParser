@@ -1,11 +1,13 @@
 package ru.homyakin.zakupki.database.purchase_notice;
 
+import java.util.Optional;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.CustomerRepository;
+import ru.homyakin.zakupki.models._223fz.types.CustomerMainInfoType;
 import ru.homyakin.zakupki.models._223fz.types.LotCustomerType;
 import ru.homyakin.zakupki.utils.RepositoryUtils;
 
@@ -33,7 +35,8 @@ public class JointLotDataRepository {
             jdbcTemplate.update(
                 sql,
                 lotGuid,
-                lotCustomer.getCustomerInfo().getInn(),
+                //TODO кастомер обязательный
+                Optional.ofNullable(lotCustomer.getCustomerInfo()).map(CustomerMainInfoType::getInn).orElse(null),
                 lotCustomer.getAdditionalInfo(),
                 lotCustomer.getDeliveryPlaceIndication() != null ? lotCustomer.getDeliveryPlaceIndication().value() : null,
                 RepositoryUtils.convertBoolean(lotCustomer.isLotCustomerEditEnabled()),

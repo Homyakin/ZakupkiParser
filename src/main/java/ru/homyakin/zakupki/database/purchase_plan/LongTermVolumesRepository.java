@@ -38,7 +38,7 @@ public class LongTermVolumesRepository {
                 repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(longTermVolume.getExchangeRateDate())
             );
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into long term volumes", e);
         }
         if (longTermVolume.getDetails() != null) {
             for (var i : longTermVolume.getDetails().getLongTermVolumeDetail()) {
@@ -71,7 +71,7 @@ public class LongTermVolumesRepository {
                 }
             }
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during updating long term volumes", e);
         }
 
     }
@@ -95,7 +95,7 @@ public class LongTermVolumesRepository {
                 longTermVolumeDetail.getSummRub()
             );
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during inserting into long term volume detail", e);
         }
     }
 
@@ -112,7 +112,7 @@ public class LongTermVolumesRepository {
                 repositoryUtils.convertBoolean(isSmb)
             );
         } catch (Exception e) {
-            logger.error("Internal database error", e);
+            logger.error("Error during updating into long term volume details", e);
         }
     }
 
