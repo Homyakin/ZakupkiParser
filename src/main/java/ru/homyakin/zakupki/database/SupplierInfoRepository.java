@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.types.SupplierMainInfoType;
@@ -28,9 +29,9 @@ public class SupplierInfoRepository {
     public Optional<String> insert(SupplierMainInfoType supplier) {
         var sql = "INSERT INTO zakupki.supplier_info (guid, inn, name, kpp, ogrn, type, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
         if (supplier == null) return Optional.empty();
+        var inn = CommonUtils.validateInn(supplier.getInn());
+        var ogrn = validateOgrn(supplier.getOgrn());
         try {
-            var inn = CommonUtils.validateInn(supplier.getInn());
-            var ogrn = validateOgrn(supplier.getOgrn());
             Optional<String> guid = Optional.empty();
             if (inn.isPresent()) {
                 guid = getSupplierByInn(inn.get());
@@ -51,6 +52,16 @@ public class SupplierInfoRepository {
                 repositoryUtils.mapSupplierType(supplier.getType()),
                 supplier.getAddress()
             );
+            return guid;
+        } catch (DuplicateKeyException ignored) {
+            Optional<String> guid = Optional.empty();
+            if (inn.isPresent()) {
+                guid = getSupplierByInn(inn.get());
+            }
+            if (guid.isPresent()) return guid;
+            if (ogrn.isPresent()) {
+                guid = getSupplierByOgrn(ogrn.get());
+            }
             return guid;
         } catch (Exception e) {
             logger.error("Error during inserting in purchase_contract_supplier", e);

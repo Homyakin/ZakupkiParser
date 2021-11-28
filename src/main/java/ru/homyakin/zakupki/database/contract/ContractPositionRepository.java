@@ -32,9 +32,8 @@ public class ContractPositionRepository {
             "producer_country, impossible_to_determine_attr, okei_code, okei_name, qty, unit_price, currency_code, " +
             "exchange_rate, rub_unit_price, source_info)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+        var guid = CommonUtils.validateAndGetGuid(position.getGuid());
         try {
-            var guid = CommonUtils.validateAndGetGuid(position.getGuid());
             if (!checkPosition(guid)) {
                 jdbcTemplate.update(
                     sql,
@@ -59,6 +58,7 @@ public class ContractPositionRepository {
                     position.getSourceInfo() != null ? position.getSourceInfo().value() : null
                 );
             }
+        } catch (DuplicateKeyException ignored) {
             insertPositionToContract(guid, contractGuid);
         } catch (RuntimeException e) {
             logger.error("Error during insert in contract_position", e);

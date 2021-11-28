@@ -10,17 +10,13 @@ import ru.homyakin.zakupki.models.ParseFile;
 //Хранит в себе мапу <Регион+папка, файлы> для распараллеленной вставки
 @Service
 public class RegionFilesStorage {
-    private final Map<String, ParseFileQueue> storage = new ConcurrentHashMap<>();
+    private final ParseFileQueue storage = new ParseFileQueue();
 
-    public void insert(String region, ParseFile file) {
-        var key = region + file.folder().getName();
-        if (!storage.containsKey(region + file.folder().getName())) {
-            storage.put(key, new ParseFileQueue());
-        }
-        storage.get(key).put(file);
+    public void insert(ParseFile file) {
+        storage.put(file);
     }
 
-    public Map<String, ParseFileQueue> getMap() {
+    public ParseFileQueue getQueue() {
         return storage;
     }
 }

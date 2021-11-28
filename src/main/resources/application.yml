@@ -4,7 +4,7 @@ spring:
     password: 12345
     username: root
     hikari:
-      maximum-pool-size: 100
+      leak-detection-threshold: 45000
 
 homyakin:
   zakupki:
@@ -13,6 +13,6 @@ homyakin:
       login: "fz223free"
       password: "fz223free"
     app:
-      max-threads: 15
+      max-threads: 7
 
 

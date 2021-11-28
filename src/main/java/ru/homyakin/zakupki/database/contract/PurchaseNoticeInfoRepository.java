@@ -4,6 +4,7 @@ import java.util.List;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.models._223fz.contract.PurchaseNoticeInfoType;
@@ -13,11 +14,9 @@ import ru.homyakin.zakupki.utils.RepositoryUtils;
 public class PurchaseNoticeInfoRepository {
     private static final Logger logger = LoggerFactory.getLogger(PurchaseNoticeInfoRepository.class);
     private final JdbcTemplate jdbcTemplate;
-    private final RepositoryUtils repositoryUtils;
 
-    public PurchaseNoticeInfoRepository(DataSource dataSource, RepositoryUtils repositoryUtils) {
+    public PurchaseNoticeInfoRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(PurchaseNoticeInfoType purchaseNoticeInfo) {
@@ -30,9 +29,10 @@ public class PurchaseNoticeInfoRepository {
                 sql,
                 purchaseNoticeInfo.getGuid(),
                 purchaseNoticeInfo.getPurchaseNoticeNumber(),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(purchaseNoticeInfo.getPublicationDateTime()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(purchaseNoticeInfo.getPublicationDateTime()),
                 purchaseNoticeInfo.getName()
             );
+        } catch (DuplicateKeyException ignored) {
         } catch (RuntimeException e) {
             logger.error("Error during inserting into purchase notice info", e);
         }

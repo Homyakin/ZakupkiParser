@@ -56,7 +56,6 @@ public class CustomerRepository {
                 RepositoryUtils.convertBoolean(customer.isCustomerMonitoredCompliance())
             );
         } catch (DuplicateKeyException ignored) {
-
         } catch (Exception e) {
             logger.error("Error during inserting to customer", e);
         }
@@ -78,6 +77,7 @@ public class CustomerRepository {
                 customer.getLegalAddress(),
                 customer.getPostalAddress()
             );
+        } catch (DuplicateKeyException ignored) {
         } catch (Exception e) {
             logger.error("Error during inserting to customer", e);
         }
@@ -95,6 +95,7 @@ public class CustomerRepository {
                 placer.getKpp(),
                 placer.getOgrn()
             );
+        } catch (DuplicateKeyException ignored) {
         } catch (Exception e) {
             logger.error("Error during inserting to customer", e);
         }

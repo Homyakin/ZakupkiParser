@@ -1,12 +1,9 @@
 package ru.homyakin.zakupki.service.processing;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.homyakin.zakupki.config.AppConfiguration;
 import ru.homyakin.zakupki.database.RepositoryRouter;
@@ -21,8 +18,8 @@ public class RegionFilesProcessing {
 
     private final RepositoryRouter repositoryRouter;
     private final RegionFilesStorage storage;
-    private final List<String> regionFilesInProcess = new CopyOnWriteArrayList<>();
     private final ExecutorService executor;
+    private final int threads;
 
     public RegionFilesProcessing(
         RepositoryRouter repositoryRouter,
@@ -32,30 +29,30 @@ public class RegionFilesProcessing {
         this.repositoryRouter = repositoryRouter;
         this.storage = storage;
         this.executor = Executors.newFixedThreadPool(appConfiguration.getMaxThreads());
+        threads = appConfiguration.getMaxThreads();
     }
 
-    @Scheduled(initialDelay = 10 * 1000, fixedDelay = 60 * 1000)
     public void processFiles() {
-        var m = storage.getMap();
-        for (var entry : m.entrySet()) {
-            if (!regionFilesInProcess.contains(entry.getKey())) {
-                executor.submit(() -> this.processParseFiles(entry.getValue(), entry.getKey()));
-                regionFilesInProcess.add(entry.getKey());
+        for (int i = 0; i < threads; ++i) {
+            try {
+                var queue = storage.getQueue();
+                executor.submit(() -> this.processParseFiles(queue));
+            } catch (Exception e) {
+                logger.error("Error during main processing", e);
             }
         }
     }
 
-    public void processParseFiles(ParseFileQueue queue, String regionFile) {
-        while (!queue.isEmpty()) {
+    public void processParseFiles(ParseFileQueue queue) {
+        while (true) {
             try {
                 ParseFile file = queue.take();
                 logger.info("Start processing {}; {}", file.folder().getName(), file.filepath());
                 MainXmlParser.parse(file.filepath(), file.folder().getModelClass())
                     .ifPresent(parsedObject -> repositoryRouter.route(parsedObject, file));
-            } catch (RuntimeException e) {
+            } catch (Exception e) {
                 logger.error("Internal processing error", e);
             }
         }
-        regionFilesInProcess.remove(regionFile);
     }
 }

@@ -22,7 +22,6 @@ import ru.homyakin.zakupki.config.FtpConfiguration;
 import ru.homyakin.zakupki.models.Folder;
 import ru.homyakin.zakupki.service.FileSystemService;
 import ru.homyakin.zakupki.utils.CommonUtils;
-import ru.homyakin.zakupki.web.exceptions.LoginException;
 
 @Component
 public class FtpClient223Fz implements FtpClientFz {
@@ -68,9 +67,8 @@ public class FtpClient223Fz implements FtpClientFz {
         try {
             ftp.connect(ftpConfiguration.getUrl());
         } catch (IOException e) {
-            logger.error("Can't connect to the server", e);
             logger.info("Server reply:{}", Arrays.toString(ftp.getReplyStrings()));
-            throw new IllegalStateException("Unable to connect to server: " + ftpConfiguration.getUrl());
+            connect();
         }
         logger.info("Server reply:{}", Arrays.toString(ftp.getReplyStrings()));
     }
@@ -84,8 +82,7 @@ public class FtpClient223Fz implements FtpClientFz {
                 logger.info("Successful login to the ftp server");
             } else {
                 logger.error("Unable to login to the ftp server");
-                throw new LoginException("Unable to log in " + ftpConfiguration.getUrl() +
-                    " with login: " + ftpConfiguration.getLogin() + " and password: " + ftpConfiguration.getPassword());
+                login();
             }
         } catch (IOException e) {
             logger.error("Server error", e);
@@ -108,17 +105,14 @@ public class FtpClient223Fz implements FtpClientFz {
                 }
                 isListed = true;
             }  catch (NoRouteToHostException | ConnectException | MalformedServerReplyException e) {
-                logger.warn("{} on listing {}, try waiting and retry {}", e.getClass().getSimpleName(), workspace, retryCount);
-                try {
-                    //Походу закупки поставили ограничитель на количество запросов, дадим им передышку
-                    Thread.sleep(10 * 1000);
-                } catch (InterruptedException ignored) {
+                if (retryCount % 10 == 0) {
+                    logger.warn("{} on listing {}, try waiting and retry {}", e.getClass().getSimpleName(), workspace, retryCount);
                 }
-            }catch (IOException e) {
+            } catch (IOException e) {
                 logger.error("Something went wrong wile listing {}", workspace, e);
                 break;
             }
-            if (isListed && retryCount > 1) {
+            if (isListed && retryCount >= 10) {
                 logger.info("Success retry on listing {}; count {}", workspace, retryCount);
             }
         }
@@ -134,17 +128,14 @@ public class FtpClient223Fz implements FtpClientFz {
             try(var stream = Files.newOutputStream(localFile)) {
                 isDownload = ftp.retrieveFile(remotePath, stream);
             }  catch (NoRouteToHostException | ConnectException | MalformedServerReplyException e) {
-                logger.warn("{} on {}, try waiting and retry {}", e.getClass().getSimpleName(), remotePath, retryCount);
-                try {
-                    //Походу закупки поставили ограничитель на количество запросов, дадим им передышку
-                    Thread.sleep(10 * 1000);
-                } catch (InterruptedException ignored) {
+                if (retryCount % 10 == 0) {
+                    logger.warn("{} on {}, try waiting and retry {}", e.getClass().getSimpleName(), remotePath, retryCount);
                 }
-            }catch (IOException e) {
+            } catch (IOException e) {
                 logger.error("Something went wrong wile downloading {}", remotePath, e);
                 break;
             }
-            if (isDownload && retryCount > 1) {
+            if (isDownload && retryCount >= 10) {
                 logger.info("Success retry on {}; count {}", remotePath, retryCount);
             }
         }

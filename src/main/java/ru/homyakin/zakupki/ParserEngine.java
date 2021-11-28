@@ -63,7 +63,7 @@ public class ParserEngine {
                                 final var unzippedFilePaths = zipService.unzipFile(localFile.get());
                                 for (final var filePath: unzippedFilePaths) {
                                     final var parseFile = new ParseFile(filePath, folder);
-                                    storage.insert(region, parseFile);
+                                    storage.insert(parseFile);
                                 }
                             }
                         }

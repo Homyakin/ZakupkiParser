@@ -3,6 +3,7 @@ package ru.homyakin.zakupki.database.purchase_protocol;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.homyakin.zakupki.database.CustomerRepository;
@@ -85,6 +86,7 @@ public class PurchaseProtocolRepository {
                 region,
                 folder.getName()
             );
+        } catch (DuplicateKeyException ignored) {
         } catch (Exception e) {
             logger.error("Error during inserting purchase protocol {}", protocol.getGuid(), e);
         }
