@@ -58,6 +58,7 @@ public class ContractPositionRepository {
                     position.getSourceInfo() != null ? position.getSourceInfo().value() : null
                 );
             }
+            insertPositionToContract(guid, contractGuid);
         } catch (DuplicateKeyException ignored) {
             insertPositionToContract(guid, contractGuid);
         } catch (RuntimeException e) {
