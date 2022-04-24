@@ -102,6 +102,11 @@
 					<xs:documentation>Данные о владельце типового положения о закупке</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="blockedCustomer" type="t:customerInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные заблокированного заказчика</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="status" type="t:orderClauseStatusType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Статус положения</xs:documentation>
@@ -213,6 +218,11 @@
 					<xs:documentation>Подпись уполномоченного органа</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="competitiveIsElectronic" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Предусмотрено проведение конкурентных закупок не только в электронной форме</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="purchaseMethodType">
@@ -243,6 +253,16 @@
 			<xs:element name="phasesNumber" type="xs:int" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Количество этапов закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="submissionApplicationDate" minOccurs="0" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>Срок подачи заявок</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="workDays" minOccurs="0" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Учет рабочих дней для срока подачи заявок</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="conditionsOfUse" minOccurs="0">

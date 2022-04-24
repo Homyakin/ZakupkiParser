@@ -1217,7 +1217,7 @@
 					<xs:documentation>Дата создания документа</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="lot" type="t:lotLinkType" minOccurs="1">
+			<xs:element name="lot" type="t:lotLinkType">
 				<xs:annotation>
 					<xs:documentation>Информация о лоте</xs:documentation>
 				</xs:annotation>
@@ -1288,7 +1288,7 @@
 					<xs:documentation>Место поставки (субъект РФ)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="deliveryPlaceIndication" type="t:deliveryPlaceIndicationType" minOccurs="0" maxOccurs="1">
+			<xs:element name="deliveryPlaceIndication" type="t:deliveryPlaceIndicationType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Признак указания места поставки</xs:documentation>
 				</xs:annotation>
@@ -1470,7 +1470,7 @@
 			</xs:element>
 			<xs:element name="purchaseMethodCode" type="xs:long" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Cпособ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
+					<xs:documentation>Способ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="purchaseCodeName" minOccurs="0">
@@ -1548,7 +1548,7 @@
 					<xs:documentation>Признак указания места поставки</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="emergency" type="xs:boolean" minOccurs="0" maxOccurs="1">
+			<xs:element name="emergency" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						Закупка осуществляется вследствие аварии,
@@ -1558,14 +1558,14 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="jointPurchase" type="xs:boolean" minOccurs="0" maxOccurs="1">
+			<xs:element name="jointPurchase" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						Признак совместной закупки
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="forSmallOrMiddle" type="xs:boolean" minOccurs="0" maxOccurs="1">
+			<xs:element name="forSmallOrMiddle" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						Признак «Участниками закупки могут быть только субъекты малого и среднего предпринимательства»
@@ -1577,7 +1577,7 @@
 					<xs:documentation>Дата принятия решения о внесении изменений</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="antimonopolyDecisionTaken" type="xs:boolean" minOccurs="0" maxOccurs="1">
+			<xs:element name="antimonopolyDecisionTaken" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						Признак «Вынесено решение антимонопольного органа по результатам обжалования действия (бездействия) заказчика, комиссии по осуществлению конкурентной закупки, оператора ЭТП»
@@ -1787,7 +1787,7 @@
                         </xs:annotation>
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="level" minOccurs="1" maxOccurs="unbounded">
+                                <xs:element name="level" maxOccurs="unbounded">
                                     <xs:annotation>
                                         <xs:documentation>Описание уровня шаблона</xs:documentation>
                                     </xs:annotation>
@@ -1798,7 +1798,7 @@
                                                     <xs:documentation>Расположение поля</xs:documentation>
                                                 </xs:annotation>
                                             </xs:element>
-                                            <xs:element name="tab" type="t:templateStructureTabType" minOccurs="1" maxOccurs="unbounded">
+                                            <xs:element name="tab" type="t:templateStructureTabType" maxOccurs="unbounded">
                                                 <xs:annotation>
                                                     <xs:documentation>Описание вкладки шаблона</xs:documentation>
                                                 </xs:annotation>
@@ -1806,7 +1806,7 @@
                                         </xs:sequence>
                                     </xs:complexType>
                                 </xs:element>
-                            	<xs:element name="hiddenFzFields" type="t:hiddenFzFields" minOccurs="0"  maxOccurs="1">
+                            	<xs:element name="hiddenFzFields" type="t:hiddenFzFields" minOccurs="0">
 									<xs:annotation>
 										<xs:documentation>Скрытые 223 поля</xs:documentation>
 									</xs:annotation>
@@ -2044,7 +2044,7 @@
 					</xs:element>
 					<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
-							<xs:documentation>Tребования к составу документов</xs:documentation>
+							<xs:documentation>Требования к составу документов</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -2278,7 +2278,7 @@
 				<xs:sequence>
 					<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
-							<xs:documentation>Tребования к составу документов</xs:documentation>
+							<xs:documentation>Требования к составу документов</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -2351,7 +2351,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="allocatedLot" minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="allocatedLot" maxOccurs="unbounded">
 							<xs:complexType>
 								<xs:sequence>
 									<xs:element name="guid" type="t:guidType" minOccurs="0">
@@ -2451,6 +2451,11 @@
 			<xs:element name="customer" type="t:customerInfoType">
 				<xs:annotation>
 					<xs:documentation>Данные заказчика</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="blockedCustomer" type="t:customerInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные заблокированного заказчика</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="placer" type="t:customerInfoType">
@@ -2574,6 +2579,11 @@
 			<xs:element name="customer" type="t:customerInfoType">
 				<xs:annotation>
 					<xs:documentation>Данные заказчика</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="blockedCustomer" type="t:customerInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные заблокированного заказчика</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="placer" type="t:customerInfoType">
@@ -2765,6 +2775,11 @@
 					<xs:documentation>Данные заказчика</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="blockedCustomer" type="t:customerInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные заблокированного заказчика</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="placer" type="t:customerInfoType">
 				<xs:annotation>
 					<xs:documentation>Данные организации, размещающей сведения</xs:documentation>
@@ -2795,7 +2810,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="year" type="xs:int" minOccurs="1">
+			<xs:element name="year" type="xs:int">
 				<xs:annotation>
 					<xs:documentation>Отчетный период</xs:documentation>
 				</xs:annotation>
@@ -2898,6 +2913,11 @@
 					<xs:documentation>Данные заказчика</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="blockedCustomer" type="t:customerInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные заблокированного заказчика</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="placer" type="t:customerInfoType">
 				<xs:annotation>
 					<xs:documentation>Данные организации, размещающей сведения</xs:documentation>
@@ -2928,7 +2948,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="year" type="xs:int" minOccurs="1">
+			<xs:element name="year" type="xs:int">
 				<xs:annotation>
 					<xs:documentation>Отчетный период</xs:documentation>
 				</xs:annotation>
@@ -3011,12 +3031,12 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="year" type="xs:int" minOccurs="1">
+			<xs:element name="year" type="xs:int">
 				<xs:annotation>
 					<xs:documentation>Отчетный период</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="numberOfAgencies" type="xs:int" minOccurs="1">
+			<xs:element name="numberOfAgencies" type="xs:int">
 				<xs:annotation>
 					<xs:documentation>Количество организаций</xs:documentation>
 				</xs:annotation>
@@ -3028,7 +3048,7 @@
 			</xs:element>
 			<xs:element name="monitoringInconsistencyListType" type="monitoringInconsistencyListType">
 				<xs:annotation>
-					<xs:documentation>Значение показателя несоответсвия</xs:documentation>
+					<xs:documentation>Значение показателя несоответствия</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="attachments" type="t:documentListType" minOccurs="0">
@@ -3067,12 +3087,12 @@
 
 	<xs:complexType name="monitoringInconsistencyListType">
 		<xs:annotation>
-			<xs:documentation>Значение показателя несоответсвия</xs:documentation>
+			<xs:documentation>Значение показателя несоответствия</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="monitoringInconsistencyType" type="monitoringInconsistencyType" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Значение показателя несоответсвия</xs:documentation>
+					<xs:documentation>Значение показателя несоответствия</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -3083,7 +3103,7 @@
 			<xs:documentation>Значение показателей отчета</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="code" type="purchaseIndicatorCode" minOccurs="1">
+			<xs:element name="code" type="purchaseIndicatorCode">
 				<xs:annotation>
 					<xs:documentation>Код показателя</xs:documentation>
 				</xs:annotation>
@@ -3098,7 +3118,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="name" minOccurs="1">
+			<xs:element name="name">
 				<xs:annotation>
 					<xs:documentation>Наименование</xs:documentation>
 				</xs:annotation>
@@ -3141,7 +3161,7 @@
 			<xs:documentation>Значение по показателям отчета</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="code" type="monitoringIndicatorCode" minOccurs="1">
+			<xs:element name="code" type="monitoringIndicatorCode">
 				<xs:annotation>
 					<xs:documentation>Идентификатор сведений к которым принадлежит значение по показателю</xs:documentation>
 				</xs:annotation>
@@ -3156,7 +3176,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="name" minOccurs="1">
+			<xs:element name="name">
 				<xs:annotation>
 					<xs:documentation>Наименование</xs:documentation>
 				</xs:annotation>
@@ -3176,15 +3196,15 @@
 
 	<xs:complexType name="monitoringInconsistencyType">
 		<xs:annotation>
-			<xs:documentation>Значение показателя несоответсвия</xs:documentation>
+			<xs:documentation>Значение показателя несоответствия</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="code" type="monitoringIndicatorCode" minOccurs="1">
+			<xs:element name="code" type="monitoringIndicatorCode">
 				<xs:annotation>
 					<xs:documentation>Идентификатор сведений к которым принадлежит значение по показателю</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="name" minOccurs="1">
+			<xs:element name="name">
 				<xs:annotation>
 					<xs:documentation>Наименование</xs:documentation>
 				</xs:annotation>
@@ -3219,7 +3239,7 @@
 			<xs:minInclusive value="0"/>
 			<xs:totalDigits value="25"/>
 			<xs:fractionDigits value="5"/>
-			<xs:pattern value="\d{1,20}[\.]{0,1}\d{0,5}"/>
+			<xs:pattern value="\d{1,20}[\.]?\d{0,5}"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -3228,7 +3248,7 @@
 			<xs:minInclusive value="0"/>
 			<xs:totalDigits value="25"/>
 			<xs:fractionDigits value="5"/>
-			<xs:pattern value="\d{1,20}[\.]{0,1}\d{0,5}"/>
+			<xs:pattern value="\d{1,20}[\.]?\d{0,5}"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -3237,7 +3257,7 @@
 			<xs:minInclusive value="0"/>
 			<xs:totalDigits value="20"/>
 			<xs:fractionDigits value="5"/>
-			<xs:pattern value="\d{1,15}[\.]{0,1}\d{0,5}"/>
+			<xs:pattern value="\d{1,15}[\.]?\d{0,5}"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -3253,7 +3273,7 @@
 		<xs:restriction base="xs:decimal">
 			<xs:totalDigits value="20"/>
 			<xs:fractionDigits value="5"/>
-			<xs:pattern value="[\-]{0,1}\d{1,15}[\.]{0,1}\d{0,5}"/>
+			<xs:pattern value="[\-]?\d{1,15}[\.]?\d{0,5}"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -3337,7 +3357,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="cancelledLot" minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="cancelledLot" maxOccurs="unbounded">
 							<xs:complexType>
 								<xs:sequence>
 									<xs:element name="guid" type="t:guidType">
@@ -3471,7 +3491,7 @@
 			</xs:element>
 			<xs:element name="purchaseMethodCode" type="xs:long" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Cпособ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
+					<xs:documentation>Способ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="purchaseCodeName" minOccurs="0">
@@ -3514,7 +3534,7 @@
 					<xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="emergency" type="xs:boolean" minOccurs="0" maxOccurs="1">
+			<xs:element name="emergency" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Закупка отменяется вследствие возникновения обстоятельств непреодолимой силы в соответствии с гражданским законодательством</xs:documentation>
 				</xs:annotation>
@@ -3883,7 +3903,7 @@
                         </xs:annotation>
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="level" minOccurs="1" maxOccurs="unbounded">
+                                <xs:element name="level" maxOccurs="unbounded">
                                     <xs:annotation>
                                         <xs:documentation>Описание уровня шаблона</xs:documentation>
                                     </xs:annotation>
@@ -3894,7 +3914,7 @@
                                                     <xs:documentation>Расположение поля</xs:documentation>
                                                 </xs:annotation>
                                             </xs:element>
-                                            <xs:element name="tab" type="t:templateStructureTabType" minOccurs="1" maxOccurs="unbounded">
+                                            <xs:element name="tab" type="t:templateStructureTabType" maxOccurs="unbounded">
                                                 <xs:annotation>
                                                     <xs:documentation>Описание вкладки шаблона</xs:documentation>
                                                 </xs:annotation>
@@ -3902,7 +3922,7 @@
                                         </xs:sequence>
                                     </xs:complexType>
                                 </xs:element>
-								<xs:element name="hiddenProtocolFields" type="t:hiddenFzFields" minOccurs="0"  maxOccurs="1">
+								<xs:element name="hiddenProtocolFields" type="t:hiddenFzFields" minOccurs="0">
 									<xs:annotation>
 										<xs:documentation>Скрытые в конструкторе поля</xs:documentation>
 									</xs:annotation>
@@ -3994,7 +4014,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -4059,7 +4079,7 @@
                                     </xs:element>
                                 </xs:sequence>
                             </xs:choice>
-                            <xs:element name="maxContractPrice" type="t:money2" minOccurs="1" maxOccurs="1">
+                            <xs:element name="maxContractPrice" type="t:money2">
                                 <xs:annotation>
                                     <xs:documentation>Максимальная цена договора (цена лота)</xs:documentation>
                                 </xs:annotation>
@@ -4131,7 +4151,8 @@
 				<xs:sequence>
 					<xs:element name="price" type="t:money2">
 						<xs:annotation>
-							<xs:documentation>Цена поставщика</xs:documentation>
+							<xs:documentation>Цена поставщика.
+								Для аукциона МСП игнорируется</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="currency" type="t:currencyType">
@@ -4301,7 +4322,10 @@
 			</xs:element>
 			<xs:element name="additionalPrice" type="t:money2" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Ценовое предложение</xs:documentation>
+					<xs:documentation>Ценовое (дополнительное ценовое) предложение.
+						Для конкурса МСП указывается дополнительное ценовое предложение.
+						Для аукциона МСП указывается ценовое предложение.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="rating" type="xs:int" minOccurs="0">
@@ -4554,7 +4578,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -4681,7 +4705,7 @@
 		<xs:sequence>
 			<xs:element name="documentRequirement" type="documentRequirementType">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов</xs:documentation>
+					<xs:documentation>Требования к составу документов</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="presence" type="documentPresenceType">
@@ -4703,7 +4727,7 @@
 	</xs:complexType>
 	<xs:complexType name="documentRequirementType">
 		<xs:annotation>
-			<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+			<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="documentNumber" type="xs:int">
@@ -4747,7 +4771,24 @@
 	</xs:simpleType>
 	<xs:simpleType name="purchaseCancellationReasonType">
 		<xs:annotation>
-			<xs:documentation>Перечисление "Причина признания закупки несостоявшейся"</xs:documentation>
+			<xs:documentation>Перечисление "Причина признания закупки несостоявшейся"
+
+				Допустимые значения для протоколов неконкурентных закупок и протоколов закупок, созданных до вступления в силу ПП РФ от 10.09.2012 N 908 (ред. от 27.05.2021):
+
+				NO_APPLICATIONS : На участие в закупке не подано ни одной заявки
+				ONE_APPLICATION : На участие в закупке была подана только одна заявка
+				ACCESS_DENIED_ALL : По итогам рассмотрения отказано в допуске всем участникам закупки
+				ACCESS_GRANTED_ONE : По итогам рассмотрения допущен только один участник закупки
+				NO_PRICE_OFFERS : Не подано ни одного ценового предложения
+				OTHER : Иная
+
+				Допустимые значения в соответствии с ПП РФ от 10.09.2012 N 908 (ред. от 27.05.2021):
+
+				NO_APPLICATIONS_SUBMITTED : Конкурентная закупка признана несостоявшейся в связи с тем, что не подано ни одной заявки на участие в закупке
+				ALL_APPLICATIONS_CANCELED : Конкурентная закупка признана несостоявшейся в связи с тем, что по результатам ее проведения все заявки на участие в закупке отклонены
+				ONE_APPLICATION_SUBMITTED : Конкурентная закупка признана несостоявшейся в связи с тем, что на участие в закупке подана только одна заявка
+				ALL_APPLICATIONS_CANCELED_EXCEPT_ONE : Конкурентная закупка признана несостоявшейся в связи с тем, что по результатам ее проведения отклонены все заявки, за исключением одной заявки на участие в закупке
+				ALL_PARTICIPANTS_AVOIDED_CONTRACT : Конкурентная закупка признана несостоявшейся в связи с тем, что по результатам ее проведения от заключения договора уклонились все участники закупки"</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="NO_APPLICATIONS">
@@ -4778,6 +4819,41 @@
 			<xs:enumeration value="OTHER">
 				<xs:annotation>
 					<xs:documentation>Иная</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NO_APPLICATIONS_SUBMITTED">
+				<xs:annotation>
+					<xs:documentation>Конкурентная закупка признана несостоявшейся в связи с тем, что не подано ни одной
+						заявки на участие в закупке
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALL_APPLICATIONS_CANCELED">
+				<xs:annotation>
+					<xs:documentation>Конкурентная закупка признана несостоявшейся в связи с тем, что по результатам ее
+						проведения все заявки на участие в закупке отклонены
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ONE_APPLICATION_SUBMITTED">
+				<xs:annotation>
+					<xs:documentation>Конкурентная закупка признана несостоявшейся в связи с тем, что на участие в
+						закупке подана только одна заявка
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALL_APPLICATIONS_CANCELED_EXCEPT_ONE">
+				<xs:annotation>
+					<xs:documentation>Конкурентная закупка признана несостоявшейся в связи с тем, что по результатам ее
+						проведения отклонены все заявки, за исключением одной заявки на участие в закупке
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALL_PARTICIPANTS_AVOIDED_CONTRACT">
+				<xs:annotation>
+					<xs:documentation>Конкурентная закупка признана несостоявшейся в связи с тем, что по результатам ее
+						проведения от заключения договора уклонились все участники закупки
+					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -4916,6 +4992,11 @@
 							<xs:documentation>Протокола запроса разъяснений положений заявки</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="protocolAdditionalCollationRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокола подачи дополнительных ценовых предложений</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -4945,7 +5026,7 @@
 				<xs:sequence>
 					<xs:element name="protocolCollationRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
 						<xs:annotation>
-							<xs:documentation>Протокол сопоставления ценовых предложений</xs:documentation>
+							<xs:documentation>Протокол подачи ценовых предложений</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="protocolRZ1RegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
@@ -4964,7 +5045,7 @@
 	</xs:complexType>
 	<xs:complexType name="purchaseProtocolCollationAESMBODataType">
 		<xs:annotation>
-			<xs:documentation>Протокол сопоставления ценовых предложений аукциона в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+			<xs:documentation>Протокол подачи ценовых предложений аукциона в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="purchaseProtocolDataType">
@@ -5000,6 +5081,16 @@
 		<xs:complexContent>
 			<xs:extension base="purchaseProtocolDataType">
 				<xs:sequence>
+					<xs:element name="protocolFCDRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол обсуждения функциональных характеристик</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="protocolFCODRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол обсуждения предложений о функциональных характеристиках</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="protocolZRPZZPESMBORegistrationNumber" minOccurs="0" type="t:registrationNumber11-2Type">
 						<xs:annotation>
 							<xs:documentation>Протокол запроса разъяснений положений</xs:documentation>
@@ -5056,6 +5147,11 @@
 					<xs:element name="protocolRZ2RegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
 						<xs:annotation>
 							<xs:documentation>Протокол рассмотрения вторых частей заявок</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="protocolAdditionalCollationKESMBORegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокола подачи дополнительных ценовых предложений</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -5184,7 +5280,7 @@
 					</xs:element>
 					<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
-							<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+							<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -5398,7 +5494,7 @@
 									</xs:element>
 								</xs:sequence>
 							</xs:choice>
-							<xs:element name="maxContractPrice" type="t:money2" minOccurs="1" maxOccurs="1">
+							<xs:element name="maxContractPrice" type="t:money2">
 								<xs:annotation>
 									<xs:documentation>Максимальная цена договора (цена лота)</xs:documentation>
 								</xs:annotation>
@@ -5424,7 +5520,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -6186,7 +6282,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -6287,7 +6383,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -6683,7 +6779,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -6748,7 +6844,7 @@
 									</xs:element>
 								</xs:sequence>
 							</xs:choice>
-							<xs:element name="maxContractPrice" type="t:money2" minOccurs="1" maxOccurs="1">
+							<xs:element name="maxContractPrice" type="t:money2">
 								<xs:annotation>
 									<xs:documentation>Максимальная цена договора (цена лота)</xs:documentation>
 								</xs:annotation>
@@ -6774,7 +6870,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 
@@ -6852,7 +6948,7 @@
 									</xs:element>
 								</xs:sequence>
 							</xs:choice>
-							<xs:element name="maxContractPrice" type="t:money2" minOccurs="1" maxOccurs="1">
+							<xs:element name="maxContractPrice" type="t:money2">
 								<xs:annotation>
 									<xs:documentation>Максимальная цена договора (цена лота)</xs:documentation>
 								</xs:annotation>
@@ -6878,7 +6974,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -6947,7 +7043,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -7150,7 +7246,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -7178,7 +7274,7 @@
 			</xs:element>
 			<xs:element name="documentsRequirement" type="documentRequirementType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Tребования к составу документов по лоту</xs:documentation>
+					<xs:documentation>Требования к составу документов по лоту</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 
@@ -7923,7 +8019,7 @@
 				<xs:sequence>
 					<xs:element name="purchaseProtocolCollationAESMBOData" type="purchaseProtocolCollationAESMBODataType">
 						<xs:annotation>
-							<xs:documentation>Протокол сопоставления ценовых предложений аукциона в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+							<xs:documentation>Протокол подачи ценовых предложений аукциона в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -8377,12 +8473,22 @@
 					<xs:documentation>Период сведений</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="contractsNumber" type="xs:unsignedInt">
+			<xs:element name="docType" type="docTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код вида документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docTypeDescription" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование вида документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractsNumber" type="xs:unsignedInt" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Количество заключенных договоров</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="contractsOverallCost" type="t:unsignedMoney2">
+			<xs:element name="contractsOverallCost" type="t:unsignedMoney2" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Общая стоимость заключенных договоров</xs:documentation>
 				</xs:annotation>
@@ -8442,13 +8548,46 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<!--
-            <xs:element name="printFom" type="t:documentType" minOccurs="0">
-                            <xs:annotation>
-                                <xs:documentation>Печатная форма договора</xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-            -->
+			<xs:element name="phone" type="phoneType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name = "email" type="t:emailType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес электронной почты</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractAccountCaseInfo" type="contractAccountCaseInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о количестве и об общей стоимости договоров, заключенных заказчиком по результатам закупки товаров, работ, услуг</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractAccountTotal" type="contractAccountTotalType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Итоговая информация о количестве и общей стоимости договоров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="russianGoodsPurchasesInfo" type="russianGoodsPurchasesInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о закупках товаров российского происхождения, в том числе товаров, поставленных при выполнении закупаемых работ, оказании закупаемых услуг</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractAccountInfoRel" type="contractAccountInfoRelType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о закупках товаров российского происхождения за год, в том числе товаров, поставленных при выполнении закупаемых работ, оказании закупаемых услуг</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="updateInfo" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак автоматической загрузки сведений из РД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="updateInfoRel" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак автоматической загрузки сведений из отчетности по договорам</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="attachments" type="t:documentListType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
@@ -8461,6 +8600,427 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:simpleType name="caseCodeType">
+		<xs:annotation>
+			<xs:documentation>Код случая заключения договора</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:enumeration value="110">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.2 Федерального закона № 223-ФЗ (за исключением конкурентных закупок, предусмотренных статьями 3.3 – 3.5 Федерального закона № 223-ФЗ)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="111">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.2 Федерального закона № 223-ФЗ (за исключением конкурентных закупок, предусмотренных статьями 3.3 – 3.5 Федерального закона № 223-ФЗ), признанной несостоявшейся в связи с тем, что на участие в закупке подана только одна заявка и с участником, подавшим такую заявку заключен договор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="112">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.2 Федерального закона № 223-ФЗ (за исключением конкурентных закупок, предусмотренных статьями 3.3 – 3.5 Федерального закона№ 223-ФЗ), признанной несостоявшейся в связи с тем, что по результатам ее проведения отклонены все заявки, кроме заявки, поданной участником закупки, с которым заключен договор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="120">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.3 Федерального закона № 223-ФЗ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="121">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.3 Федерального закона № 223-ФЗ, признанной несостоявшейся в связи с тем, что на участие в закупке подана только одна заявка и с участником, подавшим такую заявку заключен договор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="122">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.3 Федерального закона № 223-ФЗ, признанной несостоявшейся в связи с тем, что по результатам ее проведения отклонены все заявки, кроме заявки, поданной участником закупки, с которым заключен договор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="130">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.4 Федерального закона № 223-ФЗ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="131">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.4 Федерального закона № 223-ФЗ, признанной несостоявшейся в связи с тем, что на участие в закупке подана только одна заявка и с участником, подавшим такую заявку заключен договор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="132">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.4 Федерального закона № 223-ФЗ, признанной несостоявшейся в связи с тем, что по результатам ее проведения отклонены все заявки, кроме заявки, поданной участником закупки, с которым заключен договор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="140">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.5 Федерального закона № 223-ФЗ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="141">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.5 Федерального закона № 223-ФЗ, признанной несостоявшейся в связи с тем, что на участие в закупке подана только одна заявка и с участником, подавшим такую заявку заключен договор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="142">
+				<xs:annotation>
+					<xs:documentation>конкурентной закупки, предусмотренной статьей 3.5 Федерального закона № 223-ФЗ, признанной несостоявшейся в связи с тем, что по результатам ее проведения отклонены все заявки, кроме заявки, поданной участником закупки, с которым заключен договор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="210">
+				<xs:annotation>
+					<xs:documentation>неконкурентной закупки, за исключением неконкурентной закупки, предусмотренной статьей 3.6 Федерального закона № 223-ФЗ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="220">
+				<xs:annotation>
+					<xs:documentation>неконкурентной закупки, предусмотренной статьей 3.6 Федерального закона № 223-ФЗ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="310">
+				<xs:annotation>
+					<xs:documentation>закупки, сведения о которой не подлежат размещению в единой информационной системе в соответствии с частью 15 статьи 4 Федерального закона № 223-ФЗ (за исключением закупок, предусмотренных статьей 3.5 Федерального закона № 223-ФЗ)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="320">
+				<xs:annotation>
+					<xs:documentation>закупки, указанной в пунктах 1 - 3 части 15 статьи 4 Федерального закона № 223-ФЗ, в случае принятия заказчиком решения о неразмещении сведений о такой закупке в единой информационной системе</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="contractAcceptanceDocType">
+		<xs:annotation>
+			<xs:documentation>Информация о документах приемки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="completingRegNum" type="t:registrationNumber23Type">
+				<xs:annotation>
+					<xs:documentation>Реестровый номер сведений об исполнении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="positionOrdinal" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Порядковы номер позиции сведений об исполнении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docOrdinal" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер документа приемки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="contractAccountCaseInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о количестве и об общей стоимости договоров, заключенных заказчиком по результатам закупки товаров, работ, услуг</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contractInfo" type="contractAccountContractInfo">
+				<xs:annotation>
+					<xs:documentation>Информация о договоре</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="caseCode" type="caseCodeType">
+				<xs:annotation>
+					<xs:documentation>Код случая заключения договора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subjectContract">
+				<xs:annotation>
+					<xs:documentation>Предмет договора</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="t:nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="contractsOverallCost" type="t:money2">
+				<xs:annotation>
+					<xs:documentation>Цена договора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="contractAccountContractInfo">
+		<xs:annotation>
+			<xs:documentation>Информация о договоре</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contractNumber" type="t:registrationNumber23Type">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер сведений о договоре</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="contractAccountInfoRelType">
+		<xs:annotation>
+			<xs:documentation>Сведения о закупках товаров российского происхождения за год, в том числе товаров, поставленных при выполнении закупаемых работ, оказании закупаемых услуг</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="russianGoodsPurchasesInfoBaseType">
+				<xs:sequence>
+					<xs:element name="achievedPurchaseVolume" type="minPurchaseVolumeType">
+						<xs:annotation>
+							<xs:documentation>Размер достигнутой доли закупок товара российского происхождения (процентов)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="indicationContractAccountTotalYear" minOccurs="0" maxOccurs="unbounded" type="indicationContractAccountTotalYearType">
+						<xs:annotation>
+							<xs:documentation>Указание на наличие договора за год</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="contractAccountTotalType">
+		<xs:annotation>
+			<xs:documentation>Итоговая информация о количестве и общей стоимости договоров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="purchaseCategory" type="purchaseCategoryType">
+				<xs:annotation>
+					<xs:documentation>Предмет договора, заключенный по результатам закупок или Итоговое значение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="purchaseCategoryDescription" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Предмет договора, заключенный по результатам закупок или Итоговое значение (описание)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="quantityNumber" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Предмет договора, заключенный по результатам закупок или Итоговое значение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amountNumber" type="t:money2">
+				<xs:annotation>
+					<xs:documentation>Цена договора или максимальное значение цены договора (рублей)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="contractExistenceIndicationType">
+		<xs:annotation>
+			<xs:documentation>Код наличия договора</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NOT_SUBJECT">
+				<xs:annotation>
+					<xs:documentation>Договор заключен по результатам закупки, сведения о которой не подлежат размещению в ЕИС в соответствии с частью 15 статьи 4 223-ФЗ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CUSTOMER_SOLUTION">
+				<xs:annotation>
+					<xs:documentation>Договор заключен по результатам закупки, указанной в пунктах 1 - 3 части 15 статьи 4 223-ФЗ в случае принятия заказчиком решения о неразмещении сведений о таких закупках в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SINGLE_SUPPLIER">
+				<xs:annotation>
+					<xs:documentation>Договор заключен по результатам закупки, у единственного поставщика (подрядчика, исполнителя), если в соответствии с положением о закупке сведения о таких закупках не размещаются заказчиком в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="costVolumesType">
+		<xs:annotation>
+			<xs:documentation>Стоимостные объемы товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="costGoodsVolume" type="t:money2">
+				<xs:annotation>
+					<xs:documentation>Стоимостной объем товаров, в том числе товаров, поставленных при выполнении закупаемых работ, оказании закупаемых услуг (рублей)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="costRuGoodsVolume" type="t:money2">
+				<xs:annotation>
+					<xs:documentation>Стоимостной объем товаров российского происхождения, в том числе товаров, поставленных при выполнении закупаемых работ, оказании закупаемых услуг (рублей)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="docTypeType">
+		<xs:annotation>
+			<xs:documentation>Код вида документа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MAIN">
+				<xs:annotation>
+					<xs:documentation>Основной документ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MODIFICATION">
+				<xs:annotation>
+					<xs:documentation>Изменения к документу</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="goodsSupplyContractInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация о договорах на поставку товаров, в том числе поставленных при выполнении закупаемых работ, оказании закупаемых услуг</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contractInfo" type="contractAccountContractInfo">
+				<xs:annotation>
+					<xs:documentation>Информация о договоре</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractAcceptanceDoc" type="contractAcceptanceDocType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация о документах приемки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="costVolumes" type="costVolumesType">
+				<xs:annotation>
+					<xs:documentation>Стоимостные объемы товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="indicationContractAccountTotalType">
+		<xs:annotation>
+			<xs:documentation>Указание на наличие договора</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contractExistenceIndication" type="contractExistenceIndicationType">
+				<xs:annotation>
+					<xs:documentation>Код наличия договора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractExistenceIndicationTitle" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование наличия договора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="costVolumes" type="costVolumesType">
+				<xs:annotation>
+					<xs:documentation>Стоимостные объемы товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="indicationContractAccountTotalYearType">
+		<xs:annotation>
+			<xs:documentation>Указание на наличие договора за год</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="indicationContractAccountTotalType">
+				<xs:sequence>
+					<xs:element name="guid" type="t:guidType">
+						<xs:annotation>
+							<xs:documentation>Глобальный идентификатор отчетности по договорам</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="minPurchaseVolumeType">
+		<xs:annotation>
+			<xs:documentation>Размер минимальной доли закупок товаров российского происхождения (процентов)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="russianGoodsPurchasesInfoBaseType">
+		<xs:annotation>
+			<xs:documentation>Сведения о закупках товаров российского происхождения, в том числе товаров, поставленных при выполнении закупаемых работ, оказании закупаемых услуг (общее)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="minPurchaseOrdinal" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер по порядку из справочника минимальной доли закупок товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minPurchaseOrdinalOkpd" type="t:okpd2ProductType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Код товара по ОКПД2 из справочника минимальной доли закупок товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minPurchaseVolume" type="minPurchaseVolumeType">
+				<xs:annotation>
+					<xs:documentation>Размер минимальной доли закупок товаров российского происхождения (процентов)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="goodsSupplyContractInfo" type="goodsSupplyContractInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация о договорах на поставку товаров, в том числе поставленных при выполнении закупаемых работ, оказании закупаемых услуг</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="costVolumes" type="costVolumesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимостные объемы товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="russianGoodsPurchasesInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о закупках товаров российского происхождения, в том числе товаров, поставленных при выполнении закупаемых работ, оказании закупаемых услуг</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="russianGoodsPurchasesInfoBaseType">
+				<xs:sequence>
+					<xs:element name="indicationContractAccountTotal" type="indicationContractAccountTotalType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Указание на наличие договора</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="russianGoodsPurchaseInfo2021" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения о закупках товаров российского происхождения за 2021 год</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="purchaseCategoryType">
+		<xs:annotation>
+			<xs:documentation>Предмет договора, заключенный по результатам закупок или Итоговое значение</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TOTAL">
+				<xs:annotation>
+					<xs:documentation>Всего договоров, заключенных заказчиком по результатам закупки товаров, работ, услуг</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NOT_PLACED_310">
+				<xs:annotation>
+					<xs:documentation>Предмет договора, заключенный по результатам закупок, сведения о которых не подлежат размещению в единой информационной системе в соответствии с частью 15 статьи 4 Федерального закона</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NOT_PLACED_320">
+				<xs:annotation>
+					<xs:documentation>Предмет договора, заключенный по результатам закупок, указанных в пунктах 1 - 3 части 15 статьи 4 Федерального закона в случае принятия заказчиком решения о неразмещении сведений о таких закупках в единой информационной системе</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NOT_PLACED_220">
+				<xs:annotation>
+					<xs:documentation>Предмет договора, заключенный по результатам закупок у единственного поставщика (подрядчика, исполнителя), если в соответствии с положением о закупке сведения о таких закупках не размещаются заказчиком в единой информационной системе сфере закупок</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TOTAL_220">
+				<xs:annotation>
+					<xs:documentation>Предмет договора, заключенный по результатам закупок у единственного поставщика (исполнителя, подрядчика), предусмотренных статьей 3.6 Федерального закона</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALL_PLACED">
+				<xs:annotation>
+					<xs:documentation>Всего договоров, заключенных по результатам закупок, сведения о которых размещены в единой информационной системе</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PLACED_CANCELLED">
+				<xs:annotation>
+					<xs:documentation>Всего договоров, заключенных по результатам конкурентных закупок, признанных несостоявшимися (в связи с тем, что на участие в закупке подана только одна заявка и с участником, подавшим такую заявку заключен договор, а также в связи с чем, что по результатам проведения закупки отклонены все заявки, кроме заявки, поданной участником закупки, с которым заключен договор)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
 
 	<xs:complexType name="purchaseContractAccountItemType">
 		<xs:annotation>
@@ -8636,7 +9196,7 @@
 			</xs:element>
 			<xs:element name="purchaseMethodCode" type="xs:long" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Cпособ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
+					<xs:documentation>Способ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="purchaseMethodName" minOccurs="0">
@@ -8664,7 +9224,7 @@
 					<xs:documentation>Данные организации, создавшей разъяснение</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="emergency" type="xs:boolean" minOccurs="0" maxOccurs="1">
+			<xs:element name="emergency" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						Закупка осуществляется вследствие аварии,
@@ -9404,7 +9964,7 @@
 					</xs:element>
 					<xs:element name="protocolEvasionFinalProtocolApplicationInfo" type="protocolEvasionFinalProtocolApplicationInfoType">
 						<xs:annotation>
-							<xs:documentation>Свдения о заявке</xs:documentation>
+							<xs:documentation>Сведения о заявке</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="protocolEvasionDecisionInfo" type="protocolEvasionDecisionInfoType">
@@ -9787,6 +10347,20 @@
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
+					<xs:element name="protocolAdditionalCollationKESMBO" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Протокол подачи дополнительных ценовых предложений</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="protocolAdditionalCollationRegistrationNumber" type="t:registrationNumber11-2Type">
+									<xs:annotation>
+										<xs:documentation>Реестровый номер</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -9844,7 +10418,7 @@
 				<xs:sequence>
 					<xs:element name="protocolCollationRegistrationNumber" minOccurs="0" type="t:registrationNumber11-2Type">
 						<xs:annotation>
-							<xs:documentation>Протокол сопоставления ценовых предложений</xs:documentation>
+							<xs:documentation>Протокол подачи ценовых предложений</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="protocolRZ1RegistrationNumber" minOccurs="0" type="t:registrationNumber11-2Type">
@@ -9951,7 +10525,7 @@
 					</xs:element>
 					<xs:element name="protocolRejectionFinalProtocolApplicationInfo" type="protocolRejectionFinalProtocolApplicationInfoType">
 						<xs:annotation>
-							<xs:documentation>Свдения о заявке</xs:documentation>
+							<xs:documentation>Сведения о заявке</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="protocolRejectionDecisionInfo" type="protocolRejectionDecisionInfoType">
@@ -10494,7 +11068,7 @@
 			<xs:documentation>Информации о направлении запроса разъяснений</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="commissionDecision" type="explanationRequestCommissionDecisionType" minOccurs="1">
+			<xs:element name="commissionDecision" type="explanationRequestCommissionDecisionType">
 				<xs:annotation>
 					<xs:documentation>Решением комиссии о направления запроса разъяснений</xs:documentation>
 				</xs:annotation>
@@ -10576,16 +11150,6 @@
 		<xs:complexContent>
 			<xs:extension base="purchaseProtocolDataType">
 				<xs:sequence>
-					<xs:element name="protocolFCDRegistrationNumber" minOccurs="0" type="t:registrationNumber11-2Type">
-						<xs:annotation>
-							<xs:documentation>Протокол обсуждения функциональных характеристик</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="protocolFCODRegistrationNumber" minOccurs="0" type="t:registrationNumber11-2Type">
-						<xs:annotation>
-							<xs:documentation>Протокол обсуждения предложений о функциональных характеристиках</xs:documentation>
-						</xs:annotation>
-					</xs:element>
 					<xs:element name="protocolRZRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
 						<xs:annotation>
 							<xs:documentation>Протокол рассмотрения заявок</xs:documentation>
@@ -10645,6 +11209,16 @@
 		<xs:complexContent>
 			<xs:extension base="purchaseProtocolDataType">
 				<xs:sequence>
+					<xs:element name="protocolFCDRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол обсуждения функциональных характеристик</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="protocolFCODRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол обсуждения предложений о функциональных характеристиках</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="protocolRZ1RegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
 						<xs:annotation>
 							<xs:documentation>Протокол рассмотрения первых частей заявок</xs:documentation>
@@ -10670,7 +11244,7 @@
 	</xs:complexType>
 	<xs:element name="purchaseProtocolCollationAESMBO">
 		<xs:annotation>
-			<xs:documentation>Протокол сопоставления ценовых предложений аукциона в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+			<xs:documentation>Протокол подачи ценовых предложений аукциона в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
@@ -11164,6 +11738,218 @@
 				<xs:annotation>
 					<xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
 				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="purchaseProtocolFCDZPESMBO">
+		<xs:annotation>
+			<xs:documentation>Протокол обсуждения функциональных характеристик запроса предложений в ЭФ, участниками которого могут являться только МСП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="purchaseProtocolFCDZPESMBOItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="purchaseProtocolFCDZPESMBOItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="purchaseProtocolFCDZPESMBOData" type="purchaseProtocolFCDZPESMBODataType">
+						<xs:annotation>
+							<xs:documentation>Протокол обсуждения функциональных характеристик запроса предложений в ЭФ, участниками которого могут являться только МСП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="purchaseProtocolFCDZPESMBODataType">
+		<xs:annotation>
+			<xs:documentation>Протокол обсуждения функциональных характеристик запроса предложений в ЭФ, участниками которого могут являться только МСП</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="purchaseProtocolDataType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="purchaseProtocolAdditionalCollationKESMBO">
+		<xs:annotation>
+			<xs:documentation>Протокол подачи дополнительных ценовых предложений конкурса в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="purchaseProtocolAdditionalCollationKESMBOItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="purchaseProtocolAdditionalCollationKESMBOItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="purchaseProtocolAdditionalCollationKESMBOData" type="purchaseProtocolAdditionalCollationKESMBODataType">
+						<xs:annotation>
+							<xs:documentation>Протокол подачи дополнительных ценовых предложений конкурса в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="purchaseProtocolAdditionalCollationKESMBODataType">
+		<xs:annotation>
+			<xs:documentation>Протокол подачи дополнительных ценовых предложений конкурса в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="purchaseProtocolDataType">
+				<xs:sequence>
+					<xs:element name="protocolRZ2RegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол рассмотрения вторых частей заявок</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="protocolZRPZRegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол запроса разъяснений положений заявки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="protocolFKVORegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол рассмотрения и оценки окончательных предложений о функциональных характеристиках</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="protocolRZ1RegistryNumber" minOccurs="0" type="t:registrationNumber11-2Type">
+						<xs:annotation>
+							<xs:documentation>Протокол рассмотрения первых частей заявок</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="purchaseProtocolFCODZPESMBO">
+		<xs:annotation>
+			<xs:documentation>Протокол обсуждения предложений о функциональных характеристиках запроса предложений в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="t:packetType">
+					<xs:sequence>
+						<xs:element name="body">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="purchaseProtocolFCODZPESMBOItemType">
+										<xs:annotation>
+											<xs:documentation>Позиция в информационном пакете</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="purchaseProtocolFCODZPESMBOItemType">
+		<xs:annotation>
+			<xs:documentation>Данные позиции в пакете</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="t:itemType">
+				<xs:sequence>
+					<xs:element name="purchaseProtocolFCODZPESMBOData" type="purchaseProtocolFCODZPESMBODataType">
+						<xs:annotation>
+							<xs:documentation>Протокол обсуждения предложений о функциональных характеристиках запроса предложений в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="purchaseProtocolFCODZPESMBODataType">
+		<xs:annotation>
+			<xs:documentation>Протокол обсуждения предложений о функциональных характеристиках запроса предложений в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="purchaseProtocolDataType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="phoneType">
+		<xs:annotation>
+			<xs:documentation>Телефон</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code">
+				<xs:annotation>
+					<xs:documentation>Код</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:pattern value="\d{1,5}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="number">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:pattern value="\d{1,7}"/>
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>

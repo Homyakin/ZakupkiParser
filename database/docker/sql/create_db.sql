@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `zakupki`.`purchase_plan` (
   `annual_volume` DECIMAL(22,2) NULL DEFAULT NULL,
   `percent_smb` INT NULL DEFAULT NULL,
   `smb_partition_changed` TINYINT(1) NULL DEFAULT NULL,
-  `annual_volume_smb_less_18_percent` TINYINT(1) NULL DEFAULT NULL,
+  `annual_volume_smb_less_20_percent` TINYINT(1) NULL DEFAULT NULL,
   `reporting_year` INT NOT NULL,
   `previous_year_annual_volume` DECIMAL(22,2) NULL DEFAULT NULL,
   `previous_year_annual_volume_hitech` DECIMAL(22,2) NULL DEFAULT NULL,

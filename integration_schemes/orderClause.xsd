@@ -81,6 +81,11 @@
                     <xs:documentation>Данные заказчика</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="blockedCustomer" type="t:customerInfoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Данные заблокированного заказчика</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="placer" type="t:customerInfoType">
                 <xs:annotation>
                     <xs:documentation>Данные организации, создавшей сведения положения о закупках</xs:documentation>
@@ -135,6 +140,16 @@
                             <xs:documentation>Дата вступления в силу положения</xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element name="orderOfPurchase" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Порядок подготовки и (или) осуществления закупки</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="t:nonEmptyString">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
                     <xs:element name="approverName">
                         <xs:annotation>
                             <xs:documentation>Наименование органа, утвердившего положение</xs:documentation>
@@ -154,6 +169,11 @@
                                 <xs:maxLength value="2000"/>
                             </xs:restriction>
                         </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="planChangeDate" minOccurs="0" type="xs:positiveInteger">
+                        <xs:annotation>
+                            <xs:documentation>Срок устранения несоответствий в плане закупки после получения уведомления о несоответствии (рабочие дни)</xs:documentation>
+                        </xs:annotation>
                     </xs:element>
                     <xs:element name="purchaseMethod" minOccurs="0" maxOccurs="unbounded" type="purchaseMethodType">
                         <xs:annotation>
@@ -323,6 +343,11 @@
                                 <xs:documentation>Сведения о способах закупки</xs:documentation>
                             </xs:annotation>
                         </xs:element>
+                        <xs:element name="competitiveIsElectronic" type="xs:boolean" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Предусмотрено проведение конкурентных закупок не только в электронной форме</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -334,6 +359,21 @@
             <xs:element name="signatureAuthorizedBody" type="xs:base64Binary" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Подпись уполномоченного органа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="competitiveIsElectronic" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Предусмотрено проведение конкурентных закупок не только в электронной форме</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="applicationSupplyNeeded" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Предусмотрено требование к обеспечению заявки на участие в конкурентных закупках</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationEP" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Предусмотрено размещение информации о закупке у единственного поставщика (подрядчика, исполнителя)</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -362,7 +402,7 @@
         <xs:sequence>
             <xs:element name="purchaseMethodCode" type="xs:long">
                 <xs:annotation>
-                    <xs:documentation>Cпособ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
+                    <xs:documentation>Способ закупки, из Справочника способов закупок подсистемы прикладного администрирования.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="purchaseMethodName">
@@ -394,6 +434,16 @@
                         <xs:maxLength value="2000"/>
                     </xs:restriction>
                 </xs:simpleType>
+            </xs:element>
+            <xs:element name="submissionApplicationDate" minOccurs="0" type="xs:positiveInteger">
+                <xs:annotation>
+                    <xs:documentation>Срок подачи заявок</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="workDays" minOccurs="0" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Учет рабочих дней для срока подачи заявок</xs:documentation>
+                </xs:annotation>
             </xs:element>
             <xs:element name="extendFields" type="t:orderClauseExtendFieldValueListType" minOccurs="0">
                 <xs:annotation>

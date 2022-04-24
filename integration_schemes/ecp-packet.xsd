@@ -7,7 +7,7 @@
            xmlns:c="http://zakupki.gov.ru/223fz/contract/1"
            targetNamespace="http://zakupki.gov.ru/223fz/ecp-packet/1"
            elementFormDefault="qualified"
-           attributeFormDefault="unqualified">
+>
     <xs:import namespace="http://zakupki.gov.ru/223fz/types/1" schemaLocation="Types.xsd"/>
     <xs:import namespace="http://zakupki.gov.ru/223fz/purchase/1" schemaLocation="purchase.xsd"/>
     <xs:import namespace="http://zakupki.gov.ru/223fz/contract/1" schemaLocation="contract.xsd"/>
@@ -74,6 +74,11 @@
 												<xs:documentation>Протокол рассмотрения первых частей заявок</xs:documentation>
 											</xs:annotation>
 										</xs:element>
+										<xs:element name="purchaseProtocolAdditionalCollationKESMBO" type="p:purchaseProtocolAdditionalCollationKESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол подачи дополнительных ценовых предложений конкурса в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+											</xs:annotation>
+										</xs:element>
                                         <xs:element name="purchaseProtocolRZ2KESMBO" type="p:purchaseProtocolRZ2KESMBOItemType">
                                             <xs:annotation>
                                                 <xs:documentation>Протокол рассмотрения вторых частей заявок</xs:documentation>
@@ -97,7 +102,7 @@
 										</xs:element>
 										<xs:element name="purchaseProtocolCollationAESMBO" type="p:purchaseProtocolCollationAESMBOItemType">
 											<xs:annotation>
-												<xs:documentation>Протокол сопоставления ценовых предложений</xs:documentation>
+												<xs:documentation>Протокол подачи ценовых предложений</xs:documentation>
 											</xs:annotation>
 										</xs:element>
 										<xs:element name="purchaseProtocolRZ2AESMBO" type="p:purchaseProtocolRZ2AESMBOItemType">
@@ -132,6 +137,16 @@
                                                 <xs:documentation>Протокол запроса разъяснений положений заявки для запроса предложений в электронной форме, участниками которого могут быть только субъекты малого и среднего предпринимательства</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
+										<xs:element name="purchaseProtocolFCDZPESMBO" type="p:purchaseProtocolFCDZPESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол обсуждения функциональных характеристик запроса предложений в ЭФ, участниками которого могут являться только МСП</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="purchaseProtocolFCODZPESMBO" type="p:purchaseProtocolFCODZPESMBOItemType">
+											<xs:annotation>
+												<xs:documentation>Протокол обсуждения предложений о функциональных характеристиках запроса предложений в электронной форме, участниками которого могут являться только субъекты малого и среднего предпринимательства</xs:documentation>
+											</xs:annotation>
+										</xs:element>
 										<xs:element name="purchaseProtocolRZ1ZPESMBO" type="p:purchaseProtocolRZ1ZPESMBOItemType">
 											<xs:annotation>
 												<xs:documentation>Протокол рассмотрения первых частей заявок</xs:documentation>

@@ -347,9 +347,9 @@
 									<xs:element name="infos" minOccurs="0">
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="info" minOccurs="1" maxOccurs="1000">
+												<xs:element name="info" maxOccurs="1000">
 													<xs:annotation>
-														<xs:documentation>Информаиця о загружаемых сведениях</xs:documentation>
+														<xs:documentation>Информация о загружаемых сведениях</xs:documentation>
 													</xs:annotation>
 													<xs:complexType>
 														<xs:sequence>
@@ -862,7 +862,7 @@ CAdES-A</xs:documentation>
 					<xs:documentation>КПП</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ogrn" type="ogrnType">
+			<xs:element name="ogrn" type="ogrnType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>ОГРН</xs:documentation>
 				</xs:annotation>
@@ -927,9 +927,29 @@ CAdES-A</xs:documentation>
                     <xs:documentation>ОКПО</xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<xs:element name="oktmo" type="codeOktmoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ОКТМО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="okfs" type="codeOkfsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ОКФС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="okfsName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКФС</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
             <xs:element name="customerRegistrationDate" type="xs:dateTime" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Дата постанвки на учет в налоговом органе</xs:documentation>
+                    <xs:documentation>Дата постановки на учет в налоговом органе</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="timeZone" type="timeZoneType" minOccurs="0">
@@ -974,7 +994,67 @@ CAdES-A</xs:documentation>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="ogrn" type="ogrnType">
+			<xs:element name="isRapf" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак регистрации организации по данным РАПФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="updateRapfDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего обновления данных об организации из РАПФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="foreignFullName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полное наименование юридического лица иностранного государства</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="1000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="foreignShortName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование юридического лица иностранного государства</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="foreignRegCountryCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код страны регистрации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="foreignCountry" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Страна регистрации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="300"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="foreignAffiliateType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип аккредитованного филиала представительства иностранного государства</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="300"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="ogrn" type="ogrnType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>ОГРН</xs:documentation>
                 </xs:annotation>
@@ -1163,7 +1243,7 @@ CAdES-A</xs:documentation>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="ogrn" type="ogrnType">
+            <xs:element name="ogrn" type="ogrnType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>ОГРН</xs:documentation>
                 </xs:annotation>
@@ -1278,7 +1358,12 @@ CAdES-A</xs:documentation>
 					<xs:documentation>КПП</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ogrn" type="ogrnType">
+			<xs:element name="detachedKpp" type="kppType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ogrn" type="ogrnType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>ОГРН</xs:documentation>
 				</xs:annotation>
@@ -1365,7 +1450,7 @@ CAdES-A</xs:documentation>
 					<xs:documentation>КПП</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ogrn" type="ogrnType">
+			<xs:element name="ogrn" type="ogrnType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>ОГРН</xs:documentation>
 				</xs:annotation>
@@ -1912,7 +1997,7 @@ CAdES-A</xs:documentation>
                         </xs:choice>
                         <xs:element name="orderPricing" minOccurs="0">
                             <xs:annotation>
-                                <xs:documentation>Порядок формирования цены договора</xs:documentation>
+                                <xs:documentation>Обоснование начальной (максимальной) цены договора</xs:documentation>
                             </xs:annotation>
                             <xs:simpleType>
                                 <xs:restriction base="nonEmptyString">
@@ -2551,7 +2636,7 @@ CAdES-A</xs:documentation>
                         </xs:element>
                         <xs:element name="orderPricing" minOccurs="0">
                             <xs:annotation>
-                                <xs:documentation>Порядок формирования цены договора</xs:documentation>
+                                <xs:documentation>Обоснование начальной (максимальной) цены договора</xs:documentation>
                             </xs:annotation>
                             <xs:simpleType>
                                 <xs:restriction base="nonEmptyString">
@@ -2611,6 +2696,11 @@ CAdES-A</xs:documentation>
                             <xs:documentation>Информация об организации участника совместной закупки (резидент РФ)</xs:documentation>
                         </xs:annotation>
                     </xs:element>
+					<xs:element name="blockedLotCustomer" type="customerMainInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Данные заблокированного участника совместной закупки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
                     <xs:element name="nonResidentInfo" type="nonResidentLotCustomerInfoType" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>Информация об организации участника совместной закупки (нерезиденте РФ)</xs:documentation>
@@ -3344,6 +3434,22 @@ CAdES-A</xs:documentation>
             <xs:fractionDigits value="2"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="decimal20_11">
+        <xs:annotation>
+			<xs:documentation>Число с 11тью знаками после запятой</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+			<xs:pattern value="\d{1,20}(\.\d{1,11})?"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="decimal3_4">
+        <xs:annotation>
+			<xs:documentation>Число с 11тью знаками после запятой</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+			<xs:pattern value="\d{1,3}(\.\d{1,4})?"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="money3">
         <xs:annotation>
             <xs:documentation>Денежная сумма строка длинной 100 символов</xs:documentation>
@@ -3653,6 +3759,11 @@ CAdES-A</xs:documentation>
 					<xs:documentation>Договоры, заключенные заказчиком с единственным поставщиком (исполнителем, подрядчиком) по результатам несостоявшейся конкурентной закупки</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Договоры, заключенные заказчиком по результатам закупки товаров, работ, услуг</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
@@ -3827,12 +3938,24 @@ CAdES-A</xs:documentation>
 	</xs:simpleType>
 	<xs:simpleType name="registrationNumberType">
 		<xs:annotation>
-			<xs:documentation>Регистрационный номер положения</xs:documentation>
+			<xs:documentation>Регистрационный номер</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="nonEmptyString">
 			<xs:pattern value="\d{10}"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:complexType name="registrationNumberListType">
+		<xs:annotation>
+			<xs:documentation>Список регистрационных номеров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="registrationNumber" type="registrationNumberType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:simpleType name="registrationNumber11Type">
 		<xs:annotation>
 			<xs:documentation>Регистрационный номер 11 цифр</xs:documentation>
@@ -3841,6 +3964,18 @@ CAdES-A</xs:documentation>
 			<xs:pattern value="\d{11}"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:complexType name="registrationNumber11ListType">
+		<xs:annotation>
+			<xs:documentation>Список регистрационных номеров (11 цифр)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="registrationNumber" type="registrationNumber11Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер (11 цифр)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:simpleType name="registrationNumber14Type">
 		<xs:annotation>
 			<xs:documentation>Регистрационный номер 14 цифр</xs:documentation>
@@ -5568,12 +5703,25 @@ CAdES-A</xs:documentation>
 
     <xs:simpleType name="registrationNumber23Type">
         <xs:annotation>
-            <xs:documentation>Регистрационный номер 23 разряды</xs:documentation>
+            <xs:documentation>Регистрационный номер 23 разряда</xs:documentation>
         </xs:annotation>
         <xs:restriction base="nonEmptyString">
             <xs:pattern value="\d{23}"/>
         </xs:restriction>
     </xs:simpleType>
+
+	<xs:complexType name="registrationNumber23ListType">
+		<xs:annotation>
+			<xs:documentation>Список регистрационных номеров (23 разряда)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="registrationNumber" type="registrationNumber23Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер (23 разряда)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 
     <xs:simpleType name="noticeDeliveryPlaceIndicationType">
         <xs:annotation>
@@ -5684,4 +5832,68 @@ CAdES-A</xs:documentation>
 		</xs:sequence>
 	</xs:complexType>
 
+	<xs:complexType name="customerInfo4Type">
+		<xs:annotation>
+			<xs:documentation>Данные организации заказчика</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mainInfo" type="customerMainInfo4Type">
+				<xs:annotation>
+					<xs:documentation>Основная информация об организации-обособленном подразделении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="customerMainInfo4Type">
+		<xs:annotation>
+			<xs:documentation>Основная информация об организации - обособленном подразделении</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fullName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="1000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="shortName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="inn" type="innType">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="kpp" type="kppType">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ogrn" type="ogrnType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОГРН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="legalAddress" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Юридический адрес</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nonEmptyString">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>

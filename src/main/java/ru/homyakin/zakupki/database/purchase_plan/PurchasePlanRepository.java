@@ -17,18 +17,15 @@ public class PurchasePlanRepository extends BaseRepository<PurchasePlan> {
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRepository customerRepository;
     private final PlanItemRepository planItemRepository;
-    private final RepositoryUtils repositoryUtils;
 
     public PurchasePlanRepository(
         DataSource dataSource,
         CustomerRepository customerRepository,
-        PlanItemRepository planItemRepository,
-        RepositoryUtils repositoryUtils
+        PlanItemRepository planItemRepository
     ) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.customerRepository = customerRepository;
         this.planItemRepository = planItemRepository;
-        this.repositoryUtils = repositoryUtils;
     }
 
     public void insert(PurchasePlan purchasePlan) {
@@ -36,7 +33,7 @@ public class PurchasePlanRepository extends BaseRepository<PurchasePlan> {
             "create_date_time, url_eis, url_vsrz, url_kis_rmis, registration_number, name, additional_info," +
             "start_date, end_date, approve_date, publication_date_time, is_digit_form, summ_size_ch15," +
             "is_imported_from_vsrz, status_code, version, modification_description, use_new_classifiers," +
-            "exclude_volume, volume_smb, annual_volume, percent_smb, smb_partition_changed, annual_volume_smb_less_18_percent," +
+            "exclude_volume, volume_smb, annual_volume, percent_smb, smb_partition_changed, annual_volume_smb_less_20_percent," +
             "reporting_year, previous_year_annual_volume, previous_year_annual_volume_hitech, previous_year_annual_volume_hitech_smb," +
             "annual_year_annual_volume_hitech_summ, annual_year_annual_volume_hitech_increase," +
             "annual_year_annual_volume_hitech_percent, annual_year_annual_volume_hitech_smb_summ," +
@@ -57,34 +54,34 @@ public class PurchasePlanRepository extends BaseRepository<PurchasePlan> {
             jdbcTemplate.update(
                 sql,
                 purchasePlanData.getGuid(),
-                repositoryUtils.removeExtraSpaces(customerInn),
-                repositoryUtils.removeExtraSpaces(purchasePlanData.getPlacer().getMainInfo().getInn()),
-                repositoryUtils.removeExtraSpaces(planType),
-                repositoryUtils.convertBoolean(purchasePlanData.isIsUploadComplete()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getCreateDateTime()),
-                repositoryUtils.removeExtraSpaces(purchasePlanData.getUrlEIS()),
-                repositoryUtils.removeExtraSpaces(purchasePlanData.getUrlVSRZ()),
-                repositoryUtils.removeExtraSpaces(purchasePlanData.getUrlKisRmis()),
-                repositoryUtils.removeExtraSpaces(purchasePlanData.getRegistrationNumber()),
-                repositoryUtils.removeExtraSpaces(purchasePlanData.getName()),
-                repositoryUtils.removeExtraSpaces(purchasePlanData.getAdditionalInfo()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getStartDate()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getEndDate()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getApproveDate()),
-                repositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getPublicationDateTime()),
-                repositoryUtils.convertBoolean(purchasePlanData.isIsDigitForm()),
-                repositoryUtils.convertBoolean(purchasePlanData.isSummSizeCh15()),
-                repositoryUtils.convertBoolean(purchasePlanData.isIsImportedFromVSRZ()),
-                repositoryUtils.removeExtraSpaces(planStatus),
+                RepositoryUtils.removeExtraSpaces(customerInn),
+                RepositoryUtils.removeExtraSpaces(purchasePlanData.getPlacer().getMainInfo().getInn()),
+                RepositoryUtils.removeExtraSpaces(planType),
+                RepositoryUtils.convertBoolean(purchasePlanData.isIsUploadComplete()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getCreateDateTime()),
+                RepositoryUtils.removeExtraSpaces(purchasePlanData.getUrlEIS()),
+                RepositoryUtils.removeExtraSpaces(purchasePlanData.getUrlVSRZ()),
+                RepositoryUtils.removeExtraSpaces(purchasePlanData.getUrlKisRmis()),
+                RepositoryUtils.removeExtraSpaces(purchasePlanData.getRegistrationNumber()),
+                RepositoryUtils.removeExtraSpaces(purchasePlanData.getName()),
+                RepositoryUtils.removeExtraSpaces(purchasePlanData.getAdditionalInfo()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getStartDate()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getEndDate()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDate(purchasePlanData.getApproveDate()),
+                RepositoryUtils.convertFromXMLGregorianCalendarToLocalDateTime(purchasePlanData.getPublicationDateTime()),
+                RepositoryUtils.convertBoolean(purchasePlanData.isIsDigitForm()),
+                RepositoryUtils.convertBoolean(purchasePlanData.isSummSizeCh15()),
+                RepositoryUtils.convertBoolean(purchasePlanData.isIsImportedFromVSRZ()),
+                RepositoryUtils.removeExtraSpaces(planStatus),
                 purchasePlanData.getVersion(),
-                repositoryUtils.removeExtraSpaces(purchasePlanData.getModificationDescription()),
-                repositoryUtils.convertBoolean(purchasePlanData.isUseNewClassifiers()),
+                RepositoryUtils.removeExtraSpaces(purchasePlanData.getModificationDescription()),
+                RepositoryUtils.convertBoolean(purchasePlanData.isUseNewClassifiers()),
                 purchasePlanData.getExcludeVolume(),
                 purchasePlanData.getVolumeSMB(),
                 purchasePlanData.getAnnualVolume(),
                 purchasePlanData.getPercentSMB(),
-                repositoryUtils.convertBoolean(purchasePlanData.isSmbPartitionChanged()),
-                repositoryUtils.convertBoolean(purchasePlanData.isAnnualVolumeSMBLess18Percent()),
+                RepositoryUtils.convertBoolean(purchasePlanData.isSmbPartitionChanged()),
+                RepositoryUtils.convertBoolean(purchasePlanData.isAnnualVolumeSMBLess20Percent()),
                 purchasePlanData.getReportingYear(),
                 purchasePlanData.getPreviousYearAnnualVolume(),
                 purchasePlanData.getPreviousYearAnnualVolumeHiTech(),

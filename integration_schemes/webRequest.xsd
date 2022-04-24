@@ -880,7 +880,7 @@
                                 <xs:documentation>КПП</xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <xs:element name="ogrn" type="t:ogrnType">
+                        <xs:element name="ogrn" type="t:ogrnType" minOccurs="0">
                             <xs:annotation>
                                 <xs:documentation>ОГРН</xs:documentation>
                             </xs:annotation>

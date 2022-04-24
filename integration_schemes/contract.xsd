@@ -376,6 +376,11 @@
                     <xs:documentation>Данные заказчика</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="blockedCustomer" type="t:customerInfoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Данные заблокированного заказчика</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="placer" type="t:customerInfoType">
                 <xs:annotation>
                     <xs:documentation>Данные организации, размещающей сведения</xs:documentation>
@@ -585,7 +590,7 @@
                     <xs:documentation>Цена договора</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="exchangeRate" type="t:money6" minOccurs="0">
+            <xs:element name="exchangeRate" type="t:decimal3_4" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Курс валюты</xs:documentation>
                 </xs:annotation>
@@ -613,6 +618,11 @@
             <xs:element name="endExecutionDate" type="xs:date" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Дата окончания исполнения договора</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="longTermContractVolumes" type="longTermContractVolumesType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Информация об объемах оплаты долгосрочного договора</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="contractPositions" type="positionListType" minOccurs="0">
@@ -957,9 +967,9 @@
             <xs:documentation>Сведения о завершении договора. Базовый тип</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="guid" type="t:guidType">
+            <xs:element name="guid" type="t:guidType" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Глобальный идентификатор сведений о завершении договора</xs:documentation>
+                    <xs:documentation>Глобальный идентификатор сведений об исполнении/завершении договора</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="registrationNumber" type="t:registrationNumber23Type" minOccurs="0">
@@ -1354,7 +1364,7 @@
                     <xs:documentation>Цена договора в рублевом эквиваленте</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="exchangeRate" type="t:money6" minOccurs="0">
+            <xs:element name="exchangeRate" type="t:decimal3_4" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Курс валюты</xs:documentation>
                 </xs:annotation>
@@ -1382,6 +1392,11 @@
             <xs:element name="subcontractor" type="supplierMainType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>Сведения о субподрядчике</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="longTermContractVolumes" type="longTermContractVolumesType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Информация об объемах оплаты долгосрочного договора</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="contractPositions" type="positionListType" minOccurs="0">
@@ -1602,6 +1617,66 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:complexType name="longTermContractVolumesType">
+        <xs:annotation>
+            <xs:documentation>Информация об объемах оплаты долгосрочного договора</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="details" type="longTermContractVolumeDetailListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Информация об объеме оплаты долгосрочного договора за год</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="volume" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Объём оплаты долгосрочного договора за все года исполнения долгосрочного договора</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="volumeRub" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Объём оплаты долгосрочного договора в рублевом эквиваленте за все года исполнения долгосрочного договора</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="longTermContractVolumeDetailListType">
+        <xs:annotation>
+            <xs:documentation>Объёмы оплаты долгосрочного договора по годам</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="longTermContractVolumeDetail" type="longTermContractVolumeDetailType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Информация об объеме оплаты долгосрочного договора за год</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="longTermContractVolumeDetailType">
+        <xs:annotation>
+            <xs:documentation>Информация об объеме оплаты долгосрочного договора за год</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="year" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Год планируемого платежа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="summ" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Сумма планируемого платежа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="summRub" type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Сумма планируемого платежа в рублевом эквиваленте</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="positionListType">
         <xs:annotation>
             <xs:documentation>Позиции договора</xs:documentation>
@@ -1741,7 +1816,7 @@
                     </xs:annotation>
                 </xs:element>
             </xs:sequence>
-            <xs:element name="unitPrice" type="t:unsignedMoney2" minOccurs="0">
+            <xs:element name="unitPrice" type="t:decimal20_11" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Цена за единицу</xs:documentation>
                 </xs:annotation>
@@ -1751,12 +1826,12 @@
                     <xs:documentation>Валюта</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="exchangeRate" type="t:money6" minOccurs="0">
+            <xs:element name="exchangeRate" type="t:decimal3_4" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Курс валюты цены за единицу</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="rubUnitPrice" type="t:money2" minOccurs="0">
+            <xs:element name="rubUnitPrice" type="t:decimal20_11" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Цена за единицу в рублевом эквиваленте</xs:documentation>
                 </xs:annotation>
@@ -1872,11 +1947,10 @@
     </xs:complexType>
     <xs:simpleType name="contractPositionQtyType">
         <xs:annotation>
-            <xs:documentation>Количество товаров 25 цифр для целой части 5 для дробной</xs:documentation>
+            <xs:documentation>Количество товаров 25 цифр для целой части 11 для дробной</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:decimal">
-            <xs:totalDigits value="25"/>
-            <xs:fractionDigits value="5"/>
+            <xs:pattern value="\d{1,25}(\.\d{1,11})?"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="contractStatusType">
@@ -1960,9 +2034,9 @@
             <xs:documentation>Позиция сведений об исполнении</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="ordinal" type="xs:long">
+            <xs:element name="ordinal" type="xs:long" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Номер</xs:documentation>
+                    <xs:documentation>Порядковый номер позиции сведений об исполнении договора</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="paymentInfos" type="completingPaymentInfosType" minOccurs="0">
@@ -2026,7 +2100,7 @@
                     <xs:documentation>Валюта</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="currencyRate" type="t:money6" minOccurs="0">
+            <xs:element name="currencyRate" type="t:decimal3_4" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Курс</xs:documentation>
                 </xs:annotation>
@@ -2039,6 +2113,11 @@
             <xs:element name="prepaid" type="xs:boolean" minOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Авансовый платеж</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractAcceptanceDocs" type="contractAcceptanceDocsType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Соответствие платёжного документа документу(ам) о приемке</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -2222,7 +2301,7 @@
                     <xs:documentation>Количество</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="unitPrice" type="t:money2" minOccurs="0">
+            <xs:element name="unitPrice" type="t:decimal20_11" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Цена за единицу</xs:documentation>
                 </xs:annotation>
@@ -2232,7 +2311,7 @@
                     <xs:documentation>Валюта</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="exchangeRate" type="t:money6" minOccurs="0">
+            <xs:element name="exchangeRate" type="t:decimal3_4" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Курс валюты цены за единицу</xs:documentation>
                 </xs:annotation>
@@ -2242,7 +2321,7 @@
                     <xs:documentation>Дата, на которую установлен курс валюты</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="rubUnitPrice" type="t:money2" minOccurs="0">
+            <xs:element name="rubUnitPrice" type="t:decimal20_11" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Цена за единицу в рублевом эквиваленте</xs:documentation>
                 </xs:annotation>
@@ -2250,6 +2329,11 @@
             <xs:element name="prepayment" type="xs:boolean" minOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Оплата авансом</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="totalRub"  type="t:money2" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Сумма по позиции</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -2712,7 +2796,7 @@
                                 <xs:documentation>КПП</xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <xs:element name="ogrn" type="t:ogrnType">
+                        <xs:element name="ogrn" type="t:ogrnType" minOccurs="0">
                             <xs:annotation>
                                 <xs:documentation>ОГРН</xs:documentation>
                             </xs:annotation>
@@ -2796,7 +2880,7 @@
             </xs:enumeration>
             <xs:enumeration value="NO_BUDGET_RESOURCES_FZ44">
                 <xs:annotation>
-                    <xs:documentation>Нет финансирования за счет бюджетных средств</xs:documentation>
+                    <xs:documentation>Нет финансирования за счет средств субсидии, предоставляемой в целях реализации национальных и федеральных проектов и (или) комплексного плана модернизации и расширения магистральной инфраструктуры</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>
@@ -2819,4 +2903,55 @@
             </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:complexType name="contractAcceptanceDocsType">
+        <xs:annotation>
+            <xs:documentation>Соответствие платежного документа документу(ам) о приемке</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="contractAcceptanceDoc" type="contractAcceptanceDocType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Документ приемки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="contractAcceptanceDocType">
+        <xs:annotation>
+            <xs:documentation>Документ приемки</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        <xs:element name="guidCompletingInfo" type="t:guidType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор сведений об исполнении договора</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="positionOrdinal" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Номер позиции сведений об исполнении</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="docOrdinal" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Порядковый номер документа приёмки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="name" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="number" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="date" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>

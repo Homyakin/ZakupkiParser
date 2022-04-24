@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+               xmlns:t="http://zakupki.gov.ru/223fz/types/1"
+               version="2.1">
+    <jaxb:globalBindings>
+        <jaxb:javaType name="javax.xml.datatype.XMLGregorianCalendar" xmlType="xs:dateTime"
+                       parseMethod="ru.lanit.fz223.xml.converter.DateTimeConverter.parseDateTimeWithoutTimeZone"/>
+        <jaxb:javaType name="java.lang.String" xmlType="t:guidType"
+                       parseMethod="ru.lanit.fz223.xml.converter.GuidConverter.parseGuid"
+                       printMethod="ru.lanit.fz223.xml.converter.GuidConverter.writeGuid"/>
+    </jaxb:globalBindings>
+</jaxb:bindings>

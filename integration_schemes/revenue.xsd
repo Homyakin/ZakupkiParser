@@ -211,7 +211,11 @@
                     <xs:documentation>Сведения о заказчике</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
+            <xs:element name="blockedCustomer" type="t:customerInfoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Данные заблокированного заказчика</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="urlEIS" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Url документа в ЕИС</xs:documentation>
@@ -497,17 +501,17 @@
             <xs:documentation>Сведения о выручке по видам деятельности</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-        	<xs:choice>
-	            <xs:element name="okved" type="t:codeOkvedType">
-                	<xs:annotation>
-	                    <xs:documentation>Код ОКВЭД</xs:documentation>
-                	</xs:annotation>
-            	</xs:element>
-	            <xs:element name="okved2" type="t:codeOkvedType">
-                	<xs:annotation>
-	                    <xs:documentation>Код ОКВЭД2</xs:documentation>
-                	</xs:annotation>
-            	</xs:element>
+            <xs:choice>
+                <xs:element name="okved" type="t:codeOkvedType">
+                    <xs:annotation>
+                        <xs:documentation>Код ОКВЭД</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="okved2" type="t:codeOkvedType">
+                    <xs:annotation>
+                        <xs:documentation>Код ОКВЭД2</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
             </xs:choice>
             <xs:element name="name">
                 <xs:annotation>

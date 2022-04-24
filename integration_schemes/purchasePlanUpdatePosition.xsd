@@ -151,6 +151,11 @@
 							<xs:documentation>Прикрепленные к сведениям документы</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="no1352ForCustomerTill2022" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Для организации заказчика до 01.01.2022 г. не применялись требования постановления правительства РФ от 11 декабря 2014 г. № 1352</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>

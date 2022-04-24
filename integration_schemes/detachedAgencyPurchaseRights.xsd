@@ -31,7 +31,312 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
+                <xs:element name="orderClauseRights" minOccurs="0" type="orderClauseRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для положения о закупке</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="planRights" minOccurs="0" type="planRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для плана закупки</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="purchaseRights" minOccurs="0" type="purchaseRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для извещения о закупке</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="contractRights" minOccurs="0" type="contractRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для договора</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="volumePurchaseRights" minOccurs="0" type="volumePurchaseRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для годового отчета МСП</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="volumeInnovPurchaseRights" minOccurs="0" type="volumeInnovPurchaseRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для годового отчета ИПВП</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="purchaseContractAccountRights" minOccurs="0" type="purchaseContractAccountRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для отчетности по договорам</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="listGWSRights" minOccurs="0" type="listGWSRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для перечня ТРУ</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="listInnovRights" minOccurs="0" type="listInnovRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для перечня ИПВП</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="revenueRights" minOccurs="0" type="revenueRightsType">
+                    <xs:annotation>
+                        <xs:documentation>Данные о правах для сведений о выручке</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="customer" type="t:customerInfo4Type">
+                    <xs:annotation>
+                        <xs:documentation>Данные организации заказчика</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+    <xs:complexType name="orderClauseRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для положения о закупке</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="orderClauseCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="orderClauseModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="orderClauseView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="planRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для плана закупки</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="planCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="planModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="planView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hideModificationPlans" type="t:registrationNumberListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Список скрываемых для внесения изменений планов закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hideViewPlans" type="t:registrationNumberListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Список скрываемых для просмотра планов закупки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="purchaseRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для извещения о закупке</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="purchaseCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="purchaseModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="purchaseView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hideModificationPurchases" type="t:registrationNumber11ListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Список скрываемых для внесения изменений извещений о закупке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hideViewPurchases" type="t:registrationNumber11ListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Список скрываемых для просмотра извещений о закупке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="contractRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для договора</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="contractCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hideModificationContracts" type="t:registrationNumber23ListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Список скрываемых для внесения изменений договоров</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hideViewContracts" type="t:registrationNumber23ListType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Список скрываемых для просмотра договоров</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="volumePurchaseRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для годового отчета МСП</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="volumePurchaseCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="volumePurchaseModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="volumePurchaseView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="volumeInnovPurchaseRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для годового отчета ИПВП</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="volumeInnovPurchaseCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="volumeInnovPurchaseModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="volumeInnovPurchaseView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="purchaseContractAccountRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для отчетности по договорам</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="purchaseContractAccountCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="purchaseContractAccountModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="purchaseContractAccountPurchaseView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="listGWSRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для перечня ТРУ</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="listGWSCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="listGWSModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="listGWSView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="listInnovRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для перечня ИПВП</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="listInnovCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="listInnovModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="listInnovView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="revenueRightsType">
+        <xs:annotation>
+            <xs:documentation>Данные о правах для сведений о выручке</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="revenueCreate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на формирование сведений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="revenueModification" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на внесение изменений</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="revenueView" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Право на просмотр</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
